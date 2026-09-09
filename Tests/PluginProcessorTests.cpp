@@ -1477,6 +1477,10 @@ void renderEditorSnapshots (const juce::File& directory)
         SeptumAudioProcessorEditor::panelSizeForWorkArea ({ 1366, 768 });
     snapshot ("upper-ready-full", design);
     snapshot ("upper-ready-compact", compact);
+    set ("upper_enabled", 0.0f);
+    snapshot ("upper-muted-controls-disabled", design);
+    snapshot ("upper-muted-controls-disabled-compact", compact);
+    set ("upper_enabled", 1.0f);
 
     if (auto* lower = findButton (editor->getPanel(), "LOWER"))
         if (lower->onClick)
@@ -2917,11 +2921,13 @@ void testThePanelSaysWhichToneItIsEditing()
                 "the LOWER card mutes only LOWER");
         expect (lower->getToggleState() && ! upper->getToggleState(),
                 "muting LOWER preserves the selected edit target");
-        expect (cutoff == nullptr || cutoff->isEnabled(),
-                "a muted part's sound controls remain editable");
+        expect (cutoff != nullptr && ! cutoff->isEnabled() && cutoff->getAlpha() < 1.0f,
+                "a muted part's sound controls are disabled and dimmed");
         upper->onClick();
         expect (cutoffOf ("lower_enabled") == 0,
                 "selecting UPPER does not re-enable the muted LOWER part");
+        expect (cutoff != nullptr && cutoff->isEnabled(),
+                "selecting the enabled UPPER part restores its sound controls");
         lower->onClick();
         upperEnable->setToggleState (false, juce::sendNotificationSync);
         expect (lower->getToggleState() && ! upper->getToggleState(),
@@ -2941,6 +2947,246 @@ void testThePanelSaysWhichToneItIsEditing()
     auto* reopenedLower = findButton (second->getPanel(), "LOWER");
     expect (reopenedLower != nullptr && reopenedLower->getToggleState(),
             "reopening the editor keeps the tone the player was editing");
+    auto* reopenedCutoff = findComponentById (second->getPanel(), "tone_cutoff");
+    expect (reopenedCutoff != nullptr && ! reopenedCutoff->isEnabled(),
+            "reopening a muted selected part keeps its sound controls disabled");
+}
+
+void testMutedPartControlsStayInspectableAndFollowHostState()
+{
+    SeptumAudioProcessor processor;
+    processor.prepareToPlay (44100.0, 256);
+    const auto set = [&processor] (const char* id, float value)
+    {
+        processor.parameters.getParameter (id)->setValueNotifyingHost (
+            processor.parameters.getParameterRange (id).convertTo0to1 (value));
+    };
+    set ("up_cutoff", 30.0f);
+    set ("lo_cutoff", 90.0f);
+    std::unique_ptr<juce::AudioProcessorEditor> base (processor.createEditor());
+    auto* editor = dynamic_cast<SeptumAudioProcessorEditor*> (base.get());
+    expect (editor != nullptr, "muted-control test has a Septum editor");
+    if (editor == nullptr)
+        return;
+    const auto design = SeptumAudioProcessorEditor::panelSizeForWorkArea ({});
+    editor->setSize (design.getWidth(), design.getHeight());
+    editor->resized();
+    auto& panel = editor->getPanel();
+
+    auto* upper = dynamic_cast<juce::Button*> (findComponentById (panel, "edit_upper"));
+    auto* lower = dynamic_cast<juce::Button*> (findComponentById (panel, "edit_lower"));
+    auto* upperPower = dynamic_cast<juce::Button*> (
+        findComponentById (panel, "upper_part_enabled"));
+    auto* lowerPower = dynamic_cast<juce::Button*> (
+        findComponentById (panel, "lower_part_enabled"));
+    auto* cutoff = dynamic_cast<juce::Slider*> (findComponentById (panel, "tone_cutoff"));
+    auto* attack = dynamic_cast<juce::Slider*> (findComponentById (panel, "tone_aenv_attack"));
+    auto* wave = dynamic_cast<juce::ComboBox*> (findComponentById (panel, "tone_osc1_wave"));
+    auto* overdrive = dynamic_cast<juce::Button*> (findComponentById (panel, "tone_overdrive"));
+    auto* octave = findButton (panel, "-OCT");
+    expect (upper != nullptr && lower != nullptr && upperPower != nullptr
+                && lowerPower != nullptr && cutoff != nullptr && attack != nullptr
+                && wave != nullptr && overdrive != nullptr && octave != nullptr,
+            "selectors, powers and every kind of inspected tone control exist");
+    if (upper == nullptr || lower == nullptr || upperPower == nullptr
+        || lowerPower == nullptr || cutoff == nullptr || attack == nullptr
+        || wave == nullptr || overdrive == nullptr || octave == nullptr)
+        return;
+
+    struct ControlState
+    {
+        juce::Component* component;
+        bool enabled;
+        float alpha;
+    };
+    std::vector<juce::Component*> perTone;
+    std::vector<ControlState> shared, labels;
+    int knobs = 0, sliders = 0, combos = 0, toggles = 0, actions = 0;
+    for (auto* child : panel.getChildren())
+    {
+        if (dynamic_cast<juce::Label*> (child) != nullptr)
+            labels.push_back ({ child, child->isEnabled(), child->getAlpha() });
+        const auto* slider = dynamic_cast<juce::Slider*> (child);
+        const auto* combo = dynamic_cast<juce::ComboBox*> (child);
+        const auto* button = dynamic_cast<juce::Button*> (child);
+        if (slider == nullptr && combo == nullptr && button == nullptr)
+            continue;
+        // Scope is explicit because a per-tone oscillator balance and the
+        // shared tone-balance control historically share an ID spelling.
+        if (static_cast<bool> (child->getProperties()["perTone"]))
+        {
+            perTone.push_back (child);
+            if (slider != nullptr)
+                (slider->getSliderStyle() == juce::Slider::LinearVertical ? sliders : knobs)++;
+            else if (combo != nullptr)
+                ++combos;
+            else
+                (button->getClickingTogglesState() ? toggles : actions)++;
+        }
+        else
+            shared.push_back ({ child, child->isEnabled(), child->getAlpha() });
+    }
+    // Count the current complete tone surface, including actions with no
+    // parameter attachment. This catches an untagged or untested control.
+    expect (perTone.size() == 66 && knobs == 31 && sliders == 10
+                && combos == 15 && toggles == 8 && actions == 2,
+            "mute coverage includes all 66 tone controls: knobs, sliders, choices, toggles and actions");
+    expect (shared.size() > 40, "mute coverage also watches the shared controls");
+
+    const auto verifyAvailability = [&] (bool enabled, const juce::String& context)
+    {
+        for (const auto* control : perTone)
+        {
+            expect (control->isEnabled() == enabled,
+                    context + ": enabled state of " + control->getComponentID());
+            expect (enabled ? control->getAlpha() == 1.0f
+                            : control->getAlpha() > 0.0f && control->getAlpha() < 0.8f,
+                    context + ": readable dimming of " + control->getComponentID());
+        }
+        for (const auto& state : shared)
+            expect (state.component->isEnabled() == state.enabled
+                        && state.component->getAlpha() == state.alpha,
+                    context + ": shared control stays available: "
+                        + state.component->getComponentID());
+        int dimmedLabels = 0;
+        for (const auto& state : labels)
+            if (state.component->getAlpha() < state.alpha)
+                ++dimmedLabels;
+        expect (enabled ? dimmedLabels == 0
+                        : dimmedLabels >= static_cast<int> (perTone.size()) + knobs + sliders,
+                context + ": captions and displayed values follow the tone's dimming");
+        expect (upper->isEnabled() && lower->isEnabled()
+                    && upperPower->isEnabled() && lowerPower->isEnabled(),
+                context + ": both selectors and both powers remain usable");
+    };
+    const auto tick = []
+    {
+        std::this_thread::sleep_for (std::chrono::milliseconds (60));
+        juce::Timer::callPendingTimersSynchronously();
+    };
+    std::vector<std::pair<juce::String, float>> toneValues;
+    for (const auto* parameter : processor.getParameters())
+        if (const auto* identified =
+                dynamic_cast<const juce::AudioProcessorParameterWithID*> (parameter))
+            if (identified->paramID.startsWith ("up_") || identified->paramID.startsWith ("lo_"))
+                toneValues.emplace_back (identified->paramID,
+                    processor.parameters.getRawParameterValue (identified->paramID)->load());
+    const auto preserveToneValues = [&]
+    {
+        for (const auto& [id, value] : toneValues)
+            expect (processor.parameters.getRawParameterValue (id)->load() == value,
+                    "muting, switching and restoring preserve " + id);
+    };
+    const auto automateTone = [&] (const char* id, float value)
+    {
+        set (id, value);
+        for (auto& stored : toneValues)
+            if (stored.first == id)
+                stored.second = value;
+    };
+
+    verifyAvailability (true, "initial UPPER");
+    // Synchronous button notification exercises the click/attachment path.
+    // No timer or layout may be needed to make the OFF panel noninteractive.
+    upperPower->setToggleState (false, juce::sendNotificationSync);
+    expect (processor.parameters.getRawParameterValue ("upper_enabled")->load() == 0.0f,
+            "the power click immediately updates its host parameter");
+    verifyAvailability (false, "immediate UPPER power-off");
+    preserveToneValues();
+
+    automateTone ("up_cutoff", 47.0f);
+    automateTone ("up_aenv_attack", 34.0f);
+    automateTone ("up_osc1_wave", 4.0f);
+    automateTone ("up_overdrive", 1.0f);
+    automateTone ("up_osc1_pitch", 0.0f);
+    automateTone ("up_osc2_pitch", -12.0f);
+    tick();
+    // Attachments convert via the host's normalised float. A sub-millistep
+    // tolerance permits that conversion error while still rejecting a stale
+    // display or even a one-unit parameter mismatch.
+    expect (std::abs (cutoff->getValue() - 47.0) < 0.001,
+            "disabled cutoff follows host automation (display "
+                + juce::String (cutoff->getValue(), 9) + ", expected 47)");
+    expect (std::abs (attack->getValue() - 34.0) < 0.001,
+            "disabled attack slider follows host automation (display "
+                + juce::String (attack->getValue(), 9) + ", expected 34)");
+    expect (wave->getSelectedItemIndex() == 4,
+            "disabled waveform choice follows host automation (index "
+                + juce::String (wave->getSelectedItemIndex()) + ", expected 4)");
+    expect (overdrive->getToggleState(),
+            "disabled overdrive toggle follows host automation to ON");
+    expect (octave->getToggleState(),
+            "disabled interval action lamp follows automated OSC2 = OSC1 - 12");
+    verifyAvailability (false, "automation while UPPER is OFF");
+
+    set ("upper_enabled", 1.0f);
+    tick();
+    verifyAvailability (true, "automated UPPER enable");
+    expect (std::abs (cutoff->getValue() - 47.0) < 0.001,
+            "enabling preserves the automated cutoff display");
+    lower->onClick();
+    verifyAvailability (true, "switch to enabled LOWER");
+    expect (std::abs (cutoff->getValue() - 90.0) < 0.001,
+            "LOWER still shows its own cutoff");
+    upperPower->setToggleState (false, juce::sendNotificationSync);
+    verifyAvailability (true, "muting the other part leaves selected LOWER usable");
+    lowerPower->setToggleState (false, juce::sendNotificationSync);
+    verifyAvailability (false, "selected LOWER power-off");
+    upper->onClick();
+    verifyAvailability (false, "muted UPPER remains selectable for inspection");
+    expect (std::abs (cutoff->getValue() - 47.0) < 0.001,
+            "inspection shows the muted UPPER's stored cutoff");
+    upperPower->setToggleState (true, juce::sendNotificationSync);
+    verifyAvailability (true, "immediate UPPER power-on");
+    lower->onClick();
+    verifyAvailability (false, "return to muted LOWER");
+    preserveToneValues();
+
+    juce::MemoryBlock saved;
+    processor.getStateInformation (saved);
+    for (bool useTimer : { true, false })
+    {
+        lowerPower->setToggleState (true, juce::sendNotificationSync);
+        upper->onClick();
+        verifyAvailability (true, "temporary enabled UPPER before session restore");
+        processor.setStateInformation (saved.getData(), static_cast<int> (saved.getSize()));
+        if (useTimer)
+            tick();
+        else
+            editor->resized();
+        expect (lower->getToggleState() && ! upper->getToggleState()
+                    && ! lowerPower->getToggleState() && upperPower->getToggleState(),
+                "open editor follows restored target and independent power states");
+        verifyAvailability (false, useTimer ? "timer observes restored LOWER OFF"
+                                           : "layout observes restored LOWER OFF");
+        expect (std::abs (cutoff->getValue() - 90.0) < 0.001,
+                "restored muted LOWER shows its stored values");
+        preserveToneValues();
+    }
+
+    // The power button overlays the selection card. Its moved hit target must
+    // stay distinct at both supported display sizes, even with a muted part.
+    for (const auto size : { design,
+             SeptumAudioProcessorEditor::panelSizeForWorkArea ({ 1366, 768 }) })
+    {
+        editor->setSize (size.getWidth(), size.getHeight());
+        editor->resized();
+        for (const auto pair : { std::pair { upper, upperPower },
+                                 std::pair { lower, lowerPower } })
+        {
+            const auto* tab = pair.first;
+            const auto* power = pair.second;
+            auto* hit = panel.getComponentAt (power->getBounds().getCentre());
+            expect (hit == power || power->isParentOf (hit),
+                    "the left-side power button has an independent mouse target");
+            expect (power->getBounds().getCentreX() < tab->getBounds().getCentreX(),
+                    "the power button is on the left side of its part title");
+            const auto selectPoint = juce::Point<int> (
+                tab->getRight() - 8, tab->getBounds().getCentreY());
+            expect (panel.getComponentAt (selectPoint) == tab,
+                    "the rest of the part card still selects the editor target");
+        }
+    }
 }
 
 // Routing describes the next note. The activity indicator must keep showing
@@ -3044,6 +3290,7 @@ int main (int argc, char* argv[])
     testTheSplitPointCaptionStaysOnThePanelAndAgreesWithTheKeys();
     testAnIdleLayoutDoesNotRepaintTheKeyboard();
     testThePanelSaysWhichToneItIsEditing();
+    testMutedPartControlsStayInspectableAndFollowHostState();
     testTheEditTargetFollowsARestoredState();
     testPartStatusDistinguishesRoutingFromRelease();
 

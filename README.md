@@ -124,13 +124,18 @@ instead of decorative rules or arrows. The signal
 path reads left to right: OSC 1 + OSC 2 → MIX/MOD → FILTER → AMP, with the
 modulators below and shared effects beneath them.
 
-A patch holds two complete parts, **UPPER** and **LOWER**. The large tabs at
-the top keep their warm and cool colours so each part has a stable identity:
+A patch holds two complete parts, **UPPER** and **LOWER**. The top selector
+lights the edited part in its warm or cool colour:
 
-- **EDITING** marks the part shown by the tone controls. Selecting a tab only
-  changes what you edit. Matching section-title chips identify those controls;
-  shared controls have no part chip.
-- **ON/OFF** mutes each part independently. An OFF part remains editable.
+- **The illuminated tab** selects the part shown by the tone controls. The
+  whole panel follows its colour, with translucent backgrounds grouping the
+  controls over a dark chassis. Section titles appear once, without repeated
+  part badges. Arpeggio matches the modulation panels, while external input
+  and effects use subtly different shades and retain their SHARED captions.
+  Envelope sliders use slim rails and flat handles in the selected part colour.
+- **ON/OFF**, beside each part title, mutes that part and disables its sound
+  controls. An OFF part can still be selected to inspect its settings; shared
+  controls remain available. Re-enabling restores editing without changing values.
   Switching uses a 7.5 ms fade and preserves running notes and envelopes, so a
   held note can resume when enabled. Notes released while muted stay released.
 - **Routing text** says which new keys reach the part: all keys, a split zone,

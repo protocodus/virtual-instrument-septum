@@ -5,8 +5,11 @@ Constraint: no access to a physical SH-201 for new recordings.
 
 UI implementation update: the hardware-inspired editor, prominent
 part tabs, independent ON/OFF mutes, real per-part activity, and consolidated header
-routing are now implemented. The complete background follows the edited part with
-a coral Upper or cyan Lower tint, including when muted. Mutes use a 7.5 ms ramp. Streamed SysEx parameter
+routing are now implemented. The complete dark background follows the edited part
+with coral Upper or cyan Lower fills at different opacities. Only the selected
+part tab glows; repeated part badges and decorative tab borders are removed.
+Selection remains visible when muted, with its sound controls disabled and dimmed.
+ON/OFF sits beside each part title. Mutes use a 7.5 ms ramp. Streamed SysEx parameter
 edits preserve mutes; explicit native file imports/program loads reset them.
 
 Audio implementation update: A1 now has deterministic raw float-WAV renders,
@@ -62,13 +65,15 @@ labelled area. Keep per-tone delay/reverb sends with the tone's amp controls.
 | Signal | Meaning | Presentation |
 | --- | --- | --- |
 | Part identity | Upper or Lower | Stable warm/cool accent and text, even when off. |
-| Editing | All tone controls below affect this part. | Tint the complete instrument background coral for Upper or cyan for Lower, with an `EDITING` badge and matching section chips. |
+| Editing | All tone controls below affect this part. | Illuminate the selected tab and tint the complete dark instrument background coral for Upper or cyan for Lower. Group controls with translucent fills, without repeating part names on each section. |
 | ON/OFF | This part's contribution is enabled or muted. | Separate labelled button; clicking it never selects another editor. |
 | Keyboard routing | Which new keys reach the part. | `All keys`, `Below C4`, `C4 and above`, or `No keys in Single`. |
 | Activity | What the engine is currently rendering. | Per-part voice count and level meter; status such as `Ready`, `Playing`, `Releasing`, `Off`. |
 
-An OFF part remains editable. Editing a part never changes the routing or turns it
-on. Do not make the other tab look unavailable just because it is not selected.
+An OFF part remains selectable for inspection, with its sound controls disabled
+until re-enabled. Selecting a part never changes routing or turns it on. Shared
+controls remain available. Do not make the other tab unavailable just because it
+is not selected.
 Use text and shape as well as color; support keyboard focus and clear tooltips.
 
 Show `Single / Layer (Dual) / Split` beside the tabs. In Single, expose `Play:

@@ -127,7 +127,7 @@ public:
         return unresolvedParameterIds;
     }
     // No section mixes per-tone and shared controls. A mixed one is classified
-    // by its first per-tone control and wears the tone chip and wash over
+    // by its first per-tone control and wears the stronger background tint over
     // controls that are not per-tone, which is exactly the defect Step 28
     // removed.
     [[nodiscard]] const juce::StringArray& getMixedScopeSections() const noexcept
@@ -200,8 +200,9 @@ private:
     // and the panel now follows that line exactly.
     enum class Scope { Shared, PerTone };
 
-    // The voice band uses silver faceplates with dark labels. Modulation and
-    // shared effects use dark panels; EXT IN carries a dedicated red faceplate.
+    // The bands use different opacities of the edited part's colour over the
+    // same dark chassis, with related shades for modulation, arpeggio, input
+    // and effects, and quieter shared performance controls.
     enum class Band { Voice, Modulation, InputEffects, Perform };
 
     struct Control
@@ -253,11 +254,13 @@ private:
     {
         bool upperSounds { true };
         bool lowerSounds { false };
-        juce::String summary;   // one line, printed beside the edit tabs
+        juce::String summary;   // complete routing description for inspection
     };
     [[nodiscard]] ToneAudibility toneAudibility() const;
     void refreshToneTarget();
     void refreshPartActivity();
+    [[nodiscard]] bool isEditedPartEnabled() const;
+    void refreshToneControlAvailability();
     void paintPartTabs (juce::Graphics&);
     // The edit target rides in the state tree rather than in a parameter, and
     // setStateInformation replaces the whole tree, so an open editor has to be
@@ -328,7 +331,6 @@ private:
     std::array<juce::Rectangle<int>, 2> partTabBounds;
     std::array<juce::Label, 2> partRouteLabels, partActivityLabels;
     std::array<float, 2> partMeterLevels { 0.0f, 0.0f };
-    juce::Label toneStatusLabel;
     juce::Label titleLabel, subtitleLabel;
 
     // OSC 2 INTERVAL buttons (settled behavior: -OCT one octave below,
