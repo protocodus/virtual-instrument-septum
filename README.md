@@ -115,40 +115,42 @@ render code. The open questions are listed under [Known gaps](#known-gaps).
 
 ### Reading the panel
 
-One patch holds **two complete tones**, UPPER and LOWER, and the panel edits
-one of them at a time. That is the single thing worth knowing before touching
-anything, so the panel says it in three places at once:
+The SH-201-inspired panel combines a dark chassis, pale voice sections,
+hardware-style knobs and illuminated switches. The entire background takes on
+the edited part's colour: warm coral for **UPPER**, cool cyan for **LOWER**.
+This follows the edit selection even when that part is muted. Larger labels
+and aligned value rows keep controls readable, with spacing separating modules
+instead of decorative rules or arrows. The signal
+path reads left to right: OSC 1 + OSC 2 → MIX/MOD → FILTER → AMP, with the
+modulators below and shared effects beneath them.
 
-- **EDIT TONE**, at the top of the header, above every control it governs. The
-  lit tab is the tone the panel is showing, and the line beside it says what
-  the current keyboard mode does with that tone — `DUAL - both tones layered -
-  5 voices each`, or `LOWER IS SILENT - SINGLE - only UPPER sounds`.
-- **Every per-tone section wears the tone's name on its own title row**, in
-  the tone's own colour: warm for UPPER, cool for LOWER. Switching the tab
-  repaints that whole half of the panel, and a knob's meaning never depends on
-  a control at the other end of it. A hollow grey chip means the tone is being
-  edited but the keyboard mode is not letting it sound.
-- **Sections with no chip are shared by the patch** — ARPEGGIO, EXT IN, DELAY,
-  REVERB, PATCH, SYSTEM and the performance cluster. There are no mixed
-  sections: every control belongs to one tone or to the whole instrument, the
-  same line the parameter contract draws between the Patch Tone blocks and
-  Patch Common.
+A patch holds two complete parts, **UPPER** and **LOWER**. The large tabs at
+the top keep their warm and cool colours so each part has a stable identity:
 
-The band above the keys says which tone each key reaches — one colour in
-SINGLE, two stripes in DUAL, and in SPLIT the two zones with the split point
-drawn where it actually falls, named the way the keys under it are named.
-Three other controls also read UPPER/LOWER and mean neither of those things:
-**PART** picks the tone SINGLE plays, **TONE BAL** crossfades between them,
-and **MOD/BEND/EXPR TO TONE** name which tone each physical controller
-reaches. Controls the current keyboard mode ignores are dimmed rather than
-left looking live.
+- **EDITING** marks the part shown by the tone controls. Selecting a tab only
+  changes what you edit. Matching section-title chips identify those controls;
+  shared controls have no part chip.
+- **ON/OFF** mutes each part independently. An OFF part remains editable.
+  Switching uses a 7.5 ms fade and preserves running notes and envelopes, so a
+  held note can resume when enabled. Notes released while muted stay released.
+- **Routing text** says which new keys reach the part: all keys, a split zone,
+  or no keys in Single. Keyboard mode, **Single part** and the split point
+  sit beside the tabs; the band above the keyboard shows the same routing.
+- **Activity and meters** report the engine's active voices and each part's
+  signal before shared effects. PLAYING, RELEASING and READY distinguish
+  sounding notes, release tails and an idle part. A routing change can leave
+  an earlier note releasing in the other part.
 
-The rest of the panel is laid out so the signal path reads off it: the voice
-chain across the top (OSC 1 + OSC 2 → MIX/MOD → FILTER → AMP, with the
-connectors drawn in), the modulators beneath it, and the two ends of the
-instrument — arpeggiator, external input, delay, reverb — along the bottom.
-Every control is the same size wherever it appears and shows its value in the
-units the manual prints, so nothing has to be dragged to be read.
+Muting stops a part's dry signal and new effect sends. Existing shared delay
+and reverb tails continue to decay, so an OFF part can leave an audible tail.
+**TONE BAL** still balances the parts, and **MOD/BEND/EXPR TO TONE** still
+select which part each controller reaches.
+
+Sessions preserve both ON/OFF settings. Older sessions without these settings
+start with both parts ON, as do program loads and explicit patch or SysEx file
+imports. Streamed SysEx parameter edits preserve the current ON/OFF settings.
+Independent mutes are a plug-in feature and are not included in SH-201 SysEx
+exports.
 
 ### Architecture
 

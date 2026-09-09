@@ -4,6 +4,7 @@
 
 #include "PluginProcessor.h"
 
+#include <array>
 #include <limits>
 #include <memory>
 #include <vector>
@@ -14,8 +15,7 @@
 // The performance cluster sits at the far left (master volume, octave,
 // portamento, solo, tempo). To its right are three bands:
 //
-//   VOICE        OSC 1 -> OSC 2 -> MIX/MOD -> FILTER -> AMP, with a chevron
-//                drawn between each pair, because that is a real chain
+//   VOICE        OSC 1, OSC 2, MIX/MOD, FILTER, AMP
 //   MODULATION   PITCH ENV, FILTER ENV, AMP ENV, LFO 1, LFO 2 — what moves
 //                the chain rather than what carries it
 //   INPUT & FX   ARPEGGIO, EXT IN, DELAY, REVERB — the two ends of the
@@ -23,8 +23,8 @@
 //
 // Every control is the same size wherever it appears — a knob is a knob — and
 // every one of them reads out its value in the units the manual prints, so
-// nothing has to be dragged to be understood. The patch/keyboard strip sits
-// above the keys where the hardware puts its patch buttons, with the
+// nothing has to be dragged to be understood. Program, routing and part tabs
+// sit in the header; shared performance controls sit above the keys, with the
 // bend/modulation lever to their left. Controls that exist only as physical
 // hardware — the D Beam's infrared distance sensor, the step recorder, tap
 // tempo — are deliberately not replicated; the four Patch Common bytes the
@@ -76,7 +76,7 @@ public:
     [[nodiscard]] float getModulation() const noexcept { return mod; }
 
 private:
-    static constexpr int captionHeight = 12;
+    static constexpr int captionHeight = 16;
 
     void applyFromEvent (const juce::MouseEvent&);
     [[nodiscard]] juce::Rectangle<float> leverBounds() const;
@@ -161,8 +161,8 @@ public:
     // point has to come through here or it prints a second name for one key.
     [[nodiscard]] juce::String getSplitPointKeyName() const;
 
-    // The line of English printed beside the edit tabs, saying which tones the
-    // keyboard mode lets sound. Read by the suite, which requires the split
+    // The line beside the edit tabs says which parts receive new keys. Actual
+    // activity comes separately from the engine. The suite requires the split
     // point in it to name the same key the caption over the keys does.
     [[nodiscard]] juce::String getToneAudibilitySummary() const;
 
@@ -200,19 +200,9 @@ private:
     // and the panel now follows that line exactly.
     enum class Scope { Shared, PerTone };
 
-    // Which band of the panel a section belongs to. The band decides the
-    // colour of the rule above its title, which is the only thing that
-    // distinguishes the sections from one another — enough to group them,
-    // not enough to turn the panel into a chart.
+    // The voice band uses silver faceplates with dark labels. Modulation and
+    // shared effects use dark panels; EXT IN carries a dedicated red faceplate.
     enum class Band { Voice, Modulation, InputEffects, Perform };
-
-    // What is drawn in the gap between two sections of the same band.
-    enum class Connector { None, Sum, Flow };
-    struct ConnectorMark
-    {
-        juce::Point<int> position;
-        Connector kind { Connector::Flow };
-    };
 
     struct Control
     {
@@ -220,12 +210,8 @@ private:
         bool perTone { true };
         Style style { Style::Knob };
         juce::String unit;        // printed after the value, e.g. "st", "%"
-        // What a bipolar knob's two ends actually are. The manual prints
-        // BALANCE and TONE BALANCE as a signed number and the panel prints
-        // what the manual prints, so the direction is said beside the travel
-        // rather than inside the value: a reading of -63 does not say which
-        // of two things it favours, and these controls have no default the
-        // eye can fall back on.
+        // Bipolar direction is included in the readable value below the knob,
+        // e.g. OSC1 63 or Center, instead of miniature labels on the rim.
         juce::String leftEnd, rightEnd;
         std::unique_ptr<juce::Component> component;
         std::unique_ptr<juce::Label> label;
@@ -257,7 +243,7 @@ private:
     Control* addControl (Section& section, const juce::String& suffix,
                          const juce::String& label, Style style,
                          bool perTone = true, const juce::String& unit = {});
-    // Names the two ends of a bipolar knob's travel, drawn under the arc.
+    // Names the two directions used in a bipolar knob's value readout.
     static void nameEnds (Control* control, const char* left, const char* right);
     // `perToneOnly` re-attaches just the controls whose parameter changes with
     // the edit target; the shared ones keep the attachment they already have.
@@ -271,6 +257,8 @@ private:
     };
     [[nodiscard]] ToneAudibility toneAudibility() const;
     void refreshToneTarget();
+    void refreshPartActivity();
+    void paintPartTabs (juce::Graphics&);
     // The edit target rides in the state tree rather than in a parameter, and
     // setStateInformation replaces the whole tree, so an open editor has to be
     // told. Called from the frame timer and from a layout.
@@ -278,8 +266,7 @@ private:
     void setEditingUpper (bool upper);
     void paintKeyboardZones (juce::Graphics&);
     void layoutSection (Section& section, juce::Rectangle<int> bounds);
-    void layoutBand (const std::vector<int>& indices, juce::Rectangle<int> bounds,
-                     const std::vector<Connector>& connectors);
+    void layoutBand (const std::vector<int>& indices, juce::Rectangle<int> bounds);
     void refreshValues();
     // Places every control inside the design-size rectangle. Called from
     // resized(), but independent of the window: the window only sets the
@@ -313,12 +300,11 @@ private:
     Section* stripSection { nullptr };
     Section* tonePlaySection { nullptr };
     Section* editToneSection { nullptr };
+    Section* routingSection { nullptr };
     // Controls the current keyboard mode makes inert, dimmed while it does.
     Control* partControl { nullptr };
     Control* splitPointControl { nullptr };
     Control* splitArpControl { nullptr };
-    // Where the voice chain's connectors go, filled in by resized().
-    std::vector<ConnectorMark> chevrons;
     juce::Rectangle<int> meterBounds;
     // The band above the keys that says which tone each key reaches.
     juce::Rectangle<int> keyZoneBounds;
@@ -331,11 +317,17 @@ private:
     juce::TextButton octDownButton { "DOWN" }, octUpButton { "UP" };
     Control* tempoControl { nullptr };
 
-    // Patch strip above the keyboard.
+    // Program selector in the header.
     juce::ComboBox programBox;
     juce::Label programLabel;
     // The edit-target tabs, in the header above everything they govern.
     juce::TextButton upperButton { "UPPER" }, lowerButton { "LOWER" };
+    juce::TextButton upperEnableButton { "ON" }, lowerEnableButton { "ON" };
+    std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment>
+        upperEnableAttachment, lowerEnableAttachment;
+    std::array<juce::Rectangle<int>, 2> partTabBounds;
+    std::array<juce::Label, 2> partRouteLabels, partActivityLabels;
+    std::array<float, 2> partMeterLevels { 0.0f, 0.0f };
     juce::Label toneStatusLabel;
     juce::Label titleLabel, subtitleLabel;
 

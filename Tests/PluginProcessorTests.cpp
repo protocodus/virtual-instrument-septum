@@ -13,6 +13,7 @@
 #include <chrono>
 #include <cmath>
 #include <cstdio>
+#include <functional>
 #include <string>
 #include <thread>
 #include <vector>
@@ -621,6 +622,137 @@ void testStateRoundTrip()
             "resonance survives the state round trip");
 }
 
+void testPartControlsSurviveSessionsAndPublishActualActivity()
+{
+    SeptumAudioProcessor processor;
+    processor.prepareToPlay (44100.0, 256);
+    auto* upper = processor.parameters.getParameter ("upper_enabled");
+    auto* lower = processor.parameters.getParameter ("lower_enabled");
+    expect (upper != nullptr && lower != nullptr,
+            "both part enables are published parameters");
+    if (upper == nullptr || lower == nullptr)
+        return;
+    expect (upper->isAutomatable() && lower->isAutomatable(),
+            "a host can automate each part enable");
+    expect (upper->getValue() > 0.5f && lower->getValue() > 0.5f,
+            "both parts default to enabled");
+    const auto& all = processor.getParameters();
+    expect (all[all.size() - 2] == upper && all[all.size() - 1] == lower,
+            "part enables are appended without shifting existing host indices");
+    int previousVersion = 0;
+    for (const auto* parameter : all)
+        if (parameter != upper && parameter != lower)
+            previousVersion = std::max (previousVersion, parameter->getVersionHint());
+    expect (upper->getVersionHint() > previousVersion
+                && lower->getVersionHint() > previousVersion,
+            "new enable version hints preserve the legacy AU parameter ordering");
+
+    lower->setValueNotifyingHost (0.0f);
+    juce::MemoryBlock saved;
+    processor.getStateInformation (saved);
+    SeptumAudioProcessor restored;
+    restored.setStateInformation (saved.getData(), (int) saved.getSize());
+    expect (restored.parameters.getRawParameterValue ("upper_enabled")->load()
+                    > 0.5f
+                && restored.parameters.getRawParameterValue ("lower_enabled")
+                           ->load() < 0.5f,
+            "a session restores the two independent enable states");
+
+    // Old sessions have no part-enable fields. Restoring one over a muted
+    // instance must not inherit that instance's mute by accident.
+    if (const auto xml = juce::AudioProcessor::getXmlFromBinary (
+            saved.getData(), (int) saved.getSize()))
+    {
+        auto state = juce::ValueTree::fromXml (*xml);
+        for (const auto* id : { "upper_enabled", "lower_enabled" })
+            state.removeChild (state.getChildWithProperty ("id", id), nullptr);
+        if (const auto legacy = state.createXml())
+        {
+            juce::MemoryBlock legacyData;
+            juce::AudioProcessor::copyXmlToBinary (*legacy, legacyData);
+            processor.setStateInformation (legacyData.getData(),
+                                           (int) legacyData.getSize());
+        }
+    }
+    expect (upper->getValue() > 0.5f && lower->getValue() > 0.5f,
+            "an older session explicitly restores both enables to ON");
+
+    upper->setValueNotifyingHost (0.0f);
+    lower->setValueNotifyingHost (0.0f);
+    processor.setCurrentProgram (0);
+    expect (upper->getValue() > 0.5f && lower->getValue() > 0.5f,
+            "loading a program resets both part enables to ON");
+
+    // A streamed DT1 can be a single knob movement, not a patch load. Editing
+    // REVERB SIZE must not unexpectedly re-enable either muted part.
+    upper->setValueNotifyingHost (0.0f);
+    lower->setValueNotifyingHost (0.0f);
+    const std::uint8_t reverbSize = 4;
+    const auto packet = septum::sysex::makeDt1Message (
+        0x10000402, &reverbSize, 1);
+    juce::AudioBuffer<float> packetBuffer (2, 256);
+    auto packetMidi = messageAt (
+        juce::MidiMessage (packet.data(), (int) packet.size()));
+    processor.processBlock (packetBuffer, packetMidi);
+    expect (processor.parameters.getRawParameterValue ("upper_enabled")->load()
+                    < 0.5f
+                && processor.parameters.getRawParameterValue ("lower_enabled")
+                           ->load() < 0.5f,
+            "a one-byte streamed DT1 leaves both mutes in the audio state");
+    processor.republishPatchParameters();
+    expect (upper->getValue() < 0.5f && lower->getValue() < 0.5f,
+            "republishing a streamed DT1 preserves both part mutes");
+    expect ((int) processor.parameters.getRawParameterValue ("reverb_size")->load()
+                == reverbSize,
+            "the streamed DT1 still applies its reverb edit");
+    processor.setCurrentProgram (0);
+
+    const auto set = [&processor] (const char* id, float natural)
+    {
+        auto* parameter = processor.parameters.getParameter (id);
+        parameter->setValueNotifyingHost (
+            processor.parameters.getParameterRange (id).convertTo0to1 (natural));
+    };
+    set ("keyboard_mode", 1.0f);
+    set ("delay_on", 0.0f);
+    set ("reverb_on", 0.0f);
+    juce::AudioBuffer<float> buffer (2, 256);
+    auto note = messageAt (juce::MidiMessage::noteOn (1, 60, (juce::uint8) 100));
+    processor.processBlock (buffer, note);
+    for (int block = 0; block < 30; ++block)
+    {
+        juce::MidiBuffer empty;
+        processor.processBlock (buffer, empty);
+    }
+    expect (processor.getPartActiveVoiceCount (true) > 0
+                && processor.getPartActiveVoiceCount (false) > 0,
+            "dual playback publishes actual active voices for both parts");
+    expect (processor.getPartHeldVoiceCount (true) > 0
+                && processor.getPartHeldVoiceCount (false) > 0,
+            "dual playback publishes both held-voice counts");
+    expect (processor.getPartOutputLevel (true) > 0.0001f
+                && processor.getPartOutputLevel (false) > 0.0001f,
+            "dual playback publishes an audible meter for each part");
+
+    lower->setValueNotifyingHost (0.0f);
+    // Let the 300 ms display fall settle as well as the short audio mute ramp.
+    for (int block = 0; block < 600; ++block)
+    {
+        juce::MidiBuffer empty;
+        processor.processBlock (buffer, empty);
+    }
+    expect (processor.getPartOutputLevel (false) < 0.0001f
+                && processor.getPartOutputLevel (true) > 0.0001f,
+            "muting LOWER silences its meter while UPPER stays audible");
+    expect (processor.getPartActiveVoiceCount (false) > 0,
+            "a muted held voice remains alive for smooth re-enabling");
+    auto off = messageAt (juce::MidiMessage::noteOff (1, 60));
+    processor.processBlock (buffer, off);
+    expect (processor.getPartHeldVoiceCount (true) == 0
+                && processor.getPartHeldVoiceCount (false) == 0,
+            "note-off clears held counts independently of enabled state");
+}
+
 // The panel lives on a canvas child of the editor, so the suite reaches it
 // through the editor's own accessor rather than walking children blind.
 juce::Component& panelOf (juce::AudioProcessorEditor& editor)
@@ -643,6 +775,17 @@ juce::Button* findButton (juce::Component& root, const juce::String& text)
         if (auto* found = findButton (*child, text))
             return found;
     }
+    return nullptr;
+}
+
+juce::Component* findComponentById (juce::Component& root, const juce::String& id)
+{
+    if (root.getComponentID() == id)
+        return &root;
+    for (int i = 0; i < root.getNumChildComponents(); ++i)
+        if (auto* child = root.getChildComponent (i))
+            if (auto* found = findComponentById (*child, id))
+                return found;
     return nullptr;
 }
 
@@ -1205,6 +1348,173 @@ void testEditorAndSnapshot()
     }
 
     editor.reset();
+    processor.releaseResources();
+}
+
+// Diagnostic data accompanies visual QA, rather than using brittle screenshot
+// or font-size assertions in the test suite. JUCE can silently condense a
+// label to make it fit: report its natural width and actual text area so a
+// reviewer can distinguish readable captions from ones that merely fit their
+// component bounds. Pixel heights are in the requested screenshot's scale.
+void writeEditorReadabilityReport (SeptumAudioProcessorEditor& editor,
+                                  const juce::File& file)
+{
+    juce::String report = "text\tcomponent\tx\ty\twidth\theight\tfont_px"
+                         "\ttext_width\tavailable_width\tfit_ratio\tinside_editor\n";
+    int labels = 0, condensed = 0, clipped = 0;
+    float smallestFont = std::numeric_limits<float>::max();
+    const auto clean = [] (juce::String value)
+    {
+        return value.replaceCharacters ("\t\r\n", "   ");
+    };
+    std::function<void (juce::Component&)> visit;
+    visit = [&] (juce::Component& component)
+    {
+        if (! component.isVisible())
+            return;
+        if (auto* label = dynamic_cast<juce::Label*> (&component))
+        {
+            const auto text = label->getText();
+            if (text.isNotEmpty() && ! label->getBounds().isEmpty())
+            {
+                const auto font = label->getLookAndFeel().getLabelFont (*label);
+                const auto textArea = label->getBorderSize().subtractedFrom (
+                    label->getLocalBounds());
+                const auto topLeft = editor.getLocalPoint (
+                    label, juce::Point<float> (0.0f, 0.0f));
+                const auto bottomRight = editor.getLocalPoint (
+                    label, juce::Point<float> ((float) label->getWidth(),
+                                              (float) label->getHeight()));
+                const float scale = (bottomRight.y - topLeft.y)
+                                    / (float) label->getHeight();
+                const bool insideEditor = editor.getLocalBounds().toFloat().contains (
+                    juce::Rectangle<float> (topLeft, bottomRight));
+                const float naturalWidth =
+                    juce::GlyphArrangement::getStringWidth (font, text);
+                const float availableWidth = (float) textArea.getWidth();
+                const float fit = naturalWidth > 0.0f
+                                      ? juce::jmin (1.0f, availableWidth / naturalWidth)
+                                      : 1.0f;
+                auto id = label->getComponentID();
+                if (id.isEmpty() && label->getParentComponent() != nullptr)
+                    id = label->getParentComponent()->getComponentID();
+                report << clean (text) << '\t' << clean (id) << '\t'
+                       << juce::String (topLeft.x, 2) << '\t'
+                       << juce::String (topLeft.y, 2) << '\t'
+                       << juce::String (bottomRight.x - topLeft.x, 2) << '\t'
+                       << juce::String (bottomRight.y - topLeft.y, 2) << '\t'
+                       << juce::String (font.getHeight() * scale, 2) << '\t'
+                       << juce::String (naturalWidth * scale, 2) << '\t'
+                       << juce::String (availableWidth * scale, 2) << '\t'
+                       << juce::String (fit, 3) << '\t'
+                       << (insideEditor ? "yes" : "no") << '\n';
+                ++labels;
+                if (fit < 0.99f)
+                    ++condensed;
+                if (! insideEditor)
+                    ++clipped;
+                smallestFont = juce::jmin (smallestFont, font.getHeight() * scale);
+            }
+        }
+        for (auto* child : component.getChildren())
+            visit (*child);
+    };
+    visit (editor.getPanel());
+    expect (file.replaceWithText (report),
+            "writes label readability report " + file.getFullPathName());
+    std::printf ("Label readability: %d labels, %d require condensation, "
+                 "%d outside editor, minimum font %.2f px (%s)\n",
+                 labels, condensed, clipped, smallestFont,
+                 file.getFileName().toRawUTF8());
+}
+
+// Fast, repeatable visual QA of the actual JUCE editor. This path skips the
+// audio/concurrency suite and writes both the full panel and its laptop size,
+// including states that distinguish the edit target from the sounding part.
+void renderEditorSnapshots (const juce::File& directory)
+{
+    directory.createDirectory();
+    SeptumAudioProcessor processor;
+    processor.prepareToPlay (44100.0, 256);
+    std::unique_ptr<juce::AudioProcessorEditor> base (processor.createEditor());
+    auto* editor = dynamic_cast<SeptumAudioProcessorEditor*> (base.get());
+    expect (editor != nullptr, "the visual QA tool provides the Septum editor");
+    if (editor == nullptr)
+        return;
+
+    const auto set = [&processor] (const char* id, float natural)
+    {
+        if (auto* parameter = processor.parameters.getParameter (id))
+        {
+            const auto& range = processor.parameters.getParameterRange (id);
+            parameter->setValueNotifyingHost (range.convertTo0to1 (natural));
+        }
+    };
+    const auto snapshot = [&] (const juce::String& name,
+                              juce::Rectangle<int> size)
+    {
+        editor->setSize (size.getWidth(), size.getHeight());
+        editor->resized();
+        // Meter values are consumed by the same timer used by a hosted editor.
+        std::this_thread::sleep_for (std::chrono::milliseconds (50));
+        juce::Timer::callPendingTimersSynchronously();
+        const auto rendered = editor->createComponentSnapshot (
+            editor->getLocalBounds());
+        const auto file = directory.getChildFile (name + ".png");
+        juce::FileOutputStream output (file);
+        juce::PNGImageFormat png;
+        const bool prepared = output.openedOk() && output.setPosition (0)
+                              && output.truncate().wasOk();
+        expect (prepared && png.writeImageToStream (rendered, output),
+                "writes visual QA snapshot " + file.getFullPathName());
+        output.flush();
+        std::printf ("Editor snapshot: %s\n", file.getFullPathName().toRawUTF8());
+        writeEditorReadabilityReport (
+            *editor, directory.getChildFile (name + "-labels.tsv"));
+    };
+    const auto design = SeptumAudioProcessorEditor::panelSizeForWorkArea ({});
+    const auto compact =
+        SeptumAudioProcessorEditor::panelSizeForWorkArea ({ 1366, 768 });
+    snapshot ("upper-ready-full", design);
+    snapshot ("upper-ready-compact", compact);
+
+    if (auto* lower = findButton (editor->getPanel(), "LOWER"))
+        if (lower->onClick)
+            lower->onClick();
+    snapshot ("lower-editing-upper-routed", design);
+
+    set ("keyboard_mode", 1.0f); // DUAL: one key reaches both parts.
+    juce::AudioBuffer<float> buffer (2, 256);
+    auto midi = messageAt (juce::MidiMessage::noteOn (1, 60, (juce::uint8) 100));
+    processor.processBlock (buffer, midi);
+    for (int block = 0; block < 20; ++block)
+    {
+        juce::MidiBuffer empty;
+        processor.processBlock (buffer, empty);
+    }
+    snapshot ("lower-editing-dual-playing", design);
+
+    set ("lower_enabled", 0.0f);
+    for (int block = 0; block < 600; ++block)
+    {
+        juce::MidiBuffer empty;
+        processor.processBlock (buffer, empty);
+    }
+    // Let the editor's display fall settle as it would with the message loop
+    // running; the audio is rendered faster than real time in this tool.
+    for (int frame = 0; frame < 32; ++frame)
+    {
+        std::this_thread::sleep_for (std::chrono::milliseconds (50));
+        juce::Timer::callPendingTimersSynchronously();
+    }
+    snapshot ("lower-muted-dual-playing", design);
+    snapshot ("lower-muted-dual-playing-compact", compact);
+
+    set ("keyboard_mode", 2.0f); // SPLIT
+    set ("split_point", 60.0f);
+    set ("lower_enabled", 1.0f);
+    snapshot ("lower-editing-split", design);
+    base.reset();
     processor.releaseResources();
 }
 
@@ -2382,7 +2692,8 @@ void testTheSplitPointCaptionStaysOnThePanelAndAgreesWithTheKeys()
         const auto keyFor = [&] { return editor->getKeyboardRepaintKey(); };
         const std::pair<const char*, float> movers[] {
             { "keyboard_mode", 1.0f }, { "keyboard_part", 1.0f },
-            { "split_point", 72.0f }, { "system_octave", 1.0f }
+            { "split_point", 72.0f }, { "system_octave", 1.0f },
+            { "upper_enabled", 0.0f }, { "lower_enabled", 0.0f }
         };
         for (const auto& mover : movers)
         {
@@ -2396,6 +2707,8 @@ void testTheSplitPointCaptionStaysOnThePanelAndAgreesWithTheKeys()
         set ("keyboard_mode", 2.0f);   // back to SPLIT for the checks below
         set ("keyboard_part", 0.0f);
         set ("system_octave", 0.0f);
+        set ("upper_enabled", 1.0f);
+        set ("lower_enabled", 1.0f);
     }
 
     // And it follows the octave shift, because the drawn keys' printed names do.
@@ -2576,6 +2889,48 @@ void testThePanelSaysWhichToneItIsEditing()
     expect (cutoffOf ("up_cutoff") == 30 && cutoffOf ("lo_cutoff") == 90,
             "switching the target edits neither tone by itself");
 
+    auto* cutoff = dynamic_cast<juce::Slider*> (
+        findComponentById (panel, "tone_cutoff"));
+    expect (cutoff != nullptr, "the per-part cutoff can be identified");
+    if (cutoff != nullptr)
+    {
+        expect (std::abs (cutoff->getValue() - 90.0) < 0.001,
+                "switching to LOWER shows LOWER's stored cutoff");
+        cutoff->setValue (57.0, juce::sendNotificationSync);
+        expect (cutoffOf ("up_cutoff") == 30 && cutoffOf ("lo_cutoff") == 57,
+                "moving the rebound cutoff edits LOWER and preserves UPPER");
+    }
+
+    auto* lowerEnable = dynamic_cast<juce::Button*> (
+        findComponentById (panel, "lower_part_enabled"));
+    auto* upperEnable = dynamic_cast<juce::Button*> (
+        findComponentById (panel, "upper_part_enabled"));
+    expect (lowerEnable != nullptr && upperEnable != nullptr,
+            "both part cards carry independent enable buttons");
+    if (lowerEnable != nullptr && upperEnable != nullptr)
+    {
+        const auto mode = cutoffOf ("keyboard_mode");
+        const auto routedPart = cutoffOf ("keyboard_part");
+        lowerEnable->setToggleState (false, juce::sendNotificationSync);
+        expect (cutoffOf ("lower_enabled") == 0
+                    && cutoffOf ("upper_enabled") == 1,
+                "the LOWER card mutes only LOWER");
+        expect (lower->getToggleState() && ! upper->getToggleState(),
+                "muting LOWER preserves the selected edit target");
+        expect (cutoff == nullptr || cutoff->isEnabled(),
+                "a muted part's sound controls remain editable");
+        upper->onClick();
+        expect (cutoffOf ("lower_enabled") == 0,
+                "selecting UPPER does not re-enable the muted LOWER part");
+        lower->onClick();
+        upperEnable->setToggleState (false, juce::sendNotificationSync);
+        expect (lower->getToggleState() && ! upper->getToggleState(),
+                "muting the other part does not change the edit target");
+        expect (cutoffOf ("keyboard_mode") == mode
+                    && cutoffOf ("keyboard_part") == routedPart,
+                "edit and enable buttons leave keyboard routing unchanged");
+    }
+
     // The target survives closing and reopening the editor.
     editor.reset();
     std::unique_ptr<juce::AudioProcessorEditor> reopened (processor.createEditor());
@@ -2588,11 +2943,68 @@ void testThePanelSaysWhichToneItIsEditing()
             "reopening the editor keeps the tone the player was editing");
 }
 
+// Routing describes the next note. The activity indicator must keep showing
+// an earlier part's release even after SINGLE starts sending keys elsewhere.
+void testPartStatusDistinguishesRoutingFromRelease()
+{
+    SeptumAudioProcessor processor;
+    processor.prepareToPlay (44100.0, 256);
+    std::unique_ptr<juce::AudioProcessorEditor> base (processor.createEditor());
+    auto* editor = dynamic_cast<SeptumAudioProcessorEditor*> (base.get());
+    if (editor == nullptr)
+        return;
+    auto* activity = dynamic_cast<juce::Label*> (
+        findComponentById (editor->getPanel(), "upper_part_activity"));
+    auto* route = dynamic_cast<juce::Label*> (
+        findComponentById (editor->getPanel(), "upper_part_route"));
+    expect (activity != nullptr && route != nullptr,
+            "the UPPER card exposes separate activity and routing captions");
+    if (activity == nullptr || route == nullptr)
+        return;
+    const auto set = [&processor] (const char* id, float natural)
+    {
+        processor.parameters.getParameter (id)->setValueNotifyingHost (
+            processor.parameters.getParameterRange (id).convertTo0to1 (natural));
+    };
+    set ("up_aenv_release", 100.0f);
+    juce::AudioBuffer<float> buffer (2, 256);
+    auto midi = messageAt (juce::MidiMessage::noteOn (1, 60, (juce::uint8) 100));
+    processor.processBlock (buffer, midi);
+    for (int block = 0; block < 10; ++block)
+    {
+        juce::MidiBuffer empty;
+        processor.processBlock (buffer, empty);
+    }
+    editor->resized();
+    expect (activity->getText().contains ("PLAYING"),
+            "an audible held UPPER note is described as playing");
+
+    set ("keyboard_part", 1.0f);
+    auto off = messageAt (juce::MidiMessage::noteOff (1, 60));
+    processor.processBlock (buffer, off);
+    editor->resized();
+    expect (activity->getText().contains ("RELEASING"),
+            "an old UPPER voice remains releasing after routing switches LOWER");
+    expect (route->getText() == "No keys in Single",
+            "the route caption separately says UPPER receives no new keys");
+    set ("upper_enabled", 0.0f);
+    editor->resized();
+    expect (activity->getText() == "OFF",
+            "a disabled part is clearly OFF even while its voice releases");
+}
+
 } // namespace
 
-int main()
+int main (int argc, char* argv[])
 {
     juce::ScopedJuceInitialiser_GUI guiInitialiser;
+
+    if (argc == 3 && juce::String (argv[1]) == "--editor-snapshots")
+    {
+        renderEditorSnapshots (juce::File::getCurrentWorkingDirectory()
+                                   .getChildFile (argv[2]));
+        return failures == 0 ? 0 : 1;
+    }
 
     testParameterLayoutAndDefaults();
     testBusLayoutAndTail();
@@ -2609,6 +3021,7 @@ int main()
     testStateSurvivesUnpumpedProgramChange();
     testProgramsLoad();
     testStateRoundTrip();
+    testPartControlsSurviveSessionsAndPublishActualActivity();
     testIntervalButtonsAreRelativeToOscOne();
     testThePanelsInvariantsAreCheckedBySomethingThatRuns();
     testTogglesShowTheirState();
@@ -2632,6 +3045,7 @@ int main()
     testAnIdleLayoutDoesNotRepaintTheKeyboard();
     testThePanelSaysWhichToneItIsEditing();
     testTheEditTargetFollowsARestoredState();
+    testPartStatusDistinguishesRoutingFromRelease();
 
     if (failures == 0)
     {

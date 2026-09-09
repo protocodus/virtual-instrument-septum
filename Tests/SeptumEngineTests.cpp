@@ -655,6 +655,97 @@ void testSplitAndDualVoicing()
             "the eleventh key steals instead of growing the pool");
 }
 
+// Independent plug-in mutes preserve performance state and stop only the
+// part's new contribution. They cannot be implemented by changing routing,
+// killing voices or silencing the shared effect output.
+void testPartMutesAndActivity()
+{
+    for (const double sampleRate : { 44100.0, 48000.0, 96000.0 })
+    {
+        auto patch = plainSawPatch();
+        patch.keyboardMode = septum::KeyboardMode::Dual;
+        patch.lower = patch.upper;
+        septum::Engine engine;
+        engine.prepare (sampleRate, 256);
+        engine.setPatch (patch);
+        engine.setPartEnabled (false, false);
+        engine.reset();
+        auto upperOnly = renderScore (engine, { { 0.0, true, 60, 100 } },
+                                      0.1, sampleRate);
+        expect (upperOnly.peak() > 0.01
+                    && engine.getPartOutputLevel (true) > 0.01
+                    && engine.getPartOutputLevel (false) == 0.0f,
+                "muted LOWER contributes no audio or meter signal");
+        expect (engine.activeVoiceCount (true) == 1
+                    && engine.activeVoiceCount (false) == 1
+                    && engine.heldVoiceCount (false) == 1,
+                "muting preserves both parts' active and held voices");
+
+        engine.setPartEnabled (true, false);
+        const auto muted = renderScore (engine, {}, 0.15, sampleRate);
+        // Exclude the output coupling capacitor's slowly discharging DC.
+        const auto start = muted.left.begin()
+                           + static_cast<std::ptrdiff_t> (sampleRate * 0.10);
+        const auto limits = std::minmax_element (start, muted.left.end());
+        expect (*limits.second - *limits.first < 0.001f,
+                "both parts OFF removes sustained dry signal after the ramp");
+        engine.setPartEnabled (false, true);
+        const auto resumed = renderScore (engine, {}, 0.1, sampleRate);
+        expect (resumed.rms (resumed.left.size() / 2, resumed.left.size()) > 0.01
+                    && engine.getPartOutputLevel (false) > 0.01,
+                "re-enabling a held part resumes its running envelope");
+        engine.setPartEnabled (false, false);
+        engine.noteOff (60);
+        (void) renderScore (engine, {}, 0.15, sampleRate);
+        expect (engine.activeVoiceCount() == 0
+                    && engine.heldVoiceCount (true) == 0
+                    && engine.heldVoiceCount (false) == 0,
+                "note-offs and envelopes continue while both parts are muted");
+        engine.setPartEnabled (true, true);
+        engine.setPartEnabled (false, true);
+        const auto released = renderScore (engine, {}, 0.1, sampleRate);
+        expect (released.rms (released.left.size() / 2, released.left.size()) < 0.001,
+                "re-enabling never resurrects notes released while muted");
+
+        // Release tails belong to their original part even after routing
+        // changes: eligibility for a new note is not current voice activity.
+        patch.upper.ampEnvRelease = 100;
+        patch.keyboardMode = septum::KeyboardMode::Single;
+        patch.keyboardPart = septum::KeyboardPart::Upper;
+        engine.setPatch (patch);
+        engine.reset();
+        engine.noteOn (60, 100);
+        (void) renderScore (engine, {}, 0.1, sampleRate);
+        engine.noteOff (60);
+        patch.keyboardPart = septum::KeyboardPart::Lower;
+        engine.setPatch (patch);
+        (void) renderScore (engine, {}, 0.01, sampleRate);
+        expect (engine.activeVoiceCount (true) == 1
+                    && engine.heldVoiceCount (true) == 0
+                    && engine.activeVoiceCount (false) == 0,
+                "activity retains an UPPER release tail after routing to LOWER");
+    }
+
+    auto patch = plainSawPatch();
+    patch.delayOn = true;
+    patch.upper.delayDepth = 100;
+    septum::applyDelayTemplate (patch, 3);
+    patch.delay.feedback = 0;
+    septum::Engine engine;
+    engine.prepare (44100.0, 256);
+    engine.setPatch (patch);
+    engine.reset();
+    (void) renderScore (engine, { { 0.0, true, 60, 100 } }, 0.5);
+    engine.setPartEnabled (true, false);
+    const auto tail = renderScore (engine, {}, 2.0);
+    expect (tail.rms (4410, 22050) > 0.001,
+            "muting a part preserves its existing shared delay tail");
+    expect (tail.rms (66150, 88200) < 0.001,
+            "muted held notes stop feeding new shared delay sends");
+    expect (engine.activeVoiceCount (true) == 1 && engine.heldVoiceCount (true) == 1,
+            "the shared effect tail decays while the muted note remains held");
+}
+
 // [settled, OM p. 65] CONTROLLER DESTINATION names the tone or tones each
 // physical controller reaches: "Selects the tone(s) whose pitch will be
 // changed by the pitch bend lever ... If this is 'BOTH,' the pitch of both the
@@ -5405,6 +5496,7 @@ int main()
     testTakingAVoiceOverDoesNotBlankIt();
     testOverdriveSwitchesBackInFromLiveState();
     testSplitAndDualVoicing();
+    testPartMutesAndActivity();
     testControllerDestinations();
     testSoloAndHold();
     testSostenutoLatchesOnlyWhatWasSounding();

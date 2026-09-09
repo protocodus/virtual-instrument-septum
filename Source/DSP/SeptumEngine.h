@@ -994,6 +994,9 @@ public:
     void setModulation (double amount0to1);  // mod lever / CC#1
     void setExpression (double amount0to1);  // CC#11
     void setPartLevel (double amount0to1);   // CC#7
+    // Plug-in performance mute; kept outside native Patch/SysEx data.
+    // Muting preserves voices and envelopes and fades dry audio/new FX sends.
+    void setPartEnabled (bool upper, bool enabled) noexcept;
     void setPartPan (double pan);            // CC#10, -1 (left)..+1 (right)
     void setPortamentoControl (int note);    // CC#84: glide source for the next key
     void allNotesOff();
@@ -1007,6 +1010,13 @@ public:
                   const float* inputRight = nullptr);
 
     [[nodiscard]] int activeVoiceCount() const noexcept;
+    // Voice queries are audio-thread-only; the processor publishes snapshots.
+    [[nodiscard]] int activeVoiceCount (bool upper) const noexcept;
+    [[nodiscard]] int heldVoiceCount (bool upper) const noexcept;
+    [[nodiscard]] float getPartOutputLevel (bool upper) const noexcept
+    {
+        return partOutputLevel_[upper ? 0u : 1u].load (std::memory_order_relaxed);
+    }
     [[nodiscard]] float getOutputLevel (int channel) const noexcept
     {
         return outputLevel_[channel == 0 ? 0 : 1].load (std::memory_order_relaxed);
@@ -1533,6 +1543,12 @@ private:
     std::vector<float> scratchMono_, dryL_, dryR_, sendDelayL_, sendDelayR_,
         sendReverbL_, sendReverbR_;
 
+    // Seven and a half milliseconds is a plug-in mute ramp, not a claim
+    // about the hardware. Advance once per sample regardless of voice count.
+    static constexpr double partMuteRampSeconds = 0.0075;
+    std::array<bool, 2> partEnabled_ { true, true };
+    std::array<double, 2> partEnableGain_ { 1.0, 1.0 };
+    std::array<std::atomic<float>, 2> partOutputLevel_ { 0.0f, 0.0f };
     std::array<std::atomic<float>, 2> outputLevel_ { 0.0f, 0.0f };
 };
 

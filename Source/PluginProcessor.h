@@ -60,6 +60,18 @@ public:
     {
         return activeVoices.load (std::memory_order_relaxed);
     }
+    [[nodiscard]] float getPartOutputLevel (bool upper) const noexcept
+    {
+        return engine.getPartOutputLevel (upper);
+    }
+    [[nodiscard]] int getPartActiveVoiceCount (bool upper) const noexcept
+    {
+        return partActiveVoices[upper ? 0u : 1u].load (std::memory_order_relaxed);
+    }
+    [[nodiscard]] int getPartHeldVoiceCount (bool upper) const noexcept
+    {
+        return partHeldVoices[upper ? 0u : 1u].load (std::memory_order_relaxed);
+    }
     void triggerFromUi (int note, int velocity) noexcept;
     void releaseFromUi (int note) noexcept;
     // The on-screen bend/modulation lever, mirroring the hardware's lever
@@ -144,6 +156,7 @@ private:
     // notification.
     void writeProgramToParameters (int index) noexcept;
     void cacheParameterPointers();
+    void resetPartEnablesToParameters() noexcept;
     // Pushes the SYSTEM COMMON settings at the engine. Allocation-free.
     void applySystemSettings() noexcept;
 
@@ -151,6 +164,9 @@ private:
     // aligned with the binding tables, and ranged parameters for the CC map.
     // processBlock must never build a juce::String.
     std::vector<std::atomic<float>*> upperValues, lowerValues, patchValues;
+    // Plug-in-only controls: intentionally absent from Patch and SysEx maps.
+    // Streamed native parameter writes leave these independent mutes intact.
+    std::array<std::atomic<float>*, 2> partEnableValues {};
     // The audio thread's own copy of everything a received SysEx dump writes,
     // and which of those it has written since the message thread last looked.
     //
@@ -328,6 +344,8 @@ private:
 
     septum::Engine engine;
     std::atomic<int> activeVoices { 0 };
+    std::array<std::atomic<int>, 2> partActiveVoices { 0, 0 };
+    std::array<std::atomic<int>, 2> partHeldVoices { 0, 0 };
     std::atomic<int> currentProgram { 0 };
 
     struct UiNoteEvent

@@ -498,6 +498,11 @@ void Engine::prepare (double sampleRate, int maxBlockSize)
 
 void Engine::reset()
 {
+    for (std::size_t i = 0; i < partEnabled_.size(); ++i)
+    {
+        partEnableGain_[i] = partEnabled_[i] ? 1.0 : 0.0;
+        partOutputLevel_[i].store (0.0f, std::memory_order_relaxed);
+    }
     for (auto& voice : voices_)
     {
         voice.active = false;
@@ -1324,6 +1329,26 @@ int Engine::activeVoiceCount() const noexcept
         if (voice.active)
             ++count;
     return count;
+}
+
+void Engine::setPartEnabled (bool upper, bool enabled) noexcept
+{
+    partEnabled_[upper ? 0u : 1u] = enabled;
+}
+
+int Engine::activeVoiceCount (bool upper) const noexcept
+{
+    const auto part = upper ? Part::Upper : Part::Lower;
+    return static_cast<int> (std::count_if (voices_.begin(), voices_.end(),
+        [part] (const Voice& voice) { return voice.active && voice.part == part; }));
+}
+
+int Engine::heldVoiceCount (bool upper) const noexcept
+{
+    const auto part = upper ? Part::Upper : Part::Lower;
+    return static_cast<int> (std::count_if (voices_.begin(), voices_.end(),
+        [part] (const Voice& voice)
+        { return voice.active && voice.held && voice.part == part; }));
 }
 
 double Engine::noteToHz (double note) const noexcept
@@ -3085,11 +3110,24 @@ void Engine::process (float* left, float* right, int numSamples,
 {
     int offset = 0;
     float blockPeakL = 0.0f, blockPeakR = 0.0f;
+    std::array<float, 2> partPeak {};
+    const double muteStep = 1.0 / (sampleRate_ * partMuteRampSeconds);
 
     while (offset < numSamples)
     {
         const int tick = std::min (controlInterval, numSamples - offset);
         const int guarded = std::min (tick, maxBlock_);
+
+        std::array<std::array<double, controlInterval>, 2> enableGain {};
+        std::array<std::array<float, controlInterval>, 2> partLeft {}, partRight {};
+        for (std::size_t part = 0; part < partEnabled_.size(); ++part)
+            for (int i = 0; i < guarded; ++i)
+            {
+                const double target = partEnabled_[part] ? 1.0 : 0.0;
+                partEnableGain_[part] += std::clamp (
+                    target - partEnableGain_[part], -muteStep, muteStep);
+                enableGain[part][static_cast<std::size_t> (i)] = partEnableGain_[part];
+            }
 
         // Per-tone EXPRESSION, smoothed the way the master chain it left is,
         // so an expression pedal cannot step a voice's gain.
@@ -3135,6 +3173,7 @@ void Engine::process (float* left, float* right, int numSamples,
             const TonePatch& tone = tonePatch (voice.part);
             const double expression =
                 smoothedExpression_[voice.part == Part::Upper ? 0u : 1u];
+            const std::size_t partIndex = voice.part == Part::Upper ? 0u : 1u;
             const double delaySend = tone.delayDepth / 127.0;
             const double reverbSend = tone.reverbDepth / 127.0;
             // Walked across the tick, not stepped at its edge: see Voice's
@@ -3164,8 +3203,11 @@ void Engine::process (float* left, float* right, int numSamples,
                     (gainLStart + gainLStep * (i + 1)) * mapping::voiceHeadroom;
                 const double gainR =
                     (gainRStart + gainRStep * (i + 1)) * mapping::voiceHeadroom;
-                const auto l = static_cast<float> (sample * gainL * toneGain);
-                const auto r = static_cast<float> (sample * gainR * toneGain);
+                const double mute = enableGain[partIndex][static_cast<std::size_t> (i)];
+                const auto l = static_cast<float> (sample * gainL * toneGain * mute);
+                const auto r = static_cast<float> (sample * gainR * toneGain * mute);
+                partLeft[partIndex][static_cast<std::size_t> (i)] += l;
+                partRight[partIndex][static_cast<std::size_t> (i)] += r;
                 dryL_[static_cast<std::size_t> (i)] += l;
                 dryR_[static_cast<std::size_t> (i)] += r;
                 sendDelayL_[static_cast<std::size_t> (i)] +=
@@ -3178,6 +3220,14 @@ void Engine::process (float* left, float* right, int numSamples,
                     static_cast<float> (r * reverbSend);
             }
         }
+
+        // Measure the sum, including cancellation between voices, rather
+        // than a peak voice. Shared effect tails cannot identify their part.
+        for (std::size_t part = 0; part < partPeak.size(); ++part)
+            for (int i = 0; i < guarded; ++i)
+                partPeak[part] = std::max ({ partPeak[part],
+                    std::abs (partLeft[part][static_cast<std::size_t> (i)]),
+                    std::abs (partRight[part][static_cast<std::size_t> (i)]) });
 
         processEffects (dryL_.data(), dryR_.data(), sendDelayL_.data(),
                         sendDelayR_.data(), sendReverbL_.data(),
@@ -3254,6 +3304,10 @@ void Engine::process (float* left, float* right, int numSamples,
     {
         return static_cast<float> (level.load (std::memory_order_relaxed) * fall);
     };
+    for (std::size_t part = 0; part < partPeak.size(); ++part)
+        partOutputLevel_[part].store (
+            std::max (partPeak[part], decayed (partOutputLevel_[part])),
+            std::memory_order_relaxed);
     outputLevel_[0].store (std::max (blockPeakL, decayed (outputLevel_[0])),
                            std::memory_order_relaxed);
     outputLevel_[1].store (std::max (blockPeakR, decayed (outputLevel_[1])),

@@ -555,6 +555,8 @@ void SeptumAudioProcessor::cacheParameterPointers()
         jassert (value != nullptr);
         patchValues.push_back (value);
     }
+    partEnableValues[0] = parameters.getRawParameterValue ("upper_enabled");
+    partEnableValues[1] = parameters.getRawParameterValue ("lower_enabled");
     masterValue = parameters.getRawParameterValue ("master_level");
     systemTuneValue = parameters.getRawParameterValue ("system_master_tune");
     for (const auto& id : systemParameterIds())
@@ -859,6 +861,12 @@ SeptumAudioProcessor::createParameterLayout()
         }
     }
 
+    // Append extensions for existing host parameter order, and use a newer
+    // version hint so AUv2 keeps its older automation parameter indices.
+    layout.add (std::make_unique<juce::AudioParameterBool> (
+        juce::ParameterID { "upper_enabled", 2 }, "Upper Part Enabled", true));
+    layout.add (std::make_unique<juce::AudioParameterBool> (
+        juce::ParameterID { "lower_enabled", 2 }, "Lower Part Enabled", true));
     return layout;
 }
 
@@ -1105,6 +1113,14 @@ void SeptumAudioProcessor::prepareToPlay (double sampleRate,
     applySystemSettings();
     engine.setPatch (snapshotPatch());
     engine.setExternalInput (snapshotExternalInput());
+    for (std::size_t part = 0; part < partEnableValues.size(); ++part)
+    {
+        engine.setPartEnabled (part == 0,
+            partEnableValues[part]->load (std::memory_order_relaxed) >= 0.5f);
+        partActiveVoices[part].store (0, std::memory_order_relaxed);
+        partHeldVoices[part].store (0, std::memory_order_relaxed);
+    }
+    activeVoices.store (0, std::memory_order_relaxed);
     engine.reset();
     monoScratch.assign ((std::size_t) juce::jmax (samplesPerBlock, 16), 0.0f);
     externalInputL.assign ((std::size_t) juce::jmax (samplesPerBlock, 16), 0.0f);
@@ -1461,6 +1477,14 @@ bool SeptumAudioProcessor::handleMidiMessage (const juce::MidiMessage& message)
     return false;
 }
 
+void SeptumAudioProcessor::resetPartEnablesToParameters() noexcept
+{
+    // The program writer owns the patch-generation window. Native programs
+    // have no independent mute data and start with both parts enabled.
+    for (auto* value : partEnableValues)
+        value->store (1.0f, std::memory_order_relaxed);
+}
+
 void SeptumAudioProcessor::writeProgramToParameters (int index) noexcept
 {
     if (index < 0 || index >= getNumPrograms())
@@ -1474,6 +1498,7 @@ void SeptumAudioProcessor::writeProgramToParameters (int index) noexcept
     // new index with the old values.
     patchGeneration.fetch_add (1, std::memory_order_acq_rel);
     currentProgram.store (index, std::memory_order_relaxed);
+    resetPartEnablesToParameters();
 
     const auto& bindings = toneBindings();
     for (std::size_t i = 0; i < bindings.size(); ++i)
@@ -1536,6 +1561,7 @@ void SeptumAudioProcessor::reconcileProgram (int index)
     for (const bool upper : { true, false })
     {
         const TonePatch& tone = upper ? patch.upper : patch.lower;
+        apply (upper ? "upper_enabled" : "lower_enabled", 1.0f);
         const juce::String prefix = upper ? "up_" : "lo_";
         for (const auto& binding : toneBindings())
             apply (prefix + binding.suffix, binding.get (tone));
@@ -1657,6 +1683,10 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
         // old and new external settings is as torn as a mixed patch.
         const auto generation = patchGeneration.load (std::memory_order_acquire);
         const septum::ExternalInput external = snapshotExternalInput();
+        const std::array<bool, 2> enabled {
+            partEnableValues[0]->load (std::memory_order_relaxed) >= 0.5f,
+            partEnableValues[1]->load (std::memory_order_relaxed) >= 0.5f
+        };
 
         const int staged = stagedProgram.load (std::memory_order_acquire);
         const bool stagedProgramPending =
@@ -1673,6 +1703,8 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
         if (stable)
         {
             engine.setExternalInput (external);
+            engine.setPartEnabled (true, enabled[0]);
+            engine.setPartEnabled (false, enabled[1]);
         }
         if (stagedProgramPending)
             engine.setPatch (
@@ -1782,6 +1814,13 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
             left[i] = 0.5f * (left[i] + monoScratch[(std::size_t) i]);
 
     activeVoices.store (engine.activeVoiceCount(), std::memory_order_relaxed);
+    for (std::size_t part = 0; part < partActiveVoices.size(); ++part)
+    {
+        partActiveVoices[part].store (engine.activeVoiceCount (part == 0),
+                                     std::memory_order_relaxed);
+        partHeldVoices[part].store (engine.heldVoiceCount (part == 0),
+                                   std::memory_order_relaxed);
+    }
 }
 
 int SeptumAudioProcessor::getNumPrograms()
@@ -1832,6 +1871,7 @@ void SeptumAudioProcessor::applyProgram (int index)
     for (const bool upper : { true, false })
     {
         const TonePatch& tone = upper ? patch.upper : patch.lower;
+        apply (upper ? "upper_enabled" : "lower_enabled", 1.0f);
         const juce::String prefix = upper ? "up_" : "lo_";
         for (const auto& binding : toneBindings())
             apply (prefix + binding.suffix, binding.get (tone));
@@ -1863,6 +1903,8 @@ void SeptumAudioProcessor::applyProgram (int index)
 void SeptumAudioProcessor::writePatchToParameters (const septum::Patch& patch,
                                                    bool publishGrid) noexcept
 {
+    // This also receives individual streamed DT1 knob edits. They update
+    // native patch data without changing the plug-in's independent mutes.
     patchGeneration.fetch_add (1, std::memory_order_acq_rel);
     // Inside the odd window with the parameters. Published outside it, a
     // state save could copy the old parameter values, then see and serialise
@@ -2018,6 +2060,8 @@ void SeptumAudioProcessor::republishPatchParameters()
 void SeptumAudioProcessor::loadPatch (const septum::Patch& patch)
 {
     patchGeneration.fetch_add (1, std::memory_order_acq_rel);
+    for (const auto* id : { "upper_enabled", "lower_enabled" })
+        parameters.getParameter (id)->setValueNotifyingHost (1.0f);
 
     // The arpeggio grid rides outside the parameter list, so writing the
     // parameters below is not enough to carry it. Both callers of this are
@@ -2179,6 +2223,16 @@ void SeptumAudioProcessor::setStateInformation (const void* data,
         auto state = juce::ValueTree::fromXml (*xml);
         if (state.isValid())
         {
+            // Older sessions omitted the extensions. Insert explicit ON
+            // values so restoring over a currently muted instance is safe.
+            for (const auto* id : { "upper_enabled", "lower_enabled" })
+                if (! state.getChildWithProperty ("id", id).isValid())
+                {
+                    juce::ValueTree parameterState ("PARAM");
+                    parameterState.setProperty ("id", id, nullptr);
+                    parameterState.setProperty ("value", 1.0f, nullptr);
+                    state.addChild (parameterState, -1, nullptr);
+                }
             currentProgram.store (state.getProperty ("program", 0),
                                   std::memory_order_relaxed);
             // A state restore is a multi-parameter write burst like a
