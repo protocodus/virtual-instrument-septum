@@ -41,6 +41,7 @@ set(SEPTUM_DSP_SOURCES
     Source/DSP/SeptumSysEx.cpp)
 set(SEPTUM_DSP_HEADERS
     Source/DSP/AnalogOutput.h
+    Source/DSP/DelayInterpolation.h
     Source/DSP/SeptumEngine.h
     Source/DSP/SeptumPatch.h
     Source/DSP/SeptumPresets.h
@@ -163,6 +164,16 @@ if(SEPTUM_BUILD_TOOLS)
 endif()
 
 if(BUILD_TESTING)
+    add_executable(SeptumControlSmoothingTests Tests/ControlSmoothingTests.cpp)
+    target_link_libraries(SeptumControlSmoothingTests PRIVATE SeptumDSP)
+    add_test(NAME Septum.ControlSmoothing COMMAND SeptumControlSmoothingTests)
+    set_tests_properties(Septum.ControlSmoothing PROPERTIES TIMEOUT 120)
+
+    add_executable(SeptumEffectsQualityTests Tests/EffectsQualityTests.cpp)
+    target_link_libraries(SeptumEffectsQualityTests PRIVATE SeptumDSP)
+    add_test(NAME Septum.EffectsQuality COMMAND SeptumEffectsQualityTests)
+    set_tests_properties(Septum.EffectsQuality PROPERTIES TIMEOUT 120)
+
     add_executable(SeptumAnalogOutputTests Tests/AnalogOutputTests.cpp)
     target_link_libraries(SeptumAnalogOutputTests PRIVATE SeptumDSP)
     add_test(NAME Septum.AnalogOutput COMMAND SeptumAnalogOutputTests)

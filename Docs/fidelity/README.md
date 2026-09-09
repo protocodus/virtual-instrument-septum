@@ -5,6 +5,10 @@ an experimental synthesis-clock change. No physical SH-201 was available for
 matched recordings. A successful numerical test is not proof that the complete
 instrument sounds identical to the hardware.
 
+The following circuit and reference-rate measurements describe the first audio
+round (`c29a21f`). [Round 2](quality-round2.md) adds five shipping quality fixes for
+MIDI timing, gain/pan transitions and effects, with separate regression evidence.
+
 ## Implemented output circuit
 
 The earlier output model treated the capacitors as two independent passive RC
@@ -99,8 +103,9 @@ latencies. Remaining integration gates are:
   beyond one 44.1 kHz sample.
 - Measure and reduce CPU cost before replacing the shipping renderer.
 
-The native voice filter, envelope, Super Saw, FB OSC and effects voicings have
-not been retuned from assumptions. Existing listening decisions remain in
+The native voice filter, envelope, Super Saw and FB OSC voicings have not been
+retuned from assumptions. Round 2 changes effects bypass and numerical delay
+interpolation; exact hardware effects calibration remains open. Listening decisions remain in
 `Docs/decisions.md`; a preference does not close a hardware calibration question.
 
 ## Reproduce measurements

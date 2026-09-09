@@ -1744,10 +1744,10 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
         const auto& message = metadata.getMessage();
         if (message.isSysEx())
         {
-            // Consecutive SysEx packets (such as multi-packet patch dumps)
-            // are decoded into livePatch and committed in a single atomic
-            // seqlock burst so concurrent state saves never see a partially
-            // applied patch dump.
+            // Consecutive SysEx packets at this sample (such as multi-packet
+            // patch dumps) share one atomic commit. A later timestamp must
+            // return to the render loop first: batching it here would skip
+            // the intervening audio and apply its changes too early.
             Patch livePatch = snapshotPatch();
             bool anyHandled = false;
             bool anyPatchDecoded = false;
@@ -1755,7 +1755,9 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
             {
                 const auto nextMeta = *it;
                 const auto& nextMsg = nextMeta.getMessage();
-                if (! nextMsg.isSysEx())
+                if (! nextMsg.isSysEx()
+                    || juce::jlimit (0, samples, nextMeta.samplePosition)
+                           != eventPosition)
                     break;
                 const auto* rawData = nextMsg.getSysExData();
                 const auto rawSize = (std::size_t) nextMsg.getSysExDataSize();
@@ -1768,7 +1770,6 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
                     anyHandled = true;
                     anyPatchDecoded = true;
                 }
-                position = juce::jlimit (0, buffer.getNumSamples(), nextMeta.samplePosition);
                 ++it;
             }
             if (anyPatchDecoded)

@@ -18,9 +18,12 @@ A2 is implemented as an isolated reference-rate prototype and remains outside
 the plug-in because of its control-cadence, CPU and input/event timing tradeoffs.
 The shipping output circuit now uses the schematic's active Sallen-Key topology
 with component-derived coefficients and 8x evaluation; the previous independent
-RC approximation was incorrect. The native-rate oscillator, voice-filter,
-envelope and effects voicings remain unchanged pending stronger calibration
-evidence. See [measurements, limitations and reproduction](fidelity/README.md).
+RC approximation was incorrect. The native-rate oscillator, voice-filter and
+envelope voicings remain unchanged pending stronger calibration evidence.
+The next A5 increment fixes SysEx audio gaps, smooths gain and pan changes,
+keeps bypassed effects decaying and improves fractional-delay reconstruction.
+See [five additional quality improvements](fidelity/quality-round2.md) and
+[circuit measurements, limitations and reproduction](fidelity/README.md).
 
 ## Recommended direction
 

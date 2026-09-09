@@ -738,6 +738,8 @@ namespace mapping
     // Long enough that the step is inaudible, short enough that the control
     // still reads as a switch rather than a fade.
     inline constexpr double externalSwitchFadeSeconds = 0.005;
+    // Plug-in wet-return dezipper, not a measured SH-201 switching time.
+    inline constexpr double effectsSwitchFadeSeconds = 0.005;
 }
 
 // --------------------------------------------------------------------------
@@ -1475,6 +1477,7 @@ private:
     std::array<double, 2> smoothedExpression_ { 1.0, 1.0 };
     double partLevel_ { 1.0 };
     double partPan_ { 0.0 };
+    double smoothedPartPan_ { 0.0 };
     bool hold_ { false };
     bool sostenuto_ { false };
 
@@ -1505,6 +1508,7 @@ private:
     double delayModPhase_ { 0.0 };
     Reverb reverb_ {};
     double delayTimeSmoothed_ { 0.0 };
+    double delayWetGain_ { 0.0 }, reverbWetGain_ { 0.0 };
 
     // External input: INPUT VOL -> CENTER CANCEL -> AUDIO FILTER on the direct
     // monitor path, and the pre-filter mono sum feeding any EXT-IN oscillator.

@@ -1,4 +1,5 @@
 #include "SeptumEngine.h"
+#include "DelayInterpolation.h"
 
 namespace septum
 {
@@ -565,6 +566,8 @@ void Engine::reset()
     delayModPhase_ = 0.0;
     reverb_.clear();
     delayTimeSmoothed_ = mapping::delaySeconds (patch_.delay.time) * sampleRate_;
+    delayWetGain_ = patch_.delayOn ? 1.0 : 0.0;
+    reverbWetGain_ = patch_.reverbOn ? 1.0 : 0.0;
     for (auto& output : analogOutput_)
         output.reset();
     for (int channel = 0; channel < 2; ++channel)
@@ -585,6 +588,7 @@ void Engine::reset()
     sostenuto_ = false;
     smoothedMaster_ = masterLevel_ / 127.0;
     smoothedExpression_.fill (1.0);
+    smoothedPartPan_ = partPan_;
 }
 
 void Engine::setPatch (const Patch& patch)
@@ -2652,16 +2656,10 @@ bool Engine::anyVoiceUsesExternalInput() const noexcept
 void Engine::prepareExternalTick (const float* inputLeft, const float* inputRight,
                                   int offset, int samples)
 {
-    // INPUT VOL is automatable, so it is smoothed and walked across the tick
-    // exactly as the monitor fade is: an integer step straight onto live
-    // audio would click on the monitor and on any EXT-IN voice at once.
+    // Advance INPUT VOL once per sample, including silent input, so its
+    // existing 10 ms time constant is independent of render-call boundaries.
     const double inputGainTarget = mapping::externalInputGain (external_.inputVolume);
-    const double inputFrom = smoothedInputGain_;
-    smoothedInputGain_ +=
-        (inputGainTarget - smoothedInputGain_)
-        * std::min (1.0, onePoleCoeff (sampleRate_, mapping::masterSlewSeconds)
-                             * samples);
-    const double inputStep = (smoothedInputGain_ - inputFrom) / std::max (1, samples);
+    const double inputCoeff = onePoleCoeff (sampleRate_, mapping::masterSlewSeconds);
     const bool haveInput = inputLeft != nullptr && inputRight != nullptr;
 
     // Direct-path mute while an EXT-IN voice owns the input, with a short fade
@@ -2743,12 +2741,12 @@ void Engine::prepareExternalTick (const float* inputLeft, const float* inputRigh
 
     for (int i = 0; i < samples; ++i)
     {
+        smoothedInputGain_ += (inputGainTarget - smoothedInputGain_) * inputCoeff;
         double left = 0.0, right = 0.0;
         if (haveInput)
         {
-            const double inputGain = inputFrom + inputStep * (i + 1);
-            left = inputLeft[offset + i] * inputGain;
-            right = inputRight[offset + i] * inputGain;
+            left = inputLeft[offset + i] * smoothedInputGain_;
+            right = inputRight[offset + i] * smoothedInputGain_;
         }
 
         // Every switch on this path is crossed rather than thrown: each one
@@ -2881,6 +2879,8 @@ void Engine::processEffects (const float* dryL, const float* dryR,
 
     const bool delayOn = patch_.delayOn;
     const bool reverbOn = patch_.reverbOn;
+    const double switchStep =
+        1.0 / std::max (1.0, mapping::effectsSwitchFadeSeconds * sampleRate_);
 
     // -- delay coefficients ------------------------------------------------
     const double delayTargetSamples =
@@ -2932,9 +2932,16 @@ void Engine::processEffects (const float* dryL, const float* dryR,
 
     for (int i = 0; i < samples; ++i)
     {
+        // OFF fades new input and the return; it does not stop time in the
+        // delay lines. Frozen buffers replayed old notes whenever an effect
+        // was enabled again, even after seconds of silence. Once the fade
+        // reaches zero, OFF accepts no new signal.
+        delayWetGain_ += std::clamp ((delayOn ? 1.0 : 0.0) - delayWetGain_,
+                                     -switchStep, switchStep);
+        reverbWetGain_ += std::clamp ((reverbOn ? 1.0 : 0.0) - reverbWetGain_,
+                                      -switchStep, switchStep);
         double wetDelayL = 0.0, wetDelayR = 0.0;
 
-        if (delayOn)
         {
             delayTimeSmoothed_ += (delayTargetSamples - delayTimeSmoothed_) * timeSmoothing;
             delayModPhase_ = frac (delayModPhase_ + modInc);
@@ -2952,35 +2959,45 @@ void Engine::processEffects (const float* dryL, const float* dryR,
                 const int index0 = static_cast<int> (readPos) % delaySize;
                 const int index1 = (index0 + 1) % delaySize;
                 const double fracPos = readPos - std::floor (readPos);
-                // A tap reaching behind the panic point reads silence; echoes
-                // of post-panic input come through immediately.
-                const double tapped =
-                    delaySamplesNow + 2.0 > static_cast<double> (line.fresh)
-                        ? 0.0
-                        : line.buffer[static_cast<std::size_t> (index0)]
-                                  * (1.0 - fracPos)
-                              + line.buffer[static_cast<std::size_t> (index1)]
-                                    * fracPos;
+                const int centreAge = line.write >= index0 ? line.write - index0
+                                                           : line.write - index0 + delaySize;
+                // Check every interpolation tap against the panic boundary.
+                // The minimum delay of two samples keeps all nonzero-weight
+                // taps strictly in the past; age zero is never read.
+                const auto past = [&line] (int index, int age)
+                {
+                    return age < 1 || age > line.fresh ? 0.0
+                        : static_cast<double> (line.buffer[static_cast<std::size_t> (index)]);
+                };
+                const double tapped = detail::delayLagrange4 (
+                    past ((index0 + delaySize - 1) % delaySize, centreAge + 1),
+                    past (index0, centreAge), past (index1, centreAge - 1),
+                    past ((index1 + 1) % delaySize, centreAge - 2), fracPos);
                 line.dampState += dampCoeff * (tapped - line.dampState);
                 const double damped = line.dampState;
                 line.buffer[static_cast<std::size_t> (line.write)] =
-                    static_cast<float> (softClip (input + damped * feedback));
+                    static_cast<float> (flushDenormal (softClip (input + damped * feedback)));
                 line.write = (line.write + 1) % delaySize;
                 line.fresh = std::min (line.fresh + 1, delaySize);
                 return damped;
             };
 
-            wetDelayL = tapLine (delayL_, lfoL * modDepthSamples, delaySendL[i]);
-            wetDelayR = tapLine (delayR_, lfoR * modDepthSamples, delaySendR[i]);
+            wetDelayL = tapLine (delayL_, lfoL * modDepthSamples,
+                                delaySendL[i] * delayWetGain_) * delayWetGain_;
+            wetDelayR = tapLine (delayR_, lfoR * modDepthSamples,
+                                delaySendR[i] * delayWetGain_) * delayWetGain_;
         }
 
         double wetReverbL = 0.0, wetReverbR = 0.0;
-        if (reverbOn)
         {
             // Settled routing: the delay feeds the reverb in series, and each
-            // tone also has its own reverb send.
-            double input = 0.5 * (reverbSendL[i] + reverbSendR[i])
-                           + 0.5 * (wetDelayL + wetDelayR);
+            // tone also has its own reverb send. Settled OFF accepts no new
+            // direct or delay input while the existing network keeps decaying.
+            // Fade input in both switch directions: a hard send edge can
+            // reappear as a click after the delay/pre-delay has elapsed,
+            // including after a quick OFF->ON cycle reopens the wet return.
+            double input = (0.5 * (reverbSendL[i] + reverbSendR[i])
+                            + 0.5 * (wetDelayL + wetDelayR)) * reverbWetGain_;
 
             // Pre-delay. Reads behind the panic point are silence, here and
             // in every buffer below — the network's write heads advance in
@@ -3009,7 +3026,7 @@ void Engine::processEffects (const float* dryL, const float* dryR,
                         : buffer[static_cast<std::size_t> (write)];
                 const double next = input + delayed * gain;
                 buffer[static_cast<std::size_t> (write)] =
-                    static_cast<float> (next);
+                    static_cast<float> (flushDenormal (next));
                 input = delayed - next * gain;
                 write = (write + 1) % static_cast<int> (buffer.size());
             }
@@ -3050,7 +3067,8 @@ void Engine::processEffects (const float* dryL, const float* dryR,
 
                 buffer[static_cast<std::size_t> (
                     reverb_.writes[static_cast<std::size_t> (line)])] =
-                    static_cast<float> (value + input * mapping::reverbInputInjection);
+                    static_cast<float> (flushDenormal (
+                        value + input * mapping::reverbInputInjection));
                 reverb_.writes[static_cast<std::size_t> (line)] =
                     (reverb_.writes[static_cast<std::size_t> (line)] + 1) % size;
             }
@@ -3072,9 +3090,9 @@ void Engine::processEffects (const float* dryL, const float* dryR,
         }
 
         outL[i] = static_cast<float> (dryL[i] + wetDelayL
-                                      + wetReverbL * mapping::reverbWetReturn);
+                                      + wetReverbL * mapping::reverbWetReturn * reverbWetGain_);
         outR[i] = static_cast<float> (dryR[i] + wetDelayR
-                                      + wetReverbR * mapping::reverbWetReturn);
+                                      + wetReverbR * mapping::reverbWetReturn * reverbWetGain_);
     }
 
     delayL_.dampState = flushDenormal (delayL_.dampState);
@@ -3101,6 +3119,7 @@ void Engine::process (float* left, float* right, int numSamples,
     float blockPeakL = 0.0f, blockPeakR = 0.0f;
     std::array<float, 2> partPeak {};
     const double muteStep = 1.0 / (sampleRate_ * partMuteRampSeconds);
+    const double gainCoeff = onePoleCoeff (sampleRate_, mapping::masterSlewSeconds);
 
     while (offset < numSamples)
     {
@@ -3108,6 +3127,7 @@ void Engine::process (float* left, float* right, int numSamples,
         const int guarded = std::min (tick, maxBlock_);
 
         std::array<std::array<double, controlInterval>, 2> enableGain {};
+        std::array<std::array<double, controlInterval>, 2> expressionGain {};
         std::array<std::array<float, controlInterval>, 2> partLeft {}, partRight {};
         for (std::size_t part = 0; part < partEnabled_.size(); ++part)
             for (int i = 0; i < guarded; ++i)
@@ -3118,21 +3138,24 @@ void Engine::process (float* left, float* right, int numSamples,
                 enableGain[part][static_cast<std::size_t> (i)] = partEnableGain_[part];
             }
 
-        // Per-tone EXPRESSION, smoothed the way the master chain it left is,
-        // so an expression pedal cannot step a voice's gain.
+        // Per-tone EXPRESSION is an audio-rate gain. Holding a newly advanced
+        // gain for an entire control tick creates eight-sample stairs and
+        // makes the pedal response depend on MIDI/host block boundaries.
         {
-            const double coeff = std::min (
-                1.0,
-                onePoleCoeff (sampleRate_, mapping::masterSlewSeconds) * guarded);
             for (int index = 0; index < partCount; ++index)
             {
+                const auto part = static_cast<std::size_t> (index);
                 const double target =
                     destinationReaches (patch_.expressionDestination, index == 0)
                         ? expression_
                         : 1.0;
-                smoothedExpression_[static_cast<std::size_t> (index)] +=
-                    (target - smoothedExpression_[static_cast<std::size_t> (index)])
-                    * coeff;
+                for (int i = 0; i < guarded; ++i)
+                {
+                    smoothedExpression_[part] +=
+                        (target - smoothedExpression_[part]) * gainCoeff;
+                    expressionGain[part][static_cast<std::size_t> (i)] =
+                        smoothedExpression_[part];
+                }
             }
         }
 
@@ -3160,8 +3183,6 @@ void Engine::process (float* left, float* right, int numSamples,
                 voice.active = false;
 
             const TonePatch& tone = tonePatch (voice.part);
-            const double expression =
-                smoothedExpression_[voice.part == Part::Upper ? 0u : 1u];
             const std::size_t partIndex = voice.part == Part::Upper ? 0u : 1u;
             const double delaySend = tone.delayDepth / 127.0;
             const double reverbSend = tone.reverbDepth / 127.0;
@@ -3180,8 +3201,7 @@ void Engine::process (float* left, float* right, int numSamples,
             // Tone balance sits between the two tones (settled parameter,
             // voiced law shared with the oscillator balance).
             const double toneGain =
-                expression
-                * (voice.part == Part::Upper
+                (voice.part == Part::Upper
                        ? mapping::balanceLegGain (patch_.toneBalance, false)
                        : mapping::balanceLegGain (patch_.toneBalance, true));
 
@@ -3192,9 +3212,11 @@ void Engine::process (float* left, float* right, int numSamples,
                     (gainLStart + gainLStep * (i + 1)) * mapping::voiceHeadroom;
                 const double gainR =
                     (gainRStart + gainRStep * (i + 1)) * mapping::voiceHeadroom;
-                const double mute = enableGain[partIndex][static_cast<std::size_t> (i)];
-                const auto l = static_cast<float> (sample * gainL * toneGain * mute);
-                const auto r = static_cast<float> (sample * gainR * toneGain * mute);
+                const auto frame = static_cast<std::size_t> (i);
+                const double partGain = enableGain[partIndex][frame]
+                                        * expressionGain[partIndex][frame] * toneGain;
+                const auto l = static_cast<float> (sample * gainL * partGain);
+                const auto r = static_cast<float> (sample * gainR * partGain);
                 partLeft[partIndex][static_cast<std::size_t> (i)] += l;
                 partRight[partIndex][static_cast<std::size_t> (i)] += r;
                 dryL_[static_cast<std::size_t> (i)] += l;
@@ -3230,40 +3252,35 @@ void Engine::process (float* left, float* right, int numSamples,
         const double masterTarget = (masterLevel_ / 127.0)
                                     * (patch_.patchLevel / 127.0)
                                     * partLevel_;
-        const double masterCoeff =
-            onePoleCoeff (sampleRate_, mapping::masterSlewSeconds) * guarded;
-        smoothedMaster_ += (masterTarget - smoothedMaster_)
-                           * std::min (1.0, masterCoeff);
-
-        // Part pan (received CC#10): a constant-power tilt on the final pair,
-        // unity at center.
-        const double panAngle = (partPan_ + 1.0) * 0.25 * pi;
-        const double partPanGain[2] {
-            std::cos (panAngle) * mapping::partPanCentreGain,
-            std::sin (panAngle) * mapping::partPanCentreGain
-        };
-
         // The direct monitor path joins here rather than in the voice sum: it
         // is not patch audio, so the patch level and the part controllers do
         // not scale it, but the panel VOLUME sits after the DAC on the
         // hardware and therefore does.
         // Smoothed the same way the synth path's gain chain is, so automating
         // the panel volume cannot step the monitored input.
-        smoothedMonitorLevel_ +=
-            ((masterLevel_ / 127.0) - smoothedMonitorLevel_)
-            * std::min (1.0, onePoleCoeff (sampleRate_, mapping::masterSlewSeconds)
-                                 * guarded);
-        const double monitorLevel = smoothedMonitorLevel_;
+        const double monitorTarget = masterLevel_ / 127.0;
 
-        for (int channel = 0; channel < 2; ++channel)
+        for (int i = 0; i < guarded; ++i)
         {
-            float* out = channel == 0 ? left + offset : right + offset;
-            const float* monitor = channel == 0 ? externalDirectL_.data()
-                                                : externalDirectR_.data();
-            for (int i = 0; i < guarded; ++i)
+            smoothedMaster_ += (masterTarget - smoothedMaster_) * gainCoeff;
+            smoothedMonitorLevel_ += (monitorTarget - smoothedMonitorLevel_) * gainCoeff;
+            // CC#10 uses the same short slew as the level controls. Smoothing
+            // the angle retains the existing constant-power law throughout
+            // the move, with unity gain at center. This is a plug-in dezipper,
+            // not a measured hardware pan response.
+            smoothedPartPan_ += (partPan_ - smoothedPartPan_) * gainCoeff;
+            const double panAngle = (smoothedPartPan_ + 1.0) * 0.25 * pi;
+            const double partPanGain[2] {
+                std::cos (panAngle) * mapping::partPanCentreGain,
+                std::sin (panAngle) * mapping::partPanCentreGain
+            };
+            for (int channel = 0; channel < 2; ++channel)
             {
+                float* out = channel == 0 ? left + offset : right + offset;
+                const float* monitor = channel == 0 ? externalDirectL_.data()
+                                                    : externalDirectR_.data();
                 double x = out[i] * smoothedMaster_ * partPanGain[channel]
-                           + monitor[i] * monitorLevel;
+                           + monitor[i] * smoothedMonitorLevel_;
                 const double limited = outputLimit (
                     analogOutput_[static_cast<std::size_t> (channel)].processSample (x));
                 out[i] = static_cast<float> (limited);

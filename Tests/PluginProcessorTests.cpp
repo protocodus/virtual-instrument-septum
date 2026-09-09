@@ -2550,6 +2550,133 @@ void testSysExBlockProcessing()
     expect (recipientSnap.upper.resonance == 88, "loadSysExData restored resonance");
 }
 
+// Consecutive packets are a single patch transaction only when they have the
+// same sample timestamp. A later packet must leave the intervening audio in
+// place, including when one of the messages is unsupported or for another
+// manufacturer. Compare against the same timeline rendered in host blocks
+// ending at each event, so both the audio and final parameter state matter.
+void testConsecutiveSysExKeepsEachSampleTimestamp()
+{
+    constexpr int samples = 1024;
+    const auto dt1 = [] (std::uint32_t address, std::uint8_t value)
+    {
+        const auto packet = septum::sysex::makeDt1Message (address, &value, 1);
+        return juce::MidiMessage (packet.data(), (int) packet.size());
+    };
+    const auto universal = [] (std::uint8_t sub, std::uint8_t value)
+    {
+        const std::uint8_t body[] { 0x7F, 0x7F, 0x04, sub, 0x00, value };
+        return juce::MidiMessage::createSysExMessage (body, (int) sizeof (body));
+    };
+    const auto cutoff = dt1 (0x10000113, 96);
+    const auto resonance = dt1 (0x10000116, 64);
+    const auto volumeDown = universal (0x01, 70);
+    const auto volumeUp = universal (0x01, 110);
+    const auto unsupported = universal (0x02, 0);
+    const std::uint8_t foreignBody[] { 0x7D, 0x01, 0x02 };
+    const auto foreign = juce::MidiMessage::createSysExMessage (
+        foreignBody, (int) sizeof (foreignBody));
+
+    struct Take
+    {
+        juce::AudioBuffer<float> audio { 2, samples };
+        int cutoff {}, resonance {}, master {};
+    };
+    const auto render = [&] (const juce::MidiMessage& first,
+                            const juce::MidiMessage& second,
+                            int firstSample, int secondSample, bool split)
+    {
+        SeptumAudioProcessor processor;
+        processor.prepareToPlay (44100.0, samples);
+        juce::AudioBuffer<float> warm (2, samples);
+        auto held = messageAt (juce::MidiMessage::noteOn (
+            1, 60, (juce::uint8) 110));
+        processor.processBlock (warm, held);
+        for (int i = 0; i < 4; ++i)
+        {
+            juce::MidiBuffer empty;
+            processor.processBlock (warm, empty);
+        }
+
+        Take take;
+        if (! split)
+        {
+            juce::MidiBuffer midi;
+            midi.addEvent (first, firstSample);
+            midi.addEvent (second, secondSample);
+            processor.processBlock (take.audio, midi);
+        }
+        else
+        {
+            std::vector<int> boundaries { 0, firstSample, secondSample, samples };
+            boundaries.erase (std::unique (boundaries.begin(), boundaries.end()),
+                              boundaries.end());
+            for (std::size_t index = 1; index < boundaries.size(); ++index)
+            {
+                const int start = boundaries[index - 1];
+                const int length = boundaries[index] - start;
+                juce::AudioBuffer<float> segment (2, length);
+                juce::MidiBuffer midi;
+                if (firstSample == start)
+                    midi.addEvent (first, 0);
+                if (secondSample == start)
+                    midi.addEvent (second, 0);
+                processor.processBlock (segment, midi);
+                for (int channel = 0; channel < 2; ++channel)
+                    take.audio.copyFrom (channel, start, segment, channel, 0, length);
+            }
+        }
+        const auto patch = processor.snapshotPatch();
+        take.cutoff = patch.upper.cutoff;
+        take.resonance = patch.upper.resonance;
+        take.master = (int) std::lround (
+            processor.parameters.getRawParameterValue ("master_level")->load());
+        return take;
+    };
+    const auto verify = [&] (const juce::String& label,
+                            const juce::MidiMessage& first,
+                            const juce::MidiMessage& second,
+                            int firstSample, int secondSample,
+                            int wantedCutoff, int wantedResonance, int wantedMaster)
+    {
+        const auto timed = render (first, second, firstSample, secondSample, false);
+        const auto divided = render (first, second, firstSample, secondSample, true);
+        double difference = 0.0, intervalPeak = 0.0;
+        for (int channel = 0; channel < 2; ++channel)
+            for (int sample = 0; sample < samples; ++sample)
+            {
+                const double value = timed.audio.getSample (channel, sample);
+                difference = std::max (difference, std::abs (
+                    value - divided.audio.getSample (channel, sample)));
+                if (sample >= firstSample && sample < secondSample)
+                    intervalPeak = std::max (intervalPeak, std::abs (value));
+            }
+        expect (difference < 1.0e-6,
+                label + ": timestamped packets match separate host renders (error "
+                    + juce::String (difference, 9) + ")");
+        if (firstSample != secondSample)
+            expect (intervalPeak > 1.0e-3,
+                    label + ": audio between the packets is rendered");
+        expect (timed.cutoff == wantedCutoff
+                    && timed.resonance == wantedResonance
+                    && timed.master == wantedMaster,
+                label + ": supported writes land and ignored packets change nothing");
+    };
+
+    verify ("Separated DT1", cutoff, resonance, 32, 720, 96, 64, 100);
+    verify ("Separated device controls", volumeDown, volumeUp,
+            32, 720, 127, 0, 110);
+    verify ("DT1 then device control", cutoff, volumeDown,
+            32, 720, 96, 0, 70);
+    verify ("Device control then DT1", volumeDown, cutoff,
+            32, 720, 96, 0, 70);
+    verify ("Foreign then DT1", foreign, cutoff, 32, 720, 96, 0, 100);
+    verify ("Device control then unsupported", volumeDown, unsupported,
+            32, 720, 127, 0, 70);
+    verify ("Same-sample DT1 batch", cutoff, resonance, 32, 32, 96, 64, 100);
+    verify ("Same-sample mixed batch", cutoff, volumeDown, 32, 32, 96, 0, 70);
+}
+
 // A received SysEx patch dump lands on the audio thread, so it may not notify
 // the host from there — the split Step 17 established for control changes.
 void testSysExDoesNotNotifyFromTheAudioThread()
@@ -3059,10 +3186,22 @@ void testMutedPartControlsStayInspectableAndFollowHostState()
                     && upperPower->isEnabled() && lowerPower->isEnabled(),
                 context + ": both selectors and both powers remain usable");
     };
-    const auto tick = []
+    const auto tick = [] (const std::function<bool()>& ready)
     {
-        std::this_thread::sleep_for (std::chrono::milliseconds (60));
-        juce::Timer::callPendingTimersSynchronously();
+        // The headless suite does not run JUCE's normal message loop. Its
+        // timer thread advances the countdowns separately, so one sleep and
+        // synchronous dispatch can run before this editor is marked due.
+        // Wait for the observed state, with a bounded failure deadline.
+        const auto deadline = std::chrono::steady_clock::now()
+                              + std::chrono::seconds (1);
+        do
+        {
+            juce::Timer::callPendingTimersSynchronously();
+            if (ready())
+                return;
+            std::this_thread::sleep_for (std::chrono::milliseconds (5));
+        }
+        while (std::chrono::steady_clock::now() < deadline);
     };
     std::vector<std::pair<juce::String, float>> toneValues;
     for (const auto* parameter : processor.getParameters())
@@ -3100,7 +3239,7 @@ void testMutedPartControlsStayInspectableAndFollowHostState()
     automateTone ("up_overdrive", 1.0f);
     automateTone ("up_osc1_pitch", 0.0f);
     automateTone ("up_osc2_pitch", -12.0f);
-    tick();
+    tick ([&] { return octave->getToggleState(); });
     // Attachments convert via the host's normalised float. A sub-millistep
     // tolerance permits that conversion error while still rejecting a stale
     // display or even a one-unit parameter mismatch.
@@ -3116,11 +3255,15 @@ void testMutedPartControlsStayInspectableAndFollowHostState()
     expect (overdrive->getToggleState(),
             "disabled overdrive toggle follows host automation to ON");
     expect (octave->getToggleState(),
-            "disabled interval action lamp follows automated OSC2 = OSC1 - 12");
+            "disabled interval action lamp follows automated OSC2 = OSC1 - 12"
+            " (OSC1 " + juce::String (processor.parameters.getRawParameterValue (
+                "up_osc1_pitch")->load(), 9) + ", OSC2 "
+                + juce::String (processor.parameters.getRawParameterValue (
+                    "up_osc2_pitch")->load(), 9) + ")");
     verifyAvailability (false, "automation while UPPER is OFF");
 
     set ("upper_enabled", 1.0f);
-    tick();
+    tick ([&] { return cutoff->isEnabled(); });
     verifyAvailability (true, "automated UPPER enable");
     expect (std::abs (cutoff->getValue() - 47.0) < 0.001,
             "enabling preserves the automated cutoff display");
@@ -3151,7 +3294,7 @@ void testMutedPartControlsStayInspectableAndFollowHostState()
         verifyAvailability (true, "temporary enabled UPPER before session restore");
         processor.setStateInformation (saved.getData(), static_cast<int> (saved.getSize()));
         if (useTimer)
-            tick();
+            tick ([&] { return lower->getToggleState() && ! cutoff->isEnabled(); });
         else
             editor->resized();
         expect (lower->getToggleState() && ! upper->getToggleState()
@@ -3285,6 +3428,7 @@ int main (int argc, char* argv[])
     testAStateSaveNeverCatchesADumpHalfWritten();
     testAnImportedArpeggioPatternSurvivesAndPlays();
     testSysExBlockProcessing();
+    testConsecutiveSysExKeepsEachSampleTimestamp();
     testSysExDoesNotNotifyFromTheAudioThread();
     testKeyboardOctaveIsAppliedOnce();
     testTheSplitPointCaptionStaysOnThePanelAndAgreesWithTheKeys();
