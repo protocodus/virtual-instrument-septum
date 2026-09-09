@@ -7,8 +7,17 @@ UI implementation update: the hardware-inspired editor, prominent
 part tabs, independent ON/OFF mutes, real per-part activity, and consolidated header
 routing are now implemented. The complete background follows the edited part with
 a coral Upper or cyan Lower tint, including when muted. Mutes use a 7.5 ms ramp. Streamed SysEx parameter
-edits preserve mutes; explicit native file imports/program loads reset them. Audio
-realism work below remains planned; the oscillator/filter algorithms are unchanged.
+edits preserve mutes; explicit native file imports/program loads reset them.
+
+Audio implementation update: A1 now has deterministic raw float-WAV renders,
+exact patch/MIDI manifests, numerical comparisons and an official-bank extractor.
+A2 is implemented as an isolated reference-rate prototype and remains outside
+the plug-in because of its control-cadence, CPU and input/event timing tradeoffs.
+The shipping output circuit now uses the schematic's active Sallen-Key topology
+with component-derived coefficients and 8x evaluation; the previous independent
+RC approximation was incorrect. The native-rate oscillator, voice-filter,
+envelope and effects voicings remain unchanged pending stronger calibration
+evidence. See [measurements, limitations and reproduction](fidelity/README.md).
 
 ## Recommended direction
 

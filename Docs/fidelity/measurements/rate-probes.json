@@ -1,0 +1,182 @@
+{
+  "measurement": "synthetic_A6_SuperSaw_spread0",
+  "not_hardware_calibration": true,
+  "datasets": [
+    {
+      "source_id": "circuit-correction-working-tree",
+      "renderer": "native",
+      "binary_fnv1a64": "81a66a18aea17894",
+      "block_size": 256,
+      "measurements": [
+        {
+          "host_rate_hz": 44100,
+          "metric": "latency_samples",
+          "value": 93.0
+        },
+        {
+          "host_rate_hz": 44100,
+          "metric": "probe_15940_dbc",
+          "value": -33.0076946979
+        },
+        {
+          "host_rate_hz": 44100,
+          "metric": "probe_19840_dbc",
+          "value": -57.3546846746
+        },
+        {
+          "host_rate_hz": 44100,
+          "metric": "rms",
+          "value": 0.0162408847768
+        },
+        {
+          "host_rate_hz": 48000,
+          "metric": "latency_samples",
+          "value": 93.0
+        },
+        {
+          "host_rate_hz": 48000,
+          "metric": "probe_15940_dbc",
+          "value": -67.2296798326
+        },
+        {
+          "host_rate_hz": 48000,
+          "metric": "probe_19840_dbc",
+          "value": -33.8532541001
+        },
+        {
+          "host_rate_hz": 48000,
+          "metric": "rms",
+          "value": 0.0162371150331
+        },
+        {
+          "host_rate_hz": 88200,
+          "metric": "latency_samples",
+          "value": 90.0
+        },
+        {
+          "host_rate_hz": 88200,
+          "metric": "probe_15940_dbc",
+          "value": -73.7155468576
+        },
+        {
+          "host_rate_hz": 88200,
+          "metric": "probe_19840_dbc",
+          "value": -59.711036382
+        },
+        {
+          "host_rate_hz": 88200,
+          "metric": "rms",
+          "value": 0.0160997095963
+        },
+        {
+          "host_rate_hz": 96000,
+          "metric": "latency_samples",
+          "value": 90.0
+        },
+        {
+          "host_rate_hz": 96000,
+          "metric": "probe_15940_dbc",
+          "value": -84.0704777302
+        },
+        {
+          "host_rate_hz": 96000,
+          "metric": "probe_19840_dbc",
+          "value": -55.3512991476
+        },
+        {
+          "host_rate_hz": 96000,
+          "metric": "rms",
+          "value": 0.0160959266333
+        }
+      ]
+    },
+    {
+      "source_id": "circuit-correction-working-tree",
+      "renderer": "reference",
+      "binary_fnv1a64": "81a66a18aea17894",
+      "block_size": 256,
+      "measurements": [
+        {
+          "host_rate_hz": 44100,
+          "metric": "latency_samples",
+          "value": 157.0
+        },
+        {
+          "host_rate_hz": 44100,
+          "metric": "probe_15940_dbc",
+          "value": -33.0378883573
+        },
+        {
+          "host_rate_hz": 44100,
+          "metric": "probe_19840_dbc",
+          "value": -57.3963843583
+        },
+        {
+          "host_rate_hz": 44100,
+          "metric": "rms",
+          "value": 0.0162110330953
+        },
+        {
+          "host_rate_hz": 48000,
+          "metric": "latency_samples",
+          "value": 171.0
+        },
+        {
+          "host_rate_hz": 48000,
+          "metric": "probe_15940_dbc",
+          "value": -33.0378431289
+        },
+        {
+          "host_rate_hz": 48000,
+          "metric": "probe_19840_dbc",
+          "value": -57.3964666704
+        },
+        {
+          "host_rate_hz": 48000,
+          "metric": "rms",
+          "value": 0.0162110345498
+        },
+        {
+          "host_rate_hz": 88200,
+          "metric": "latency_samples",
+          "value": 314.0
+        },
+        {
+          "host_rate_hz": 88200,
+          "metric": "probe_15940_dbc",
+          "value": -33.0377466849
+        },
+        {
+          "host_rate_hz": 88200,
+          "metric": "probe_19840_dbc",
+          "value": -57.3961506403
+        },
+        {
+          "host_rate_hz": 88200,
+          "metric": "rms",
+          "value": 0.0162110083941
+        },
+        {
+          "host_rate_hz": 96000,
+          "metric": "latency_samples",
+          "value": 342.0
+        },
+        {
+          "host_rate_hz": 96000,
+          "metric": "probe_15940_dbc",
+          "value": -33.0377520344
+        },
+        {
+          "host_rate_hz": 96000,
+          "metric": "probe_19840_dbc",
+          "value": -57.3960245989
+        },
+        {
+          "host_rate_hz": 96000,
+          "metric": "rms",
+          "value": 0.01621103486
+        }
+      ]
+    }
+  ]
+}

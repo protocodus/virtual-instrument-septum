@@ -493,7 +493,7 @@ void testTakingAVoiceOverDoesNotBlankIt()
     engine.prepare (sampleRate, 256);
     engine.setPatch (patch);
     engine.reset();
-    const int latency = engine.latencySamples();
+    const int latency = engine.latencySamples() - septum::AnalogOutput::latencySamples;
     expect (latency > 0, "the overdrive chain reports a latency at 44.1 kHz");
 
     auto take = renderScore (engine,
@@ -507,9 +507,8 @@ void testTakingAVoiceOverDoesNotBlankIt()
     expect (reference > 0.01, "the solo voice is sounding into the handover");
 
     // With the line emptied under it the voice reads silence for the whole
-    // latency; the output stage's own poles let that through in a sample or
-    // two, so what shows is a run of near-zero samples the sine cannot make
-    // this quickly.
+    // voice latency. Keep the bound tied to that delay, excluding the shared
+    // output circuit's 74-sample transport, which must not weaken this guard.
     int worstRun = 0, run = 0;
     for (std::size_t i = handover; i < handover + 400; ++i)
     {
@@ -532,8 +531,8 @@ void testTakingAVoiceOverDoesNotBlankIt()
 //
 // The switch itself is a change of signal, so the take cannot be read against
 // its own slope. It is read against the same note with OVERDRIVE on
-// throughout: the voice state is identical in both, so once the stage has
-// been fed the same recent history the two must agree sample for sample.
+// throughout: once the stage has been fed the same recent history its two
+// outputs must agree sample for sample, before the shared output circuit.
 void testOverdriveSwitchesBackInFromLiveState()
 {
     const double sampleRate = 44100.0;
@@ -543,6 +542,33 @@ void testOverdriveSwitchesBackInFromLiveState()
     // has actually reached.
     const std::size_t offAt = ((std::size_t) (sampleRate * 0.1) / block) * block;
     const std::size_t onAt = ((std::size_t) (sampleRate * 0.4) / block) * block;
+
+    // Check the state handover at the public stage boundary itself. A shared
+    // reconstruction filter legitimately continues emitting its old input
+    // after the switch, so final-output equality at the callback time cannot
+    // distinguish a stale shaper from the output filter's delayed history.
+    septum::OverdriveStage alwaysStage, cycledStage;
+    alwaysStage.prepare (sampleRate);
+    cycledStage.prepare (sampleRate);
+    const double preGain = septum::mapping::overdrivePreGain (100);
+    const double compensation = septum::mapping::overdriveCompensation (preGain);
+    double stageWorst = 0.0, stagePeak = 0.0;
+    for (std::size_t i = 0; i < total; ++i)
+    {
+        const double input = std::sin (twoPi * 130.81278265 * i / sampleRate);
+        const double reference = alwaysStage.process (input, preGain, compensation, true);
+        const double switched = cycledStage.process (
+            input, preGain, compensation, i < offAt || i >= onAt);
+        if (i >= onAt && i < onAt + 128)
+        {
+            stagePeak = std::max (stagePeak, std::abs (reference));
+            stageWorst = std::max (stageWorst, std::abs (switched - reference));
+        }
+    }
+    expect (stagePeak > 0.01 && stageWorst < 0.0001 * stagePeak,
+            "OVERDRIVE's first re-enabled samples use live shaper history (error "
+                + std::to_string (stageWorst) + ", peak "
+                + std::to_string (stagePeak) + ")");
 
     const auto render = [&] (bool cycleTheSwitch)
     {
@@ -586,26 +612,18 @@ void testOverdriveSwitchesBackInFromLiveState()
         peak = std::max (peak, std::abs ((double) always[i]));
     expect (peak > 0.01, "the overdriven sine sounds");
 
-    // The first block after the switch: the stage has to pick the signal up
-    // where it actually is, not where it left it.
+    // At the integration boundary, let the output converter's old FIR input
+    // leave its full support (twice its linear-phase group delay). The stage
+    // assertion above already checks the first sample, so this check verifies
+    // that the complete output recovers after its known transport history.
+    const auto outputSettled = onAt + 2 * septum::AnalogOutput::latencySamples;
     double worst = 0.0;
-    for (std::size_t i = onAt; i < onAt + 128 && i < total; ++i)
+    for (std::size_t i = outputSettled; i < outputSettled + 128 && i < total; ++i)
         worst = std::max (worst,
                           std::abs ((double) cycled[i] - (double) always[i]));
-    // Not zero: the two takes ran different signals for a third of a second,
-    // so the output stage is holding a different history in each and it
-    // discharges over the samples that follow. What the check catches is the
-    // chain answering with *old audio*, which measured twice the peak with
-    // the fix reverted — so the discriminating range is wide and the bound
-    // only has to sit inside it.
-    //
-    // The residual is a property of the output stage's memory, not of the
-    // overdrive. Realising the service notes' RC poles at their component
-    // values instead of clamping both of them to 0.49 x fs made that stage
-    // slower and more accurate, and the residual grew with it: 0.139 x peak
-    // before, 0.247 after, against 2.0 for the defect. The bound is restated
-    // at what the corrected stage delivers, with the same 5x margin to the
-    // failure it had before.
+    // The coupling capacitor still holds different DC histories from the
+    // third of a second spent bypassed. Keep the established integration
+    // bound while the stage-level check above isolates stale shaper audio.
     expect (worst < 0.35 * peak,
             "OVERDRIVE comes back on the signal that is playing (worst "
                 + std::to_string (worst) + " against a peak of "
@@ -2903,27 +2921,86 @@ void testSyncResetLandsAtTheBottomOfTheCycle()
         peak = std::max (peak, std::abs ((double) take.left[i]));
     expect (peak > 0.01, "the synced oscillator sounds");
 
-    int resets = 0, shallow = 0;
+    // A linear-phase reconstruction filter rings on either side of a step.
+    // Group nearby downward edges into one event so those lobes are not
+    // counted as additional oscillator resets.
+    const double slaveHz = 440.0 * std::exp2 ((48 - 69) / 12.0);
+    const auto refractory = static_cast<std::size_t> (0.25 * sampleRate / slaveHz);
+    int resets = 0;
+    std::size_t lastReset = 0;
     for (std::size_t i = from + 1; i < take.left.size(); ++i)
     {
         if ((double) take.left[i] - take.left[i - 1] >= -0.35 * peak)
             continue;
+        if (resets > 0 && i - lastReset < refractory)
+            continue;
         ++resets;
-        if ((double) take.left[i] > -0.5 * peak)
-            ++shallow;
+        lastReset = i;
     }
 
     // OSC2 is note 48; the reset rate is its fundamental.
-    const double expected = 440.0 * std::exp2 ((48 - 69) / 12.0)
-                            * (seconds - 0.05);
-    expect ((double) resets < 1.1 * expected,
-            "sync produces one downward jump per slave cycle, not more (saw "
+    const double expected = slaveHz * (seconds - 0.05);
+    expect (std::abs (resets - expected) <= 2.0,
+            "sync produces one reset per slave cycle after grouping filter ringing (saw "
                 + std::to_string (resets) + ", expected about "
                 + std::to_string ((int) expected) + ")");
-    expect (shallow == 0,
-            "every sync reset lands at the bottom of the cycle (" 
-                + std::to_string (shallow) + " of " + std::to_string (resets)
-                + " landed short)");
+
+    // Check the landing against an independent waveform identity: with OSC1
+    // below OSC2, the raw synced saw is 2*(f1/f2)*frac(t*f2)-1. Pass that
+    // mathematical ramp through the same separately-tested output circuit,
+    // including voice transport, instead of expecting its bandlimited step
+    // to reach the raw minimum on the very first output sample.
+    septum::AnalogOutput outputCircuit;
+    outputCircuit.prepare (sampleRate);
+    const int voiceLatency = engine.latencySamples() - septum::AnalogOutput::latencySamples;
+    const double frequencyRatio = std::exp2 (-1.0 + 7.0 / 1200.0);
+    std::vector<double> ideal (take.left.size());
+    for (std::size_t i = 0; i < ideal.size(); ++i)
+    {
+        double raw = 0.0;
+        if (i >= static_cast<std::size_t> (voiceLatency))
+        {
+            const double cycles = (i - voiceLatency + 1.0) * slaveHz / sampleRate;
+            raw = 2.0 * frequencyRatio * (cycles - std::floor (cycles)) - 1.0;
+        }
+        ideal[i] = outputCircuit.processSample (raw);
+    }
+
+    // Fit only overall level and the coupling capacitor's residual startup
+    // state. The attack and master slew have settled by 200 ms; their earlier
+    // histories can leave a decaying DC offset, but cannot change reset shape.
+    const auto settledFrom = static_cast<std::size_t> (0.2 * sampleRate);
+    double xx = 0.0, xc = 0.0, cc = 0.0, xy = 0.0, cy = 0.0;
+    double sum = 0.0, squares = 0.0;
+    for (std::size_t i = settledFrom; i < ideal.size(); ++i)
+    {
+        const double couplingState = std::exp (
+            -double (i - settledFrom) / (sampleRate * septum::AnalogOutput::couplingSeconds));
+        const double x = ideal[i], y = take.left[i];
+        xx += x * x;
+        xc += x * couplingState;
+        cc += couplingState * couplingState;
+        xy += x * y;
+        cy += couplingState * y;
+        sum += y;
+        squares += y * y;
+    }
+    const double determinant = xx * cc - xc * xc;
+    const double gain = (xy * cc - cy * xc) / determinant;
+    const double dc = (cy * xx - xy * xc) / determinant;
+    double errorSquares = 0.0;
+    for (std::size_t i = settledFrom; i < ideal.size(); ++i)
+    {
+        const double couplingState = std::exp (
+            -double (i - settledFrom) / (sampleRate * septum::AnalogOutput::couplingSeconds));
+        const double error = take.left[i] - gain * ideal[i] - dc * couplingState;
+        errorSquares += error * error;
+    }
+    const double count = double (ideal.size() - settledFrom);
+    const double relativeError = std::sqrt (errorSquares / (squares - sum * sum / count));
+    expect (relativeError < 0.002,
+            "sync reset matches a naive ramp through the output circuit (relative RMS error "
+                + std::to_string (relativeError) + ")");
 }
 
 void testSyncFollowsSpecialOsc2Waves()
@@ -2958,13 +3035,18 @@ void testSyncFollowsSpecialOsc2Waves()
 // slider through the same mapping, so from A = 0 they must open in the same
 // time. Measured on NOISE, which has no oscillator period to confound the
 // envelope trace, as RMS over 0.25 ms windows.
-double envelopeRiseMs (const Render& take, double sampleRate, double fraction)
+double envelopeRiseMs (const Render& take, double sampleRate, double fraction,
+                       int latencySamples)
 {
     const auto window = (std::size_t) (sampleRate * 0.00025);
     std::vector<double> trace;
     double sum = 0.0;
     std::size_t count = 0;
-    for (std::size_t i = 0; i < take.left.size(); ++i)
+    // Measure envelope time after the engine's declared transport delay.
+    // Counting FIR history as attack time would make an unchanged envelope
+    // look slower whenever reconstruction quality (and its latency) changes.
+    for (std::size_t i = static_cast<std::size_t> (latencySamples);
+         i < take.left.size(); ++i)
     {
         sum += take.left[i] * (double) take.left[i];
         if (++count == window)
@@ -2990,7 +3072,7 @@ double envelopeRiseMs (const Render& take, double sampleRate, double fraction)
     const double target = fraction * settled[settled.size() / 2];
     for (std::size_t i = 0; i < trace.size(); ++i)
         if (trace[i] >= target)
-            return (double) i * 0.25;
+            return (double) (i * window) * 1000.0 / sampleRate;
     return 1.0e9;
 }
 
@@ -3026,7 +3108,7 @@ void testFilterEnvelopeIsAsFastAsTheAmpEnvelope()
         engine.reset();
         return envelopeRiseMs (
             renderScore (engine, { { 0.0, true, 60, 127 } }, 0.06, sampleRate),
-            sampleRate, fraction);
+            sampleRate, fraction, engine.latencySamples());
     };
 
     const double ampRise = rise (amp, 0.9);
@@ -3160,16 +3242,16 @@ void testOverdriveKeepsCleanVoicesAligned()
 
     septum::Engine engine;
     engine.prepare (sampleRate, 256);
-    expect (engine.latencySamples() == 19,
-            "the reported latency is the overdrive chain's group delay at 44.1 kHz "
+    expect (engine.latencySamples() == 93,
+            "44.1 kHz reports 19 overdrive plus 74 output-circuit transport samples "
             "(value " + std::to_string (engine.latencySamples()) + ")");
     engine.prepare (96000.0, 256);
-    expect (engine.latencySamples() == 16,
-            "96 kHz needs only the outer half-band, so the latency drops (value "
+    expect (engine.latencySamples() == 90,
+            "96 kHz reports 16 overdrive plus 74 output-circuit transport samples (value "
                 + std::to_string (engine.latencySamples()) + ")");
     engine.prepare (192000.0, 256);
-    expect (engine.latencySamples() == 0,
-            "above the shaper's internal rate there is nothing to resample (value "
+    expect (engine.latencySamples() == 74,
+            "192 kHz retains the output-circuit transport delay with no overdrive resampling (value "
                 + std::to_string (engine.latencySamples()) + ")");
 }
 
@@ -4032,10 +4114,12 @@ void testSustainMovedUnderASettledNoteWalks()
         engine.setPatch (moved);
         const auto after = run ((std::size_t) (sampleRate * 0.05));
 
-        // The seam itself is the block boundary, so it is not inside either take.
+        // Include the delayed response to the seam. A window ending before
+        // the output FIR's group delay would pass without observing SUSTAIN.
         const double thrown =
             std::max ({ std::abs ((double) after.front() - (double) before.back()),
-                        worstJump (after, 0, 64) });
+                        worstJump (after, 0,
+                                   static_cast<std::size_t> (engine.latencySamples() + 64)) });
         const double steady =
             std::max (worstJump (before, before.size() - 200, before.size()),
                       worstJump (after, after.size() - 200, after.size()));
@@ -4065,10 +4149,12 @@ void testLowFreqCrossesOverTheRegisteredTimeFromEveryPosition()
 {
     const double sampleRate = 44100.0;
     const std::size_t settle = 4096, watch = 2048;
+    int signalLatency = 0;
     const auto take = [&] (septum::LowFreqMode start, septum::LowFreqMode end)
     {
         septum::Engine engine;
         engine.prepare (sampleRate, 8);
+        signalLatency = engine.latencySamples();
         septum::Patch patch = plainSawPatch();
         patch.upper.osc1.wave = septum::Waveform::Sine;
         patch.upper.lowFreq = start;
@@ -4121,7 +4207,7 @@ void testLowFreqCrossesOverTheRegisteredTimeFromEveryPosition()
             else if (arrived > 0)
                 break;
         }
-        return arrived;
+        return (double) arrived - signalLatency;
     };
 
     const double registered =
@@ -4206,6 +4292,7 @@ void testASwitchRetargetedMidCrossStillTakesTheRegisteredTime()
 {
     const double sampleRate = 44100.0;
     const std::size_t settle = 4096, watch = 2048;
+    int signalLatency = 0;
     const double registered =
         septum::mapping::externalSwitchFadeSeconds * sampleRate;
     const std::size_t retargetAt = (std::size_t) (registered / 2.0) & ~std::size_t (7);
@@ -4218,11 +4305,15 @@ void testASwitchRetargetedMidCrossStillTakesTheRegisteredTime()
     {
         septum::Engine engine;
         engine.prepare (sampleRate, 8);
+        signalLatency = engine.latencySamples();
         septum::Patch patch = plainSawPatch();
         patch.upper.osc1.wave = septum::Waveform::Sine;
         patch.upper.lowFreq = start;
         engine.setPatch (patch);
-        engine.noteOn (36, 100);
+        // Several carrier cycles fit inside a 5 ms fade. A 65 Hz carrier
+        // crosses less than half a cycle, where a coupling-capacitor offset
+        // can dominate the short-window projection after a second switch.
+        engine.noteOn (69, 100);
 
         std::vector<float> left (8), right (8);
         const auto run = [&] (std::size_t samples)
@@ -4271,7 +4362,7 @@ void testASwitchRetargetedMidCrossStillTakesTheRegisteredTime()
             else if (arrived > 0)
                 break;
         }
-        return (double) arrived;
+        return (double) arrived - signalLatency;
     };
 
     const std::array<std::array<septum::LowFreqMode, 3>, 2> moves { {
@@ -4539,39 +4630,6 @@ void testSettledDampingTablesLandOnTheirFrequencies()
         // BYPASS passes through.
         expectNear (septum::mapping::onePoleAtCorner (0.0, sampleRate), 1.0, 1.0e-12,
                     "BYPASS passes through");
-    }
-}
-
-// The analog output stage realises the service notes' component values, and
-// the response it delivers does not depend on the host rate.
-void testOutputStageMatchesItsComponentValues()
-{
-    const auto analog = [] (double hz, double corner)
-    { return 1.0 / std::sqrt (1.0 + (hz / corner) * (hz / corner)); };
-
-    for (double sampleRate : { 44100.0, 48000.0, 96000.0, 192000.0 })
-    {
-        const double a1 = septum::mapping::onePoleAtCorner (23700.0, sampleRate);
-        const double a2 = septum::mapping::onePoleAtCorner (125400.0, sampleRate);
-        const auto response = [&] (double a, double hz)
-        {
-            const double w = twoPi * hz / sampleRate;
-            const double real = 1.0 - (1.0 - a) * std::cos (w);
-            const double imag = (1.0 - a) * std::sin (w);
-            return a / std::sqrt (real * real + imag * imag);
-        };
-        double worst = 0.0;
-        for (double hz = 20.0; hz < std::min (20000.0, 0.45 * sampleRate); hz *= 1.1)
-        {
-            const double model = response (a1, hz) * response (a2, hz);
-            const double wanted = analog (hz, 23700.0) * analog (hz, 125400.0);
-            worst = std::max (worst,
-                              std::abs (20.0 * std::log10 (model / wanted)));
-        }
-        expect (worst < 1.0,
-                "the output stage is within 1 dB of its component values in band at "
-                    + std::to_string ((int) sampleRate) + " Hz (worst "
-                    + std::to_string (worst) + " dB)");
     }
 }
 
@@ -5549,7 +5607,6 @@ int main()
     testASwitchChangedAgainMidCrossStaysContinuous();
     testASwitchRetargetedMidCrossStillTakesTheRegisteredTime();
     testSettledDampingTablesLandOnTheirFrequencies();
-    testOutputStageMatchesItsComponentValues();
     testReverbTailSurvivesMono();
     testPanCentreIsTheDocumentedCentre();
     testFbOscIsTheSameSoundAtEveryHostRate();

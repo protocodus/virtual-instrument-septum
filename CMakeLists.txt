@@ -40,6 +40,7 @@ set(SEPTUM_DSP_SOURCES
     Source/DSP/SeptumPresets.cpp
     Source/DSP/SeptumSysEx.cpp)
 set(SEPTUM_DSP_HEADERS
+    Source/DSP/AnalogOutput.h
     Source/DSP/SeptumEngine.h
     Source/DSP/SeptumPatch.h
     Source/DSP/SeptumPresets.h
@@ -53,6 +54,12 @@ target_include_directories(SeptumDSP
     PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/Source")
 target_compile_features(SeptumDSP PUBLIC cxx_std_20)
 set_target_properties(SeptumDSP PROPERTIES POSITION_INDEPENDENT_CODE ON)
+
+# A2 fidelity experiment. Kept separate from the shipping engine until MIDI,
+# input latency and CPU tradeoffs are resolved with the comparison tools.
+add_library(SeptumReferenceDSP STATIC Source/DSP/ReferenceRateEngine.cpp)
+target_link_libraries(SeptumReferenceDSP PUBLIC SeptumDSP)
+target_compile_features(SeptumReferenceDSP PUBLIC cxx_std_20)
 
 if(MSVC)
     target_compile_options(SeptumDSP PRIVATE /W4 /permissive-)
@@ -139,6 +146,10 @@ endif()
 option(SEPTUM_BUILD_TOOLS "Build offline Septum tools" ON)
 
 if(SEPTUM_BUILD_TOOLS)
+    add_executable(SeptumAnalyzeFidelity Tools/AnalyzeFidelity.cpp)
+    target_link_libraries(SeptumAnalyzeFidelity PRIVATE SeptumReferenceDSP)
+    target_compile_features(SeptumAnalyzeFidelity PRIVATE cxx_std_20)
+
     add_executable(SeptumRenderDemos Tools/RenderDemos.cpp)
     target_link_libraries(SeptumRenderDemos PRIVATE SeptumDSP)
     target_compile_features(SeptumRenderDemos PRIVATE cxx_std_20)
@@ -152,6 +163,23 @@ if(SEPTUM_BUILD_TOOLS)
 endif()
 
 if(BUILD_TESTING)
+    add_executable(SeptumAnalogOutputTests Tests/AnalogOutputTests.cpp)
+    target_link_libraries(SeptumAnalogOutputTests PRIVATE SeptumDSP)
+    add_test(NAME Septum.AnalogOutput COMMAND SeptumAnalogOutputTests)
+    set_tests_properties(Septum.AnalogOutput PROPERTIES TIMEOUT 240)
+
+    find_package(Python3 COMPONENTS Interpreter QUIET)
+    if(Python3_Interpreter_FOUND)
+        add_test(NAME Septum.ReferencePatchExtraction
+                 COMMAND "${Python3_EXECUTABLE}" -B
+                         "${CMAKE_CURRENT_SOURCE_DIR}/Tests/ReferencePatchExtractionTests.py")
+    endif()
+
+    add_executable(SeptumReferenceRateEngineTests Tests/ReferenceRateEngineTests.cpp)
+    target_link_libraries(SeptumReferenceRateEngineTests PRIVATE SeptumReferenceDSP)
+    add_test(NAME Septum.ReferenceRateEngine COMMAND SeptumReferenceRateEngineTests)
+    set_tests_properties(Septum.ReferenceRateEngine PROPERTIES TIMEOUT 240)
+
     add_executable(SeptumEngineTests Tests/SeptumEngineTests.cpp)
     target_link_libraries(SeptumEngineTests PRIVATE SeptumDSP)
     target_compile_features(SeptumEngineTests PRIVATE cxx_std_20)
@@ -169,6 +197,9 @@ if(BUILD_TESTING)
     set_tests_properties(Septum.Engine PROPERTIES TIMEOUT 240)
 
     if(SEPTUM_BUILD_TOOLS)
+        add_test(NAME Septum.FidelityTool COMMAND SeptumAnalyzeFidelity --self-test)
+        set_tests_properties(Septum.FidelityTool PROPERTIES TIMEOUT 120)
+
         # Guards the renderer that produces the demonstration WAVs:
         # it renders a short take to a temporary directory and checks that the
         # audio is finite, audible and written as a readable WAV.

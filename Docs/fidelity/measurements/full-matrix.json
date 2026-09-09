@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "measurement_date": "2026-09-09",
+  "evidence": "Circuit-informed model consistency measurements; not SH-201 hardware calibration.",
+  "tool": "Tools/AnalyzeFidelity.cpp",
+  "validation_executable": "build-fidelity/SeptumAnalyzeFidelity-a1-final",
+  "raw_output_gain": 1,
+  "normalization_applied_to_measurements": false,
+  "datasets": [
+    {
+      "renderer": "native",
+      "source_id": "circuit-correction-working-tree",
+      "executable_fnv1a64": "bb9da0b3445ed5bd",
+      "reference_manifest_fnv1a64": "dd4fa0d17abb3455",
+      "dataset_directory": "build-fidelity/full-native-a1",
+      "fixture_count": 28,
+      "sample_rates_hz": [
+        44100,
+        48000,
+        88200,
+        96000
+      ],
+      "render_count": 112,
+      "host_block_size": 256,
+      "max_cross_rate_rms_spread": {
+        "fixture": "filter-type1-slope24-cutoff64-res64",
+        "db": 0.3744809996770302
+      },
+      "supersaw_a6_spread0_alias_15940_dbc": {
+        "44100": -33.0076946979,
+        "48000": -67.2296798326,
+        "88200": -73.7155468576,
+        "96000": -84.0704777302
+      },
+      "supersaw_a6_spread0_alias_15940_spread_db": 51.0627830323,
+      "real_time_factor": {
+        "median": 0.02574329048475,
+        "maximum": 0.0836842332,
+        "sum_render_wall_seconds": 9.869118086000002,
+        "definition": "wall seconds in MIDI/render loop divided by rendered audio seconds; excludes preparation, allocation, file I/O and analysis; diagnostic under concurrent machine load, not a real-time guarantee"
+      },
+      "raw_wav_bytes": 214286880,
+      "dataset_bytes": 469882461,
+      "validation": {
+        "all_renders_finite_and_nonzero_rms": true,
+        "all_float32_stereo_headers_and_frame_counts_valid": true,
+        "all_midi_host_sample_offsets_valid": true,
+        "missing_artifacts": 0,
+        "unexpected_null_metrics": 0,
+        "envelope_duration_metrics_null_outside_isolated_sine_cases": true
+      }
+    },
+    {
+      "renderer": "reference",
+      "source_id": "circuit-correction-working-tree",
+      "executable_fnv1a64": "bb9da0b3445ed5bd",
+      "reference_manifest_fnv1a64": "dd4fa0d17abb3455",
+      "dataset_directory": "build-fidelity/full-reference-a1",
+      "fixture_count": 28,
+      "sample_rates_hz": [
+        44100,
+        48000,
+        88200,
+        96000
+      ],
+      "render_count": 112,
+      "host_block_size": 256,
+      "max_cross_rate_rms_spread": {
+        "fixture": "amp-adr0-sustain64",
+        "db": 0.00023868430262808318
+      },
+      "supersaw_a6_spread0_alias_15940_dbc": {
+        "44100": -33.0378883573,
+        "48000": -33.0378431289,
+        "88200": -33.0377466849,
+        "96000": -33.0377520344
+      },
+      "supersaw_a6_spread0_alias_15940_spread_db": 0.0001416723999980718,
+      "real_time_factor": {
+        "median": 0.08207912544250001,
+        "maximum": 0.136881832184,
+        "sum_render_wall_seconds": 32.85730499500001,
+        "definition": "wall seconds in MIDI/render loop divided by rendered audio seconds; excludes preparation, allocation, file I/O and analysis; diagnostic under concurrent machine load, not a real-time guarantee"
+      },
+      "raw_wav_bytes": 214286880,
+      "dataset_bytes": 470183613,
+      "validation": {
+        "all_renders_finite_and_nonzero_rms": true,
+        "all_float32_stereo_headers_and_frame_counts_valid": true,
+        "all_midi_host_sample_offsets_valid": true,
+        "missing_artifacts": 0,
+        "unexpected_null_metrics": 0,
+        "envelope_duration_metrics_null_outside_isolated_sine_cases": true
+      }
+    }
+  ],
+  "quick_dataset_representativeness": [
+    {
+      "renderer": "native",
+      "directory": "build-fidelity/native-circuit-a1",
+      "source_id": "circuit-correction-working-tree",
+      "executable_fnv1a64": "81a66a18aea17894",
+      "render_count": 32,
+      "raw_wav_fingerprints_identical_to_final_full_dataset": 32,
+      "patch_and_midi_fingerprints_identical": true,
+      "common_non_cpu_metric_differences": [],
+      "interpretation": "Quick audio and spectral/envelope measurements remain representative of the final tool; later changes only add provenance/configuration checks and self-test coverage. Elapsed render time was measured in a separate run."
+    },
+    {
+      "renderer": "reference",
+      "directory": "build-fidelity/reference-circuit-a1",
+      "source_id": "circuit-correction-working-tree",
+      "executable_fnv1a64": "81a66a18aea17894",
+      "render_count": 32,
+      "raw_wav_fingerprints_identical_to_final_full_dataset": 32,
+      "patch_and_midi_fingerprints_identical": true,
+      "common_non_cpu_metric_differences": [],
+      "interpretation": "Quick audio and spectral/envelope measurements remain representative of the final tool; later changes only add provenance/configuration checks and self-test coverage. Elapsed render time was measured in a separate run."
+    }
+  ],
+  "envelope_measurement_caveat": {
+    "method": "Non-overlapping approximately 5 ms output RMS bins; 221 samples at 44.1 kHz is 5.01133786848 ms. Threshold estimates remain carrier/window sensitive and include output-path behavior.",
+    "reference_adr127_attack_10_to_90_ms": {
+      "44100": 3984.01360544,
+      "48000": 4000.0,
+      "88200": 4000.0,
+      "96000": 4000.0
+    },
+    "interpretation": "The ~16ms spread for this slow attack should not be interpreted as engine event-timing drift without a carrier-independent envelope estimator. Durations are only emitted for isolated sine fixtures."
+  }
+}

@@ -12,6 +12,7 @@
 #pragma once
 
 #include "SeptumPatch.h"
+#include "AnalogOutput.h"
 
 #include <algorithm>
 #include <array>
@@ -260,11 +261,9 @@ namespace mapping
     // *and* the audio-band density, because it changes only where the same
     // continuous-time signal is sampled.
     //
-    // The instrument's own rate. Roland's driver readmes name one CoreAudio
-    // device for the SH-201, "Roland SH-201 44.1kHz", twice over three years,
-    // from a driver whose table carries six rates and composes the name as
-    // <device> <rate> — so the number is the instrument's, and the clock tree
-    // puts the engine on it (OQ-01, rate answered).
+    // Roland's driver readmes name the USB device "Roland SH-201 44.1kHz".
+    // Use that documented stream rate as the provisional model reference;
+    // it does not establish every internal synthesis block's clock (OQ-01).
     //
     // It is used as a floor rather than a target because a power-of-two ladder
     // cannot reach 44.1 kHz from every host rate: generating *below* the rate
@@ -1029,10 +1028,9 @@ public:
     // is the practical bound, not a claim that ±98 % ever fully dies.
     [[nodiscard]] static double maximumTailSeconds() noexcept { return 30.0; }
 
-    // The AMP overdrive's oversampling chain has a fixed group delay, and
-    // every voice carries it whether its OVERDRIVE is on or off so layered
-    // tones stay aligned. That makes it the instrument's latency, and a host
-    // can compensate for it.
+    // Overdrive transport delay (also carried by clean voices and the input
+    // monitor), plus the shared output circuit's reconstruction delay. The
+    // host compensates their sum; no patch switch changes that latency.
     [[nodiscard]] int latencySamples() const noexcept { return latencySamples_; }
 
 private:
@@ -1461,6 +1459,7 @@ private:
     double sampleRate_ { 44100.0 };
     int maxBlock_ { 512 };
     int latencySamples_ { 0 };
+    int voiceLatencySamples_ { 0 };
 
     int masterLevel_ { 127 };
     double masterTuneHz_ { 440.0 };
@@ -1530,11 +1529,8 @@ private:
     double audioFilterSlopeFade_ { 0.0 };    // 0 = -12 dB, 1 = -24 dB
     SwitchCrossfade<4> audioFilterTypeMix_ {};
 
-    // Analog output stage state (documented component values).
-    double dcX1_[2] {}, dcY1_[2] {};
-    double rcState1_[2] {}, rcState2_[2] {};
-    double dcCoeff_ { 0.999 };
-    double rcCoeff1_ { 1.0 }, rcCoeff2_ { 1.0 };
+    // Independent channel state for the service-schematic output circuit.
+    std::array<AnalogOutput, 2> analogOutput_ {};
 
     // Smoothed globals.
     double smoothedMaster_ { 0.0 };

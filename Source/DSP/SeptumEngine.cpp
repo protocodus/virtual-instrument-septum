@@ -444,7 +444,8 @@ void Engine::prepare (double sampleRate, int maxBlockSize)
         voice.osc2.noise.prepare (mapping::noiseDecimation (sampleRate_));
         voice.overdrive.prepare (sampleRate_);
     }
-    latencySamples_ = voices_.front().overdrive.latency;
+    voiceLatencySamples_ = voices_.front().overdrive.latency;
+    latencySamples_ = voiceLatencySamples_ + AnalogOutput::latencySamples;
 
     const auto delaySamples = static_cast<std::size_t> (sampleRate_ * 1.45) + 8;
     delayL_.buffer.assign (delaySamples, 0.0f);
@@ -481,17 +482,11 @@ void Engine::prepare (double sampleRate, int maxBlockSize)
     sendReverbL_.assign (static_cast<std::size_t> (maxBlock_), 0.0f);
     sendReverbR_.assign (static_cast<std::size_t> (maxBlock_), 0.0f);
 
-    // Analog output stage, from the service notes' component values:
-    // 22 uF into 22 k -> 0.329 Hz coupling; RC poles 8.2k/820p -> 23.7 kHz
-    // and 4.7k/270p -> 125.4 kHz. Both realised at their component values by
-    // mapping::onePoleAtCorner rather than clamped to 0.49 x fs: the clamp
-    // put *both* poles on one frequency at every host rate at or below
-    // 48 kHz — 21.6 kHz twice at 44.1 kHz — so the stage was up to 0.9 dB
-    // brighter at 20 kHz than the network the service notes describe, and
-    // its response depended on the host rate rather than on the instrument.
-    dcCoeff_ = std::exp (-twoPi * 0.329 / sampleRate_);
-    rcCoeff1_ = mapping::onePoleAtCorner (23700.0, sampleRate_);
-    rcCoeff2_ = mapping::onePoleAtCorner (125400.0, sampleRate_);
+    // C219 returns to the op-amp output: the service circuit is an active
+    // Sallen-Key network, not two isolated RC poles. Its separate helper
+    // derives the transfer from component values and runs it at 8x.
+    for (auto& output : analogOutput_)
+        output.prepare (sampleRate_);
 
     reset();
 }
@@ -570,11 +565,8 @@ void Engine::reset()
     delayModPhase_ = 0.0;
     reverb_.clear();
     delayTimeSmoothed_ = mapping::delaySeconds (patch_.delay.time) * sampleRate_;
-    for (int channel = 0; channel < 2; ++channel)
-    {
-        dcX1_[channel] = dcY1_[channel] = 0.0;
-        rcState1_[channel] = rcState2_[channel] = 0.0;
-    }
+    for (auto& output : analogOutput_)
+        output.reset();
     for (int channel = 0; channel < 2; ++channel)
     {
         audioFilter1_[channel].clear();
@@ -1315,11 +1307,8 @@ void Engine::allSoundOff()
     reverb_.lowStates.fill (0.0);
     reverb_.highStates.fill (0.0);
     reverb_.highCutStateL = reverb_.highCutStateR = 0.0;
-    for (int channel = 0; channel < 2; ++channel)
-    {
-        dcX1_[channel] = dcY1_[channel] = 0.0;
-        rcState1_[channel] = rcState2_[channel] = 0.0;
-    }
+    for (auto& output : analogOutput_)
+        output.reset();
 }
 
 int Engine::activeVoiceCount() const noexcept
@@ -2862,7 +2851,7 @@ void Engine::prepareExternalTick (const float* inputLeft, const float* inputRigh
         monitorDelay_[1][static_cast<std::size_t> (monitorDelayWrite_)] =
             static_cast<float> (right * gain);
         const auto read =
-            static_cast<std::size_t> ((monitorDelayWrite_ - latencySamples_ + size)
+            static_cast<std::size_t> ((monitorDelayWrite_ - voiceLatencySamples_ + size)
                                       % size);
         externalDirectL_[static_cast<std::size_t> (i)] = monitorDelay_[0][read];
         externalDirectR_[static_cast<std::size_t> (i)] = monitorDelay_[1][read];
@@ -3275,14 +3264,8 @@ void Engine::process (float* left, float* right, int numSamples,
             {
                 double x = out[i] * smoothedMaster_ * partPanGain[channel]
                            + monitor[i] * monitorLevel;
-                // 22 uF / 22 k coupling (0.329 Hz).
-                const double dc = x - dcX1_[channel] + dcCoeff_ * dcY1_[channel];
-                dcX1_[channel] = x;
-                dcY1_[channel] = dc;
-                // The two documented RC poles.
-                rcState1_[channel] += rcCoeff1_ * (dc - rcState1_[channel]);
-                rcState2_[channel] += rcCoeff2_ * (rcState1_[channel] - rcState2_[channel]);
-                const double limited = outputLimit (rcState2_[channel]);
+                const double limited = outputLimit (
+                    analogOutput_[static_cast<std::size_t> (channel)].processSample (x));
                 out[i] = static_cast<float> (limited);
                 if (channel == 0)
                     blockPeakL = std::max (blockPeakL, std::abs (out[i]));

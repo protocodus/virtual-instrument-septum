@@ -41,16 +41,16 @@ audio.
 | File | What it is | Length | Rendered peak | Normalisation |
 | --- | --- | ---: | ---: | ---: |
 | `01-supersaw-lead.wav` | Both oscillators SUPER SAW: a trance line into a held stack | 8.5 s | −8.9 dBFS | +5.9 dB |
-| `02-supersaw-spread-sweep.wav` | One chord while the spread knob sweeps the seven-saw detune curve | 7.8 s | −11.6 dBFS | +8.6 dB |
-| `03-fb-osc-lead.wav` | FB OSC from clean saw into feedback, then a legato solo phrase | 9.7 s | −23.7 dBFS | +20.7 dB |
-| `04-acid-filter-24db.wav` | The -24 dB low-pass at high resonance under a 16th-note line | 9.3 s | −29.2 dBFS | +26.2 dB |
-| `05-sync-sweeper.wav` | Oscillator sync swept by the pitch envelope and by hand | 8.8 s | −24.7 dBFS | +21.7 dB |
+| `02-supersaw-spread-sweep.wav` | One chord while the spread knob sweeps the seven-saw detune curve | 7.8 s | −11.5 dBFS | +8.5 dB |
+| `03-fb-osc-lead.wav` | FB OSC from clean saw into feedback, then a legato solo phrase | 9.7 s | −23.6 dBFS | +20.6 dB |
+| `04-acid-filter-24db.wav` | The -24 dB low-pass at high resonance under a 16th-note line | 9.3 s | −28.7 dBFS | +25.7 dB |
+| `05-sync-sweeper.wav` | Oscillator sync swept by the pitch envelope and by hand | 8.8 s | −24.6 dBFS | +21.6 dB |
 | `06-ring-bell.wav` | Ring modulation: equal-sine product bells | 9.2 s | −17.4 dBFS | +14.4 dB |
 | `07-pwm-strings.wav` | Pulse-width modulation strings through the chorus delay template | 15.8 s | −2.4 dBFS | −0.6 dB |
 | `08-sub-bass.wav` | Square plus sine an octave down with the LOW FREQ boost | 8.0 s | −14.9 dBFS | +11.9 dB |
-| `09-sample-hold-fx.wav` | Sample & hold LFO into the band-pass filter | 9.2 s | −18.1 dBFS | +15.1 dB |
+| `09-sample-hold-fx.wav` | Sample & hold LFO into the band-pass filter | 9.2 s | −17.3 dBFS | +14.3 dB |
 | `10-dual-pad.wav` | DUAL keyboard mode: two complete tones layered under one hall | 23.9 s | −8.2 dBFS | +5.2 dB |
-| `11-arpeggiator.wav` | One chord through the arpeggiator: UP, UP&DOWN(L&H) with a heavy shuffle, then OCTAVE RANGE +2 on HOLD | 15.1 s | −17.9 dBFS | +14.9 dB |
+| `11-arpeggiator.wav` | One chord through the arpeggiator: UP, UP&DOWN(L&H) with a heavy shuffle, then OCTAVE RANGE +2 on HOLD | 15.1 s | −17.8 dBFS | +14.8 dB |
 <!-- peaks-table-end -->
 
 ### Listening against the real instrument
@@ -320,18 +320,25 @@ Plate 2) implementing the *settled* template names with this project's
 
 ### Analog output stage
 
-*Settled from the service notes* — the replica's one genuinely "circuit"
-component. Per channel after the DAC: 22 µF coupling into 22 kΩ giving a
-0.329 Hz high-pass, a 2nd-order passive RC low-pass from 4.7 kΩ/270 pF and
-8.2 kΩ/820 pF giving poles at 125.4 kHz and 23.7 kHz, a non-inverting
-M5218AFP stage of gain 2.5 (33k/22k, 10 pF → ~482 kHz pole), the analog
-master-volume pot and the 2× line stage. The replica implements the DC block
-and both RC poles at their component values — audible only at high host rates,
-present for completeness — and normalises the 2.5×/2× gain chain to unity
-digital full scale. The factory anchors are 5.0 Vp-p at OUTPUT on a 440 Hz
-test, −4.0 dB at 20 kHz through the full analog chain, and residual noise
-≤ −72 dB DIN-weighted. The codec's own digital filter (passband 0.454·fs) is
-not separately modelled; the host's converters stand in for it.
+The [service schematic, printed pp. 36–37](https://www.synthxl.com/wp-content/uploads/2020/01/Roland-SH-201-Service-Manual.pdf#page=30)
+shows an **active Sallen–Key filter**: C219 returns to the op-amp output, so
+the two capacitors cannot be modelled as independent RC poles. The engine now
+solves the component-derived transfer including 4.7 kΩ/8.2 kΩ, 270 pF/820 pF,
+the 33 kΩ/22 kΩ feedback network and its 10 pF capacitor. It also models the
+22 µF/22 kΩ input coupling. Nominal gain is normalised to preserve patch levels.
+
+The circuit runs at 8× with bilinear discretisation and bandlimited conversion.
+Measured against independent nodal analysis, the maximum error at 44.1 kHz is
+0.046 dB and 0.42° across 20 Hz–20 kHz after removing conversion delay. This
+validates the numerical circuit model, not a complete hardware match. The extra
+74 samples are included in host latency compensation: total latency is 93
+samples at 44.1/48 kHz, 90 at 96 kHz, and 74 at 192 kHz.
+
+This is a linear, ideal-op-amp model. The loaded master-volume pot, remaining
+line/headphone circuitry, finite op-amp bandwidth, noise and the codec's digital
+filter are not yet reproduced. The service test's roughly −4 dB at 20 kHz is
+an **analog-input loop-through** result and is not a synth-output-only target.
+See [fidelity measurements and reproduction commands](Docs/fidelity/README.md).
 
 ### Voice allocation and MIDI
 
@@ -358,7 +365,8 @@ sound saves with the project.
 
 **Not modelled.** The recorder, SysEx *transmit* and the RQ1 reply, and the
 USB audio topology are documented but deferred. The codec's own digital
-filter is left to the host's converters. Receiving DT1 is modelled: the
+filter is not separately reproduced; a host converter does not establish an
+equivalent AK4552 response. Receiving DT1 is modelled: the
 codec reads the documented address map, a DT1 addresses a byte rather than a
 block, and a payload that would run off the end of its block is refused in
 full. A patch **name** is the one field a load still drops — twelve
@@ -369,7 +377,7 @@ it; the constants they own are tagged in the engine's `mapping` namespace.
 
 | # | Question | What would close it |
 | --- | --- | --- |
-| OQ-01 | *Rate answered:* no Roland specification states one, but two driver readmes three years apart name the device **"Roland SH-201 44.1kHz"**, from a driver whose own table carries six rates and composes the name as `<model> <rate>`. Engine fs = 44.1 kHz at the documentary tier. Still open: true oscillator interpolation and aliasing (owners report supersaw content dying above ~15 kHz) | Analyse alias lines in a dry capture |
+| OQ-01 | The documented USB device stream is 44.1 kHz; the internal rate of every synthesis block and the oscillator interpolation/aliasing are not proved by that alone. An isolated 44.1 kHz reference engine now demonstrates host-rate consistency, but changes control cadence, costs more CPU and adds input/output conversion delay. The plug-in still uses the native-rate engine. | Resolve prototype timing/CPU gates; compare alias lines against identifiable dry hardware references |
 | OQ-02 | The CC#88 collision, read here as CC#83 | Capture the panel's transmitted CCs while moving UPPER filter-env D and LOWER OSC2 pitch-env depth |
 | OQ-03 | Noise colour; pulse-width endpoints | Spectral capture of the NOISE wave; scope capture of PW at 0/64/127 |
 | OQ-04 | Supersaw HPF — 1.0×f₀ Q=0.707 here, against a KVR fit proposing 2.5×f₀ Q=√2; both defensible | FFT below and around the fundamental of one dry supersaw note |

@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-09-09",
+  "hardware_access": false,
+  "claim_policy": "Circuit-verified, DSP-voiced. Synthetic consistency measurements and listening preferences do not establish hardware equivalence.",
+  "sources": [
+    {
+      "id": "septum-synthetic-fixtures-v1",
+      "kind": "original_test_fixture",
+      "source": "Tools/AnalyzeFidelity.cpp",
+      "raw_patch_and_midi": "Emitted alongside every measurement as .syx and .mid files; per-rate sample offsets and fixed engine seeds are recorded in manifest.json.",
+      "permitted_claim": "Reproducibility, raw levels, cross-rate spectral and envelope behavior of the identified executable.",
+      "not_evidence_for": "Exact SH-201 oscillator, digital-filter or envelope algorithms."
+    },
+    {
+      "id": "roland-sh201-owner-manual",
+      "kind": "manufacturer_document",
+      "title": "Roland SH-201 Owner's Manual",
+      "url": "https://static.roland.com/assets/media/pdf/SH-201_OM.pdf",
+      "provenance": "Official Roland publication; catalogued in README.md.",
+      "permitted_claim": "Documented architecture, control semantics, routing and parameter ranges.",
+      "not_evidence_for": "Undocumented DSP transfer functions or calibration curves."
+    },
+    {
+      "id": "roland-sh201-service-notes",
+      "kind": "manufacturer_document_third_party_mirror",
+      "title": "Roland SH-201/SH-201C Service Notes, May 2006, 17058418E0",
+      "url": "https://www.synthxl.com/wp-content/uploads/2020/01/Roland-SH-201-Service-Manual.pdf",
+      "location": "PDF page 30, printed circuit pages 36-37",
+      "evidence_tier": "circuit_verified",
+      "circuit_observation": "Active Sallen-Key output low-pass: 4.7k/8.2k resistors, 270pF feedback capacitor, 820pF capacitor to ground, op-amp gain 2.5 from 33k/22k with 10pF feedback capacitor. It is not a pair of independent passive RC poles.",
+      "not_evidence_for": "The WSP DSP's internal voice-filter topology or exact synthesis clock."
+    },
+    {
+      "id": "roland-sh201-driver-rate",
+      "kind": "manufacturer_driver_documentation",
+      "source": "Driver readmes catalogued in README.md",
+      "evidence_tier": "documented_usb_stream",
+      "permitted_claim": "The documented device USB audio stream is 44.1kHz.",
+      "not_evidence_for": "A proven internal sample rate for every hardware synthesis block; the 44.1kHz reference-rate candidate remains provisional."
+    },
+    {
+      "id": "roland-pad-bank-recording-group",
+      "kind": "manufacturer_patch_bank_and_recording_group",
+      "page_url": "https://www.rolandus.com/go/sh-201_patches/patch_pad.html",
+      "patch_bank_url": "https://www.rolandus.com/go/sh-201_patches/shl/SH-201_Patch_PAD.zip",
+      "bank_member": "100_PAD.shl",
+      "bank_format": "SH2LibrarianFile0000; binary librarian records, not a sequence of SysEx frames",
+      "recordings": [
+        {
+          "patch_name": "Cotton Wool",
+          "url": "https://www.rolandus.com/go/sh-201_patches/mp3/PAD/TOP8_Cotton_Wool.mp3"
+        },
+        {
+          "patch_name": "Reso Sweep",
+          "url": "https://www.rolandus.com/go/sh-201_patches/mp3/PAD/TOP8_Reso_Sweep.mp3"
+        }
+      ],
+      "provenance": "Official page groups downloadable patch data and named demonstrations. No bank or recording is committed to this repository.",
+      "known_unknowns": ["MIDI performance", "velocity", "controller automation", "master gain", "recording chain", "mastering", "whether the exact downloadable revision was used"],
+      "permitted_claim": "A stronger named patch/reference pairing than an unidentified wet demo, suitable for bounded character comparisons.",
+      "not_evidence_for": "A sample-aligned dry hardware calibration or a uniquely determined circuit/DSP model."
+    },
+    {
+      "id": "septum-listening-decisions",
+      "kind": "subjective_listening_decision",
+      "source": "Docs/decisions.md",
+      "permitted_claim": "Recorded user preferences under the stated blind A-Z listening protocol.",
+      "not_evidence_for": "Closing an open hardware calibration question."
+    }
+  ]
+}
