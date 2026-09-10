@@ -9,28 +9,15 @@
 #include <memory>
 #include <vector>
 
-// The panel keeps the modelled instrument's arrangement and its own branding
-// and project-drawn controls, and is laid out so the signal path reads off it.
+// The fixed hardware-style panel has two distinct surfaces. The ivory PART
+// EDITOR holds the selection tabs, TONE PLAY, the voice chain and modulation.
+// A charcoal GLOBAL area holds arpeggio, external input, effects, performance
+// and patch/controller settings. Program, shared routing and system tuning
+// occupy the top header. Part accents never tint the shared controls.
 //
-// The performance cluster sits at the far left (master volume, octave,
-// portamento, solo, tempo). To its right are three bands:
-//
-//   VOICE        OSC 1, OSC 2, MIX/MOD, FILTER, AMP
-//   MODULATION   PITCH ENV, FILTER ENV, AMP ENV, LFO 1, LFO 2 — what moves
-//                the chain rather than what carries it
-//   INPUT & FX   ARPEGGIO, EXT IN, DELAY, REVERB — the two ends of the
-//                instrument
-//
-// Every control is the same size wherever it appears — a knob is a knob — and
-// every one of them reads out its value in the units the manual prints, so
-// nothing has to be dragged to be understood. Program, routing and part tabs
-// sit in the header; shared performance controls sit above the keys, with the
-// bend/modulation lever to their left. Controls that exist only as physical
-// hardware — the D Beam's infrared distance sensor, the step recorder, tap
-// tempo — are deliberately not replicated; the four Patch Common bytes the
-// D Beam owns are still stored and round-tripped, they simply have no control
-// naming them. One set of tone controls edits the selected tone, exactly as
-// the hardware panel works.
+// Controls use consistent geometry and always display their current values.
+// One set of tone controls edits the selected Upper or Lower part; the scope
+// of each section is derived from its parameter bindings.
 
 class SeptumLookAndFeel final : public juce::LookAndFeel_V4
 {
@@ -200,15 +187,14 @@ private:
     // and the panel now follows that line exactly.
     enum class Scope { Shared, PerTone };
 
-    // The bands use different opacities of the edited part's colour over the
-    // same dark chassis, with related shades for modulation, arpeggio, input
-    // and effects, and quieter shared performance controls.
+    // Bands describe the signal-chain grouping; scope determines the surface.
     enum class Band { Voice, Modulation, InputEffects, Perform };
 
     struct Control
     {
         juce::String suffix;      // per-tone parameter suffix, or full ID
         bool perTone { true };
+        bool advanced { false };
         Style style { Style::Knob };
         juce::String unit;        // printed after the value, e.g. "st", "%"
         // Bipolar direction is included in the readable value below the knob,
@@ -312,7 +298,7 @@ private:
     // The band above the keys that says which tone each key reaches.
     juce::Rectangle<int> keyZoneBounds;
 
-    // Left performance cluster.
+    // Shared performance strip beside patch controls.
     juce::Slider masterSlider;
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment>
         masterAttachment;
@@ -324,6 +310,8 @@ private:
     juce::ComboBox programBox;
     juce::Label programLabel;
     // The edit-target tabs, in the header above everything they govern.
+    juce::TextButton detailsButton { "DETAILS +" };
+    bool showingDetails { false };
     juce::TextButton upperButton { "UPPER" }, lowerButton { "LOWER" };
     juce::TextButton upperEnableButton { "ON" }, lowerEnableButton { "ON" };
     std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment>
@@ -331,7 +319,7 @@ private:
     std::array<juce::Rectangle<int>, 2> partTabBounds;
     std::array<juce::Label, 2> partRouteLabels, partActivityLabels;
     std::array<float, 2> partMeterLevels { 0.0f, 0.0f };
-    juce::Label titleLabel, subtitleLabel;
+    juce::Label titleLabel;
 
     // OSC 2 INTERVAL buttons (settled behavior: -OCT one octave below,
     // 5th seven semitones above; both together = unison).

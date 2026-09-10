@@ -115,24 +115,38 @@ render code. The open questions are listed under [Known gaps](#known-gaps).
 
 ### Reading the panel
 
-The SH-201-inspired panel combines a dark chassis, pale voice sections,
-hardware-style knobs and illuminated switches. The entire background takes on
-the edited part's colour: warm coral for **UPPER**, cool cyan for **LOWER**.
-This follows the edit selection even when that part is muted. Larger labels
-and aligned value rows keep controls readable, with spacing separating modules
-instead of decorative rules or arrows. The signal
-path reads left to right: OSC 1 + OSC 2 → MIX/MOD → FILTER → AMP, with the
-modulators below and shared effects beneath them.
+The SH-201-inspired panel combines a warm charcoal chassis, ivory part panels,
+hardware-style knobs and illuminated switches. Larger labels, aligned value
+rows and generous padding keep controls readable. Space separates the modules,
+with no divider rules beneath their titles. The signal
+path reads left to right: OSC 1 + OSC 2 → MIX/MOD → FILTER → AMP, with envelopes
+and LFOs below. **TONE PLAY** sits beside the part selector above these panels,
+keeping portamento, glide time, voice mode, bend range and part octave with the
+part they edit. Terracotta identifies **UPPER** and teal identifies **LOWER**
+in the selection indicators and envelope sliders.
 
-A patch holds two complete parts, **UPPER** and **LOWER**. The top selector
-lights the edited part in its warm or cool colour:
+Shared controls keep fixed colours when the edit selection changes:
+**ARPEGGIO** has an ochre panel, **EXT IN** has a slate blue panel, and the
+remaining shared sections use charcoal. Program selection, keyboard routing
+and system settings occupy the shared header. Arpeggio, external input,
+delay and reverb sit below the part panels;
+**PERFORM** and **PATCH** follow beneath them. PERFORM holds master volume,
+keyboard octave and tempo, while PATCH holds patch level, part balance and
+controller destinations. The delay and reverb sends remain in each part's
+**AMP** section because their levels belong to the selected part.
 
-- **The illuminated tab** selects the part shown by the tone controls. The
-  whole panel follows its colour, with translucent backgrounds grouping the
-  controls over a dark chassis. Section titles appear once, without repeated
-  part badges. Arpeggio matches the modulation panels, while external input
-  and effects use subtly different shades and retain their SHARED captions.
-  Envelope sliders use slim rails and flat handles in the selected part colour.
+The default view shows the main arpeggio, input and effects controls.
+**DETAILS +** reveals 19 additional pattern, input-filter and effect settings;
+**DETAILS -** hides them again. These controls retain their settings and follow
+host automation while hidden. All part synthesis controls remain visible.
+
+A patch holds two complete parts, **UPPER** and **LOWER**. The selector above
+the ivory panels distinguishes editing, enable state and sound activity:
+
+- **The illuminated tab** selects the part shown by TONE PLAY, the voice
+  controls, envelopes and LFOs. Its colour and the envelope slider handles
+  follow the edit selection even when that part is muted. Section titles
+  appear once, and the shared controls retain their separate visual group.
 - **ON/OFF**, beside each part title, mutes that part and disables its sound
   controls. An OFF part can still be selected to inspect its settings; shared
   controls remain available. Re-enabling restores editing without changing values.
@@ -140,7 +154,7 @@ lights the edited part in its warm or cool colour:
   held note can resume when enabled. Notes released while muted stay released.
 - **Routing text** says which new keys reach the part: all keys, a split zone,
   or no keys in Single. Keyboard mode, **Single part** and the split point
-  sit beside the tabs; the band above the keyboard shows the same routing.
+  sit in the shared header; the band above the keyboard shows the same routing.
 - **Activity and meters** report the engine's active voices and each part's
   signal before shared effects. PLAYING, RELEASING and READY distinguish
   sounding notes, release tails and an idle part. A routing change can leave

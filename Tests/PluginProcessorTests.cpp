@@ -925,6 +925,110 @@ void testThePanelsInvariantsAreCheckedBySomethingThatRuns()
                     + ")");
 }
 
+// Disclosure changes how much of the shared controls is on screen, without
+// changing the sound or disconnecting a hidden control from host automation.
+void testGlobalDetailsPreserveBindingsAndValues()
+{
+    SeptumAudioProcessor processor;
+    processor.prepareToPlay (44100.0, 256);
+    std::unique_ptr<juce::AudioProcessorEditor> base (processor.createEditor());
+    auto* editor = dynamic_cast<SeptumAudioProcessorEditor*> (base.get());
+    expect (editor != nullptr, "details test has a Septum editor");
+    if (editor == nullptr)
+        return;
+
+    auto& panel = editor->getPanel();
+    auto* details = dynamic_cast<juce::Button*> (
+        findComponentById (panel, "global_details"));
+    expect (details != nullptr && details->onClick,
+            "shared controls have a working details disclosure");
+    if (details == nullptr || ! details->onClick)
+        return;
+
+    const char* advancedIds[] {
+        "arp_split", "arp_motif", "arp_duration", "arp_end_step",
+        "arp_accent", "arp_velocity", "ext_center_cancel",
+        "audio_filter_type", "audio_filter_slope", "delay_hf_damp",
+        "delay_mod_rate", "delay_mod_depth", "reverb_pre_delay",
+        "reverb_density", "reverb_diffusion", "reverb_lf_damp_freq",
+        "reverb_lf_damp_gain", "reverb_hf_damp_freq", "reverb_hf_damp_gain"
+    };
+    const auto verifyDetails = [&] (bool visible)
+    {
+        for (const auto* id : advancedIds)
+        {
+            auto* control = findComponentById (panel, id);
+            expect (control != nullptr,
+                    juce::String ("details control remains available: ") + id);
+            if (control == nullptr)
+                continue;
+            expect (control->getParentComponent() == &panel,
+                    juce::String ("details retains the panel's control: ") + id);
+            expect (control->isVisible() == visible,
+                    juce::String (visible ? "details reveals " : "details hides ") + id);
+            if (visible)
+                expect (! control->getBounds().isEmpty()
+                            && panel.getLocalBounds().contains (control->getBounds()),
+                        juce::String ("revealed control has valid panel bounds: ") + id);
+        }
+        expect (editor->getSectionsOverflowingTheirWell().isEmpty(),
+                "details layout keeps controls inside their sections");
+    };
+    verifyDetails (false);
+
+    auto* hiddenDepth = dynamic_cast<juce::Slider*> (
+        findComponentById (panel, "delay_mod_depth"));
+    auto* depthParameter = processor.parameters.getParameter ("delay_mod_depth");
+    expect (hiddenDepth != nullptr && depthParameter != nullptr,
+            "a hidden delay control retains its parameter");
+    if (hiddenDepth == nullptr || depthParameter == nullptr)
+        return;
+    const auto& depthRange = processor.parameters.getParameterRange ("delay_mod_depth");
+    const float automatedDepth = depthRange.snapToLegalValue (
+        depthRange.convertFrom0to1 (0.73f));
+    depthParameter->setValueNotifyingHost (depthRange.convertTo0to1 (automatedDepth));
+    expect (! hiddenDepth->isVisible()
+                && std::abs (hiddenDepth->getValue() - automatedDepth) < 0.001,
+            "a collapsed details control still follows host automation");
+
+    std::vector<float> parameterValues;
+    for (const auto* parameter : processor.getParameters())
+        parameterValues.push_back (parameter->getValue());
+    const auto verifySoundUnchanged = [&]
+    {
+        const auto& parameters = processor.getParameters();
+        expect (parameters.size() == static_cast<int> (parameterValues.size()),
+                "disclosure preserves the parameter inventory");
+        bool unchanged = parameters.size() == static_cast<int> (parameterValues.size());
+        for (int i = 0; unchanged && i < parameters.size(); ++i)
+            unchanged = parameters[i]->getValue() == parameterValues[static_cast<std::size_t> (i)];
+        expect (unchanged, "disclosure preserves every parameter value");
+    };
+
+    // A larger expanded minimum must not enlarge the chosen control scale.
+    // A small work area may require shrinking, so only reject unwanted growth.
+    const auto collapsedDesign = panel.getLocalBounds();
+    editor->setSize (collapsedDesign.getWidth() * 3 / 5,
+                     collapsedDesign.getHeight() * 3 / 5);
+    const int collapsedWidth = editor->getWidth();
+    details->onClick();
+    expect (editor->getWidth() <= collapsedWidth + 1,
+            "opening details at minimum size does not enlarge the control scale");
+    verifyDetails (true);
+    verifySoundUnchanged();
+    expect (std::abs (hiddenDepth->getValue() - automatedDepth) < 0.001,
+            "revealing details shows the value automated while hidden");
+    for (auto* child : panel.getChildren())
+        if (child->isVisible())
+            expect (! child->getBounds().isEmpty()
+                        && panel.getLocalBounds().contains (child->getBounds()),
+                    "expanded details lays out every visible control and caption");
+
+    details->onClick();
+    verifyDetails (false);
+    verifySoundUnchanged();
+}
+
 // A switch on the panel says which way it is thrown.
 void testTogglesShowTheirState()
 {
@@ -1477,6 +1581,21 @@ void renderEditorSnapshots (const juce::File& directory)
         SeptumAudioProcessorEditor::panelSizeForWorkArea ({ 1366, 768 });
     snapshot ("upper-ready-full", design);
     snapshot ("upper-ready-compact", compact);
+    if (auto* details = dynamic_cast<juce::Button*> (
+            findComponentById (editor->getPanel(), "global_details")))
+    {
+        if (details->onClick)
+        {
+            details->onClick();
+            // Disclosure changes the design height while retaining the
+            // current compact scale. Read both sizes from that actual layout.
+            const auto expandedCompact = editor->getLocalBounds();
+            const auto expandedDesign = editor->getPanel().getLocalBounds();
+            snapshot ("upper-details-full", expandedDesign);
+            snapshot ("upper-details-compact", expandedCompact);
+            details->onClick();
+        }
+    }
     set ("upper_enabled", 0.0f);
     snapshot ("upper-muted-controls-disabled", design);
     snapshot ("upper-muted-controls-disabled-compact", compact);
@@ -3413,6 +3532,7 @@ int main (int argc, char* argv[])
     testPartControlsSurviveSessionsAndPublishActualActivity();
     testIntervalButtonsAreRelativeToOscOne();
     testThePanelsInvariantsAreCheckedBySomethingThatRuns();
+    testGlobalDetailsPreserveBindingsAndValues();
     testTogglesShowTheirState();
     testDBeamBytesAreStoredAndInert();
     testLeverModulationMovesByTheDrag();
