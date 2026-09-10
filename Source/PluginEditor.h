@@ -200,6 +200,7 @@ private:
         // Bipolar direction is included in the readable value below the knob,
         // e.g. OSC1 63 or Center, instead of miniature labels on the rim.
         juce::String leftEnd, rightEnd;
+        [[nodiscard]] int cellWidth() const;
         std::unique_ptr<juce::Component> component;
         std::unique_ptr<juce::Label> label;
         std::unique_ptr<juce::Label> value;
@@ -222,8 +223,14 @@ private:
         // are sized to fit their contents rather than their contents scaled
         // to fit them, which is what keeps every knob the same size.
         std::vector<int> rowCounts;
+        // Columns are shared by every row. A wide selector can span narrow
+        // columns; a pair of interval buttons can share the waveform column.
+        struct GridPosition { int column; int span { 1 }; };
+        std::vector<int> fixedColumns;
+        std::vector<std::vector<GridPosition>> positions;
         bool manualLayout { false };
 
+        [[nodiscard]] std::vector<int> columnWidths() const;
         [[nodiscard]] int naturalWidth() const;
     };
 
