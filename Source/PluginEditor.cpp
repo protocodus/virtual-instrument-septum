@@ -13,6 +13,8 @@ namespace colours
     const juce::Colour ink { 0xff34372f };
     const juce::Colour paper { 0xffe5decc };      // aged ivory faceplate
     const juce::Colour paperWell { 0xffeee8d9 };
+    const juce::Colour partTray { 0xffc5bdac };
+    const juce::Colour sharedWell { 0xff343630 };
     const juce::Colour arpeggio { 0xff414a34 };     // olive, distinct from Upper's terracotta
     const juce::Colour external { 0xff4b3c4c };     // plum, distinct from Lower's teal
     const juce::Colour accent { 0xffb35d3d };
@@ -36,7 +38,7 @@ constexpr int comboCell = 108;
 constexpr int wideComboCell = 160;
 constexpr int toggleCell = 68;
 constexpr int actionCell = 60;
-constexpr int sliderCell = 38;
+constexpr int sliderCell = 40;
 
 constexpr int labelHeight = 20;
 constexpr int valueHeight = 18;
@@ -44,27 +46,30 @@ constexpr int knobDiameter = 36;
 constexpr int comboHeight = 28;
 constexpr int toggleHeight = 28;
 
-constexpr int sectionTitleHeight = 22;
-constexpr int sectionPadding = 10;
-constexpr int panelTitleBarHeight = 26;
+constexpr int sectionTitleHeight = 26;
+constexpr int sectionPadding = 12;
+constexpr int panelTitleBarHeight = 28;
 constexpr int gridRowHeight = 76;      // label + control + value
-constexpr int sectionGap = 10;
+constexpr int controlRowGap = 12;
+constexpr int extraRowHeight = gridRowHeight + controlRowGap;
+constexpr int sectionGap = 16;
+constexpr float panelRadius = 6.0f;
 
-constexpr int headerHeight = 120;
 constexpr int keyZoneHeight = 28;
 constexpr int performanceHeight = sectionTitleHeight + gridRowHeight + 2 * sectionPadding;
-constexpr int keyboardHeight = 94;
+constexpr int headerHeight = performanceHeight;
+constexpr int keyboardHeight = 82;
 constexpr float meterFloorDb = -48.0f;
-constexpr int bandHeight = sectionTitleHeight + 2 * gridRowHeight + 2 * sectionPadding;
+constexpr int bandHeight = performanceHeight + extraRowHeight;
 constexpr int windowChromeWidth = 32;
 constexpr int windowChromeHeight = 64;
 constexpr int editorWidth = 1740;
 // One contiguous part surface, followed by shared effects and performance.
-constexpr int partTop = headerHeight + 4;
-constexpr int voiceTop = partTop + performanceHeight + 16;
+constexpr int partTop = headerHeight + 8;
+constexpr int voiceTop = partTop + sectionPadding + performanceHeight + sectionGap;
 constexpr int modulationTop = voiceTop + bandHeight + sectionGap;
-constexpr int sharedTop = modulationTop + bandHeight + 48;
-constexpr int performanceTop = sharedTop + bandHeight - gridRowHeight + sectionGap;
+constexpr int sharedTop = modulationTop + bandHeight + 56;
+constexpr int performanceTop = sharedTop + performanceHeight + sectionGap;
 constexpr int keysTop = performanceTop + performanceHeight + sectionGap;
 constexpr int editorHeight = keysTop + keyboardHeight + 12;
 // Bound host resizing while still fitting the complete panel on small displays.
@@ -77,17 +82,34 @@ void layoutControlCell (juce::Component& component, juce::Label& caption,
                         juce::Label* value, juce::Rectangle<int> cell,
                         int width, int height)
 {
+    const int captionTop = cell.getY();
     caption.setBounds (cell.removeFromTop (labelHeight));
     const auto valueBounds = cell.removeFromBottom (valueHeight);
     if (value != nullptr)
         value->setBounds (valueBounds);
     component.setBounds (cell.withSizeKeepingCentre (width, height));
+    if (dynamic_cast<juce::ComboBox*> (&component) != nullptr)
+    {
+        // Field labels start at the same edge as the selected text. Rotary
+        // labels and readouts remain centred on their control's axis.
+        caption.setBounds (component.getX() + 6, captionTop, width - 12, labelHeight);
+        caption.setJustificationType (juce::Justification::centredLeft);
+    }
+}
+
+void paintPanelSurface (juce::Graphics& g, juce::Rectangle<int> bounds, juce::Colour surface)
+{
+    const auto area = bounds.toFloat().reduced (1.0f);
+    g.setColour (juce::Colours::black.withAlpha (0.12f));
+    g.fillRoundedRectangle (area.translated (0.0f, 2.0f), panelRadius);
+    g.setColour (surface);
+    g.fillRoundedRectangle (area, panelRadius);
 }
 
 void paintPanelTitle (juce::Graphics& g, juce::Rectangle<int> bounds,
                       juce::Colour background, juce::Colour ink,
-                      const juce::String& title, int inset = sectionPadding,
-                      float cornerRadius = 3.0f)
+                      const juce::String& title, int inset = sectionPadding + 10,
+                      float cornerRadius = panelRadius)
 {
     const auto bar = bounds.toFloat().reduced (1.0f).withHeight ((float) panelTitleBarHeight);
     g.setColour (background);
@@ -321,7 +343,7 @@ void SeptumLookAndFeel::drawComboBox (juce::Graphics& g, int width,
 
 juce::Font SeptumLookAndFeel::getComboBoxFont (juce::ComboBox&)
 {
-    return juce::Font (juce::FontOptions (16.0f));
+    return juce::Font (juce::FontOptions (17.0f));
 }
 
 juce::Font SeptumLookAndFeel::getLabelFont (juce::Label& label)
@@ -339,7 +361,7 @@ void SeptumLookAndFeel::positionComboBoxText (juce::ComboBox& box,
 {
     label.setBounds (6, 1, box.getWidth() - 27, box.getHeight() - 2);
     label.setBorderSize (juce::BorderSize<int> (0));
-    label.setFont (juce::Font (juce::FontOptions (16.0f)));
+    label.setFont (juce::Font (juce::FontOptions (17.0f)));
 }
 
 void SeptumLookAndFeel::drawButtonText (juce::Graphics& g,
@@ -529,26 +551,26 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
         juce::AudioProcessorValueTreeState::SliderAttachment> (
         processor.parameters, "master_level", masterSlider);
     masterLabel.setText ("Master", juce::dontSendNotification);
-    masterLabel.setFont (juce::Font (juce::FontOptions (17.0f)));
+    masterLabel.setFont (juce::Font (juce::FontOptions (18.0f)));
     masterLabel.setBorderSize (juce::BorderSize<int> (0));
     masterLabel.setJustificationType (juce::Justification::centred);
     masterLabel.setColour (juce::Label::textColourId,
                            colours::frame.withAlpha (0.88f));
     canvas.addAndMakeVisible (masterLabel);
     masterValueLabel.setFont (
-        juce::Font (juce::FontOptions (16.0f, juce::Font::bold)));
+        juce::Font (juce::FontOptions (17.0f, juce::Font::bold)));
     masterValueLabel.setBorderSize (juce::BorderSize<int> (0));
     masterValueLabel.setJustificationType (juce::Justification::centred);
     canvas.addAndMakeVisible (masterValueLabel);
 
     octLabel.setText ("Key octave", juce::dontSendNotification);
-    octLabel.setFont (juce::Font (juce::FontOptions (17.0f)));
+    octLabel.setFont (juce::Font (juce::FontOptions (18.0f)));
     octLabel.setBorderSize (juce::BorderSize<int> (0));
     octLabel.setColour (juce::Label::textColourId,
                         colours::frame.withAlpha (0.88f));
     octLabel.setJustificationType (juce::Justification::centred);
     canvas.addAndMakeVisible (octLabel);
-    octValueLabel.setFont (juce::Font (juce::FontOptions (16.0f, juce::Font::bold)));
+    octValueLabel.setFont (juce::Font (juce::FontOptions (17.0f, juce::Font::bold)));
     octValueLabel.setBorderSize (juce::BorderSize<int> (0));
     octValueLabel.setJustificationType (juce::Justification::centred);
     canvas.addAndMakeVisible (octValueLabel);
@@ -684,14 +706,15 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
         const juce::String prefix = "lfo" + juce::String (lfo) + "_";
         auto* lfoSection = section ("LFO " + juce::String (lfo), Band::Modulation);
         lfoSection->rowCounts = { 5, 5 };
-        addControl (*lfoSection, prefix + "shape", "SHAPE", Style::Combo);
+        lfoSection->fixedColumns = { wideComboCell, knobCell, toggleCell, comboCell, knobCell };
+        addControl (*lfoSection, prefix + "shape", "SHAPE", Style::WideCombo);
         addControl (*lfoSection, prefix + "rate", "RATE", Style::Knob);
         addControl (*lfoSection, prefix + "sync", "SYNC", Style::Toggle);
         addControl (*lfoSection, prefix + "sync_note", "NOTE", Style::Combo);
         addControl (*lfoSection, prefix + "fade", "FADE", Style::Knob);
-        addControl (*lfoSection, prefix + "key_trig", "TRIG", Style::Toggle);
         addControl (*lfoSection, prefix + "dest1", "DEST 1", Style::WideCombo);
         addControl (*lfoSection, prefix + "depth1", "DEPTH 1", Style::Knob);
+        addControl (*lfoSection, prefix + "key_trig", "TRIG", Style::Toggle);
         addControl (*lfoSection, prefix + "dest2", "DEST 2", Style::Combo);
         addControl (*lfoSection, prefix + "depth2", "DEPTH 2", Style::Knob);
     }
@@ -701,9 +724,9 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
     // Row one is what the arpeggiator is and where it plays; row two is how
     // it reads the keys. The counts have to cover every control the section
     // holds — a row short and the last one is never given bounds.
-    arpSection->rowCounts = { 5, 6 };
+    arpSection->rowCounts = { 4, 6 };
     arpSection->fixedColumns = { knobCell, knobCell, comboCell, comboCell, knobCell, knobCell };
-    arpSection->positions = { { { 0 }, { 1 }, { 2 }, { 3 }, { 4, 2 } },
+    arpSection->positions = { { { 0, 2 }, { 2 }, { 3 }, { 4, 2 } },
                              { { 2 }, { 3 }, { 0 }, { 1 }, { 4 }, { 5 } } };
     addControl (*arpSection, "arp_on", "SWITCH", Style::Toggle, false);
     addControl (*arpSection, "arp_hold", "HOLD", Style::Toggle, false);
@@ -736,7 +759,7 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
     addControl (*externalSection, "audio_filter_reso", "RESO", Style::Knob, false);
 
     auto* delay = section ("DELAY", Band::InputEffects);
-    delay->rowCounts = { 3, 3 };
+    delay->rowCounts = { 2, 3 };
     addControl (*delay, "delay_on", "SWITCH", Style::Toggle, false);
     addControl (*delay, "delay_time", "TIME", Style::Knob, false);
     addControl (*delay, "delay_feedback", "FEEDBACK", Style::Knob, false, " %");
@@ -745,10 +768,7 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
     addControl (*delay, "delay_mod_depth", "MOD DEPTH", Style::Knob, false);
 
     auto* reverb = section ("REVERB", Band::InputEffects);
-    reverb->rowCounts = { 6, 5 };
-    reverb->fixedColumns = { knobCell, knobCell, knobCell, knobCell, comboCell, knobCell };
-    reverb->positions = { { { 0 }, { 1 }, { 2 }, { 3 }, { 4 }, { 5 } },
-                         { { 0 }, { 1, 2 }, { 3 }, { 4 }, { 5 } } };
+    reverb->rowCounts = { 5, 5 };
     addControl (*reverb, "reverb_on", "SWITCH", Style::Toggle, false);
     addControl (*reverb, "reverb_time", "TIME", Style::Knob, false);
     addControl (*reverb, "reverb_size", "SIZE", Style::Knob, false);
@@ -784,7 +804,7 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
     };
     canvas.addAndMakeVisible (programBox);
     programLabel.setText ("Program", juce::dontSendNotification);
-    programLabel.setFont (juce::Font (juce::FontOptions (17.0f)));
+    programLabel.setFont (juce::Font (juce::FontOptions (18.0f)));
     programLabel.setBorderSize (juce::BorderSize<int> (0));
     programLabel.setJustificationType (juce::Justification::centred);
     programLabel.setColour (juce::Label::textColourId,
@@ -876,6 +896,7 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
         for (auto* label : { &partRouteLabels[part], &partActivityLabels[part] })
         {
             label->setFont (juce::Font (juce::FontOptions (16.0f)));
+            label->setBorderSize (juce::BorderSize<int> (0));
             label->setInterceptsMouseClicks (false, false);
             label->setColour (juce::Label::textColourId, colours::ink);
             canvas.addAndMakeVisible (*label);
@@ -925,13 +946,13 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
     detailsButton.getProperties().set ("disclosure", true);
     detailsButton.onClick = [this]
     {
-        const int previousHeight = editorHeight + (showingDetails ? gridRowHeight : 0);
+        const int previousHeight = editorHeight + (showingDetails ? extraRowHeight : 0);
         double scale = juce::jmin ((double) getWidth() / editorWidth,
                                    (double) getHeight() / previousHeight);
         showingDetails = ! showingDetails;
         detailsButton.setToggleState (showingDetails, juce::dontSendNotification);
         detailsButton.setButtonText (showingDetails ? "DETAILS -" : "DETAILS +");
-        const int panelHeight = editorHeight + (showingDetails ? gridRowHeight : 0);
+        const int panelHeight = editorHeight + (showingDetails ? extraRowHeight : 0);
         setResizeLimits (minimumWidth, panelHeight * 3 / 5, editorWidth * 2, panelHeight * 2);
         if (auto* constrainer = getConstrainer())
             constrainer->setFixedAspectRatio ((double) editorWidth / panelHeight);
@@ -1242,9 +1263,9 @@ void SeptumAudioProcessorEditor::paintPartTabs (juce::Graphics& g)
             continue;
         const auto tone = i == 0 ? colours::toneUpper : colours::toneLower;
         const bool edited = (i == 0) == editingUpper;
-        g.setColour (edited ? colours::paperWell.interpolatedWith (tone, 0.08f)
-                            : colours::paper.darker (0.045f));
-        g.fillRoundedRectangle (area, 4.0f);
+        g.setColour (edited ? colours::paperWell.interpolatedWith (tone, 0.12f)
+                            : colours::paper);
+        g.fillRoundedRectangle (area, panelRadius - 1.0f);
         // A compact meter accompanies the playback status only when there is
         // signal; an idle part no longer leaves a full-width decorative rail.
         const float db = juce::Decibels::gainToDecibels (partMeterLevels[i], -60.0f);
@@ -1312,7 +1333,7 @@ std::vector<int> SeptumAudioProcessorEditor::Section::columnWidths() const
         return fixedColumns;
     std::vector<const Control*> grid;
     for (const auto* control : controls)
-        if (control->style != Style::VSlider)
+        if (control->style != Style::VSlider && ! control->inHeader)
             grid.push_back (control);
     auto rows = rowCounts;
     if (rows.empty())
@@ -1352,6 +1373,7 @@ SeptumAudioProcessorEditor::Control* SeptumAudioProcessorEditor::addControl (
     control->perTone = perTone;
     control->style = style;
     control->unit = unit;
+    control->inHeader = style == Style::Toggle && labelText == "SWITCH";
 
     switch (style)
     {
@@ -1423,7 +1445,7 @@ SeptumAudioProcessorEditor::Control* SeptumAudioProcessorEditor::addControl (
     if (caption.startsWithIgnoreCase ("lf ")) caption = "LF" + caption.substring (2);
     control->label = std::make_unique<juce::Label>();
     control->label->setText (caption, juce::dontSendNotification);
-    control->label->setFont (juce::Font (juce::FontOptions (17.0f)));
+    control->label->setFont (juce::Font (juce::FontOptions (18.0f)));
     control->label->setBorderSize (juce::BorderSize<int> (0));
     control->label->setJustificationType (juce::Justification::centred);
     control->label->setInterceptsMouseClicks (false, false);
@@ -1437,7 +1459,7 @@ SeptumAudioProcessorEditor::Control* SeptumAudioProcessorEditor::addControl (
     {
         control->value = std::make_unique<juce::Label>();
         control->value->setFont (
-            juce::Font (juce::FontOptions (16.0f, juce::Font::bold)));
+            juce::Font (juce::FontOptions (17.0f, juce::Font::bold)));
         control->value->setBorderSize (juce::BorderSize<int> (0));
         control->value->setJustificationType (juce::Justification::centred);
         control->value->setInterceptsMouseClicks (false, false);
@@ -1609,6 +1631,16 @@ void SeptumAudioProcessorEditor::layoutSection (Section& section,
         control->label->setVisible (visible);
         if (control->value != nullptr)
             control->value->setVisible (visible);
+        if (control->inHeader)
+        {
+            // One on/off switch belongs to the module's heading, leaving
+            // the control grid for named parameters.
+            control->component->setBounds (bounds.getRight() - sectionPadding - 60,
+                                            bounds.getY() + 2, 60, panelTitleBarHeight - 2);
+            control->label->setVisible (false);
+            control->label->setBounds ({});
+            continue;
+        }
         if (visible)
             (control->style == Style::VSlider ? sliders : grid).push_back (control);
         else
@@ -1623,7 +1655,7 @@ void SeptumAudioProcessorEditor::layoutSection (Section& section,
     // Vertical sliders take a left column strip at full content height: label
     // on top, travel in the middle, value underneath. A section whose width
     // was set by its title rather than by its contents — PITCH ENV is two
-    // 38 px cells under a nine-character name — centres the strip in what it
+    // 40 px cells under a nine-character name — centres the strip in what it
     // was given instead of hugging the left edge.
     if (! sliders.empty())
     {
@@ -1652,10 +1684,22 @@ void SeptumAudioProcessorEditor::layoutSection (Section& section,
         for (const auto* control : grid)
             columns.push_back (control->cellWidth());
     }
+    int gridWidth = 0;
+    for (int width : columns)
+        gridWidth += width;
+    // Distribute available room through the columns, keeping every row on
+    // the same axes and the outer fields on consistent panel insets.
+    int spare = juce::jmax (0, content.getWidth() - gridWidth);
+    for (std::size_t column = 0; column < columns.size(); ++column)
+    {
+        const int extra = spare / (int) (columns.size() - column);
+        columns[column] += extra;
+        spare -= extra;
+    }
     std::vector<int> offsets { 0 };
     for (int width : columns)
         offsets.push_back (offsets.back() + width);
-    const int gridLeft = content.getX() + (content.getWidth() - offsets.back()) / 2;
+    const int gridLeft = content.getX();
     // The depth knob beside the faders shares their top caption and bottom
     // value baselines, with its knob centered in the same full-height body.
     const int rowHeight = ! sliders.empty() && rows.size() == 1
@@ -1674,13 +1718,13 @@ void SeptumAudioProcessorEditor::layoutSection (Section& section,
             const auto start = (std::size_t) position.column;
             const auto end = start + (std::size_t) position.span;
             const juce::Rectangle<int> cell {
-                gridLeft + offsets[start], content.getY() + (int) row * rowHeight,
+                gridLeft + offsets[start], content.getY() + (int) row * (rowHeight + controlRowGap),
                 offsets[end] - offsets[start], rowHeight
             };
             const bool selector = control->style == Style::Combo || control->style == Style::WideCombo;
             const bool button = control->style == Style::Toggle || control->style == Style::Action;
             layoutControlCell (*control->component, *control->label, control->value.get(), cell,
-                               selector ? control->cellWidth() - 8
+                               selector ? cell.getWidth() - 8
                                         : button ? control->cellWidth() - 10 : knobDiameter,
                                selector ? comboHeight : button ? toggleHeight : knobDiameter);
             // INTERVAL is one label centered across the two action buttons.
@@ -1706,11 +1750,13 @@ void SeptumAudioProcessorEditor::layoutBand (const std::vector<int>& indices,
         total += sections[(std::size_t) index]->naturalWidth();
     const int slots = (int) indices.size() - 1;
     const int spare = juce::jmax (0, bounds.getWidth() - total - slots * sectionGap);
-    const int extraWidth = spare / (int) indices.size();
+    int remaining = spare;
     int x = bounds.getX();
-    for (int index : indices)
+    for (std::size_t i = 0; i < indices.size(); ++i)
     {
-        auto& section = *sections[(std::size_t) index];
+        auto& section = *sections[(std::size_t) indices[i]];
+        const int extraWidth = remaining / (int) (indices.size() - i);
+        remaining -= extraWidth;
         const int width = section.naturalWidth() + extraWidth;
         layoutSection (section, { x, bounds.getY(), width, bounds.getHeight() });
         x += width + sectionGap;
@@ -1739,7 +1785,7 @@ juce::Rectangle<int> SeptumAudioProcessorEditor::panelSizeForWorkArea (
 
 void SeptumAudioProcessorEditor::resized()
 {
-    const int panelHeight = editorHeight + (showingDetails ? gridRowHeight : 0);
+    const int panelHeight = editorHeight + (showingDetails ? extraRowHeight : 0);
     // The panel keeps its proportions whatever the window's are, and is
     // centred in whatever is left over.
     const double scale = juce::jmin ((double) getWidth() / editorWidth,
@@ -1758,47 +1804,53 @@ void SeptumAudioProcessorEditor::resized()
 
 void SeptumAudioProcessorEditor::layoutPanel()
 {
-    const int detailHeight = showingDetails ? gridRowHeight : 0;
-    titleLabel.setBounds (30, 30, 215, 46);
+    const int detailHeight = showingDetails ? extraRowHeight : 0;
+    titleLabel.setBorderSize (juce::BorderSize<int> (0));
+    titleLabel.setBounds (46, sectionPadding + sectionTitleHeight + 10, 200, 46);
     layoutControlCell (programBox, programLabel, nullptr,
-                       { 266, sectionPadding + sectionTitleHeight, 288, gridRowHeight },
+                       { 264, sectionPadding + sectionTitleHeight, 288, gridRowHeight },
                        288, comboHeight);
-    layoutSection (*systemSection, { editorWidth - 364, 0, 340, performanceHeight });
+    layoutSection (*systemSection, { 1376, 0, 340, performanceHeight });
 
     // Patch selection, keyboard routing and tuning apply to both parts.
-    routingSection->bounds = { 578, 0, 702, performanceHeight };
+    routingSection->bounds = { 580, 0, 780, performanceHeight };
     {
-        int x = 596;
+        auto content = routingSection->bounds.reduced (sectionPadding);
+        content.removeFromTop (sectionTitleHeight);
+        int x = content.getX();
         for (auto* control : routingSection->controls)
         {
-            const int width = control->style == Style::Combo ? 236 : 172;
+            const int width = control->style == Style::Combo ? 276 : 204;
             layoutControlCell (*control->component, *control->label, control->value.get(),
-                               { x, sectionPadding + sectionTitleHeight, width, gridRowHeight },
-                               control->style == Style::Combo ? width - 16 : knobDiameter,
+                               { x, content.getY(), width, gridRowHeight },
+                               control->style == Style::Combo ? width - 8 : knobDiameter,
                                control->style == Style::Combo ? comboHeight : knobDiameter);
-            x += width + 10;
+            x += width;
         }
     }
 
     // Part selection and playing behavior sit directly above the two rows
     // they govern. All per-part controls stay inside this ivory faceplate.
-    layoutSection (*tonePlaySection, { editorWidth - 446, partTop, 422, performanceHeight });
-    editToneSection->bounds = { 26, partTop + 38, editorWidth - 484, performanceHeight - 34 };
+    const int partHeaderTop = partTop + sectionPadding;
+    layoutSection (*tonePlaySection, { 1292, partHeaderTop, 424, performanceHeight });
+    editToneSection->bounds = { 24, partHeaderTop, 1252, performanceHeight };
     {
-        auto row = editToneSection->bounds;
-        partTabBounds[0] = row.removeFromLeft ((row.getWidth() - 12) / 2);
-        row.removeFromLeft (12);
+        auto row = editToneSection->bounds.reduced (sectionPadding);
+        row.removeFromTop (sectionTitleHeight);
+        partTabBounds[0] = row.removeFromLeft ((row.getWidth() - sectionGap) / 2);
+        row.removeFromLeft (sectionGap);
         partTabBounds[1] = row;
         for (std::size_t i = 0; i < 2; ++i)
         {
-            auto area = partTabBounds[i].reduced (13, 5);
+            auto area = partTabBounds[i].reduced (10, 5);
             auto top = area.removeFromTop (28);
             (i == 0 ? upperEnableButton : lowerEnableButton).setBounds (
                 top.removeFromLeft (66).reduced (0, 1));
             (i == 0 ? upperButton : lowerButton).setBounds (
-                partTabBounds[i].reduced (13, 5));
+                partTabBounds[i].reduced (10, 5));
             area.removeFromTop (6);
             auto text = area.removeFromTop (24);
+            text.removeFromLeft (80);
             partRouteLabels[i].setBounds (text.removeFromLeft (210));
             partActivityLabels[i].setBounds (text.withTrimmedRight (68));
         }
@@ -1807,9 +1859,9 @@ void SeptumAudioProcessorEditor::layoutPanel()
     layoutBand ({ 6, 7, 8, 9, 10 }, { 24, modulationTop, editorWidth - 48, bandHeight });
 
     // The lower faceplate is stable regardless of which part is selected.
-    layoutBand ({ 11, 12, 13, 14 }, { 24, sharedTop, editorWidth - 48, bandHeight - gridRowHeight + detailHeight });
+    layoutBand ({ 11, 12, 13, 14 }, { 24, sharedTop, editorWidth - 48, performanceHeight + detailHeight });
     detailsButton.setBounds (editorWidth - 178, sharedTop - 34, 150, 28);
-    performSection->bounds = { 24, performanceTop + detailHeight, 420, performanceHeight };
+    performSection->bounds = { 24, performanceTop + detailHeight, 424, performanceHeight };
     const int controlTop = performanceTop + detailHeight + sectionPadding + sectionTitleHeight;
     layoutControlCell (masterSlider, masterLabel, &masterValueLabel,
                        { 32, controlTop, 86, gridRowHeight }, knobDiameter, knobDiameter);
@@ -1823,11 +1875,11 @@ void SeptumAudioProcessorEditor::layoutPanel()
     octUpButton.setBounds (octaveButtons.removeFromRight (36));
     octValueLabel.setBounds (octaveButtons);
     meterBounds = { 352, controlTop + labelHeight, 78, gridRowHeight - labelHeight - valueHeight };
-    voiceLabel.setFont (juce::Font (juce::FontOptions (14.0f)));
+    voiceLabel.setFont (juce::Font (juce::FontOptions (16.0f)));
     voiceLabel.setBorderSize (juce::BorderSize<int> (0));
-    voiceLabel.setBounds (344, controlTop + gridRowHeight - valueHeight, 94, valueHeight);
+    voiceLabel.setBounds (338, controlTop + gridRowHeight - valueHeight, 106, valueHeight);
 
-    stripSection->bounds = { 452, performanceTop + detailHeight, editorWidth - 476, performanceHeight };
+    stripSection->bounds = { 464, performanceTop + detailHeight, editorWidth - 488, performanceHeight };
     auto stripContent = stripSection->bounds.reduced (sectionPadding);
     stripContent.removeFromTop (sectionTitleHeight);
     const int columns = (int) stripSection->controls.size();
@@ -1871,34 +1923,31 @@ void SeptumAudioProcessorEditor::PanelCanvas::paint (juce::Graphics& g)
 void SeptumAudioProcessorEditor::paintPanel (juce::Graphics& g)
 {
     g.fillAll (colours::surround);
-    g.setColour (colours::body);
-    g.fillRoundedRectangle (juce::Rectangle<float> (12.0f, 0.0f, editorWidth - 24.0f,
-                                                   (float) headerHeight), 5.0f);
+    paintPanelSurface (g, { 24, 0, 540, headerHeight }, colours::sharedWell);
     const auto partArea = juce::Rectangle<float> (12.0f, (float) partTop,
-        editorWidth - 24.0f, (float) (modulationTop + bandHeight + 10 - partTop));
-    g.setColour (colours::paper);
-    g.fillRoundedRectangle (partArea, 5.0f);
+        editorWidth - 24.0f, (float) (modulationTop + bandHeight + sectionPadding - partTop));
+    g.setColour (colours::partTray);
+    g.fillRoundedRectangle (partArea, panelRadius + 2.0f);
     const auto partColour = editingUpper ? colours::toneUpper : colours::toneLower;
-    paintPanelTitle (g, partArea.toNearestInt(),
-                     colours::paper.interpolatedWith (partColour, 0.10f), colours::ink,
-                     "PART EDITOR", 12 + sectionPadding, 5.0f);
+    paintPanelSurface (g, editToneSection->bounds, colours::paperWell);
+    paintPanelTitle (g, editToneSection->bounds,
+                     colours::paperWell.interpolatedWith (partColour, 0.10f), colours::ink,
+                     "PART EDITOR");
     g.setColour (colours::frame.withAlpha (0.8f));
     g.setFont (juce::Font (juce::FontOptions (16.0f, juce::Font::bold)));
-    g.drawText ("GLOBAL", 24 + sectionPadding, sharedTop - 32, 84, 24, juce::Justification::centredLeft);
+    g.drawText ("GLOBAL", 24 + sectionPadding + 10, sharedTop - 30, 84, 24, juce::Justification::centredLeft);
 
     for (const auto& section : sections)
     {
         if (section.get() == editToneSection)
             continue;
-        auto area = section->bounds.reduced (1).toFloat();
-        if (area.isEmpty())
+        if (section->bounds.isEmpty())
             continue;
         const bool perTone = section->scope == Scope::PerTone;
         const auto surface = perTone ? colours::paperWell
                            : section->title == "ARPEGGIO" ? colours::arpeggio
-                           : section->title == "EXT IN" ? colours::external : colours::body;
-        g.setColour (surface);
-        g.fillRoundedRectangle (area, 3.0f);
+                           : section->title == "EXT IN" ? colours::external : colours::sharedWell;
+        paintPanelSurface (g, section->bounds, surface);
         const auto ink = perTone ? colours::ink : colours::frame;
         const auto titleBackground = perTone ? surface.interpolatedWith (partColour, 0.10f)
                                              : surface.darker (0.07f);

@@ -116,9 +116,14 @@ render code. The open questions are listed under [Known gaps](#known-gaps).
 ### Reading the panel
 
 The SH-201-inspired panel combines a warm charcoal chassis, ivory part panels,
-hardware-style knobs and illuminated switches. Larger labels, aligned value
-rows and generous padding keep controls readable. Soft title bars follow the
-active part's colour, with the same silkscreen lettering at 80% opacity. Shared
+hardware-style knobs and illuminated switches. A darker warm backing, wider
+gutters and lightly raised cards separate each module. Program, routing and
+system controls also occupy distinct cards. Larger labels, aligned value rows
+and explicit space between rows keep controls readable. Selector captions line
+up with their field text; knob and fader captions stay centred on their axes.
+LFO selectors, depth knobs and switches share consistent columns. Soft title
+bars follow the active part's colour, with the same silkscreen lettering at
+80% opacity. Shared
 headers use a quieter shade of their fixed panel colour. Space separates the
 modules without divider rules, tab stripes or decorative control ticks. The signal
 path reads left to right: OSC 1 + OSC 2 → MIX/MOD → FILTER → AMP, with envelopes
@@ -139,6 +144,7 @@ controller destinations. The delay and reverb sends remain in each part's
 **AMP** section because their levels belong to the selected part.
 
 The default view shows the main arpeggio, input and effects controls.
+Arpeggio, delay and reverb on/off switches sit in their panel headers.
 **DETAILS +** reveals 19 additional pattern, input-filter and effect settings;
 **DETAILS -** hides them again. These controls retain their settings and follow
 host automation while hidden. All part synthesis controls remain visible.

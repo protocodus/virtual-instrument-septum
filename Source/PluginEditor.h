@@ -195,6 +195,7 @@ private:
         juce::String suffix;      // per-tone parameter suffix, or full ID
         bool perTone { true };
         bool advanced { false };
+        bool inHeader { false };
         Style style { Style::Knob };
         juce::String unit;        // printed after the value, e.g. "st", "%"
         // Bipolar direction is included in the readable value below the knob,
