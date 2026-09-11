@@ -49,7 +49,7 @@ constexpr int fieldInset = 4;
 constexpr int fieldTextInset = 6;
 
 constexpr int sectionTitleHeight = 26;
-constexpr int sectionPadding = 12;
+constexpr int sectionPadding = 14;
 constexpr int panelTitleBarHeight = 28;
 constexpr int gridRowHeight = 76;      // label + control + value
 constexpr int controlRowGap = 12;
@@ -67,9 +67,14 @@ constexpr float meterFloorDb = -48.0f;
 constexpr int bandHeight = performanceHeight + extraRowHeight;
 constexpr int windowChromeWidth = 32;
 constexpr int windowChromeHeight = 64;
-constexpr int editorWidth = 1740;
+constexpr int editorWidth = 1760;
+constexpr int instrumentTopPadding = 20;
+constexpr int outerPadding = 24;
+constexpr int presetPanelWidth = 540;
+constexpr int systemPanelWidth = 316 + 2 * sectionPadding;
+constexpr int performancePanelWidth = 400 + 2 * sectionPadding;
 // One contiguous part surface, followed by shared effects and performance.
-constexpr int partTop = headerHeight + 8;
+constexpr int partTop = instrumentTopPadding + headerHeight + 8;
 constexpr int voiceTop = partTop + sectionPadding + performanceHeight + sectionGap;
 constexpr int modulationTop = voiceTop + bandHeight + sectionGap;
 constexpr int sharedTop = modulationTop + bandHeight + 56;
@@ -77,8 +82,9 @@ constexpr int performanceTop = sharedTop + performanceHeight + sectionGap;
 constexpr int keysTop = performanceTop + performanceHeight + sectionGap;
 constexpr int editorHeight = keysTop + keyboardHeight;
 // Bound host resizing while still fitting the complete panel on small displays.
-constexpr int minimumWidth = editorWidth * 3 / 5;
-constexpr int minimumHeight = editorHeight * 3 / 5;
+constexpr double minimumScale = 0.58;
+constexpr int minimumWidth = (int) (editorWidth * minimumScale);
+constexpr int minimumHeight = (int) (editorHeight * minimumScale);
 // All normal controls share the same caption, body and value bands. The
 // header and performance controls use this too, so hand-placed controls do
 // not acquire slightly different baselines or optical centers.
@@ -102,18 +108,6 @@ void layoutControlCell (juce::Component& component, juce::Label& caption,
     }
 }
 
-int labelTextLeft (const juce::Label& label)
-{
-    const auto area = label.getBorderSize().subtractedFrom (label.getBounds()).toFloat();
-    const float textWidth = juce::jmin (area.getWidth(),
-        juce::GlyphArrangement::getStringWidth (label.getFont(), label.getText()));
-    if (label.getJustificationType().testFlags (juce::Justification::horizontallyCentred))
-        return juce::roundToInt (area.getX() + (area.getWidth() - textWidth) * 0.5f);
-    if (label.getJustificationType().testFlags (juce::Justification::right))
-        return juce::roundToInt (area.getRight() - textWidth);
-    return juce::roundToInt (area.getX());
-}
-
 void paintPanelSurface (juce::Graphics& g, juce::Rectangle<int> bounds, juce::Colour surface)
 {
     const auto area = bounds.toFloat().reduced (1.0f);
@@ -125,19 +119,18 @@ void paintPanelSurface (juce::Graphics& g, juce::Rectangle<int> bounds, juce::Co
 
 void paintPanelTitle (juce::Graphics& g, juce::Rectangle<int> bounds,
                       juce::Colour background, juce::Colour ink,
-                      const juce::String& title, int inset = sectionPadding + 10,
-                      float cornerRadius = panelRadius)
+                      const juce::String& title)
 {
     const auto bar = bounds.toFloat().reduced (1.0f).withHeight ((float) panelTitleBarHeight);
     g.setColour (background);
-    g.fillRoundedRectangle (bar, cornerRadius);
+    g.fillRoundedRectangle (bar, panelRadius);
     // Keep the upper panel corners rounded and the lower edge straight.
-    g.fillRect (bar.withTrimmedTop (cornerRadius));
+    g.fillRect (bar.withTrimmedTop (panelRadius));
     g.setColour (ink.withAlpha (0.8f));
     g.setFont (juce::Font (juce::FontOptions (16.0f, juce::Font::bold)));
     g.drawText (title, bounds.withY ((int) bar.getY()).withHeight (panelTitleBarHeight)
-                            .withTrimmedLeft (inset).withTrimmedRight (sectionPadding),
-                juce::Justification::centredLeft);
+                            .reduced (sectionPadding, 0),
+                juce::Justification::centred);
 }
 } // namespace
 
@@ -793,22 +786,34 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
 
     for (int index = 0; index < processor.getNumPrograms(); ++index)
         programBox.addItem (processor.getProgramName (index), index + 1);
-    programBox.setSelectedId (processor.getCurrentProgram() + 1,
-                              juce::dontSendNotification);
+    refreshPresetDisplay();
     programBox.onChange = [this]
     {
         const int index = programBox.getSelectedId() - 1;
-        if (index >= 0 && index != processor.getCurrentProgram())
+        if (juce::isPositiveAndBelow (index, processor.getNumPrograms())
+            && (index != processor.getCurrentProgram()
+                || processor.getCurrentPresetName().isNotEmpty()))
+        {
             processor.setCurrentProgram (index);
+            refreshPresetDisplay();
+        }
     };
     canvas.addAndMakeVisible (programBox);
-    programLabel.setText ("Program", juce::dontSendNotification);
+    programBox.setName ("Preset");
+    programLabel.setText ("Preset", juce::dontSendNotification);
     programLabel.setFont (juce::Font (juce::FontOptions (18.0f)));
     programLabel.setBorderSize (juce::BorderSize<int> (0));
     programLabel.setJustificationType (juce::Justification::centred);
     programLabel.setColour (juce::Label::textColourId,
                             colours::frame.withAlpha (0.88f));
     canvas.addAndMakeVisible (programLabel);
+    programBox.setTooltip ("Choose a factory preset");
+    loadPresetButton.setTooltip ("Load a Septum preset file");
+    savePresetButton.setTooltip ("Save both parts and all shared settings to a Septum preset file");
+    loadPresetButton.onClick = [this] { choosePresetFile (false); };
+    savePresetButton.onClick = [this] { choosePresetFile (true); };
+    canvas.addAndMakeVisible (loadPresetButton);
+    canvas.addAndMakeVisible (savePresetButton);
 
     // Every control on this strip belongs to the patch as a whole. BEND and
     // TONE OCT used to sit here and are Patch Tone bytes; they moved to
@@ -950,7 +955,7 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
         detailsButton.setToggleState (showingDetails, juce::dontSendNotification);
         detailsButton.setButtonText (showingDetails ? "DETAILS -" : "DETAILS +");
         const int panelHeight = editorHeight + (showingDetails ? extraRowHeight : 0);
-        setResizeLimits (minimumWidth, panelHeight * 3 / 5, editorWidth * 2, panelHeight * 2);
+        setResizeLimits (minimumWidth, (int) (panelHeight * minimumScale), editorWidth * 2, panelHeight * 2);
         if (auto* constrainer = getConstrainer())
             constrainer->setFixedAspectRatio ((double) editorWidth / panelHeight);
         if (auto* display = juce::Desktop::getInstance().getDisplays().getDisplayForRect (getScreenBounds()))
@@ -1020,8 +1025,120 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
 
 SeptumAudioProcessorEditor::~SeptumAudioProcessorEditor()
 {
+    presetMessageBox = {};
+    presetChooser.reset();
     keyboardState.removeListener (this);
     setLookAndFeel (nullptr);
+}
+
+void SeptumAudioProcessorEditor::refreshPresetDisplay()
+{
+    const auto name = processor.getCurrentPresetName();
+    const int factoryCount = processor.getNumPrograms();
+    if (name.isEmpty())
+    {
+        if (programBox.getNumItems() > factoryCount)
+        {
+            programBox.clear (juce::dontSendNotification);
+            for (int index = 0; index < factoryCount; ++index)
+                programBox.addItem (processor.getProgramName (index), index + 1);
+        }
+        programBox.setSelectedId (processor.getCurrentProgram() + 1, juce::dontSendNotification);
+    }
+    else
+    {
+        // A file may have the same name as a factory sound. Give it its own
+        // menu identity so selecting that factory sound still reloads it.
+        const int customItemId = factoryCount + 1;
+        if (programBox.getNumItems() == factoryCount)
+        {
+            programBox.addSeparator();
+            programBox.addItem (name, customItemId);
+            programBox.setItemEnabled (customItemId, false);
+        }
+        else if (programBox.getItemText (factoryCount) != name)
+            programBox.changeItemText (customItemId, name);
+        programBox.setSelectedId (customItemId, juce::dontSendNotification);
+    }
+}
+
+void SeptumAudioProcessorEditor::choosePresetFile (bool saving)
+{
+    if (! loadPresetButton.isEnabled())
+        return;
+
+    auto initial = lastPresetFile;
+    if (initial == juce::File())
+        initial = juce::File::getSpecialLocation (juce::File::userDocumentsDirectory);
+    if (saving)
+    {
+        auto name = processor.getCurrentPresetName();
+        if (name.isEmpty())
+            name = processor.getProgramName (processor.getCurrentProgram());
+        const auto directory = initial.isDirectory() ? initial : initial.getParentDirectory();
+        initial = directory.getChildFile (juce::File::createLegalFileName (name))
+                           .withFileExtension (".septum");
+    }
+
+    loadPresetButton.setEnabled (false);
+    savePresetButton.setEnabled (false);
+    presetChooser = std::make_unique<juce::FileChooser> (
+        saving ? "Save Septum preset" : "Load Septum preset", initial, "*.septum", true, false, this);
+    const int flags = juce::FileBrowserComponent::canSelectFiles
+        | (saving ? juce::FileBrowserComponent::saveMode | juce::FileBrowserComponent::warnAboutOverwriting
+                  : juce::FileBrowserComponent::openMode);
+    const juce::Component::SafePointer<SeptumAudioProcessorEditor> safeThis (this);
+    presetChooser->launchAsync (flags, [safeThis, saving] (const juce::FileChooser& chooser)
+    {
+        if (safeThis == nullptr)
+            return;
+        const auto selected = chooser.getResult();
+        const auto file = saving && selected != juce::File()
+                            ? selected.withFileExtension (".septum") : selected;
+        // Native dialogs confirm replacement of their selected path. If a
+        // platform leaves the suffix off, confirm the actual final path too.
+        if (saving && file != selected && file.existsAsFile())
+        {
+            safeThis->presetMessageBox = juce::AlertWindow::showScopedAsync (
+                juce::MessageBoxOptions().withTitle ("Replace preset?")
+                    .withMessage ("A preset named \"" + file.getFileName() + "\" already exists.")
+                    .withButton ("Replace").withButton ("Cancel")
+                    .withAssociatedComponent (safeThis.getComponent()),
+                [safeThis, file] (int result)
+                {
+                    if (safeThis != nullptr)
+                        safeThis->finishPresetFileChoice (result == 1 ? file : juce::File(), true);
+                });
+            return;
+        }
+        safeThis->finishPresetFileChoice (file, saving);
+    });
+}
+
+void SeptumAudioProcessorEditor::finishPresetFileChoice (const juce::File& file, bool saving)
+{
+    loadPresetButton.setEnabled (true);
+    savePresetButton.setEnabled (true);
+    if (file == juce::File())
+        return;
+
+    const auto result = saving ? processor.savePresetToFile (file) : processor.loadPresetFromFile (file);
+    if (result.failed())
+    {
+        presetMessageBox = juce::AlertWindow::showScopedAsync (
+            juce::MessageBoxOptions().withIconType (juce::MessageBoxIconType::WarningIcon)
+                .withTitle (saving ? "Couldn’t save preset" : "Couldn’t load preset")
+                .withMessage (result.getErrorMessage()).withButton ("OK")
+                .withAssociatedComponent (this), nullptr);
+        return;
+    }
+
+    lastPresetFile = file;
+    refreshPresetDisplay();
+    reconcileEditTarget();
+    refreshToneTarget();
+    refreshValues();
+    canvas.repaint();
 }
 
 void SeptumAudioProcessorEditor::stepKeyboardOctave (int delta)
@@ -1654,7 +1771,8 @@ void SeptumAudioProcessorEditor::layoutSection (Section& section,
     if (! sliders.empty())
     {
         const int stripWidth = (int) sliders.size() * sliderCell;
-        auto strip = content.removeFromLeft (stripWidth);
+        auto strip = grid.empty() ? content.withSizeKeepingCentre (stripWidth, content.getHeight())
+                                  : content.removeFromLeft (stripWidth);
         for (std::size_t i = 0; i < sliders.size(); ++i)
         {
             auto cell = strip.removeFromLeft (sliderCell);
@@ -1798,21 +1916,30 @@ void SeptumAudioProcessorEditor::layoutPanel()
 {
     const int detailHeight = showingDetails ? extraRowHeight : 0;
     titleLabel.setBorderSize (juce::BorderSize<int> (0));
-    titleLabel.setBounds (46, sectionPadding + sectionTitleHeight + 10, 200, 46);
+    titleLabel.setBounds (46, instrumentTopPadding + (headerHeight - 46) / 2, 180, 46);
+    const int presetRowTop = instrumentTopPadding + sectionPadding + sectionTitleHeight;
     layoutControlCell (programBox, programLabel, nullptr,
-                       { 264, sectionPadding + sectionTitleHeight, 288, gridRowHeight },
-                       288, comboHeight);
-    layoutSection (*systemSection, { 1376, 0, 340, performanceHeight });
+                       { 250, presetRowTop, 300, gridRowHeight }, 300, comboHeight);
+    programLabel.setBounds (programBox.getX() + fieldTextInset, presetRowTop - 3, 138, 26);
+    loadPresetButton.setBounds (406, presetRowTop - 3, 68, 26);
+    savePresetButton.setBounds (482, presetRowTop - 3, 68, 26);
+    layoutSection (*systemSection, { editorWidth - outerPadding - systemPanelWidth,
+                                    instrumentTopPadding, systemPanelWidth, performanceHeight });
 
     // Patch selection, keyboard routing and tuning apply to both parts.
-    routingSection->bounds = { 580, 0, 780, performanceHeight };
+    const int routingLeft = outerPadding + presetPanelWidth + sectionGap;
+    routingSection->bounds = { routingLeft, instrumentTopPadding,
+                               systemSection->bounds.getX() - sectionGap - routingLeft,
+                               performanceHeight };
     {
         auto content = routingSection->bounds.reduced (sectionPadding);
         content.removeFromTop (sectionTitleHeight);
         int x = content.getX();
+        const int selectorWidth = (content.getWidth() - 204) / 2;
         for (auto* control : routingSection->controls)
         {
-            const int width = control->style == Style::Combo ? 276 : 204;
+            const int width = control->style == Style::Combo ? selectorWidth
+                                                            : content.getRight() - x;
             layoutControlCell (*control->component, *control->label, control->value.get(),
                                { x, content.getY(), width, gridRowHeight },
                                control->style == Style::Combo ? width - 2 * fieldInset : knobDiameter,
@@ -1824,8 +1951,11 @@ void SeptumAudioProcessorEditor::layoutPanel()
     // Part selection and playing behavior sit directly above the two rows
     // they govern. All per-part controls stay inside this ivory faceplate.
     const int partHeaderTop = partTop + sectionPadding;
-    layoutSection (*tonePlaySection, { 1292, partHeaderTop, 424, performanceHeight });
-    editToneSection->bounds = { 24, partHeaderTop, 1252, performanceHeight };
+    layoutSection (*tonePlaySection, { editorWidth - outerPadding - performancePanelWidth,
+                                      partHeaderTop, performancePanelWidth, performanceHeight });
+    editToneSection->bounds = { outerPadding, partHeaderTop,
+                                tonePlaySection->bounds.getX() - sectionGap - outerPadding,
+                                performanceHeight };
     {
         auto row = editToneSection->bounds.reduced (sectionPadding);
         row.removeFromTop (sectionTitleHeight);
@@ -1853,7 +1983,8 @@ void SeptumAudioProcessorEditor::layoutPanel()
     // The lower faceplate is stable regardless of which part is selected.
     layoutBand ({ 11, 12, 13, 14 }, { 24, sharedTop, editorWidth - 48, performanceHeight + detailHeight });
     detailsButton.setBounds (editorWidth - 178, sharedTop - 34, 150, 28);
-    performSection->bounds = { 24, performanceTop + detailHeight, 424, performanceHeight };
+    performSection->bounds = { outerPadding, performanceTop + detailHeight,
+                               performancePanelWidth, performanceHeight };
     const int controlTop = performanceTop + detailHeight + sectionPadding + sectionTitleHeight;
     auto performanceRow = performSection->bounds.reduced (sectionPadding)
                              .withY (controlTop).withHeight (gridRowHeight);
@@ -1874,7 +2005,9 @@ void SeptumAudioProcessorEditor::layoutPanel()
     voiceLabel.setBounds (performanceRow.removeFromBottom (valueHeight).reduced (2, 0));
     meterBounds = performanceRow;
 
-    stripSection->bounds = { 464, performanceTop + detailHeight, editorWidth - 488, performanceHeight };
+    const int stripLeft = performSection->bounds.getRight() + sectionGap;
+    stripSection->bounds = { stripLeft, performanceTop + detailHeight,
+                             editorWidth - outerPadding - stripLeft, performanceHeight };
     auto stripContent = stripSection->bounds.reduced (sectionPadding);
     stripContent.removeFromTop (sectionTitleHeight);
     // Keep patch knobs at a readable fixed width. The remaining space
@@ -1936,7 +2069,8 @@ void SeptumAudioProcessorEditor::PanelCanvas::paint (juce::Graphics& g)
 void SeptumAudioProcessorEditor::paintPanel (juce::Graphics& g)
 {
     g.fillAll (colours::surround);
-    paintPanelSurface (g, { 24, 0, 540, headerHeight }, colours::sharedWell);
+    paintPanelSurface (g, { outerPadding, instrumentTopPadding, presetPanelWidth, headerHeight },
+                       colours::sharedWell);
     const auto partArea = juce::Rectangle<float> (12.0f, (float) partTop,
         editorWidth - 24.0f, (float) (modulationTop + bandHeight + sectionPadding - partTop));
     g.setColour (colours::partTray);
@@ -1945,7 +2079,7 @@ void SeptumAudioProcessorEditor::paintPanel (juce::Graphics& g)
     paintPanelSurface (g, editToneSection->bounds, colours::paperWell);
     paintPanelTitle (g, editToneSection->bounds,
                      colours::paperWell.interpolatedWith (partColour, 0.10f), colours::ink,
-                     "PART EDITOR", 2 * sectionPadding);
+                     "PART EDITOR");
     g.setColour (colours::frame.withAlpha (0.8f));
     g.setFont (juce::Font (juce::FontOptions (16.0f, juce::Font::bold)));
     g.drawText ("GLOBAL", 24 + sectionPadding + 10, sharedTop - 30, 84, 24, juce::Justification::centredLeft);
@@ -1964,17 +2098,7 @@ void SeptumAudioProcessorEditor::paintPanel (juce::Graphics& g)
         const auto ink = perTone ? colours::ink : colours::frame;
         const auto titleBackground = perTone ? surface.interpolatedWith (partColour, 0.10f)
                                              : surface.darker (0.07f);
-        // Align to the printed caption, not its wider centring box. This
-        // keeps headings aligned for fields, knobs, switches and faders.
-        const juce::Label* firstCaption = section.get() == performSection ? &masterLabel : nullptr;
-        for (const auto* control : section->controls)
-            if (firstCaption == nullptr && ! control->inHeader
-                && control->label->isVisible() && control->label->getText().isNotEmpty())
-                firstCaption = control->label.get();
-        const int titleInset = firstCaption != nullptr
-            ? juce::jmax (sectionPadding, labelTextLeft (*firstCaption) - section->bounds.getX())
-            : sectionPadding + fieldInset + fieldTextInset;
-        paintPanelTitle (g, section->bounds, titleBackground, ink, section->title, titleInset);
+        paintPanelTitle (g, section->bounds, titleBackground, ink, section->title);
     }
     paintPartTabs (g);
 
@@ -2206,8 +2330,7 @@ void SeptumAudioProcessorEditor::timerCallback()
         refreshToneTarget();
         canvas.repaint();
     }
-    programBox.setSelectedId (processor.getCurrentProgram() + 1,
-                              juce::dontSendNotification);
+    refreshPresetDisplay();
     // juce::Label::setText only repaints when the text actually changes, so
     // this costs nothing on the frames where nothing moved.
     refreshValues();

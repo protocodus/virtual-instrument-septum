@@ -265,6 +265,9 @@ private:
     void layoutSection (Section& section, juce::Rectangle<int> bounds);
     void layoutBand (const std::vector<int>& indices, juce::Rectangle<int> bounds);
     void refreshValues();
+    void refreshPresetDisplay();
+    void choosePresetFile (bool saving);
+    void finishPresetFileChoice (const juce::File&, bool saving);
     // Places every control inside the design-size rectangle. Called from
     // resized(), but independent of the window: the window only sets the
     // canvas transform.
@@ -314,9 +317,13 @@ private:
     juce::TextButton octDownButton { "DOWN" }, octUpButton { "UP" };
     Control* tempoControl { nullptr };
 
-    // Program selector in the header.
+    // Factory selector and native preset files in the header.
     juce::ComboBox programBox;
     juce::Label programLabel;
+    juce::TextButton loadPresetButton { "LOAD" }, savePresetButton { "SAVE" };
+    std::unique_ptr<juce::FileChooser> presetChooser;
+    juce::ScopedMessageBox presetMessageBox;
+    juce::File lastPresetFile;
     // The edit-target tabs, in the header above everything they govern.
     juce::TextButton detailsButton { "DETAILS +" };
     bool showingDetails { false };

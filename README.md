@@ -121,7 +121,8 @@ backing, wider gutters and lightly raised cards separate each module. Program, r
 system controls also occupy distinct cards. Larger labels, aligned value rows
 and explicit space between rows keep controls readable. Selector captions line
 up with their field text; knob and fader captions stay centred on their axes.
-Headers align with each panel's first caption, and fields share the same padding.
+Island titles are centred in their bars. Panels share a little more inner padding,
+and the instrument has breathing room above its top row.
 Each LFO places its source and timing controls above two matching target/depth
 pairs. Oscillator Wide sits below Pitch, beside the explicitly named Pitch env
 amount. Soft title
@@ -149,6 +150,13 @@ Their **Dly send** and **Rev send** labels distinguish them from the shared effe
 In PATCH, the modulation target and part form a pair, separated from the level
 controls and the bend/expression destinations by wider gaps.
 The keyboard extends to the bottom edge of the panel.
+
+**LOAD** and **SAVE** beside the preset selector open native file dialogs for
+`.septum` presets. Each file stores both parts, their on/off states, shared
+effects and system settings, and any imported arpeggio pattern. The selector
+shows the file's name after loading or saving; choose a factory sound from
+the same menu to start again. Failed or cancelled loads leave the current
+sound intact, and saves confirm before replacing an existing file.
 
 The default view shows the main arpeggio, input and effects controls.
 Arpeggio, delay and reverb on/off switches sit in their panel headers.

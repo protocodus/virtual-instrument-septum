@@ -622,6 +622,207 @@ void testStateRoundTrip()
             "resonance survives the state round trip");
 }
 
+void testNativePresetFiles()
+{
+    struct ScratchFolder
+    {
+        juce::File file { juce::File::getSpecialLocation (juce::File::tempDirectory)
+                             .getChildFile ("septum-preset-test-" + juce::Uuid().toString()) };
+        ~ScratchFolder() { file.deleteRecursively(); }
+    } scratch;
+    const auto created = scratch.file.createDirectory();
+    expect (created.wasOk(), "preset test folder can be created");
+    if (created.failed())
+        return;
+    const auto preset = scratch.file.getChildFile ("Evening Glass.septum");
+    const auto renamed = scratch.file.getChildFile ("Renamed Glass.septum");
+    const auto invalid = scratch.file.getChildFile ("Broken.septum");
+
+    SeptumAudioProcessor source;
+    auto patch = septum::initPatch();
+    patch.upper.cutoff = 47;
+    patch.lower.resonance = 91;
+    patch.arpeggio.style = septum::ArpeggioStyle {};
+    patch.arpeggio.style.endStep = 13;
+    for (int row = 0; row < septum::arpeggioMaxRows; ++row)
+    {
+        patch.arpeggio.style.originalNote[(std::size_t) row] = 48 + row;
+        for (int step = 0; step < 13; ++step)
+            patch.arpeggio.style.cells[(std::size_t) step][(std::size_t) row] =
+                (signed char) ((step + row) % 3 == 0 ? septum::arpeggioTie
+                                                   : 1 + (step * 5 + row) % 127);
+    }
+    source.loadPatch (patch);
+    const auto set = [&source] (const char* id, float value)
+    {
+        source.parameters.getParameter (id)->setValueNotifyingHost (
+            source.parameters.getParameterRange (id).convertTo0to1 (value));
+    };
+    set ("master_level", 93.0f);
+    set ("system_master_tune", 443.2f);
+    set ("delay_time", 83.0f);
+    set ("reverb_time", 69.0f);
+    set ("lower_enabled", 0.0f);
+    source.parameters.state.setProperty ("editingUpperTone", false, nullptr);
+    expect (source.getCurrentPresetName().isEmpty(), "a factory program has no custom preset name");
+    const auto saved = source.savePresetToFile (preset);
+    expect (saved.wasOk(), "native preset saves: " + saved.getErrorMessage());
+    if (saved.failed())
+        return;
+    expect (source.getCurrentPresetName() == "Evening Glass", "save adopts the file's basename");
+    expect (preset.copyFileTo (renamed), "the native file can be copied and renamed");
+
+    SeptumAudioProcessor loaded;
+    const auto result = loaded.loadPresetFromFile (renamed);
+    expect (result.wasOk(), "native preset loads: " + result.getErrorMessage());
+    if (result.failed())
+        return;
+    for (const auto* parameter : source.getParameters())
+        if (const auto* identified = dynamic_cast<const juce::AudioProcessorParameterWithID*> (parameter))
+        {
+            const auto& id = identified->paramID;
+            const auto original = source.parameters.getRawParameterValue (id)->load();
+            const auto restored = loaded.parameters.getRawParameterValue (id)->load();
+            // APVTS normalisation can move an integer's raw float by a few
+            // millionths (for example 20 -> 20.0000019). The engine rounds
+            // those to the same documented value, checked byte-for-byte below.
+            expect (std::abs (original - restored) <= 0.00001f,
+                    "native preset restores " + id + " ("
+                        + juce::String (original, 10) + " -> " + juce::String (restored, 10) + ")");
+        }
+    expect (source.createSysExDataForCurrentPatch() == loaded.createSysExDataForCurrentPatch(),
+            "native preset restores every documented patch byte exactly");
+    const auto restoredStyle = loaded.snapshotPatch().arpeggio.style;
+    expect (restoredStyle.endStep == patch.arpeggio.style.endStep
+                && restoredStyle.originalNote == patch.arpeggio.style.originalNote
+                && restoredStyle.cells == patch.arpeggio.style.cells,
+            "native preset restores the complete imported arpeggio grid");
+    expect (loaded.getCurrentPresetName() == "Renamed Glass", "load uses the renamed file's basename");
+    expect (! (bool) loaded.parameters.state["editingUpperTone"], "native preset restores the editing part");
+
+    const auto capture = [] (SeptumAudioProcessor& processor)
+    {
+        juce::MemoryBlock state;
+        processor.getStateInformation (state);
+        return state;
+    };
+    const auto baseline = capture (loaded);
+    SeptumAudioProcessor session;
+    session.setStateInformation (baseline.getData(), (int) baseline.getSize());
+    expect (session.getCurrentPresetName() == "Renamed Glass", "custom name survives a host session restore");
+    for (const bool matchesFactoryName : { false, true })
+    {
+        session.setStateInformation (baseline.getData(), (int) baseline.getSize());
+        const int factory = session.getCurrentProgram();
+        const auto expectedName = matchesFactoryName ? session.getProgramName (factory)
+                                                    : juce::String ("Renamed Glass");
+        if (matchesFactoryName)
+        {
+            const auto defaultFile = scratch.file.getChildFile (expectedName + ".septum");
+            expect (session.savePresetToFile (defaultFile).wasOk(), "save under the factory's default filename");
+            expect (session.loadPresetFromFile (defaultFile).wasOk(), "load a custom file named like its factory slot");
+        }
+        std::unique_ptr<juce::AudioProcessorEditor> editorBase (session.createEditor());
+        auto* editor = dynamic_cast<SeptumAudioProcessorEditor*> (editorBase.get());
+        juce::ComboBox* presetBox = nullptr;
+        if (editor != nullptr)
+            for (auto* child : editor->getPanel().getChildren())
+                if (child->getName() == "Preset")
+                    presetBox = dynamic_cast<juce::ComboBox*> (child);
+        expect (presetBox != nullptr, "the editor exposes the preset selector");
+        if (presetBox != nullptr)
+        {
+            expect (presetBox->getText() == expectedName, "the editor displays the loaded native preset name");
+            expect (presetBox->getSelectedId() != factory + 1,
+                    "a custom name never selects a same-named factory menu item");
+            presetBox->setSelectedId (factory + 1, juce::sendNotificationSync);
+            expect (session.getCurrentPresetName().isEmpty()
+                        && presetBox->getText() == session.getProgramName (factory),
+                    "selecting the underlying factory slot replaces a custom preset and its caption");
+            expect (session.snapshotPatch().upper.cutoff
+                        == septum::factoryPatches()[(std::size_t) factory].patch.upper.cutoff,
+                    "reselecting that factory slot restores its actual sound");
+        }
+    }
+
+    juce::MemoryBlock validData;
+    expect (preset.loadFileAsData (validData), "saved preset can be read for rejection checks");
+    const auto xml = juce::AudioProcessor::getXmlFromBinary (validData.getData(), (int) validData.getSize());
+    expect (xml != nullptr, "native preset contains the complete serialized state");
+    if (xml == nullptr)
+        return;
+    const auto validTree = juce::ValueTree::fromXml (*xml);
+    const auto reject = [&] (const juce::MemoryBlock& bytes, const juce::String& reason)
+    {
+        expect (invalid.replaceWithData (bytes.getData(), bytes.getSize()), "write fixture: " + reason);
+        const auto rejected = loaded.loadPresetFromFile (invalid);
+        expect (rejected.failed() && rejected.getErrorMessage().isNotEmpty(), "reject " + reason + " with a useful error");
+        expect (capture (loaded) == baseline, "rejecting " + reason + " leaves every setting and name unchanged");
+    };
+    const auto rejectTree = [&] (const juce::ValueTree& tree, const juce::String& reason)
+    {
+        juce::MemoryBlock bytes;
+        juce::AudioProcessor::copyXmlToBinary (*tree.createXml(), bytes);
+        reject (bytes, reason);
+    };
+    reject (juce::MemoryBlock ("not a preset", 12), "arbitrary bytes");
+    auto truncated = validData;
+    truncated.setSize (truncated.getSize() - 3);
+    reject (truncated, "a truncated file");
+    rejectTree (juce::ValueTree ("AnotherInstrument"), "another instrument's state");
+    auto broken = validTree.createCopy();
+    broken.setProperty ("preset_format_version", 99, nullptr);
+    rejectTree (broken, "an unsupported version");
+    broken = validTree.createCopy();
+    broken.removeChild (0, nullptr);
+    rejectTree (broken, "a missing parameter");
+    broken = validTree.createCopy();
+    broken.getChild (0).setProperty ("id", broken.getChild (1)["id"], nullptr);
+    rejectTree (broken, "a duplicated parameter");
+    broken = validTree.createCopy();
+    broken.getChild (0).removeProperty ("value", nullptr);
+    rejectTree (broken, "a missing value");
+    for (const auto* badValue : { "NaN", "22junk", "99999", "1.5" })
+    {
+        broken = validTree.createCopy();
+        broken.getChildWithProperty ("id", "up_cutoff").setProperty ("value", badValue, nullptr);
+        rejectTree (broken, "an invalid parameter value " + juce::String (badValue));
+    }
+    broken = validTree.createCopy();
+    broken.setProperty ("arpeggio_grid", "not base64!!", nullptr);
+    rejectTree (broken, "a corrupt imported grid");
+    broken = validTree.createCopy();
+    broken.setProperty ("arpeggio_grid_end_step", 0, nullptr);
+    rejectTree (broken, "an invalid imported grid length");
+
+    const auto failedSave = loaded.savePresetToFile (scratch.file.getChildFile ("missing/Fail.septum"));
+    expect (failedSave.failed() && failedSave.getErrorMessage().isNotEmpty(), "save reports an unavailable destination");
+    expect (capture (loaded) == baseline, "a failed save does not rename or change the current sound");
+    expect (loaded.loadPresetFromFile (scratch.file.getChildFile ("Absent.septum")).failed(), "load reports a missing file");
+    expect (capture (loaded) == baseline, "a missing file does not change the current sound");
+
+    set ("up_cutoff", 103.0f);
+    expect (source.savePresetToFile (preset).wasOk(), "save can replace an existing preset");
+    expect (loaded.loadPresetFromFile (preset).wasOk()
+                && loaded.parameters.getRawParameterValue ("up_cutoff")->load() == 103.0f,
+            "replacement contains the newly saved sound");
+    loaded.setCurrentProgram (loaded.getCurrentProgram());
+    expect (loaded.getCurrentPresetName().isEmpty(), "selecting the same factory slot clears the custom name");
+    const auto factoryState = capture (loaded);
+    session.setStateInformation (factoryState.getData(), (int) factoryState.getSize());
+    expect (session.getCurrentPresetName().isEmpty(), "factory selection clears the custom name in saved sessions");
+
+    session.setStateInformation (baseline.getData(), (int) baseline.getSize());
+    session.prepareToPlay (44100.0, 256);
+    juce::AudioBuffer<float> buffer (2, 256);
+    auto programChange = messageAt (juce::MidiMessage::programChange (1, 2));
+    session.processBlock (buffer, programChange);
+    expect (session.getCurrentPresetName().isEmpty(), "MIDI program change clears the name without pumping messages");
+    const auto midiState = capture (session);
+    loaded.setStateInformation (midiState.getData(), (int) midiState.getSize());
+    expect (loaded.getCurrentPresetName().isEmpty(), "an unpumped MIDI program change saves its factory identity");
+}
+
 void testPartControlsSurviveSessionsAndPublishActualActivity()
 {
     SeptumAudioProcessor processor;
@@ -1341,10 +1542,10 @@ void testEditorFitsASmallDisplay()
                              juce::Rectangle<int> { 1440, 900 } })
     {
         const auto size = Editor::panelSizeForWorkArea (work);
-        expect (size.getWidth() <= work.getWidth()
-                    && size.getHeight() <= work.getHeight(),
+        expect (size.getWidth() <= work.getWidth() - 32
+                    && size.getHeight() <= work.getHeight() - 64,
                 "the panel fits a " + std::to_string (work.getWidth()) + "x"
-                    + std::to_string (work.getHeight()) + " work area");
+                    + std::to_string (work.getHeight()) + " work area including window chrome");
         expect (std::abs ((double) size.getWidth() / size.getHeight() - aspect)
                     < 0.01,
                 "the panel keeps its proportions when it shrinks");
@@ -3529,6 +3730,7 @@ int main (int argc, char* argv[])
     testStateSurvivesUnpumpedProgramChange();
     testProgramsLoad();
     testStateRoundTrip();
+    testNativePresetFiles();
     testPartControlsSurviveSessionsAndPublishActualActivity();
     testIntervalButtonsAreRelativeToOscOne();
     testThePanelsInvariantsAreCheckedBySomethingThatRuns();

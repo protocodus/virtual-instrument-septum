@@ -51,6 +51,13 @@ public:
     void getStateInformation (juce::MemoryBlock& destinationData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+    // Native presets carry the complete plug-in state, including both parts,
+    // shared/system settings and any imported arpeggio pattern. File access
+    // belongs on the message thread; a failed load leaves the sound intact.
+    [[nodiscard]] juce::Result savePresetToFile (const juce::File& file);
+    [[nodiscard]] juce::Result loadPresetFromFile (const juce::File& file);
+    [[nodiscard]] juce::String getCurrentPresetName() const;
+
     // Editor helpers.
     [[nodiscard]] float getOutputLevel (int channel) const noexcept
     {
@@ -149,6 +156,8 @@ private:
     bool handleController (int controller, int value);
     void applyProgram (int index);
     void applyProgramAsync (int index);
+    void setCurrentPresetName (const juce::String& name, std::uint64_t identityRevision);
+    [[nodiscard]] juce::Result validatePresetState (const juce::ValueTree& state) const;
     // Writes a factory program straight into the cached raw-value atomics.
     // Allocation-free, so the audio thread can land a MIDI program change
     // without depending on the message loop ever running; the queued
@@ -347,6 +356,13 @@ private:
     std::array<std::atomic<int>, 2> partActiveVoices { 0, 0 };
     std::array<std::atomic<int>, 2> partHeldVoices { 0, 0 };
     std::atomic<int> currentProgram { 0 };
+    // A MIDI program change only advances this atomic revision. An in-flight
+    // file save cannot attach its older name to a subsequently loaded sound.
+    // The string/lock are used by editor and host callbacks, never by audio.
+    std::atomic<std::uint64_t> presetIdentityRevision { 0 };
+    mutable juce::CriticalSection presetNameLock;
+    juce::String currentPresetName;
+    std::uint64_t currentPresetNameRevision { 0 };
 
     struct UiNoteEvent
     {

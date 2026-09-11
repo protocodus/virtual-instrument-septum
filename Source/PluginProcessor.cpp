@@ -5,6 +5,8 @@
 #include <bit>
 #include <cmath>
 #include <cstring>
+#include <locale>
+#include <sstream>
 #include <thread>
 #include <vector>
 
@@ -12,6 +14,20 @@ namespace
 {
 using septum::Patch;
 using septum::TonePatch;
+
+constexpr int nativePresetVersion = 1;
+constexpr std::size_t maximumPresetBytes = 1024 * 1024;
+
+bool readPresetNumber (const juce::var& stored, double& value)
+{
+    const auto text = stored.toString().trim();
+    if (text.isEmpty())
+        return false;
+    std::istringstream parser (text.toStdString());
+    parser.imbue (std::locale::classic());
+    parser >> std::noskipws >> value;
+    return ! parser.fail() && parser.eof() && std::isfinite (value);
+}
 
 // ---------------------------------------------------------------------------
 // One binding per parameter: the same list drives layout creation, patch
@@ -1497,6 +1513,7 @@ void SeptumAudioProcessor::writeProgramToParameters (int index) noexcept
     // new index with the old values.
     patchGeneration.fetch_add (1, std::memory_order_acq_rel);
     currentProgram.store (index, std::memory_order_relaxed);
+    presetIdentityRevision.fetch_add (1, std::memory_order_acq_rel);
     resetPartEnablesToParameters();
 
     const auto& bindings = toneBindings();
@@ -1837,7 +1854,6 @@ void SeptumAudioProcessor::setCurrentProgram (int index)
 {
     if (index < 0 || index >= getNumPrograms())
         return;
-    currentProgram.store (index, std::memory_order_relaxed);
     applyProgram (index);
 }
 
@@ -1856,6 +1872,8 @@ void SeptumAudioProcessor::applyProgram (int index)
     // Remembered so the tail of this function can tell whether anything else
     // wrote the parameters while the spray below was running.
     const auto burst = patchGeneration.fetch_add (1, std::memory_order_acq_rel) + 1;
+    currentProgram.store (index, std::memory_order_relaxed);
+    presetIdentityRevision.fetch_add (1, std::memory_order_acq_rel);
     invalidateImportedArpeggioStyle();
 
     const auto apply = [this] (const juce::String& id, float natural)
@@ -2133,6 +2151,162 @@ const juce::String SeptumAudioProcessor::getProgramName (int index)
     return septum::factoryPatches()[(std::size_t) index].name;
 }
 
+juce::String SeptumAudioProcessor::getCurrentPresetName() const
+{
+    const juce::ScopedLock lock (presetNameLock);
+    return presetIdentityRevision.load (std::memory_order_acquire) == currentPresetNameRevision
+               ? currentPresetName : juce::String {};
+}
+
+void SeptumAudioProcessor::setCurrentPresetName (const juce::String& name,
+                                                std::uint64_t identityRevision)
+{
+    const juce::ScopedLock lock (presetNameLock);
+    if (presetIdentityRevision.load (std::memory_order_acquire) != identityRevision)
+        return;
+    currentPresetName = name;
+    currentPresetNameRevision = identityRevision;
+}
+
+juce::Result SeptumAudioProcessor::validatePresetState (const juce::ValueTree& state) const
+{
+    if (! state.isValid() || ! state.hasType (parameters.state.getType()))
+        return juce::Result::fail ("This file is not a Septum preset.");
+
+    double version = 0.0;
+    if (! readPresetNumber (state["preset_format_version"], version)
+        || version != nativePresetVersion)
+        return juce::Result::fail ("This preset uses an unsupported file version.");
+
+    double program = 0.0;
+    if (! readPresetNumber (state["program"], program)
+        || program != std::floor (program) || program < 0.0
+        || program >= static_cast<double> (septum::factoryPatches().size()))
+        return juce::Result::fail ("The preset contains an invalid program index.");
+
+    if (state.getNumChildren() != getParameters().size())
+        return juce::Result::fail ("The preset is incomplete or contains unsupported parameters.");
+
+    juce::StringArray seen;
+    for (const auto child : state)
+    {
+        const auto id = child["id"].toString();
+        const auto* parameter = parameters.getParameter (id);
+        if (! child.hasType ("PARAM") || child.getNumChildren() != 0
+            || parameter == nullptr || seen.contains (id))
+            return juce::Result::fail ("The preset contains an unknown or duplicated parameter: " + id);
+        seen.add (id);
+
+        double value = 0.0;
+        const auto& range = parameter->getNormalisableRange();
+        if (! readPresetNumber (child["value"], value)
+            || value < range.start || value > range.end
+            || std::abs (value - range.snapToLegalValue (static_cast<float> (value))) > 0.0001)
+            return juce::Result::fail ("The preset contains an invalid value for " + parameter->getName (64) + ".");
+    }
+
+    if (state.hasProperty ("arpeggio_grid")
+        || state.hasProperty ("arpeggio_grid_selector")
+        || state.hasProperty ("arpeggio_grid_end_step"))
+    {
+        double selector = 0.0, endStep = 0.0;
+        const auto& range = parameters.getParameterRange ("arp_style");
+        if (! readPresetNumber (state["arpeggio_grid_selector"], selector)
+            || selector != std::floor (selector) || selector < range.start || selector > range.end
+            || ! readPresetNumber (state["arpeggio_grid_end_step"], endStep)
+            || endStep != std::floor (endStep) || endStep < 1 || endStep > septum::arpeggioMaxSteps)
+            return juce::Result::fail ("The preset contains invalid arpeggio pattern settings.");
+
+        juce::MemoryOutputStream decoded;
+        const auto expected = septum::sysex::sizeArpeggioPattern
+                              * static_cast<std::size_t> (septum::arpeggioMaxRows);
+        if (! juce::Base64::convertFromBase64 (decoded, state["arpeggio_grid"].toString())
+            || decoded.getDataSize() != expected)
+            return juce::Result::fail ("The preset's arpeggio pattern is damaged.");
+        const auto* bytes = static_cast<const std::uint8_t*> (decoded.getData());
+        for (std::size_t i = 0; i < expected; i += 2)
+            if (bytes[i] > 0x0f || bytes[i + 1] > 0x0f
+                || (bytes[i] * 16 + bytes[i + 1]) > 128)
+                return juce::Result::fail ("The preset's arpeggio pattern contains invalid notes.");
+    }
+    return juce::Result::ok();
+}
+
+juce::Result SeptumAudioProcessor::savePresetToFile (const juce::File& file)
+{
+    if (file.getFileNameWithoutExtension().isEmpty() || file.isDirectory()
+        || ! file.getParentDirectory().isDirectory())
+        return juce::Result::fail ("Choose a preset filename in an existing folder.");
+
+    const auto identityRevision = presetIdentityRevision.load (std::memory_order_acquire);
+    juce::MemoryBlock data;
+    getStateInformation (data);
+    const auto xml = getXmlFromBinary (data.getData(), static_cast<int> (data.getSize()));
+    if (xml == nullptr)
+        return juce::Result::fail ("The current instrument state could not be saved.");
+
+    auto state = juce::ValueTree::fromXml (*xml);
+    const auto name = file.getFileNameWithoutExtension();
+    state.setProperty ("preset_format_version", nativePresetVersion, nullptr);
+    state.setProperty ("preset_name", name, nullptr);
+    if (const auto result = validatePresetState (state); result.failed())
+        return result;
+    copyXmlToBinary (*state.createXml(), data);
+
+    // Write beside the destination, close/flush, then replace it. An error
+    // cannot truncate a previously saved preset or rename the active sound.
+    juce::TemporaryFile temporary (file);
+    {
+        auto stream = temporary.getFile().createOutputStream();
+        if (stream == nullptr || stream->failedToOpen())
+            return juce::Result::fail ("Could not write to this folder. Choose another location.");
+        if (! stream->write (data.getData(), data.getSize()))
+            return juce::Result::fail ("The preset could not be written. Check available disk space.");
+        stream->flush();
+        if (stream->getStatus().failed())
+            return juce::Result::fail ("The preset could not be saved: " + stream->getStatus().getErrorMessage());
+    }
+    if (! temporary.overwriteTargetFileWithTemporary())
+        return juce::Result::fail ("Could not replace the preset file. Check its permissions or choose another name.");
+
+    setCurrentPresetName (name, identityRevision);
+    updateHostDisplay (ChangeDetails().withNonParameterStateChanged (true));
+    return juce::Result::ok();
+}
+
+juce::Result SeptumAudioProcessor::loadPresetFromFile (const juce::File& file)
+{
+    if (! file.existsAsFile())
+        return juce::Result::fail ("The selected preset file could not be found.");
+    if (file.getSize() < 9 || file.getSize() > static_cast<juce::int64> (maximumPresetBytes))
+        return juce::Result::fail ("The preset file is empty, damaged, or too large.");
+
+    juce::MemoryBlock data;
+    if (! file.loadFileAsData (data))
+        return juce::Result::fail ("The preset file could not be read. Check its permissions.");
+    // The host reader deliberately accepts old/truncated binary containers.
+    // Files selected by the user must contain one complete native document.
+    const auto* bytes = static_cast<const std::uint8_t*> (data.getData());
+    if (data.getSize() < 9 || data.getSize() > maximumPresetBytes
+        || static_cast<std::size_t> (juce::ByteOrder::littleEndianInt (bytes + 4)) != data.getSize() - 9
+        || bytes[data.getSize() - 1] != 0)
+        return juce::Result::fail ("The preset file is damaged or is not in Septum format.");
+    const auto xml = getXmlFromBinary (data.getData(), static_cast<int> (data.getSize()));
+    if (xml == nullptr)
+        return juce::Result::fail ("The selected file is not a readable Septum preset.");
+    auto state = juce::ValueTree::fromXml (*xml);
+    if (const auto result = validatePresetState (state); result.failed())
+        return result;
+
+    // Renaming a file also renames it in the instrument. Only reach the
+    // existing host-state restore after all file content has been checked.
+    state.setProperty ("preset_name", file.getFileNameWithoutExtension(), nullptr);
+    copyXmlToBinary (*state.createXml(), data);
+    setStateInformation (data.getData(), static_cast<int> (data.getSize()));
+    updateHostDisplay (ChangeDetails().withProgramChanged (true).withNonParameterStateChanged (true));
+    return juce::Result::ok();
+}
+
 void SeptumAudioProcessor::getStateInformation (
     juce::MemoryBlock& destinationData)
 {
@@ -2178,6 +2352,7 @@ void SeptumAudioProcessor::getStateInformation (
                 }
             }
             const int program = currentProgram.load (std::memory_order_relaxed);
+            const auto presetName = getCurrentPresetName();
             // Staged like the rest of it, into a tree of its own. A publish is
             // one store, so a read of the grid is always a whole grid — but
             // that only says it is not torn in itself. Written straight into
@@ -2197,6 +2372,10 @@ void SeptumAudioProcessor::getStateInformation (
                 state.getChild (indices[v])
                     .setProperty ("value", values[v], nullptr);
             state.setProperty ("program", program, nullptr);
+            if (presetName.isNotEmpty())
+                state.setProperty ("preset_name", presetName, nullptr);
+            else
+                state.removeProperty ("preset_name", nullptr);
             // Absent means the read found no grid to save, which is the
             // instruction to drop one the restored tree may still carry.
             for (const auto* key : { "arpeggio_grid", "arpeggio_grid_selector",
@@ -2233,12 +2412,14 @@ void SeptumAudioProcessor::setStateInformation (const void* data,
                     parameterState.setProperty ("value", 1.0f, nullptr);
                     state.addChild (parameterState, -1, nullptr);
                 }
-            currentProgram.store (state.getProperty ("program", 0),
-                                  std::memory_order_relaxed);
             // A state restore is a multi-parameter write burst like a
             // program spray: keep the generation odd across it so the audio
             // thread discards any snapshot that overlapped it.
             patchGeneration.fetch_add (1, std::memory_order_acq_rel);
+            currentProgram.store (state.getProperty ("program", 0),
+                                  std::memory_order_relaxed);
+            const auto identityRevision = presetIdentityRevision.fetch_add (1, std::memory_order_acq_rel) + 1;
+            setCurrentPresetName (state.getProperty ("preset_name").toString(), identityRevision);
             // Before the restore, not after. The restored session supersedes a
             // dump, a CC or a device-control message whose republish is still
             // queued — but only the ones that were already queued. Cancelling
