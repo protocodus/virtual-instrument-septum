@@ -116,16 +116,17 @@ render code. The open questions are listed under [Known gaps](#known-gaps).
 ### Reading the panel
 
 The SH-201-inspired panel combines a warm charcoal chassis, ivory part panels,
-hardware-style knobs and illuminated switches. A darker warm backing, wider
-gutters and lightly raised cards separate each module. Program, routing and
+hardware-style knobs and flat switches with clear on/off fills. A darker warm
+backing, wider gutters and lightly raised cards separate each module. Program, routing and
 system controls also occupy distinct cards. Larger labels, aligned value rows
 and explicit space between rows keep controls readable. Selector captions line
 up with their field text; knob and fader captions stay centred on their axes.
+Headers align with each panel's first caption, and fields share the same padding.
 LFO selectors, depth knobs and switches share consistent columns. Soft title
 bars follow the active part's colour, with the same silkscreen lettering at
-80% opacity. Shared
-headers use a quieter shade of their fixed panel colour. Space separates the
-modules without divider rules, tab stripes or decorative control ticks. The signal
+80% opacity. Shared headers use a quieter shade of their fixed panel colour.
+Space separates the modules without divider rules, tab stripes or decorative
+control ticks. The signal
 path reads left to right: OSC 1 + OSC 2 → MIX/MOD → FILTER → AMP, with envelopes
 and LFOs below. **TONE PLAY** sits beside the part selector above these panels,
 keeping portamento, glide time, voice mode, bend range and part octave with the
@@ -142,6 +143,7 @@ delay and reverb sit below the part panels;
 keyboard octave and tempo, while PATCH holds patch level, part balance and
 controller destinations. The delay and reverb sends remain in each part's
 **AMP** section because their levels belong to the selected part.
+The keyboard extends to the bottom edge of the panel.
 
 The default view shows the main arpeggio, input and effects controls.
 Arpeggio, delay and reverb on/off switches sit in their panel headers.

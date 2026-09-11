@@ -45,6 +45,8 @@ constexpr int valueHeight = 18;
 constexpr int knobDiameter = 36;
 constexpr int comboHeight = 28;
 constexpr int toggleHeight = 28;
+constexpr int fieldInset = 4;
+constexpr int fieldTextInset = 6;
 
 constexpr int sectionTitleHeight = 26;
 constexpr int sectionPadding = 12;
@@ -53,12 +55,14 @@ constexpr int gridRowHeight = 76;      // label + control + value
 constexpr int controlRowGap = 12;
 constexpr int extraRowHeight = gridRowHeight + controlRowGap;
 constexpr int sectionGap = 16;
+constexpr int partPowerWidth = 66;
+constexpr int partNameOffset = partPowerWidth + sectionGap;
 constexpr float panelRadius = 6.0f;
 
 constexpr int keyZoneHeight = 28;
 constexpr int performanceHeight = sectionTitleHeight + gridRowHeight + 2 * sectionPadding;
 constexpr int headerHeight = performanceHeight;
-constexpr int keyboardHeight = 82;
+constexpr int keyboardHeight = 94;
 constexpr float meterFloorDb = -48.0f;
 constexpr int bandHeight = performanceHeight + extraRowHeight;
 constexpr int windowChromeWidth = 32;
@@ -71,7 +75,7 @@ constexpr int modulationTop = voiceTop + bandHeight + sectionGap;
 constexpr int sharedTop = modulationTop + bandHeight + 56;
 constexpr int performanceTop = sharedTop + performanceHeight + sectionGap;
 constexpr int keysTop = performanceTop + performanceHeight + sectionGap;
-constexpr int editorHeight = keysTop + keyboardHeight + 12;
+constexpr int editorHeight = keysTop + keyboardHeight;
 // Bound host resizing while still fitting the complete panel on small displays.
 constexpr int minimumWidth = editorWidth * 3 / 5;
 constexpr int minimumHeight = editorHeight * 3 / 5;
@@ -92,9 +96,22 @@ void layoutControlCell (juce::Component& component, juce::Label& caption,
     {
         // Field labels start at the same edge as the selected text. Rotary
         // labels and readouts remain centred on their control's axis.
-        caption.setBounds (component.getX() + 6, captionTop, width - 12, labelHeight);
+        caption.setBounds (component.getX() + fieldTextInset, captionTop,
+                           width - 2 * fieldTextInset, labelHeight);
         caption.setJustificationType (juce::Justification::centredLeft);
     }
+}
+
+int labelTextLeft (const juce::Label& label)
+{
+    const auto area = label.getBorderSize().subtractedFrom (label.getBounds());
+    const float textWidth = juce::jmin ((float) area.getWidth(),
+        juce::GlyphArrangement::getStringWidth (label.getFont(), label.getText()));
+    if (label.getJustificationType().testFlags (juce::Justification::horizontallyCentred))
+        return juce::roundToInt (area.getX() + (area.getWidth() - textWidth) * 0.5f);
+    if (label.getJustificationType().testFlags (juce::Justification::right))
+        return juce::roundToInt (area.getRight() - textWidth);
+    return area.getX();
 }
 
 void paintPanelSurface (juce::Graphics& g, juce::Rectangle<int> bounds, juce::Colour surface)
@@ -119,7 +136,8 @@ void paintPanelTitle (juce::Graphics& g, juce::Rectangle<int> bounds,
     g.setColour (ink.withAlpha (0.8f));
     g.setFont (juce::Font (juce::FontOptions (16.0f, juce::Font::bold)));
     g.drawText (title, bounds.withY ((int) bar.getY()).withHeight (panelTitleBarHeight)
-                            .reduced (inset, 0), juce::Justification::centredLeft);
+                            .withTrimmedLeft (inset).withTrimmedRight (sectionPadding),
+                juce::Justification::centredLeft);
 }
 } // namespace
 
@@ -281,40 +299,19 @@ void SeptumLookAndFeel::drawButtonBackground (juce::Graphics& g,
         }
         return;
     }
-    if (static_cast<bool> (button.getProperties()["power"]))
+    const bool lightPanel = static_cast<bool> (button.getProperties()["perTone"])
+                            || static_cast<bool> (button.getProperties()["power"]);
+    const auto ink = lightPanel ? colours::ink : colours::frame;
+    auto fill = on ? ink : lightPanel ? colours::paper.darker (0.025f) : colours::surround;
+    if (isHighlighted || isDown)
+        fill = fill.interpolatedWith (on ? colours::paper : ink, isDown ? 0.14f : 0.07f);
+    g.setColour (fill);
+    g.fillRoundedRectangle (bounds, 4.0f);
+    if (button.hasKeyboardFocus (true))
     {
-        // Enable is independent of editing. Neutral ON/OFF pills leave the
-        // selected card as the only prominent part-colour light in the header.
-        g.setColour (on ? colours::ink : colours::ink.withAlpha (0.14f));
-        g.fillRoundedRectangle (bounds, 3.0f);
-        if (button.hasKeyboardFocus (true))
-        {
-            g.setColour (on ? colours::frame : colours::ink);
-            g.drawRoundedRectangle (bounds, 3.0f, 1.0f);
-        }
-        return;
+        g.setColour (ink);
+        g.drawRoundedRectangle (bounds.expanded (0.5f), 4.0f, 1.0f);
     }
-    g.setColour (juce::Colours::black.withAlpha (0.8f));
-    g.fillRoundedRectangle (bounds.translated (0.0f, 1.0f), 2.5f);
-    g.setGradientFill (juce::ColourGradient (
-        isHighlighted ? juce::Colour (0xff56584e) : juce::Colour (0xff42483d),
-        bounds.getTopLeft(), juce::Colour (0xff292e26), bounds.getBottomLeft(), false));
-    g.fillRoundedRectangle (bounds, 2.5f);
-    g.setColour (button.hasKeyboardFocus (true) ? colours::frame
-                                              : juce::Colour (0xff777a69));
-    g.drawRoundedRectangle (bounds, 2.5f, 0.8f);
-    if (button.getWidth() < 48)
-        return; // Compact octave actions need their full face for the label.
-    const auto led = bounds.withSizeKeepingCentre (8.0f, 3.0f)
-                        .withX (bounds.getX() + 5.0f);
-    const auto ledColour = colours::ledOn;
-    if (on)
-    {
-        g.setColour (ledColour.withAlpha (0.15f));
-        g.fillRoundedRectangle (led.expanded (2.0f), 2.0f);
-    }
-    g.setColour (on ? ledColour : juce::Colour (0xff0b1315));
-    g.fillRoundedRectangle (led, 1.0f);
 }
 
 void SeptumLookAndFeel::drawComboBox (juce::Graphics& g, int width,
@@ -359,7 +356,7 @@ juce::Font SeptumLookAndFeel::getTextButtonFont (juce::TextButton&, int)
 void SeptumLookAndFeel::positionComboBoxText (juce::ComboBox& box,
                                                   juce::Label& label)
 {
-    label.setBounds (6, 1, box.getWidth() - 27, box.getHeight() - 2);
+    label.setBounds (fieldTextInset, 1, box.getWidth() - 27, box.getHeight() - 2);
     label.setBorderSize (juce::BorderSize<int> (0));
     label.setFont (juce::Font (juce::FontOptions (17.0f)));
 }
@@ -385,22 +382,18 @@ void SeptumLookAndFeel::drawButtonText (juce::Graphics& g,
         auto title = bounds.removeFromTop (28);
         g.setFont (juce::Font (juce::FontOptions (20.0f, juce::Font::bold)));
         g.setColour (on ? tone : colours::ink.withAlpha (0.65f));
-        g.drawText (button.getButtonText(), title.withTrimmedLeft (80),
+        g.drawText (button.getButtonText(), title.withTrimmedLeft (partNameOffset),
                     juce::Justification::centredLeft);
         return;
     }
-    if (static_cast<bool> (button.getProperties()["power"]))
-    {
-        g.setFont (juce::Font (juce::FontOptions (13.0f, juce::Font::bold)));
-        g.setColour (on ? colours::frame : colours::ink);
-        g.drawText (button.getButtonText(), bounds, juce::Justification::centred);
-        return;
-    }
+    const bool lightPanel = static_cast<bool> (button.getProperties()["perTone"])
+                            || static_cast<bool> (button.getProperties()["power"]);
+    const bool compact = button.getWidth() < 48;
     g.setFont (juce::Font (juce::FontOptions (
-        button.getWidth() < 48 ? 11.0f : 14.0f, juce::Font::bold)));
-    g.setColour (on ? colours::frame : colours::frame.withAlpha (0.78f));
-    g.drawText (button.getButtonText(),
-                bounds.withTrimmedLeft (button.getWidth() < 48 ? 0 : 13).reduced (1),
+        compact ? 11.0f : 15.0f, juce::Font::bold)));
+    g.setColour (on ? (lightPanel ? colours::frame : colours::ink)
+                   : (lightPanel ? colours::ink : colours::frame));
+    g.drawText (button.getButtonText(), bounds.reduced (compact ? 1 : 2, 0),
                 juce::Justification::centred);
 }
 
@@ -652,6 +645,7 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
 
     auto* mixMod = section ("MIX/MOD", Band::Voice);
     mixMod->rowCounts = { 2, 1 };
+    mixMod->positions = { { { 0 }, { 1, 1, 2 } }, { { 0 } } };
     addControl (*mixMod, "mix_type", "TYPE", Style::Combo);
     nameEnds (addControl (*mixMod, "balance", "BALANCE", Style::Knob),
               "OSC1", "OSC2");
@@ -1652,17 +1646,11 @@ void SeptumAudioProcessorEditor::layoutSection (Section& section,
         }
     }
 
-    // Vertical sliders take a left column strip at full content height: label
-    // on top, travel in the middle, value underneath. A section whose width
-    // was set by its title rather than by its contents — PITCH ENV is two
-    // 40 px cells under a nine-character name — centres the strip in what it
-    // was given instead of hugging the left edge.
+    // Fader strips share the same left padding, including the narrower
+    // pitch envelope. Labels stay on top and values share the bottom row.
     if (! sliders.empty())
     {
         const int stripWidth = (int) sliders.size() * sliderCell;
-        if (grid.empty())
-            content = content.withSizeKeepingCentre (stripWidth,
-                                                     content.getHeight());
         auto strip = content.removeFromLeft (stripWidth);
         for (std::size_t i = 0; i < sliders.size(); ++i)
         {
@@ -1719,12 +1707,13 @@ void SeptumAudioProcessorEditor::layoutSection (Section& section,
             const auto end = start + (std::size_t) position.span;
             const juce::Rectangle<int> cell {
                 gridLeft + offsets[start], content.getY() + (int) row * (rowHeight + controlRowGap),
-                offsets[end] - offsets[start], rowHeight
+                offsets[end] - offsets[start],
+                rowHeight * position.rowSpan + controlRowGap * (position.rowSpan - 1)
             };
             const bool selector = control->style == Style::Combo || control->style == Style::WideCombo;
             const bool button = control->style == Style::Toggle || control->style == Style::Action;
             layoutControlCell (*control->component, *control->label, control->value.get(), cell,
-                               selector ? cell.getWidth() - 8
+                               selector ? cell.getWidth() - 2 * fieldInset
                                         : button ? control->cellWidth() - 10 : knobDiameter,
                                selector ? comboHeight : button ? toggleHeight : knobDiameter);
             // INTERVAL is one label centered across the two action buttons.
@@ -1823,7 +1812,7 @@ void SeptumAudioProcessorEditor::layoutPanel()
             const int width = control->style == Style::Combo ? 276 : 204;
             layoutControlCell (*control->component, *control->label, control->value.get(),
                                { x, content.getY(), width, gridRowHeight },
-                               control->style == Style::Combo ? width - 8 : knobDiameter,
+                               control->style == Style::Combo ? width - 2 * fieldInset : knobDiameter,
                                control->style == Style::Combo ? comboHeight : knobDiameter);
             x += width;
         }
@@ -1842,15 +1831,15 @@ void SeptumAudioProcessorEditor::layoutPanel()
         partTabBounds[1] = row;
         for (std::size_t i = 0; i < 2; ++i)
         {
-            auto area = partTabBounds[i].reduced (10, 5);
+            auto area = partTabBounds[i].reduced (sectionPadding, 5);
             auto top = area.removeFromTop (28);
             (i == 0 ? upperEnableButton : lowerEnableButton).setBounds (
-                top.removeFromLeft (66).reduced (0, 1));
+                top.removeFromLeft (partPowerWidth).reduced (0, 1));
             (i == 0 ? upperButton : lowerButton).setBounds (
-                partTabBounds[i].reduced (10, 5));
+                partTabBounds[i].reduced (sectionPadding, 5));
             area.removeFromTop (6);
             auto text = area.removeFromTop (24);
-            text.removeFromLeft (80);
+            text.removeFromLeft (partNameOffset);
             partRouteLabels[i].setBounds (text.removeFromLeft (210));
             partActivityLabels[i].setBounds (text.withTrimmedRight (68));
         }
@@ -1863,46 +1852,63 @@ void SeptumAudioProcessorEditor::layoutPanel()
     detailsButton.setBounds (editorWidth - 178, sharedTop - 34, 150, 28);
     performSection->bounds = { 24, performanceTop + detailHeight, 424, performanceHeight };
     const int controlTop = performanceTop + detailHeight + sectionPadding + sectionTitleHeight;
+    auto performanceRow = performSection->bounds.reduced (sectionPadding)
+                             .withY (controlTop).withHeight (gridRowHeight);
     layoutControlCell (masterSlider, masterLabel, &masterValueLabel,
-                       { 32, controlTop, 86, gridRowHeight }, knobDiameter, knobDiameter);
+                       performanceRow.removeFromLeft (86), knobDiameter, knobDiameter);
     layoutControlCell (*tempoControl->component, *tempoControl->label, tempoControl->value.get(),
-                       { 124, controlTop, 86, gridRowHeight }, knobDiameter, knobDiameter);
-    auto octaveCell = juce::Rectangle<int> (222, controlTop, 118, gridRowHeight);
+                       performanceRow.removeFromLeft (86), knobDiameter, knobDiameter);
+    auto octaveCell = performanceRow.removeFromLeft (118);
     octLabel.setBounds (octaveCell.removeFromTop (labelHeight));
     octaveCell.removeFromBottom (valueHeight);
-    auto octaveButtons = octaveCell.withSizeKeepingCentre (118, toggleHeight);
+    auto octaveButtons = octaveCell.withSizeKeepingCentre (118 - 2 * fieldInset, toggleHeight);
     octDownButton.setBounds (octaveButtons.removeFromLeft (36));
     octUpButton.setBounds (octaveButtons.removeFromRight (36));
     octValueLabel.setBounds (octaveButtons);
-    meterBounds = { 352, controlTop + labelHeight, 78, gridRowHeight - labelHeight - valueHeight };
+    performanceRow.removeFromTop (labelHeight);
     voiceLabel.setFont (juce::Font (juce::FontOptions (16.0f)));
     voiceLabel.setBorderSize (juce::BorderSize<int> (0));
-    voiceLabel.setBounds (338, controlTop + gridRowHeight - valueHeight, 106, valueHeight);
+    voiceLabel.setBounds (performanceRow.removeFromBottom (valueHeight).reduced (2, 0));
+    meterBounds = performanceRow;
 
     stripSection->bounds = { 464, performanceTop + detailHeight, editorWidth - 488, performanceHeight };
     auto stripContent = stripSection->bounds.reduced (sectionPadding);
     stripContent.removeFromTop (sectionTitleHeight);
-    const int columns = (int) stripSection->controls.size();
-    const int cellWidth = stripContent.getWidth() / columns;
+    // Keep patch knobs at a readable fixed width. The remaining space
+    // belongs to the controller fields, using the standard field insets.
+    int selectorCount = 0;
+    int selectorSpace = stripContent.getWidth();
+    for (const auto* control : stripSection->controls)
+        if (control->style == Style::Combo)
+            ++selectorCount;
+        else
+            selectorSpace -= comboCell;
     int x = stripContent.getX();
     for (auto* control : stripSection->controls)
     {
+        const bool selector = control->style == Style::Combo;
+        const int cellWidth = selector ? selectorSpace / selectorCount : comboCell;
+        if (selector)
+        {
+            selectorSpace -= cellWidth;
+            --selectorCount;
+        }
         auto cell = juce::Rectangle<int> (x, stripContent.getY(), cellWidth,
                                           stripContent.getHeight());
         x += cellWidth;
         layoutControlCell (*control->component, *control->label, control->value.get(), cell,
-                           control->style == Style::Combo ? cellWidth - 16 : knobDiameter,
-                           control->style == Style::Combo ? comboHeight : knobDiameter);
+                           selector ? cellWidth - 2 * fieldInset : knobDiameter,
+                           selector ? comboHeight : knobDiameter);
     }
 
     auto keyboardRow = juce::Rectangle<int> (24, keysTop + detailHeight, editorWidth - 48, keyboardHeight);
     lever.setBounds (keyboardRow.removeFromLeft (66).reduced (0, 2));
-    keyboardRow.removeFromLeft (10);
+    keyboardRow.removeFromLeft (sectionGap);
     keyZoneBounds = keyboardRow.removeFromTop (keyZoneHeight);
     keyboardRow.removeFromTop (2);
     // Leave one pixel for rounding so JUCE never adds an unnecessary scroll arrow.
     keyboard.setKeyWidth ((float) (keyboardRow.getWidth() - 1) / 36.0f);
-    keyboard.setBounds (keyboardRow.reduced (0, 2));
+    keyboard.setBounds (keyboardRow.withTrimmedTop (2));
 
     reconcileEditTarget();
     refreshToneTarget();
@@ -1932,7 +1938,7 @@ void SeptumAudioProcessorEditor::paintPanel (juce::Graphics& g)
     paintPanelSurface (g, editToneSection->bounds, colours::paperWell);
     paintPanelTitle (g, editToneSection->bounds,
                      colours::paperWell.interpolatedWith (partColour, 0.10f), colours::ink,
-                     "PART EDITOR");
+                     "PART EDITOR", 2 * sectionPadding);
     g.setColour (colours::frame.withAlpha (0.8f));
     g.setFont (juce::Font (juce::FontOptions (16.0f, juce::Font::bold)));
     g.drawText ("GLOBAL", 24 + sectionPadding + 10, sharedTop - 30, 84, 24, juce::Justification::centredLeft);
@@ -1951,7 +1957,17 @@ void SeptumAudioProcessorEditor::paintPanel (juce::Graphics& g)
         const auto ink = perTone ? colours::ink : colours::frame;
         const auto titleBackground = perTone ? surface.interpolatedWith (partColour, 0.10f)
                                              : surface.darker (0.07f);
-        paintPanelTitle (g, section->bounds, titleBackground, ink, section->title);
+        // Align to the printed caption, not its wider centring box. This
+        // keeps headings aligned for fields, knobs, switches and faders.
+        const juce::Label* firstCaption = section.get() == performSection ? &masterLabel : nullptr;
+        for (const auto* control : section->controls)
+            if (firstCaption == nullptr && ! control->inHeader
+                && control->label->isVisible() && control->label->getText().isNotEmpty())
+                firstCaption = control->label.get();
+        const int titleInset = firstCaption != nullptr
+            ? juce::jmax (sectionPadding, labelTextLeft (*firstCaption) - section->bounds.getX())
+            : sectionPadding + fieldInset + fieldTextInset;
+        paintPanelTitle (g, section->bounds, titleBackground, ink, section->title, titleInset);
     }
     paintPartTabs (g);
 

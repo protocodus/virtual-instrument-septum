@@ -226,7 +226,7 @@ private:
         std::vector<int> rowCounts;
         // Columns are shared by every row. A wide selector can span narrow
         // columns; a pair of interval buttons can share the waveform column.
-        struct GridPosition { int column; int span { 1 }; };
+        struct GridPosition { int column; int span { 1 }; int rowSpan { 1 }; };
         std::vector<int> fixedColumns;
         std::vector<std::vector<GridPosition>> positions;
         bool manualLayout { false };
