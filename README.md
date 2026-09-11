@@ -122,7 +122,9 @@ system controls also occupy distinct cards. Larger labels, aligned value rows
 and explicit space between rows keep controls readable. Selector captions line
 up with their field text; knob and fader captions stay centred on their axes.
 Headers align with each panel's first caption, and fields share the same padding.
-LFO selectors, depth knobs and switches share consistent columns. Soft title
+Each LFO places its source and timing controls above two matching target/depth
+pairs. Oscillator Wide sits below Pitch, beside the explicitly named Pitch env
+amount. Soft title
 bars follow the active part's colour, with the same silkscreen lettering at
 80% opacity. Shared headers use a quieter shade of their fixed panel colour.
 Space separates the modules without divider rules, tab stripes or decorative
@@ -143,6 +145,9 @@ delay and reverb sit below the part panels;
 keyboard octave and tempo, while PATCH holds patch level, part balance and
 controller destinations. The delay and reverb sends remain in each part's
 **AMP** section because their levels belong to the selected part.
+Their **Dly send** and **Rev send** labels distinguish them from the shared effects.
+In PATCH, the modulation target and part form a pair, separated from the level
+controls and the bend/expression destinations by wider gaps.
 The keyboard extends to the bottom edge of the panel.
 
 The default view shows the main arpeggio, input and effects controls.
@@ -173,7 +178,7 @@ the ivory panels distinguishes editing, enable state and sound activity:
 
 Muting stops a part's dry signal and new effect sends. Existing shared delay
 and reverb tails continue to decay, so an OFF part can leave an audible tail.
-**TONE BAL** still balances the parts, and **MOD/BEND/EXPR TO TONE** still
+**PART BAL** still balances the parts, and **MOD/BEND/EXPR PART** still
 select which part each controller reaches.
 
 Sessions preserve both ON/OFF settings. Older sessions without these settings

@@ -104,14 +104,14 @@ void layoutControlCell (juce::Component& component, juce::Label& caption,
 
 int labelTextLeft (const juce::Label& label)
 {
-    const auto area = label.getBorderSize().subtractedFrom (label.getBounds());
-    const float textWidth = juce::jmin ((float) area.getWidth(),
+    const auto area = label.getBorderSize().subtractedFrom (label.getBounds()).toFloat();
+    const float textWidth = juce::jmin (area.getWidth(),
         juce::GlyphArrangement::getStringWidth (label.getFont(), label.getText()));
     if (label.getJustificationType().testFlags (juce::Justification::horizontallyCentred))
         return juce::roundToInt (area.getX() + (area.getWidth() - textWidth) * 0.5f);
     if (label.getJustificationType().testFlags (juce::Justification::right))
         return juce::roundToInt (area.getRight() - textWidth);
-    return area.getX();
+    return juce::roundToInt (area.getX());
 }
 
 void paintPanelSurface (juce::Graphics& g, juce::Rectangle<int> bounds, juce::Colour surface)
@@ -586,7 +586,7 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
     auto* osc1 = section ("OSC 1", Band::Voice);
     osc1->rowCounts = { 4, 2 };
     osc1->fixedColumns = { wideComboCell, knobCell, knobCell, knobCell };
-    osc1->positions = { { { 0 }, { 1 }, { 2 }, { 3 } }, { { 2 }, { 3 } } };
+    osc1->positions = { { { 0 }, { 1 }, { 2 }, { 3 } }, { { 1 }, { 2 } } };
     addControl (*osc1, "osc1_wave", "WAVE", Style::WideCombo);
     addControl (*osc1, "osc1_pitch", "PITCH", Style::Knob, true, " st");
     addControl (*osc1, "osc1_detune", "DETUNE", Style::Knob, true, " c");
@@ -599,7 +599,7 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
     osc2->fixedColumns = { wideComboCell / 2, wideComboCell / 2,
                            knobCell, knobCell, knobCell };
     osc2->positions = { { { 0, 2 }, { 2 }, { 3 }, { 4 } },
-                       { { 0 }, { 1 }, { 3 }, { 4 } } };
+                       { { 0 }, { 1 }, { 2 }, { 3 } } };
     addControl (*osc2, "osc2_wave", "WAVE", Style::WideCombo);
     addControl (*osc2, "osc2_pitch", "PITCH", Style::Knob, true, " st");
     addControl (*osc2, "osc2_detune", "DETUNE", Style::Knob, true, " c");
@@ -699,17 +699,22 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
     {
         const juce::String prefix = "lfo" + juce::String (lfo) + "_";
         auto* lfoSection = section ("LFO " + juce::String (lfo), Band::Modulation);
-        lfoSection->rowCounts = { 5, 5 };
-        lfoSection->fixedColumns = { wideComboCell, knobCell, toggleCell, comboCell, knobCell };
-        addControl (*lfoSection, prefix + "shape", "SHAPE", Style::WideCombo);
+        // Source and timing occupy the top row. Each target stays beside
+        // its depth below, with matching widths for the two routing pairs.
+        lfoSection->rowCounts = { 6, 4 };
+        lfoSection->fixedColumns = { comboCell, knobCell, toggleCell,
+                                     comboCell, knobCell, toggleCell };
+        lfoSection->positions = { { { 0 }, { 1 }, { 2 }, { 3 }, { 4 }, { 5 } },
+                                 { { 0, 2 }, { 2 }, { 3, 2 }, { 5 } } };
+        addControl (*lfoSection, prefix + "shape", "SHAPE", Style::Combo);
         addControl (*lfoSection, prefix + "rate", "RATE", Style::Knob);
         addControl (*lfoSection, prefix + "sync", "SYNC", Style::Toggle);
-        addControl (*lfoSection, prefix + "sync_note", "NOTE", Style::Combo);
+        addControl (*lfoSection, prefix + "sync_note", "DIVISION", Style::Combo);
         addControl (*lfoSection, prefix + "fade", "FADE", Style::Knob);
-        addControl (*lfoSection, prefix + "dest1", "DEST 1", Style::WideCombo);
+        addControl (*lfoSection, prefix + "key_trig", "RETRIG", Style::Toggle);
+        addControl (*lfoSection, prefix + "dest1", "TARGET 1", Style::WideCombo);
         addControl (*lfoSection, prefix + "depth1", "DEPTH 1", Style::Knob);
-        addControl (*lfoSection, prefix + "key_trig", "TRIG", Style::Toggle);
-        addControl (*lfoSection, prefix + "dest2", "DEST 2", Style::Combo);
+        addControl (*lfoSection, prefix + "dest2", "TARGET 2", Style::WideCombo);
         addControl (*lfoSection, prefix + "depth2", "DEPTH 2", Style::Knob);
     }
 
@@ -809,20 +814,18 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
     // TONE OCT used to sit here and are Patch Tone bytes; they moved to
     // TONE PLAY with the rest of the per-tone play controls.
     addControl (*stripSection, "patch_level", "PATCH LEVEL", Style::Knob, false);
-    nameEnds (addControl (*stripSection, "tone_balance", "TONE BAL", Style::Knob,
+    nameEnds (addControl (*stripSection, "tone_balance", "PART BAL", Style::Knob,
                           false),
               "LOWER", "UPPER");
-    addControl (*stripSection, "mod_assign", "MOD ASSIGN", Style::Combo, false);
+    addControl (*stripSection, "mod_assign", "MOD TARGET", Style::Combo, false);
     // CONTROLLER DESTINATION: which tone each physical controller reaches.
     // These say UPPER/LOWER for a third reason again — not which tone is
-    // edited, not which tone sounds, but which tone a lever or a pedal gets
-    // to move — so each one names its controller and says TO TONE, which is
-    // what tells them apart from PATCH LEVEL and TONE BAL beside them. There
-    // is no group heading over them: the strip is one flat row of cells and
-    // this comment used to claim one the panel never painted.
-    addControl (*stripSection, "mod_dest", "MOD TO TONE", Style::Combo, false);
-    addControl (*stripSection, "bend_dest", "BEND TO TONE", Style::Combo, false);
-    addControl (*stripSection, "expr_dest", "EXPR TO TONE", Style::Combo, false);
+    // edited, not which tone sounds, but which part a lever or pedal affects.
+    // The modulation target and part form one pair, separated by space from
+    // the patch balance and the other controller destinations.
+    addControl (*stripSection, "mod_dest", "MOD PART", Style::Combo, false);
+    addControl (*stripSection, "bend_dest", "BEND PART", Style::Combo, false);
+    addControl (*stripSection, "expr_dest", "EXPR PART", Style::Combo, false);
 
     // ---- TONE PLAY, beside the part selector inside the part faceplate.
     // Five Patch *Tone* bytes about how the selected tone is played: they
@@ -1417,12 +1420,12 @@ SeptumAudioProcessorEditor::Control* SeptumAudioProcessorEditor::addControl (
         caption = caption.toUpperCase();
     else if (caption.length() > 1)
         caption = caption.substring (0, 1).toUpperCase() + caption.substring (1);
-    if (labelText == "P.ENV") caption = "Env amt";
+    if (labelText == "P.ENV") caption = "Pitch env";
     if (labelText == "PW/FB") caption = "PW / FB";
     if (labelText == "KEY FOLLOW") caption = "Tracking";
     if (labelText == "OVERDRIVE") caption = "Drive on";
-    if (labelText == "DLY SEND") caption = "Delay";
-    if (labelText == "REV SEND") caption = "Reverb";
+    if (labelText == "DLY SEND") caption = "Dly send";
+    if (labelText == "REV SEND") caption = "Rev send";
     if (labelText == "INPUT VOL") caption = "Input";
     if (labelText == "OCT RANGE") caption = "Octaves";
     if (labelText == "PORTAMENTO") caption = "Glide";
@@ -1877,15 +1880,18 @@ void SeptumAudioProcessorEditor::layoutPanel()
     // Keep patch knobs at a readable fixed width. The remaining space
     // belongs to the controller fields, using the standard field insets.
     int selectorCount = 0;
-    int selectorSpace = stripContent.getWidth();
+    int selectorSpace = stripContent.getWidth() - 2 * sectionGap;
     for (const auto* control : stripSection->controls)
         if (control->style == Style::Combo)
             ++selectorCount;
         else
             selectorSpace -= comboCell;
     int x = stripContent.getX();
+    int index = 0;
     for (auto* control : stripSection->controls)
     {
+        if (index == 2 || index == 4)
+            x += sectionGap;
         const bool selector = control->style == Style::Combo;
         const int cellWidth = selector ? selectorSpace / selectorCount : comboCell;
         if (selector)
@@ -1899,6 +1905,7 @@ void SeptumAudioProcessorEditor::layoutPanel()
         layoutControlCell (*control->component, *control->label, control->value.get(), cell,
                            selector ? cellWidth - 2 * fieldInset : knobDiameter,
                            selector ? comboHeight : knobDiameter);
+        ++index;
     }
 
     auto keyboardRow = juce::Rectangle<int> (24, keysTop + detailHeight, editorWidth - 48, keyboardHeight);
