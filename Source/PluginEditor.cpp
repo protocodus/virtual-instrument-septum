@@ -21,7 +21,7 @@ namespace colours
     const juce::Colour sliderTrack { 0xff171b18 };
     const juce::Colour ledOn { 0xffe7ae65 };
     const juce::Colour shadow { 0x40000000 };
-    // Part colour is reserved for selection and per-part control indicators.
+    // Part colour connects the selection, part headers and control indicators.
     // Shared surfaces and shared controls never follow the edit target.
     const juce::Colour toneUpper { 0xffb35d3d };
     const juce::Colour toneLower { 0xff397a78 };
@@ -85,12 +85,12 @@ void layoutControlCell (juce::Component& component, juce::Label& caption,
 }
 
 void paintPanelTitle (juce::Graphics& g, juce::Rectangle<int> bounds,
-                      juce::Colour surface, juce::Colour ink,
+                      juce::Colour background, juce::Colour ink,
                       const juce::String& title, int inset = sectionPadding,
                       float cornerRadius = 3.0f)
 {
     const auto bar = bounds.toFloat().reduced (1.0f).withHeight ((float) panelTitleBarHeight);
-    g.setColour (surface.darker (0.16f));
+    g.setColour (background);
     g.fillRoundedRectangle (bar, cornerRadius);
     // Keep the upper panel corners rounded and the lower edge straight.
     g.fillRect (bar.withTrimmedTop (cornerRadius));
@@ -151,19 +151,7 @@ void SeptumLookAndFeel::drawRotarySlider (juce::Graphics& g, int x, int y,
         rotaryStartAngle + sliderPos * (rotaryEndAngle - rotaryStartAngle);
 
     const bool perTone = static_cast<bool> (slider.getProperties()["perTone"]);
-    const auto ink = perTone ? colours::ink : colours::frame;
-    // Sparse printed graduations surround a softly bevelled hardware cap.
-    for (int tick = 0; tick <= 4; ++tick)
-    {
-        const float theta = rotaryStartAngle
-                            + (rotaryEndAngle - rotaryStartAngle) * tick / 4.0f;
-        const float inner = radius - (tick % 2 == 0 ? 3.0f : 2.0f);
-        g.setColour (ink.withAlpha (tick % 2 == 0 ? 0.7f : 0.35f));
-        g.drawLine (centre.x + std::sin (theta) * inner,
-                    centre.y - std::cos (theta) * inner,
-                    centre.x + std::sin (theta) * radius,
-                    centre.y - std::cos (theta) * radius, 0.75f);
-    }
+    // The pointer and value arc carry the position without printed tick marks.
     const float origin = bipolar ? (rotaryStartAngle + rotaryEndAngle) * 0.5f
                                  : rotaryStartAngle;
     if (std::abs (angle - origin) > 1.0e-3f)
@@ -189,8 +177,6 @@ void SeptumLookAndFeel::drawRotarySlider (juce::Graphics& g, int x, int y,
         (perTone ? juce::Colour (0xff4d5348) : colours::paper), face.getTopLeft(),
         (perTone ? juce::Colour (0xff30382e) : colours::knobFace), face.getBottomRight(), false));
     g.fillEllipse (face);
-    g.setColour (colours::knobFace.withAlpha (0.3f));
-    g.drawEllipse (face, 0.6f);
     juce::Path pointer;
     pointer.addRoundedRectangle (-1.2f, -capRadius + 1.0f, 2.4f,
                                  capRadius * 0.7f, 0.7f);
@@ -232,8 +218,6 @@ void SeptumLookAndFeel::drawLinearSlider (juce::Graphics& g, int x, int y,
                               colours::paper, slider.isMouseOverOrDragging() ? 0.25f : 0.08f)
                         : colours::ink.withAlpha (0.65f));
     g.fillRoundedRectangle (cap, 3.0f);
-    g.setColour (colours::surround.withAlpha (0.65f));
-    g.fillRoundedRectangle (cap.withSizeKeepingCentre (10.0f, 2.0f), 1.0f);
     if (slider.hasKeyboardFocus (true))
     {
         g.setColour (colours::ink);
@@ -1258,10 +1242,9 @@ void SeptumAudioProcessorEditor::paintPartTabs (juce::Graphics& g)
             continue;
         const auto tone = i == 0 ? colours::toneUpper : colours::toneLower;
         const bool edited = (i == 0) == editingUpper;
-        g.setColour (edited ? colours::paperWell : colours::paper.darker (0.045f));
+        g.setColour (edited ? colours::paperWell.interpolatedWith (tone, 0.08f)
+                            : colours::paper.darker (0.045f));
         g.fillRoundedRectangle (area, 4.0f);
-        g.setColour (tone.withAlpha (edited ? 1.0f : 0.25f));
-        g.fillRect (area.getX() + 1.0f, area.getY() + 9.0f, 3.0f, area.getHeight() - 18.0f);
         // A compact meter accompanies the playback status only when there is
         // signal; an idle part no longer leaves a full-width decorative rail.
         const float db = juce::Decibels::gainToDecibels (partMeterLevels[i], -60.0f);
@@ -1895,7 +1878,9 @@ void SeptumAudioProcessorEditor::paintPanel (juce::Graphics& g)
         editorWidth - 24.0f, (float) (modulationTop + bandHeight + 10 - partTop));
     g.setColour (colours::paper);
     g.fillRoundedRectangle (partArea, 5.0f);
-    paintPanelTitle (g, partArea.toNearestInt(), colours::paper, colours::ink,
+    const auto partColour = editingUpper ? colours::toneUpper : colours::toneLower;
+    paintPanelTitle (g, partArea.toNearestInt(),
+                     colours::paper.interpolatedWith (partColour, 0.10f), colours::ink,
                      "PART EDITOR", 12 + sectionPadding, 5.0f);
     g.setColour (colours::frame.withAlpha (0.8f));
     g.setFont (juce::Font (juce::FontOptions (16.0f, juce::Font::bold)));
@@ -1915,7 +1900,9 @@ void SeptumAudioProcessorEditor::paintPanel (juce::Graphics& g)
         g.setColour (surface);
         g.fillRoundedRectangle (area, 3.0f);
         const auto ink = perTone ? colours::ink : colours::frame;
-        paintPanelTitle (g, section->bounds, surface, ink, section->title);
+        const auto titleBackground = perTone ? surface.interpolatedWith (partColour, 0.10f)
+                                             : surface.darker (0.07f);
+        paintPanelTitle (g, section->bounds, titleBackground, ink, section->title);
     }
     paintPartTabs (g);
 
@@ -1984,10 +1971,8 @@ void SeptumAudioProcessorEditor::paintKeyboardZones (juce::Graphics& g)
         const auto* parameter = processor.parameters.getRawParameterValue (
             upper ? "upper_enabled" : "lower_enabled");
         const bool enabled = parameter == nullptr || parameter->load() >= 0.5f;
-        g.setColour (colours::recess);
+        g.setColour (colours::recess.interpolatedWith (colour, enabled ? 0.12f : 0.04f));
         g.fillRoundedRectangle (area.toFloat().reduced (0.5f, 0.0f), 2.0f);
-        g.setColour (colour.withAlpha (enabled ? 1.0f : 0.3f));
-        g.fillRect (area.withHeight (2));
         g.setColour (colours::frame.withAlpha (enabled ? 1.0f : 0.55f));
         g.setFont (juce::Font (juce::FontOptions (12.5f, juce::Font::bold)));
         g.drawText (enabled ? text : text + " / OFF", area, juce::Justification::centred);
@@ -1999,7 +1984,7 @@ void SeptumAudioProcessorEditor::paintKeyboardZones (juce::Graphics& g)
     }
     else if (mode == 1)
     {
-        // Layered: both tones on every key, one stripe each.
+        // Layered: both tones on every key, one labelled band each.
         auto area = keyZoneBounds;
         zone (area.removeFromTop (area.getHeight() / 2), true, "UPPER");
         zone (area, false, "LOWER");

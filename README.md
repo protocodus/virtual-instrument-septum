@@ -117,14 +117,15 @@ render code. The open questions are listed under [Known gaps](#known-gaps).
 
 The SH-201-inspired panel combines a warm charcoal chassis, ivory part panels,
 hardware-style knobs and illuminated switches. Larger labels, aligned value
-rows and generous padding keep controls readable. Subtly darker title bars
-separate panel headings from their controls, with the same silkscreen lettering
-at 80% opacity. Space separates the modules without divider rules. The signal
+rows and generous padding keep controls readable. Soft title bars follow the
+active part's colour, with the same silkscreen lettering at 80% opacity. Shared
+headers use a quieter shade of their fixed panel colour. Space separates the
+modules without divider rules, tab stripes or decorative control ticks. The signal
 path reads left to right: OSC 1 + OSC 2 → MIX/MOD → FILTER → AMP, with envelopes
 and LFOs below. **TONE PLAY** sits beside the part selector above these panels,
 keeping portamento, glide time, voice mode, bend range and part octave with the
 part they edit. Terracotta identifies **UPPER** and teal identifies **LOWER**
-in the selection indicators and envelope sliders.
+in the selected tab, panel headers and envelope sliders.
 
 Shared controls keep fixed colours when the edit selection changes:
 **ARPEGGIO** has an olive panel, **EXT IN** has a muted plum panel, and the
