@@ -117,8 +117,9 @@ render code. The open questions are listed under [Known gaps](#known-gaps).
 
 The SH-201-inspired panel combines a warm charcoal chassis, ivory part panels,
 hardware-style knobs and illuminated switches. Larger labels, aligned value
-rows and generous padding keep controls readable. Space separates the modules,
-with no divider rules beneath their titles. The signal
+rows and generous padding keep controls readable. Subtly darker title bars
+separate panel headings from their controls, with the same silkscreen lettering
+at 80% opacity. Space separates the modules without divider rules. The signal
 path reads left to right: OSC 1 + OSC 2 → MIX/MOD → FILTER → AMP, with envelopes
 and LFOs below. **TONE PLAY** sits beside the part selector above these panels,
 keeping portamento, glide time, voice mode, bend range and part octave with the
@@ -126,8 +127,9 @@ part they edit. Terracotta identifies **UPPER** and teal identifies **LOWER**
 in the selection indicators and envelope sliders.
 
 Shared controls keep fixed colours when the edit selection changes:
-**ARPEGGIO** has an ochre panel, **EXT IN** has a slate blue panel, and the
-remaining shared sections use charcoal. Program selection, keyboard routing
+**ARPEGGIO** has an olive panel, **EXT IN** has a muted plum panel, and the
+remaining shared sections use charcoal. These hues are distinct from the
+terracotta and teal part accents. Program selection, keyboard routing
 and system settings occupy the shared header. Arpeggio, external input,
 delay and reverb sit below the part panels;
 **PERFORM** and **PATCH** follow beneath them. PERFORM holds master volume,

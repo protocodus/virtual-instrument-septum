@@ -13,8 +13,8 @@ namespace colours
     const juce::Colour ink { 0xff34372f };
     const juce::Colour paper { 0xffe5decc };      // aged ivory faceplate
     const juce::Colour paperWell { 0xffeee8d9 };
-    const juce::Colour arpeggio { 0xff4b422f };     // muted ochre
-    const juce::Colour external { 0xff30454b };     // slate blue
+    const juce::Colour arpeggio { 0xff414a34 };     // olive, distinct from Upper's terracotta
+    const juce::Colour external { 0xff4b3c4c };     // plum, distinct from Lower's teal
     const juce::Colour accent { 0xffb35d3d };
     const juce::Colour knobFace { 0xffd5cbb6 };
     const juce::Colour knobPointer { 0xfff3eddf };
@@ -46,6 +46,7 @@ constexpr int toggleHeight = 28;
 
 constexpr int sectionTitleHeight = 22;
 constexpr int sectionPadding = 10;
+constexpr int panelTitleBarHeight = 26;
 constexpr int gridRowHeight = 76;      // label + control + value
 constexpr int sectionGap = 10;
 
@@ -81,6 +82,22 @@ void layoutControlCell (juce::Component& component, juce::Label& caption,
     if (value != nullptr)
         value->setBounds (valueBounds);
     component.setBounds (cell.withSizeKeepingCentre (width, height));
+}
+
+void paintPanelTitle (juce::Graphics& g, juce::Rectangle<int> bounds,
+                      juce::Colour surface, juce::Colour ink,
+                      const juce::String& title, int inset = sectionPadding,
+                      float cornerRadius = 3.0f)
+{
+    const auto bar = bounds.toFloat().reduced (1.0f).withHeight ((float) panelTitleBarHeight);
+    g.setColour (surface.darker (0.16f));
+    g.fillRoundedRectangle (bar, cornerRadius);
+    // Keep the upper panel corners rounded and the lower edge straight.
+    g.fillRect (bar.withTrimmedTop (cornerRadius));
+    g.setColour (ink.withAlpha (0.8f));
+    g.setFont (juce::Font (juce::FontOptions (16.0f, juce::Font::bold)));
+    g.drawText (title, bounds.withY ((int) bar.getY()).withHeight (panelTitleBarHeight)
+                            .reduced (inset, 0), juce::Justification::centredLeft);
 }
 } // namespace
 
@@ -1878,10 +1895,9 @@ void SeptumAudioProcessorEditor::paintPanel (juce::Graphics& g)
         editorWidth - 24.0f, (float) (modulationTop + bandHeight + 10 - partTop));
     g.setColour (colours::paper);
     g.fillRoundedRectangle (partArea, 5.0f);
-    g.setColour (colours::ink);
-    g.setFont (juce::Font (juce::FontOptions (16.0f, juce::Font::bold)));
-    g.drawText ("PART EDITOR", 24 + sectionPadding, partTop + 10, 150, 22, juce::Justification::centredLeft);
-    g.setColour (colours::frame);
+    paintPanelTitle (g, partArea.toNearestInt(), colours::paper, colours::ink,
+                     "PART EDITOR", 12 + sectionPadding, 5.0f);
+    g.setColour (colours::frame.withAlpha (0.8f));
     g.setFont (juce::Font (juce::FontOptions (16.0f, juce::Font::bold)));
     g.drawText ("GLOBAL", 24 + sectionPadding, sharedTop - 32, 84, 24, juce::Justification::centredLeft);
 
@@ -1893,16 +1909,13 @@ void SeptumAudioProcessorEditor::paintPanel (juce::Graphics& g)
         if (area.isEmpty())
             continue;
         const bool perTone = section->scope == Scope::PerTone;
-        g.setColour (perTone ? colours::paperWell
-                     : section->title == "ARPEGGIO" ? colours::arpeggio
-                     : section->title == "EXT IN" ? colours::external : colours::body);
+        const auto surface = perTone ? colours::paperWell
+                           : section->title == "ARPEGGIO" ? colours::arpeggio
+                           : section->title == "EXT IN" ? colours::external : colours::body;
+        g.setColour (surface);
         g.fillRoundedRectangle (area, 3.0f);
-        const auto title = section->bounds.reduced (sectionPadding).withHeight (
-            sectionTitleHeight);
         const auto ink = perTone ? colours::ink : colours::frame;
-        g.setColour (ink.withAlpha (perTone && ! isEditedPartEnabled() ? 0.55f : 1.0f));
-        g.setFont (juce::Font (juce::FontOptions (16.0f, juce::Font::bold)));
-        g.drawText (section->title, title, juce::Justification::centredLeft);
+        paintPanelTitle (g, section->bounds, surface, ink, section->title);
     }
     paintPartTabs (g);
 
