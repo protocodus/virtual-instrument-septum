@@ -121,8 +121,10 @@ backing, wider gutters and lightly raised cards separate each module. Program, r
 system controls also occupy distinct cards. Larger labels, aligned value rows
 and explicit space between rows keep controls readable. Selector captions line
 up with their field text; knob and fader captions stay centred on their axes.
-Island titles are centred in their bars. Panels share a little more inner padding,
-and the instrument has breathing room above its top row.
+Island titles are centred in their bars. The active Upper/Lower tab joins the
+part-control page; the inactive tab sits back on the charcoal chassis. Compact
+play controls share the page beside the tabs. Shorter control rows and fewer
+empty margins keep the full instrument visible without shrinking its labels.
 Each LFO places its source and timing controls above two matching target/depth
 pairs. Oscillator Wide sits below Pitch, beside the explicitly named Pitch env
 amount. Soft title
@@ -158,16 +160,14 @@ shows the file's name after loading or saving; choose a factory sound from
 the same menu to start again. Failed or cancelled loads leave the current
 sound intact, and saves confirm before replacing an existing file.
 
-The default view shows the main arpeggio, input and effects controls.
-Arpeggio, delay and reverb on/off switches sit in their panel headers.
-**DETAILS +** reveals 19 additional pattern, input-filter and effect settings;
-**DETAILS -** hides them again. These controls retain their settings and follow
-host automation while hidden. All part synthesis controls remain visible.
+All arpeggio, input-filter and effect settings are always visible in two
+organized rows. There is no advanced or Details view. Arpeggio, delay and
+reverb on/off switches sit in their panel headers.
 
 A patch holds two complete parts, **UPPER** and **LOWER**. The selector above
 the ivory panels distinguishes editing, enable state and sound activity:
 
-- **The illuminated tab** selects the part shown by TONE PLAY, the voice
+- **The attached tab** selects the part shown by TONE PLAY, the voice
   controls, envelopes and LFOs. Its colour and the envelope slider handles
   follow the edit selection even when that part is muted. Section titles
   appear once, and the shared controls retain their separate visual group.

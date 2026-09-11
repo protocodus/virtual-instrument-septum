@@ -9,9 +9,9 @@
 #include <memory>
 #include <vector>
 
-// The fixed hardware-style panel has two distinct surfaces. The ivory PART
-// EDITOR holds the selection tabs, TONE PLAY, the voice chain and modulation.
-// A charcoal GLOBAL area holds arpeggio, external input, effects, performance
+// The active Upper/Lower tab joins the ivory page containing TONE PLAY,
+// the voice chain and modulation. The shared controls stay visible outside
+// that page. Charcoal panels hold arpeggio, external input, effects, performance
 // and patch/controller settings. Program, shared routing and system tuning
 // occupy the top header. Part accents never tint the shared controls.
 //
@@ -194,7 +194,6 @@ private:
     {
         juce::String suffix;      // per-tone parameter suffix, or full ID
         bool perTone { true };
-        bool advanced { false };
         bool inHeader { false };
         Style style { Style::Knob };
         juce::String unit;        // printed after the value, e.g. "st", "%"
@@ -325,8 +324,6 @@ private:
     juce::ScopedMessageBox presetMessageBox;
     juce::File lastPresetFile;
     // The edit-target tabs, in the header above everything they govern.
-    juce::TextButton detailsButton { "DETAILS +" };
-    bool showingDetails { false };
     juce::TextButton upperButton { "UPPER" }, lowerButton { "LOWER" };
     juce::TextButton upperEnableButton { "ON" }, lowerEnableButton { "ON" };
     std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment>
