@@ -111,10 +111,14 @@ void layoutControlCell (juce::Component& component, juce::Label& caption,
 void paintPanelSurface (juce::Graphics& g, juce::Rectangle<int> bounds, juce::Colour surface)
 {
     const auto area = bounds.toFloat().reduced (1.0f);
-    g.setColour (juce::Colours::black.withAlpha (0.12f));
+    g.setColour (juce::Colours::black.withAlpha (0.18f));
     g.fillRoundedRectangle (area.translated (0.0f, 2.0f), panelRadius);
-    g.setColour (surface);
+    g.setGradientFill (juce::ColourGradient (surface.darker (0.08f), area.getX(),
+                                             area.getY(), surface.brighter (0.04f),
+                                             area.getX(), area.getBottom(), false));
     g.fillRoundedRectangle (area, panelRadius);
+    g.setColour (surface.darker (0.18f).withAlpha (0.20f));
+    g.drawRoundedRectangle (area, panelRadius, 1.0f);
 }
 
 void paintPanelTitle (juce::Graphics& g, juce::Rectangle<int> bounds,
@@ -122,10 +126,23 @@ void paintPanelTitle (juce::Graphics& g, juce::Rectangle<int> bounds,
                       const juce::String& title)
 {
     const auto bar = bounds.toFloat().reduced (1.0f).withHeight ((float) panelTitleBarHeight);
+    const auto titleBar = bar.withX (bar.getX() + 1.0f).withWidth (bar.getWidth() - 2.0f);
     g.setColour (background);
     g.fillRoundedRectangle (bar, panelRadius);
     // Keep the upper panel corners rounded and the lower edge straight.
     g.fillRect (bar.withTrimmedTop (panelRadius));
+    g.setColour (background.brighter (0.16f).withAlpha (0.18f));
+    g.fillRect (bar.withHeight (2.0f));
+    g.setColour (ink.withAlpha (0.18f));
+    g.drawRoundedRectangle (titleBar, panelRadius, 1.0f);
+
+    // Subtle depth on the type, useful on the same-ink surfaces.
+    g.setColour (juce::Colours::black.withAlpha (0.22f));
+    g.setFont (juce::Font (juce::FontOptions (16.0f, juce::Font::bold)));
+    g.drawText (title,
+                bounds.withY ((int) bar.getY() + 1).withHeight (panelTitleBarHeight)
+                      .reduced (sectionPadding, 0),
+                juce::Justification::centred);
     g.setColour (ink.withAlpha (0.8f));
     g.setFont (juce::Font (juce::FontOptions (16.0f, juce::Font::bold)));
     g.drawText (title, bounds.withY ((int) bar.getY()).withHeight (panelTitleBarHeight)
@@ -176,6 +193,8 @@ void SeptumLookAndFeel::drawRotarySlider (juce::Graphics& g, int x, int y,
                                               juce::Slider& slider)
 {
     const bool bipolar = static_cast<bool> (slider.getProperties()["bipolar"]);
+    const bool hasFocus = slider.hasKeyboardFocus (true);
+    const bool hot = slider.isMouseOverOrDragging() || hasFocus;
     const auto bounds =
         juce::Rectangle<int> (x, y, width, height).toFloat().reduced (3.0f);
     const auto radius = juce::jmin (bounds.getWidth(), bounds.getHeight()) * 0.5f;
@@ -195,6 +214,14 @@ void SeptumLookAndFeel::drawRotarySlider (juce::Graphics& g, int x, int y,
                               juce::jmax (origin, angle), true);
         g.setColour (slider.findColour (juce::Slider::trackColourId).withAlpha (0.85f));
         g.strokePath (filled, juce::PathStrokeType (1.5f));
+    }
+    if (hot)
+    {
+        g.setColour (perTone ? colours::toneUpper.withAlpha (0.14f)
+                             : colours::paper.withAlpha (0.10f));
+        g.fillEllipse (juce::Rectangle<float> (centre.x - radius * 0.93f,
+                                               centre.y - radius * 0.93f,
+                                               radius * 1.86f, radius * 1.86f));
     }
     const float capRadius = radius * 0.76f;
     auto cap = juce::Rectangle<float> (centre.x - capRadius, centre.y - capRadius,
@@ -216,6 +243,9 @@ void SeptumLookAndFeel::drawRotarySlider (juce::Graphics& g, int x, int y,
     g.setColour (perTone ? colours::knobPointer : colours::ink);
     g.fillPath (pointer, juce::AffineTransform::rotation (angle)
                              .translated (centre.x, centre.y));
+    g.setColour (juce::Colours::black.withAlpha (hasFocus ? 0.35f : 0.20f));
+    g.fillEllipse (juce::Rectangle<float> (centre.x - 2.0f, centre.y - 2.0f,
+                                           4.0f, 4.0f));
 }
 
 void SeptumLookAndFeel::drawLinearSlider (juce::Graphics& g, int x, int y,
@@ -563,9 +593,9 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
     // ---- band 1: the voice chain -----------------------------------------
     auto* osc1 = section ("OSC 1", Band::Voice);
     osc1->rowCounts = { 4, 2 };
-    osc1->fixedColumns = { wideComboCell, knobCell, knobCell, knobCell };
+    osc1->fixedColumns = { comboCell, knobCell, knobCell, knobCell };
     osc1->positions = { { { 0 }, { 1 }, { 2 }, { 3 } }, { { 1 }, { 2 } } };
-    addControl (*osc1, "osc1_wave", "WAVE", Style::WideCombo);
+    addControl (*osc1, "osc1_wave", "WAVE", Style::Combo);
     addControl (*osc1, "osc1_pitch", "PITCH", Style::Knob, true, " st");
     addControl (*osc1, "osc1_detune", "DETUNE", Style::Knob, true, " c");
     addControl (*osc1, "osc1_pw", "PW/FB", Style::Knob);
@@ -573,57 +603,20 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
     addControl (*osc1, "osc1_penv_depth", "P.ENV", Style::Knob);
 
     auto* osc2 = section ("OSC 2", Band::Voice);
-    osc2->rowCounts = { 4, 4 };
-    osc2->fixedColumns = { wideComboCell / 2, wideComboCell / 2,
-                           knobCell, knobCell, knobCell };
-    osc2->positions = { { { 0, 2 }, { 2 }, { 3 }, { 4 } },
-                       { { 0 }, { 1 }, { 2 }, { 3 } } };
-    addControl (*osc2, "osc2_wave", "WAVE", Style::WideCombo);
+    osc2->rowCounts = { 4, 2 };
+    osc2->fixedColumns = { comboCell, knobCell, knobCell, knobCell };
+    osc2->positions = { { { 0 }, { 1 }, { 2 }, { 3 } },
+                        { { 1 }, { 2 } } };
+    addControl (*osc2, "osc2_wave", "WAVE", Style::Combo);
     addControl (*osc2, "osc2_pitch", "PITCH", Style::Knob, true, " st");
     addControl (*osc2, "osc2_detune", "DETUNE", Style::Knob, true, " c");
     addControl (*osc2, "osc2_pw", "PW/FB", Style::Knob);
-    intervalOctControl = addControl (*osc2, "", "INTERVAL", Style::Action);
-    intervalFifthControl = addControl (*osc2, "", "", Style::Action);
     addControl (*osc2, "osc2_wide", "WIDE", Style::Toggle);
     addControl (*osc2, "osc2_penv_depth", "P.ENV", Style::Knob);
 
-    // Settled (OM p. 30), and settled as *intervals*: "-OCT ... lowers the
-    // OSC 2 pitch one octave below that of OSC 1", "the OSC 2 pitch will be
-    // seven semitones (a perfect fifth) higher than OSC 1", and "if you press
-    // the -OCT button and the 5th button simultaneously, the OSC 2 pitch will
-    // be the same as the OSC 1 pitch". Both are measured against OSC 1, so a
-    // patch whose OSC 1 is transposed used to get the wrong interval; and the
-    // second press stands in for the hardware's simultaneous press, which is
-    // why it lands on OSC 1's pitch rather than on zero.
-    const auto interval = [this] (Control* control, const char* text,
-                                  int semitones)
-    {
-        auto* button =
-            dynamic_cast<juce::TextButton*> (control->component.get());
-        if (button == nullptr)
-            return;
-        button->setButtonText (text);
-        button->setClickingTogglesState (false);
-        button->onClick = [this, semitones]
-        {
-            const float root = getToneParameter ("osc1_pitch");
-            // Snapped, because the write below snaps: with OSC 1 at +30 the
-            // fifth wants +37, lands on +36, and an unsnapped comparison then
-            // read "not there yet" forever — the second press, documented as
-            // the way back to unison, did nothing and the lamp stayed dark.
-            const float wanted =
-                snapToneParameter ("osc2_pitch", root + (float) semitones);
-            setToneParameter ("osc2_pitch",
-                              getToneParameter ("osc2_pitch") == wanted ? root
-                                                                        : wanted);
-        };
-    };
-    interval (intervalOctControl, "-OCT", -12);
-    interval (intervalFifthControl, "5TH", 7);
-
     auto* mixMod = section ("MIX/MOD", Band::Voice);
-    mixMod->rowCounts = { 2, 1 };
-    mixMod->positions = { { { 0 }, { 1, 1, 2 } }, { { 0 } } };
+    mixMod->rowCounts = { 3 };
+    mixMod->positions = { { { 0 }, { 1 }, { 2 } } };
     addControl (*mixMod, "mix_type", "TYPE", Style::Combo);
     nameEnds (addControl (*mixMod, "balance", "BALANCE", Style::Knob),
               "OSC1", "OSC2");
@@ -1581,25 +1574,6 @@ void SeptumAudioProcessorEditor::refreshValues()
             masterValueLabel.setText (parameter->getCurrentValueAsText(),
                                       juce::dontSendNotification);
 
-    // The INTERVAL buttons carry indicator lamps on the instrument, and they
-    // are the panel's only controls that write a parameter without reflecting
-    // it: a patch loaded at OSC 2 = OSC 1 - 12 used to show two dark buttons.
-    const float root = getToneParameter ("osc1_pitch");
-    const float second = getToneParameter ("osc2_pitch");
-    const auto lamp = [] (Control* control, bool on)
-    {
-        if (control == nullptr)
-            return;
-        if (auto* button = dynamic_cast<juce::Button*> (control->component.get()))
-            button->setToggleState (on, juce::dontSendNotification);
-    };
-    // The same snapped targets the buttons write, so the lamp says where the
-    // press actually lands rather than where it aimed.
-    lamp (intervalOctControl,
-          second == snapToneParameter ("osc2_pitch", root - 12.0f));
-    lamp (intervalFifthControl,
-          second == snapToneParameter ("osc2_pitch", root + 7.0f));
-
 }
 
 void SeptumAudioProcessorEditor::nameEnds (Control* control, const char* left,
@@ -1779,7 +1753,6 @@ void SeptumAudioProcessorEditor::layoutSection (Section& section,
                                selector ? cell.getWidth() - 2 * fieldInset
                                         : button ? control->cellWidth() - 10 : knobDiameter,
                                selector ? comboHeight : button ? toggleHeight : knobDiameter);
-            // INTERVAL is one label centered across the two action buttons.
             if (control->label->getText().isEmpty() && previous != nullptr)
             {
                 previous->label->setBounds (previous->label->getBounds().getUnion (
@@ -2005,7 +1978,11 @@ void SeptumAudioProcessorEditor::layoutPanel()
 void SeptumAudioProcessorEditor::paint (juce::Graphics& g)
 {
     // Whatever the window has that the panel's proportions do not use.
-    g.fillAll (colours::surround);
+    const auto bounds = g.getClipBounds().toFloat();
+    g.setGradientFill (juce::ColourGradient (colours::surround.brighter (0.04f),
+                                            0.0f, bounds.getY(),
+                                            colours::recess, 0.0f, bounds.getBottom(), false));
+    g.fillAll();
 }
 
 void SeptumAudioProcessorEditor::PanelCanvas::paint (juce::Graphics& g)

@@ -274,10 +274,8 @@ private:
     void paintPanel (juce::Graphics&);
     void setToneParameter (const char* suffix, float natural);
     [[nodiscard]] float getToneParameter (const char* suffix) const;
-    // What `setToneParameter` would actually store for this value. The OSC 2
-    // INTERVAL buttons and their lamps compare against a target, and the write
-    // snaps it to the parameter's range, so an unsnapped target near the ends
-    // of the pitch range makes the button a one-way trap with a dark lamp.
+    // What `setToneParameter` would actually store for this value. Snapping is
+    // used by any writer that feeds this value to the pitch range.
     [[nodiscard]] float snapToneParameter (const char* suffix, float natural) const;
     void applyKeyboardOctave();
     void stepKeyboardOctave (int delta);
@@ -332,11 +330,6 @@ private:
     std::array<juce::Label, 2> partRouteLabels, partActivityLabels;
     std::array<float, 2> partMeterLevels { 0.0f, 0.0f };
     juce::Label titleLabel;
-
-    // OSC 2 INTERVAL buttons (settled behavior: -OCT one octave below,
-    // 5th seven semitones above; both together = unison).
-    Control* intervalOctControl { nullptr };
-    Control* intervalFifthControl { nullptr };
 
     // Hovering any control names the parameter it edits, in the same words
     // the host's own parameter list uses.

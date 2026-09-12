@@ -990,11 +990,9 @@ juce::Component* findComponentById (juce::Component& root, const juce::String& i
     return nullptr;
 }
 
-// Settled (OM p. 30): "-OCT ... lowers the OSC 2 pitch one octave below that
-// of OSC 1"; "the OSC 2 pitch will be seven semitones (a perfect fifth)
-// higher than OSC 1"; and both together "the OSC 2 pitch will be the same as
-// the OSC 1 pitch". All three are intervals, so a transposed OSC 1 moves them.
-void testIntervalButtonsAreRelativeToOscOne()
+// Both oscillators expose pitch directly; interval shortcuts are redundant.
+// Editing OSC 2 must still reach the same intervals without changing OSC 1.
+void testOscillatorPitchControlsRemainIndependent()
 {
     SeptumAudioProcessor processor;
     processor.prepareToPlay (44100.0, 256);
@@ -1015,58 +1013,35 @@ void testIntervalButtonsAreRelativeToOscOne()
         return (int) processor.parameters.getRawParameterValue (id)->load();
     };
 
-    auto* minusOctave = findButton (panelOf (*editor), "-OCT");
-    auto* fifth = findButton (panelOf (*editor), "5TH");
-    expect (minusOctave != nullptr && fifth != nullptr,
-            "the panel carries both INTERVAL buttons");
-    if (minusOctave == nullptr || fifth == nullptr)
+    auto& panel = panelOf (*editor);
+    auto* firstPitch = dynamic_cast<juce::Slider*> (
+        findComponentById (panel, "tone_osc1_pitch"));
+    auto* secondPitch = dynamic_cast<juce::Slider*> (
+        findComponentById (panel, "tone_osc2_pitch"));
+    expect (firstPitch != nullptr && secondPitch != nullptr,
+            "both oscillators expose a pitch control");
+    expect (findButton (panel, "-OCT") == nullptr && findButton (panel, "5TH") == nullptr,
+            "the panel omits redundant interval shortcuts");
+    if (firstPitch == nullptr || secondPitch == nullptr)
         return;
 
-    set ("up_osc1_wide", 1.0f);     // room for +/-36, so nothing clamps
+    set ("up_osc1_wide", 1.0f);
     set ("up_osc2_wide", 1.0f);
     set ("up_osc1_pitch", 5.0f);
     set ("up_osc2_pitch", 0.0f);
+    editor->resized();
 
-    minusOctave->onClick();
-    expect (get ("up_osc2_pitch") == -7,
-            "-OCT puts OSC 2 an octave below OSC 1, not at -12 (got "
-                + std::to_string (get ("up_osc2_pitch")) + ")");
-    minusOctave->onClick();
-    expect (get ("up_osc2_pitch") == 5,
-            "pressing -OCT again returns OSC 2 to OSC 1's pitch (got "
-                + std::to_string (get ("up_osc2_pitch")) + ")");
-
-    fifth->onClick();
-    expect (get ("up_osc2_pitch") == 12,
-            "5TH puts OSC 2 a fifth above OSC 1 (got "
-                + std::to_string (get ("up_osc2_pitch")) + ")");
-
-    // Near the ends of the pitch range the interval the button aims at does
-    // not exist, so the write snaps — and comparing against the unsnapped
-    // target made the button a one-way trap: it landed on +36, read "not there
-    // yet", and the second press, documented as the way back to unison, did
-    // nothing at all.
-    set ("up_osc1_pitch", 30.0f);
-    set ("up_osc2_pitch", 0.0f);
-    fifth->onClick();
-    expect (get ("up_osc2_pitch") == 36,
-            "5TH from OSC 1 at +30 lands on the top of the range (got "
-                + std::to_string (get ("up_osc2_pitch")) + ")");
-    fifth->onClick();
-    expect (get ("up_osc2_pitch") == 30,
-            "and pressing it again still returns OSC 2 to OSC 1's pitch (got "
-                + std::to_string (get ("up_osc2_pitch")) + ")");
-
-    set ("up_osc1_pitch", -30.0f);
-    set ("up_osc2_pitch", 0.0f);
-    minusOctave->onClick();
-    expect (get ("up_osc2_pitch") == -36,
-            "-OCT from OSC 1 at -30 lands on the bottom of the range (got "
-                + std::to_string (get ("up_osc2_pitch")) + ")");
-    minusOctave->onClick();
-    expect (get ("up_osc2_pitch") == -30,
-            "and pressing it again returns OSC 2 to OSC 1's pitch (got "
-                + std::to_string (get ("up_osc2_pitch")) + ")");
+    for (const int pitch : { -7, 12, 5, 36, -36 })
+    {
+        secondPitch->setValue (pitch, juce::sendNotificationSync);
+        expect (get ("up_osc2_pitch") == pitch,
+                "OSC 2 pitch control reaches " + std::to_string (pitch));
+        expect (get ("up_osc1_pitch") == 5,
+                "editing OSC 2 leaves OSC 1 pitch unchanged");
+    }
+    firstPitch->setValue (-12, juce::sendNotificationSync);
+    expect (get ("up_osc1_pitch") == -12 && get ("up_osc2_pitch") == -36,
+            "OSC 1 pitch also edits independently of OSC 2");
 }
 
 // The three invariants the panel is built on were `jassert`s, and NDEBUG
@@ -3363,14 +3338,15 @@ void testMutedPartControlsStayInspectableAndFollowHostState()
     auto* attack = dynamic_cast<juce::Slider*> (findComponentById (panel, "tone_aenv_attack"));
     auto* wave = dynamic_cast<juce::ComboBox*> (findComponentById (panel, "tone_osc1_wave"));
     auto* overdrive = dynamic_cast<juce::Button*> (findComponentById (panel, "tone_overdrive"));
-    auto* octave = findButton (panel, "-OCT");
+    auto* osc2Pitch = dynamic_cast<juce::Slider*> (
+        findComponentById (panel, "tone_osc2_pitch"));
     expect (upper != nullptr && lower != nullptr && upperPower != nullptr
                 && lowerPower != nullptr && cutoff != nullptr && attack != nullptr
-                && wave != nullptr && overdrive != nullptr && octave != nullptr,
+                && wave != nullptr && overdrive != nullptr && osc2Pitch != nullptr,
             "selectors, powers and every kind of inspected tone control exist");
     if (upper == nullptr || lower == nullptr || upperPower == nullptr
         || lowerPower == nullptr || cutoff == nullptr || attack == nullptr
-        || wave == nullptr || overdrive == nullptr || octave == nullptr)
+        || wave == nullptr || overdrive == nullptr || osc2Pitch == nullptr)
         return;
 
     struct ControlState
@@ -3406,11 +3382,10 @@ void testMutedPartControlsStayInspectableAndFollowHostState()
         else
             shared.push_back ({ child, child->isEnabled(), child->getAlpha() });
     }
-    // Count the current complete tone surface, including actions with no
-    // parameter attachment. This catches an untagged or untested control.
-    expect (perTone.size() == 66 && knobs == 31 && sliders == 10
-                && combos == 15 && toggles == 8 && actions == 2,
-            "mute coverage includes all 66 tone controls: knobs, sliders, choices, toggles and actions");
+    // Count the complete tone surface to catch an untagged or untested control.
+    expect (perTone.size() == 64 && knobs == 31 && sliders == 10
+                && combos == 15 && toggles == 8 && actions == 0,
+            "mute coverage includes all 64 tone controls: knobs, sliders, choices and toggles");
     expect (shared.size() > 40, "mute coverage also watches the shared controls");
 
     const auto verifyAvailability = [&] (bool enabled, const juce::String& context)
@@ -3492,7 +3467,7 @@ void testMutedPartControlsStayInspectableAndFollowHostState()
     automateTone ("up_overdrive", 1.0f);
     automateTone ("up_osc1_pitch", 0.0f);
     automateTone ("up_osc2_pitch", -12.0f);
-    tick ([&] { return octave->getToggleState(); });
+    tick ([&] { return std::abs (osc2Pitch->getValue() + 12.0) < 0.001; });
     // Attachments convert via the host's normalised float. A sub-millistep
     // tolerance permits that conversion error while still rejecting a stale
     // display or even a one-unit parameter mismatch.
@@ -3507,12 +3482,9 @@ void testMutedPartControlsStayInspectableAndFollowHostState()
                 + juce::String (wave->getSelectedItemIndex()) + ", expected 4)");
     expect (overdrive->getToggleState(),
             "disabled overdrive toggle follows host automation to ON");
-    expect (octave->getToggleState(),
-            "disabled interval action lamp follows automated OSC2 = OSC1 - 12"
-            " (OSC1 " + juce::String (processor.parameters.getRawParameterValue (
-                "up_osc1_pitch")->load(), 9) + ", OSC2 "
-                + juce::String (processor.parameters.getRawParameterValue (
-                    "up_osc2_pitch")->load(), 9) + ")");
+    expect (std::abs (osc2Pitch->getValue() + 12.0) < 0.001,
+            "disabled OSC 2 pitch follows host automation (display "
+                + juce::String (osc2Pitch->getValue(), 9) + ", expected -12)");
     verifyAvailability (false, "automation while UPPER is OFF");
 
     set ("upper_enabled", 1.0f);
@@ -3666,7 +3638,7 @@ int main (int argc, char* argv[])
     testStateRoundTrip();
     testNativePresetFiles();
     testPartControlsSurviveSessionsAndPublishActualActivity();
-    testIntervalButtonsAreRelativeToOscOne();
+    testOscillatorPitchControlsRemainIndependent();
     testThePanelsInvariantsAreCheckedBySomethingThatRuns();
     testAllSharedControlsStayVisible();
     testTogglesShowTheirState();
