@@ -293,6 +293,7 @@ private:
     std::vector<std::unique_ptr<Section>> sections;
     std::vector<std::unique_ptr<Control>> controls;
     Section* performSection { nullptr };
+    Control* remoteKeyboardControl { nullptr };
     Section* systemSection { nullptr };
     Section* stripSection { nullptr };
     Section* tonePlaySection { nullptr };

@@ -15,7 +15,7 @@ namespace
 using septum::Patch;
 using septum::TonePatch;
 
-constexpr int nativePresetVersion = 4;
+constexpr int nativePresetVersion = 5;
 constexpr std::size_t maximumPresetBytes = 1024 * 1024;
 
 // Version 1 predates the MIDI receiver settings. Fill only those additions;
@@ -34,6 +34,17 @@ void addMissingMidiSettings (juce::ValueTree& state)
             parameterState.setProperty ("value", value, nullptr);
             state.addChild (parameterState, -1, nullptr);
         }
+}
+
+void addMissingRemoteSettings (juce::ValueTree& state)
+{
+    if (! state.getChildWithProperty ("id", "system_remote_keyboard").isValid())
+    {
+        juce::ValueTree setting ("PARAM");
+        setting.setProperty ("id", "system_remote_keyboard", nullptr);
+        setting.setProperty ("value", 2.0f, nullptr);
+        state.addChild (setting, -1, nullptr);
+    }
 }
 
 void addMissingBankSettings (juce::ValueTree& state)
@@ -621,6 +632,7 @@ void SeptumAudioProcessor::cacheParameterPointers()
     midiChannelValue = parameters.getRawParameterValue ("system_midi_channel");
     receiveProgramValue = parameters.getRawParameterValue ("system_receive_program");
     receiveBankValue = parameters.getRawParameterValue ("system_receive_bank");
+    remoteKeyboardValue = parameters.getRawParameterValue ("system_remote_keyboard");
     deviceIdValue = parameters.getRawParameterValue ("system_device_id");
     activeSensingValue = parameters.getRawParameterValue ("system_active_sensing");
     clockSourceValue = parameters.getRawParameterValue ("system_clock_source");
@@ -971,6 +983,9 @@ SeptumAudioProcessor::createParameterLayout()
         juce::AudioParameterIntAttributes().withLabel ("BPM")));
     layout.add (std::make_unique<juce::AudioParameterBool> (
         juce::ParameterID { "system_receive_bank", 5 }, "Receive Bank Select", true));
+    layout.add (std::make_unique<juce::AudioParameterChoice> (
+        juce::ParameterID { "system_remote_keyboard", 6 }, "Remote Keyboard",
+        juce::StringArray { "DIRECT", "REMOTE", "CHANNEL" }, 2));
     return layout;
 }
 
@@ -1225,6 +1240,7 @@ void SeptumAudioProcessor::prepareToPlay (double sampleRate,
         std::floor (sampleRate * 0.420)) + 1u;
     appliedMidiChannel = static_cast<int> (std::lround (midiChannelValue->load()));
     midiBankSelect.reset();
+    appliedRemoteKeyboard = static_cast<int> (std::lround (remoteKeyboardValue->load()));
     engine.prepare (sampleRate, samplesPerBlock);
     engine.setMasterLevel ((int) std::lround (masterValue->load()));
     applySystemSettings();
@@ -1626,12 +1642,27 @@ void SeptumAudioProcessor::observeMidiActivity (
 bool SeptumAudioProcessor::handleMidiMessage (const juce::MidiMessage& message)
 {
     const int channel = message.getChannel();
-    if (channel != 0 && appliedMidiChannel != 0 && channel != appliedMidiChannel)
+    const int controller = message.isController() ? message.getControllerNumber() : -1;
+    const bool keyboardPerformance = message.isNoteOnOrOff() || message.isPitchWheel()
+        || controller == 1 || controller == 7 || controller == 10 || controller == 11
+        || controller == 64 || controller == 66 || controller == 84;
+    // OM p. 69 makes a remote keyboard channel-independent. Panel edits,
+    // program selection and mode commands remain on the receive channel.
+    const bool remote = appliedRemoteKeyboard == 1 && keyboardPerformance;
+    if (channel != 0 && appliedMidiChannel != 0 && channel != appliedMidiChannel && ! remote)
         return false;
     if (message.isNoteOn())
-        engine.noteOn (message.getNoteNumber(), message.getVelocity());
+    {
+        if (appliedRemoteKeyboard == 0)
+            engine.noteOnDirect (message.getNoteNumber(), message.getVelocity());
+        else
+            engine.noteOn (message.getNoteNumber(), message.getVelocity());
+    }
     else if (message.isNoteOff())
-        engine.noteOff (message.getNoteNumber());
+    {
+        if (appliedRemoteKeyboard == 0) engine.noteOffDirect (message.getNoteNumber());
+        else engine.noteOff (message.getNoteNumber());
+    }
     else if (message.isPitchWheel())
         engine.setPitchBend ((message.getPitchWheelValue() - 8192) / 8192.0);
     else if (message.isController())
@@ -1883,37 +1914,13 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     if (activeSensingValue->load (std::memory_order_relaxed) < 0.5f)
         activeSensingArmed = false;
 
-    // UI keyboard events.
-    auto read = uiRead.load (std::memory_order_relaxed);
-    const auto write = uiWrite.load (std::memory_order_acquire);
-    while (read != write)
+    const int remoteKeyboard = static_cast<int> (std::lround (remoteKeyboardValue->load()));
+    if (remoteKeyboard != appliedRemoteKeyboard)
     {
-        const auto& event = uiQueue[read % uiQueueCapacity];
-        if (event.velocity > 0)
-            engine.noteOn (event.note, event.velocity);
-        else
-            engine.noteOff (event.note);
-        ++read;
-    }
-    uiRead.store (read, std::memory_order_release);
-
-    // Releases latched when the UI queue overflowed: apply them now so no
-    // on-screen key can stay stuck.
-    for (std::size_t word = 0; word < forcedRelease.size(); ++word)
-    {
-        auto bits = forcedRelease[word].exchange (0u, std::memory_order_acquire);
-        while (bits != 0u)
-        {
-            const int note = (int) (word * 64) + std::countr_zero (bits);
-            engine.noteOff (note);
-            bits &= bits - 1u;
-        }
-    }
-
-    if (uiLeverDirty.exchange (false, std::memory_order_acquire))
-    {
-        engine.setPitchBend (uiBend.load (std::memory_order_relaxed));
-        engine.setModulation (uiMod.load (std::memory_order_relaxed));
+        // A route change cannot leave releases addressed to the old input.
+        engine.allNotesOff();
+        resetPerformanceControllers();
+        appliedRemoteKeyboard = remoteKeyboard;
     }
 
     engine.setMasterLevel ((int) std::lround (
@@ -1966,6 +1973,40 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     };
     applyCurrentPatch();
     applyTempoSource();
+
+    // UI keyboard events.
+    auto read = uiRead.load (std::memory_order_relaxed);
+    const auto write = uiWrite.load (std::memory_order_acquire);
+    while (read != write)
+    {
+        const auto& event = uiQueue[read % uiQueueCapacity];
+        if (event.velocity > 0)
+            engine.noteOn (event.note, event.velocity);
+        else
+            engine.noteOff (event.note);
+        ++read;
+    }
+    uiRead.store (read, std::memory_order_release);
+
+    // Releases latched when the UI queue overflowed: apply them now so no
+    // on-screen key can stay stuck.
+    for (std::size_t word = 0; word < forcedRelease.size(); ++word)
+    {
+        auto bits = forcedRelease[word].exchange (0u, std::memory_order_acquire);
+        while (bits != 0u)
+        {
+            const int note = (int) (word * 64) + std::countr_zero (bits);
+            engine.noteOff (note);
+            bits &= bits - 1u;
+        }
+    }
+
+    if (uiLeverDirty.exchange (false, std::memory_order_acquire))
+    {
+        engine.setPitchBend (uiBend.load (std::memory_order_relaxed));
+        engine.setModulation (uiMod.load (std::memory_order_relaxed));
+    }
+
 
     auto* left = buffer.getWritePointer (0);
     // The declared bus is stereo-only, but a defensive mono path must not
@@ -2569,13 +2610,15 @@ juce::Result SeptumAudioProcessor::loadPresetFromFile (const juce::File& file)
     auto state = juce::ValueTree::fromXml (*xml);
     double storedVersion = 0.0;
     if (readPresetNumber (state["preset_format_version"], storedVersion)
-        && (storedVersion == 1.0 || storedVersion == 2.0 || storedVersion == 3.0))
+        && (storedVersion == 1.0 || storedVersion == 2.0 || storedVersion == 3.0 || storedVersion == 4.0))
     {
         if (storedVersion == 1.0)
             addMissingMidiSettings (state);
         if (storedVersion <= 2.0)
             addMissingTempoSettings (state);
-        addMissingBankSettings (state);
+        if (storedVersion <= 3.0)
+            addMissingBankSettings (state);
+        addMissingRemoteSettings (state);
         state.setProperty ("preset_format_version", nativePresetVersion, nullptr);
     }
     if (const auto result = validatePresetState (state); result.failed())
@@ -2688,6 +2731,7 @@ void SeptumAudioProcessor::setStateInformation (const void* data,
             addMissingMidiSettings (state);
             addMissingTempoSettings (state);
             addMissingBankSettings (state);
+            addMissingRemoteSettings (state);
             // Older sessions omitted the extensions. Insert explicit ON
             // values so restoring over a currently muted instance is safe.
             for (const auto* id : { "upper_enabled", "lower_enabled" })

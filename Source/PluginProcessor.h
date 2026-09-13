@@ -159,6 +159,8 @@ private:
     bool handleController (int controller, int value, int channel);
     septum::MidiBankSelect midiBankSelect;
     std::atomic<float>* receiveBankValue { nullptr };
+    std::atomic<float>* remoteKeyboardValue { nullptr };
+    int appliedRemoteKeyboard { 2 };
     [[nodiscard]] bool acceptsLiveSysEx (const std::uint8_t* data,
                                          std::size_t size) const noexcept;
     bool decodeLivePatchMessage (const std::uint8_t* data, std::size_t size,

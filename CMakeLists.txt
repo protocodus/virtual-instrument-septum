@@ -171,6 +171,11 @@ if(SEPTUM_BUILD_TOOLS)
 endif()
 
 if(BUILD_TESTING)
+    add_executable(SeptumRemoteKeyboardTests Tests/RemoteKeyboardTests.cpp)
+    target_link_libraries(SeptumRemoteKeyboardTests PRIVATE SeptumDSP)
+    add_test(NAME Septum.RemoteKeyboard COMMAND SeptumRemoteKeyboardTests)
+    set_tests_properties(Septum.RemoteKeyboard PROPERTIES TIMEOUT 120)
+
     add_executable(SeptumAmpEnvelopeLatencyTests Tests/AmpEnvelopeLatencyTests.cpp)
     target_link_libraries(SeptumAmpEnvelopeLatencyTests PRIVATE SeptumDSP)
     add_test(NAME Septum.AmpEnvelopeLatency COMMAND SeptumAmpEnvelopeLatencyTests)
@@ -280,6 +285,15 @@ if(BUILD_TESTING)
     endif()
 
     if(SEPTUM_BUILD_PLUGIN)
+        add_executable(SeptumRemoteKeyboardProcessorTests Tests/RemoteKeyboardProcessorTests.cpp)
+        target_link_libraries(SeptumRemoteKeyboardProcessorTests PRIVATE Septum)
+        target_include_directories(SeptumRemoteKeyboardProcessorTests PRIVATE
+            "${CMAKE_CURRENT_SOURCE_DIR}/Source"
+            "$<TARGET_PROPERTY:Septum,JUCE_GENERATED_SOURCES_DIRECTORY>"
+            "$<TARGET_PROPERTY:Septum,INCLUDE_DIRECTORIES>")
+        add_test(NAME Septum.RemoteKeyboardProcessor COMMAND SeptumRemoteKeyboardProcessorTests)
+        set_tests_properties(Septum.RemoteKeyboardProcessor PROPERTIES TIMEOUT 120)
+
         add_executable(SeptumMidiBankProcessorTests Tests/MidiBankProcessorTests.cpp)
         target_link_libraries(SeptumMidiBankProcessorTests PRIVATE Septum)
         target_include_directories(SeptumMidiBankProcessorTests PRIVATE

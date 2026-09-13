@@ -840,7 +840,7 @@ void testPartControlsSurviveSessionsAndPublishActualActivity()
             "both parts default to enabled");
     const auto& all = processor.getParameters();
     // MIDI receiver and clock settings follow the two existing part enables.
-    expect (all[all.size() - 9] == upper && all[all.size() - 8] == lower,
+    expect (all[all.size() - 10] == upper && all[all.size() - 9] == lower,
             "part enables are appended without shifting existing host indices");
     int previousVersion = 0;
     for (int i = 0; i < all.indexOf (upper); ++i)

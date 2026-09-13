@@ -70,7 +70,7 @@ constexpr int instrumentTopPadding = 20;
 constexpr int outerPadding = 24;
 constexpr int presetPanelWidth = 540;
 constexpr int systemPanelWidth = 680 + 2 * sectionPadding;
-constexpr int performancePanelWidth = 620 + 2 * sectionPadding;
+constexpr int performancePanelWidth = 754 + 2 * sectionPadding;
 // One contiguous part surface, followed by shared effects and performance.
 constexpr int partTop = instrumentTopPadding + headerHeight + 8;
 constexpr int partTabHeight = 88;
@@ -898,6 +898,12 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
     // instrument rather than to the patch, and are not saved with one. Built
     // last so the band index lists below keep the construction order they
     // name.
+    remoteKeyboardControl = addControl (*performSection, "system_remote_keyboard", "MIDI NOTES",
+                                        Style::Combo, false);
+    if (auto* tooltip = dynamic_cast<juce::SettableTooltipClient*> (remoteKeyboardControl->component.get()))
+        tooltip->setTooltip (
+            "DIRECT: play tones on the receive channel. REMOTE: any-channel keyboard through the arpeggiator. "
+            "CHANNEL: keyboard through the arpeggiator on the receive channel (compatibility default).");
     systemSection = section ("SYSTEM / MIDI", Band::Perform);
     systemSection->rowCounts = { 8 };
     systemSection->fixedColumns = { 84, 80, 80, 84, 96, 80, 80, 96 };
@@ -1930,6 +1936,8 @@ void SeptumAudioProcessorEditor::layoutPanel()
                        systemTempoControl->value.get(), performanceRow.removeFromLeft (86),
                        knobDiameter, knobDiameter);
     layoutControlCell (*clockSourceControl->component, *clockSourceControl->label, nullptr,
+                       performanceRow.removeFromLeft (134), 118, comboHeight);
+    layoutControlCell (*remoteKeyboardControl->component, *remoteKeyboardControl->label, nullptr,
                        performanceRow.removeFromLeft (134), 118, comboHeight);
     auto octaveCell = performanceRow.removeFromLeft (118);
     octLabel.setBounds (octaveCell.removeFromTop (labelHeight));

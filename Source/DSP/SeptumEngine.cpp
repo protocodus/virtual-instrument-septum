@@ -798,6 +798,40 @@ void Engine::noteOff (int note)
     }
 }
 
+void Engine::noteOnDirect (int note, int velocity)
+{
+    note = clampRaw (note, 0, 127);
+    velocity = clampRaw (velocity, 1, 127);
+    syncArpeggioRouting();
+    const int portamentoSource = portamentoControlNote_;
+    clearPortamentoControl();
+    const auto route = [this, note, velocity, portamentoSource] (Part part)
+    {
+        startNoteForPart (part, note, velocity, portamentoSource, true);
+    };
+    switch (patch_.keyboardMode)
+    {
+        case KeyboardMode::Single:
+            route (patch_.keyboardPart == KeyboardPart::Upper ? Part::Upper : Part::Lower);
+            break;
+        case KeyboardMode::Dual:
+            route (Part::Upper);
+            route (Part::Lower);
+            break;
+        case KeyboardMode::Split:
+            route (note >= patch_.splitPoint ? Part::Upper : Part::Lower);
+            break;
+    }
+}
+
+void Engine::noteOffDirect (int note)
+{
+    note = clampRaw (note, 0, 127);
+    syncArpeggioRouting();
+    releaseNoteForPart (Part::Upper, note, true);
+    releaseNoteForPart (Part::Lower, note, true);
+}
+
 // Whether a part is arpeggiated is a patch decision, so it can be automated
 // under a held chord - and the ARPEGGIO switch is not the only control that
 // decides it. SPLIT ARPEGGIO, the keyboard mode and the keyboard part each
@@ -844,13 +878,15 @@ void Engine::handleArpeggioRouting (Part part, bool nowDriven)
     {
         // The keys already down become the chord, and the voices they
         // started stop: one key cannot be playing both ways at once.
-        count = std::min (runtime.heldCount, static_cast<int> (notes.size()));
-        for (int i = 0; i < count; ++i)
+        for (int i = 0; i < runtime.heldCount && count < static_cast<int> (notes.size()); ++i)
         {
-            notes[static_cast<std::size_t> (i)] =
+            if (runtime.heldDirectMidi[static_cast<std::size_t> (i)])
+                continue;
+            notes[static_cast<std::size_t> (count)] =
                 runtime.heldNotes[static_cast<std::size_t> (i)];
-            velocities[static_cast<std::size_t> (i)] =
+            velocities[static_cast<std::size_t> (count)] =
                 runtime.heldVelocities[static_cast<std::size_t> (i)];
+            ++count;
         }
         for (int i = 0; i < count; ++i)
             releaseNoteForPart (part, notes[static_cast<std::size_t> (i)]);
@@ -878,7 +914,7 @@ void Engine::handleArpeggioRouting (Part part, bool nowDriven)
 }
 
 void Engine::startNoteForPart (Part part, int note, int velocity,
-                               int portamentoSource)
+                               int portamentoSource, bool directMidi)
 {
     if (! partSounds (part))
         return;
@@ -893,7 +929,8 @@ void Engine::startNoteForPart (Part part, int note, int velocity,
     // clear it here, or the pedal would go on catching that pitch for as long
     // as it stayed down.
     if (sostenuto_ && note >= 0 && note <= 127)
-        runtime.sostenutoNotes[static_cast<std::size_t> (note >> 6)] &=
+        (directMidi ? runtime.directSostenutoNotes : runtime.sostenutoNotes)
+            [static_cast<std::size_t> (note >> 6)] &=
             ~(1ull << (note & 63));
 
     // CC#84 transfers ownership of a sounding source to the next note.
@@ -905,11 +942,13 @@ void Engine::startNoteForPart (Part part, int note, int velocity,
         for (auto& candidate : voices_)
             if (candidate.active && candidate.part == part
                 && candidate.note == portamentoSource
+                && candidate.directMidi == directMidi
                 && (portamentoVoice == nullptr || candidate.age > portamentoVoice->age))
                 portamentoVoice = &candidate;
         if (portamentoVoice != nullptr)
             for (int i = runtime.heldCount - 1; i >= 0; --i)
-                if (runtime.heldNotes[static_cast<std::size_t> (i)] == portamentoSource)
+                if (runtime.heldNotes[static_cast<std::size_t> (i)] == portamentoSource
+                    && runtime.heldDirectMidi[static_cast<std::size_t> (i)] == directMidi)
                 {
                     for (int j = i; j + 1 < runtime.heldCount; ++j)
                     {
@@ -917,6 +956,8 @@ void Engine::startNoteForPart (Part part, int note, int velocity,
                             runtime.heldNotes[static_cast<std::size_t> (j + 1)];
                         runtime.heldVelocities[static_cast<std::size_t> (j)] =
                             runtime.heldVelocities[static_cast<std::size_t> (j + 1)];
+                        runtime.heldDirectMidi[static_cast<std::size_t> (j)] =
+                            runtime.heldDirectMidi[static_cast<std::size_t> (j + 1)];
                     }
                     --runtime.heldCount;
                     break;
@@ -928,6 +969,7 @@ void Engine::startNoteForPart (Part part, int note, int velocity,
     {
         runtime.heldNotes[static_cast<std::size_t> (runtime.heldCount)] = note;
         runtime.heldVelocities[static_cast<std::size_t> (runtime.heldCount)] = velocity;
+        runtime.heldDirectMidi[static_cast<std::size_t> (runtime.heldCount)] = directMidi;
         ++runtime.heldCount;
     }
     const bool firstKey = ! runtime.anyKeyDown;
@@ -952,7 +994,7 @@ void Engine::startNoteForPart (Part part, int note, int velocity,
     // including in POLY mode. The new note number owns its eventual off.
     if (portamentoVoice != nullptr)
     {
-        triggerVoice (*portamentoVoice, part, note, velocityNorm, true, portamentoSource);
+        triggerVoice (*portamentoVoice, part, note, velocityNorm, true, portamentoSource, directMidi);
         triggerVoiceLfos (*portamentoVoice);
         return;
     }
@@ -974,7 +1016,7 @@ void Engine::startNoteForPart (Part part, int note, int velocity,
             voice = allocateVoice (part);
         if (voice == nullptr)
             return;
-        triggerVoice (*voice, part, note, velocityNorm, legato, portamentoSource);
+        triggerVoice (*voice, part, note, velocityNorm, legato, portamentoSource, directMidi);
         triggerVoiceLfos (*voice);
         return;
     }
@@ -982,7 +1024,7 @@ void Engine::startNoteForPart (Part part, int note, int velocity,
     Voice* voice = allocateVoice (part);
     if (voice == nullptr)
         return;
-    triggerVoice (*voice, part, note, velocityNorm, false, portamentoSource);
+    triggerVoice (*voice, part, note, velocityNorm, false, portamentoSource, directMidi);
     triggerVoiceLfos (*voice);
 }
 
@@ -1003,13 +1045,14 @@ void Engine::triggerVoiceLfos (Voice& voice)
     trigger (voice.lfo2, tone.lfo2);
 }
 
-void Engine::releaseNoteForPart (Part part, int note)
+void Engine::releaseNoteForPart (Part part, int note, bool directMidi)
 {
     ToneRuntime& runtime = toneRuntime (part);
 
     for (int i = 0; i < runtime.heldCount; ++i)
     {
-        if (runtime.heldNotes[static_cast<std::size_t> (i)] == note)
+        if (runtime.heldNotes[static_cast<std::size_t> (i)] == note
+            && runtime.heldDirectMidi[static_cast<std::size_t> (i)] == directMidi)
         {
             for (int j = i; j + 1 < runtime.heldCount; ++j)
             {
@@ -1017,6 +1060,8 @@ void Engine::releaseNoteForPart (Part part, int note)
                     runtime.heldNotes[static_cast<std::size_t> (j + 1)];
                 runtime.heldVelocities[static_cast<std::size_t> (j)] =
                     runtime.heldVelocities[static_cast<std::size_t> (j + 1)];
+                runtime.heldDirectMidi[static_cast<std::size_t> (j)] =
+                    runtime.heldDirectMidi[static_cast<std::size_t> (j + 1)];
             }
             --runtime.heldCount;
             break;
@@ -1031,7 +1076,7 @@ void Engine::releaseNoteForPart (Part part, int note)
         {
             if (! voice.active || voice.part != part)
                 continue;
-            if (voice.note != note)
+            if (voice.note != note || voice.directMidi != directMidi)
                 continue;
             if (runtime.heldCount > 0)
             {
@@ -1041,9 +1086,10 @@ void Engine::releaseNoteForPart (Part part, int note)
                 const int previousVelocity =
                     runtime.heldVelocities[static_cast<std::size_t> (runtime.heldCount - 1)];
                 triggerVoice (voice, part, previousNote, previousVelocity / 127.0,
-                              tone.mono == MonoMode::SoloLegato);
+                              tone.mono == MonoMode::SoloLegato, -1,
+                              runtime.heldDirectMidi[static_cast<std::size_t> (runtime.heldCount - 1)]);
             }
-            else if (hold_ || runtime.sostenutoHolds (voice.note))
+            else if (hold_ || runtime.sostenutoHolds (voice.note, voice.directMidi))
             {
                 voice.held = true;
             }
@@ -1057,9 +1103,10 @@ void Engine::releaseNoteForPart (Part part, int note)
 
     for (auto& voice : voices_)
     {
-        if (! voice.active || voice.part != part || voice.note != note)
+        if (! voice.active || voice.part != part || voice.note != note
+            || voice.directMidi != directMidi)
             continue;
-        if (hold_ || runtime.sostenutoHolds (note))
+        if (hold_ || runtime.sostenutoHolds (note, directMidi))
         {
             voice.held = true;
             continue;
@@ -1137,7 +1184,7 @@ Engine::Voice* Engine::allocateVoice (Part part)
 }
 
 void Engine::triggerVoice (Voice& voice, Part part, int note, double velocity,
-                           bool legato, int portamentoSource)
+                           bool legato, int portamentoSource, bool directMidi)
 {
     const TonePatch& tone = tonePatch (part);
     ToneRuntime& runtime = toneRuntime (part);
@@ -1150,6 +1197,7 @@ void Engine::triggerVoice (Voice& voice, Part part, int note, double velocity,
     voice.active = true;
     voice.part = part;
     voice.note = note;
+    voice.directMidi = directMidi;
     voice.velocity = velocity;
     voice.held = true;
     voice.age = ++voiceClock_;
@@ -1237,7 +1285,8 @@ bool Engine::keyStillDown (const Voice& voice) noexcept
 {
     const ToneRuntime& runtime = tones_[voice.part == Part::Upper ? 0 : 1];
     for (int i = 0; i < runtime.heldCount; ++i)
-        if (runtime.heldNotes[static_cast<std::size_t> (i)] == voice.note)
+        if (runtime.heldNotes[static_cast<std::size_t> (i)] == voice.note
+            && runtime.heldDirectMidi[static_cast<std::size_t> (i)] == voice.directMidi)
             return true;
     return false;
 }
@@ -1265,7 +1314,7 @@ void Engine::releaseIfNoPedalHolds (Voice& voice) noexcept
     if (! voice.active)
         return;
     const ToneRuntime& runtime = tones_[voice.part == Part::Upper ? 0 : 1];
-    if (hold_ || runtime.sostenutoHolds (voice.note) || keyStillDown (voice))
+    if (hold_ || runtime.sostenutoHolds (voice.note, voice.directMidi) || keyStillDown (voice))
         return;
     beginRelease (voice);
 }
@@ -1296,18 +1345,24 @@ void Engine::setSostenuto (bool down)
         for (auto& runtime : tones_)
         {
             runtime.sostenutoNotes.fill (0ull);
+            runtime.directSostenutoNotes.fill (0ull);
             for (int i = 0; i < runtime.heldCount; ++i)
             {
                 const int note = runtime.heldNotes[static_cast<std::size_t> (i)];
                 if (note >= 0 && note <= 127)
-                    runtime.sostenutoNotes[static_cast<std::size_t> (note >> 6)] |=
+                    (runtime.heldDirectMidi[static_cast<std::size_t> (i)]
+                         ? runtime.directSostenutoNotes : runtime.sostenutoNotes)
+                        [static_cast<std::size_t> (note >> 6)] |=
                         1ull << (note & 63);
             }
         }
         return;
     }
     for (auto& runtime : tones_)
+    {
         runtime.sostenutoNotes.fill (0ull);
+        runtime.directSostenutoNotes.fill (0ull);
+    }
     for (auto& voice : voices_)
         if (voice.held)
             releaseIfNoPedalHolds (voice);
@@ -1403,7 +1458,7 @@ void Engine::allNotesOff()
     // because the sweep took the step that was sounding and the pattern only
     // came back at the next one.
     for (auto& voice : voices_)
-        if (voice.active && ! arpeggioIsSounding (voice.part, voice.note))
+        if (voice.active && (voice.directMidi || ! arpeggioIsSounding (voice.part, voice.note)))
             releaseIfNoPedalHolds (voice);
 }
 
@@ -1423,6 +1478,7 @@ void Engine::allSoundOff()
         tone.heldCount = 0;
         tone.anyKeyDown = false;
         tone.sostenutoNotes.fill (0ull);
+        tone.directSostenutoNotes.fill (0ull);
     }
     for (auto& runtime : arpeggios_)
     {

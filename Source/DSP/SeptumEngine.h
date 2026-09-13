@@ -1042,6 +1042,10 @@ public:
     // Performance inputs.
     void noteOn (int note, int velocity1to127);
     void noteOff (int note);
+    // REMOTE KEYBOARD off: MIDI plays the sound generator directly, without
+    // entering the onboard keyboard's arpeggiator (OM pp. 22, 69).
+    void noteOnDirect (int note, int velocity1to127);
+    void noteOffDirect (int note);
     void setHold (bool down);
     void setSostenuto (bool down);
     void setPitchBend (double normalised);   // -1..+1 over the per-tone range
@@ -1294,6 +1298,7 @@ private:
         bool active { false };
         Part part { Part::Upper };
         int note { -1 };
+        bool directMidi { false };   // separate release ownership from keys/arp
         double velocity { 0.0 };
         bool held { false };          // key (or pedal) still down
         std::uint32_t age { 0 };          // when it was triggered
@@ -1429,6 +1434,7 @@ private:
         // Solo-mode held-note stack, most recent last.
         std::array<int, 16> heldNotes {};
         std::array<int, 16> heldVelocities {};
+        std::array<bool, 16> heldDirectMidi {};
         int heldCount { 0 };
         double lastPitch { 60.0 };
         bool anyKeyDown { false };
@@ -1438,12 +1444,14 @@ private:
         // last-note priority, so a latch tied to the voice would be lost the
         // moment another key borrowed it.
         std::array<std::uint64_t, 2> sostenutoNotes {};
+        std::array<std::uint64_t, 2> directSostenutoNotes {};
 
-        [[nodiscard]] bool sostenutoHolds (int note) const noexcept
+        [[nodiscard]] bool sostenutoHolds (int note, bool directMidi = false) const noexcept
         {
             if (note < 0 || note > 127)
                 return false;
-            return (sostenutoNotes[static_cast<std::size_t> (note >> 6)]
+            const auto& notes = directMidi ? directSostenutoNotes : sostenutoNotes;
+            return (notes[static_cast<std::size_t> (note >> 6)]
                     & (1ull << (note & 63)))
                    != 0ull;
         }
@@ -1496,11 +1504,11 @@ private:
     void beginRelease (Voice& voice) noexcept;
     [[nodiscard]] int partVoiceLimit() const noexcept;
     void startNoteForPart (Part part, int note, int velocity,
-                           int portamentoSource = -1);
-    void releaseNoteForPart (Part part, int note);
+                           int portamentoSource = -1, bool directMidi = false);
+    void releaseNoteForPart (Part part, int note, bool directMidi = false);
     Voice* allocateVoice (Part part);
     void triggerVoice (Voice& voice, Part part, int note, double velocity,
-                       bool legato, int portamentoSource = -1);
+                       bool legato, int portamentoSource = -1, bool directMidi = false);
     void triggerVoiceLfos (Voice& voice);
     void updateVoiceControls (Voice& voice, int tickSamples);
     void renderVoiceTick (Voice& voice, float* mono, int samples,
