@@ -171,6 +171,11 @@ if(SEPTUM_BUILD_TOOLS)
 endif()
 
 if(BUILD_TESTING)
+    add_executable(SeptumDirectMidiTransposeTests Tests/DirectMidiTransposeTests.cpp)
+    target_link_libraries(SeptumDirectMidiTransposeTests PRIVATE SeptumDSP)
+    add_test(NAME Septum.DirectMidiTranspose COMMAND SeptumDirectMidiTransposeTests)
+    set_tests_properties(Septum.DirectMidiTranspose PROPERTIES TIMEOUT 120)
+
     add_executable(SeptumReverbGeometryTests Tests/ReverbGeometryTests.cpp)
     target_link_libraries(SeptumReverbGeometryTests PRIVATE SeptumDSP)
     add_test(NAME Septum.ReverbGeometry COMMAND SeptumReverbGeometryTests)

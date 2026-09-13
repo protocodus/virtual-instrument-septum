@@ -1688,8 +1688,12 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
     if (leverToOsc2)
         lfoCents2 += leverVibratoCents;
 
-    const double baseNote = voice.glidePitch + masterKeyShift_ + transpose_
-                            + 12.0 * (octaveShift_ + tone.octaveShift)
+    // OCT UP/DOWN and TRANSPOSE belong to the keyboard controller (OM
+    // pp. 18, 69). Direct MIDI addresses the sound generator; MASTER KEY
+    // SHIFT and the patch tone's octave still apply to either input source.
+    const double keyboardShift = voice.directMidi ? 0.0 : transpose_ + 12.0 * octaveShift_;
+    const double baseNote = voice.glidePitch + masterKeyShift_ + keyboardShift
+                            + 12.0 * tone.octaveShift
                             + bendSemitones;
 
     const double note1 = baseNote + tone.osc1.coarse + tone.osc1.fine / 100.0
