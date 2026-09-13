@@ -737,8 +737,11 @@ bool Engine::partSounds (Part part) const noexcept
 
 int Engine::partVoiceLimit() const noexcept
 {
-    return patch_.keyboardMode == KeyboardMode::Single ? maxPolyphony
-                                                       : dualPolyphony;
+    // DUAL spends two physical voices per key (OM p. 46). SPLIT selects
+    // only one tone per key (p. 47), so either side can use the shared
+    // ten-voice pool instead of stranding five idle voices on the other side.
+    return patch_.keyboardMode == KeyboardMode::Dual ? dualPolyphony
+                                                     : maxPolyphony;
 }
 
 void Engine::noteOn (int note, int velocity)

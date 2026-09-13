@@ -171,6 +171,11 @@ if(SEPTUM_BUILD_TOOLS)
 endif()
 
 if(BUILD_TESTING)
+    add_executable(SeptumSplitPolyphonyTests Tests/SplitPolyphonyTests.cpp)
+    target_link_libraries(SeptumSplitPolyphonyTests PRIVATE SeptumDSP)
+    add_test(NAME Septum.SplitPolyphony COMMAND SeptumSplitPolyphonyTests)
+    set_tests_properties(Septum.SplitPolyphony PROPERTIES TIMEOUT 120)
+
     add_executable(SeptumTempoClockTests Tests/TempoClockTests.cpp)
     target_link_libraries(SeptumTempoClockTests PRIVATE SeptumDSP)
     add_test(NAME Septum.TempoClock COMMAND SeptumTempoClockTests)
