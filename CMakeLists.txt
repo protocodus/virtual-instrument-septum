@@ -169,6 +169,11 @@ if(SEPTUM_BUILD_TOOLS)
 endif()
 
 if(BUILD_TESTING)
+    add_executable(SeptumPortamentoContinuityTests Tests/PortamentoContinuityTests.cpp)
+    target_link_libraries(SeptumPortamentoContinuityTests PRIVATE SeptumDSP)
+    add_test(NAME Septum.PortamentoContinuity COMMAND SeptumPortamentoContinuityTests)
+    set_tests_properties(Septum.PortamentoContinuity PROPERTIES TIMEOUT 120)
+
     add_executable(SeptumHardwareVoiceFidelityTests Tests/HardwareVoiceFidelityTests.cpp)
     target_link_libraries(SeptumHardwareVoiceFidelityTests PRIVATE SeptumDSP)
     add_test(NAME Septum.HardwareVoiceFidelity COMMAND SeptumHardwareVoiceFidelityTests)

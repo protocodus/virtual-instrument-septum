@@ -1078,6 +1078,8 @@ void Engine::triggerVoice (Voice& voice, Part part, int note, double velocity,
     ToneRuntime& runtime = toneRuntime (part);
 
     const bool wasActive = voice.active;
+    const bool keepGlidePitch = wasActive && voice.part == part
+                               && tone.mono != MonoMode::Poly;
     voice.active = true;
     voice.part = part;
     voice.note = note;
@@ -1085,14 +1087,18 @@ void Engine::triggerVoice (Voice& voice, Part part, int note, double velocity,
     voice.held = true;
     voice.age = ++voiceClock_;
 
-    // Portamento: glide from the part's previous pitch. With legato mode the
-    // glide only applies to overlapped playing (settled behavior).
+    // A reused solo voice starts from its currently sounding pitch, even
+    // when SOLO retriggers the envelopes. Restarting at the previous target
+    // jumps there if another key interrupts an unfinished glide (OM p. 19:
+    // portamento connects pitches smoothly; LEGATO controls the attack).
+    // Fresh/poly voices use the part's previous pitch. SOLO+LEGATO still
+    // limits portamento to overlapped playing.
     const double target = static_cast<double> (note);
     const bool glideAllowed =
         tone.portamento
         && (tone.mono != MonoMode::SoloLegato || legato || runtime.heldCount > 1);
     if (glideAllowed && tone.portamentoTime > 0)
-        voice.glidePitch = wasActive && legato ? voice.glidePitch : runtime.lastPitch;
+        voice.glidePitch = keepGlidePitch ? voice.glidePitch : runtime.lastPitch;
     else
         voice.glidePitch = target;
     voice.targetPitch = target;
