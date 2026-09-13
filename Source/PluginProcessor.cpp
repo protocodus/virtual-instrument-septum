@@ -1515,6 +1515,7 @@ void SeptumAudioProcessor::republishSystemParameters()
 
 void SeptumAudioProcessor::resetPerformanceControllers() noexcept
 {
+    engine.clearPortamentoControl();
     engine.setPitchBend (0.0);
     engine.setModulation (0.0);
     engine.setExpression (1.0);

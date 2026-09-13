@@ -171,6 +171,11 @@ endif()
 
 if(BUILD_TESTING)
     add_executable(SeptumReverbDampingTests Tests/ReverbDampingTests.cpp)
+    add_executable(SeptumMidiPortamentoTests Tests/MidiPortamentoTests.cpp)
+    target_link_libraries(SeptumMidiPortamentoTests PRIVATE SeptumDSP)
+    add_test(NAME Septum.MidiPortamento COMMAND SeptumMidiPortamentoTests)
+    set_tests_properties(Septum.MidiPortamento PROPERTIES TIMEOUT 120)
+
     target_link_libraries(SeptumReverbDampingTests PRIVATE SeptumDSP)
     add_test(NAME Septum.ReverbDamping COMMAND SeptumReverbDampingTests)
     set_tests_properties(Septum.ReverbDamping PROPERTIES TIMEOUT 120)

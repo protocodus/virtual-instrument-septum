@@ -1046,6 +1046,7 @@ public:
     void setPartEnabled (bool upper, bool enabled) noexcept;
     void setPartPan (double pan);            // CC#10, -1 (left)..+1 (right)
     void setPortamentoControl (int note);    // CC#84: glide source for the next key
+    void clearPortamentoControl() noexcept { portamentoControlNote_ = -1; }
     void allNotesOff();
     void allSoundOff();
 
@@ -1476,11 +1477,12 @@ private:
     // per release rather than once per sweep over the voice array.
     void beginRelease (Voice& voice) noexcept;
     [[nodiscard]] int partVoiceLimit() const noexcept;
-    void startNoteForPart (Part part, int note, int velocity);
+    void startNoteForPart (Part part, int note, int velocity,
+                           int portamentoSource = -1);
     void releaseNoteForPart (Part part, int note);
     Voice* allocateVoice (Part part);
     void triggerVoice (Voice& voice, Part part, int note, double velocity,
-                       bool legato);
+                       bool legato, int portamentoSource = -1);
     void triggerVoiceLfos (Voice& voice);
     void updateVoiceControls (Voice& voice, int tickSamples);
     void renderVoiceTick (Voice& voice, float* mono, int samples,
@@ -1532,6 +1534,7 @@ private:
 
     double pitchBend_ { 0.0 };
     double modulation_ { 0.0 };
+    int portamentoControlNote_ { -1 };  // CC#84 is consumed by one incoming note
     double expression_ { 1.0 };
     // EXPRESSION reaches the tone(s) EXPRESSION DESTINATION names, so it is
     // carried per tone and smoothed there rather than in the master chain.

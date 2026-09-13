@@ -4139,6 +4139,80 @@ void testHardwareActiveSensing()
     }
 }
 
+void testMidiPortamentoReception()
+{
+    const auto render = [] (bool panelPortamento, int sourceChannel,
+                            int resetChannel, bool foreignNote,
+                            bool changeChannel)
+    {
+        SeptumAudioProcessor processor;
+        processor.prepareToPlay (48000.0, 4096);
+        septum::Patch patch;
+        patch.upper.osc1.wave = septum::Waveform::Sine;
+        patch.upper.osc1.coarse = patch.upper.osc1.fine = 0;
+        patch.upper.balance = -63;
+        patch.upper.filterType = septum::FilterType::Bypass;
+        patch.upper.level = 35;
+        patch.upper.levelVelocitySens = 0;
+        patch.upper.ampEnvAttack = patch.upper.ampEnvDecay = 0;
+        patch.upper.ampEnvSustain = 127;
+        patch.upper.portamento = panelPortamento;
+        patch.upper.portamentoTime = 100;
+        patch.delayOn = patch.reverbOn = false;
+        processor.loadPatch (patch);
+        setMidiSetting (processor, "system_midi_channel", 7.0f);
+        juce::AudioBuffer<float> audio (2, 4096);
+        juce::MidiBuffer messages;
+        if (sourceChannel > 0)
+            messages.addEvent (juce::MidiMessage::controllerEvent (sourceChannel, 84, 48), 17);
+        if (changeChannel)
+        {
+            processor.processBlock (audio, messages);
+            messages.clear();
+            setMidiSetting (processor, "system_midi_channel", 8.0f);
+        }
+        if (resetChannel > 0)
+            messages.addEvent (juce::MidiMessage::controllerEvent (resetChannel, 121, 0), 29);
+        if (foreignNote)
+            messages.addEvent (juce::MidiMessage::noteOn (6, 65, (juce::uint8) 100), 41);
+        messages.addEvent (juce::MidiMessage::noteOn (changeChannel ? 8 : 7, 84,
+                                                    (juce::uint8) 100), 53);
+        processor.processBlock (audio, messages);
+        return audio;
+    };
+    const auto difference = [] (const juce::AudioBuffer<float>& a,
+                                const juce::AudioBuffer<float>& b)
+    {
+        double maximum = 0.0;
+        for (int channel = 0; channel < a.getNumChannels(); ++channel)
+            for (int i = 0; i < a.getNumSamples(); ++i)
+                maximum = std::max (maximum, std::abs (
+                    static_cast<double> (a.getSample (channel, i)) - b.getSample (channel, i)));
+        return maximum;
+    };
+
+    const auto forced = render (false, 7, 0, false, false);
+    const auto enabled = render (true, 7, 0, false, false);
+    const auto plain = render (false, 0, 0, false, false);
+    expect (bufferRms (forced) > 0.0001 && bufferFinite (forced),
+            "selected-channel CC84 produces finite audible output");
+    expect (difference (forced, enabled) < 2.0e-7,
+            "CC84 forces a timestamped glide with panel portamento OFF");
+    expect (difference (forced, plain) > 0.001,
+            "CC84 materially changes the rendered pitch trajectory");
+    expect (difference (render (false, 6, 0, false, false), plain) < 2.0e-7,
+            "foreign-channel CC84 does not change the selected channel's note");
+    expect (difference (render (false, 7, 0, true, false), forced) < 2.0e-7,
+            "foreign-channel note does not consume a pending selected-channel CC84");
+    expect (difference (render (false, 7, 7, false, false), plain) < 2.0e-7,
+            "CC121 cancels an unconsumed selected-channel portamento source");
+    expect (difference (render (false, 7, 6, false, false), forced) < 2.0e-7,
+            "foreign-channel reset does not cancel selected-channel portamento");
+    expect (difference (render (false, 7, 0, false, true),
+                        render (false, 0, 0, false, true)) < 2.0e-7,
+            "changing receive channel discards the former channel's pending CC84");
+}
+
 } // namespace
 
 int main (int argc, char* argv[])
@@ -4157,6 +4231,7 @@ int main (int argc, char* argv[])
     testRenderingAndVoices();
     testHardwareMidiReceiverSettings();
     testHardwareActiveSensing();
+    testMidiPortamentoReception();
     testDocumentedControlChanges();
     testHardwareCoarsePitchCcAndNativeState();
     testHardwarePitchCcRetainsRawValueForWideChanges();

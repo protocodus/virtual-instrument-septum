@@ -225,6 +225,7 @@ void applyMidi (septum::Engine& engine, septum::Patch& patch,
         case 84: engine.setPortamentoControl (value); return;
         case 120: engine.allSoundOff(); return;
         case 121:
+            engine.clearPortamentoControl();
             engine.setPitchBend (0.0); engine.setModulation (0.0);
             engine.setExpression (1.0); engine.setHold (false); engine.setSostenuto (false);
             return;

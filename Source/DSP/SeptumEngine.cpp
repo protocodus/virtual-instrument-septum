@@ -623,6 +623,7 @@ void Engine::reset()
     smoothedInputGain_ = mapping::externalInputGain (external_.inputVolume);
     pitchBend_ = 0.0;
     modulation_ = 0.0;
+    clearPortamentoControl();
     hold_ = false;
     sostenuto_ = false;
     smoothedMaster_ = masterLevel_ / 127.0;
@@ -727,15 +728,17 @@ void Engine::noteOn (int note, int velocity)
     note = clampRaw (note, 0, 127);
     velocity = clampRaw (velocity, 1, 127);
     syncArpeggioRouting();
+    const int portamentoSource = portamentoControlNote_;
+    clearPortamentoControl();
 
     // The arpeggiator sits between the keyboard and the voice assigner: a key
     // it owns joins its chord instead of starting a voice.
-    const auto route = [this, note, velocity] (Part part)
+    const auto route = [this, note, velocity, portamentoSource] (Part part)
     {
         if (arpeggioDrives (part))
             arpeggioAddKey (part, note, velocity);
         else
-            startNoteForPart (part, note, velocity);
+            startNoteForPart (part, note, velocity, portamentoSource);
     };
 
     switch (patch_.keyboardMode)
@@ -852,7 +855,8 @@ void Engine::handleArpeggioRouting (Part part, bool nowDriven)
                           velocities[static_cast<std::size_t> (i)]);
 }
 
-void Engine::startNoteForPart (Part part, int note, int velocity)
+void Engine::startNoteForPart (Part part, int note, int velocity,
+                               int portamentoSource)
 {
     if (! partSounds (part))
         return;
@@ -869,6 +873,33 @@ void Engine::startNoteForPart (Part part, int note, int velocity)
     if (sostenuto_ && note >= 0 && note <= 127)
         runtime.sostenutoNotes[static_cast<std::size_t> (note >> 6)] &=
             ~(1ull << (note & 63));
+
+    // CC#84 transfers ownership of a sounding source to the next note.
+    // Remove that source key from the solo return stack, or releasing the
+    // target before the source's old note-off would resurrect the source.
+    Voice* portamentoVoice = nullptr;
+    if (portamentoSource >= 0)
+    {
+        for (auto& candidate : voices_)
+            if (candidate.active && candidate.part == part
+                && candidate.note == portamentoSource
+                && (portamentoVoice == nullptr || candidate.age > portamentoVoice->age))
+                portamentoVoice = &candidate;
+        if (portamentoVoice != nullptr)
+            for (int i = runtime.heldCount - 1; i >= 0; --i)
+                if (runtime.heldNotes[static_cast<std::size_t> (i)] == portamentoSource)
+                {
+                    for (int j = i; j + 1 < runtime.heldCount; ++j)
+                    {
+                        runtime.heldNotes[static_cast<std::size_t> (j)] =
+                            runtime.heldNotes[static_cast<std::size_t> (j + 1)];
+                        runtime.heldVelocities[static_cast<std::size_t> (j)] =
+                            runtime.heldVelocities[static_cast<std::size_t> (j + 1)];
+                    }
+                    --runtime.heldCount;
+                    break;
+                }
+    }
 
     // Track held keys for solo modes and legato/portamento decisions.
     if (runtime.heldCount < static_cast<int> (runtime.heldNotes.size()))
@@ -894,6 +925,16 @@ void Engine::startNoteForPart (Part part, int note, int velocity)
 
     const double velocityNorm = velocity / 127.0;
 
+    // SH-201 receives CC#84 (OM p. 72). MIDI 1.0 pp. 16-17 specifies
+    // continuing an already-sounding source voice without another attack,
+    // including in POLY mode. The new note number owns its eventual off.
+    if (portamentoVoice != nullptr)
+    {
+        triggerVoice (*portamentoVoice, part, note, velocityNorm, true, portamentoSource);
+        triggerVoiceLfos (*portamentoVoice);
+        return;
+    }
+
     if (tone.mono != MonoMode::Poly)
     {
         // Solo: one voice, last-note priority. Legato keeps the envelopes
@@ -911,7 +952,7 @@ void Engine::startNoteForPart (Part part, int note, int velocity)
             voice = allocateVoice (part);
         if (voice == nullptr)
             return;
-        triggerVoice (*voice, part, note, velocityNorm, legato);
+        triggerVoice (*voice, part, note, velocityNorm, legato, portamentoSource);
         triggerVoiceLfos (*voice);
         return;
     }
@@ -919,7 +960,7 @@ void Engine::startNoteForPart (Part part, int note, int velocity)
     Voice* voice = allocateVoice (part);
     if (voice == nullptr)
         return;
-    triggerVoice (*voice, part, note, velocityNorm, false);
+    triggerVoice (*voice, part, note, velocityNorm, false, portamentoSource);
     triggerVoiceLfos (*voice);
 }
 
@@ -1073,14 +1114,16 @@ Engine::Voice* Engine::allocateVoice (Part part)
 }
 
 void Engine::triggerVoice (Voice& voice, Part part, int note, double velocity,
-                           bool legato)
+                           bool legato, int portamentoSource)
 {
     const TonePatch& tone = tonePatch (part);
     ToneRuntime& runtime = toneRuntime (part);
 
     const bool wasActive = voice.active;
     const bool keepGlidePitch = wasActive && voice.part == part
-                               && tone.mono != MonoMode::Poly;
+                               && (tone.mono != MonoMode::Poly || legato);
+    const bool continueSource = wasActive && voice.part == part
+                                && voice.note == portamentoSource;
     voice.active = true;
     voice.part = part;
     voice.note = note;
@@ -1095,11 +1138,19 @@ void Engine::triggerVoice (Voice& voice, Part part, int note, double velocity,
     // Fresh/poly voices use the part's previous pitch. SOLO+LEGATO still
     // limits portamento to overlapped playing.
     const double target = static_cast<double> (note);
-    const bool glideAllowed =
-        tone.portamento
-        && (tone.mono != MonoMode::SoloLegato || legato || runtime.heldCount > 1);
+    const bool glideAllowed = portamentoSource >= 0
+        || (tone.portamento
+            && (tone.mono != MonoMode::SoloLegato || legato || runtime.heldCount > 1));
     if (glideAllowed && tone.portamentoTime > 0)
-        voice.glidePitch = keepGlidePitch ? voice.glidePitch : runtime.lastPitch;
+    {
+        // CC#84 overrides the portamento switch for one note. A matching
+        // source voice keeps its running pitch; otherwise the message gives
+        // the starting pitch, even when another solo voice is reused.
+        if (portamentoSource >= 0 && ! continueSource)
+            voice.glidePitch = portamentoSource;
+        else if (! keepGlidePitch)
+            voice.glidePitch = runtime.lastPitch;
+    }
     else
         voice.glidePitch = target;
     voice.targetPitch = target;
@@ -1265,10 +1316,10 @@ void Engine::setPartPan (double pan)
 
 void Engine::setPortamentoControl (int note)
 {
-    // MIDI Portamento Control: the next note-on glides from this pitch.
-    const double pitch = clampRaw (note, 0, 127);
-    for (auto& tone : tones_)
-        tone.lastPitch = pitch;
+    // One incoming note, including both tones when it is routed to DUAL.
+    // Do not change currently sounding notes or leave an unused source in
+    // the other half of a split (MIDI 1.0 Detailed Specification pp. 16-17).
+    portamentoControlNote_ = clampRaw (note, 0, 127);
 }
 
 // [settled] All Notes Off is every key coming up at once, not a panic: "When
@@ -1334,6 +1385,7 @@ void Engine::allNotesOff()
 
 void Engine::allSoundOff()
 {
+    clearPortamentoControl();
     for (auto& voice : voices_)
     {
         voice.active = false;
