@@ -1,5 +1,7 @@
 # SH-201 fidelity work
 
+The latest [ten additional improvements](ten-more-improvements.md) include a ranked source review, per-candidate audits, and [combined validation](ten-more-validation.md).
+
 [Five further improvements](five-further-improvements.md) ranks the remaining
 behavioral and timbral candidates and documents the selected clock, portamento,
 reverb-damping and FB OSC sync changes. It supersedes older notes that describe

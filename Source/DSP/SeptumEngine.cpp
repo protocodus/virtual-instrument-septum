@@ -1293,6 +1293,16 @@ void Engine::triggerVoice (Voice& voice, Part part, int note, double velocity,
     voice.held = true;
     voice.age = ++voiceClock_;
 
+    if (! wasActive)
+    {
+        // No added attack fade: only a sounding voice needs a continuous
+        // transition from its previous owner's or parameter's gain.
+        voice.delaySendGain = tone.delayDepth / 127.0;
+        voice.reverbSendGain = tone.reverbDepth / 127.0;
+        voice.toneBalanceGain = mapping::balanceLegGain (
+            patch_.toneBalance, part == Part::Lower);
+    }
+
     // A reused solo voice starts from its currently sounding pitch, even
     // when SOLO retriggers the envelopes. Restarting at the previous target
     // jumps there if another key interrupts an unfinished glide (OM p. 19:
@@ -3548,6 +3558,7 @@ void Engine::process (float* left, float* right, int numSamples,
     std::array<float, 2> partPeak {};
     const double muteStep = 1.0 / (sampleRate_ * partMuteRampSeconds);
     const double gainCoeff = onePoleCoeff (sampleRate_, mapping::masterSlewSeconds);
+    const double controlGainCoeff = onePoleCoeff (sampleRate_, mapping::controlSlewSeconds);
 
     while (offset < numSamples)
     {
@@ -3632,8 +3643,10 @@ void Engine::process (float* left, float* right, int numSamples,
             voice.ampGainL = voice.ampGainLTarget;
             voice.ampGainR = voice.ampGainRTarget;
 
-            // Tone balance sits between the two tones (settled parameter,
-            // voiced law shared with the oscillator balance).
+            // Preserve the existing gain laws; smooth the resulting gains
+            // at audio rate so DEPTH and TONE BALANCE cannot step the dry or
+            // effect input. The 2.5 ms dezipper is a quality choice, not a
+            // measured hardware response. Retained voices keep old targets.
             const double toneGain =
                 (voice.part == Part::Upper
                        ? mapping::balanceLegGain (voiceToneBalance (voice), false)
@@ -3641,6 +3654,9 @@ void Engine::process (float* left, float* right, int numSamples,
 
             for (int i = 0; i < guarded; ++i)
             {
+                voice.delaySendGain += (delaySend - voice.delaySendGain) * controlGainCoeff;
+                voice.reverbSendGain += (reverbSend - voice.reverbSendGain) * controlGainCoeff;
+                voice.toneBalanceGain += (toneGain - voice.toneBalanceGain) * controlGainCoeff;
                 const float sample = scratchMono_[static_cast<std::size_t> (i)];
                 const double gainL =
                     (gainLStart + gainLStep * (i + 1)) * mapping::voiceHeadroom;
@@ -3662,7 +3678,7 @@ void Engine::process (float* left, float* right, int numSamples,
                     expression = voice.retainedExpressionGain;
                 }
                 const double partGain = enableGain[partIndex][frame]
-                                        * expression * toneGain * levelGain;
+                                        * expression * voice.toneBalanceGain * levelGain;
                 const auto l = static_cast<float> (sample * gainL * partGain);
                 const auto r = static_cast<float> (sample * gainR * partGain);
                 partLeft[partIndex][static_cast<std::size_t> (i)] += l;
@@ -3670,13 +3686,13 @@ void Engine::process (float* left, float* right, int numSamples,
                 dryL_[static_cast<std::size_t> (i)] += l;
                 dryR_[static_cast<std::size_t> (i)] += r;
                 sendDelayL_[static_cast<std::size_t> (i)] +=
-                    static_cast<float> (l * delaySend);
+                    static_cast<float> (l * voice.delaySendGain);
                 sendDelayR_[static_cast<std::size_t> (i)] +=
-                    static_cast<float> (r * delaySend);
+                    static_cast<float> (r * voice.delaySendGain);
                 sendReverbL_[static_cast<std::size_t> (i)] +=
-                    static_cast<float> (l * reverbSend);
+                    static_cast<float> (l * voice.reverbSendGain);
                 sendReverbR_[static_cast<std::size_t> (i)] +=
-                    static_cast<float> (r * reverbSend);
+                    static_cast<float> (r * voice.reverbSendGain);
             }
         }
 

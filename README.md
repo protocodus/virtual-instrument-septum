@@ -446,15 +446,30 @@ ALL. Active Sensing starts only after FE and resets sound and performance
 controllers after a message gap exceeding 420 ms. Live SysEx matches the selected
 device or broadcast; explicit file imports accept any device ID.
 
+MIDI NOTES selects DIRECT (sound-generator input, bypassing the arpeggiator
+and keyboard transpose/octave), REMOTE (any-channel keyboard performance
+through the arpeggiator), or CHANNEL (the existing selected-channel keyboard
+behavior, retained as the compatibility default). MASTER KEY SHIFT and tone
+pitch controls still apply to DIRECT notes. REMAIN keeps old voices' tone and
+controllers across program selection while sharing the existing effect
+network and ten-voice budget. New controls save in native preset format 6;
+earlier formats migrate explicit defaults.
+
+The [ten additional fidelity improvements](Docs/fidelity/ten-more-improvements.md)
+rank these changes alongside AMP-envelope latency alignment, SPLIT voice
+allocation, MIDI mono/poly modes, fractional MIDI-file tempo, and smoother
+balance/send and reverb geometry edits. Their source audits distinguish
+documented behavior from inference and numerical quality choices.
+
 ### Presets
 
-Thirteen programs built into the binary (`Source/DSP/SeptumPresets.cpp`), INIT
-PATCH first, reproducing the documented initialization behaviour where only
-OSC 1 is heard because the balance sits fully left. They are original sounds
-programmed against the engine: the modelled instrument's 64 factory patches
-are Roland's data, published nowhere as parameter values, and none of that
-data ships here. Host sessions store the full parameter state, so any edited
-sound saves with the project.
+Sixty-four program slots are built into the binary (`Source/DSP/SeptumPresets.cpp`):
+32 original presets and 32 initialized USER slots. These are Septum sounds,
+not Roland factory patch data. Explicit MIDI bank selection uses MSB 87 and
+LSB 0 (PRESET) or decimal 20 (USER), followed by program 0–31. Bare program
+changes retain the plug-in's flat 0–63 map until a bank is selected. RX BANK
+and RX PROGRAM are independent switches. Host sessions store the complete
+parameter state, including edited sounds.
 
 ## Known gaps
 

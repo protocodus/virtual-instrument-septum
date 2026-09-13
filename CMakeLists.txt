@@ -171,6 +171,11 @@ if(SEPTUM_BUILD_TOOLS)
 endif()
 
 if(BUILD_TESTING)
+    add_executable(SeptumEffectSendSmoothingTests Tests/EffectSendSmoothingTests.cpp)
+    target_link_libraries(SeptumEffectSendSmoothingTests PRIVATE SeptumDSP)
+    add_test(NAME Septum.EffectSendSmoothing COMMAND SeptumEffectSendSmoothingTests)
+    set_tests_properties(Septum.EffectSendSmoothing PROPERTIES TIMEOUT 120)
+
     add_executable(SeptumPatchRemainTests Tests/PatchRemainTests.cpp)
     target_link_libraries(SeptumPatchRemainTests PRIVATE SeptumDSP)
     add_test(NAME Septum.PatchRemain COMMAND SeptumPatchRemainTests)
