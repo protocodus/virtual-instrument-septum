@@ -1,6 +1,7 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include "DSP/MidiBankSelect.h"
 
 #include "DSP/SeptumEngine.h"
 #include "DSP/MidiTempoClock.h"
@@ -155,7 +156,9 @@ private:
     // Both return true when the event edited a patch parameter, so the audio
     // path can refresh the engine patch before rendering the next segment.
     bool handleMidiMessage (const juce::MidiMessage& message);
-    bool handleController (int controller, int value);
+    bool handleController (int controller, int value, int channel);
+    septum::MidiBankSelect midiBankSelect;
+    std::atomic<float>* receiveBankValue { nullptr };
     [[nodiscard]] bool acceptsLiveSysEx (const std::uint8_t* data,
                                          std::size_t size) const noexcept;
     bool decodeLivePatchMessage (const std::uint8_t* data, std::size_t size,

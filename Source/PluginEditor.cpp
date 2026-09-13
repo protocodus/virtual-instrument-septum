@@ -69,7 +69,7 @@ constexpr int editorWidth = 1760;
 constexpr int instrumentTopPadding = 20;
 constexpr int outerPadding = 24;
 constexpr int presetPanelWidth = 540;
-constexpr int systemPanelWidth = 600 + 2 * sectionPadding;
+constexpr int systemPanelWidth = 680 + 2 * sectionPadding;
 constexpr int performancePanelWidth = 620 + 2 * sectionPadding;
 // One contiguous part surface, followed by shared effects and performance.
 constexpr int partTop = instrumentTopPadding + headerHeight + 8;
@@ -899,8 +899,8 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
     // last so the band index lists below keep the construction order they
     // name.
     systemSection = section ("SYSTEM / MIDI", Band::Perform);
-    systemSection->rowCounts = { 7 };
-    systemSection->fixedColumns = { 84, 80, 80, 84, 96, 80, 96 };
+    systemSection->rowCounts = { 8 };
+    systemSection->fixedColumns = { 84, 80, 80, 84, 96, 80, 80, 96 };
     addControl (*systemSection, "system_master_tune", "TUNE", Style::Knob,
                 false);
     addControl (*systemSection, "system_key_shift", "KEY SHIFT", Style::Knob,
@@ -909,6 +909,7 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
                 false, " st");
     addControl (*systemSection, "system_midi_channel", "MIDI CH", Style::Knob, false);
     addControl (*systemSection, "system_receive_program", "RX PROGRAM", Style::Toggle, false);
+    addControl (*systemSection, "system_receive_bank", "RX BANK", Style::Toggle, false);
     addControl (*systemSection, "system_device_id", "DEVICE ID", Style::Knob, false);
     addControl (*systemSection, "system_active_sensing", "SENSING", Style::Toggle, false);
 
@@ -1517,7 +1518,7 @@ SeptumAudioProcessorEditor::Control* SeptumAudioProcessorEditor::addControl (
     if (labelText == "PRE DELAY") caption = "Pre-dly";
     if (labelText == "TRANSPOSE") caption = "Transp.";
     if (labelText == "SWITCH") caption = {};
-    if (labelText == "KEYBOARD MODE") caption = "Keyboard mode";
+    if (labelText == "KEYBOARD MODE") caption = "Mode";
     if (labelText == "PLAY IN SINGLE") caption = "Single part";
     if (caption.startsWithIgnoreCase ("hf ")) caption = "HF" + caption.substring (2);
     if (caption.startsWithIgnoreCase ("lf ")) caption = "LF" + caption.substring (2);

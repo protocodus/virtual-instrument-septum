@@ -15,7 +15,7 @@ namespace
 using septum::Patch;
 using septum::TonePatch;
 
-constexpr int nativePresetVersion = 3;
+constexpr int nativePresetVersion = 4;
 constexpr std::size_t maximumPresetBytes = 1024 * 1024;
 
 // Version 1 predates the MIDI receiver settings. Fill only those additions;
@@ -34,6 +34,17 @@ void addMissingMidiSettings (juce::ValueTree& state)
             parameterState.setProperty ("value", value, nullptr);
             state.addChild (parameterState, -1, nullptr);
         }
+}
+
+void addMissingBankSettings (juce::ValueTree& state)
+{
+    if (! state.getChildWithProperty ("id", "system_receive_bank").isValid())
+    {
+        juce::ValueTree setting ("PARAM");
+        setting.setProperty ("id", "system_receive_bank", nullptr);
+        setting.setProperty ("value", 1.0f, nullptr);
+        state.addChild (setting, -1, nullptr);
+    }
 }
 
 void addMissingTempoSettings (juce::ValueTree& state)
@@ -609,6 +620,7 @@ void SeptumAudioProcessor::cacheParameterPointers()
     systemTuneValue = parameters.getRawParameterValue ("system_master_tune");
     midiChannelValue = parameters.getRawParameterValue ("system_midi_channel");
     receiveProgramValue = parameters.getRawParameterValue ("system_receive_program");
+    receiveBankValue = parameters.getRawParameterValue ("system_receive_bank");
     deviceIdValue = parameters.getRawParameterValue ("system_device_id");
     activeSensingValue = parameters.getRawParameterValue ("system_active_sensing");
     clockSourceValue = parameters.getRawParameterValue ("system_clock_source");
@@ -957,6 +969,8 @@ SeptumAudioProcessor::createParameterLayout()
     layout.add (std::make_unique<juce::AudioParameterInt> (
         juce::ParameterID { "system_tempo", 4 }, "System Tempo", 5, 300, 120,
         juce::AudioParameterIntAttributes().withLabel ("BPM")));
+    layout.add (std::make_unique<juce::AudioParameterBool> (
+        juce::ParameterID { "system_receive_bank", 5 }, "Receive Bank Select", true));
     return layout;
 }
 
@@ -1210,6 +1224,7 @@ void SeptumAudioProcessor::prepareToPlay (double sampleRate,
     activeSensingTimeoutSamples = static_cast<std::uint64_t> (
         std::floor (sampleRate * 0.420)) + 1u;
     appliedMidiChannel = static_cast<int> (std::lround (midiChannelValue->load()));
+    midiBankSelect.reset();
     engine.prepare (sampleRate, samplesPerBlock);
     engine.setMasterLevel ((int) std::lround (masterValue->load()));
     applySystemSettings();
@@ -1307,14 +1322,14 @@ void SeptumAudioProcessor::releaseFromUi (int note) noexcept
     uiWrite.store (write + 1, std::memory_order_release);
 }
 
-bool SeptumAudioProcessor::handleController (int controller, int value)
+bool SeptumAudioProcessor::handleController (int controller, int value, int channel)
 {
     switch (controller)
     {
         case 0:
         case 32:
-            // Bank select is accepted (settled CCs) but there is only the one
-            // built-in program bank to select.
+            if (receiveBankValue->load (std::memory_order_relaxed) >= 0.5f)
+                midiBankSelect.select (channel, controller, value);
             return false;
         case 1:  engine.setModulation (value / 127.0); return false;
         case 7:  engine.setPartLevel (value / 127.0); return false;
@@ -1621,12 +1636,12 @@ bool SeptumAudioProcessor::handleMidiMessage (const juce::MidiMessage& message)
         engine.setPitchBend ((message.getPitchWheelValue() - 8192) / 8192.0);
     else if (message.isController())
         return handleController (message.getControllerNumber(),
-                                 message.getControllerValue());
+                                 message.getControllerValue(), channel);
     else if (message.isProgramChange())
     {
         if (receiveProgramValue->load (std::memory_order_relaxed) < 0.5f)
             return false;
-        const int program = message.getProgramChangeNumber();
+        const int program = midiBankSelect.program (channel, message.getProgramChangeNumber());
         if (program >= 0 && program < getNumPrograms())
         {
             // Land the program in the raw parameter values right here: notes
@@ -2554,11 +2569,13 @@ juce::Result SeptumAudioProcessor::loadPresetFromFile (const juce::File& file)
     auto state = juce::ValueTree::fromXml (*xml);
     double storedVersion = 0.0;
     if (readPresetNumber (state["preset_format_version"], storedVersion)
-        && (storedVersion == 1.0 || storedVersion == 2.0))
+        && (storedVersion == 1.0 || storedVersion == 2.0 || storedVersion == 3.0))
     {
         if (storedVersion == 1.0)
             addMissingMidiSettings (state);
-        addMissingTempoSettings (state);
+        if (storedVersion <= 2.0)
+            addMissingTempoSettings (state);
+        addMissingBankSettings (state);
         state.setProperty ("preset_format_version", nativePresetVersion, nullptr);
     }
     if (const auto result = validatePresetState (state); result.failed())
@@ -2670,6 +2687,7 @@ void SeptumAudioProcessor::setStateInformation (const void* data,
         {
             addMissingMidiSettings (state);
             addMissingTempoSettings (state);
+            addMissingBankSettings (state);
             // Older sessions omitted the extensions. Insert explicit ON
             // values so restoring over a currently muted instance is safe.
             for (const auto* id : { "upper_enabled", "lower_enabled" })
