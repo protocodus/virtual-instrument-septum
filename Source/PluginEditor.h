@@ -294,6 +294,7 @@ private:
     std::vector<std::unique_ptr<Control>> controls;
     Section* performSection { nullptr };
     Control* remoteKeyboardControl { nullptr };
+    Control* patchRemainControl { nullptr };
     Section* systemSection { nullptr };
     Section* stripSection { nullptr };
     Section* tonePlaySection { nullptr };

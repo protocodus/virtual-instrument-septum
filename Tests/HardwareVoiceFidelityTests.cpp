@@ -177,6 +177,10 @@ void testPhaseAndFadeControls()
             {
                 engine->prepare (sr, 256);
                 engine->setPatch (patch);
+                // Start both engines at this patch's settled gain. Otherwise
+                // only the delayed engine settles the default-to-fixture
+                // PATCH LEVEL edit during its LFO-phase preroll.
+                engine->reset();
             }
             render (delayed, 12960);
             immediate.noteOn (69, 100);

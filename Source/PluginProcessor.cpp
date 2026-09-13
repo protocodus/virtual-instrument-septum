@@ -15,7 +15,7 @@ namespace
 using septum::Patch;
 using septum::TonePatch;
 
-constexpr int nativePresetVersion = 5;
+constexpr int nativePresetVersion = 6;
 constexpr std::size_t maximumPresetBytes = 1024 * 1024;
 
 // Version 1 predates the MIDI receiver settings. Fill only those additions;
@@ -34,6 +34,17 @@ void addMissingMidiSettings (juce::ValueTree& state)
             parameterState.setProperty ("value", value, nullptr);
             state.addChild (parameterState, -1, nullptr);
         }
+}
+
+void addMissingRemainSettings (juce::ValueTree& state)
+{
+    if (! state.getChildWithProperty ("id", "system_patch_remain").isValid())
+    {
+        juce::ValueTree setting ("PARAM");
+        setting.setProperty ("id", "system_patch_remain", nullptr);
+        setting.setProperty ("value", 0.0f, nullptr);
+        state.addChild (setting, -1, nullptr);
+    }
 }
 
 void addMissingRemoteSettings (juce::ValueTree& state)
@@ -633,6 +644,7 @@ void SeptumAudioProcessor::cacheParameterPointers()
     receiveProgramValue = parameters.getRawParameterValue ("system_receive_program");
     receiveBankValue = parameters.getRawParameterValue ("system_receive_bank");
     remoteKeyboardValue = parameters.getRawParameterValue ("system_remote_keyboard");
+    patchRemainValue = parameters.getRawParameterValue ("system_patch_remain");
     deviceIdValue = parameters.getRawParameterValue ("system_device_id");
     activeSensingValue = parameters.getRawParameterValue ("system_active_sensing");
     clockSourceValue = parameters.getRawParameterValue ("system_clock_source");
@@ -986,6 +998,8 @@ SeptumAudioProcessor::createParameterLayout()
     layout.add (std::make_unique<juce::AudioParameterChoice> (
         juce::ParameterID { "system_remote_keyboard", 6 }, "Remote Keyboard",
         juce::StringArray { "DIRECT", "REMOTE", "CHANNEL" }, 2));
+    layout.add (std::make_unique<juce::AudioParameterBool> (
+        juce::ParameterID { "system_patch_remain", 7 }, "Patch Remain", false));
     return layout;
 }
 
@@ -1241,6 +1255,8 @@ void SeptumAudioProcessor::prepareToPlay (double sampleRate,
     appliedMidiChannel = static_cast<int> (std::lround (midiChannelValue->load()));
     midiBankSelect.reset();
     appliedRemoteKeyboard = static_cast<int> (std::lround (remoteKeyboardValue->load()));
+    appliedPatchSelectionRevision = patchSelectionRevision.load (std::memory_order_acquire);
+    retainedReleaseSeconds.store (0.0, std::memory_order_relaxed);
     engine.prepare (sampleRate, samplesPerBlock);
     engine.setMasterLevel ((int) std::lround (masterValue->load()));
     applySystemSettings();
@@ -1286,8 +1302,9 @@ double SeptumAudioProcessor::getTailLengthSeconds() const
     const Patch patch = snapshotPatch();
     using namespace septum::mapping;
 
-    double tail = std::max (decaySeconds (patch.upper.ampEnvRelease),
-                            decaySeconds (patch.lower.ampEnvRelease));
+    double tail = std::max ({decaySeconds (patch.upper.ampEnvRelease),
+                            decaySeconds (patch.lower.ampEnvRelease),
+                            retainedReleaseSeconds.load (std::memory_order_relaxed)});
     if (patch.delayOn)
     {
         const double feedback =
@@ -1741,6 +1758,7 @@ void SeptumAudioProcessor::writeProgramToParameters (int index) noexcept
     // generation — can never serialize a half-written program or pair the
     // new index with the old values.
     patchGeneration.fetch_add (1, std::memory_order_acq_rel);
+    patchSelectionRevision.fetch_add (1, std::memory_order_release);
     currentProgram.store (index, std::memory_order_relaxed);
     presetIdentityRevision.fetch_add (1, std::memory_order_acq_rel);
     resetPartEnablesToParameters();
@@ -1941,15 +1959,18 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
         // because a state restore writes both in one burst and a mixture of
         // old and new external settings is as torn as a mixed patch.
         const auto generation = patchGeneration.load (std::memory_order_acquire);
+        const auto selection = patchSelectionRevision.load (std::memory_order_acquire);
         const septum::ExternalInput external = snapshotExternalInput();
         const std::array<bool, 2> enabled {
             partEnableValues[0]->load (std::memory_order_relaxed) >= 0.5f,
             partEnableValues[1]->load (std::memory_order_relaxed) >= 0.5f
         };
 
-        const int staged = stagedProgram.load (std::memory_order_acquire);
+        const auto stagedSelection = stagedProgram.load (std::memory_order_acquire);
+        const int staged = static_cast<int> (stagedSelection & 127u) - 1;
         const bool stagedProgramPending =
-            staged >= 0 && staged < (int) septum::factoryPatches().size();
+            staged >= 0 && staged < (int) septum::factoryPatches().size()
+            && (stagedSelection >> 7u) == selection;
         const septum::Patch snapshot =
             stagedProgramPending ? septum::Patch {} : snapshotPatch();
 
@@ -1966,10 +1987,27 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
             engine.setPartEnabled (false, enabled[1]);
         }
         if (stagedProgramPending)
-            engine.setPatch (
-                septum::factoryPatches()[(std::size_t) staged].patch);
+        {
+            // The staged program is usable during the parameter spray, once
+            // its selection revision is published. Do not reselect it on
+            // every callback, which would turn current notes into old ones.
+            if (selection != appliedPatchSelectionRevision)
+            {
+                engine.changePatch (septum::factoryPatches()[(std::size_t) staged].patch,
+                    patchRemainValue->load (std::memory_order_relaxed) >= 0.5f);
+                appliedPatchSelectionRevision = selection;
+            }
+        }
         else if (stable)
-            engine.setPatch (snapshot);
+        {
+            if (selection != appliedPatchSelectionRevision)
+            {
+                engine.changePatch (snapshot, patchRemainValue->load (std::memory_order_relaxed) >= 0.5f);
+                appliedPatchSelectionRevision = selection;
+            }
+            else
+                engine.setPatch (snapshot);
+        }
     };
     applyCurrentPatch();
     applyTempoSource();
@@ -2138,6 +2176,7 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
             left[i] = 0.5f * (left[i] + monoScratch[(std::size_t) i]);
 
     activeVoices.store (engine.activeVoiceCount(), std::memory_order_relaxed);
+    retainedReleaseSeconds.store (engine.retainedReleaseSeconds(), std::memory_order_relaxed);
     for (std::size_t part = 0; part < partActiveVoices.size(); ++part)
     {
         partActiveVoices[part].store (engine.activeVoiceCount (part == 0),
@@ -2176,10 +2215,12 @@ void SeptumAudioProcessor::applyProgram (int index)
     // parameter below has been written, so a block can never snapshot a
     // half-loaded program. The generation goes odd behind it: a snapshot
     // that overlapped this spray in any way is discarded.
-    stagedProgram.store (index, std::memory_order_release);
     // Remembered so the tail of this function can tell whether anything else
     // wrote the parameters while the spray below was running.
     const auto burst = patchGeneration.fetch_add (1, std::memory_order_acq_rel) + 1;
+    const auto selection = patchSelectionRevision.fetch_add (1, std::memory_order_release) + 1u;
+    stagedProgram.store ((selection << 7u) | static_cast<std::uint64_t> (index + 1),
+                          std::memory_order_release);
     currentProgram.store (index, std::memory_order_relaxed);
     presetIdentityRevision.fetch_add (1, std::memory_order_acq_rel);
     invalidateImportedArpeggioStyle();
@@ -2221,7 +2262,7 @@ void SeptumAudioProcessor::applyProgram (int index)
     if (patchGeneration.load (std::memory_order_acquire) != burst)
         patchDirty.store (true, std::memory_order_release);
     patchGeneration.fetch_add (1, std::memory_order_acq_rel);
-    stagedProgram.store (-1, std::memory_order_release);
+    stagedProgram.store (0, std::memory_order_release);
     liveSysExRevision.fetch_add (1, std::memory_order_release);
 }
 
@@ -2388,6 +2429,7 @@ void SeptumAudioProcessor::loadPatch (const septum::Patch& patch)
 {
     liveSysExRevision.fetch_add (1, std::memory_order_acq_rel);
     patchGeneration.fetch_add (1, std::memory_order_acq_rel);
+    patchSelectionRevision.fetch_add (1, std::memory_order_release);
     for (const auto* id : { "upper_enabled", "lower_enabled" })
         parameters.getParameter (id)->setValueNotifyingHost (1.0f);
 
@@ -2610,7 +2652,7 @@ juce::Result SeptumAudioProcessor::loadPresetFromFile (const juce::File& file)
     auto state = juce::ValueTree::fromXml (*xml);
     double storedVersion = 0.0;
     if (readPresetNumber (state["preset_format_version"], storedVersion)
-        && (storedVersion == 1.0 || storedVersion == 2.0 || storedVersion == 3.0 || storedVersion == 4.0))
+        && (storedVersion == 1.0 || storedVersion == 2.0 || storedVersion == 3.0 || storedVersion == 4.0 || storedVersion == 5.0))
     {
         if (storedVersion == 1.0)
             addMissingMidiSettings (state);
@@ -2618,7 +2660,9 @@ juce::Result SeptumAudioProcessor::loadPresetFromFile (const juce::File& file)
             addMissingTempoSettings (state);
         if (storedVersion <= 3.0)
             addMissingBankSettings (state);
-        addMissingRemoteSettings (state);
+        if (storedVersion <= 4.0)
+            addMissingRemoteSettings (state);
+        addMissingRemainSettings (state);
         state.setProperty ("preset_format_version", nativePresetVersion, nullptr);
     }
     if (const auto result = validatePresetState (state); result.failed())
@@ -2732,6 +2776,7 @@ void SeptumAudioProcessor::setStateInformation (const void* data,
             addMissingTempoSettings (state);
             addMissingBankSettings (state);
             addMissingRemoteSettings (state);
+            addMissingRemainSettings (state);
             // Older sessions omitted the extensions. Insert explicit ON
             // values so restoring over a currently muted instance is safe.
             for (const auto* id : { "upper_enabled", "lower_enabled" })
@@ -2747,6 +2792,7 @@ void SeptumAudioProcessor::setStateInformation (const void* data,
             // thread discards any snapshot that overlapped it.
             liveSysExRevision.fetch_add (1, std::memory_order_acq_rel);
             patchGeneration.fetch_add (1, std::memory_order_acq_rel);
+            patchSelectionRevision.fetch_add (1, std::memory_order_release);
             currentProgram.store (state.getProperty ("program", 0),
                                   std::memory_order_relaxed);
             const auto identityRevision = presetIdentityRevision.fetch_add (1, std::memory_order_acq_rel) + 1;

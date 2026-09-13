@@ -1017,7 +1017,18 @@ public:
     // Full-patch update; safe between process calls. Continuous values are
     // smoothed inside the engine, so per-block updates do not zipper.
     void setPatch (const Patch& patch);
+    // Selecting a program is distinct from editing its live parameters.
+    // PATCH REMAIN keeps the sounding voices' original tone (OM p. 68).
+    void changePatch (const Patch& patch, bool remain);
     [[nodiscard]] const Patch& currentPatch() const noexcept { return patch_; }
+    [[nodiscard]] double retainedReleaseSeconds() const noexcept
+    {
+        double longest = 0.0;
+        for (const auto& voice : voices_)
+            if (voice.active && voice.retained)
+                longest = std::max (longest, mapping::decaySeconds (voice.retainedTone.ampEnvRelease));
+        return longest;
+    }
 
     // System-common controls (documented ranges).
     // The external-input path is a system setting, not patch data (OM p. 49-51).
@@ -1300,6 +1311,17 @@ private:
         Part part { Part::Upper };
         int note { -1 };
         bool directMidi { false };   // separate release ownership from keys/arp
+        // Old programs cannot be reused by the new program's SOLO or CC84
+        // assignment. This fixed-size snapshot also survives another change.
+        bool retained { false };
+        bool retainedKeyDown { false }, retainedSostenuto { false };
+        TonePatch retainedTone {};
+        int retainedPatchLevel { 100 }, retainedToneBalance { 0 }, retainedTempo { 120 };
+        ModulationAssign retainedModulationAssign { ModulationAssign::Osc1AndOsc2 };
+        ToneDestination retainedModulationDestination { ToneDestination::Both };
+        ToneDestination retainedPitchBendDestination { ToneDestination::Both };
+        ToneDestination retainedExpressionDestination { ToneDestination::Both };
+        double retainedLevelGain { 1.0 }, retainedExpressionGain { 1.0 };
         double velocity { 0.0 };
         bool held { false };          // key (or pedal) still down
         std::uint32_t age { 0 };          // when it was triggered
@@ -1497,6 +1519,19 @@ private:
     {
         return part == Part::Upper ? patch_.upper : patch_.lower;
     }
+    const TonePatch& voiceTonePatch (const Voice& voice) const noexcept
+    {
+        return voice.retained ? voice.retainedTone : tonePatch (voice.part);
+    }
+    int voicePatchLevel (const Voice& voice) const noexcept
+    {
+        return voice.retained ? voice.retainedPatchLevel : patch_.patchLevel;
+    }
+    int voiceToneBalance (const Voice& voice) const noexcept
+    {
+        return voice.retained ? voice.retainedToneBalance : patch_.toneBalance;
+    }
+    void releaseRetainedNote (Part part, int note, bool directMidi) noexcept;
     ToneRuntime& toneRuntime (Part part) noexcept
     {
         return tones_[part == Part::Upper ? 0 : 1];
@@ -1570,6 +1605,7 @@ private:
     // EXPRESSION reaches the tone(s) EXPRESSION DESTINATION names, so it is
     // carried per tone and smoothed there rather than in the master chain.
     std::array<double, 2> smoothedExpression_ { 1.0, 1.0 };
+    double smoothedPatchLevel_ { 1.0 };
     double partLevel_ { 1.0 };
     double partPan_ { 0.0 };
     double smoothedPartPan_ { 0.0 };

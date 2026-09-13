@@ -548,6 +548,7 @@ void Engine::reset()
         voice.active = false;
         voice.note = -1;
         voice.held = false;
+        voice.retained = voice.retainedKeyDown = voice.retainedSostenuto = false;
         voice.ampEnv.kill();
         voice.filterEnv.kill();
         voice.clearAmpEnvelopeDelay();
@@ -642,6 +643,7 @@ void Engine::reset()
     hold_ = false;
     sostenuto_ = false;
     smoothedMaster_ = masterLevel_ / 127.0;
+    smoothedPatchLevel_ = patch_.patchLevel / 127.0;
     smoothedExpression_.fill (1.0);
     smoothedPartPan_ = partPan_;
 }
@@ -673,7 +675,7 @@ void Engine::setPatch (const Patch& patch)
     {
         if (! voice.active)
             continue;
-        const TonePatch& tone = tonePatch (voice.part);
+        const TonePatch& tone = voiceTonePatch (voice);
         voice.ampEnv.configure (sampleRate_, tone.ampEnvAttack, tone.ampEnvDecay,
                                 tone.ampEnvSustain, tone.ampEnvRelease);
         voice.filterEnv.configure (sampleRate_, tone.filterEnvAttack,
@@ -682,6 +684,77 @@ void Engine::setPatch (const Patch& patch)
         voice.pitchEnv.configure (sampleRate_, tone.pitchEnvAttack,
                                   tone.pitchEnvDecay);
     }
+}
+
+void Engine::changePatch (const Patch& patch, bool remain)
+{
+    if (! remain)
+    {
+        allSoundOff();
+        setPatch (patch);
+        smoothedPatchLevel_ = patch_.patchLevel / 127.0;
+        return;
+    }
+
+    for (auto& voice : voices_)
+    {
+        if (! voice.active || voice.retained)
+            continue;
+        const auto& runtime = toneRuntime (voice.part);
+        const auto& tone = tonePatch (voice.part);
+        voice.retainedTone = tone;
+        voice.retainedPatchLevel = patch_.patchLevel;
+        voice.retainedToneBalance = patch_.toneBalance;
+        voice.retainedTempo = patch_.tempo;
+        voice.retainedModulationAssign = patch_.modulationAssign;
+        voice.retainedModulationDestination = patch_.modulationDestination;
+        voice.retainedPitchBendDestination = patch_.pitchBendDestination;
+        voice.retainedExpressionDestination = patch_.expressionDestination;
+        voice.retainedLevelGain = smoothedPatchLevel_;
+        voice.retainedExpressionGain = smoothedExpression_[voice.part == Part::Upper ? 0u : 1u];
+        voice.retainedKeyDown = keyStillDown (voice);
+        voice.retainedSostenuto = runtime.sostenutoHolds (voice.note, voice.directMidi);
+        // Free-running LFOs belonged to the old tone. Fork its complete
+        // phase/random state, keeping the individual note's fade envelope.
+        const auto retainLfo = [] (Lfo& local, const Lfo& shared, const LfoParams& params)
+        {
+            if (! params.keyTrigger)
+            {
+                const double fade = local.fadeLevel;
+                local = shared;
+                local.fadeLevel = fade;
+            }
+        };
+        retainLfo (voice.lfo1, runtime.lfo1, tone.lfo1);
+        retainLfo (voice.lfo2, runtime.lfo2, tone.lfo2);
+        voice.retained = true;
+        // The old sequencer stops at selection. Let its final gate decay;
+        // it must not become an indefinitely held note in the new program.
+        if (! voice.directMidi && arpeggioIsSounding (voice.part, voice.note))
+        {
+            voice.retainedKeyDown = false;
+            releaseIfNoPedalHolds (voice);
+        }
+    }
+    for (auto& tone : tones_)
+    {
+        tone.heldCount = 0;
+        tone.anyKeyDown = false;
+        tone.sostenutoNotes.fill (0ull);
+        tone.directSostenutoNotes.fill (0ull);
+    }
+    for (auto& runtime : arpeggios_)
+        runtime = ArpeggioRuntime {};
+    arpeggioRunning_ = false;
+    arpeggioStep_ = arpeggioGridSection_ = 0;
+    arpeggioStepRemaining_ = 0.0;
+    clearPortamentoControl();
+    setPatch (patch);
+    arpeggioActive_ = patch_.arpeggio.on;
+    for (int index = 0; index < partCount; ++index)
+        arpeggioDriven_[static_cast<std::size_t> (index)] =
+            arpeggioDrives (index == 0 ? Part::Upper : Part::Lower);
+    smoothedPatchLevel_ = patch_.patchLevel / 127.0;
 }
 
 void Engine::setExternalInput (const ExternalInput& settings) noexcept
@@ -801,6 +874,7 @@ void Engine::noteOff (int note)
     for (int index = 0; index < partCount; ++index)
     {
         const Part part = index == 0 ? Part::Upper : Part::Lower;
+        releaseRetainedNote (part, note, false);
         // The arpeggiator's key list is cleared unconditionally, because the
         // routing parameters — SPLIT ARPEGGIO, the keyboard mode, the
         // keyboard part — are automatable too, and a key whose press went to
@@ -842,6 +916,8 @@ void Engine::noteOffDirect (int note)
 {
     note = clampRaw (note, 0, 127);
     syncArpeggioRouting();
+    releaseRetainedNote (Part::Upper, note, true);
+    releaseRetainedNote (Part::Lower, note, true);
     releaseNoteForPart (Part::Upper, note, true);
     releaseNoteForPart (Part::Lower, note, true);
 }
@@ -954,7 +1030,7 @@ void Engine::startNoteForPart (Part part, int note, int velocity,
     if (portamentoSource >= 0)
     {
         for (auto& candidate : voices_)
-            if (candidate.active && candidate.part == part
+            if (candidate.active && ! candidate.retained && candidate.part == part
                 && candidate.note == portamentoSource
                 && candidate.directMidi == directMidi
                 && (portamentoVoice == nullptr || candidate.age > portamentoVoice->age))
@@ -1019,7 +1095,7 @@ void Engine::startNoteForPart (Part part, int note, int velocity,
         // running when a key was already down.
         Voice* voice = nullptr;
         for (auto& candidate : voices_)
-            if (candidate.active && candidate.part == part)
+            if (candidate.active && ! candidate.retained && candidate.part == part)
             {
                 voice = &candidate;
                 break;
@@ -1044,7 +1120,7 @@ void Engine::startNoteForPart (Part part, int note, int velocity,
 
 void Engine::triggerVoiceLfos (Voice& voice)
 {
-    const TonePatch& tone = tonePatch (voice.part);
+    const TonePatch& tone = voiceTonePatch (voice);
     const auto trigger = [] (Lfo& lfo, const LfoParams& params)
     {
         // Roland OM p. 62 shows FADE TIME beginning at key-on, independently
@@ -1088,7 +1164,7 @@ void Engine::releaseNoteForPart (Part part, int note, bool directMidi)
     {
         for (auto& voice : voices_)
         {
-            if (! voice.active || voice.part != part)
+            if (! voice.active || voice.retained || voice.part != part)
                 continue;
             if (voice.note != note || voice.directMidi != directMidi)
                 continue;
@@ -1117,7 +1193,7 @@ void Engine::releaseNoteForPart (Part part, int note, bool directMidi)
 
     for (auto& voice : voices_)
     {
-        if (! voice.active || voice.part != part || voice.note != note
+        if (! voice.active || voice.retained || voice.part != part || voice.note != note
             || voice.directMidi != directMidi)
             continue;
         if (hold_ || runtime.sostenutoHolds (note, directMidi))
@@ -1134,7 +1210,7 @@ Engine::Voice* Engine::allocateVoice (Part part)
     const int limit = partVoiceLimit();
     int used = 0;
     for (const auto& voice : voices_)
-        if (voice.active && voice.part == part)
+        if (voice.active && ! voice.retained && voice.part == part)
             ++used;
 
     // A free physical voice, if the part has room.
@@ -1171,7 +1247,7 @@ Engine::Voice* Engine::allocateVoice (Part part)
     Voice* best = nullptr;
     for (auto& voice : voices_)
     {
-        if (! voice.active || voice.part != part)
+        if (! voice.active || voice.retained || voice.part != part)
             continue;
         if (best == nullptr)
         {
@@ -1204,11 +1280,12 @@ void Engine::triggerVoice (Voice& voice, Part part, int note, double velocity,
     ToneRuntime& runtime = toneRuntime (part);
 
     const bool wasActive = voice.active;
-    const bool keepGlidePitch = wasActive && voice.part == part
+    const bool keepGlidePitch = wasActive && ! voice.retained && voice.part == part
                                && (tone.mono != MonoMode::Poly || legato);
-    const bool continueSource = wasActive && voice.part == part
+    const bool continueSource = wasActive && ! voice.retained && voice.part == part
                                 && voice.note == portamentoSource;
     voice.active = true;
+    voice.retained = voice.retainedKeyDown = voice.retainedSostenuto = false;
     voice.part = part;
     voice.note = note;
     voice.directMidi = directMidi;
@@ -1295,8 +1372,21 @@ void Engine::triggerVoice (Voice& voice, Part part, int note, double velocity,
     }
 }
 
+void Engine::releaseRetainedNote (Part part, int note, bool directMidi) noexcept
+{
+    for (auto& voice : voices_)
+        if (voice.active && voice.retained && voice.part == part
+            && voice.note == note && voice.directMidi == directMidi)
+        {
+            voice.retainedKeyDown = false;
+            releaseIfNoPedalHolds (voice);
+        }
+}
+
 bool Engine::keyStillDown (const Voice& voice) noexcept
 {
+    if (voice.retained)
+        return voice.retainedKeyDown;
     const ToneRuntime& runtime = tones_[voice.part == Part::Upper ? 0 : 1];
     for (int i = 0; i < runtime.heldCount; ++i)
         if (runtime.heldNotes[static_cast<std::size_t> (i)] == voice.note
@@ -1328,7 +1418,9 @@ void Engine::releaseIfNoPedalHolds (Voice& voice) noexcept
     if (! voice.active)
         return;
     const ToneRuntime& runtime = tones_[voice.part == Part::Upper ? 0 : 1];
-    if (hold_ || runtime.sostenutoHolds (voice.note, voice.directMidi) || keyStillDown (voice))
+    const bool latched = voice.retained ? voice.retainedSostenuto
+                                       : runtime.sostenutoHolds (voice.note, voice.directMidi);
+    if (hold_ || latched || keyStillDown (voice))
         return;
     beginRelease (voice);
 }
@@ -1355,6 +1447,9 @@ void Engine::setSostenuto (bool down)
     sostenuto_ = down;
     if (down)
     {
+        for (auto& voice : voices_)
+            if (voice.active && voice.retained)
+                voice.retainedSostenuto = voice.retainedKeyDown;
         // Latch the notes whose keys are down right now, per tone.
         for (auto& runtime : tones_)
         {
@@ -1377,6 +1472,8 @@ void Engine::setSostenuto (bool down)
         runtime.sostenutoNotes.fill (0ull);
         runtime.directSostenutoNotes.fill (0ull);
     }
+    for (auto& voice : voices_)
+        voice.retainedSostenuto = false;
     for (auto& voice : voices_)
         if (voice.held)
             releaseIfNoPedalHolds (voice);
@@ -1459,6 +1556,9 @@ void Engine::allNotesOff()
         tone.anyKeyDown = false;
     }
 
+    for (auto& voice : voices_)
+        voice.retainedKeyDown = false;
+
     // The sostenuto latch belongs to the pedal, not to the keys, and
     // outliving the keys that set it is its entire job. It is cleared when
     // the pedal comes up.
@@ -1472,7 +1572,7 @@ void Engine::allNotesOff()
     // because the sweep took the step that was sounding and the pattern only
     // came back at the next one.
     for (auto& voice : voices_)
-        if (voice.active && (voice.directMidi || ! arpeggioIsSounding (voice.part, voice.note)))
+        if (voice.active && (voice.retained || voice.directMidi || ! arpeggioIsSounding (voice.part, voice.note)))
             releaseIfNoPedalHolds (voice);
 }
 
@@ -1483,6 +1583,7 @@ void Engine::allSoundOff()
     {
         voice.active = false;
         voice.held = false;
+        voice.retained = voice.retainedKeyDown = voice.retainedSostenuto = false;
         voice.ampEnv.kill();
         voice.filterEnv.kill();
         voice.pitchEnv.active = false;
@@ -1605,8 +1706,13 @@ void Engine::advanceToneLfos (int samples)
 
 void Engine::updateVoiceControls (Voice& voice, int tickSamples)
 {
-    const TonePatch& tone = tonePatch (voice.part);
+    const TonePatch& tone = voiceTonePatch (voice);
     ToneRuntime& runtime = toneRuntime (voice.part);
+    const auto modulationAssign = voice.retained ? voice.retainedModulationAssign : patch_.modulationAssign;
+    const auto modulationDestination = voice.retained ? voice.retainedModulationDestination : patch_.modulationDestination;
+    const auto pitchBendDestination = voice.retained ? voice.retainedPitchBendDestination : patch_.pitchBendDestination;
+    const double voiceTempo = tempoOverride_ > 0.0 ? tempoOverride_
+        : (voice.retained ? voice.retainedTempo : patch_.tempo);
 
     const auto voiceLfoValue = [&] (Lfo& lfo, const Lfo& shared,
                                    const LfoParams& params)
@@ -1614,10 +1720,10 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
         const double seconds = mapping::lfoFadeSeconds (params.fadeTime);
         const double fadeStep = seconds <= 0.0 ? 0.0
             : tickSamples / (seconds * sampleRate_);
-        if (params.keyTrigger)
+        if (params.keyTrigger || voice.retained)
         {
             const double hz = params.tempoSync
-                ? (tempoClockRunning_ ? mapping::lfoSyncHz (tempoBpm(), params.tempoSyncNote) : 0.0)
+                ? (tempoClockRunning_ ? mapping::lfoSyncHz (voiceTempo, params.tempoSyncNote) : 0.0)
                 : mapping::lfoRateHz (params.rate);
             return lfo.advance (params, hz, fadeStep, tickSamples, sampleRate_);
         }
@@ -1655,11 +1761,11 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
     // modulated by it — the tone's own LFOs are untouched either way.
     const bool upperVoice = voice.part == Part::Upper;
     const double bendSemitones =
-        (destinationReaches (patch_.pitchBendDestination, upperVoice)
+        (destinationReaches (pitchBendDestination, upperVoice)
              ? pitchBend_ * tone.bendRange
              : 0.0);
     const double lever =
-        destinationReaches (patch_.modulationDestination, upperVoice)
+        destinationReaches (modulationDestination, upperVoice)
             ? modulation_
             : 0.0;
 
@@ -1667,11 +1773,11 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
     const double leverVibratoCents =
         lever * mapping::leverVibratoCents * lfo2Value;
     const bool leverToOsc1 =
-        patch_.modulationAssign == ModulationAssign::Osc1AndOsc2
-        || patch_.modulationAssign == ModulationAssign::Osc1;
+        modulationAssign == ModulationAssign::Osc1AndOsc2
+        || modulationAssign == ModulationAssign::Osc1;
     const bool leverToOsc2 =
-        patch_.modulationAssign == ModulationAssign::Osc1AndOsc2
-        || patch_.modulationAssign == ModulationAssign::Osc2;
+        modulationAssign == ModulationAssign::Osc1AndOsc2
+        || modulationAssign == ModulationAssign::Osc2;
 
     // LFO pitch contributions (destination 1 -> OSC1, destination 2 -> OSC2).
     double lfoCents1 = 0.0, lfoCents2 = 0.0;
@@ -1719,8 +1825,8 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
         };
         contribution (tone.lfo1, lfo1Value);
         contribution (tone.lfo2, lfo2Value);
-        if ((oscIndex == 1 && patch_.modulationAssign == ModulationAssign::Pw1)
-            || (oscIndex == 2 && patch_.modulationAssign == ModulationAssign::Pw2))
+        if ((oscIndex == 1 && modulationAssign == ModulationAssign::Pw1)
+            || (oscIndex == 2 && modulationAssign == ModulationAssign::Pw2))
             value += lever * mapping::leverPulseWidth * lfo2Value;
         return std::clamp (value, 0.0, 127.0);
     };
@@ -1765,7 +1871,7 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
         lfoFilterOct += mapping::lfoFilterOctaves (tone.lfo1.depth1) * lfo1Value;
     if (tone.lfo2.destination1 == LfoDest1::Filter)
         lfoFilterOct += mapping::lfoFilterOctaves (tone.lfo2.depth1) * lfo2Value;
-    if (patch_.modulationAssign == ModulationAssign::Filter)
+    if (modulationAssign == ModulationAssign::Filter)
         lfoFilterOct += lever * mapping::leverFilterOctaves * lfo2Value;
 
     const double cutoffBaseOct = std::log2 (mapping::cutoffHz (tone.cutoff));
@@ -1829,7 +1935,7 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
         tremolo += depthScale (tone.lfo1.depth2) * lfo1Value;
     if (tone.lfo2.destination2 == LfoDest2::Amp)
         tremolo += depthScale (tone.lfo2.depth2) * lfo2Value;
-    if (patch_.modulationAssign == ModulationAssign::Amp)
+    if (modulationAssign == ModulationAssign::Amp)
         tremolo += lever * mapping::leverAmpDepth * lfo2Value;
     gain *= std::max (0.0, 1.0 + tremolo);
 
@@ -1960,7 +2066,7 @@ namespace
 void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
                               const float* external)
 {
-    const TonePatch& tone = tonePatch (voice.part);
+    const TonePatch& tone = voiceTonePatch (voice);
     const Waveform wave1 = tone.osc1.wave;
     const Waveform wave2 = tone.osc2.wave;
 
@@ -2954,7 +3060,7 @@ bool Engine::anyVoiceUsesExternalInput() const noexcept
     {
         if (! voice.active)
             continue;
-        const TonePatch& tone = tonePatch (voice.part);
+        const TonePatch& tone = voiceTonePatch (voice);
         if (tone.osc1.wave == Waveform::ExtIn || tone.osc2.wave == Waveform::ExtIn)
             return true;
     }
@@ -3451,7 +3557,13 @@ void Engine::process (float* left, float* right, int numSamples,
 
         std::array<std::array<double, controlInterval>, 2> enableGain {};
         std::array<std::array<double, controlInterval>, 2> expressionGain {};
+        std::array<double, controlInterval> patchLevelGain {};
         std::array<std::array<float, controlInterval>, 2> partLeft {}, partRight {};
+        for (int i = 0; i < guarded; ++i)
+        {
+            smoothedPatchLevel_ += (patch_.patchLevel / 127.0 - smoothedPatchLevel_) * gainCoeff;
+            patchLevelGain[static_cast<std::size_t> (i)] = smoothedPatchLevel_;
+        }
         for (std::size_t part = 0; part < partEnabled_.size(); ++part)
             for (int i = 0; i < guarded; ++i)
             {
@@ -3504,7 +3616,7 @@ void Engine::process (float* left, float* right, int numSamples,
             if (voice.ampEnv.idle() && voice.ampEnvelopeTail == 0)
                 voice.active = false;
 
-            const TonePatch& tone = tonePatch (voice.part);
+            const TonePatch& tone = voiceTonePatch (voice);
             const std::size_t partIndex = voice.part == Part::Upper ? 0u : 1u;
             const double delaySend = tone.delayDepth / 127.0;
             const double reverbSend = tone.reverbDepth / 127.0;
@@ -3524,8 +3636,8 @@ void Engine::process (float* left, float* right, int numSamples,
             // voiced law shared with the oscillator balance).
             const double toneGain =
                 (voice.part == Part::Upper
-                       ? mapping::balanceLegGain (patch_.toneBalance, false)
-                       : mapping::balanceLegGain (patch_.toneBalance, true));
+                       ? mapping::balanceLegGain (voiceToneBalance (voice), false)
+                       : mapping::balanceLegGain (voiceToneBalance (voice), true));
 
             for (int i = 0; i < guarded; ++i)
             {
@@ -3535,8 +3647,22 @@ void Engine::process (float* left, float* right, int numSamples,
                 const double gainR =
                     (gainRStart + gainRStep * (i + 1)) * mapping::voiceHeadroom;
                 const auto frame = static_cast<std::size_t> (i);
+                double levelGain = patchLevelGain[frame];
+                double expression = expressionGain[partIndex][frame];
+                if (voice.retained)
+                {
+                    voice.retainedLevelGain +=
+                        (voicePatchLevel (voice) / 127.0 - voice.retainedLevelGain) * gainCoeff;
+                    const double expressionTarget = destinationReaches (
+                        voice.retainedExpressionDestination, voice.part == Part::Upper)
+                            ? expression_ : 1.0;
+                    voice.retainedExpressionGain +=
+                        (expressionTarget - voice.retainedExpressionGain) * gainCoeff;
+                    levelGain = voice.retainedLevelGain;
+                    expression = voice.retainedExpressionGain;
+                }
                 const double partGain = enableGain[partIndex][frame]
-                                        * expressionGain[partIndex][frame] * toneGain;
+                                        * expression * toneGain * levelGain;
                 const auto l = static_cast<float> (sample * gainL * partGain);
                 const auto r = static_cast<float> (sample * gainR * partGain);
                 partLeft[partIndex][static_cast<std::size_t> (i)] += l;
@@ -3572,7 +3698,6 @@ void Engine::process (float* left, float* right, int numSamples,
         // EXPRESSION DESTINATION names the tone or tones it controls; with
         // BOTH, which is the default, the product is exactly what it was.
         const double masterTarget = (masterLevel_ / 127.0)
-                                    * (patch_.patchLevel / 127.0)
                                     * partLevel_;
         // The direct monitor path joins here rather than in the voice sum: it
         // is not patch audio, so the patch level and the part controllers do

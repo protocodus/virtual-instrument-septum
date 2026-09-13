@@ -161,6 +161,10 @@ private:
     std::atomic<float>* receiveBankValue { nullptr };
     std::atomic<float>* remoteKeyboardValue { nullptr };
     int appliedRemoteKeyboard { 2 };
+    std::atomic<float>* patchRemainValue { nullptr };
+    std::atomic<std::uint64_t> patchSelectionRevision { 0 };
+    std::uint64_t appliedPatchSelectionRevision { 0 };
+    std::atomic<double> retainedReleaseSeconds { 0.0 };
     [[nodiscard]] bool acceptsLiveSysEx (const std::uint8_t* data,
                                          std::size_t size) const noexcept;
     bool decodeLivePatchMessage (const std::uint8_t* data, std::size_t size,
@@ -420,7 +424,10 @@ private:
     // message thread: the audio path then renders that factory patch
     // atomically instead of a half-updated parameter snapshot. MIDI program
     // changes do not stage — they write the raw values directly.
-    std::atomic<int> stagedProgram { -1 };
+    // Program index+1 in the low seven bits, its selection revision above.
+    // One atomic prevents a later MIDI selection from consuming an older
+    // message-thread staged program under the later revision.
+    std::atomic<std::uint64_t> stagedProgram { 0 };
     // Seqlock guard for multi-parameter write bursts — message-thread program
     // sprays and state restores, and the audio path's own program writes:
     // odd while a burst is in flight, bumped again when it completes. The

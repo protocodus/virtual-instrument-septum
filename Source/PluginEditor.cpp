@@ -70,7 +70,7 @@ constexpr int instrumentTopPadding = 20;
 constexpr int outerPadding = 24;
 constexpr int presetPanelWidth = 540;
 constexpr int systemPanelWidth = 680 + 2 * sectionPadding;
-constexpr int performancePanelWidth = 754 + 2 * sectionPadding;
+constexpr int performancePanelWidth = 850 + 2 * sectionPadding;
 // One contiguous part surface, followed by shared effects and performance.
 constexpr int partTop = instrumentTopPadding + headerHeight + 8;
 constexpr int partTabHeight = 88;
@@ -900,6 +900,8 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
     // name.
     remoteKeyboardControl = addControl (*performSection, "system_remote_keyboard", "MIDI NOTES",
                                         Style::Combo, false);
+    patchRemainControl = addControl (*performSection, "system_patch_remain", "REMAIN",
+                                     Style::Toggle, false);
     if (auto* tooltip = dynamic_cast<juce::SettableTooltipClient*> (remoteKeyboardControl->component.get()))
         tooltip->setTooltip (
             "DIRECT: play tones on the receive channel. REMOTE: any-channel keyboard through the arpeggiator. "
@@ -1939,6 +1941,8 @@ void SeptumAudioProcessorEditor::layoutPanel()
                        performanceRow.removeFromLeft (134), 118, comboHeight);
     layoutControlCell (*remoteKeyboardControl->component, *remoteKeyboardControl->label, nullptr,
                        performanceRow.removeFromLeft (134), 118, comboHeight);
+    layoutControlCell (*patchRemainControl->component, *patchRemainControl->label, nullptr,
+                       performanceRow.removeFromLeft (96), 80, toggleHeight);
     auto octaveCell = performanceRow.removeFromLeft (118);
     octLabel.setBounds (octaveCell.removeFromTop (labelHeight));
     octaveCell.removeFromBottom (valueHeight);

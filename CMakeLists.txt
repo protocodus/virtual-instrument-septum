@@ -171,6 +171,11 @@ if(SEPTUM_BUILD_TOOLS)
 endif()
 
 if(BUILD_TESTING)
+    add_executable(SeptumPatchRemainTests Tests/PatchRemainTests.cpp)
+    target_link_libraries(SeptumPatchRemainTests PRIVATE SeptumDSP)
+    add_test(NAME Septum.PatchRemain COMMAND SeptumPatchRemainTests)
+    set_tests_properties(Septum.PatchRemain PROPERTIES TIMEOUT 120)
+
     add_executable(SeptumDirectMidiTransposeTests Tests/DirectMidiTransposeTests.cpp)
     target_link_libraries(SeptumDirectMidiTransposeTests PRIVATE SeptumDSP)
     add_test(NAME Septum.DirectMidiTranspose COMMAND SeptumDirectMidiTransposeTests)
@@ -295,6 +300,15 @@ if(BUILD_TESTING)
     endif()
 
     if(SEPTUM_BUILD_PLUGIN)
+        add_executable(SeptumPatchRemainProcessorTests Tests/PatchRemainProcessorTests.cpp)
+        target_link_libraries(SeptumPatchRemainProcessorTests PRIVATE Septum)
+        target_include_directories(SeptumPatchRemainProcessorTests PRIVATE
+            "${CMAKE_CURRENT_SOURCE_DIR}/Source"
+            "$<TARGET_PROPERTY:Septum,JUCE_GENERATED_SOURCES_DIRECTORY>"
+            "$<TARGET_PROPERTY:Septum,INCLUDE_DIRECTORIES>")
+        add_test(NAME Septum.PatchRemainProcessor COMMAND SeptumPatchRemainProcessorTests)
+        set_tests_properties(Septum.PatchRemainProcessor PROPERTIES TIMEOUT 120)
+
         add_executable(SeptumRemoteKeyboardProcessorTests Tests/RemoteKeyboardProcessorTests.cpp)
         target_link_libraries(SeptumRemoteKeyboardProcessorTests PRIVATE Septum)
         target_include_directories(SeptumRemoteKeyboardProcessorTests PRIVATE
