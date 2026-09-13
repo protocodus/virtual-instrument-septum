@@ -501,6 +501,18 @@ void Engine::prepare (double sampleRate, int maxBlockSize)
                          + 8,
                      0.0f);
     reverb_.preDelay.assign (static_cast<std::size_t> (sampleRate_ * 0.105) + 8, 0.0f);
+    for (std::size_t size = 0; size < reverb_.sizeLengths.size(); ++size)
+        for (std::size_t line = 0; line < Reverb::lineCount; ++line)
+            reverb_.sizeLengths[size][line] = std::max (32, std::min (
+                static_cast<int> (mapping::reverbLineSeconds[line]
+                                 * mapping::reverbSizeScale (static_cast<int> (size))
+                                 * sampleRate_) | 1,
+                static_cast<int> (reverb_.lines[line].size()) - 2));
+    for (std::size_t position = 0; position < reverb_.preDelayLengths.size(); ++position)
+        reverb_.preDelayLengths[position] = std::min (
+            static_cast<int> (mapping::reverbPreDelayMs (static_cast<int> (position))
+                             * 0.001 * sampleRate_),
+            static_cast<int> (reverb_.preDelay.size()) - 2);
 
     externalDirectL_.assign (static_cast<std::size_t> (maxBlock_), 0.0f);
     externalDirectR_.assign (static_cast<std::size_t> (maxBlock_), 0.0f);
@@ -603,6 +615,8 @@ void Engine::reset()
     delayL_.fresh = delayR_.fresh = 1 << 30;
     delayModPhase_ = 0.0;
     reverb_.clear();
+    reverb_.sizeHeads.reset (patch_.reverb.size);
+    reverb_.preDelayHeads.reset (patch_.reverb.preDelay);
     delayTimeSmoothed_ = mapping::delaySeconds (patch_.delay.time) * sampleRate_;
     delayWetGain_ = patch_.delayOn ? 1.0 : 0.0;
     reverbWetGain_ = patch_.reverbOn ? 1.0 : 0.0;
@@ -639,8 +653,8 @@ void Engine::setPatch (const Patch& patch)
     clampToDocumentedRanges (patch_);
     if (patch_.reverb.size != previousSize)
     {
-        // Line lengths follow SIZE; recompute them (states are kept — a size
-        // change on hardware audibly disturbs the tail too).
+        // The target geometry follows SIZE. Existing audio remains in the
+        // buffers, and the running read heads crossfade to these positions.
         const double sizeScale = mapping::reverbSizeScale (patch_.reverb.size);
         for (int i = 0; i < Reverb::lineCount; ++i)
         {
@@ -3209,10 +3223,8 @@ void Engine::processEffects (const float* dryL, const float* dryR,
     const double hfGain = std::pow (10.0, reverbParams.hfDampGain / 20.0);
     const double diffusionGain = mapping::reverbDiffusionGain (reverbParams.diffusion);
     const double densityGain = mapping::reverbDensityGain (reverbParams.density);
-    const int preDelaySamples = std::min (
-        static_cast<int> (mapping::reverbPreDelayMs (reverbParams.preDelay)
-                          * 0.001 * sampleRate_),
-        static_cast<int> (reverb_.preDelay.size()) - 2);
+    const double geometryStep = 1.0 / std::max (
+        1.0, detail::ReverbReadHeads<8>::fadeSeconds * sampleRate_);
 
     std::array<double, Reverb::lineCount> lineFeedback {};
     for (int i = 0; i < Reverb::lineCount; ++i)
@@ -3302,14 +3314,19 @@ void Engine::processEffects (const float* dryL, const float* dryR,
             // in every buffer below — the network's write heads advance in
             // lockstep, so one freshness count covers them all.
             const int reverbFresh = reverb_.fresh;
+            reverb_.preDelayHeads.advance (reverbParams.preDelay, geometryStep);
+            reverb_.sizeHeads.advance (reverbParams.size, geometryStep);
             reverb_.preDelay[static_cast<std::size_t> (reverb_.preDelayWrite)] =
                 static_cast<float> (input);
-            int readIndex = reverb_.preDelayWrite - preDelaySamples;
-            if (readIndex < 0)
-                readIndex += static_cast<int> (reverb_.preDelay.size());
-            input = preDelaySamples > reverbFresh
-                        ? 0.0
-                        : reverb_.preDelay[static_cast<std::size_t> (readIndex)];
+            input = reverb_.preDelayHeads.read ([&] (std::size_t position) -> double
+            {
+                const int length = reverb_.preDelayLengths[position];
+                int readIndex = reverb_.preDelayWrite - length;
+                if (readIndex < 0)
+                    readIndex += static_cast<int> (reverb_.preDelay.size());
+                return length > reverbFresh
+                    ? 0.0 : reverb_.preDelay[static_cast<std::size_t> (readIndex)];
+            });
             reverb_.preDelayWrite = (reverb_.preDelayWrite + 1)
                                     % static_cast<int> (reverb_.preDelay.size());
 
@@ -3337,14 +3354,16 @@ void Engine::processEffects (const float* dryL, const float* dryR,
             {
                 auto& buffer = reverb_.lines[static_cast<std::size_t> (line)];
                 const int size = static_cast<int> (buffer.size());
-                int readPos = reverb_.writes[static_cast<std::size_t> (line)]
-                              - reverb_.lengths[static_cast<std::size_t> (line)];
-                if (readPos < 0)
-                    readPos += size;
                 taps[static_cast<std::size_t> (line)] =
-                    reverb_.lengths[static_cast<std::size_t> (line)] > reverbFresh
-                        ? 0.0
-                        : buffer[static_cast<std::size_t> (readPos)];
+                    reverb_.sizeHeads.read ([&] (std::size_t position) -> double
+                    {
+                        const int length = reverb_.sizeLengths[position][static_cast<std::size_t> (line)];
+                        int readPos = reverb_.writes[static_cast<std::size_t> (line)] - length;
+                        if (readPos < 0)
+                            readPos += size;
+                        return length > reverbFresh
+                            ? 0.0 : buffer[static_cast<std::size_t> (readPos)];
+                    });
                 tapSum += taps[static_cast<std::size_t> (line)];
             }
             const double householder = tapSum * (2.0 / Reverb::lineCount);

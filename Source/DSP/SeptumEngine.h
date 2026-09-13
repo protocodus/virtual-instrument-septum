@@ -15,6 +15,7 @@
 #include "AnalogInput.h"
 #include "AnalogOutput.h"
 #include "ReverbDamping.h"
+#include "ReverbReadHeads.h"
 
 #include <algorithm>
 #include <array>
@@ -1474,6 +1475,10 @@ private:
         std::array<std::vector<float>, lineCount> lines {};
         std::array<int, lineCount> writes {};
         std::array<int, lineCount> lengths {};
+        std::array<std::array<int, lineCount>, 8> sizeLengths {};
+        std::array<int, 126> preDelayLengths {};
+        detail::ReverbReadHeads<8> sizeHeads;
+        detail::ReverbReadHeads<126> preDelayHeads;
         std::array<detail::ReverbDampingState, lineCount> lowStates {};
         std::array<detail::ReverbDampingState, lineCount> highStates {};
         std::array<std::vector<float>, 4> diffusers {};

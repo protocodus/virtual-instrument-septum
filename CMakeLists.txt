@@ -171,6 +171,11 @@ if(SEPTUM_BUILD_TOOLS)
 endif()
 
 if(BUILD_TESTING)
+    add_executable(SeptumReverbGeometryTests Tests/ReverbGeometryTests.cpp)
+    target_link_libraries(SeptumReverbGeometryTests PRIVATE SeptumDSP)
+    add_test(NAME Septum.ReverbGeometry COMMAND SeptumReverbGeometryTests)
+    set_tests_properties(Septum.ReverbGeometry PROPERTIES TIMEOUT 120)
+
     add_executable(SeptumRemoteKeyboardTests Tests/RemoteKeyboardTests.cpp)
     target_link_libraries(SeptumRemoteKeyboardTests PRIVATE SeptumDSP)
     add_test(NAME Septum.RemoteKeyboard COMMAND SeptumRemoteKeyboardTests)
