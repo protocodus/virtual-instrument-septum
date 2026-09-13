@@ -243,7 +243,7 @@ void applyMidi (septum::Engine& engine, septum::Patch& patch,
     engine.setPatch (patch);
 }
 
-struct Event { std::uint64_t sample; std::string kind; Bytes data; int tempo = 0; };
+struct Event { std::uint64_t sample; std::string kind; Bytes data; double tempo = 0.0; };
 
 std::vector<Event> readEvents (const std::filesystem::path& path, std::uint64_t& end)
 {
@@ -268,9 +268,10 @@ std::vector<Event> readEvents (const std::filesystem::path& path, std::uint64_t&
         if (event.kind == "tempo")
         {
             std::size_t consumed = 0;
-            event.tempo = std::stoi (value, &consumed);
-            if (consumed != value.size() || event.tempo < 5 || event.tempo > 300)
-                throw std::runtime_error ("Patch tempo outside 5–300 BPM");
+            event.tempo = std::stod (value, &consumed);
+            if (consumed != value.size() || ! std::isfinite (event.tempo)
+                || event.tempo < 5.0 || event.tempo > 300.0)
+                throw std::runtime_error ("Clock tempo outside 5–300 BPM");
         }
         else if (event.kind == "midi")
         {
@@ -398,7 +399,7 @@ int main (int argc, char** argv)
         {
             renderTo (event.sample);
             if (event.kind == "midi") applyMidi (*engine, patch, external, event.data);
-            else { patch.tempo = event.tempo; engine->setPatch (patch); }
+            else engine->setTempoClock (event.tempo);
         }
         renderTo (frames);
         output.flush();
@@ -410,6 +411,7 @@ int main (int argc, char** argv)
                   << ",\"patch_name\":" << jsonString (patch.name)
                   << ",\"patch_arpeggio_on\":" << (patch.arpeggio.on ? "true" : "false")
                   << ",\"patch_tempo_at_end\":" << patch.tempo
+                  << ",\"clock_tempo_at_end\":" << std::setprecision (17) << engine->tempoBpm()
                   << ",\"master_level\":" << master
                   << ",\"initial_patch\":" << initialPatchSummary
                   << ",\"patch_load_warning\":null}\n";

@@ -189,10 +189,11 @@ def replay_events(parsed: dict, channel: int = 1, allow_unsupported: bool = Fals
         reason = None
         if kind == "tempo":
             if tempo_policy == "follow-midi":
-                bpm = nearest(Fraction(60000000, event["microseconds_per_quarter"]))
+                bpm = Fraction(60000000, event["microseconds_per_quarter"])
                 if not 5 <= bpm <= 300:
-                    raise MidiError("SMF tempo exceeds the patch's documented 5–300 BPM range")
-                replay.append({"sample": event["sample"], "kind": "tempo", "value": str(bpm)})
+                    raise MidiError("SMF tempo exceeds the documented 5–300 BPM clock range")
+                replay.append({"sample": event["sample"], "kind": "tempo",
+                               "value": format(float(bpm), ".17g")})
             continue
         if kind == "meta":
             # Routing/device and sequencer-specific meta events cannot safely
@@ -303,7 +304,8 @@ def render(args: argparse.Namespace) -> dict:
         "settings": {"sample_rate": args.sample_rate, "tail_seconds": args.tail,
                      "master_level": args.master_level, "midi_channel": args.channel,
                      "tempo_policy": args.tempo_policy,
-                     "tempo_to_patch_mapping": "nearest integer BPM, 5–300; timing remains exact SMF tempo",
+                     "tempo_to_patch_mapping": "none; stored patch tempo is preserved",
+                     "tempo_clock_mapping": "fractional BPM from SMF microseconds/quarter, 5–300; timestamps retain rational SMF timing",
                      "note_semantics": "Engine keyboard/arpeggiator replay" if args.keyboard_mode else "arpeggio-off patch required",
                      "automatic_note_offs_at_end": False,
                      "unsupported_policy": "omit with audit" if args.allow_unsupported else "reject",

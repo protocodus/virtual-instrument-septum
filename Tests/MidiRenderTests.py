@@ -143,6 +143,20 @@ class ParserTests(unittest.TestCase):
         with self.assertRaisesRegex(midi.MidiError, "tempo exceeds"):
             midi.replay_events(too_fast)
 
+    def test_fractional_tempo_retained_and_exact_bounds_checked(self):
+        for microseconds in (437158, 600000, 200000, 12000000):
+            with self.subTest(microseconds=microseconds):
+                tempo = b"\xff\x51\x03" + microseconds.to_bytes(3, "big")
+                parsed = midi.parse_smf(smf(track((0, tempo), (480, EOT))))
+                replay, _ = midi.replay_events(parsed)
+                self.assertEqual(float(replay[-1]["value"]), 60000000 / microseconds)
+        # Previously rounding first admitted tempos just outside the limits.
+        for microseconds in (199999, 12000001):
+            tempo = b"\xff\x51\x03" + microseconds.to_bytes(3, "big")
+            parsed = midi.parse_smf(smf(track((0, tempo), (0, EOT))))
+            with self.assertRaisesRegex(midi.MidiError, "tempo exceeds"):
+                midi.replay_events(parsed)
+
 
 class RendererTests(unittest.TestCase):
     @classmethod
@@ -283,6 +297,51 @@ class RendererTests(unittest.TestCase):
         control.write_bytes(b"".join(packets))
         slow = self.render("tempo8-control", source, syx=control)
         self.assertNotEqual(slow["output"]["sha256"], manifests[0]["output"]["sha256"])
+
+    def test_fractional_clock_drives_audio_without_rewriting_patch_tempo(self):
+        packets = [bytearray(frame + b"\xf7")
+                   for frame in self.patch.read_bytes().split(b"\xf7") if frame]
+        common = next(packet for packet in packets if packet[9] == 0)
+        upper = next(packet for packet in packets if packet[9] == 1)
+        # Tempo-synced sine LFO at 1/32 notes modulates pitch. Its clock phase
+        # is audible and changes measurably when a fractional tempo is rounded.
+        for offset, value in {0x27: 1, 0x29: 1, 0x2a: 19, 0x2b: 0,
+                              0x2c: 1, 0x2d: 0, 0x2e: 96}.items():
+            upper[11 + offset] = value
+        microseconds = 437158
+        tempo = b"\xff\x51\x03" + microseconds.to_bytes(3, "big")
+        source = smf(track((0, tempo), (0, b"\x90\x45\x64"),
+                           (1920, b"\x80\x45\x00"), (0, EOT)))
+        manifests = []
+        for stored in (67, 299):
+            common[11 + 0x0e:11 + 0x11] = bytes([(stored >> 8) & 15,
+                                                (stored >> 4) & 15, stored & 15])
+            for packet in packets:
+                packet[-2] = (-sum(packet[7:-2])) & 127
+            patch = self.path / f"fractional-clock-{stored}.syx"
+            patch.write_bytes(b"".join(packets))
+            manifest = self.render(f"fractional-clock-{stored}", source,
+                                   syx=patch, tempo_policy="follow-midi")
+            self.assertEqual(manifest["output"]["patch_tempo_at_end"], stored)
+            self.assertEqual(manifest["output"]["clock_tempo_at_end"], 60000000 / microseconds)
+            manifests.append(manifest)
+        self.assertEqual(manifests[0]["output"]["sha256"], manifests[1]["output"]["sha256"])
+
+        # Keep event sample positions identical while rounding only the clock.
+        # This isolates audible LFO phase from note-timestamp differences.
+        parsed = midi.parse_smf(source)
+        events, _ = midi.replay_events(parsed)
+        event_file = self.path / "rounded-clock.events"
+        event_file.write_text(f"SEPTUM_RENDER_EVENTS 1 {parsed['end_sample']}\n" + "".join(
+            f"{event['sample']} {event['kind']} "
+            f"{round(float(event['value'])) if event['kind'] == 'tempo' else event['value']}\n"
+            for event in events))
+        rounded_wav = self.path / "rounded-clock.wav"
+        subprocess.run([str(RENDERER), "--syx", str(patch), "--events", str(event_file),
+                        "--output", str(rounded_wav), "--tail", "0.2"],
+                       check=True, capture_output=True, text=True)
+        self.assertNotEqual(hashlib.sha256(rounded_wav.read_bytes()).hexdigest(),
+                            manifests[1]["output"]["sha256"])
 
     def test_arp_requires_explicit_keyboard_mode(self):
         full = bytearray(self.patch.read_bytes())
