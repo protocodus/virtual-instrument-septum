@@ -270,6 +270,15 @@ if(BUILD_TESTING)
     endif()
 
     if(SEPTUM_BUILD_PLUGIN)
+        add_executable(SeptumMidiModeProcessorTests Tests/MidiModeProcessorTests.cpp)
+        target_link_libraries(SeptumMidiModeProcessorTests PRIVATE Septum)
+        target_include_directories(SeptumMidiModeProcessorTests PRIVATE
+            "${CMAKE_CURRENT_SOURCE_DIR}/Source"
+            "$<TARGET_PROPERTY:Septum,JUCE_GENERATED_SOURCES_DIRECTORY>"
+            "$<TARGET_PROPERTY:Septum,INCLUDE_DIRECTORIES>")
+        add_test(NAME Septum.MidiModeProcessor COMMAND SeptumMidiModeProcessorTests)
+        set_tests_properties(Septum.MidiModeProcessor PROPERTIES TIMEOUT 120)
+
         add_executable(SeptumTempoSyncProcessorTests Tests/TempoSyncProcessorTests.cpp)
         target_link_libraries(SeptumTempoSyncProcessorTests PRIVATE Septum)
         target_include_directories(SeptumTempoSyncProcessorTests PRIVATE

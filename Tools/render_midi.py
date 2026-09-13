@@ -167,7 +167,7 @@ def parse_smf(data: bytes, sample_rate: int = 44100) -> dict:
             "sample_rounding": "nearest sample, exact rational timing, ties upward"}
 
 
-PERFORMANCE_CCS = {1, 2, 4, 7, 10, 11, 64, 66, 84, 120, 121, 123, 124, 125}
+PERFORMANCE_CCS = {1, 2, 4, 7, 10, 11, 64, 66, 84, 120, 121, 123, 124, 125, 126, 127}
 PANEL_CCS = {3, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
              25, 26, 27, 28, 29, 30, 31, 70, 71, 72, 73, 74, 75, 76, 77, 78,
              79, 80, 81, 82, 83, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95,

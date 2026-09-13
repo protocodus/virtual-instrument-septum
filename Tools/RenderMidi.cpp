@@ -230,6 +230,12 @@ void applyMidi (septum::Engine& engine, septum::Patch& patch,
             engine.setExpression (1.0); engine.setHold (false); engine.setSostenuto (false);
             return;
         case 123: case 124: case 125: engine.allNotesOff(); return;
+        case 126: case 127:
+            engine.allSoundOff();
+            patch.upper.mono = patch.lower.mono = key == 126
+                ? septum::MonoMode::SoloLegato : septum::MonoMode::Poly;
+            engine.setPatch (patch);
+            return;
         default: break;
     }
     if (! panelCc (patch, key, value)) throw std::runtime_error ("Unsupported CC " + std::to_string (key));

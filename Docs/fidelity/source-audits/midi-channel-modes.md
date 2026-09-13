@@ -1,0 +1,7 @@
+# MIDI channel modes
+
+Roland's [SH-201 Owner’s Manual](https://static.roland.com/assets/media/pdf/SH-201_OM.pdf), printed p. 73, recognizes Mode 3 and Mode 4, says monophonic M is one even when another channel count is supplied, and includes CC126/127 under All Sound Off. The prose MIDI implementation is less complete than this chart. The receiver previously ignored both messages.
+
+CC126 now silences existing sound and selects SOLO+LEGATO for both tones; CC127 silences existing sound and selects POLY. The [MIDI 1.0 Detailed Specification 4.2.1](https://www.seriesten.org/docs/protocols/MIDI_1.0_Detailed_Specification.pdf), printed p. 22, recommends preserving envelopes across overlapping notes in its general MONO discussion. Its Mode 4 section leaves overlap behavior unspecified: selecting legato follows the general recommendation, but the exact SH-201 CC126 envelope behavior is unmeasured. Incoming channel filtering remains in force. Parameter values update at the message timestamp, so a chord later in the same audio block uses the new mode. The offline renderer accepts the same messages.
+
+Tests exercise both Single and Dual with CC126 values 0, 1, 16 and 127, foreign-channel rejection, complete silence from the exact message sample including effects, and CC127 followed by a chord in the same block. This is a documented performance correction; no oscillator or filter calibration is claimed.

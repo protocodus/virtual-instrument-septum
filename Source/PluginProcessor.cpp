@@ -1338,6 +1338,21 @@ bool SeptumAudioProcessor::handleController (int controller, int value)
         case 125:
             engine.allNotesOff();
             return false;
+        case 126:
+        case 127:
+        {
+            // OM p. 73 recognizes modes 3/4 and lists both mode messages
+            // under All Sound Off. Mono is one note regardless of CC126's
+            // channel-count byte. Follow MIDI's general mono-legato
+            // recommendation; SH-201 CC126 articulation is unmeasured.
+            engine.allSoundOff();
+            Patch livePatch = snapshotPatch();
+            livePatch.upper.mono = livePatch.lower.mono =
+                controller == 126 ? septum::MonoMode::SoloLegato : septum::MonoMode::Poly;
+            writePatchToParameters (livePatch, true);
+            patchReconciler.triggerAsyncUpdate();
+            return true;
+        }
         default: break;
     }
 
