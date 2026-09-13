@@ -43,6 +43,7 @@ set(SEPTUM_DSP_HEADERS
     Source/DSP/AnalogInput.h
     Source/DSP/AnalogOutput.h
     Source/DSP/DelayInterpolation.h
+    Source/DSP/ReverbDamping.h
     Source/DSP/SeptumEngine.h
     Source/DSP/SeptumPatch.h
     Source/DSP/SeptumPresets.h
@@ -169,6 +170,11 @@ if(SEPTUM_BUILD_TOOLS)
 endif()
 
 if(BUILD_TESTING)
+    add_executable(SeptumReverbDampingTests Tests/ReverbDampingTests.cpp)
+    target_link_libraries(SeptumReverbDampingTests PRIVATE SeptumDSP)
+    add_test(NAME Septum.ReverbDamping COMMAND SeptumReverbDampingTests)
+    set_tests_properties(Septum.ReverbDamping PROPERTIES TIMEOUT 120)
+
     add_executable(SeptumFeedbackSyncTests Tests/FeedbackSyncTests.cpp)
     target_link_libraries(SeptumFeedbackSyncTests PRIVATE SeptumDSP)
     add_test(NAME Septum.FeedbackSync COMMAND SeptumFeedbackSyncTests)

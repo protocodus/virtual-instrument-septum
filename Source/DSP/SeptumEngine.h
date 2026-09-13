@@ -14,6 +14,7 @@
 #include "SeptumPatch.h"
 #include "AnalogInput.h"
 #include "AnalogOutput.h"
+#include "ReverbDamping.h"
 
 #include <algorithm>
 #include <array>
@@ -1446,8 +1447,8 @@ private:
         std::array<std::vector<float>, lineCount> lines {};
         std::array<int, lineCount> writes {};
         std::array<int, lineCount> lengths {};
-        std::array<double, lineCount> lowStates {};
-        std::array<double, lineCount> highStates {};
+        std::array<detail::ReverbDampingState, lineCount> lowStates {};
+        std::array<detail::ReverbDampingState, lineCount> highStates {};
         std::array<std::vector<float>, 4> diffusers {};
         std::array<int, 4> diffuserWrites {};
         std::vector<float> preDelay;

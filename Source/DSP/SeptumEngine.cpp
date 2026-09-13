@@ -1,5 +1,6 @@
 #include "SeptumEngine.h"
 #include "DelayInterpolation.h"
+#include "ReverbDamping.h"
 
 namespace septum
 {
@@ -443,8 +444,8 @@ void Engine::Reverb::clear()
     std::fill (preDelay.begin(), preDelay.end(), 0.0f);
     writes.fill (0);
     diffuserWrites.fill (0);
-    lowStates.fill (0.0);
-    highStates.fill (0.0);
+    lowStates.fill ({});
+    highStates.fill ({});
     preDelayWrite = 0;
     highCutStateL = highCutStateR = 0.0;
     fresh = 1 << 30;
@@ -1374,8 +1375,8 @@ void Engine::allSoundOff()
     delayL_.fresh = delayR_.fresh = 0;
     delayL_.dampState = delayR_.dampState = 0.0;
     reverb_.fresh = 0;
-    reverb_.lowStates.fill (0.0);
-    reverb_.highStates.fill (0.0);
+    reverb_.lowStates.fill ({});
+    reverb_.highStates.fill ({});
     reverb_.highCutStateL = reverb_.highCutStateR = 0.0;
     for (auto& output : analogOutput_)
         output.reset();
@@ -3057,8 +3058,8 @@ void Engine::processEffects (const float* dryL, const float* dryR,
         reverbLfDampHz[static_cast<std::size_t> (reverbParams.lfDampFrequency)];
     const double hfHz =
         reverbHfDampHz[static_cast<std::size_t> (reverbParams.hfDampFrequency)];
-    const double lfCoeff = mapping::onePoleAtCorner (lfHz, sampleRate_);
-    const double hfCoeff = mapping::onePoleAtCorner (hfHz, sampleRate_);
+    const double lfCoeff = detail::reverbDampingCoefficient (lfHz, sampleRate_);
+    const double hfCoeff = detail::reverbDampingCoefficient (hfHz, sampleRate_);
     const double lfGain = std::pow (10.0, reverbParams.lfDampGain / 20.0);
     const double hfGain = std::pow (10.0, reverbParams.hfDampGain / 20.0);
     const double diffusionGain = mapping::reverbDiffusionGain (reverbParams.diffusion);
@@ -3210,13 +3211,11 @@ void Engine::processEffects (const float* dryL, const float* dryR,
                 value *= lineFeedback[static_cast<std::size_t> (line)];
 
                 // HF damping: shelve down content above hfHz by hfGain.
-                double& high = reverb_.highStates[static_cast<std::size_t> (line)];
-                high += hfCoeff * (value - high);
-                value = high + hfGain * (value - high);
+                auto& high = reverb_.highStates[static_cast<std::size_t> (line)];
+                value = detail::reverbHighShelf (value, hfGain, hfCoeff, high);
                 // LF damping: shelve down content below lfHz by lfGain.
-                double& low = reverb_.lowStates[static_cast<std::size_t> (line)];
-                low += lfCoeff * (value - low);
-                value = value - low + lfGain * low;
+                auto& low = reverb_.lowStates[static_cast<std::size_t> (line)];
+                value = detail::reverbLowShelf (value, lfGain, lfCoeff, low);
 
                 buffer[static_cast<std::size_t> (
                     reverb_.writes[static_cast<std::size_t> (line)])] =
@@ -3252,10 +3251,12 @@ void Engine::processEffects (const float* dryL, const float* dryR,
     delayR_.dampState = flushDenormal (delayR_.dampState);
     for (int line = 0; line < Reverb::lineCount; ++line)
     {
-        reverb_.lowStates[static_cast<std::size_t> (line)] =
-            flushDenormal (reverb_.lowStates[static_cast<std::size_t> (line)]);
-        reverb_.highStates[static_cast<std::size_t> (line)] =
-            flushDenormal (reverb_.highStates[static_cast<std::size_t> (line)]);
+        auto& low = reverb_.lowStates[static_cast<std::size_t> (line)];
+        auto& high = reverb_.highStates[static_cast<std::size_t> (line)];
+        low.previousInput = flushDenormal (low.previousInput);
+        low.previousLow = flushDenormal (low.previousLow);
+        high.previousInput = flushDenormal (high.previousInput);
+        high.previousLow = flushDenormal (high.previousLow);
     }
     reverb_.highCutStateL = flushDenormal (reverb_.highCutStateL);
     reverb_.highCutStateR = flushDenormal (reverb_.highCutStateR);
