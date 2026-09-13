@@ -1992,9 +1992,16 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
             }
         }
         else if (tone.mixType == MixModType::Sync && osc2Wrapped
-                 && wave1 != Waveform::Noise && wave1 != Waveform::FbOsc
-                 && wave1 != Waveform::ExtIn)
+                 && wave1 != Waveform::Noise && wave1 != Waveform::ExtIn)
         {
+            // [supported functionality + inferred topology] Roland's
+            // ReverseMetal and FB Harmonics patches also select FB OSC as
+            // OSC1 under SYNC. Apply OM p. 32's cycle restart to its source
+            // phase, using the same fractional wrap as the classic waves.
+            // Keep the feedback delay/damping history: its internal reset
+            // topology is unmeasured, and clearing it every master cycle
+            // would suppress feedback whenever the tap outlasts that cycle.
+            // See Docs/fidelity/source-audits/feedback-sync.md.
             double newPhase = osc2WrapOffset * voice.inc1 - voice.inc1;
             while (newPhase < 0.0)
                 newPhase += 1.0;

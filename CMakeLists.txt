@@ -169,6 +169,11 @@ if(SEPTUM_BUILD_TOOLS)
 endif()
 
 if(BUILD_TESTING)
+    add_executable(SeptumFeedbackSyncTests Tests/FeedbackSyncTests.cpp)
+    target_link_libraries(SeptumFeedbackSyncTests PRIVATE SeptumDSP)
+    add_test(NAME Septum.FeedbackSync COMMAND SeptumFeedbackSyncTests)
+    set_tests_properties(Septum.FeedbackSync PROPERTIES TIMEOUT 120)
+
     add_executable(SeptumPortamentoContinuityTests Tests/PortamentoContinuityTests.cpp)
     target_link_libraries(SeptumPortamentoContinuityTests PRIVATE SeptumDSP)
     add_test(NAME Septum.PortamentoContinuity COMMAND SeptumPortamentoContinuityTests)
