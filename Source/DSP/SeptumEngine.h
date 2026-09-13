@@ -115,7 +115,7 @@ namespace mapping
     }
 
     // [settled] Tempo-synced LFO frequency from the documented note table.
-    [[nodiscard]] inline double lfoSyncHz (int tempoBpm, int noteIndex) noexcept
+    [[nodiscard]] inline double lfoSyncHz (double tempoBpm, int noteIndex) noexcept
     {
         const double wholeNotes = lfoTempoSyncWholeNotes[static_cast<std::size_t> (
             std::clamp (noteIndex, 0, 19))];
@@ -1031,6 +1031,13 @@ public:
     void setMasterKeyShift (int semitones) noexcept;     // -24..+24
     void setKeyboardOctaveShift (int octaves) noexcept;  // -3..+3
     void setTranspose (int semitones) noexcept;          // -5..+6
+    // A system/external clock leaves stored PATCH TEMPO untouched. Zero uses
+    // the patch; a stopped external clock pauses only tempo-driven motion.
+    void setTempoClock (double bpm, bool running = true) noexcept;
+    [[nodiscard]] double tempoBpm() const noexcept
+    {
+        return tempoOverride_ > 0.0 ? tempoOverride_ : patch_.tempo;
+    }
 
     // Performance inputs.
     void noteOn (int note, int velocity1to127);
@@ -1549,6 +1556,8 @@ private:
     std::array<ToneRuntime, partCount> tones_ {};
     std::array<ArpeggioRuntime, partCount> arpeggios_ {};
     double arpeggioStepRemaining_ { 0.0 };   // samples to the next boundary
+    double tempoOverride_ { 0.0 };
+    bool tempoClockRunning_ { true };
     int arpeggioStep_ { 0 };
     // Grid sections since the pattern armed. A shuffled grid takes its
     // long/short parity from this rather than from the pattern step, because

@@ -44,6 +44,7 @@ set(SEPTUM_DSP_HEADERS
     Source/DSP/AnalogOutput.h
     Source/DSP/DelayInterpolation.h
     Source/DSP/ReverbDamping.h
+    Source/DSP/MidiTempoClock.h
     Source/DSP/SeptumEngine.h
     Source/DSP/SeptumPatch.h
     Source/DSP/SeptumPresets.h
@@ -170,12 +171,17 @@ if(SEPTUM_BUILD_TOOLS)
 endif()
 
 if(BUILD_TESTING)
-    add_executable(SeptumReverbDampingTests Tests/ReverbDampingTests.cpp)
+    add_executable(SeptumTempoClockTests Tests/TempoClockTests.cpp)
+    target_link_libraries(SeptumTempoClockTests PRIVATE SeptumDSP)
+    add_test(NAME Septum.TempoClock COMMAND SeptumTempoClockTests)
+    set_tests_properties(Septum.TempoClock PROPERTIES TIMEOUT 120)
+
     add_executable(SeptumMidiPortamentoTests Tests/MidiPortamentoTests.cpp)
     target_link_libraries(SeptumMidiPortamentoTests PRIVATE SeptumDSP)
     add_test(NAME Septum.MidiPortamento COMMAND SeptumMidiPortamentoTests)
     set_tests_properties(Septum.MidiPortamento PROPERTIES TIMEOUT 120)
 
+    add_executable(SeptumReverbDampingTests Tests/ReverbDampingTests.cpp)
     target_link_libraries(SeptumReverbDampingTests PRIVATE SeptumDSP)
     add_test(NAME Septum.ReverbDamping COMMAND SeptumReverbDampingTests)
     set_tests_properties(Septum.ReverbDamping PROPERTIES TIMEOUT 120)
@@ -264,6 +270,15 @@ if(BUILD_TESTING)
     endif()
 
     if(SEPTUM_BUILD_PLUGIN)
+        add_executable(SeptumTempoSyncProcessorTests Tests/TempoSyncProcessorTests.cpp)
+        target_link_libraries(SeptumTempoSyncProcessorTests PRIVATE Septum)
+        target_include_directories(SeptumTempoSyncProcessorTests PRIVATE
+            "${CMAKE_CURRENT_SOURCE_DIR}/Source"
+            "$<TARGET_PROPERTY:Septum,JUCE_GENERATED_SOURCES_DIRECTORY>"
+            "$<TARGET_PROPERTY:Septum,INCLUDE_DIRECTORIES>")
+        add_test(NAME Septum.TempoSyncProcessor COMMAND SeptumTempoSyncProcessorTests)
+        set_tests_properties(Septum.TempoSyncProcessor PROPERTIES TIMEOUT 120)
+
         add_executable(SeptumPluginProcessorTests Tests/PluginProcessorTests.cpp)
         target_link_libraries(SeptumPluginProcessorTests PRIVATE Septum)
         target_include_directories(SeptumPluginProcessorTests PRIVATE

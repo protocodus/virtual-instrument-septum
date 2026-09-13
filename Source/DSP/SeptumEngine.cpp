@@ -700,6 +700,24 @@ void Engine::setTranspose (int semitones) noexcept
     transpose_ = clampRaw (semitones, -5, 6);
 }
 
+void Engine::setTempoClock (double bpm, bool running) noexcept
+{
+    const double previous = tempoBpm();
+    tempoOverride_ = std::isfinite (bpm) && bpm > 0.0
+                         ? std::clamp (bpm, 5.0, 300.0) : 0.0;
+    tempoClockRunning_ = running;
+    // Deadlines represent musical durations. Preserve progress through the
+    // current step and its gates when an external tempo changes.
+    const double scale = previous / tempoBpm();
+    arpeggioStepRemaining_ *= scale;
+    for (auto& runtime : arpeggios_)
+        for (auto& row : runtime.rows)
+        {
+            row.remaining *= scale;
+            row.tailRemaining *= scale;
+        }
+}
+
 // ---------------------------------------------------------------------------
 // Note handling
 // ---------------------------------------------------------------------------
@@ -1491,7 +1509,7 @@ void Engine::advanceToneLfos (int samples)
         const auto rateOf = [this] (const LfoParams& params)
         {
             return params.tempoSync
-                       ? mapping::lfoSyncHz (patch_.tempo, params.tempoSyncNote)
+                       ? (tempoClockRunning_ ? mapping::lfoSyncHz (tempoBpm(), params.tempoSyncNote) : 0.0)
                        : mapping::lfoRateHz (params.rate);
         };
         const auto fadeOf = [this, samples] (const LfoParams& params)
@@ -1523,7 +1541,7 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
         if (params.keyTrigger)
         {
             const double hz = params.tempoSync
-                ? mapping::lfoSyncHz (patch_.tempo, params.tempoSyncNote)
+                ? (tempoClockRunning_ ? mapping::lfoSyncHz (tempoBpm(), params.tempoSyncNote) : 0.0)
                 : mapping::lfoRateHz (params.rate);
             return lfo.advance (params, hz, fadeStep, tickSamples, sampleRate_);
         }
@@ -2506,7 +2524,7 @@ void Engine::arpeggioFireStepForPart (Part part, double stepSeconds)
             // The grid section the chain reaches, not the pattern step: the
             // shuffle's parity runs with the beat.
             lastStepSeconds = mapping::arpeggioStepSeconds (
-                patch_.tempo, arp.grid, arpeggioGridSection_ + ahead);
+                tempoBpm(), arp.grid, arpeggioGridSection_ + ahead);
         }
 
         if (state.note >= 0)
@@ -2608,7 +2626,7 @@ void Engine::arpeggioFireStepForPart (Part part, double stepSeconds)
 void Engine::arpeggioFireStep()
 {
     const double stepSeconds = mapping::arpeggioStepSeconds (
-        patch_.tempo, patch_.arpeggio.grid, arpeggioGridSection_);
+        tempoBpm(), patch_.arpeggio.grid, arpeggioGridSection_);
     for (int index = 0; index < partCount; ++index)
     {
         const Part part = index == 0 ? Part::Upper : Part::Lower;
@@ -2742,6 +2760,9 @@ void Engine::advanceArpeggiator()
         return;
     }
 
+    if (! tempoClockRunning_)
+        return;
+
     if (! arpeggioRunning_)
     {
         arpeggioRunning_ = true;
@@ -2765,7 +2786,7 @@ void Engine::advanceArpeggiator()
         arpeggioStep_ %= endStep;
         arpeggioFireStep();
         arpeggioStepRemaining_ +=
-            mapping::arpeggioStepSeconds (patch_.tempo, arp.grid,
+            mapping::arpeggioStepSeconds (tempoBpm(), arp.grid,
                                           arpeggioGridSection_)
             * sampleRate_;
         // Only its parity is ever read, and 0x10000 is even, so wrapping
@@ -2792,7 +2813,7 @@ void Engine::advanceArpeggiator()
 
 int Engine::samplesUntilArpeggioEvent (int maximum) const noexcept
 {
-    if (! arpeggioRunning_)
+    if (! arpeggioRunning_ || ! tempoClockRunning_)
         return maximum;
     double remaining = arpeggioStepRemaining_;
     for (const auto& runtime : arpeggios_)
@@ -2809,7 +2830,7 @@ int Engine::samplesUntilArpeggioEvent (int maximum) const noexcept
 
 void Engine::elapseArpeggiator (int samples) noexcept
 {
-    if (! arpeggioRunning_)
+    if (! arpeggioRunning_ || ! tempoClockRunning_)
         return;
     arpeggioStepRemaining_ -= samples;
     for (auto& runtime : arpeggios_)

@@ -343,6 +343,10 @@ the documented fallback that plays the highest pressed key by default.
 Roland's 32 factory styles are unpublished data and none ships here — the 16
 styles supplied are original patterns.
 
+CLOCK now selects PATCH, SYSTEM, incoming MIDI/USB timing clock, or HOST tempo
+for the arpeggiator and synchronized LFOs. HOST follows BPM; transport/bar phase
+alignment remains separate. See the [ranked fidelity research and validation](Docs/fidelity/five-further-improvements.md).
+
 ### External input
 
 *Settled.* The rear INPUT jacks with INPUT VOL, CENTER CANCEL and the AUDIO
@@ -367,8 +371,6 @@ renders silence, as the hardware does with nothing plugged in.
   setting: SysEx and panel pitch CCs use it to select ±12 or ±36 semitones;
   native pitch parameters already store physical semitones.
 - **The step recorder** and **tap tempo**.
-- **CLOCK SOURCE**, and with it external MIDI clock: the arpeggiator runs from
-  PATCH TEMPO only.
 
 ### Effects
 

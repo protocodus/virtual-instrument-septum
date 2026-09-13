@@ -15,7 +15,7 @@ namespace
 using septum::Patch;
 using septum::TonePatch;
 
-constexpr int nativePresetVersion = 2;
+constexpr int nativePresetVersion = 3;
 constexpr std::size_t maximumPresetBytes = 1024 * 1024;
 
 // Version 1 predates the MIDI receiver settings. Fill only those additions;
@@ -27,6 +27,20 @@ void addMissingMidiSettings (juce::ValueTree& state)
            std::pair { "system_receive_program", 1.0f },
            std::pair { "system_device_id", 17.0f },
            std::pair { "system_active_sensing", 1.0f } })
+        if (! state.getChildWithProperty ("id", id).isValid())
+        {
+            juce::ValueTree parameterState ("PARAM");
+            parameterState.setProperty ("id", id, nullptr);
+            parameterState.setProperty ("value", value, nullptr);
+            state.addChild (parameterState, -1, nullptr);
+        }
+}
+
+void addMissingTempoSettings (juce::ValueTree& state)
+{
+    for (const auto& [id, value] :
+         { std::pair { "system_clock_source", 0.0f },
+           std::pair { "system_tempo", 120.0f } })
         if (! state.getChildWithProperty ("id", id).isValid())
         {
             juce::ValueTree parameterState ("PARAM");
@@ -597,6 +611,8 @@ void SeptumAudioProcessor::cacheParameterPointers()
     receiveProgramValue = parameters.getRawParameterValue ("system_receive_program");
     deviceIdValue = parameters.getRawParameterValue ("system_device_id");
     activeSensingValue = parameters.getRawParameterValue ("system_active_sensing");
+    clockSourceValue = parameters.getRawParameterValue ("system_clock_source");
+    systemTempoValue = parameters.getRawParameterValue ("system_tempo");
     for (const auto& id : systemParameterIds())
         systemValues.push_back (parameters.getRawParameterValue (id));
     // The three parameters Universal Realtime device control names, resolved
@@ -933,6 +949,14 @@ SeptumAudioProcessor::createParameterLayout()
     layout.add (std::make_unique<juce::AudioParameterBool> (
         juce::ParameterID { "system_active_sensing", 3 },
         "Receive Active Sensing", true));
+    // PATCH/SYSTEM/MIDI follow OM p. 68. USB MIDI reaches the same MIDI
+    // event stream in a plug-in. HOST is an explicit DAW integration option.
+    layout.add (std::make_unique<juce::AudioParameterChoice> (
+        juce::ParameterID { "system_clock_source", 4 }, "Clock Source",
+        juce::StringArray { "PATCH", "SYSTEM", "MIDI", "HOST" }, 0));
+    layout.add (std::make_unique<juce::AudioParameterInt> (
+        juce::ParameterID { "system_tempo", 4 }, "System Tempo", 5, 300, 120,
+        juce::AudioParameterIntAttributes().withLabel ("BPM")));
     return layout;
 }
 
@@ -1174,6 +1198,9 @@ septum::Patch SeptumAudioProcessor::snapshotPatch() const
 void SeptumAudioProcessor::prepareToPlay (double sampleRate,
                                               int samplesPerBlock)
 {
+    midiTempoClock.prepare (sampleRate);
+    hostTempoBpm = 0.0;
+    appliedClockSource = static_cast<int> (std::lround (clockSourceValue->load()));
     liveSysExDecoder.reset();
     appliedLiveSysExRevision = liveSysExRevision.load (std::memory_order_acquire);
     activeSensingArmed = false;
@@ -1197,6 +1224,7 @@ void SeptumAudioProcessor::prepareToPlay (double sampleRate,
     }
     activeVoices.store (0, std::memory_order_relaxed);
     engine.reset();
+    applyTempoSource();
     monoScratch.assign ((std::size_t) juce::jmax (samplesPerBlock, 16), 0.0f);
     externalInputL.assign ((std::size_t) juce::jmax (samplesPerBlock, 16), 0.0f);
     externalInputR.assign ((std::size_t) juce::jmax (samplesPerBlock, 16), 0.0f);
@@ -1760,10 +1788,35 @@ namespace
 }
 } // namespace
 
+void SeptumAudioProcessor::applyTempoSource() noexcept
+{
+    switch (appliedClockSource)
+    {
+        case 1: engine.setTempoClock (systemTempoValue->load (std::memory_order_relaxed)); break;
+        case 2: engine.setTempoClock (midiTempoClock.bpm(), midiTempoClock.running()); break;
+        case 3: engine.setTempoClock (hostTempoBpm); break;
+        default: engine.setTempoClock (0.0); break;
+    }
+}
+
 void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
                                              juce::MidiBuffer& midiMessages)
 {
     juce::ScopedNoDenormals noDenormals;
+
+    const int clockSource = static_cast<int> (std::lround (
+        clockSourceValue->load (std::memory_order_relaxed)));
+    if (clockSource != appliedClockSource)
+    {
+        midiTempoClock.reset();
+        appliedClockSource = clockSource;
+    }
+    hostTempoBpm = 0.0;
+    if (appliedClockSource == 3)
+        if (const auto* playHead = getPlayHead())
+            if (const auto position = playHead->getPosition())
+                if (const auto bpm = position->getBpm(); bpm && std::isfinite (*bpm) && *bpm > 0.0)
+                    hostTempoBpm = *bpm;
 
     // The input bus shares this buffer with the output, so the external audio
     // has to be copied out before the buffer is cleared. With the bus
@@ -1882,6 +1935,7 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
             engine.setPatch (snapshot);
     };
     applyCurrentPatch();
+    applyTempoSource();
 
     auto* left = buffer.getWritePointer (0);
     // The declared bus is stereo-only, but a defensive mono path must not
@@ -1899,6 +1953,8 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
         while (position < end)
         {
             int count = end - position;
+            if (appliedClockSource == 2)
+                count = midiTempoClock.samplesUntilTimeout (count);
             if (activeSensingArmed)
                 count = static_cast<int> (std::min (
                     static_cast<std::uint64_t> (count), activeSensingSamplesRemaining));
@@ -1906,6 +1962,11 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
                             externalPointer (position, haveExternalInput, externalInputL),
                             externalPointer (position, haveExternalInput, externalInputR));
             position += count;
+            if (appliedClockSource == 2)
+            {
+                midiTempoClock.advance (count);
+                applyTempoSource();
+            }
             if (activeSensingArmed)
             {
                 activeSensingSamplesRemaining -= static_cast<std::uint64_t> (count);
@@ -1929,6 +1990,11 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
 
         const auto& message = metadata.getMessage();
         observeMidiActivity (message);
+        if (appliedClockSource == 2 && message.isMidiClock())
+        {
+            midiTempoClock.pulse();
+            applyTempoSource();
+        }
         if (message.isSysEx())
         {
             // Consecutive SysEx packets at this sample (such as multi-packet
@@ -2473,9 +2539,11 @@ juce::Result SeptumAudioProcessor::loadPresetFromFile (const juce::File& file)
     auto state = juce::ValueTree::fromXml (*xml);
     double storedVersion = 0.0;
     if (readPresetNumber (state["preset_format_version"], storedVersion)
-        && storedVersion == 1.0)
+        && (storedVersion == 1.0 || storedVersion == 2.0))
     {
-        addMissingMidiSettings (state);
+        if (storedVersion == 1.0)
+            addMissingMidiSettings (state);
+        addMissingTempoSettings (state);
         state.setProperty ("preset_format_version", nativePresetVersion, nullptr);
     }
     if (const auto result = validatePresetState (state); result.failed())
@@ -2586,6 +2654,7 @@ void SeptumAudioProcessor::setStateInformation (const void* data,
         if (state.isValid())
         {
             addMissingMidiSettings (state);
+            addMissingTempoSettings (state);
             // Older sessions omitted the extensions. Insert explicit ON
             // values so restoring over a currently muted instance is safe.
             for (const auto* id : { "upper_enabled", "lower_enabled" })

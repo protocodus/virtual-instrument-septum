@@ -313,6 +313,8 @@ private:
     juce::Label masterLabel, masterValueLabel, octLabel, octValueLabel, voiceLabel;
     juce::TextButton octDownButton { "DOWN" }, octUpButton { "UP" };
     Control* tempoControl { nullptr };
+    Control* clockSourceControl { nullptr };
+    Control* systemTempoControl { nullptr };
 
     // Factory selector and native preset files in the header.
     juce::ComboBox programBox;

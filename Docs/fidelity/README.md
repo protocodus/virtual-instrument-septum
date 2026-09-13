@@ -1,5 +1,10 @@
 # SH-201 fidelity work
 
+[Five further improvements](five-further-improvements.md) ranks the remaining
+behavioral and timbral candidates and documents the selected clock, portamento,
+reverb-damping and FB OSC sync changes. It supersedes older notes that describe
+external clock reception or FB OSC slave sync as unimplemented.
+
 This work separates a circuit correction supported by Roland's schematic from
 an experimental synthesis-clock change. No physical SH-201 was available for
 matched recordings. A successful numerical test is not proof that the complete

@@ -3,6 +3,7 @@
 #include <JuceHeader.h>
 
 #include "DSP/SeptumEngine.h"
+#include "DSP/MidiTempoClock.h"
 #include "DSP/SeptumPresets.h"
 #include "DSP/SeptumSysEx.h"
 
@@ -167,6 +168,12 @@ private:
     std::uint64_t appliedLiveSysExRevision { 0 };
     void resetPerformanceControllers() noexcept;
     void observeMidiActivity (const juce::MidiMessage&) noexcept;
+    void applyTempoSource() noexcept;
+    septum::MidiTempoClock midiTempoClock;
+    std::atomic<float>* clockSourceValue { nullptr };
+    std::atomic<float>* systemTempoValue { nullptr };
+    int appliedClockSource { 0 };
+    double hostTempoBpm { 0.0 };
     void applyProgram (int index);
     void applyProgramAsync (int index);
     void setCurrentPresetName (const juce::String& name, std::uint64_t identityRevision);

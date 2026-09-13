@@ -70,7 +70,7 @@ constexpr int instrumentTopPadding = 20;
 constexpr int outerPadding = 24;
 constexpr int presetPanelWidth = 540;
 constexpr int systemPanelWidth = 600 + 2 * sectionPadding;
-constexpr int performancePanelWidth = 400 + 2 * sectionPadding;
+constexpr int performancePanelWidth = 620 + 2 * sectionPadding;
 // One contiguous part surface, followed by shared effects and performance.
 constexpr int partTop = instrumentTopPadding + headerHeight + 8;
 constexpr int partTabHeight = 88;
@@ -587,8 +587,16 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
     // that belong to the whole instrument, while being Patch Tone bytes that
     // edit one tone. They belong to TONE PLAY beside the part selector;
     // this performance strip is global or patch-wide without exception.
-    tempoControl = addControl (*performSection, "patch_tempo", "TEMPO",
+    tempoControl = addControl (*performSection, "patch_tempo", "PATCH BPM",
                                Style::Knob, false, " BPM");
+    systemTempoControl = addControl (*performSection, "system_tempo", "SYS BPM",
+                                     Style::Knob, false, " BPM");
+    clockSourceControl = addControl (*performSection, "system_clock_source", "CLOCK",
+                                     Style::Combo, false);
+    dynamic_cast<juce::ComboBox*> (clockSourceControl->component.get())->setTooltip (
+        "PATCH: saved patch tempo. SYSTEM: common tempo. MIDI: incoming MIDI/USB "
+        "timing clock. HOST: DAW tempo, with patch tempo if unavailable. "
+        "Clock changes affect arpeggio and tempo-synced LFO speed.");
 
     // ---- band 1: the voice chain -----------------------------------------
     auto* osc1 = section ("OSC 1", Band::Voice);
@@ -1917,6 +1925,11 @@ void SeptumAudioProcessorEditor::layoutPanel()
                        performanceRow.removeFromLeft (86), knobDiameter, knobDiameter);
     layoutControlCell (*tempoControl->component, *tempoControl->label, tempoControl->value.get(),
                        performanceRow.removeFromLeft (86), knobDiameter, knobDiameter);
+    layoutControlCell (*systemTempoControl->component, *systemTempoControl->label,
+                       systemTempoControl->value.get(), performanceRow.removeFromLeft (86),
+                       knobDiameter, knobDiameter);
+    layoutControlCell (*clockSourceControl->component, *clockSourceControl->label, nullptr,
+                       performanceRow.removeFromLeft (134), 118, comboHeight);
     auto octaveCell = performanceRow.removeFromLeft (118);
     octLabel.setBounds (octaveCell.removeFromTop (labelHeight));
     octaveCell.removeFromBottom (valueHeight);
