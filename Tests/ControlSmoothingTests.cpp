@@ -237,8 +237,8 @@ void testPartitions()
 
 // A separate closed-form exponential, evaluated from each event's initial
 // value, checks the existing time constant rather than merely checking two
-// render partitions against each other. Input gain precedes the monitor's
-// voice-alignment delay; master gain follows it. Both precede AnalogOutput.
+// render partitions against each other. Input gain precedes the codec HPF
+// and monitor alignment delay; master gain follows them, before AnalogOutput.
 void testExternalReference()
 {
     for (double rate : { 44100.0, 48000.0, 96000.0, 192000.0 })
@@ -252,6 +252,9 @@ void testExternalReference()
             septum::Engine latency;
             latency.prepare (rate, 256);
             const int transport = latency.latencySamples() - septum::AnalogOutput::latencySamples;
+            std::array<septum::AnalogInput, 2> input;
+            for (auto& stage : input)
+                stage.prepare (rate);
             std::array<septum::AnalogOutput, 2> output;
             for (auto& stage : output)
                 stage.prepare (rate);
@@ -272,8 +275,11 @@ void testExternalReference()
                 gain = target + (from - target)
                      * std::exp (-(i - start + 1.0) / (rate * septum::mapping::masterSlewSeconds));
                 const auto frame = static_cast<std::size_t> (i);
-                delayed.left[frame] = static_cast<float> (signal.left[frame] * (control == Control::Input ? gain : 1.0));
-                delayed.right[frame] = static_cast<float> (signal.right[frame] * (control == Control::Input ? gain : 1.0));
+                const double inputGain = control == Control::Input ? gain : 1.0;
+                delayed.left[frame] = static_cast<float> (
+                    input[0].processSample (signal.left[frame] * inputGain));
+                delayed.right[frame] = static_cast<float> (
+                    input[1].processSample (signal.right[frame] * inputGain));
                 for (int channel = 0; channel < 2; ++channel)
                 {
                     const auto& samples = channel == 0 ? delayed.left : delayed.right;

@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "id": "moogie-1-octave-revision",
+  "title": "Moogie 1 \u2014 hardware-only octave revision",
+  "reference_id": "bass-01",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 0,
+  "duration_seconds": 3.7,
+  "method": "Hardware-only short-time autocorrelation and spectrogram inspection. Fundamental plateaus near MIDI 27, 39, 30, 42, 32 and 44; undo the published dual tone oscillators' -36 semitone coarse tuning to infer MIDI 63, 75, 66, 78, 68 and 80. Onsets are estimated from high-frequency energy renewals. No Septum output used to fit the transcription. Independent hardware-only review identifies three additional brief octave-up notes using waveform periodicity and odd/even harmonic suppression. See source-audits/moogie-harmonic-audit.json. Septum output was not used to choose notes or times.",
+  "uncertainties": [
+    "Original performance MIDI is unavailable; these notes are an estimate, not a recovered original file.",
+    "This alternate reconstruction adds high Eb (MIDI 75) near 0.400, 1.315 and 2.245 s, returning to low Eb (MIDI 63) near 0.495, 1.410 and 2.335 s. These new transitions are estimated within roughly 20 ms; octave identity is stronger than exact gate timing.",
+    "Repeated-note onsets and pitch transitions have roughly 20\u201340 ms uncertainty. Note-offs are assumed to meet the following onset; the hardware audio does not uniquely reveal key release timing.",
+    "Velocity is assumed 100 for every note. Both tones have level velocity sensitivity +8; absolute amplitude and any velocity variation remain unverified.",
+    "Controller automation, master settings, recording processing and exact demo patch revision are unknown. No controller events were invented.",
+    "The excerpt stops before the next phrase; its final release is an artificial crop boundary and is excluded from release-time conclusions."
+  ],
+  "notes": [
+    {
+      "on": 0.029,
+      "off": 0.4,
+      "note": 63,
+      "velocity": 100
+    },
+    {
+      "on": 0.4,
+      "off": 0.495,
+      "note": 75,
+      "velocity": 100
+    },
+    {
+      "on": 0.495,
+      "off": 0.738,
+      "note": 63,
+      "velocity": 100
+    },
+    {
+      "on": 0.738,
+      "off": 0.939,
+      "note": 75,
+      "velocity": 100
+    },
+    {
+      "on": 0.939,
+      "off": 1.315,
+      "note": 63,
+      "velocity": 100
+    },
+    {
+      "on": 1.315,
+      "off": 1.41,
+      "note": 75,
+      "velocity": 100
+    },
+    {
+      "on": 1.41,
+      "off": 1.661,
+      "note": 63,
+      "velocity": 100
+    },
+    {
+      "on": 1.661,
+      "off": 1.901,
+      "note": 75,
+      "velocity": 100
+    },
+    {
+      "on": 1.901,
+      "off": 2.245,
+      "note": 63,
+      "velocity": 100
+    },
+    {
+      "on": 2.245,
+      "off": 2.335,
+      "note": 75,
+      "velocity": 100
+    },
+    {
+      "on": 2.335,
+      "off": 2.577,
+      "note": 63,
+      "velocity": 100
+    },
+    {
+      "on": 2.577,
+      "off": 2.787,
+      "note": 75,
+      "velocity": 100
+    },
+    {
+      "on": 2.787,
+      "off": 3.011,
+      "note": 66,
+      "velocity": 100
+    },
+    {
+      "on": 3.011,
+      "off": 3.25,
+      "note": 78,
+      "velocity": 100
+    },
+    {
+      "on": 3.25,
+      "off": 3.476,
+      "note": 68,
+      "velocity": 100
+    },
+    {
+      "on": 3.476,
+      "off": 3.7,
+      "note": 80,
+      "velocity": 100
+    }
+  ],
+  "baseline_reconstruction": "Docs/fidelity/reconstructions/moogie-1.json",
+  "baseline_sha256": "9e9ad62d96f6201c0c74eda64914e11c42590e50c435f31d384df9220341bd07"
+}

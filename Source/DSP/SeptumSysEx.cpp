@@ -1,6 +1,7 @@
 #include "SeptumSysEx.h"
 
 #include <algorithm>
+#include <cmath>
 #include <cstring>
 
 namespace septum::sysex
@@ -46,6 +47,12 @@ namespace
         return value;
     }
 } // namespace
+
+int decodeCoarseTune (int signedRawCoarse, bool wide) noexcept
+{
+    const int raw = std::clamp (signedRawCoarse, -36, 36);
+    return wide ? raw : static_cast<int> (std::lround (raw / 3.0));
+}
 
 // Patch Common, offsets 00..20 exactly as the address map lists them. Four
 // of them used to be somewhere else in this codec: PATCH TEMPO was a 7-bit
@@ -99,15 +106,23 @@ void encodeTonePatch (const TonePatch& tone, std::uint8_t* dest) noexcept
     std::memset (dest, 0, sizeTonePatch);
 
     dest[0x00] = static_cast<std::uint8_t> (tone.osc1.wave);
-    dest[0x01] = tone.osc1.pitchWide ? 1 : 0;
-    dest[0x02] = signedTo7Bit (tone.osc1.coarse);
+    // Native patches and host automation store sounding semitones. A native
+    // setting outside the normal +/-12 range needs WIDE on in its wire image,
+    // even if its saved UI switch is off. Do not mutate the native patch.
+    const auto encodePitch = [] (const OscParams& osc, std::uint8_t* pair)
+    {
+        const int coarse = std::clamp (osc.coarse, -36, 36);
+        const bool wide = osc.pitchWide || std::abs (coarse) > 12;
+        pair[0] = wide ? 1 : 0;
+        pair[1] = signedTo7Bit (wide ? coarse : coarse * 3);
+    };
+    encodePitch (tone.osc1, dest + 0x01);
     dest[0x03] = signedTo7Bit (tone.osc1.fine);
     dest[0x04] = clampTo7Bit (tone.osc1.pulseWidth);
     dest[0x05] = signedTo7Bit (tone.osc1.pitchEnvDepth);
 
     dest[0x06] = static_cast<std::uint8_t> (tone.osc2.wave);
-    dest[0x07] = tone.osc2.pitchWide ? 1 : 0;
-    dest[0x08] = signedTo7Bit (tone.osc2.coarse);
+    encodePitch (tone.osc2, dest + 0x07);
     dest[0x09] = signedTo7Bit (tone.osc2.fine);
     dest[0x0A] = clampTo7Bit (tone.osc2.pulseWidth);
     dest[0x0B] = signedTo7Bit (tone.osc2.pitchEnvDepth);
@@ -351,14 +366,16 @@ void decodeTonePatch (const std::uint8_t* src, std::size_t size, TonePatch& tone
 
     if (size > 0x00) tone.osc1.wave = static_cast<Waveform> (std::clamp<int> (get (0x00), 0, 8));
     if (size > 0x01) tone.osc1.pitchWide = (get (0x01) & 1u) != 0;
-    if (size > 0x02) tone.osc1.coarse = from7BitSigned (get (0x02));
+    if (size > 0x02) tone.osc1.coarse = decodeCoarseTune (from7BitSigned (get (0x02)),
+                                                       tone.osc1.pitchWide);
     if (size > 0x03) tone.osc1.fine = from7BitSigned (get (0x03));
     if (size > 0x04) tone.osc1.pulseWidth = get (0x04) & 0x7Fu;
     if (size > 0x05) tone.osc1.pitchEnvDepth = from7BitSigned (get (0x05));
 
     if (size > 0x06) tone.osc2.wave = static_cast<Waveform> (std::clamp<int> (get (0x06), 0, 8));
     if (size > 0x07) tone.osc2.pitchWide = (get (0x07) & 1u) != 0;
-    if (size > 0x08) tone.osc2.coarse = from7BitSigned (get (0x08));
+    if (size > 0x08) tone.osc2.coarse = decodeCoarseTune (from7BitSigned (get (0x08)),
+                                                       tone.osc2.pitchWide);
     if (size > 0x09) tone.osc2.fine = from7BitSigned (get (0x09));
     if (size > 0x0A) tone.osc2.pulseWidth = get (0x0A) & 0x7Fu;
     if (size > 0x0B) tone.osc2.pitchEnvDepth = from7BitSigned (get (0x0B));
@@ -730,10 +747,10 @@ bool decodeSysExMessage (const std::uint8_t* msg, std::size_t msgLen,
     //
     // Rather than teach six decoders to index from an offset, the block is
     // reconstituted: encode what the patch holds now, lay the received bytes
-    // over it at their address, decode the whole thing back. The encoders and
-    // decoders are already each other's inverse — the round-trip tests are
-    // what fence that — so a write that covers the whole block is unchanged,
-    // and a write that covers one byte moves one field.
+    // over it at their address, decode the whole thing back. This isolated
+    // message API can start only from the structured patch. Streams use
+    // PatchDataDecoder below: a multi-nibble field split across messages can
+    // temporarily exceed its range, and its raw bytes must survive clamping.
     // The offset and the length are both known good — `isForThisInstrument()`
     // checked that the whole payload fits inside this block — so the overlay
     // is a plain copy.
@@ -769,10 +786,24 @@ bool decodeSysExMessage (const std::uint8_t* msg, std::size_t msgLen,
         case 0x02:
         {
             TonePatch& tone = block == 0x01 ? targetPatch.upper : targetPatch.lower;
+            const auto osc1Before = tone.osc1;
+            const auto osc2Before = tone.osc2;
             std::array<std::uint8_t, sizeTonePatch> image {};
             encodeTonePatch (tone, image.data());
             applyOverlay (image.data(), image.size());
             decodeTonePatch (image.data(), image.size(), tone);
+            // Canonical export may enable WIDE for a legacy native pitch.
+            // An unrelated DT1 must not change that native switch or pitch.
+            if (! carries (0x01) && ! carries (0x02))
+            {
+                tone.osc1.pitchWide = osc1Before.pitchWide;
+                tone.osc1.coarse = osc1Before.coarse;
+            }
+            if (! carries (0x07) && ! carries (0x08))
+            {
+                tone.osc2.pitchWide = osc2Before.pitchWide;
+                tone.osc2.coarse = osc2Before.coarse;
+            }
             clampToDocumentedRanges (tone);
             return true;
         }
@@ -830,6 +861,110 @@ bool decodeSysExMessage (const std::uint8_t* msg, std::size_t msgLen,
     return true;
 }
 
+void PatchDataDecoder::reset() noexcept
+{
+    for (auto& block : blocks)
+        block.valid = false;
+    patchBase = 0;
+}
+
+bool PatchDataDecoder::decode (const std::uint8_t* msg, std::size_t msgLen,
+                                Patch& target, std::uint8_t expectedDeviceId) noexcept
+{
+    Dt1Packet packet;
+    if (! parseDt1Packet (msg, msgLen, expectedDeviceId, packet)
+        || ! packet.isForThisInstrument())
+        return false;
+    if (patchBase != packet.patchBase())
+        reset();
+    patchBase = packet.patchBase();
+    auto& block = blocks[packet.block()];
+    const auto encode = [&] (Image& image)
+    {
+        switch (packet.block())
+        {
+            case 0: encodePatchCommon (target, image.data()); break;
+            case 1: encodeTonePatch (target.upper, image.data()); break;
+            case 2: encodeTonePatch (target.lower, image.data()); break;
+            case 3: encodeDelayParams (target.delay, image.data()); break;
+            case 4: encodeReverbParams (target.reverb, image.data()); break;
+            case 5: encodeArpeggioCommon (target.arpeggio, image.data()); break;
+            default: encodeArpeggioPattern (target.arpeggio.style,
+                         static_cast<int> (packet.block() - 6), image.data()); break;
+        }
+    };
+    Image current {};
+    encode (current);
+    if (! block.valid)
+        block.raw = current;
+    else
+    {
+        // Preserve only raw fields whose decoded value is still current.
+        // Rebase a whole dependent field if *any* of its bytes changed:
+        // individual nibbles or WIDE/coarse bytes could mix a host edit with
+        // stale raw data and reinterpret a fresh pitch under the old range.
+        for (std::size_t offset = 0; offset < packet.blockSize();)
+        {
+            const std::size_t width = packet.block() == 0 && offset == 0x0e ? 3
+                                    : packet.block() == 5 && offset == 0x06 ? 2
+                                    : (packet.block() == 1 || packet.block() == 2)
+                                       && (offset == 0x01 || offset == 0x07) ? 2
+                                    : packet.block() >= 6 ? 2 : 1;
+            if (! std::equal (current.begin() + offset, current.begin() + offset + width,
+                              block.decoded.begin() + offset))
+                std::copy_n (current.begin() + offset, width, block.raw.begin() + offset);
+            offset += width;
+        }
+    }
+    std::copy_n (packet.data, packet.dataLength,
+                 block.raw.begin() + packet.offsetInBlock());
+
+    // Reuse the isolated-message decoder with a complete block in fixed
+    // stack storage. Unlike a partial decode/re-encode loop, block.raw never
+    // loses an out-of-range intermediate value when target is clamped.
+    std::array<std::uint8_t, sizeArpeggioPattern + 13> frame {
+        0xf0, rolandId, defaultDeviceId, 0, 0, 0x16, cmdDt1,
+        static_cast<std::uint8_t> (patchBase >> 24),
+        static_cast<std::uint8_t> ((patchBase >> 16) & 0x7f),
+        static_cast<std::uint8_t> (packet.block()), 0
+    };
+    std::copy_n (block.raw.begin(), packet.blockSize(), frame.begin() + 11);
+    frame[11 + packet.blockSize()] = calculateChecksum (frame.data() + 7,
+                                                       4 + packet.blockSize());
+    frame[12 + packet.blockSize()] = 0xf7;
+    const int endStepBefore = target.arpeggio.endStep;
+    const auto osc1Before = packet.block() == 2 ? target.lower.osc1 : target.upper.osc1;
+    const auto osc2Before = packet.block() == 2 ? target.lower.osc2 : target.upper.osc2;
+    if (! decodeSysExMessage (frame.data(), packet.blockSize() + 13, target))
+        return false;
+    // END STEP=0 is a plug-in template sentinel with no wire spelling. A
+    // fragment that never addressed END STEP must leave that sentinel alone.
+    if (packet.block() == 5 && packet.offsetInBlock() + packet.dataLength <= 6)
+        target.arpeggio.endStep = endStepBefore;
+    if (packet.block() == 1 || packet.block() == 2)
+    {
+        auto& tone = packet.block() == 1 ? target.upper : target.lower;
+        const auto overlapsPair = [&packet] (std::size_t offset)
+        {
+            return packet.offsetInBlock() < offset + 2
+                   && packet.offsetInBlock() + packet.dataLength > offset;
+        };
+        if (! overlapsPair (0x01))
+        {
+            tone.osc1.pitchWide = osc1Before.pitchWide;
+            tone.osc1.coarse = osc1Before.coarse;
+        }
+        if (! overlapsPair (0x07))
+        {
+            tone.osc2.pitchWide = osc2Before.pitchWide;
+            tone.osc2.coarse = osc2Before.coarse;
+        }
+    }
+    encode (block.decoded);
+    block.valid = true;
+    return true;
+}
+
 bool parseSyxBankFile (const std::uint8_t* fileBytes, std::size_t byteCount,
                        std::vector<NamedPatch>& outPatches)
 {
@@ -838,6 +973,7 @@ bool parseSyxBankFile (const std::uint8_t* fileBytes, std::size_t byteCount,
 
     std::size_t pos = 0;
     Patch currentPatch = initPatch();
+    PatchDataDecoder decoder;
     bool foundAny = false;
     bool patchPending = false;
     // Which patch the last accepted block belonged to. The two high address
@@ -876,10 +1012,11 @@ bool parseSyxBankFile (const std::uint8_t* fileBytes, std::size_t byteCount,
             {
                 outPatches.push_back ({ currentPatch.name, currentPatch });
                 currentPatch = initPatch();
+                decoder.reset();
                 patchPending = false;
             }
 
-            if (decodeSysExMessage (fileBytes + start, msgLen, currentPatch))
+            if (decoder.decode (fileBytes + start, msgLen, currentPatch))
             {
                 foundAny = true;
                 patchPending = true;

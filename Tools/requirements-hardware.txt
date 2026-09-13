@@ -1,0 +1,4 @@
+# Optional analysis tools; the MIDI renderer itself uses Python's standard library.
+numpy>=1.26,<3
+scipy>=1.11,<2
+matplotlib>=3.8,<4

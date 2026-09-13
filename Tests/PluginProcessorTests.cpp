@@ -14,6 +14,7 @@
 #include <cmath>
 #include <cstdio>
 #include <functional>
+#include <random>
 #include <string>
 #include <thread>
 #include <vector>
@@ -838,15 +839,18 @@ void testPartControlsSurviveSessionsAndPublishActualActivity()
     expect (upper->getValue() > 0.5f && lower->getValue() > 0.5f,
             "both parts default to enabled");
     const auto& all = processor.getParameters();
-    expect (all[all.size() - 2] == upper && all[all.size() - 1] == lower,
+    // Four MIDI settings were appended after the two existing part enables.
+    expect (all[all.size() - 6] == upper && all[all.size() - 5] == lower,
             "part enables are appended without shifting existing host indices");
     int previousVersion = 0;
-    for (const auto* parameter : all)
-        if (parameter != upper && parameter != lower)
-            previousVersion = std::max (previousVersion, parameter->getVersionHint());
+    for (int i = 0; i < all.indexOf (upper); ++i)
+        previousVersion = std::max (previousVersion, all[i]->getVersionHint());
     expect (upper->getVersionHint() > previousVersion
                 && lower->getVersionHint() > previousVersion,
             "new enable version hints preserve the legacy AU parameter ordering");
+    for (int i = all.indexOf (lower) + 1; i < all.size(); ++i)
+        expect (all[i]->getVersionHint() > lower->getVersionHint(),
+                "MIDI receiver settings follow the existing AU parameter groups");
 
     lower->setValueNotifyingHost (0.0f);
     juce::MemoryBlock saved;
@@ -1120,7 +1124,8 @@ void testAllSharedControlsStayVisible()
         "arp_accent", "arp_velocity", "ext_center_cancel",
         "audio_filter_type", "audio_filter_slope", "delay_hf_damp",
         "delay_mod_rate", "delay_mod_depth", "reverb_pre_delay",
-        "reverb_density", "reverb_diffusion", "reverb_lf_damp_freq",
+        "system_midi_channel", "system_receive_program", "system_device_id",
+        "system_active_sensing", "reverb_density", "reverb_diffusion", "reverb_lf_damp_freq",
         "reverb_lf_damp_gain", "reverb_hf_damp_freq", "reverb_hf_damp_gain"
     };
     for (const auto size : { SeptumAudioProcessorEditor::panelSizeForWorkArea ({}),
@@ -2778,6 +2783,163 @@ void testSysExBlockProcessing()
     expect (recipientSnap.upper.resonance == 88, "loadSysExData restored resonance");
 }
 
+void testFragmentedSysExKeepsRawMultibyteFields()
+{
+    auto patch = septum::initPatch();
+    patch.tempo = 260; // 01 00 04: first byte alone makes INIT's tempo invalid.
+    patch.upper.cutoff = 93;
+    patch.upper.lfo1.tempoSync = true;
+    patch.upper.lfo1.tempoSyncNote = 11;
+    patch.upper.lfo1.keyTrigger = true;
+    patch.upper.lfo1.depth1 = 32;
+    patch.arpeggio.endStep = patch.arpeggio.style.endStep = 17;
+    for (int row = 0; row < septum::arpeggioMaxRows; ++row)
+    {
+        patch.arpeggio.style.originalNote[(std::size_t) row] = 127;
+        for (int step = 0; step < septum::arpeggioMaxSteps; ++step)
+            patch.arpeggio.style.cells[(std::size_t) step][(std::size_t) row] = 127;
+    }
+    const auto full = septum::sysex::encodePatchToSysExPackets (patch);
+    std::vector<std::vector<std::uint8_t>> fragments;
+    for (const auto& frame : full)
+    {
+        septum::sysex::Dt1Packet packet;
+        expect (septum::sysex::parseDt1Packet (frame.data(), frame.size(), 0x7f, packet),
+                "fragment fixture is a valid DT1 packet");
+        for (std::size_t offset = 0; offset < packet.dataLength; ++offset)
+            fragments.push_back (septum::sysex::makeDt1Message (
+                packet.address + (std::uint32_t) offset, packet.data + offset, 1));
+    }
+    auto shuffled = fragments;
+    std::mt19937 random (201);
+    std::shuffle (shuffled.begin(), shuffled.end(), random);
+    const auto flatten = [] (const auto& packets)
+    {
+        std::vector<std::uint8_t> bytes;
+        for (const auto& packet : packets)
+            bytes.insert (bytes.end(), packet.begin(), packet.end());
+        return bytes;
+    };
+    SeptumAudioProcessor reference;
+    const auto fullFile = flatten (full);
+    reference.loadSysExData (fullFile.data(), fullFile.size());
+    const auto expected = reference.createSysExDataForCurrentPatch();
+    for (const auto* packets : std::array<const decltype (fragments)*, 3> {
+             &full, &fragments, &shuffled })
+    {
+        const auto bytes = flatten (*packets);
+        std::vector<septum::NamedPatch> parsed;
+        expect (septum::sysex::parseSyxBankFile (bytes.data(), bytes.size(), parsed)
+                    && parsed.size() == 1 && parsed.front().patch.tempo == 260,
+                "bank parser preserves tempo across full, fragmented and shuffled blocks");
+        expect (! parsed.empty() && septum::sysex::encodePatchToSyxBuffer (
+                    parsed.front().patch) == fullFile,
+                "bank parser preserves every native byte across packet ordering");
+        SeptumAudioProcessor imported;
+        imported.loadSysExData (bytes.data(), bytes.size());
+        expect (imported.createSysExDataForCurrentPatch() == expected,
+                "file import preserves all fields of fragmented and shuffled dumps");
+        for (int mode = 0; mode < 3; ++mode)
+        {
+            SeptumAudioProcessor live;
+            const int samples = mode == 1 ? (int) packets->size() + 1 : 1;
+            live.prepareToPlay (44100.0, samples);
+            juce::AudioBuffer<float> block (2, samples);
+            juce::MidiBuffer midi;
+            for (std::size_t i = 0; i < packets->size(); ++i)
+            {
+                const auto& packet = (*packets)[i];
+                midi.addEvent (juce::MidiMessage (packet.data(), (int) packet.size()),
+                               mode == 1 ? (int) i : 0);
+                if (mode == 2)
+                {
+                    live.processBlock (block, midi);
+                    midi.clear();
+                }
+            }
+            if (mode != 2)
+                live.processBlock (block, midi);
+            expect (live.createSysExDataForCurrentPatch() == expected,
+                    "live fragmented dumps survive same timestamp, separate timestamps and audio blocks");
+        }
+    }
+}
+
+void testFragmentedSysExRebasesFreshEditsAndReplacements()
+{
+    const auto send = [] (SeptumAudioProcessor& processor, std::uint32_t address,
+                          std::uint8_t value)
+    {
+        const auto packet = septum::sysex::makeDt1Message (address, &value, 1);
+        auto midi = messageAt (juce::MidiMessage (packet.data(), (int) packet.size()));
+        juce::AudioBuffer<float> block (2, 1);
+        processor.processBlock (block, midi);
+    };
+    const auto set = [] (SeptumAudioProcessor& processor, const char* id, float value)
+    {
+        processor.parameters.getParameter (id)->setValueNotifyingHost (
+            processor.parameters.getParameterRange (id).convertTo0to1 (value));
+    };
+    {
+        SeptumAudioProcessor processor;
+        processor.prepareToPlay (44100.0, 1);
+        send (processor, 0x1000000e, 1);
+        expect (processor.snapshotPatch().tempo == 120,
+                "invalid intermediate tempo keeps the last valid sounding value");
+        set (processor, "patch_level", 42);
+        send (processor, 0x1000000f, 0);
+        expect (processor.snapshotPatch().tempo == 264
+                    && processor.snapshotPatch().patchLevel == 42,
+                "an unrelated host field edit survives while pending tempo nibbles complete");
+        set (processor, "patch_tempo", 100);
+        send (processor, 0x10000010, 8);
+        expect (processor.snapshotPatch().tempo == 104,
+                "a host tempo edit rebases all three nibbles before the next partial write");
+        auto cc = messageAt (juce::MidiMessage::controllerEvent (1, 74, 55));
+        juce::AudioBuffer<float> block (2, 1);
+        processor.processBlock (block, cc);
+        send (processor, 0x10000116, 33);
+        expect (processor.snapshotPatch().upper.cutoff == 55
+                    && processor.snapshotPatch().upper.resonance == 33,
+                "a live CC edit survives a later partial write to the same tone block");
+        const std::uint8_t tempo[] { 0, 7, 8 };
+        const auto fullTempo = septum::sysex::makeDt1Message (0x1000000e, tempo, 3);
+        auto midi = messageAt (juce::MidiMessage (fullTempo.data(), (int) fullTempo.size()));
+        processor.processBlock (block, midi);
+        send (processor, 0x10000010, 4);
+        expect (processor.snapshotPatch().tempo == 116,
+                "a complete SysEx field write replaces every previously cached nibble");
+    }
+    for (int replacement = 0; replacement < 4; ++replacement)
+    {
+        SeptumAudioProcessor processor;
+        processor.prepareToPlay (44100.0, 1);
+        juce::MemoryBlock state;
+        processor.getStateInformation (state);
+        send (processor, 0x1000000e, 1); // Invalid raw376, still sounds INIT120.
+        if (replacement == 0)
+            processor.setCurrentProgram (0);
+        else if (replacement == 1)
+        {
+            auto midi = messageAt (juce::MidiMessage::programChange (1, 0));
+            juce::AudioBuffer<float> block (2, 1);
+            processor.processBlock (block, midi);
+        }
+        else if (replacement == 2)
+            processor.setStateInformation (state.getData(), (int) state.getSize());
+        else
+        {
+            const auto bytes = septum::sysex::encodePatchToSyxBuffer (septum::initPatch());
+            processor.loadSysExData (bytes.data(), bytes.size());
+        }
+        expect (processor.snapshotPatch().tempo == 120,
+                "replacement fixture has the same visible tempo as the pending fragment");
+        send (processor, 0x1000000f, 0);
+        expect (processor.snapshotPatch().tempo == 8,
+                "host/MIDI programs, state restores and file imports retire invisible old nibbles");
+    }
+}
+
 // Consecutive packets are a single patch transaction only when they have the
 // same sample timestamp. A later packet must leave the intervening audio in
 // place, including when one of the messages is unsupported or for another
@@ -3608,6 +3770,375 @@ void testPartStatusDistinguishesRoutingFromRelease()
             "a disabled part is clearly OFF even while its voice releases");
 }
 
+void setMidiSetting (SeptumAudioProcessor& processor, const char* id, float value)
+{
+    auto* parameter = processor.parameters.getParameter (id);
+    parameter->setValueNotifyingHost (
+        parameter->getNormalisableRange().convertTo0to1 (value));
+}
+
+void testHardwareCoarsePitchCcAndNativeState()
+{
+    SeptumAudioProcessor processor;
+    processor.prepareToPlay (44100.0, 256);
+    juce::AudioBuffer<float> block (2, 256);
+    struct OscillatorCc { const char* pitch; const char* wide; int cc; };
+    constexpr OscillatorCc oscillators[] {
+        { "up_osc1_pitch", "up_osc1_wide", 20 },
+        { "up_osc2_pitch", "up_osc2_wide", 21 },
+        { "lo_osc1_pitch", "lo_osc1_wide", 78 },
+        { "lo_osc2_pitch", "lo_osc2_wide", 85 }
+    };
+    for (const auto& osc : oscillators)
+    {
+        for (const bool wide : { false, true })
+        {
+            setMidiSetting (processor, osc.wide, wide ? 1.0f : 0.0f);
+            for (const int raw : { 28, 64, 100 })
+            {
+                auto midi = messageAt (juce::MidiMessage::controllerEvent (1, osc.cc, raw));
+                processor.processBlock (block, midi);
+                const int expected = (raw - 64) / (wide ? 1 : 3);
+                expect (processor.parameters.getRawParameterValue (osc.pitch)->load() == expected,
+                        juce::String (osc.pitch) + " CC follows the current WIDE range");
+                processor.reconcileControlChanges();
+                const auto* parameter = processor.parameters.getParameter (osc.pitch);
+                expect (std::abs (parameter->getNormalisableRange().convertFrom0to1 (
+                            parameter->getValue()) - expected) < 1.0e-5f,
+                        "pitch CC reconciles physical semitones to the host");
+            }
+        }
+        // Host parameters already store physical semitones. The new wire
+        // conversion must not reinterpret saved native values or toggle WIDE.
+        setMidiSetting (processor, osc.wide, 0.0f);
+        setMidiSetting (processor, osc.pitch, 19.0f);
+    }
+    juce::MemoryBlock state;
+    processor.getStateInformation (state);
+    SeptumAudioProcessor restored;
+    restored.setStateInformation (state.getData(), static_cast<int> (state.getSize()));
+    for (const auto& osc : oscillators)
+    {
+        expect (restored.parameters.getRawParameterValue (osc.pitch)->load() == 19.0f
+                    && restored.parameters.getRawParameterValue (osc.wide)->load() == 0.0f,
+                "native sessions retain physical pitch and WIDE independently of wire encoding");
+    }
+}
+
+void testHardwarePitchCcRetainsRawValueForWideChanges()
+{
+    struct Target { const char* pitch; const char* wide; int cc; std::uint32_t address; };
+    constexpr Target targets[] {
+        { "up_osc1_pitch", "up_osc1_wide", 20, 0x10000101 },
+        { "up_osc2_pitch", "up_osc2_wide", 21, 0x10000107 },
+        { "lo_osc1_pitch", "lo_osc1_wide", 78, 0x10000201 },
+        { "lo_osc2_pitch", "lo_osc2_wide", 85, 0x10000207 }
+    };
+    const auto dt1 = [] (std::uint32_t address, std::uint8_t value)
+    {
+        const auto bytes = septum::sysex::makeDt1Message (address, &value, 1);
+        return juce::MidiMessage (bytes.data(), static_cast<int> (bytes.size()));
+    };
+    for (const auto& target : targets)
+    for (const bool separateBlocks : { false, true })
+    for (const bool priorSysEx : { false, true })
+    {
+        SeptumAudioProcessor processor;
+        processor.prepareToPlay (44100.0, 256);
+        juce::AudioBuffer<float> audio (2, 256);
+        setMidiSetting (processor, target.wide, 0.0f);
+        juce::MidiBuffer messages;
+        const auto send = [&] (const juce::MidiMessage& message, int position)
+        {
+            if (separateBlocks)
+            {
+                auto one = messageAt (message);
+                processor.processBlock (audio, one);
+            }
+            else messages.addEvent (message, position);
+        };
+        if (priorSysEx) send (dt1 (target.address + 1, 87), 0);
+        send (juce::MidiMessage::controllerEvent (1, target.cc, priorSysEx ? 88 : 87), 0);
+        send (dt1 (target.address, 1), 128);
+        if (! separateBlocks) processor.processBlock (audio, messages);
+        const float expected = priorSysEx ? 24.0f : 23.0f;
+        expect (processor.parameters.getRawParameterValue (target.pitch)->load() == expected
+                    && processor.parameters.getRawParameterValue (target.wide)->load() == 1.0f,
+                "WIDE expands the most recent raw pitch CC, including equal rounded semitones and same-block SysEx");
+        processor.reconcileControlChanges();
+        processor.republishPatchParameters();
+        expect (processor.parameters.getRawParameterValue (target.pitch)->load() == expected,
+                "deferred CC and patch reconciliation preserve the later WIDE result");
+    }
+    for (const auto& target : targets)
+    {
+        SeptumAudioProcessor processor;
+        processor.prepareToPlay (44100.0, 256);
+        juce::AudioBuffer<float> audio (2, 256);
+        auto cc = messageAt (juce::MidiMessage::controllerEvent (1, target.cc, 87));
+        processor.processBlock (audio, cc);
+        // Replacement with the same visible coarse8 must retire raw23.
+        auto replacement = processor.snapshotPatch();
+        processor.loadPatch (replacement);
+        auto wide = messageAt (dt1 (target.address, 1));
+        processor.processBlock (audio, wide);
+        expect (processor.parameters.getRawParameterValue (target.pitch)->load() == 24.0f,
+                "whole-patch replacement retires a pitch CC's hidden raw state even at identical visible values");
+
+        // A complete staged MIDI program lands before the following CC/WIDE
+        // events, even if the message loop never runs.
+        juce::MidiBuffer staged;
+        staged.addEvent (juce::MidiMessage::programChange (1, 0), 0);
+        staged.addEvent (juce::MidiMessage::controllerEvent (1, target.cc, 87), 0);
+        staged.addEvent (dt1 (target.address, 1), 128);
+        processor.processBlock (audio, staged);
+        expect (processor.parameters.getRawParameterValue (target.pitch)->load() == 23.0f,
+                "same-block MIDI program, pitch CC and WIDE use the newly staged patch and newest raw position");
+    }
+}
+
+// Manufacturer evidence: SH-201 Owner's Manual pp. 58, 68–70; MIDI
+// Implementation pp. 1–3. Test the receiver, not merely parameter storage.
+void testHardwareMidiReceiverSettings()
+{
+    SeptumAudioProcessor processor;
+    processor.prepareToPlay (44100.0, 512);
+    juce::AudioBuffer<float> block (2, 512);
+    const auto send = [&] (const juce::MidiMessage& message)
+    {
+        auto midi = messageAt (message);
+        processor.processBlock (block, midi);
+    };
+    const auto value = [&] (const char* id)
+    {
+        return processor.parameters.getRawParameterValue (id)->load();
+    };
+
+    expect (value ("system_midi_channel") == 1.0f,
+            "new instruments use the hardware's default channel 1");
+    send (juce::MidiMessage::noteOn (2, 60, (juce::uint8) 100));
+    send (juce::MidiMessage::controllerEvent (2, 74, 41));
+    send (juce::MidiMessage::programChange (2, 3));
+    expect (processor.getActiveVoiceCount() == 0
+                && value ("up_cutoff") == 127.0f
+                && processor.getCurrentProgram() == 0,
+            "notes, panel CC and programs addressed to another channel are ignored");
+
+    setMidiSetting (processor, "system_midi_channel", 5.0f);
+    send (juce::MidiMessage::noteOn (5, 64, (juce::uint8) 100));
+    send (juce::MidiMessage::controllerEvent (5, 74, 81));
+    expect (processor.getPartHeldVoiceCount (true) == 1 && value ("up_cutoff") == 81.0f,
+            "selected-channel notes and panel CC reach the sound generator");
+    send (juce::MidiMessage::noteOff (1, 64));
+    send (juce::MidiMessage::allSoundOff (1));
+    expect (processor.getPartHeldVoiceCount (true) == 1,
+            "other-channel releases and panic cannot stop a selected-channel key");
+    send (juce::MidiMessage::noteOff (5, 64));
+    expect (processor.getPartHeldVoiceCount (true) == 0,
+            "the matching-channel note-off releases the key");
+    send (juce::MidiMessage::controllerEvent (5, 125, 0));
+    send (juce::MidiMessage::noteOn (6, 70, (juce::uint8) 100));
+    expect (processor.getPartHeldVoiceCount (true) == 0,
+            "OMNI ON performs all-notes-off without enabling omni reception");
+    processor.triggerFromUi (69, 100);
+    juce::MidiBuffer empty;
+    processor.processBlock (block, empty);
+    expect (processor.getPartHeldVoiceCount (true) == 1,
+            "the instrument's own keyboard works independently of MIDI channel");
+    processor.releaseFromUi (69);
+    processor.processBlock (block, empty);
+
+    setMidiSetting (processor, "system_receive_program", 0.0f);
+    send (juce::MidiMessage::programChange (5, 3));
+    expect (processor.getCurrentProgram() == 0 && value ("up_cutoff") == 81.0f,
+            "Receive Program Change OFF protects the edited patch");
+    send (juce::MidiMessage::controllerEvent (5, 74, 73));
+    expect (value ("up_cutoff") == 73.0f,
+            "disabling program reception preserves ordinary controller reception");
+    processor.setCurrentProgram (3);
+    expect (processor.getCurrentProgram() == 3 && value ("system_receive_program") == 0.0f,
+            "panel/host program selection works and preserves MIDI system settings");
+    setMidiSetting (processor, "system_receive_program", 1.0f);
+    send (juce::MidiMessage::programChange (5, 2));
+    expect (processor.getCurrentProgram() == 2,
+            "re-enabling program reception restores program changes");
+
+    // ALL is an explicit plug-in compatibility option, separate from the
+    // hardware channel range. Existing sessions are migrated to this setting.
+    setMidiSetting (processor, "system_midi_channel", 0.0f);
+    send (juce::MidiMessage::controllerEvent (16, 74, 37));
+    expect (value ("up_cutoff") == 37.0f, "ALL preserves legacy omni input");
+
+    setMidiSetting (processor, "system_device_id", 24.0f);
+    auto patch = processor.snapshotPatch();
+    patch.upper.cutoff = 22;
+    auto packets = septum::sysex::encodePatchToSysExPackets (
+        patch, septum::sysex::addrTemporaryPatch, 0x10);
+    juce::MidiBuffer wrongDevice;
+    for (const auto& packet : packets)
+        wrongDevice.addEvent (juce::MidiMessage (packet.data(), (int) packet.size()), 0);
+    processor.processBlock (block, wrongDevice);
+    expect (value ("up_cutoff") == 37.0f,
+            "live batched DT1 for a different device does not replace the patch");
+
+    juce::MidiBuffer selectedDevice;
+    for (auto& packet : packets)
+    {
+        packet[2] = 0x17; // Device ID 24, omitted from Roland checksum.
+        selectedDevice.addEvent (juce::MidiMessage (packet.data(), (int) packet.size()), 128);
+    }
+    processor.processBlock (block, selectedDevice);
+    expect (value ("up_cutoff") == 22.0f,
+            "Device ID 24 accepts wire ID 17H at the event sample");
+    patch.upper.cutoff = 59;
+    packets = septum::sysex::encodePatchToSysExPackets (patch);
+    juce::MidiBuffer broadcast;
+    for (auto& packet : packets)
+    {
+        packet[2] = 0x7f;
+        broadcast.addEvent (juce::MidiMessage (packet.data(), (int) packet.size()), 0);
+    }
+    processor.processBlock (block, broadcast);
+    expect (value ("up_cutoff") == 59.0f,
+            "Roland's documented broadcast DT1 is accepted by every device ID");
+    const auto exported = processor.createSysExDataForCurrentPatch();
+    expect (exported.size() > 2 && exported[2] == 0x17,
+            "exported patch packets carry the configured device ID");
+    patch.upper.cutoff = 32;
+    const auto fileBytes = septum::sysex::encodePatchToSyxBuffer (patch);
+    processor.loadSysExData (fileBytes.data(), fileBytes.size());
+    expect (value ("up_cutoff") == 32.0f,
+            "explicit file import can load a patch saved by a different device ID");
+
+    setMidiSetting (processor, "system_midi_channel", 9.0f);
+    setMidiSetting (processor, "system_receive_program", 0.0f);
+    setMidiSetting (processor, "system_active_sensing", 0.0f);
+    juce::MemoryBlock state;
+    processor.getStateInformation (state);
+    SeptumAudioProcessor restored;
+    restored.setStateInformation (state.getData(), (int) state.getSize());
+    for (const auto* id : { "system_midi_channel", "system_receive_program",
+                            "system_device_id", "system_active_sensing" })
+        expect (restored.parameters.getRawParameterValue (id)->load() == value (id),
+                juce::String ("MIDI system setting survives session restore: ") + id);
+
+    const auto xml = juce::AudioProcessor::getXmlFromBinary (state.getData(), (int) state.getSize());
+    auto oldState = juce::ValueTree::fromXml (*xml);
+    for (const auto* id : { "system_midi_channel", "system_receive_program",
+                            "system_device_id", "system_active_sensing" })
+        oldState.removeChild (oldState.getChildWithProperty ("id", id), nullptr);
+    oldState.setProperty ("preset_format_version", 1, nullptr);
+    juce::MemoryBlock oldData;
+    juce::AudioProcessor::copyXmlToBinary (*oldState.createXml(), oldData);
+    restored.setStateInformation (oldData.getData(), (int) oldData.getSize());
+    expect (restored.parameters.getRawParameterValue ("system_midi_channel")->load() == 0.0f,
+            "older sessions keep ALL-channel reception when restored over a configured receiver");
+    juce::TemporaryFile oldPreset (".septum");
+    expect (oldPreset.getFile().replaceWithData (oldData.getData(), oldData.getSize())
+                && restored.loadPresetFromFile (oldPreset.getFile()).wasOk(),
+            "version 1 native presets migrate their missing MIDI system settings");
+    expect (restored.parameters.getRawParameterValue ("system_device_id")->load() == 17.0f,
+            "legacy native presets receive the default SysEx ID");
+}
+
+void testHardwareActiveSensing()
+{
+    constexpr double rate = 44100.0;
+    constexpr int timeout = 18523; // First whole sample strictly after 420 ms.
+    const auto peak = [] (const juce::AudioBuffer<float>& audio, int first, int last)
+    {
+        double result = 0.0;
+        for (int i = first; i < last; ++i)
+            result = std::max (result, (double) std::abs (audio.getSample (0, i)));
+        return result;
+    };
+
+    {
+        SeptumAudioProcessor processor;
+        processor.prepareToPlay (rate, 40000);
+        juce::AudioBuffer<float> audio (2, 40000);
+        auto midi = messageAt (juce::MidiMessage::noteOn (1, 69, (juce::uint8) 100));
+        processor.processBlock (audio, midi);
+        expect (processor.getPartHeldVoiceCount (true) == 1 && peak (audio, 39000, 40000) > 0.001,
+                "ordinary DAW notes do not time out before any Active Sensing message");
+    }
+    for (const int partition : { 40000, 257 })
+    {
+        SeptumAudioProcessor processor;
+        processor.prepareToPlay (rate, 40000);
+        juce::AudioBuffer<float> take (2, 40000);
+        constexpr int armedAt = 101;
+        for (int start = 0; start < 40000; start += partition)
+        {
+            const int count = std::min (partition, 40000 - start);
+            juce::AudioBuffer<float> block (2, count);
+            juce::MidiBuffer midi;
+            if (start == 0)
+                midi.addEvent (juce::MidiMessage::noteOn (1, 69, (juce::uint8) 100), 0);
+            if (armedAt >= start && armedAt < start + count)
+                midi.addEvent (juce::MidiMessage (0xfe), armedAt - start);
+            processor.processBlock (block, midi);
+            take.copyFrom (0, start, block, 0, 0, count);
+        }
+        expect (peak (take, armedAt + timeout - 256, armedAt + timeout) > 0.001,
+                "Active Sensing keeps the sound alive through its full timeout");
+        expect (peak (take, armedAt + timeout, 40000) == 0.0
+                    && processor.getActiveVoiceCount() == 0,
+                "Active Sensing cuts voices and tails at 420 ms plus one sample, across block sizes");
+    }
+    {
+        SeptumAudioProcessor processor;
+        processor.prepareToPlay (rate, 48000);
+        juce::AudioBuffer<float> audio (2, 48000);
+        juce::MidiBuffer midi;
+        midi.addEvent (juce::MidiMessage::noteOn (1, 69, (juce::uint8) 100), 0);
+        midi.addEvent (juce::MidiMessage (0xfe), 0);
+        midi.addEvent (juce::MidiMessage::noteOn (16, 72, (juce::uint8) 100), 10000);
+        const std::uint8_t unrelated[] { 0x7d, 0x01 };
+        midi.addEvent (juce::MidiMessage::createSysExMessage (unrelated, 2), 20000);
+        processor.processBlock (audio, midi);
+        expect (peak (audio, 36000, 37000) > 0.001 && peak (audio, 20000 + timeout, 48000) == 0.0,
+                "filtered channel messages and unhandled SysEx both refresh the Active Sensing interval");
+
+        // Timeout disarms monitoring; a later ordinary note has no new FE.
+        auto laterNote = messageAt (juce::MidiMessage::noteOn (1, 67, (juce::uint8) 100));
+        processor.processBlock (audio, laterNote);
+        expect (processor.getPartHeldVoiceCount (true) == 1 && peak (audio, 47000, 48000) > 0.001,
+                "Active Sensing disarms after a timeout until another FE arrives");
+    }
+    {
+        SeptumAudioProcessor processor;
+        processor.prepareToPlay (rate, 44100);
+        juce::AudioBuffer<float> audio (2, 44100);
+        juce::MidiBuffer midi;
+        midi.addEvent (juce::MidiMessage (0xfe), 0);
+        midi.addEvent (juce::MidiMessage::controllerEvent (1, 11, 0), 0);
+        midi.addEvent (juce::MidiMessage::controllerEvent (1, 64, 127), 0);
+        midi.addEvent (juce::MidiMessage::controllerEvent (1, 66, 127), 0);
+        midi.addEvent (juce::MidiMessage::pitchWheel (1, 16383), 0);
+        midi.addEvent (juce::MidiMessage::noteOn (1, 69, (juce::uint8) 100), timeout + 100);
+        midi.addEvent (juce::MidiMessage::noteOff (1, 69), timeout + 2100);
+        processor.processBlock (audio, midi);
+        expect (peak (audio, timeout + 800, timeout + 1900) > 0.001,
+                "Active Sensing timeout resets expression before the next note");
+        expect (processor.getPartHeldVoiceCount (true) == 0 && processor.getActiveVoiceCount() == 0,
+                "Active Sensing timeout resets hold and sostenuto, preventing the next note from sticking");
+
+        setMidiSetting (processor, "system_active_sensing", 0.0f);
+        juce::MidiBuffer disabled;
+        disabled.addEvent (juce::MidiMessage (0xfe), 0);
+        disabled.addEvent (juce::MidiMessage::noteOn (1, 65, (juce::uint8) 100), 0);
+        processor.processBlock (audio, disabled);
+        expect (processor.getPartHeldVoiceCount (true) == 1,
+                "Receive Active Sensing OFF disables the watchdog");
+        setMidiSetting (processor, "system_active_sensing", 1.0f);
+        juce::MidiBuffer empty;
+        processor.processBlock (audio, empty);
+        expect (processor.getPartHeldVoiceCount (true) == 1,
+                "enabling sensing waits for a new FE rather than arming implicitly");
+    }
+}
+
 } // namespace
 
 int main (int argc, char* argv[])
@@ -3624,7 +4155,11 @@ int main (int argc, char* argv[])
     testParameterLayoutAndDefaults();
     testBusLayoutAndTail();
     testRenderingAndVoices();
+    testHardwareMidiReceiverSettings();
+    testHardwareActiveSensing();
     testDocumentedControlChanges();
+    testHardwareCoarsePitchCcAndNativeState();
+    testHardwarePitchCcRetainsRawValueForWideChanges();
     testControlChangesDoNotNotifyFromTheAudioThread();
     testTheCcReconcilerDoesNotUndoAnEditMadeAfterTheCc();
     testPanelCcAppliesWithinTheBlock();
@@ -3656,6 +4191,8 @@ int main (int argc, char* argv[])
     testAStateSaveNeverCatchesADumpHalfWritten();
     testAnImportedArpeggioPatternSurvivesAndPlays();
     testSysExBlockProcessing();
+    testFragmentedSysExKeepsRawMultibyteFields();
+    testFragmentedSysExRebasesFreshEditsAndReplacements();
     testConsecutiveSysExKeepsEachSampleTimestamp();
     testSysExDoesNotNotifyFromTheAudioThread();
     testKeyboardOctaveIsAppliedOnce();

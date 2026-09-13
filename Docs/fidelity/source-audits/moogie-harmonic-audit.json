@@ -1,0 +1,412 @@
+{
+  "schema_version": 1,
+  "audit": "hardware-only octave identification plus within-note harmonic evolution",
+  "original_midi_available": false,
+  "input_sha256": {
+    "build-fidelity/hardware-benchmark/comparison-final/moogie-1/hardware-excerpt-raw.wav": "b68b102973532d6e904cdceee31aebd89a304c43059d2ebcf2b22e57d83ba377",
+    "build-fidelity/hardware-benchmark/comparison-final/moogie-1/septum-raw.wav": "4ec53d683af11db76a32ba009ccdeed951d4e419143bacdff1fc7b870ae11bc6",
+    "build-fidelity/hardware-benchmark/sources/TOP8_Moogie1.mp3": "32a354043a57a6cac3b85d6366dbe9cb253a67964f478f412ee2ceab38505e9e",
+    "Docs/fidelity/reconstructions/moogie-1.json": "9e9ad62d96f6201c0c74eda64914e11c42590e50c435f31d384df9220341bd07"
+  },
+  "source_page": "https://www.rolandus.com/go/sh-201_patches/patch_bass.html",
+  "source_audio": "https://www.rolandus.com/go/sh-201_patches/mp3/BASS/TOP8_Moogie1.mp3",
+  "sample_rate": 44100,
+  "segments": [
+    {
+      "label": "brief-high-1",
+      "start_seconds": 0.435,
+      "end_seconds": 0.48,
+      "high_octave_fit_hz": 77.46761163762774,
+      "odd_to_even_harmonic_power_db": -44.64647643483674,
+      "harmonic_fit_residual_power_fraction": 0.01571481325843205,
+      "periodicity": [
+        {
+          "near_hz": 77.3,
+          "lag_samples": 569,
+          "lag_ms": 12.90249433106576,
+          "normalized_difference": 0.000560406209501742
+        },
+        {
+          "near_hz": 38.65,
+          "lag_samples": 1139,
+          "lag_ms": 25.82766439909297,
+          "normalized_difference": 0.0018962104854791599
+        }
+      ]
+    },
+    {
+      "label": "following-low-1",
+      "start_seconds": 0.545,
+      "end_seconds": 0.69,
+      "high_octave_fit_hz": 77.32707204875055,
+      "odd_to_even_harmonic_power_db": 9.597272926601159,
+      "harmonic_fit_residual_power_fraction": 0.007025748443419579,
+      "periodicity": [
+        {
+          "near_hz": 77.3,
+          "lag_samples": 562,
+          "lag_ms": 12.7437641723356,
+          "normalized_difference": 1.7962948508321952
+        },
+        {
+          "near_hz": 38.65,
+          "lag_samples": 1142,
+          "lag_ms": 25.895691609977323,
+          "normalized_difference": 0.0012754446475708285
+        }
+      ]
+    },
+    {
+      "label": "brief-high-2",
+      "start_seconds": 1.345,
+      "end_seconds": 1.38,
+      "high_octave_fit_hz": 77.49807095428316,
+      "odd_to_even_harmonic_power_db": -39.507945015429705,
+      "harmonic_fit_residual_power_fraction": 0.016267303414183896,
+      "periodicity": [
+        {
+          "near_hz": 77.3,
+          "lag_samples": 569,
+          "lag_ms": 12.90249433106576,
+          "normalized_difference": 0.0003257756800098083
+        },
+        {
+          "near_hz": 38.65,
+          "lag_samples": 1138,
+          "lag_ms": 25.80498866213152,
+          "normalized_difference": 0.0009440100845580474
+        }
+      ]
+    },
+    {
+      "label": "following-low-2",
+      "start_seconds": 1.46,
+      "end_seconds": 1.61,
+      "high_octave_fit_hz": 77.20787712425434,
+      "odd_to_even_harmonic_power_db": 9.596115104727389,
+      "harmonic_fit_residual_power_fraction": 0.006287721953300951,
+      "periodicity": [
+        {
+          "near_hz": 77.3,
+          "lag_samples": 579,
+          "lag_ms": 13.129251700680273,
+          "normalized_difference": 1.7971402662304488
+        },
+        {
+          "near_hz": 38.65,
+          "lag_samples": 1142,
+          "lag_ms": 25.895691609977323,
+          "normalized_difference": 0.0011926025164167716
+        }
+      ]
+    },
+    {
+      "label": "brief-high-3",
+      "start_seconds": 2.27,
+      "end_seconds": 2.31,
+      "high_octave_fit_hz": 77.48174684896667,
+      "odd_to_even_harmonic_power_db": -46.83793168960007,
+      "harmonic_fit_residual_power_fraction": 0.01700663786214126,
+      "periodicity": [
+        {
+          "near_hz": 77.3,
+          "lag_samples": 569,
+          "lag_ms": 12.90249433106576,
+          "normalized_difference": 0.0007984786906178799
+        },
+        {
+          "near_hz": 38.65,
+          "lag_samples": 1139,
+          "lag_ms": 25.82766439909297,
+          "normalized_difference": 0.003095181112968057
+        }
+      ]
+    },
+    {
+      "label": "following-low-3",
+      "start_seconds": 2.39,
+      "end_seconds": 2.54,
+      "high_octave_fit_hz": 77.17886092119758,
+      "odd_to_even_harmonic_power_db": 9.636539468203305,
+      "harmonic_fit_residual_power_fraction": 0.00650249111433194,
+      "periodicity": [
+        {
+          "near_hz": 77.3,
+          "lag_samples": 579,
+          "lag_ms": 13.129251700680273,
+          "normalized_difference": 1.7910045358263917
+        },
+        {
+          "near_hz": 38.65,
+          "lag_samples": 1143,
+          "lag_ms": 25.918367346938776,
+          "normalized_difference": 0.001222325640894236
+        }
+      ]
+    },
+    {
+      "label": "already-transcribed-high",
+      "start_seconds": 0.785,
+      "end_seconds": 0.895,
+      "high_octave_fit_hz": 77.36594676131584,
+      "odd_to_even_harmonic_power_db": -42.25554901740245,
+      "harmonic_fit_residual_power_fraction": 0.010655097873187462,
+      "periodicity": [
+        {
+          "near_hz": 77.3,
+          "lag_samples": 570,
+          "lag_ms": 12.92517006802721,
+          "normalized_difference": 0.0005145888292671154
+        },
+        {
+          "near_hz": 38.65,
+          "lag_samples": 1140,
+          "lag_ms": 25.85034013605442,
+          "normalized_difference": 0.0017297393779727732
+        }
+      ]
+    }
+  ],
+  "temporal_harmonics": [
+    {
+      "source": "hardware",
+      "index": 0,
+      "on": 0.029,
+      "length": 0.362,
+      "f0": 38.554115573964566,
+      "full_residual": 0.017166047007866402,
+      "timing_shifts_seconds": [
+        -0.025,
+        0,
+        0.025
+      ],
+      "h3_over_h1_late_minus_early_db": [
+        4.005405489961564,
+        7.581396513402247,
+        5.902513647364824
+      ],
+      "h6_over_h1_late_minus_early_db": [
+        -2.2825195942057412,
+        -7.268193466009507,
+        -12.469996885957762
+      ],
+      "window_residuals": [
+        [
+          0.0826784252985383,
+          0.003712879479671676
+        ],
+        [
+          0.0104904153608024,
+          0.004076734748813263
+        ],
+        [
+          0.008533056227113596,
+          0.0037077918400746416
+        ]
+      ]
+    },
+    {
+      "source": "hardware",
+      "index": 3,
+      "on": 0.939,
+      "length": 0.366,
+      "f0": 38.56399701781551,
+      "full_residual": 0.017206762894883293,
+      "timing_shifts_seconds": [
+        -0.025,
+        0,
+        0.025
+      ],
+      "h3_over_h1_late_minus_early_db": [
+        0.8514386302538419,
+        8.981928064393284,
+        8.188390368066042
+      ],
+      "h6_over_h1_late_minus_early_db": [
+        -5.812089965643411,
+        -4.511620323803754,
+        -8.238801284597102
+      ],
+      "window_residuals": [
+        [
+          0.27705623531493007,
+          0.004086276319430341
+        ],
+        [
+          0.015787642615360916,
+          0.0038983482651947176
+        ],
+        [
+          0.011800663445918402,
+          0.004217036647374198
+        ]
+      ]
+    },
+    {
+      "source": "hardware",
+      "index": 6,
+      "on": 1.901,
+      "length": 0.32999999999999985,
+      "f0": 38.54223116510183,
+      "full_residual": 0.0139454715802808,
+      "timing_shifts_seconds": [
+        -0.025,
+        0,
+        0.025
+      ],
+      "h3_over_h1_late_minus_early_db": [
+        8.254778640579637,
+        7.730299634633386,
+        7.199025743700311
+      ],
+      "h6_over_h1_late_minus_early_db": [
+        -1.4078135247787777,
+        -3.5888088116583248,
+        -6.996880446017826
+      ],
+      "window_residuals": [
+        [
+          0.014917955502613022,
+          0.0027430275461739714
+        ],
+        [
+          0.011626008836561914,
+          0.004331318318184514
+        ],
+        [
+          0.00799999111872276,
+          0.004891844464537943
+        ]
+      ]
+    },
+    {
+      "source": "septum",
+      "index": 0,
+      "on": 0.029,
+      "length": 0.362,
+      "f0": 38.881852864687126,
+      "full_residual": 0.00026789035631696656,
+      "timing_shifts_seconds": [
+        -0.025,
+        0,
+        0.025
+      ],
+      "h3_over_h1_late_minus_early_db": [
+        0.018822868846044116,
+        0.03377519533887252,
+        -0.017076481671814747
+      ],
+      "h6_over_h1_late_minus_early_db": [
+        5.807801593864326,
+        2.5468268703132892,
+        0.44838229587325173
+      ],
+      "window_residuals": [
+        [
+          0.00579048318302439,
+          3.0394414280243124e-06
+        ],
+        [
+          3.05603900671797e-05,
+          3.0435582954067846e-06
+        ],
+        [
+          2.8940357034296335e-06,
+          2.9305846950114985e-06
+        ]
+      ]
+    },
+    {
+      "source": "septum",
+      "index": 3,
+      "on": 0.939,
+      "length": 0.366,
+      "f0": 38.88734682661254,
+      "full_residual": 2.8231185685790425e-05,
+      "timing_shifts_seconds": [
+        -0.025,
+        0,
+        0.025
+      ],
+      "h3_over_h1_late_minus_early_db": [
+        0.026702938768533357,
+        -0.03867486287879984,
+        0.0008997479335128844
+      ],
+      "h6_over_h1_late_minus_early_db": [
+        -1.215212467847877,
+        -0.35521091933614457,
+        -0.20992857306637802
+      ],
+      "window_residuals": [
+        [
+          0.016445759567498264,
+          1.6265026827950463e-06
+        ],
+        [
+          4.802843275248433e-05,
+          1.620215771470601e-06
+        ],
+        [
+          1.549674901417248e-06,
+          1.6320017173676006e-06
+        ]
+      ]
+    },
+    {
+      "source": "septum",
+      "index": 6,
+      "on": 1.901,
+      "length": 0.32999999999999985,
+      "f0": 38.87865570603013,
+      "full_residual": 0.00023262258566196387,
+      "timing_shifts_seconds": [
+        -0.025,
+        0,
+        0.025
+      ],
+      "h3_over_h1_late_minus_early_db": [
+        0.39948942954209343,
+        0.16196637745190756,
+        0.006158323932677234
+      ],
+      "h6_over_h1_late_minus_early_db": [
+        -5.828166492905893,
+        -2.316575569655008,
+        0.780546173049693
+      ],
+      "window_residuals": [
+        [
+          0.005099921147753896,
+          4.810632488813466e-06
+        ],
+        [
+          6.115645231170061e-05,
+          4.709594198688803e-06
+        ],
+        [
+          3.97887721204419e-06,
+          4.6341967019411445e-06
+        ]
+      ]
+    }
+  ],
+  "method": {
+    "waveform": "Mean of stereo decoded float PCM. No gain normalization, EQ, pitch shifting or alignment. Only constant and linear terms in harmonic regression remove nuisance offset/trend.",
+    "harmonic_regression": "Least squares at every fourth sample: constant, centered time, cosine and sine for harmonics1..12. Period-identification rows optimize high-octave base frequency76..79Hz then use its half-frequency for odd/even harmonic energies. Temporal rows optimize fundamental +/-3% from nominal over note+30ms to note-off-20ms.",
+    "period_metric": "For each independent hardware-only segment, subtract mean, search integer lag +/-1.5% around sr/77.3 or sr/38.65; minimize mean((x[:-lag]-x[lag:])^2)/(mean(x[:-lag]^2)+mean(x[lag:]^2)).",
+    "temporal_windows": "Early note-on+[35,115]ms, late note-off- [105,25]ms. Repeat both windows shifted -25,0,+25ms. Septum windows additionally include its retained93samples latency.",
+    "harmonic_change": "20log10((H3/H1)_late/(H3/H1)_early), analogousH6. Fixed gain and linear time-invariant recording response cancel approximately for locally stationary same-frequency harmonic ratios over time; dynamic processing does not.",
+    "environment": "Python3.11, numpy1.26.4, scipy1.14.1"
+  },
+  "conclusions": [
+    "Three roughly90ms high Eb notes are missing from baseline Moogie reconstruction; their pitch periods and suppressed odd harmonics match an already-transcribed high Eb. Corrected variant retains uncertainty and does not overwrite baseline.",
+    "Hardware within-note harmonic balance evolves substantially more than baseline render for these held low Eb notes; a fixed EQ/level adjustment cannot explain this alone. This does not identify a unique filter, envelope or oscillator-phase cause."
+  ],
+  "limitations": [
+    "Original keyboard events and recording chain are unavailable. High-note timing remains approximately20ms uncertain; note-offs meet following note-on by assumption.",
+    "The octave inference is strongly supported by independent periodicity, harmonic suppression and three repeated phrase locations. A contrived coordinated waveform/controller change cannot be logically excluded without original MIDI.",
+    "The temporal comparison uses existing baseline renders only; corrected reconstruction must be rendered separately before making whole-excerpt conclusions.",
+    "Velocity sensitivity and relative oscillator phase, filter/envelope scaling, time-varying capture processing and undisclosed controllers remain relevant to timbral interpretation."
+  ]
+}

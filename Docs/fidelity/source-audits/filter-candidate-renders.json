@@ -1,0 +1,245 @@
+{
+  "status": "experimental filter-decay listening comparison, not shipping or hardware-calibrated",
+  "cases": [
+    {
+      "id": "moogie-1-octave-revision",
+      "baseline_comparison_sha256": "e46589134cdb47ed00c28fe74206f437aa7e8fe9670b6a80f96dad6d0a2ebaae",
+      "variants": [
+        {
+          "name": "hardware",
+          "title": "Roland hardware",
+          "statistics": {
+            "peak": 0.8723894357681274,
+            "peak_dbfs": -1.1857920433290778,
+            "rms_dbfs": -10.115285622301226,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 75.53933877036322,
+            "identical_stereo_channels": false,
+            "side_to_mid_db": -35.510754676676115
+          },
+          "input_raw_sha256": "b68b102973532d6e904cdceee31aebd89a304c43059d2ebcf2b22e57d83ba377",
+          "listening_gain": 0.320452955300382,
+          "listening_sha256": "ab544730461feb328b3a4eeda351e278a41306b20cca49567653b4675b65f9f2"
+        },
+        {
+          "name": "current",
+          "title": "Current Septum",
+          "statistics": {
+            "peak": 0.671356737613678,
+            "peak_dbfs": -3.4609329645010267,
+            "rms_dbfs": -9.682892623177482,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 50.619374689244935,
+            "identical_stereo_channels": true,
+            "side_to_mid_db": null
+          },
+          "input_raw_sha256": "520a5f988b71b4d070f9041274071e9767c3ea8223d18c57a080207cf7a81965",
+          "listening_gain": 0.3048910185568195,
+          "listening_sha256": "cfebd3e107aef9f58a3cae17aaa50dde1cee0945050e72c7f62d79b71d09c6a9"
+        },
+        {
+          "name": "linear-slow",
+          "title": "Experimental linear filter decay",
+          "statistics": {
+            "peak": 0.6678171753883362,
+            "peak_dbfs": -3.5068483129867207,
+            "rms_dbfs": -7.661703474425937,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 60.75036618216661,
+            "identical_stereo_channels": true,
+            "side_to_mid_db": null
+          },
+          "input_raw_sha256": "29ab1181af4bb9c20b4befe2a04f95df9d6a678117221110da90efab011003b9",
+          "listening_gain": 0.24159346004540372,
+          "listening_sha256": "df720796de057e1db708bc55338a8a17f955b57b087e79a94cdf5df16e6ce6d2"
+        },
+        {
+          "name": "exponential-slow",
+          "title": "Experimental exponential filter decay",
+          "statistics": {
+            "peak": 0.6682530641555786,
+            "peak_dbfs": -3.5011808237350195,
+            "rms_dbfs": -7.627916035299714,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 60.67985003143109,
+            "identical_stereo_channels": true,
+            "side_to_mid_db": null
+          },
+          "input_raw_sha256": "c6e7dc60721892d297de16121d9b6b35fa65bf414649db11eccd89c27959d724",
+          "listening_gain": 0.24065550563287216,
+          "listening_sha256": "4d2048e697b4d547cdb26a5074580e3de11fc8e45d5880802a93a29cd3b8d8e4"
+        }
+      ]
+    },
+    {
+      "id": "dist-bs-1",
+      "baseline_comparison_sha256": "e5634024d857adda868496be71f46ae10d4db8104e66a825c5e5f5c96b22814b",
+      "variants": [
+        {
+          "name": "hardware",
+          "title": "Roland hardware",
+          "statistics": {
+            "peak": 0.9807952046394348,
+            "peak_dbfs": -0.1684333239627014,
+            "rms_dbfs": -10.966776437402167,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 64.62882125582603,
+            "identical_stereo_channels": false,
+            "side_to_mid_db": -32.86823977402427
+          },
+          "input_raw_sha256": "24af96a9b84b9c8660bf6996b58f2def9500333e109177a26eb815bb341fb7ab",
+          "listening_gain": 0.35345881887101344,
+          "listening_sha256": "952c9c80599fd32a517b5577dc676b1291d154bdd2f656fc560cbdb3468742bc"
+        },
+        {
+          "name": "current",
+          "title": "Current Septum",
+          "statistics": {
+            "peak": 0.5504453778266907,
+            "peak_dbfs": -5.185715415240525,
+            "rms_dbfs": -11.774146290286204,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 48.80738274790132,
+            "identical_stereo_channels": true,
+            "side_to_mid_db": null
+          },
+          "input_raw_sha256": "afce41a0172e3108161cd598046ddc7d746334fdfe3f0a6014c7aec86ea777c8",
+          "listening_gain": 0.3878888666847652,
+          "listening_sha256": "669a7de3c2b5a4244f693bd876d237339d57d9ca23dd6d1e4369ab2757c3827f"
+        },
+        {
+          "name": "linear-slow",
+          "title": "Experimental linear filter decay",
+          "statistics": {
+            "peak": 0.542152464389801,
+            "peak_dbfs": -5.317571275436141,
+            "rms_dbfs": -11.897823548119263,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 49.38188823146093,
+            "identical_stereo_channels": true,
+            "side_to_mid_db": null
+          },
+          "input_raw_sha256": "5c0363e6e324d46fed8c8315bc57ab76a51367edb5b416f909563f5978ef364d",
+          "listening_gain": 0.3934514746752968,
+          "listening_sha256": "7f012de9a2ed5071a1bb292760a7208419478fc60944d2c974196a365bef075d"
+        },
+        {
+          "name": "exponential-slow",
+          "title": "Experimental exponential filter decay",
+          "statistics": {
+            "peak": 0.5250204801559448,
+            "peak_dbfs": -5.596475103490956,
+            "rms_dbfs": -11.867242788027156,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 49.534185326204735,
+            "identical_stereo_channels": true,
+            "side_to_mid_db": null
+          },
+          "input_raw_sha256": "fb7d71213eba8be25d685211b6f935bbaccffff604729afa94c212b1562fc8a7",
+          "listening_gain": 0.3920686699611051,
+          "listening_sha256": "1e4c79ec7379f9b6d0ecb1b81fa8dbc7e57a53c617a5118d806f386a0d327e5b"
+        }
+      ]
+    },
+    {
+      "id": "cotton-wool",
+      "baseline_comparison_sha256": "d320b5f731fda630297be6eb694960203e76a923881ff82432a87e5160de70a5",
+      "variants": [
+        {
+          "name": "hardware",
+          "title": "Roland hardware",
+          "statistics": {
+            "peak": 0.8876089453697205,
+            "peak_dbfs": -1.0355665915060412,
+            "rms_dbfs": -17.309348932465312,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 316.28238187903884,
+            "identical_stereo_channels": false,
+            "side_to_mid_db": -17.264011799829312
+          },
+          "input_raw_sha256": "cf85c5a424f99365f5d6fc2517608529f03f1d07ffae34646e2f3d0a16af16ef",
+          "listening_gain": 0.7336137229322517,
+          "listening_sha256": "38155609b5840520c22a2ec1c921f0e8929ecaca348de188f0e5adcfe6fd3206"
+        },
+        {
+          "name": "current",
+          "title": "Current Septum",
+          "statistics": {
+            "peak": 0.1532096564769745,
+            "peak_dbfs": -16.294277223768013,
+            "rms_dbfs": -29.356772359422614,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 51.16335143866813,
+            "identical_stereo_channels": false,
+            "side_to_mid_db": -12.787201603318337
+          },
+          "input_raw_sha256": "7ed9a1de93a91aefbb1e428cab78aab7115286743a5f15d480173032240d7b43",
+          "listening_gain": 2.9365582363258205,
+          "listening_sha256": "7b3b93249b96bc2cbdf4dbf3dc0ed353775fe5ebdafec8afddcc17863954976a"
+        },
+        {
+          "name": "linear-slow",
+          "title": "Experimental linear filter decay",
+          "statistics": {
+            "peak": 0.1549082100391388,
+            "peak_dbfs": -16.198511285848042,
+            "rms_dbfs": -29.22049590567792,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 74.58703511150368,
+            "identical_stereo_channels": false,
+            "side_to_mid_db": -12.777972648898379
+          },
+          "input_raw_sha256": "7a22edc24a5286b8c9ec6156964958bd28b2b51729a3796ed360b425928e37ac",
+          "listening_gain": 2.8908449253891564,
+          "listening_sha256": "01e5190cdf928c0788cebc9a79984fbd12972c4e15d397a629706a6286b464a6"
+        },
+        {
+          "name": "exponential-slow",
+          "title": "Experimental exponential filter decay",
+          "statistics": {
+            "peak": 0.15815392136573792,
+            "peak_dbfs": -16.01840070899762,
+            "rms_dbfs": -29.200646217581824,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 74.89937663128148,
+            "identical_stereo_channels": false,
+            "side_to_mid_db": -12.740569785410221
+          },
+          "input_raw_sha256": "e74ccf3102179d04e1397a7f7e28e66d607d0265f391ba4e3d50bd65337e8abc",
+          "listening_gain": 2.8842460788663358,
+          "listening_sha256": "7c5eacc46ebbddb023de9a73bd8a1cd875fa8321d80c9f2f2020d31dbfee0880"
+        }
+      ]
+    }
+  ],
+  "profiles": {
+    "linear-slow": {
+      "status": "experimental, not shipping",
+      "shape": "linear_control",
+      "fitted_raw_control": 49,
+      "time_seconds": 0.4189852819747085,
+      "fitting": "first Moogie low note only, current LP24/base/depth assumption; two other notes held out",
+      "unmeasured": "all other raw decay values use provisional interpolation; waveform and recording assumptions remain",
+      "source_sha256": {
+        "build-fidelity/hardware-benchmark/filter-candidates/linear-slow/Source/DSP/SeptumEngine.cpp": "85aba8a02e0dbe039ee4ebb58a3add1e184210de221e6abdffd7bb25b93389c6",
+        "build-fidelity/hardware-benchmark/filter-candidates/linear-slow/Source/DSP/SeptumEngine.h": "1b1087cb01d447300ce3422e332304286f1761b3fc1dfd23dfe7a589750a7e37",
+        "build-fidelity/hardware-benchmark/filter-candidates/linear-slow/RenderMidi.cpp": "849c8c142c75c44a0e39d7f097a1d26701360db6abb772a5d2aa43934ec6f4b2",
+        "build-fidelity/libSeptumDSP.a": "18733466b213f03f5f59ded7c0443a559b22c27edfacbfa2ab523bcb83252754"
+      }
+    },
+    "exponential-slow": {
+      "status": "experimental, not shipping",
+      "shape": "exponential_control",
+      "fitted_raw_control": 49,
+      "time_seconds": 0.26557632184918367,
+      "fitting": "first Moogie low note only, current LP24/base/depth assumption; two other notes held out",
+      "unmeasured": "all other raw decay values use provisional interpolation; waveform and recording assumptions remain",
+      "source_sha256": {
+        "build-fidelity/hardware-benchmark/filter-candidates/exponential-slow/Source/DSP/SeptumEngine.cpp": "b2c98e1df42b15fc129e6c7e3503c3659a9c935581060fce4626193f8388d963",
+        "build-fidelity/hardware-benchmark/filter-candidates/exponential-slow/Source/DSP/SeptumEngine.h": "2191ccfd226720fb529b4240fa5e7708fa0ba7a2e5a7a975e4f8aa9a1cc160c5",
+        "build-fidelity/hardware-benchmark/filter-candidates/exponential-slow/RenderMidi.cpp": "849c8c142c75c44a0e39d7f097a1d26701360db6abb772a5d2aa43934ec6f4b2",
+        "build-fidelity/libSeptumDSP.a": "18733466b213f03f5f59ded7c0443a559b22c27edfacbfa2ab523bcb83252754"
+      }
+    }
+  }
+}

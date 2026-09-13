@@ -1,0 +1,519 @@
+{
+  "schema_version": 1,
+  "status": "production filter-envelope range correction",
+  "comparison_limit": "Reconstructed MIDI; original performance, exact recorded patch revision and recording processing remain unverified.",
+  "listening_processing": "Whole-excerpt scalar RMS matching; no EQ, compression or time warp.",
+  "filter_envelope_max_octaves": {
+    "before": 10,
+    "after": 12
+  },
+  "results": [
+    {
+      "case": "supa-juce-1",
+      "reference": {
+        "id": "lead-06",
+        "title": "SupaJuice 1",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_SupaJuce1.mp3",
+        "local_filename": "TOP8_SupaJuce1.mp3",
+        "sha256": "e9c1dbe5cddf241f69b0d7b044201bb18e212345dc080c35a09001cb9afe103f",
+        "size_bytes": 647026,
+        "bank_id": "lead",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 6,
+        "patch_name": "SupaJuce 1",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank.",
+        "name_note": "Official HTML spells the title SupaJuice 1; downloaded librarian record spells it SupaJuce 1."
+      },
+      "same_midi_sysex_verified": true,
+      "original_midi_available": false,
+      "reconstruction_sha256": "b6ddd3096d0f243206efbfea27a956b18710de102325ba20c4d5d64a1293940d",
+      "before_inputs": {
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/resonance-investigation/production-after/supa-juce-1/reconstructed-performance.mid",
+          "sha256": "0df6bc4fa7ae91185c937d8ce770562aaa5ced55650bc5b4066951ba671a9498"
+        },
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/resonance-investigation/production-after/supa-juce-1/original-patch.syx",
+          "sha256": "9791c9e16ab0a6e4374791b8f47766cfa0ee725da0d4a14ee5d75a319bf6fad8"
+        },
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+          "sha256": "2fa7fcd6a4eb3cf35bfd288cf40b6e717daea0b8e6076acca43f84aaa2ba5a21"
+        }
+      },
+      "after_inputs": {
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/brightness-investigation/production-after/supa-juce-1/reconstructed-performance.mid",
+          "sha256": "0df6bc4fa7ae91185c937d8ce770562aaa5ced55650bc5b4066951ba671a9498"
+        },
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/brightness-investigation/production-after/supa-juce-1/original-patch.syx",
+          "sha256": "9791c9e16ab0a6e4374791b8f47766cfa0ee725da0d4a14ee5d75a319bf6fad8"
+        },
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+          "sha256": "37fd4c87d4e96b47fdfc2e5a193ee5b0bebfdf783fe87eea1b887075a16b9cb9"
+        }
+      },
+      "before_manifest_sha256": "158046528af1de4efff1eafd1e3a58fba64c0c44f0689c1cb73e81343bf9f62d",
+      "after_manifest_sha256": "4c6727219bf1b6178863c40d48536f2f90126db8e77295313802cc1584e13b62",
+      "before_output_sha256": "93da0fdd5872c80b0bfe6d56febb61b1a1b3a0394e216bdb62b3bd6ba5fbc186",
+      "after_output_sha256": "87a1fb1a31f4ad1a51acd3a5adfe63cd26ad5701e19080165123380e48fd2302",
+      "before_statistics": {
+        "hardware": {
+          "peak": 0.9873425960540771,
+          "peak_dbfs": -0.11064252393111457,
+          "rms_dbfs": -12.670212815813478,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 1641.7023799128594,
+          "identical_stereo_channels": false,
+          "side_to_mid_db": -13.638212070391463
+        },
+        "septum": {
+          "peak": 0.6188673973083496,
+          "peak_dbfs": -4.168047917384101,
+          "rms_dbfs": -16.942679937209334,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 1127.498558814998,
+          "identical_stereo_channels": false,
+          "side_to_mid_db": -10.283897120954965
+        }
+      },
+      "after_statistics": {
+        "hardware": {
+          "peak": 0.9873425960540771,
+          "peak_dbfs": -0.11064252393111457,
+          "rms_dbfs": -12.670212815813478,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 1641.7023799128594,
+          "identical_stereo_channels": false,
+          "side_to_mid_db": -13.638212070391463
+        },
+        "septum": {
+          "peak": 0.6200795769691467,
+          "peak_dbfs": -4.151051448070407,
+          "rms_dbfs": -17.761348441816136,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 1337.8683224963713,
+          "identical_stereo_channels": false,
+          "side_to_mid_db": -10.026932637489658
+        }
+      },
+      "limits": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Original MIDI is unavailable; this is an estimated reconstruction.",
+        "Event boundaries are approximate within 10\u201320 ms; pitch envelope, filter release and delay obscure exact key-down/up times.",
+        "All velocities are placeholders at 100. Original velocity, controllers, system transpose, recording processing and exact patch revision are unverified.",
+        "Lower square note identification is stronger than exact gates. The first 1.8 seconds exclude the rest of the demo and use an artificial final crop."
+      ]
+    },
+    {
+      "case": "cotton-wool",
+      "reference": {
+        "id": "pad-01",
+        "title": "Cotton Wool",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_pad.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/PAD/TOP8_Cotton_Wool.mp3",
+        "local_filename": "TOP8_Cotton_Wool.mp3",
+        "sha256": "abf9d3ad400119ab0546fd724ab7a7442ea724bb164f8e9d024c642c791a1379",
+        "size_bytes": 744869,
+        "bank_id": "pad",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 1,
+        "patch_name": "Cotton Wool",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+      },
+      "same_midi_sysex_verified": true,
+      "original_midi_available": false,
+      "reconstruction_sha256": "85d65a5bf0dc30ef06f0130023c4a623d36b1a3a7264500cd590fb3190b8e6cc",
+      "before_inputs": {
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/resonance-investigation/production-after/cotton-wool/reconstructed-performance.mid",
+          "sha256": "9794993003bca0f1af71f2a39d30e294c6bf862ab1d6aabdbea50d145d0ce69f"
+        },
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/resonance-investigation/production-after/cotton-wool/original-patch.syx",
+          "sha256": "e7f23e39445895f2158482037b37a19dfe413e536869c0e6f78352de6e49fbef"
+        },
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+          "sha256": "2fa7fcd6a4eb3cf35bfd288cf40b6e717daea0b8e6076acca43f84aaa2ba5a21"
+        }
+      },
+      "after_inputs": {
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/brightness-investigation/production-after/cotton-wool/reconstructed-performance.mid",
+          "sha256": "9794993003bca0f1af71f2a39d30e294c6bf862ab1d6aabdbea50d145d0ce69f"
+        },
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/brightness-investigation/production-after/cotton-wool/original-patch.syx",
+          "sha256": "e7f23e39445895f2158482037b37a19dfe413e536869c0e6f78352de6e49fbef"
+        },
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+          "sha256": "37fd4c87d4e96b47fdfc2e5a193ee5b0bebfdf783fe87eea1b887075a16b9cb9"
+        }
+      },
+      "before_manifest_sha256": "36487dfbcf6de40055304082c3f5d0db36402623110aa27740f676a3c26ea4c1",
+      "after_manifest_sha256": "4f37d7a7f03684c03a762010c597ddc13854809a4b06f99176d02bd5dc59dba4",
+      "before_output_sha256": "9a6aab0635ab1b1dccfc74c2ef0a0fbdf8eecbb17c786ef195ccd247197df401",
+      "after_output_sha256": "38ff7e62a22b4d65d5785072093ec5d9022bfba8d442770a723fbb4d159adb12",
+      "before_statistics": {
+        "hardware": {
+          "peak": 0.8876089453697205,
+          "peak_dbfs": -1.0355665915060412,
+          "rms_dbfs": -17.309348932465312,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 316.28238187903884,
+          "identical_stereo_channels": false,
+          "side_to_mid_db": -17.264011799829312
+        },
+        "septum": {
+          "peak": 0.21028578281402588,
+          "peak_dbfs": -13.543801769681634,
+          "rms_dbfs": -27.7070241185153,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 188.4446796961953,
+          "identical_stereo_channels": false,
+          "side_to_mid_db": -8.939268631470078
+        }
+      },
+      "after_statistics": {
+        "hardware": {
+          "peak": 0.8876089453697205,
+          "peak_dbfs": -1.0355665915060412,
+          "rms_dbfs": -17.309348932465312,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 316.28238187903884,
+          "identical_stereo_channels": false,
+          "side_to_mid_db": -17.264011799829312
+        },
+        "septum": {
+          "peak": 0.2125527262687683,
+          "peak_dbfs": -13.450666405243775,
+          "rms_dbfs": -27.716328706403743,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 211.42451083645827,
+          "identical_stereo_channels": false,
+          "side_to_mid_db": -9.155033851074924
+        }
+      },
+      "limits": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "This is an estimated reconstruction, not a recovered original MIDI performance.",
+        "Played MIDI octave is conditional on the measured WIDE-off range and default system transpose. The original performance MIDI has not been recovered.",
+        "Bass C2/C3 octave allocation is less certain than the Eb/F/Bb and Eb/F/A chord pitch classes because their harmonics overlap.",
+        "Onsets are approximate within roughly30\u201370 ms, with the later F3 strum less certain. Short-time analysis window smears exact attacks.",
+        "Note-off times are placeholders informed by audible-band decay; release envelopes and reverb prevent exact recovery.",
+        "Velocities, controllers, pitch bend, system transpose/tuning, master gain, and recording processing are unknown.",
+        "Small note overlaps, extra quiet notes, and the exact voicing may differ from this estimate.",
+        "All note-on velocities fixed to100 as an explicit placeholder. Original velocities were not recoverable, and filter velocity sensitivity is+18 in the published patch. No velocity or preset parameters were fitted against Septum output.",
+        "Five-second excerpt only; the later untranscribed performance is not compared with the rendered release tail."
+      ]
+    },
+    {
+      "case": "moogie-1",
+      "reference": {
+        "id": "bass-01",
+        "title": "Moogie 1",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_bass.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/BASS/TOP8_Moogie1.mp3",
+        "local_filename": "TOP8_Moogie1.mp3",
+        "sha256": "32a354043a57a6cac3b85d6366dbe9cb253a67964f478f412ee2ceab38505e9e",
+        "size_bytes": 497396,
+        "bank_id": "bass",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 1,
+        "patch_name": "Moogie 1",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+      },
+      "same_midi_sysex_verified": true,
+      "original_midi_available": false,
+      "reconstruction_sha256": "c2766e059d8ef5139752731cae633d1ed3588c5ab48c4ca93c381b667cbe23b7",
+      "before_inputs": {
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/resonance-investigation/production-after/moogie-1/reconstructed-performance.mid",
+          "sha256": "354540c1ac357a80473d0d71e62a20ff2af79e125fcdf82166d20ec12cf71104"
+        },
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/resonance-investigation/production-after/moogie-1/original-patch.syx",
+          "sha256": "33d39a6b1cbf47abd830ecf879e1ef6774b50eb6a4eb4db6997749f4f7cffabc"
+        },
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+          "sha256": "2fa7fcd6a4eb3cf35bfd288cf40b6e717daea0b8e6076acca43f84aaa2ba5a21"
+        }
+      },
+      "after_inputs": {
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/brightness-investigation/production-after/moogie-1/reconstructed-performance.mid",
+          "sha256": "354540c1ac357a80473d0d71e62a20ff2af79e125fcdf82166d20ec12cf71104"
+        },
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/brightness-investigation/production-after/moogie-1/original-patch.syx",
+          "sha256": "33d39a6b1cbf47abd830ecf879e1ef6774b50eb6a4eb4db6997749f4f7cffabc"
+        },
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+          "sha256": "37fd4c87d4e96b47fdfc2e5a193ee5b0bebfdf783fe87eea1b887075a16b9cb9"
+        }
+      },
+      "before_manifest_sha256": "e42821f05ea1aac0dbb831d8f03a074bb7ad22fb5c2575e91c3e077bcd5d2ead",
+      "after_manifest_sha256": "94007a934c065feb45841d4dfdf64e4fa449fd1695a792cac19e5d9251cd231a",
+      "before_output_sha256": "29ab1181af4bb9c20b4befe2a04f95df9d6a678117221110da90efab011003b9",
+      "after_output_sha256": "682d91515bfd85a43c37a8539c1ef6d9db258fbbf8e7f52a35b842ec1da84532",
+      "before_statistics": {
+        "hardware": {
+          "peak": 0.8723894357681274,
+          "peak_dbfs": -1.1857920433290778,
+          "rms_dbfs": -10.115285622301226,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 75.53933877036322,
+          "identical_stereo_channels": false,
+          "side_to_mid_db": -35.510754676676115
+        },
+        "septum": {
+          "peak": 0.6678171753883362,
+          "peak_dbfs": -3.5068483129867207,
+          "rms_dbfs": -7.661703474425937,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 60.75036618216661,
+          "identical_stereo_channels": true,
+          "side_to_mid_db": null
+        }
+      },
+      "after_statistics": {
+        "hardware": {
+          "peak": 0.8723894357681274,
+          "peak_dbfs": -1.1857920433290778,
+          "rms_dbfs": -10.115285622301226,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 75.53933877036322,
+          "identical_stereo_channels": false,
+          "side_to_mid_db": -35.510754676676115
+        },
+        "septum": {
+          "peak": 0.6662750244140625,
+          "peak_dbfs": -3.526929322584142,
+          "rms_dbfs": -7.644004979751925,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 61.63185950667368,
+          "identical_stereo_channels": true,
+          "side_to_mid_db": null
+        }
+      },
+      "limits": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Original performance MIDI is unavailable; these notes are an estimate, not a recovered original file.",
+        "Played MIDI octave is conditional on the measured WIDE-off range and default system transpose. The original performance MIDI has not been recovered.",
+        "Repeated-note onsets and pitch transitions have roughly 20\u201340 ms uncertainty. Note-offs are assumed to meet the following onset; the hardware audio does not uniquely reveal key release timing.",
+        "Velocity is assumed 100 for every note. Both tones have level velocity sensitivity +8; absolute amplitude and any velocity variation remain unverified.",
+        "Controller automation, master settings, recording processing and exact demo patch revision are unknown. No controller events were invented.",
+        "The excerpt stops before the next phrase; its final release is an artificial crop boundary and is excluded from release-time conclusions."
+      ]
+    },
+    {
+      "case": "dist-bs-1",
+      "reference": {
+        "id": "bass-03",
+        "title": "Dist Bs 1",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_bass.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/BASS/TOP8_DistBs1.mp3",
+        "local_filename": "TOP8_DistBs1.mp3",
+        "sha256": "4d1c6c0d8f32aaefd690f65fecee25952b2a5975aa9faed5e2d463a87099f9aa",
+        "size_bytes": 509099,
+        "bank_id": "bass",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 3,
+        "patch_name": "Dist Bs 1",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+      },
+      "same_midi_sysex_verified": true,
+      "original_midi_available": false,
+      "reconstruction_sha256": "91341df08c72b74f00c6bbf63b4f1a19089b0fb2fa735474f982c462e31c917f",
+      "before_inputs": {
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/resonance-investigation/production-after/dist-bs-1/reconstructed-performance.mid",
+          "sha256": "66b5b06caddf07f908df34a9e8aef4bc65cf05872ef7f2b047622b879835e3e5"
+        },
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/resonance-investigation/production-after/dist-bs-1/original-patch.syx",
+          "sha256": "774bed5b7e3155c4c2efadcffc388c972e7fdd9a9ed82af08cb7333b14980060"
+        },
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+          "sha256": "2fa7fcd6a4eb3cf35bfd288cf40b6e717daea0b8e6076acca43f84aaa2ba5a21"
+        }
+      },
+      "after_inputs": {
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/brightness-investigation/production-after/dist-bs-1/reconstructed-performance.mid",
+          "sha256": "66b5b06caddf07f908df34a9e8aef4bc65cf05872ef7f2b047622b879835e3e5"
+        },
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/brightness-investigation/production-after/dist-bs-1/original-patch.syx",
+          "sha256": "774bed5b7e3155c4c2efadcffc388c972e7fdd9a9ed82af08cb7333b14980060"
+        },
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+          "sha256": "37fd4c87d4e96b47fdfc2e5a193ee5b0bebfdf783fe87eea1b887075a16b9cb9"
+        }
+      },
+      "before_manifest_sha256": "45cf869a334752b84650da4904f772784fe17f41235a6c292e810d15729629f8",
+      "after_manifest_sha256": "14859deb21ca6e5aa83a10401638a266bb68ceb9c5ccdee4553a1142ac6583f9",
+      "before_output_sha256": "de8a1829404e65496eeeec8ad6c00e185116b30cb29d8733c1f18fe3cfb47f88",
+      "after_output_sha256": "ab51544b066836225d6eb382cb47308fda68f2ce4bed5cb67768abb2d0f6e6f6",
+      "before_statistics": {
+        "hardware": {
+          "peak": 0.9807952046394348,
+          "peak_dbfs": -0.1684333239627014,
+          "rms_dbfs": -10.966776437402167,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 64.62882125582603,
+          "identical_stereo_channels": false,
+          "side_to_mid_db": -32.86823977402427
+        },
+        "septum": {
+          "peak": 0.5498818755149841,
+          "peak_dbfs": -5.194611894543945,
+          "rms_dbfs": -11.908957394984007,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 49.5422413722784,
+          "identical_stereo_channels": true,
+          "side_to_mid_db": null
+        }
+      },
+      "after_statistics": {
+        "hardware": {
+          "peak": 0.9807952046394348,
+          "peak_dbfs": -0.1684333239627014,
+          "rms_dbfs": -10.966776437402167,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 64.62882125582603,
+          "identical_stereo_channels": false,
+          "side_to_mid_db": -32.86823977402427
+        },
+        "septum": {
+          "peak": 0.5609435439109802,
+          "peak_dbfs": -5.021616921105783,
+          "rms_dbfs": -11.898265964856664,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 49.89607640105775,
+          "identical_stereo_channels": true,
+          "side_to_mid_db": null
+        }
+      },
+      "limits": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Three-note crop from 1.94\u20133.20 seconds of the original demo; the earlier note with obvious pitch movement is outside this excerpt.",
+        "Played MIDI octave is conditional on the measured WIDE-off range and default system transpose. The original performance MIDI has not been recovered.",
+        "All velocities are fixed to 100, an unknown placeholder. Both tones have amplitude velocity sensitivity +8.",
+        "Original MIDI, controller events, system tuning/transposition, gain and processing are unavailable; no waveform null or absolute loudness calibration is justified.",
+        "Septum starts from reset; hardware was already sounding earlier in the recording. The crop begins in a quiet gap, with preset delay and reverb disabled."
+      ]
+    }
+  ],
+  "figure_sha256": "9cd949ea253d3b40d3a6111ee33239caf4ad2f6aac0556b292f01e2fdddb7b50",
+  "script_sha256": "2b5822fcae0332409868bfc77b8ff0333533a04a95362d3d5adc4c411d3f924b",
+  "validation": {
+    "date": "2026-09-13",
+    "ctest": {
+      "passed": 12,
+      "failed": 0,
+      "log_path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/brightness-investigation/ctest.log",
+      "log_sha256": "c1baaad83725d213513b6b3c638d260d8741c0f71d30e7e446d36494134805b7",
+      "core_engine_checks": 4599,
+      "hardware_voice_checks": 360
+    },
+    "source_sha256": {
+      "Source/DSP/SeptumEngine.cpp": "5026b016905b7743091b010078d4d378087ea3b15e48a19d722fd19739998bd4",
+      "Source/DSP/SeptumEngine.h": "28589536fc40d9ea4a5b13f92cb94a726556ae3e5ff6062d8a28b14348b2e7df",
+      "Tests/HardwareVoiceFidelityTests.cpp": "36c96d54a12673933f57321db5befab28ede575294ac17fc927605e6ecbee87e"
+    },
+    "bundles": [
+      {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/Septum_artefacts/Release/AU/Septum.component",
+        "executable_sha256": "87de598ffaa688b30ade06fbec5f752b88ecd542c94d6f8b4fb069a30ca446d9",
+        "architectures": "arm64",
+        "strict_deep_signature_verification": "passed",
+        "signature": "local ad-hoc"
+      },
+      {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/Septum_artefacts/Release/VST3/Septum.vst3",
+        "executable_sha256": "b5878c486e2c65572f323cb0b81975132b68953701fff8711a6197de22eb7a38",
+        "architectures": "arm64",
+        "strict_deep_signature_verification": "passed",
+        "signature": "local ad-hoc"
+      },
+      {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/Septum_artefacts/Release/Standalone/Septum.app",
+        "executable_sha256": "7f5be79e1a7b2377c0eb304b50611c5d8fc557fb8e2ff273700e65f423952852",
+        "architectures": "arm64",
+        "strict_deep_signature_verification": "passed",
+        "signature": "local ad-hoc"
+      }
+    ],
+    "renderer_sha256": "37fd4c87d4e96b47fdfc2e5a193ee5b0bebfdf783fe87eea1b887075a16b9cb9",
+    "production_candidate_verification": {
+      "cotton-wool": {
+        "candidate_sha256": "38ff7e62a22b4d65d5785072093ec5d9022bfba8d442770a723fbb4d159adb12",
+        "production_sha256": "38ff7e62a22b4d65d5785072093ec5d9022bfba8d442770a723fbb4d159adb12",
+        "byte_identical": true
+      },
+      "dist-bs-1": {
+        "candidate_sha256": "ab51544b066836225d6eb382cb47308fda68f2ce4bed5cb67768abb2d0f6e6f6",
+        "production_sha256": "ab51544b066836225d6eb382cb47308fda68f2ce4bed5cb67768abb2d0f6e6f6",
+        "byte_identical": true
+      },
+      "moogie-1": {
+        "candidate_sha256": "682d91515bfd85a43c37a8539c1ef6d9db258fbbf8e7f52a35b842ec1da84532",
+        "production_sha256": "682d91515bfd85a43c37a8539c1ef6d9db258fbbf8e7f52a35b842ec1da84532",
+        "byte_identical": true
+      },
+      "supa-juce-1": {
+        "candidate_sha256": "87a1fb1a31f4ad1a51acd3a5adfe63cd26ad5701e19080165123380e48fd2302",
+        "production_sha256": "87a1fb1a31f4ad1a51acd3a5adfe63cd26ad5701e19080165123380e48fd2302",
+        "byte_identical": true
+      }
+    },
+    "browser_player": "Corrected SupaJuce and Cotton playback, switching to hardware and pausing verified through browser UI."
+  },
+  "independent_audits": {
+    "supajuce-brightness.json": "68f4b597dedbf609d6a0a3eddb3122b970a8c633de8a06f77525f6c024c8bcb8",
+    "brightness-controls.json": "47ae781b89b3ac00060d76a082e2d265bdeddb0927d0b641dded1d28e0faa415",
+    "cutoff-parameter-audit.md": "39fdc07340b2310f2eeab523916e66535217efe720ff16534d0c8f13a6a15ecd"
+  }
+}

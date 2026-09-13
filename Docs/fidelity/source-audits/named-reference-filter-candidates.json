@@ -1,0 +1,1926 @@
+[
+  {
+    "id": "bass-01",
+    "name": "Moogie 1",
+    "audio": "TOP8_Moogie1.mp3",
+    "bank": "bass",
+    "patch_number": 1,
+    "mode": 1,
+    "single_part": 0,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "U",
+        "osc": [
+          {
+            "wave": 2,
+            "coarse": -36,
+            "fine": 0,
+            "pw": 57
+          },
+          {
+            "wave": 4,
+            "coarse": -36,
+            "fine": 0,
+            "pw": 64
+          }
+        ],
+        "balance": 0,
+        "mix": 0,
+        "low_freq": 1,
+        "f_type": 1,
+        "slope": 24,
+        "cutoff": 30,
+        "keyfollow": 0,
+        "cutoff_vel": 0,
+        "reso": 0,
+        "f_ADSR": [
+          0,
+          49,
+          0,
+          0
+        ],
+        "f_depth": 22,
+        "drive": false,
+        "level": 127,
+        "amp_ADSR": [
+          0,
+          0,
+          127,
+          3
+        ],
+        "delay_send": 0,
+        "reverb_send": 0,
+        "lfo_filter_depths": [
+          0,
+          0
+        ],
+        "mono": 2
+      },
+      {
+        "part": "L",
+        "osc": [
+          {
+            "wave": 1,
+            "coarse": -36,
+            "fine": 0,
+            "pw": 106
+          },
+          {
+            "wave": 3,
+            "coarse": -36,
+            "fine": 0,
+            "pw": 0
+          }
+        ],
+        "balance": 0,
+        "mix": 0,
+        "low_freq": 0,
+        "f_type": 1,
+        "slope": 24,
+        "cutoff": 47,
+        "keyfollow": 0,
+        "cutoff_vel": 0,
+        "reso": 0,
+        "f_ADSR": [
+          0,
+          37,
+          0,
+          127
+        ],
+        "f_depth": 15,
+        "drive": false,
+        "level": 127,
+        "amp_ADSR": [
+          0,
+          69,
+          127,
+          3
+        ],
+        "delay_send": 0,
+        "reverb_send": 0,
+        "lfo_filter_depths": [
+          0,
+          0
+        ],
+        "mono": 2
+      }
+    ]
+  },
+  {
+    "id": "bass-02",
+    "name": "So Juno 1",
+    "audio": "TOP8_SoJuno1.mp3",
+    "bank": "bass",
+    "patch_number": 2,
+    "mode": 1,
+    "single_part": 0,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "U",
+        "osc": [
+          {
+            "wave": 0,
+            "coarse": 0,
+            "fine": 0,
+            "pw": 64
+          },
+          {
+            "wave": 1,
+            "coarse": -12,
+            "fine": 0,
+            "pw": 64
+          }
+        ],
+        "balance": -8,
+        "mix": 0,
+        "low_freq": 0,
+        "f_type": 1,
+        "slope": 24,
+        "cutoff": 12,
+        "keyfollow": 0,
+        "cutoff_vel": 10,
+        "reso": 0,
+        "f_ADSR": [
+          0,
+          56,
+          63,
+          0
+        ],
+        "f_depth": 38,
+        "drive": false,
+        "level": 80,
+        "amp_ADSR": [
+          0,
+          55,
+          127,
+          0
+        ],
+        "delay_send": 80,
+        "reverb_send": 0,
+        "lfo_filter_depths": [
+          0,
+          0
+        ],
+        "mono": 2
+      },
+      {
+        "part": "L",
+        "osc": [
+          {
+            "wave": 4,
+            "coarse": -36,
+            "fine": 0,
+            "pw": 64
+          }
+        ],
+        "balance": -63,
+        "mix": 0,
+        "low_freq": 0,
+        "f_type": 1,
+        "slope": 12,
+        "cutoff": 41,
+        "keyfollow": -200,
+        "cutoff_vel": 0,
+        "reso": 0,
+        "f_ADSR": [
+          0,
+          0,
+          127,
+          0
+        ],
+        "f_depth": 0,
+        "drive": false,
+        "level": 127,
+        "amp_ADSR": [
+          0,
+          61,
+          127,
+          0
+        ],
+        "delay_send": 0,
+        "reverb_send": 0,
+        "lfo_filter_depths": [
+          0,
+          0
+        ],
+        "mono": 0
+      }
+    ]
+  },
+  {
+    "id": "bass-03",
+    "name": "Dist Bs 1",
+    "audio": "TOP8_DistBs1.mp3",
+    "bank": "bass",
+    "patch_number": 3,
+    "mode": 1,
+    "single_part": 1,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "U",
+        "osc": [
+          {
+            "wave": 0,
+            "coarse": -36,
+            "fine": 0,
+            "pw": 57
+          },
+          {
+            "wave": 4,
+            "coarse": -36,
+            "fine": 0,
+            "pw": 64
+          }
+        ],
+        "balance": 0,
+        "mix": 0,
+        "low_freq": 1,
+        "f_type": 1,
+        "slope": 24,
+        "cutoff": 36,
+        "keyfollow": 0,
+        "cutoff_vel": 0,
+        "reso": 31,
+        "f_ADSR": [
+          0,
+          64,
+          0,
+          0
+        ],
+        "f_depth": 22,
+        "drive": true,
+        "level": 127,
+        "amp_ADSR": [
+          0,
+          0,
+          127,
+          0
+        ],
+        "delay_send": 0,
+        "reverb_send": 0,
+        "lfo_filter_depths": [
+          0,
+          0
+        ],
+        "mono": 2
+      },
+      {
+        "part": "L",
+        "osc": [
+          {
+            "wave": 2,
+            "coarse": -36,
+            "fine": 0,
+            "pw": 60
+          },
+          {
+            "wave": 3,
+            "coarse": -36,
+            "fine": 0,
+            "pw": 0
+          }
+        ],
+        "balance": 0,
+        "mix": 0,
+        "low_freq": 1,
+        "f_type": 1,
+        "slope": 24,
+        "cutoff": 57,
+        "keyfollow": 0,
+        "cutoff_vel": 0,
+        "reso": 0,
+        "f_ADSR": [
+          0,
+          37,
+          0,
+          127
+        ],
+        "f_depth": 15,
+        "drive": false,
+        "level": 127,
+        "amp_ADSR": [
+          0,
+          69,
+          127,
+          0
+        ],
+        "delay_send": 0,
+        "reverb_send": 0,
+        "lfo_filter_depths": [
+          0,
+          0
+        ],
+        "mono": 2
+      }
+    ]
+  },
+  {
+    "id": "bass-04",
+    "name": "Pedal Bs 1",
+    "audio": "TOP8_PedalBs1.mp3",
+    "bank": "bass",
+    "patch_number": 4,
+    "mode": 0,
+    "single_part": 0,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "U",
+        "osc": [
+          {
+            "wave": 7,
+            "coarse": 0,
+            "fine": 0,
+            "pw": 41
+          },
+          {
+            "wave": 4,
+            "coarse": -36,
+            "fine": -7,
+            "pw": 64
+          }
+        ],
+        "balance": 0,
+        "mix": 0,
+        "low_freq": 0,
+        "f_type": 1,
+        "slope": 24,
+        "cutoff": 34,
+        "keyfollow": 10,
+        "cutoff_vel": 15,
+        "reso": 0,
+        "f_ADSR": [
+          0,
+          27,
+          51,
+          81
+        ],
+        "f_depth": 13,
+        "drive": false,
+        "level": 127,
+        "amp_ADSR": [
+          0,
+          0,
+          127,
+          92
+        ],
+        "delay_send": 24,
+        "reverb_send": 0,
+        "lfo_filter_depths": [
+          0,
+          0
+        ],
+        "mono": 2
+      }
+    ]
+  },
+  {
+    "id": "bass-05",
+    "name": "Club Bass",
+    "audio": "TOP8_ClubBass.mp3",
+    "bank": "bass",
+    "patch_number": 5,
+    "mode": 1,
+    "single_part": 0,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "U",
+        "osc": [
+          {
+            "wave": 3,
+            "coarse": 0,
+            "fine": 0,
+            "pw": 57
+          },
+          {
+            "wave": 4,
+            "coarse": 24,
+            "fine": 0,
+            "pw": 0
+          }
+        ],
+        "balance": 6,
+        "mix": 0,
+        "low_freq": 0,
+        "f_type": 1,
+        "slope": 12,
+        "cutoff": 103,
+        "keyfollow": 0,
+        "cutoff_vel": 0,
+        "reso": 41,
+        "f_ADSR": [
+          0,
+          0,
+          127,
+          0
+        ],
+        "f_depth": 0,
+        "drive": true,
+        "level": 100,
+        "amp_ADSR": [
+          0,
+          21,
+          71,
+          0
+        ],
+        "delay_send": 0,
+        "reverb_send": 50,
+        "lfo_filter_depths": [
+          34,
+          0
+        ],
+        "mono": 0
+      },
+      {
+        "part": "L",
+        "osc": [
+          {
+            "wave": 3,
+            "coarse": -36,
+            "fine": 0,
+            "pw": 64
+          },
+          {
+            "wave": 4,
+            "coarse": -36,
+            "fine": 0,
+            "pw": 61
+          }
+        ],
+        "balance": 0,
+        "mix": 0,
+        "low_freq": 1,
+        "f_type": 1,
+        "slope": 12,
+        "cutoff": 110,
+        "keyfollow": 0,
+        "cutoff_vel": 0,
+        "reso": 0,
+        "f_ADSR": [
+          0,
+          84,
+          58,
+          0
+        ],
+        "f_depth": 0,
+        "drive": false,
+        "level": 95,
+        "amp_ADSR": [
+          0,
+          0,
+          127,
+          0
+        ],
+        "delay_send": 0,
+        "reverb_send": 0,
+        "lfo_filter_depths": [
+          8,
+          0
+        ],
+        "mono": 1
+      }
+    ]
+  },
+  {
+    "id": "bass-06",
+    "name": "Sexy Back",
+    "audio": "TOP8_SexyBack.mp3",
+    "bank": "bass",
+    "patch_number": 6,
+    "mode": 1,
+    "single_part": 0,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "U",
+        "osc": [
+          {
+            "wave": 7,
+            "coarse": 36,
+            "fine": 13,
+            "pw": 78
+          },
+          {
+            "wave": 7,
+            "coarse": -12,
+            "fine": -15,
+            "pw": 37
+          }
+        ],
+        "balance": 14,
+        "mix": 0,
+        "low_freq": 0,
+        "f_type": 1,
+        "slope": 24,
+        "cutoff": 111,
+        "keyfollow": 0,
+        "cutoff_vel": 0,
+        "reso": 0,
+        "f_ADSR": [
+          0,
+          0,
+          127,
+          0
+        ],
+        "f_depth": 0,
+        "drive": false,
+        "level": 127,
+        "amp_ADSR": [
+          0,
+          0,
+          127,
+          0
+        ],
+        "delay_send": 36,
+        "reverb_send": 0,
+        "lfo_filter_depths": [
+          0,
+          0
+        ],
+        "mono": 1
+      },
+      {
+        "part": "L",
+        "osc": [
+          {
+            "wave": 3,
+            "coarse": -24,
+            "fine": -26,
+            "pw": 2
+          },
+          {
+            "wave": 0,
+            "coarse": 24,
+            "fine": 0,
+            "pw": 0
+          }
+        ],
+        "balance": -38,
+        "mix": 0,
+        "low_freq": 2,
+        "f_type": 1,
+        "slope": 12,
+        "cutoff": 95,
+        "keyfollow": 0,
+        "cutoff_vel": 0,
+        "reso": 0,
+        "f_ADSR": [
+          0,
+          0,
+          127,
+          0
+        ],
+        "f_depth": 0,
+        "drive": true,
+        "level": 127,
+        "amp_ADSR": [
+          0,
+          0,
+          127,
+          0
+        ],
+        "delay_send": 20,
+        "reverb_send": 0,
+        "lfo_filter_depths": [
+          0,
+          0
+        ],
+        "mono": 0
+      }
+    ]
+  },
+  {
+    "id": "bass-07",
+    "name": "Juicy Fat",
+    "audio": "TOP8_JuicyFat.mp3",
+    "bank": "bass",
+    "patch_number": 7,
+    "mode": 1,
+    "single_part": 0,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "U",
+        "osc": [
+          {
+            "wave": 2,
+            "coarse": -36,
+            "fine": 0,
+            "pw": 64
+          }
+        ],
+        "balance": -63,
+        "mix": 0,
+        "low_freq": 0,
+        "f_type": 1,
+        "slope": 12,
+        "cutoff": 43,
+        "keyfollow": 0,
+        "cutoff_vel": 0,
+        "reso": 33,
+        "f_ADSR": [
+          26,
+          0,
+          127,
+          0
+        ],
+        "f_depth": 0,
+        "drive": false,
+        "level": 82,
+        "amp_ADSR": [
+          0,
+          62,
+          127,
+          27
+        ],
+        "delay_send": 0,
+        "reverb_send": 0,
+        "lfo_filter_depths": [
+          0,
+          0
+        ],
+        "mono": 1
+      },
+      {
+        "part": "L",
+        "osc": [
+          {
+            "wave": 0,
+            "coarse": -36,
+            "fine": -4,
+            "pw": 106
+          },
+          {
+            "wave": 0,
+            "coarse": 0,
+            "fine": 5,
+            "pw": 58
+          }
+        ],
+        "balance": -4,
+        "mix": 0,
+        "low_freq": 1,
+        "f_type": 1,
+        "slope": 24,
+        "cutoff": 12,
+        "keyfollow": -30,
+        "cutoff_vel": 0,
+        "reso": 50,
+        "f_ADSR": [
+          21,
+          52,
+          40,
+          38
+        ],
+        "f_depth": 25,
+        "drive": false,
+        "level": 106,
+        "amp_ADSR": [
+          0,
+          90,
+          41,
+          28
+        ],
+        "delay_send": 0,
+        "reverb_send": 0,
+        "lfo_filter_depths": [
+          0,
+          0
+        ],
+        "mono": 1
+      }
+    ]
+  },
+  {
+    "id": "bass-08",
+    "name": "Sequence Bs",
+    "audio": "TOP8_SequenceBs.mp3",
+    "bank": "bass",
+    "patch_number": 8,
+    "mode": 0,
+    "single_part": 1,
+    "tone_balance": 0,
+    "arp_on": 1,
+    "tones": [
+      {
+        "part": "L",
+        "osc": [
+          {
+            "wave": 4,
+            "coarse": -36,
+            "fine": 0,
+            "pw": 64
+          },
+          {
+            "wave": 1,
+            "coarse": -36,
+            "fine": 0,
+            "pw": 64
+          }
+        ],
+        "balance": -17,
+        "mix": 0,
+        "low_freq": 0,
+        "f_type": 1,
+        "slope": 12,
+        "cutoff": 127,
+        "keyfollow": 0,
+        "cutoff_vel": 0,
+        "reso": 0,
+        "f_ADSR": [
+          0,
+          0,
+          127,
+          0
+        ],
+        "f_depth": 0,
+        "drive": false,
+        "level": 127,
+        "amp_ADSR": [
+          0,
+          0,
+          127,
+          0
+        ],
+        "delay_send": 53,
+        "reverb_send": 0,
+        "lfo_filter_depths": [
+          0,
+          0
+        ],
+        "mono": 2
+      }
+    ]
+  },
+  {
+    "id": "pad-01",
+    "name": "Cotton Wool",
+    "audio": "TOP8_Cotton_Wool.mp3",
+    "bank": "pad",
+    "patch_number": 1,
+    "mode": 0,
+    "single_part": 0,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "U",
+        "osc": [
+          {
+            "wave": 7,
+            "coarse": 0,
+            "fine": 0,
+            "pw": 41
+          },
+          {
+            "wave": 4,
+            "coarse": -36,
+            "fine": -7,
+            "pw": 64
+          }
+        ],
+        "balance": 0,
+        "mix": 0,
+        "low_freq": 0,
+        "f_type": 1,
+        "slope": 24,
+        "cutoff": 0,
+        "keyfollow": 60,
+        "cutoff_vel": 18,
+        "reso": 0,
+        "f_ADSR": [
+          10,
+          58,
+          87,
+          105
+        ],
+        "f_depth": 39,
+        "drive": false,
+        "level": 70,
+        "amp_ADSR": [
+          0,
+          0,
+          127,
+          39
+        ],
+        "delay_send": 0,
+        "reverb_send": 35,
+        "lfo_filter_depths": [
+          0,
+          0
+        ],
+        "mono": 0
+      }
+    ]
+  },
+  {
+    "id": "pad-02",
+    "name": "Soundtrack",
+    "audio": "TOP8_Soundtrack.mp3",
+    "bank": "pad",
+    "patch_number": 2,
+    "mode": 1,
+    "single_part": 1,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "U",
+        "osc": [
+          {
+            "wave": 7,
+            "coarse": 23,
+            "fine": 0,
+            "pw": 60
+          }
+        ],
+        "balance": 63,
+        "mix": 0,
+        "low_freq": 2,
+        "f_type": 1,
+        "slope": 24,
+        "cutoff": 100,
+        "keyfollow": 0,
+        "cutoff_vel": 0,
+        "reso": 22,
+        "f_ADSR": [
+          101,
+          127,
+          75,
+          79
+        ],
+        "f_depth": -13,
+        "drive": false,
+        "level": 92,
+        "amp_ADSR": [
+          52,
+          74,
+          112,
+          79
+        ],
+        "delay_send": 75,
+        "reverb_send": 45,
+        "lfo_filter_depths": [
+          16,
+          0
+        ],
+        "mono": 0
+      },
+      {
+        "part": "L",
+        "osc": [
+          {
+            "wave": 7,
+            "coarse": 0,
+            "fine": 0,
+            "pw": 64
+          },
+          {
+            "wave": 7,
+            "coarse": 0,
+            "fine": 0,
+            "pw": 64
+          }
+        ],
+        "balance": 0,
+        "mix": 0,
+        "low_freq": 0,
+        "f_type": 1,
+        "slope": 12,
+        "cutoff": 74,
+        "keyfollow": 0,
+        "cutoff_vel": 0,
+        "reso": 0,
+        "f_ADSR": [
+          0,
+          0,
+          127,
+          127
+        ],
+        "f_depth": 2,
+        "drive": false,
+        "level": 89,
+        "amp_ADSR": [
+          48,
+          127,
+          100,
+          79
+        ],
+        "delay_send": 75,
+        "reverb_send": 45,
+        "lfo_filter_depths": [
+          0,
+          0
+        ],
+        "mono": 0
+      }
+    ]
+  },
+  {
+    "id": "pad-03",
+    "name": "The Choir",
+    "audio": "TOP8_The_Choir.mp3",
+    "bank": "pad",
+    "patch_number": 3,
+    "mode": 0,
+    "single_part": 0,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "U",
+        "osc": [
+          {
+            "wave": 7,
+            "coarse": 0,
+            "fine": 0,
+            "pw": 64
+          },
+          {
+            "wave": 5,
+            "coarse": -36,
+            "fine": 0,
+            "pw": 64
+          }
+        ],
+        "balance": -36,
+        "mix": 0,
+        "low_freq": 2,
+        "f_type": 1,
+        "slope": 24,
+        "cutoff": 69,
+        "keyfollow": 90,
+        "cutoff_vel": 0,
+        "reso": 60,
+        "f_ADSR": [
+          0,
+          0,
+          127,
+          80
+        ],
+        "f_depth": 0,
+        "drive": false,
+        "level": 121,
+        "amp_ADSR": [
+          50,
+          0,
+          127,
+          83
+        ],
+        "delay_send": 75,
+        "reverb_send": 100,
+        "lfo_filter_depths": [
+          0
+        ],
+        "mono": 0
+      }
+    ]
+  },
+  {
+    "id": "pad-04",
+    "name": "Reso Sweep",
+    "audio": "TOP8_Reso_Sweep.mp3",
+    "bank": "pad",
+    "patch_number": 4,
+    "mode": 2,
+    "single_part": 1,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "U",
+        "osc": [
+          {
+            "wave": 7,
+            "coarse": 0,
+            "fine": 0,
+            "pw": 55
+          }
+        ],
+        "balance": -63,
+        "mix": 0,
+        "low_freq": 1,
+        "f_type": 1,
+        "slope": 24,
+        "cutoff": 104,
+        "keyfollow": 0,
+        "cutoff_vel": 0,
+        "reso": 127,
+        "f_ADSR": [
+          0,
+          94,
+          127,
+          101
+        ],
+        "f_depth": 0,
+        "drive": false,
+        "level": 71,
+        "amp_ADSR": [
+          80,
+          65,
+          127,
+          109
+        ],
+        "delay_send": 66,
+        "reverb_send": 47,
+        "lfo_filter_depths": [
+          40
+        ],
+        "mono": 0
+      },
+      {
+        "part": "L",
+        "osc": [
+          {
+            "wave": 7,
+            "coarse": 0,
+            "fine": 0,
+            "pw": 55
+          }
+        ],
+        "balance": -63,
+        "mix": 0,
+        "low_freq": 0,
+        "f_type": 1,
+        "slope": 24,
+        "cutoff": 82,
+        "keyfollow": 0,
+        "cutoff_vel": 0,
+        "reso": 112,
+        "f_ADSR": [
+          0,
+          94,
+          127,
+          101
+        ],
+        "f_depth": 0,
+        "drive": false,
+        "level": 99,
+        "amp_ADSR": [
+          80,
+          65,
+          127,
+          109
+        ],
+        "delay_send": 66,
+        "reverb_send": 47,
+        "lfo_filter_depths": [
+          40
+        ],
+        "mono": 0
+      }
+    ]
+  },
+  {
+    "id": "pad-05",
+    "name": "Pulsatron",
+    "audio": "TOP8_Pulsatron.mp3",
+    "bank": "pad",
+    "patch_number": 5,
+    "mode": 0,
+    "single_part": 1,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "L",
+        "osc": [
+          {
+            "wave": 7,
+            "coarse": 0,
+            "fine": 10,
+            "pw": 64
+          },
+          {
+            "wave": 0,
+            "coarse": -36,
+            "fine": -10,
+            "pw": 38
+          }
+        ],
+        "balance": -30,
+        "mix": 0,
+        "low_freq": 0,
+        "f_type": 1,
+        "slope": 24,
+        "cutoff": 41,
+        "keyfollow": 60,
+        "cutoff_vel": 0,
+        "reso": 0,
+        "f_ADSR": [
+          0,
+          74,
+          88,
+          61
+        ],
+        "f_depth": 19,
+        "drive": false,
+        "level": 100,
+        "amp_ADSR": [
+          20,
+          20,
+          119,
+          81
+        ],
+        "delay_send": 51,
+        "reverb_send": 0,
+        "lfo_filter_depths": [
+          -35,
+          0
+        ],
+        "mono": 0
+      }
+    ]
+  },
+  {
+    "id": "pad-06",
+    "name": "201vsJP8000",
+    "audio": "TOP8_SH-201vsJP-8000.mp3",
+    "bank": "pad",
+    "patch_number": 6,
+    "mode": 0,
+    "single_part": 0,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "U",
+        "osc": [
+          {
+            "wave": 7,
+            "coarse": 0,
+            "fine": 0,
+            "pw": 101
+          },
+          {
+            "wave": 7,
+            "coarse": 0,
+            "fine": 0,
+            "pw": 86
+          }
+        ],
+        "balance": 0,
+        "mix": 0,
+        "low_freq": 0,
+        "f_type": 1,
+        "slope": 12,
+        "cutoff": 85,
+        "keyfollow": 0,
+        "cutoff_vel": 0,
+        "reso": 10,
+        "f_ADSR": [
+          0,
+          41,
+          18,
+          61
+        ],
+        "f_depth": 3,
+        "drive": false,
+        "level": 127,
+        "amp_ADSR": [
+          0,
+          0,
+          127,
+          61
+        ],
+        "delay_send": 40,
+        "reverb_send": 40,
+        "lfo_filter_depths": [
+          34
+        ],
+        "mono": 0
+      }
+    ]
+  },
+  {
+    "id": "pad-07",
+    "name": "Crystalize",
+    "audio": "TOP8_Crystalize.mp3",
+    "bank": "pad",
+    "patch_number": 7,
+    "mode": 0,
+    "single_part": 0,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "U",
+        "osc": [
+          {
+            "wave": 6,
+            "coarse": 0,
+            "fine": 0,
+            "pw": 38
+          }
+        ],
+        "balance": 63,
+        "mix": 2,
+        "low_freq": 0,
+        "f_type": 2,
+        "slope": 24,
+        "cutoff": 51,
+        "keyfollow": 0,
+        "cutoff_vel": 0,
+        "reso": 60,
+        "f_ADSR": [
+          59,
+          105,
+          90,
+          74
+        ],
+        "f_depth": 11,
+        "drive": false,
+        "level": 100,
+        "amp_ADSR": [
+          61,
+          127,
+          127,
+          94
+        ],
+        "delay_send": 127,
+        "reverb_send": 90,
+        "lfo_filter_depths": [
+          0,
+          22
+        ],
+        "mono": 0
+      }
+    ]
+  },
+  {
+    "id": "pad-08",
+    "name": "Moving Str.",
+    "audio": "TOP8_Moving_Strings.mp3",
+    "bank": "pad",
+    "patch_number": 8,
+    "mode": 0,
+    "single_part": 0,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "U",
+        "osc": [
+          {
+            "wave": 7,
+            "coarse": 0,
+            "fine": 0,
+            "pw": 55
+          },
+          {
+            "wave": 7,
+            "coarse": -36,
+            "fine": 5,
+            "pw": 48
+          }
+        ],
+        "balance": 0,
+        "mix": 0,
+        "low_freq": 0,
+        "f_type": 1,
+        "slope": 12,
+        "cutoff": 104,
+        "keyfollow": 0,
+        "cutoff_vel": 0,
+        "reso": 0,
+        "f_ADSR": [
+          0,
+          94,
+          127,
+          101
+        ],
+        "f_depth": 0,
+        "drive": false,
+        "level": 59,
+        "amp_ADSR": [
+          80,
+          65,
+          100,
+          109
+        ],
+        "delay_send": 70,
+        "reverb_send": 0,
+        "lfo_filter_depths": [
+          40
+        ],
+        "mono": 0
+      }
+    ]
+  },
+  {
+    "id": "lead-01",
+    "name": "Class A",
+    "audio": "TOP8_ClassA.mp3",
+    "bank": "lead",
+    "patch_number": 1,
+    "mode": 0,
+    "single_part": 0,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "U",
+        "osc": [
+          {
+            "wave": 0,
+            "coarse": 36,
+            "fine": 0,
+            "pw": 64
+          },
+          {
+            "wave": 0,
+            "coarse": 0,
+            "fine": 0,
+            "pw": 41
+          }
+        ],
+        "balance": -26,
+        "mix": 0,
+        "low_freq": 0,
+        "f_type": 1,
+        "slope": 24,
+        "cutoff": 63,
+        "keyfollow": 50,
+        "cutoff_vel": 0,
+        "reso": 0,
+        "f_ADSR": [
+          3,
+          11,
+          74,
+          63
+        ],
+        "f_depth": 31,
+        "drive": false,
+        "level": 127,
+        "amp_ADSR": [
+          0,
+          0,
+          127,
+          0
+        ],
+        "delay_send": 24,
+        "reverb_send": 48,
+        "lfo_filter_depths": [
+          0,
+          0
+        ],
+        "mono": 1
+      }
+    ]
+  },
+  {
+    "id": "lead-02",
+    "name": "Daft Lead",
+    "audio": "TOP8_DaftLead.mp3",
+    "bank": "lead",
+    "patch_number": 2,
+    "mode": 1,
+    "single_part": 1,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "U",
+        "osc": [
+          {
+            "wave": 1,
+            "coarse": 10,
+            "fine": 0,
+            "pw": 64
+          }
+        ],
+        "balance": -63,
+        "mix": 1,
+        "low_freq": 1,
+        "f_type": 1,
+        "slope": 24,
+        "cutoff": 42,
+        "keyfollow": 0,
+        "cutoff_vel": 0,
+        "reso": 13,
+        "f_ADSR": [
+          0,
+          55,
+          69,
+          24
+        ],
+        "f_depth": 63,
+        "drive": true,
+        "level": 127,
+        "amp_ADSR": [
+          0,
+          0,
+          127,
+          0
+        ],
+        "delay_send": 11,
+        "reverb_send": 0,
+        "lfo_filter_depths": [],
+        "mono": 2
+      },
+      {
+        "part": "L",
+        "osc": [
+          {
+            "wave": 1,
+            "coarse": 12,
+            "fine": 0,
+            "pw": 64
+          }
+        ],
+        "balance": -63,
+        "mix": 1,
+        "low_freq": 1,
+        "f_type": 1,
+        "slope": 24,
+        "cutoff": 42,
+        "keyfollow": 0,
+        "cutoff_vel": 0,
+        "reso": 13,
+        "f_ADSR": [
+          0,
+          55,
+          69,
+          24
+        ],
+        "f_depth": 63,
+        "drive": true,
+        "level": 127,
+        "amp_ADSR": [
+          0,
+          0,
+          127,
+          0
+        ],
+        "delay_send": 20,
+        "reverb_send": 0,
+        "lfo_filter_depths": [],
+        "mono": 2
+      }
+    ]
+  },
+  {
+    "id": "lead-03",
+    "name": "Air Lead 1",
+    "audio": "TOP8_AirLead1.mp3",
+    "bank": "lead",
+    "patch_number": 3,
+    "mode": 0,
+    "single_part": 0,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "U",
+        "osc": [
+          {
+            "wave": 3,
+            "coarse": 36,
+            "fine": 0,
+            "pw": 104
+          },
+          {
+            "wave": 0,
+            "coarse": 36,
+            "fine": 0,
+            "pw": 64
+          }
+        ],
+        "balance": 0,
+        "mix": 0,
+        "low_freq": 1,
+        "f_type": 1,
+        "slope": 24,
+        "cutoff": 91,
+        "keyfollow": 50,
+        "cutoff_vel": 0,
+        "reso": 44,
+        "f_ADSR": [
+          0,
+          74,
+          88,
+          127
+        ],
+        "f_depth": 0,
+        "drive": false,
+        "level": 83,
+        "amp_ADSR": [
+          10,
+          0,
+          127,
+          13
+        ],
+        "delay_send": 35,
+        "reverb_send": 88,
+        "lfo_filter_depths": [
+          0
+        ],
+        "mono": 2
+      }
+    ]
+  },
+  {
+    "id": "lead-04",
+    "name": "Trancefloor",
+    "audio": "TOP8_Trancefloor.mp3",
+    "bank": "lead",
+    "patch_number": 4,
+    "mode": 0,
+    "single_part": 0,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "U",
+        "osc": [
+          {
+            "wave": 7,
+            "coarse": 0,
+            "fine": 0,
+            "pw": 107
+          },
+          {
+            "wave": 7,
+            "coarse": -36,
+            "fine": 0,
+            "pw": 108
+          }
+        ],
+        "balance": -14,
+        "mix": 0,
+        "low_freq": 0,
+        "f_type": 1,
+        "slope": 24,
+        "cutoff": 121,
+        "keyfollow": 0,
+        "cutoff_vel": 0,
+        "reso": 0,
+        "f_ADSR": [
+          0,
+          7,
+          81,
+          16
+        ],
+        "f_depth": 0,
+        "drive": false,
+        "level": 127,
+        "amp_ADSR": [
+          0,
+          0,
+          127,
+          11
+        ],
+        "delay_send": 40,
+        "reverb_send": 20,
+        "lfo_filter_depths": [
+          0
+        ],
+        "mono": 1
+      }
+    ]
+  },
+  {
+    "id": "lead-05",
+    "name": "Vangelead",
+    "audio": "TOP8_Vangelead.mp3",
+    "bank": "lead",
+    "patch_number": 5,
+    "mode": 1,
+    "single_part": 0,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "U",
+        "osc": [
+          {
+            "wave": 0,
+            "coarse": 0,
+            "fine": 1,
+            "pw": 64
+          },
+          {
+            "wave": 0,
+            "coarse": 0,
+            "fine": -3,
+            "pw": 64
+          }
+        ],
+        "balance": -1,
+        "mix": 0,
+        "low_freq": 0,
+        "f_type": 1,
+        "slope": 12,
+        "cutoff": 58,
+        "keyfollow": 80,
+        "cutoff_vel": 0,
+        "reso": 0,
+        "f_ADSR": [
+          36,
+          33,
+          72,
+          92
+        ],
+        "f_depth": 17,
+        "drive": false,
+        "level": 127,
+        "amp_ADSR": [
+          10,
+          0,
+          127,
+          64
+        ],
+        "delay_send": 56,
+        "reverb_send": 0,
+        "lfo_filter_depths": [
+          0,
+          0
+        ],
+        "mono": 2
+      },
+      {
+        "part": "L",
+        "osc": [
+          {
+            "wave": 7,
+            "coarse": 0,
+            "fine": 0,
+            "pw": 64
+          }
+        ],
+        "balance": -63,
+        "mix": 0,
+        "low_freq": 0,
+        "f_type": 1,
+        "slope": 12,
+        "cutoff": 101,
+        "keyfollow": 0,
+        "cutoff_vel": 0,
+        "reso": 0,
+        "f_ADSR": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "f_depth": 0,
+        "drive": false,
+        "level": 59,
+        "amp_ADSR": [
+          76,
+          127,
+          100,
+          76
+        ],
+        "delay_send": 100,
+        "reverb_send": 0,
+        "lfo_filter_depths": [
+          0,
+          0
+        ],
+        "mono": 0
+      }
+    ]
+  },
+  {
+    "id": "lead-06",
+    "name": "SupaJuce 1",
+    "audio": "TOP8_SupaJuce1.mp3",
+    "bank": "lead",
+    "patch_number": 6,
+    "mode": 0,
+    "single_part": 0,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "U",
+        "osc": [
+          {
+            "wave": 1,
+            "coarse": 36,
+            "fine": 0,
+            "pw": 64
+          },
+          {
+            "wave": 1,
+            "coarse": 0,
+            "fine": 0,
+            "pw": 41
+          }
+        ],
+        "balance": -26,
+        "mix": 0,
+        "low_freq": 0,
+        "f_type": 1,
+        "slope": 24,
+        "cutoff": 27,
+        "keyfollow": 50,
+        "cutoff_vel": 0,
+        "reso": 40,
+        "f_ADSR": [
+          3,
+          61,
+          74,
+          63
+        ],
+        "f_depth": 31,
+        "drive": false,
+        "level": 127,
+        "amp_ADSR": [
+          0,
+          0,
+          127,
+          0
+        ],
+        "delay_send": 24,
+        "reverb_send": 48,
+        "lfo_filter_depths": [
+          0,
+          0
+        ],
+        "mono": 1
+      }
+    ]
+  },
+  {
+    "id": "lead-07",
+    "name": "Ambient SQR",
+    "audio": "TOP8_AmbientSQR.mp3",
+    "bank": "lead",
+    "patch_number": 7,
+    "mode": 1,
+    "single_part": 0,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "U",
+        "osc": [
+          {
+            "wave": 1,
+            "coarse": 0,
+            "fine": 1,
+            "pw": 64
+          },
+          {
+            "wave": 1,
+            "coarse": 0,
+            "fine": -3,
+            "pw": 64
+          }
+        ],
+        "balance": -1,
+        "mix": 0,
+        "low_freq": 0,
+        "f_type": 1,
+        "slope": 12,
+        "cutoff": 11,
+        "keyfollow": 110,
+        "cutoff_vel": 0,
+        "reso": 0,
+        "f_ADSR": [
+          5,
+          48,
+          99,
+          74
+        ],
+        "f_depth": 20,
+        "drive": true,
+        "level": 89,
+        "amp_ADSR": [
+          23,
+          72,
+          118,
+          30
+        ],
+        "delay_send": 40,
+        "reverb_send": 43,
+        "lfo_filter_depths": [
+          0,
+          0
+        ],
+        "mono": 1
+      },
+      {
+        "part": "L",
+        "osc": [
+          {
+            "wave": 4,
+            "coarse": 0,
+            "fine": -5,
+            "pw": 64
+          },
+          {
+            "wave": 4,
+            "coarse": 0,
+            "fine": 6,
+            "pw": 64
+          }
+        ],
+        "balance": 0,
+        "mix": 0,
+        "low_freq": 0,
+        "f_type": 1,
+        "slope": 12,
+        "cutoff": 101,
+        "keyfollow": 0,
+        "cutoff_vel": 0,
+        "reso": 0,
+        "f_ADSR": [
+          0,
+          0,
+          0,
+          44
+        ],
+        "f_depth": 0,
+        "drive": false,
+        "level": 76,
+        "amp_ADSR": [
+          76,
+          127,
+          100,
+          22
+        ],
+        "delay_send": 40,
+        "reverb_send": 112,
+        "lfo_filter_depths": [
+          0,
+          0
+        ],
+        "mono": 2
+      }
+    ]
+  },
+  {
+    "id": "lead-08",
+    "name": "Brassy Ld 1",
+    "audio": "TOP8_BrassyLd1.mp3",
+    "bank": "lead",
+    "patch_number": 8,
+    "mode": 0,
+    "single_part": 0,
+    "tone_balance": 0,
+    "arp_on": 0,
+    "tones": [
+      {
+        "part": "U",
+        "osc": [
+          {
+            "wave": 0,
+            "coarse": 0,
+            "fine": 5,
+            "pw": 86
+          },
+          {
+            "wave": 0,
+            "coarse": 0,
+            "fine": -5,
+            "pw": 32
+          }
+        ],
+        "balance": 0,
+        "mix": 0,
+        "low_freq": 1,
+        "f_type": 1,
+        "slope": 24,
+        "cutoff": 50,
+        "keyfollow": 30,
+        "cutoff_vel": 0,
+        "reso": 0,
+        "f_ADSR": [
+          12,
+          44,
+          53,
+          42
+        ],
+        "f_depth": 18,
+        "drive": false,
+        "level": 127,
+        "amp_ADSR": [
+          7,
+          0,
+          127,
+          8
+        ],
+        "delay_send": 16,
+        "reverb_send": 20,
+        "lfo_filter_depths": [
+          0
+        ],
+        "mono": 2
+      }
+    ]
+  }
+]

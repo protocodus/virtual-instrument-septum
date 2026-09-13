@@ -1,0 +1,311 @@
+{
+  "status": "Production linear filter decay render verification",
+  "cases": [
+    {
+      "case": "moogie-1-octave-revision",
+      "matches_accepted_linear_candidate": true,
+      "render_sha256": "29ab1181af4bb9c20b4befe2a04f95df9d6a678117221110da90efab011003b9",
+      "inputs": {
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/filter-implementation/after/moogie-1-octave-revision/reconstructed-performance.mid",
+          "sha256": "9d77bb66f59b7cc304208830b99608cc86271c29cf5976a9a558c4c3c6ccbbc7"
+        },
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/filter-implementation/after/moogie-1-octave-revision/original-patch.syx",
+          "sha256": "33d39a6b1cbf47abd830ecf879e1ef6774b50eb6a4eb4db6997749f4f7cffabc"
+        },
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+          "sha256": "74d3ffc6d0d3ba7b101e7bda3ba44cf6ee8d732686db0c1e6f57f678210505b0"
+        }
+      },
+      "output": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/filter-implementation/after/moogie-1-octave-revision/septum-raw.wav",
+        "sha256": "29ab1181af4bb9c20b4befe2a04f95df9d6a678117221110da90efab011003b9",
+        "encoding": "IEEE float32 stereo WAV",
+        "normalised": false,
+        "latency_compensated": false,
+        "frames": 251370,
+        "sample_rate": 44100,
+        "latency_samples": 93,
+        "peak": 0.667817175388,
+        "active_voices_at_end": 0,
+        "patch_name": "Moogie 1",
+        "patch_arpeggio_on": false,
+        "patch_tempo_at_end": 130,
+        "master_level": 100,
+        "initial_patch": {
+          "name": "Moogie 1",
+          "tempo": 130,
+          "keyboard_mode": "dual",
+          "single_part": "upper",
+          "split_point": 53,
+          "patch_level": 100,
+          "tone_balance": 0,
+          "arpeggio_on": false,
+          "delay_on": false,
+          "reverb_on": false,
+          "upper": {
+            "mono_mode": 2,
+            "octave_shift": 0,
+            "level": 127,
+            "level_velocity_sensitivity": 8,
+            "cutoff_velocity_sensitivity": 0,
+            "oscillator_balance": 0,
+            "osc1": {
+              "wave": 2,
+              "coarse_semitones": -36,
+              "fine_cents": 0,
+              "pw_feedback": 57
+            },
+            "osc2": {
+              "wave": 4,
+              "coarse_semitones": -36,
+              "fine_cents": 0,
+              "pw_feedback": 64
+            }
+          },
+          "lower": {
+            "mono_mode": 2,
+            "octave_shift": 0,
+            "level": 127,
+            "level_velocity_sensitivity": 8,
+            "cutoff_velocity_sensitivity": 0,
+            "oscillator_balance": 0,
+            "osc1": {
+              "wave": 1,
+              "coarse_semitones": -36,
+              "fine_cents": 0,
+              "pw_feedback": 106
+            },
+            "osc2": {
+              "wave": 3,
+              "coarse_semitones": -36,
+              "fine_cents": 0,
+              "pw_feedback": 0
+            }
+          }
+        },
+        "patch_load_warning": null
+      },
+      "before_comparison_manifest_sha256": "e46589134cdb47ed00c28fe74206f437aa7e8fe9670b6a80f96dad6d0a2ebaae",
+      "after_comparison_manifest_sha256": "13e5238ef1cb22615c7a940e693ca0469fa6a3a85f854f472d6dce3ebf6a74e5",
+      "before_listening_sha256": "cfebd3e107aef9f58a3cae17aaa50dde1cee0945050e72c7f62d79b71d09c6a9"
+    },
+    {
+      "case": "dist-bs-1",
+      "matches_accepted_linear_candidate": true,
+      "render_sha256": "5c0363e6e324d46fed8c8315bc57ab76a51367edb5b416f909563f5978ef364d",
+      "inputs": {
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/filter-implementation/after/dist-bs-1/reconstructed-performance.mid",
+          "sha256": "f20b5108b5de2ed051f604b06303257ee560d68b76d3234b53bf9b5f99c3fdb9"
+        },
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/filter-implementation/after/dist-bs-1/original-patch.syx",
+          "sha256": "774bed5b7e3155c4c2efadcffc388c972e7fdd9a9ed82af08cb7333b14980060"
+        },
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+          "sha256": "74d3ffc6d0d3ba7b101e7bda3ba44cf6ee8d732686db0c1e6f57f678210505b0"
+        }
+      },
+      "output": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/filter-implementation/after/dist-bs-1/septum-raw.wav",
+        "sha256": "5c0363e6e324d46fed8c8315bc57ab76a51367edb5b416f909563f5978ef364d",
+        "encoding": "IEEE float32 stereo WAV",
+        "normalised": false,
+        "latency_compensated": false,
+        "frames": 143766,
+        "sample_rate": 44100,
+        "latency_samples": 93,
+        "peak": 0.54215246439,
+        "active_voices_at_end": 0,
+        "patch_name": "Dist Bs 1",
+        "patch_arpeggio_on": false,
+        "patch_tempo_at_end": 130,
+        "master_level": 100,
+        "initial_patch": {
+          "name": "Dist Bs 1",
+          "tempo": 130,
+          "keyboard_mode": "dual",
+          "single_part": "lower",
+          "split_point": 53,
+          "patch_level": 110,
+          "tone_balance": 0,
+          "arpeggio_on": false,
+          "delay_on": false,
+          "reverb_on": false,
+          "upper": {
+            "mono_mode": 2,
+            "octave_shift": 0,
+            "level": 127,
+            "level_velocity_sensitivity": 8,
+            "cutoff_velocity_sensitivity": 0,
+            "oscillator_balance": 0,
+            "osc1": {
+              "wave": 0,
+              "coarse_semitones": -36,
+              "fine_cents": 0,
+              "pw_feedback": 57
+            },
+            "osc2": {
+              "wave": 4,
+              "coarse_semitones": -36,
+              "fine_cents": 0,
+              "pw_feedback": 64
+            }
+          },
+          "lower": {
+            "mono_mode": 2,
+            "octave_shift": 0,
+            "level": 127,
+            "level_velocity_sensitivity": 8,
+            "cutoff_velocity_sensitivity": 0,
+            "oscillator_balance": 0,
+            "osc1": {
+              "wave": 2,
+              "coarse_semitones": -36,
+              "fine_cents": 0,
+              "pw_feedback": 60
+            },
+            "osc2": {
+              "wave": 3,
+              "coarse_semitones": -36,
+              "fine_cents": 0,
+              "pw_feedback": 0
+            }
+          }
+        },
+        "patch_load_warning": null
+      },
+      "before_comparison_manifest_sha256": "e5634024d857adda868496be71f46ae10d4db8104e66a825c5e5f5c96b22814b",
+      "after_comparison_manifest_sha256": "a33b6746c3e653371c9f6402cb1e9b3214fa096dc6b29b7a471e7dace405c7fe",
+      "before_listening_sha256": "669a7de3c2b5a4244f693bd876d237339d57d9ca23dd6d1e4369ab2757c3827f"
+    },
+    {
+      "case": "cotton-wool",
+      "matches_accepted_linear_candidate": true,
+      "render_sha256": "7a22edc24a5286b8c9ec6156964958bd28b2b51729a3796ed360b425928e37ac",
+      "inputs": {
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/filter-implementation/after/cotton-wool/reconstructed-performance.mid",
+          "sha256": "bc1d33acfc257d7fa3251eb2e81eea6d5fdca99d663511e657102eabf0ab6a32"
+        },
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/filter-implementation/after/cotton-wool/original-patch.syx",
+          "sha256": "e7f23e39445895f2158482037b37a19dfe413e536869c0e6f78352de6e49fbef"
+        },
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+          "sha256": "74d3ffc6d0d3ba7b101e7bda3ba44cf6ee8d732686db0c1e6f57f678210505b0"
+        }
+      },
+      "output": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/filter-implementation/after/cotton-wool/septum-raw.wav",
+        "sha256": "7a22edc24a5286b8c9ec6156964958bd28b2b51729a3796ed360b425928e37ac",
+        "encoding": "IEEE float32 stereo WAV",
+        "normalised": false,
+        "latency_compensated": false,
+        "frames": 308700,
+        "sample_rate": 44100,
+        "latency_samples": 93,
+        "peak": 0.154908210039,
+        "active_voices_at_end": 0,
+        "patch_name": "Cotton Wool",
+        "patch_arpeggio_on": false,
+        "patch_tempo_at_end": 120,
+        "master_level": 100,
+        "initial_patch": {
+          "name": "Cotton Wool",
+          "tempo": 120,
+          "keyboard_mode": "single",
+          "single_part": "upper",
+          "split_point": 53,
+          "patch_level": 127,
+          "tone_balance": 0,
+          "arpeggio_on": false,
+          "delay_on": true,
+          "reverb_on": true,
+          "upper": {
+            "mono_mode": 0,
+            "octave_shift": 0,
+            "level": 70,
+            "level_velocity_sensitivity": 0,
+            "cutoff_velocity_sensitivity": 18,
+            "oscillator_balance": 0,
+            "osc1": {
+              "wave": 7,
+              "coarse_semitones": 0,
+              "fine_cents": 0,
+              "pw_feedback": 41
+            },
+            "osc2": {
+              "wave": 4,
+              "coarse_semitones": -36,
+              "fine_cents": -7,
+              "pw_feedback": 64
+            }
+          },
+          "lower": {
+            "mono_mode": 0,
+            "octave_shift": 0,
+            "level": 127,
+            "level_velocity_sensitivity": 8,
+            "cutoff_velocity_sensitivity": 0,
+            "oscillator_balance": -63,
+            "osc1": {
+              "wave": 0,
+              "coarse_semitones": 0,
+              "fine_cents": 0,
+              "pw_feedback": 64
+            },
+            "osc2": {
+              "wave": 1,
+              "coarse_semitones": 0,
+              "fine_cents": 0,
+              "pw_feedback": 64
+            }
+          }
+        },
+        "patch_load_warning": null
+      },
+      "before_comparison_manifest_sha256": "d320b5f731fda630297be6eb694960203e76a923881ff82432a87e5160de70a5",
+      "after_comparison_manifest_sha256": "33cc23289999fa747639871e102d12864724485ce005447b53992cc60c443143",
+      "before_listening_sha256": "7b3b93249b96bc2cbdf4dbf3dc0ed353775fe5ebdafec8afddcc17863954976a"
+    }
+  ],
+  "production_source_sha256": {
+    "Source/DSP/SeptumEngine.cpp": "9ccc217358ec9e629cc661639aacd16efb88a123f2237a0f3aac3dc0ad7a5483",
+    "Source/DSP/SeptumEngine.h": "68b77d084bf4f53d7db5393225d471ebf91f6d385c8a600d91d616113a437d71",
+    "Tests/HardwareVoiceFidelityTests.cpp": "230400052cd15c70b33d42b1e0ac15744c03ff67433df5c35c46beced32395e5"
+  },
+  "verification": {
+    "ctest_suites_passed": 12,
+    "ctest_suites_failed": 0,
+    "ctest_elapsed_seconds": 15.5,
+    "hardware_voice_checks_passed": 339,
+    "new_hardware_voice_checks": 54,
+    "old_filter_mutation_failures": 12,
+    "sustain_127_stall_mutation_failures": 6,
+    "browser": "Before and after playback plus stop verified; tab retained at http://127.0.0.1:8897/",
+    "build": "Release macOS arm64 AU, VST3 and Standalone; local ad-hoc signatures"
+  },
+  "bundles": [
+    {
+      "path": "build-fidelity/Septum_artefacts/Release/AU/Septum.component",
+      "executable_sha256": "02dbeb32a09e7d271e6161eeb2bd9f04071aa518a76e647569ce2a346b31c8a1",
+      "signature_verification": "passed"
+    },
+    {
+      "path": "build-fidelity/Septum_artefacts/Release/VST3/Septum.vst3",
+      "executable_sha256": "470d9e80b34295d96ae34ef8f321fb66f37fbbe3c5929bd210201d578aca38be",
+      "signature_verification": "passed"
+    },
+    {
+      "path": "build-fidelity/Septum_artefacts/Release/Standalone/Septum.app",
+      "executable_sha256": "9058874cd30d97477be0206151786aadd1fca1453806e70ff5b0863f93fc6c3f",
+      "signature_verification": "passed"
+    }
+  ]
+}

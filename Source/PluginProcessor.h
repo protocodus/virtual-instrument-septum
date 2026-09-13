@@ -4,6 +4,7 @@
 
 #include "DSP/SeptumEngine.h"
 #include "DSP/SeptumPresets.h"
+#include "DSP/SeptumSysEx.h"
 
 #include <array>
 #include <atomic>
@@ -154,6 +155,18 @@ private:
     // path can refresh the engine patch before rendering the next segment.
     bool handleMidiMessage (const juce::MidiMessage& message);
     bool handleController (int controller, int value);
+    [[nodiscard]] bool acceptsLiveSysEx (const std::uint8_t* data,
+                                         std::size_t size) const noexcept;
+    bool decodeLivePatchMessage (const std::uint8_t* data, std::size_t size,
+                                 septum::Patch& patch) noexcept;
+    // Only the audio thread touches the raw-byte decoder. Other patch writers
+    // advance a revision, so even a replacement by identical parameter values
+    // retires any unfinished multi-byte MIDI write without a data race.
+    septum::sysex::PatchDataDecoder liveSysExDecoder;
+    std::atomic<std::uint64_t> liveSysExRevision { 0 };
+    std::uint64_t appliedLiveSysExRevision { 0 };
+    void resetPerformanceControllers() noexcept;
+    void observeMidiActivity (const juce::MidiMessage&) noexcept;
     void applyProgram (int index);
     void applyProgramAsync (int index);
     void setCurrentPresetName (const juce::String& name, std::uint64_t identityRevision);
@@ -267,6 +280,16 @@ private:
     // SYSTEM COMMON: master tune in Hz, then key shift, keyboard octave and
     // transpose in the order systemParameterIds() lists them.
     std::atomic<float>* systemTuneValue { nullptr };
+    std::atomic<float>* midiChannelValue { nullptr };
+    std::atomic<float>* receiveProgramValue { nullptr };
+    std::atomic<float>* deviceIdValue { nullptr };
+    std::atomic<float>* activeSensingValue { nullptr };
+    // Active Sensing starts only after FE. Count rendered samples so offline
+    // hosts and arbitrary buffer sizes share the documented 420 ms timeout.
+    std::uint64_t activeSensingTimeoutSamples { 0 };
+    std::uint64_t activeSensingSamplesRemaining { 0 };
+    bool activeSensingArmed { false };
+    int appliedMidiChannel { 1 };
     std::vector<std::atomic<float>*> systemValues;
     std::vector<std::atomic<float>*> externalValues;
     // The input bus arrives in the same buffer the output is written to, so
@@ -282,6 +305,8 @@ private:
         std::atomic<float>* raw { nullptr };
         bool signedValue { false };
         bool keyFollow { false };
+        std::atomic<float>* pitchWide { nullptr }; // Coarse pitch CC wire scaling.
+        std::uint32_t pitchAddress { 0 }; // Address of this oscillator's WIDE/coarse pair.
     };
     std::vector<CachedCc> ccCache;
     // The value the audio thread last wrote, kept where only it writes.

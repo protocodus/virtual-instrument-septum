@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "experiment": "uniform_velocity_sweep_1_to_127",
+  "limitations": "Measure how unknown velocity affects the reconstructed hardware comparisons.\n\nSweep a uniform note-on velocity across 1..127 with fixed notes, gates, patch\nbytes and engine settings. This is a model sensitivity experiment, not recovery\nof the hardware performance, and cannot bound arbitrary per-note velocities,\ncontrollers, alternative voicings or recording processing.",
+  "renderer_sha256": "c60db8e886008e708f37d1c42716d2200c783fba0ee5f13fc4f4fbfe972d8bf1",
+  "tool_sha256": "1d7fe0a44d1857a094e6c2186583da0cfe0e2774002da9282c6e4c2872d77385",
+  "comparison_tool_sha256": "9b754fe18a6484b33a9a3632675e8f09169d48e86260dd1b9da42bd22fffcc2c",
+  "midi_renderer_tool_sha256": "2ceedb470a06ac34bb1fae22ad682fb125f40ac7ec03932bc7cc05966e28e415",
+  "settings": {
+    "sample_rate": 44100,
+    "master_level": 100,
+    "tempo_policy": "preserve-patch",
+    "tail_seconds": 2
+  },
+  "render_count": 381,
+  "summaries": [
+    {
+      "id": "cotton-wool",
+      "patch_sha256": "e7f23e39445895f2158482037b37a19dfe413e536869c0e6f78352de6e49fbef",
+      "comparison_manifest_sha256": "c10677a0b0fb855625fa8c3eed0616a29490bb99e9a76c5ff470793a5745aeca",
+      "hardware": {
+        "centroid_20_16000_hz": 316.28238187903884,
+        "sub_to_above_sub_db": -49.05342102050781,
+        "above_200_to_below_200_db": 2.73604154586792,
+        "rms_dbfs": -17.309348932465312
+      },
+      "baseline_raw_render_sha256": "7ed9a1de93a91aefbb1e428cab78aab7115286743a5f15d480173032240d7b43",
+      "velocity_100_matches_prior_render": true,
+      "uniform_velocity_ranges": {
+        "centroid_20_16000_hz": {
+          "minimum": 27.64018544983567,
+          "maximum": 61.03422988814978
+        },
+        "sub_to_above_sub_db": {
+          "minimum": 6.652749180793762,
+          "maximum": 14.14227843284607
+        },
+        "above_200_to_below_200_db": {
+          "minimum": -23.827049732208252,
+          "maximum": -10.421162843704224
+        }
+      }
+    },
+    {
+      "id": "dist-bs-1",
+      "patch_sha256": "774bed5b7e3155c4c2efadcffc388c972e7fdd9a9ed82af08cb7333b14980060",
+      "comparison_manifest_sha256": "e892179ad6c468632c96e9d94071b77af5d7c7512d2a755f773e2fa382474888",
+      "hardware": {
+        "centroid_20_16000_hz": 64.62882125582603,
+        "sub_to_above_sub_db": -2.593291699886322,
+        "above_200_to_below_200_db": -13.693886995315552,
+        "rms_dbfs": -10.966776437402167
+      },
+      "baseline_raw_render_sha256": "afce41a0172e3108161cd598046ddc7d746334fdfe3f0a6014c7aec86ea777c8",
+      "velocity_100_matches_prior_render": true,
+      "uniform_velocity_ranges": {
+        "centroid_20_16000_hz": {
+          "minimum": 48.807373482858296,
+          "maximum": 48.807391853755405
+        },
+        "sub_to_above_sub_db": {
+          "minimum": -1.6498547792434692,
+          "maximum": -1.6498513519763947
+        },
+        "above_200_to_below_200_db": {
+          "minimum": -19.809281826019287,
+          "maximum": -19.8092782497406
+        }
+      }
+    },
+    {
+      "id": "moogie-1",
+      "patch_sha256": "33d39a6b1cbf47abd830ecf879e1ef6774b50eb6a4eb4db6997749f4f7cffabc",
+      "comparison_manifest_sha256": "13bede759e41a82521c8ac2d3944ee8d27021b3e9347496237fc3f07ef00c147",
+      "hardware": {
+        "centroid_20_16000_hz": 75.53933877036322,
+        "sub_to_above_sub_db": -3.0446717143058777,
+        "above_200_to_below_200_db": -13.467938899993896,
+        "rms_dbfs": -10.115285622301226
+      },
+      "baseline_raw_render_sha256": "4ec53d683af11db76a32ba009ccdeed951d4e419143bacdff1fc7b870ae11bc6",
+      "velocity_100_matches_prior_render": true,
+      "uniform_velocity_ranges": {
+        "centroid_20_16000_hz": {
+          "minimum": 47.7519252579098,
+          "maximum": 47.75194274740922
+        },
+        "sub_to_above_sub_db": {
+          "minimum": -0.12685387395322323,
+          "maximum": -0.12685040943324566
+        },
+        "above_200_to_below_200_db": {
+          "minimum": -26.7651629447937,
+          "maximum": -26.76516056060791
+        }
+      }
+    }
+  ]
+}

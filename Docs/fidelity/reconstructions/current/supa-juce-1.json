@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "id": "supa-juce-1",
+  "title": "SupaJuce 1 \u2014 two-square oscillator octave check",
+  "reference_id": "lead-06",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 0,
+  "duration_seconds": 1.8,
+  "method": "Hardware-only FFT/STFT inspection of the first phrase. Lower square fundamentals near 330, 220, 294 and 196 Hz identify sounding MIDI 64, 57, 62 and 55. Undo the published Upper tone octave shift -1 to infer played MIDI 76, 69, 74 and 67. Strong even-numbered families at twice those frequencies, including H6 but not H4, identify the second square one octave above; this is consistent with published OSC1 coarse raw 100/WIDE off and OSC2 raw 64/WIDE off. Onsets and gates estimated from spectral renewals; no synthesis parameter fitting.",
+  "uncertainties": [
+    "Original MIDI is unavailable; this is an estimated reconstruction.",
+    "Event boundaries are approximate within 10\u201320 ms; pitch envelope, filter release and delay obscure exact key-down/up times.",
+    "All velocities are placeholders at 100. Original velocity, controllers, system transpose, recording processing and exact patch revision are unverified.",
+    "Lower square note identification is stronger than exact gates. The first 1.8 seconds exclude the rest of the demo and use an artificial final crop."
+  ],
+  "notes": [
+    {
+      "on": 0.123,
+      "off": 0.249,
+      "note": 76,
+      "velocity": 100
+    },
+    {
+      "on": 0.249,
+      "off": 0.36,
+      "note": 69,
+      "velocity": 100
+    },
+    {
+      "on": 0.526,
+      "off": 0.654,
+      "note": 69,
+      "velocity": 100
+    },
+    {
+      "on": 0.804,
+      "off": 0.915,
+      "note": 69,
+      "velocity": 100
+    },
+    {
+      "on": 1.087,
+      "off": 1.606,
+      "note": 74,
+      "velocity": 100
+    },
+    {
+      "on": 1.606,
+      "off": 1.785,
+      "note": 67,
+      "velocity": 100
+    }
+  ]
+}

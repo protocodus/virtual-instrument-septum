@@ -87,7 +87,8 @@ namespace
 // Envelope
 // ---------------------------------------------------------------------------
 
-void Engine::Envelope::configure (double sr, int a, int d, int s, int r) noexcept
+void Engine::Envelope::configure (double sr, int a, int d, int s, int r,
+                                 DecayShape shape) noexcept
 {
     const double attackTime = mapping::attackSeconds (a);
     attackRate = 1.0 / std::max (1.0, attackTime * sr);
@@ -95,6 +96,16 @@ void Engine::Envelope::configure (double sr, int a, int d, int s, int r) noexcep
     decayCoeff = std::exp (-6.907755 / std::max (1.0, mapping::decaySeconds (d) * sr));
     releaseCoeff = std::exp (-6.907755 / std::max (1.0, mapping::decaySeconds (r) * sr));
     sustain = s / 127.0;
+    decayShape = shape;
+    if (decayShape == DecayShape::Linear)
+    {
+        const double samples = std::max (1.0, mapping::filterDecaySeconds (d) * sr);
+        decayStep = (1.0 - sustain) / samples;
+        // A live sustain increase must also converge, including sustain=1
+        // where the peak-to-sustain downward step is zero. Keep the current
+        // level and use a zero-to-sustain rise over the same mapped duration.
+        sustainRiseStep = sustain / samples;
+    }
     // A SUSTAIN moved under a note that has already converged has to be walked
     // to, not assigned. `setPatch` reconfigures every sounding voice on every
     // parameter change, and the Sustain stage assigns `sustain` outright, so an
@@ -124,7 +135,10 @@ double Engine::Envelope::advance (int samples) noexcept
                 }
                 break;
             case Stage::Decay:
-                level = sustain + (level - sustain) * decayCoeff;
+                if (decayShape == DecayShape::Linear)
+                    level += std::clamp (sustain - level, -decayStep, sustainRiseStep);
+                else
+                    level = sustain + (level - sustain) * decayCoeff;
                 // Two-sided: SUSTAIN is automatable and setPatch reconfigures
                 // every sounding voice, so it can be raised above the level a
                 // held note has already decayed to. A one-sided test passed
@@ -193,8 +207,15 @@ double Engine::PitchEnvelope::advance (int samples) noexcept
 void Engine::Lfo::restart (bool resetFade) noexcept
 {
     phase = 0.0;
+    cycleRestarted = true;
     if (resetFade)
         fadeLevel = 0.0;
+}
+
+double Engine::Lfo::advanceFade (double fadePerTick) noexcept
+{
+    fadeLevel = fadePerTick > 0.0 ? std::min (1.0, fadeLevel + fadePerTick) : 1.0;
+    return fadeLevel;
 }
 
 double Engine::Lfo::nextRandomValue() noexcept
@@ -213,6 +234,16 @@ double Engine::Lfo::advance (const LfoParams& params, double hz,
         randomFrom = heldValue;
         randomTo = nextRandomValue();
     }
+    else if (cycleRestarted)
+    {
+        // OM p. 40 defines S&H as one new value per cycle; p. 62 says key
+        // trigger begins a new cycle. Drawing here is that behavioral
+        // inference, not a claim about Roland's random-number algorithm.
+        heldValue = nextRandomValue();
+        randomFrom = randomTo;
+        randomTo = heldValue;
+    }
+    cycleRestarted = false;
 
     const double dt = hz * samples / sr;
     phase += dt;
@@ -230,10 +261,7 @@ double Engine::Lfo::advance (const LfoParams& params, double hz,
         randomTo = heldValue;
     }
 
-    if (fadePerTick > 0.0)
-        fadeLevel = std::min (1.0, fadeLevel + fadePerTick);
-    else
-        fadeLevel = 1.0;
+    advanceFade (fadePerTick);
 
     double value = 0.0;
     switch (params.shape)
@@ -269,6 +297,7 @@ double Engine::Lfo::advance (const LfoParams& params, double hz,
             break;
         }
     }
+    unfadedValue = value;
     return value * fadeLevel;
 }
 
@@ -488,6 +517,8 @@ void Engine::prepare (double sampleRate, int maxBlockSize)
     // derives the transfer from component values and runs it at 8x.
     for (auto& output : analogOutput_)
         output.prepare (sampleRate_);
+    for (auto& input : analogInput_)
+        input.prepare (sampleRate_);
 
     reset();
 }
@@ -507,6 +538,11 @@ void Engine::reset()
         voice.ampEnv.kill();
         voice.filterEnv.kill();
         voice.pitchEnv.active = false;
+        voice.lfo1 = Lfo {};
+        voice.lfo2 = Lfo {};
+        const auto voiceIndex = static_cast<std::uint32_t> (&voice - voices_.data());
+        voice.lfo1.seed (0x85ebca6bu + voiceIndex * 0x9e3779b9u);
+        voice.lfo2.seed (0xc2b2ae35u + voiceIndex * 0x51ed270bu);
         voice.filter1.clear();
         voice.filter2.clear();
         voice.shelfState = 0.0;
@@ -570,6 +606,8 @@ void Engine::reset()
     reverbWetGain_ = patch_.reverbOn ? 1.0 : 0.0;
     for (auto& output : analogOutput_)
         output.reset();
+    for (auto& input : analogInput_)
+        input.reset();
     for (int channel = 0; channel < 2; ++channel)
     {
         audioFilter1_[channel].clear();
@@ -623,7 +661,7 @@ void Engine::setPatch (const Patch& patch)
                                 tone.ampEnvSustain, tone.ampEnvRelease);
         voice.filterEnv.configure (sampleRate_, tone.filterEnvAttack,
                                    tone.filterEnvDecay, tone.filterEnvSustain,
-                                   tone.filterEnvRelease);
+                                   tone.filterEnvRelease, Envelope::DecayShape::Linear);
         voice.pitchEnv.configure (sampleRate_, tone.pitchEnvAttack,
                                   tone.pitchEnvDecay);
     }
@@ -841,6 +879,9 @@ void Engine::startNoteForPart (Part part, int note, int velocity)
     const bool firstKey = ! runtime.anyKeyDown;
     runtime.anyKeyDown = true;
 
+    // AUDIO FILTER has one shared signal path. Preserve its per-tone
+    // key-trigger/fade policy here; voice LFOs are triggered separately below
+    // and never summed into that global modulation destination.
     if (tone.lfo1.keyTrigger)
         runtime.lfo1.restart (true);
     else if (firstKey)
@@ -870,6 +911,7 @@ void Engine::startNoteForPart (Part part, int note, int velocity)
         if (voice == nullptr)
             return;
         triggerVoice (*voice, part, note, velocityNorm, legato);
+        triggerVoiceLfos (*voice);
         return;
     }
 
@@ -877,6 +919,24 @@ void Engine::startNoteForPart (Part part, int note, int velocity)
     if (voice == nullptr)
         return;
     triggerVoice (*voice, part, note, velocityNorm, false);
+    triggerVoiceLfos (*voice);
+}
+
+void Engine::triggerVoiceLfos (Voice& voice)
+{
+    const TonePatch& tone = tonePatch (voice.part);
+    const auto trigger = [] (Lfo& lfo, const LfoParams& params)
+    {
+        // Roland OM p. 62 shows FADE TIME beginning at key-on, independently
+        // of the KEY TRIGGER switch. A new note must not restart an older
+        // note's fade or inherit its already-completed fade.
+        if (params.keyTrigger)
+            lfo.restart (true);
+        else
+            lfo.fadeLevel = 0.0;
+    };
+    trigger (voice.lfo1, tone.lfo1);
+    trigger (voice.lfo2, tone.lfo2);
 }
 
 void Engine::releaseNoteForPart (Part part, int note)
@@ -1042,7 +1102,7 @@ void Engine::triggerVoice (Voice& voice, Part part, int note, double velocity,
                             tone.ampEnvSustain, tone.ampEnvRelease);
     voice.filterEnv.configure (sampleRate_, tone.filterEnvAttack,
                                tone.filterEnvDecay, tone.filterEnvSustain,
-                               tone.filterEnvRelease);
+                               tone.filterEnvRelease, Envelope::DecayShape::Linear);
     voice.pitchEnv.configure (sampleRate_, tone.pitchEnvAttack, tone.pitchEnvDecay);
 
     if (! legato)
@@ -1395,6 +1455,33 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
     const TonePatch& tone = tonePatch (voice.part);
     ToneRuntime& runtime = toneRuntime (voice.part);
 
+    const auto voiceLfoValue = [&] (Lfo& lfo, const Lfo& shared,
+                                   const LfoParams& params)
+    {
+        const double seconds = mapping::lfoFadeSeconds (params.fadeTime);
+        const double fadeStep = seconds <= 0.0 ? 0.0
+            : tickSamples / (seconds * sampleRate_);
+        if (params.keyTrigger)
+        {
+            const double hz = params.tempoSync
+                ? mapping::lfoSyncHz (patch_.tempo, params.tempoSyncNote)
+                : mapping::lfoRateHz (params.rate);
+            return lfo.advance (params, hz, fadeStep, tickSamples, sampleRate_);
+        }
+        // KEY TRIGGER OFF shares the continuously-running waveform but not
+        // the note's fade envelope. Keep the local phase aligned for live
+        // switch edits, without disturbing any other voice's random stream.
+        lfo.phase = shared.phase;
+        lfo.heldValue = shared.heldValue;
+        lfo.randomFrom = shared.randomFrom;
+        lfo.randomTo = shared.randomTo;
+        lfo.primed = shared.primed;
+        lfo.cycleRestarted = false;
+        return shared.unfadedValue * lfo.advanceFade (fadeStep);
+    };
+    const double lfo1Value = voiceLfoValue (voice.lfo1, runtime.lfo1, tone.lfo1);
+    const double lfo2Value = voiceLfoValue (voice.lfo2, runtime.lfo2, tone.lfo2);
+
     // -- pitch -------------------------------------------------------------
     if (voice.glidePitch != voice.targetPitch)
     {
@@ -1425,7 +1512,7 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
 
     // Modulation-lever vibrato rides LFO2 (settled) into the assigned target.
     const double leverVibratoCents =
-        lever * mapping::leverVibratoCents * runtime.lfo2Value;
+        lever * mapping::leverVibratoCents * lfo2Value;
     const bool leverToOsc1 =
         patch_.modulationAssign == ModulationAssign::Osc1AndOsc2
         || patch_.modulationAssign == ModulationAssign::Osc1;
@@ -1436,13 +1523,13 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
     // LFO pitch contributions (destination 1 -> OSC1, destination 2 -> OSC2).
     double lfoCents1 = 0.0, lfoCents2 = 0.0;
     if (tone.lfo1.destination1 == LfoDest1::Pitch1)
-        lfoCents1 += mapping::lfoPitchCents (tone.lfo1.depth1) * runtime.lfo1Value;
+        lfoCents1 += mapping::lfoPitchCents (tone.lfo1.depth1) * lfo1Value;
     if (tone.lfo2.destination1 == LfoDest1::Pitch1)
-        lfoCents1 += mapping::lfoPitchCents (tone.lfo2.depth1) * runtime.lfo2Value;
+        lfoCents1 += mapping::lfoPitchCents (tone.lfo2.depth1) * lfo2Value;
     if (tone.lfo1.destination2 == LfoDest2::Pitch2)
-        lfoCents2 += mapping::lfoPitchCents (tone.lfo1.depth2) * runtime.lfo1Value;
+        lfoCents2 += mapping::lfoPitchCents (tone.lfo1.depth2) * lfo1Value;
     if (tone.lfo2.destination2 == LfoDest2::Pitch2)
-        lfoCents2 += mapping::lfoPitchCents (tone.lfo2.depth2) * runtime.lfo2Value;
+        lfoCents2 += mapping::lfoPitchCents (tone.lfo2.depth2) * lfo2Value;
     if (leverToOsc1)
         lfoCents1 += leverVibratoCents;
     if (leverToOsc2)
@@ -1473,11 +1560,11 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
             if (oscIndex == 2 && lfo.destination2 == LfoDest2::Pw2)
                 value += depthScale (lfo.depth2) * lfoValue * 127.0;
         };
-        contribution (tone.lfo1, runtime.lfo1Value);
-        contribution (tone.lfo2, runtime.lfo2Value);
+        contribution (tone.lfo1, lfo1Value);
+        contribution (tone.lfo2, lfo2Value);
         if ((oscIndex == 1 && patch_.modulationAssign == ModulationAssign::Pw1)
             || (oscIndex == 2 && patch_.modulationAssign == ModulationAssign::Pw2))
-            value += lever * mapping::leverPulseWidth * runtime.lfo2Value;
+            value += lever * mapping::leverPulseWidth * lfo2Value;
         return std::clamp (value, 0.0, 127.0);
     };
 
@@ -1518,11 +1605,11 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
     const double filterEnvLevel = voice.filterEnv.advance (tickSamples);
     double lfoFilterOct = 0.0;
     if (tone.lfo1.destination1 == LfoDest1::Filter)
-        lfoFilterOct += mapping::lfoFilterOctaves (tone.lfo1.depth1) * runtime.lfo1Value;
+        lfoFilterOct += mapping::lfoFilterOctaves (tone.lfo1.depth1) * lfo1Value;
     if (tone.lfo2.destination1 == LfoDest1::Filter)
-        lfoFilterOct += mapping::lfoFilterOctaves (tone.lfo2.depth1) * runtime.lfo2Value;
+        lfoFilterOct += mapping::lfoFilterOctaves (tone.lfo2.depth1) * lfo2Value;
     if (patch_.modulationAssign == ModulationAssign::Filter)
-        lfoFilterOct += lever * mapping::leverFilterOctaves * runtime.lfo2Value;
+        lfoFilterOct += lever * mapping::leverFilterOctaves * lfo2Value;
 
     const double cutoffBaseOct = std::log2 (mapping::cutoffHz (tone.cutoff));
     const double keyTrack = mapping::keyFollowOctavesPerOctave (tone.keyFollow)
@@ -1540,7 +1627,7 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
     // envelope's own level is not, so the segment times the sliders ask for
     // are the segment times the filter gets.
     const double filterEnvOctTarget = mapping::filterEnvOctaves (tone.filterEnvDepth);
-    const double resonanceTarget = mapping::resonanceDamping (tone.resonance);
+    const double resonanceTarget = mapping::voiceResonanceDamping (tone.resonance);
     if (! voice.controlsPrimed)
     {
         voice.cutoffParamOctSlewed = cutoffParamOctTarget;
@@ -1582,11 +1669,11 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
         gain *= 1.0 + sens * voice.velocity;
     double tremolo = 0.0;
     if (tone.lfo1.destination2 == LfoDest2::Amp)
-        tremolo += depthScale (tone.lfo1.depth2) * runtime.lfo1Value;
+        tremolo += depthScale (tone.lfo1.depth2) * lfo1Value;
     if (tone.lfo2.destination2 == LfoDest2::Amp)
-        tremolo += depthScale (tone.lfo2.depth2) * runtime.lfo2Value;
+        tremolo += depthScale (tone.lfo2.depth2) * lfo2Value;
     if (patch_.modulationAssign == ModulationAssign::Amp)
-        tremolo += lever * mapping::leverAmpDepth * runtime.lfo2Value;
+        tremolo += lever * mapping::leverAmpDepth * lfo2Value;
     gain *= std::max (0.0, 1.0 + tremolo);
 
     // Equal-power pan around the *documented* centre. PAN is L64..63R, so its
@@ -1880,8 +1967,27 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
         // aliases audibly, and no source documents band-limiting there.
         bool osc1SyncReset = false;
         if (tone.mixType == MixModType::Sync && osc2Wrapped
-            && wave1 != Waveform::Noise && wave1 != Waveform::SuperSaw
-            && wave1 != Waveform::FbOsc && wave1 != Waveform::ExtIn)
+            && wave1 == Waveform::SuperSaw)
+        {
+            // [supported functionality + voiced topology] Roland's generic
+            // OSC1 reset description (OM p. 32), its published "Super Sync"
+            // patch and an owner's report support Super Saw sync. The exact
+            // seven-phase behavior is unmeasured: this model restarts every
+            // saw together, retaining its detuned rate and the downstream
+            // HPF's history. See Docs/fidelity/source-audits/oscillator-semantics.md.
+            // superSaw() advances once below; subtract that advance so each
+            // saw lands the correct fraction of a sample beyond the reset.
+            for (std::size_t index = 0; index < voice.osc1.superPhases.size(); ++index)
+            {
+                const double detunedInc = voice.inc1
+                    * (1.0 + mapping::superSawOffsets[index] * voice.superAmount1);
+                voice.osc1.superPhases[index] =
+                    frac ((osc2WrapOffset - 1.0) * detunedInc);
+            }
+        }
+        else if (tone.mixType == MixModType::Sync && osc2Wrapped
+                 && wave1 != Waveform::Noise && wave1 != Waveform::FbOsc
+                 && wave1 != Waveform::ExtIn)
         {
             double newPhase = osc2WrapOffset * voice.inc1 - voice.inc1;
             while (newPhase < 0.0)
@@ -1965,8 +2071,8 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
             const double k = voice.filterK + kStep * (i + 1);
             const double a1 = 1.0 / (1.0 + g * (g + k));
             const double a2 = g * a1;
-            // Second, non-resonant 2-pole stage (voiced topology).
-            const double k2 = mapping::filterSecondStageDamping;
+            // The empirical voice model adds bounded resonance in stage two.
+            const double k2 = mapping::voiceSecondStageDamping (k);
             const double b1 = 1.0 / (1.0 + g * (g + k2));
             const double b2 = g * b1;
 
@@ -2425,10 +2531,11 @@ void Engine::arpeggioFireStepForPart (Part part, double stepSeconds)
         // grid is still running underneath this one.
         state.note = note;
         state.sustained = sustained;
-        state.remaining =
-            sustained ? 0
-                      : static_cast<int> ((heldSeconds + lastStepSeconds * durationFraction)
-                                          * sampleRate_);
+        // Carry the fractional onset residual into the gate deadline. Both
+        // edges then land at the first sample on/after their musical time.
+        state.remaining = sustained ? 0.0
+            : (heldSeconds + lastStepSeconds * durationFraction) * sampleRate_
+                  + arpeggioStepRemaining_;
     }
 }
 
@@ -2447,7 +2554,7 @@ void Engine::arpeggioFireStep()
     }
 }
 
-void Engine::advanceArpeggiator (int samples)
+void Engine::advanceArpeggiator()
 {
     const ArpeggioParams& arp = patch_.arpeggio;
 
@@ -2489,7 +2596,8 @@ void Engine::advanceArpeggiator (int samples)
                     rowsInUse |= 1u << row;
     }
 
-    // Scheduled note-offs, at control-tick resolution like everything else.
+    // This runs at render boundaries, which are split at the next note-on or
+    // gate deadline. Envelopes therefore see events at sample resolution.
     for (int index = 0; index < partCount; ++index)
     {
         const Part part = index == 0 ? Part::Upper : Part::Lower;
@@ -2499,7 +2607,6 @@ void Engine::advanceArpeggiator (int samples)
             auto& state = runtime.rows[static_cast<std::size_t> (row)];
             if (state.tailNote >= 0)
             {
-                state.tailRemaining -= samples;
                 if (state.tailRemaining <= 0)
                 {
                     releaseNoteForPart (part, state.tailNote);
@@ -2521,7 +2628,6 @@ void Engine::advanceArpeggiator (int samples)
                 }
                 continue;
             }
-            state.remaining -= samples;
             if (state.remaining <= 0)
             {
                 releaseNoteForPart (part, state.note);
@@ -2583,46 +2689,71 @@ void Engine::advanceArpeggiator (int samples)
         }
     }
 
-    double left = samples;
-    while (left > 0.0)
+    if (arpeggioStepRemaining_ <= 0.0)
     {
-        if (arpeggioStepRemaining_ <= 0.0)
-        {
-            const int endStep = std::clamp (arp.style.endStep, 1, arpeggioMaxSteps);
-            // ARPEGGIO STYLE and END STEP are both automatable, so the counter
-            // can be left past the end of a pattern that just got shorter.
-            // Normalise before firing, or the switch spends one grid on a cell
-            // the new style does not use and then resumes from the wrong place.
-            arpeggioStep_ %= endStep;
-            arpeggioFireStep();
-            arpeggioStepRemaining_ =
-                mapping::arpeggioStepSeconds (patch_.tempo, arp.grid,
-                                              arpeggioGridSection_)
-                * sampleRate_;
-            // Only its parity is ever read, and 0x10000 is even, so wrapping
-            // here keeps the shuffle correct and the counter bounded.
-            arpeggioGridSection_ = (arpeggioGridSection_ + 1) & 0xffff;
-            arpeggioStep_ = (arpeggioStep_ + 1) % endStep;
-            if (arpeggioStep_ == 0)
-                for (auto& runtime : arpeggios_)
+        const int endStep = std::clamp (arp.style.endStep, 1, arpeggioMaxSteps);
+        // ARPEGGIO STYLE and END STEP are both automatable, so the counter
+        // can be left past the end of a pattern that just got shorter.
+        // Normalise before firing, or the switch spends one grid on a cell
+        // the new style does not use and then resumes from the wrong place.
+        arpeggioStep_ %= endStep;
+        arpeggioFireStep();
+        arpeggioStepRemaining_ +=
+            mapping::arpeggioStepSeconds (patch_.tempo, arp.grid,
+                                          arpeggioGridSection_)
+            * sampleRate_;
+        // Only its parity is ever read, and 0x10000 is even, so wrapping
+        // here keeps the shuffle correct and the counter bounded.
+        arpeggioGridSection_ = (arpeggioGridSection_ + 1) & 0xffff;
+        arpeggioStep_ = (arpeggioStep_ + 1) % endStep;
+        if (arpeggioStep_ == 0)
+            for (auto& runtime : arpeggios_)
+            {
+                ++runtime.cycle;
+                if (arp.motif == ArpeggioMotif::Random
+                    || arp.motif == ArpeggioMotif::RandomL)
                 {
-                    ++runtime.cycle;
-                    if (arp.motif == ArpeggioMotif::Random
-                        || arp.motif == ArpeggioMotif::RandomL)
-                    {
-                        arpeggioRng_ = arpeggioRng_ * 1664525u + 1013904223u;
-                        runtime.windowCycle = static_cast<int> (arpeggioRng_ >> 16);
-                    }
-                    else
-                    {
-                        runtime.windowCycle = runtime.cycle;
-                    }
+                    arpeggioRng_ = arpeggioRng_ * 1664525u + 1013904223u;
+                    runtime.windowCycle = static_cast<int> (arpeggioRng_ >> 16);
                 }
-        }
-        const double consumed = std::min (left, arpeggioStepRemaining_);
-        arpeggioStepRemaining_ -= consumed;
-        left -= consumed;
+                else
+                {
+                    runtime.windowCycle = runtime.cycle;
+                }
+            }
     }
+}
+
+int Engine::samplesUntilArpeggioEvent (int maximum) const noexcept
+{
+    if (! arpeggioRunning_)
+        return maximum;
+    double remaining = arpeggioStepRemaining_;
+    for (const auto& runtime : arpeggios_)
+        for (const auto& row : runtime.rows)
+        {
+            if (row.note >= 0 && ! row.sustained)
+                remaining = std::min (remaining, row.remaining);
+            if (row.tailNote >= 0)
+                remaining = std::min (remaining, row.tailRemaining);
+        }
+    return static_cast<int> (std::clamp (std::ceil (remaining), 1.0,
+                                         static_cast<double> (maximum)));
+}
+
+void Engine::elapseArpeggiator (int samples) noexcept
+{
+    if (! arpeggioRunning_)
+        return;
+    arpeggioStepRemaining_ -= samples;
+    for (auto& runtime : arpeggios_)
+        for (auto& row : runtime.rows)
+        {
+            if (row.note >= 0 && ! row.sustained)
+                row.remaining -= samples;
+            if (row.tailNote >= 0)
+                row.tailRemaining -= samples;
+        }
 }
 
 // ---------------------------------------------------------------------------
@@ -2748,6 +2879,10 @@ void Engine::prepareExternalTick (const float* inputLeft, const float* inputRigh
             left = inputLeft[offset + i] * smoothedInputGain_;
             right = inputRight[offset + i] * smoothedInputGain_;
         }
+        // The codec HPF precedes both the monitor and EXT-IN oscillator taps.
+        // It keeps running with zero input when the input bus disappears.
+        left = analogInput_[0].processSample (left);
+        right = analogInput_[1].processSample (right);
 
         // Every switch on this path is crossed rather than thrown: each one
         // chooses between signals whose instantaneous samples differ, so
@@ -2810,10 +2945,9 @@ void Engine::prepareExternalTick (const float* inputLeft, const float* inputRigh
                     {
                         case AudioFilterType::Lpf: return lp;
                         case AudioFilterType::Hpf: return hp;
-                        // Raw, as the voice filter takes it: the contract says
-                        // this filter's resonance curve is the voice filter's,
-                        // so its band-pass has to behave like the voice
-                        // filter's too.
+                        // Raw band-pass tap preserves this input filter's
+                        // existing resonant gain. The later voice-resonance
+                        // calibration does not change the AUDIO FILTER.
                         case AudioFilterType::Bpf: return bp;
                         // NOTCH is the low-pass and high-pass sum: everything
                         // but the band the resonance would have boosted.
@@ -2975,8 +3109,14 @@ void Engine::processEffects (const float* dryL, const float* dryR,
                     past ((index1 + 1) % delaySize, centreAge - 2), fracPos);
                 line.dampState += dampCoeff * (tapped - line.dampState);
                 const double damped = line.dampState;
+                // OM p. 63 specifies signed feedback in percent. A cubic shaper at
+                // every write compressed even the first echo with feedback
+                // zero and changed that ratio on each repeat. The documented
+                // maximum |feedback| < 1 and bounded interpolation support a
+                // linear feedback loop. Modulated extremes are regression
+                // tested separately; no hardware overload curve is assumed.
                 line.buffer[static_cast<std::size_t> (line.write)] =
-                    static_cast<float> (flushDenormal (softClip (input + damped * feedback)));
+                    static_cast<float> (flushDenormal (input + damped * feedback));
                 line.write = (line.write + 1) % delaySize;
                 line.fresh = std::min (line.fresh + 1, delaySize);
                 return damped;
@@ -3123,8 +3263,9 @@ void Engine::process (float* left, float* right, int numSamples,
 
     while (offset < numSamples)
     {
+        advanceArpeggiator();
         const int tick = std::min (controlInterval, numSamples - offset);
-        const int guarded = std::min (tick, maxBlock_);
+        const int guarded = samplesUntilArpeggioEvent (std::min (tick, maxBlock_));
 
         std::array<std::array<double, controlInterval>, 2> enableGain {};
         std::array<std::array<double, controlInterval>, 2> expressionGain {};
@@ -3160,7 +3301,6 @@ void Engine::process (float* left, float* right, int numSamples,
         }
 
         advanceToneLfos (guarded);
-        advanceArpeggiator (guarded);
         prepareExternalTick (inputLeft, inputRight, offset, guarded);
 
         std::fill (dryL_.begin(), dryL_.begin() + guarded, 0.0f);
@@ -3291,6 +3431,7 @@ void Engine::process (float* left, float* right, int numSamples,
             }
         }
 
+        elapseArpeggiator (guarded);
         offset += guarded;
     }
 

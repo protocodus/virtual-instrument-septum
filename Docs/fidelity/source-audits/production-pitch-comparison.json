@@ -1,0 +1,316 @@
+{
+  "schema_version": 1,
+  "claim": "Pitch-range correction tested with paired original-preset renders and explicitly reconstructed MIDI.",
+  "source_hash_note": "Binary hashes identify renderers. compare_hardware source_code_sha256 is the checkout observed during rendering, not proof of the preserved baseline binary source.",
+  "listening_transform": "Whole-excerpt RMS matching only, as recorded in each comparison.json. No EQ, compression, time warp or velocity fitting.",
+  "results": [
+    {
+      "case_id": "cotton-wool",
+      "same_midi_and_original_preset_verified": true,
+      "midi_status": "reconstructed_not_original",
+      "inputs": {
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/wide-pitch-implementation/after/cotton-wool/reconstructed-performance.mid",
+          "sha256": "9794993003bca0f1af71f2a39d30e294c6bf862ab1d6aabdbea50d145d0ce69f"
+        },
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/wide-pitch-implementation/after/cotton-wool/original-patch.syx",
+          "sha256": "e7f23e39445895f2158482037b37a19dfe413e536869c0e6f78352de6e49fbef"
+        },
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+          "sha256": "495ebafba4893ca723d66ca09d25747b3974dccf13f80dfb807fb591a6efd4ce"
+        }
+      },
+      "before_renderer": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/wide-pitch-implementation/SeptumRenderMidi-before",
+        "sha256": "74d3ffc6d0d3ba7b101e7bda3ba44cf6ee8d732686db0c1e6f57f678210505b0"
+      },
+      "before_output_sha256": "d87fe67c7e233029e79628f5558889ecf9e06498bf93004f626bf8379dc36259",
+      "after_output_sha256": "9a6aab0635ab1b1dccfc74c2ef0a0fbdf8eecbb17c786ef195ccd247197df401",
+      "reconstruction_sha256": "85d65a5bf0dc30ef06f0130023c4a623d36b1a3a7264500cd590fb3190b8e6cc",
+      "reference": {
+        "id": "pad-01",
+        "title": "Cotton Wool",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_pad.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/PAD/TOP8_Cotton_Wool.mp3",
+        "local_filename": "TOP8_Cotton_Wool.mp3",
+        "sha256": "abf9d3ad400119ab0546fd724ab7a7442ea724bb164f8e9d024c642c791a1379",
+        "size_bytes": 744869,
+        "bank_id": "pad",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 1,
+        "patch_name": "Cotton Wool",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+      },
+      "power_centroid_20_16000_hz": {
+        "hardware": 316.28238187903884,
+        "before": 100.5908364022609,
+        "after": 188.4446796961953
+      },
+      "limits": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "This is an estimated reconstruction, not a recovered original MIDI performance.",
+        "Played MIDI octave is conditional on the measured WIDE-off range and default system transpose. The original performance MIDI has not been recovered.",
+        "Bass C2/C3 octave allocation is less certain than the Eb/F/Bb and Eb/F/A chord pitch classes because their harmonics overlap.",
+        "Onsets are approximate within roughly30\u201370 ms, with the later F3 strum less certain. Short-time analysis window smears exact attacks.",
+        "Note-off times are placeholders informed by audible-band decay; release envelopes and reverb prevent exact recovery.",
+        "Velocities, controllers, pitch bend, system transpose/tuning, master gain, and recording processing are unknown.",
+        "Small note overlaps, extra quiet notes, and the exact voicing may differ from this estimate.",
+        "All note-on velocities fixed to100 as an explicit placeholder. Original velocities were not recoverable, and filter velocity sensitivity is+18 in the published patch. No velocity or preset parameters were fitted against Septum output.",
+        "Five-second excerpt only; the later untranscribed performance is not compared with the rendered release tail."
+      ],
+      "power_20_40_over_40_16000_db": {
+        "hardware": -50.74939603124504,
+        "before": -1.7858989979279838,
+        "after": -39.07500561537808
+      }
+    },
+    {
+      "case_id": "supa-juce-1",
+      "same_midi_and_original_preset_verified": true,
+      "midi_status": "reconstructed_not_original",
+      "inputs": {
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/wide-pitch-implementation/after/supa-juce-1/reconstructed-performance.mid",
+          "sha256": "0df6bc4fa7ae91185c937d8ce770562aaa5ced55650bc5b4066951ba671a9498"
+        },
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/wide-pitch-implementation/after/supa-juce-1/original-patch.syx",
+          "sha256": "9791c9e16ab0a6e4374791b8f47766cfa0ee725da0d4a14ee5d75a319bf6fad8"
+        },
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+          "sha256": "495ebafba4893ca723d66ca09d25747b3974dccf13f80dfb807fb591a6efd4ce"
+        }
+      },
+      "before_renderer": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/wide-pitch-implementation/SeptumRenderMidi-before",
+        "sha256": "74d3ffc6d0d3ba7b101e7bda3ba44cf6ee8d732686db0c1e6f57f678210505b0"
+      },
+      "before_output_sha256": "36b46a402f860cc712932e9f66a7efb0cdb02d1c7b265f37ec4244ffbc16d28c",
+      "after_output_sha256": "c3553cd8a667d6e9bb9083069112b3a79055b4206b2319f063956da77ee19db2",
+      "reconstruction_sha256": "b6ddd3096d0f243206efbfea27a956b18710de102325ba20c4d5d64a1293940d",
+      "reference": {
+        "id": "lead-06",
+        "title": "SupaJuice 1",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_SupaJuce1.mp3",
+        "local_filename": "TOP8_SupaJuce1.mp3",
+        "sha256": "e9c1dbe5cddf241f69b0d7b044201bb18e212345dc080c35a09001cb9afe103f",
+        "size_bytes": 647026,
+        "bank_id": "lead",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 6,
+        "patch_name": "SupaJuce 1",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank.",
+        "name_note": "Official HTML spells the title SupaJuice 1; downloaded librarian record spells it SupaJuce 1."
+      },
+      "power_centroid_20_16000_hz": {
+        "hardware": 1641.7023799128594,
+        "before": 1711.2508272417676,
+        "after": 697.2147996934305
+      },
+      "limits": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Original MIDI is unavailable; this is an estimated reconstruction.",
+        "Event boundaries are approximate within 10\u201320 ms; pitch envelope, filter release and delay obscure exact key-down/up times.",
+        "All velocities are placeholders at 100. Original velocity, controllers, system transpose, recording processing and exact patch revision are unverified.",
+        "Lower square note identification is stronger than exact gates. The first 1.8 seconds exclude the rest of the demo and use an artificial final crop."
+      ]
+    },
+    {
+      "case_id": "moogie-1",
+      "same_midi_and_original_preset_verified": true,
+      "midi_status": "reconstructed_not_original",
+      "inputs": {
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/wide-pitch-implementation/after/moogie-1/reconstructed-performance.mid",
+          "sha256": "354540c1ac357a80473d0d71e62a20ff2af79e125fcdf82166d20ec12cf71104"
+        },
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/wide-pitch-implementation/after/moogie-1/original-patch.syx",
+          "sha256": "33d39a6b1cbf47abd830ecf879e1ef6774b50eb6a4eb4db6997749f4f7cffabc"
+        },
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+          "sha256": "495ebafba4893ca723d66ca09d25747b3974dccf13f80dfb807fb591a6efd4ce"
+        }
+      },
+      "before_renderer": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/wide-pitch-implementation/SeptumRenderMidi-before",
+        "sha256": "74d3ffc6d0d3ba7b101e7bda3ba44cf6ee8d732686db0c1e6f57f678210505b0"
+      },
+      "before_output_sha256": "6e436c65da30b930939d7202b07f9072bd9cc1b2ccbfe536d489e2dbd8a571f5",
+      "after_output_sha256": "29ab1181af4bb9c20b4befe2a04f95df9d6a678117221110da90efab011003b9",
+      "reconstruction_sha256": "c2766e059d8ef5139752731cae633d1ed3588c5ab48c4ca93c381b667cbe23b7",
+      "reference": {
+        "id": "bass-01",
+        "title": "Moogie 1",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_bass.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/BASS/TOP8_Moogie1.mp3",
+        "local_filename": "TOP8_Moogie1.mp3",
+        "sha256": "32a354043a57a6cac3b85d6366dbe9cb253a67964f478f412ee2ceab38505e9e",
+        "size_bytes": 497396,
+        "bank_id": "bass",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 1,
+        "patch_name": "Moogie 1",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+      },
+      "power_centroid_20_16000_hz": {
+        "hardware": 75.53933877036322,
+        "before": 34.42841971891886,
+        "after": 60.75036618216661
+      },
+      "limits": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Original performance MIDI is unavailable; these notes are an estimate, not a recovered original file.",
+        "Played MIDI octave is conditional on the measured WIDE-off range and default system transpose. The original performance MIDI has not been recovered.",
+        "Repeated-note onsets and pitch transitions have roughly 20\u201340 ms uncertainty. Note-offs are assumed to meet the following onset; the hardware audio does not uniquely reveal key release timing.",
+        "Velocity is assumed 100 for every note. Both tones have level velocity sensitivity +8; absolute amplitude and any velocity variation remain unverified.",
+        "Controller automation, master settings, recording processing and exact demo patch revision are unknown. No controller events were invented.",
+        "The excerpt stops before the next phrase; its final release is an artificial crop boundary and is excluded from release-time conclusions."
+      ],
+      "historical_different_midi_output": {
+        "path": "build-fidelity/hardware-benchmark/filter-implementation/after/moogie-1-octave-revision/septum-raw.wav",
+        "sha256": "29ab1181af4bb9c20b4befe2a04f95df9d6a678117221110da90efab011003b9",
+        "byte_identical_to_after": true,
+        "qualification": "Different MIDI transcription; old notes were 24 semitones higher."
+      }
+    },
+    {
+      "case_id": "dist-bs-1",
+      "same_midi_and_original_preset_verified": true,
+      "midi_status": "reconstructed_not_original",
+      "inputs": {
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/wide-pitch-implementation/after/dist-bs-1/reconstructed-performance.mid",
+          "sha256": "66b5b06caddf07f908df34a9e8aef4bc65cf05872ef7f2b047622b879835e3e5"
+        },
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/wide-pitch-implementation/after/dist-bs-1/original-patch.syx",
+          "sha256": "774bed5b7e3155c4c2efadcffc388c972e7fdd9a9ed82af08cb7333b14980060"
+        },
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+          "sha256": "495ebafba4893ca723d66ca09d25747b3974dccf13f80dfb807fb591a6efd4ce"
+        }
+      },
+      "before_renderer": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/wide-pitch-implementation/SeptumRenderMidi-before",
+        "sha256": "74d3ffc6d0d3ba7b101e7bda3ba44cf6ee8d732686db0c1e6f57f678210505b0"
+      },
+      "before_output_sha256": "3de822c520b3a3099293d0d6d447621b6591f6c53dcc8cd2633ad775842157ae",
+      "after_output_sha256": "5c0363e6e324d46fed8c8315bc57ab76a51367edb5b416f909563f5978ef364d",
+      "reconstruction_sha256": "91341df08c72b74f00c6bbf63b4f1a19089b0fb2fa735474f982c462e31c917f",
+      "reference": {
+        "id": "bass-03",
+        "title": "Dist Bs 1",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_bass.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/BASS/TOP8_DistBs1.mp3",
+        "local_filename": "TOP8_DistBs1.mp3",
+        "sha256": "4d1c6c0d8f32aaefd690f65fecee25952b2a5975aa9faed5e2d463a87099f9aa",
+        "size_bytes": 509099,
+        "bank_id": "bass",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 3,
+        "patch_name": "Dist Bs 1",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+      },
+      "power_centroid_20_16000_hz": {
+        "hardware": 64.62882125582603,
+        "before": 51.86995619032715,
+        "after": 49.38188823146093
+      },
+      "limits": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Three-note crop from 1.94\u20133.20 seconds of the original demo; the earlier note with obvious pitch movement is outside this excerpt.",
+        "Played MIDI octave is conditional on the measured WIDE-off range and default system transpose. The original performance MIDI has not been recovered.",
+        "All velocities are fixed to 100, an unknown placeholder. Both tones have amplitude velocity sensitivity +8.",
+        "Original MIDI, controller events, system tuning/transposition, gain and processing are unavailable; no waveform null or absolute loudness calibration is justified.",
+        "Septum starts from reset; hardware was already sounding earlier in the recording. The crop begins in a quiet gap, with preset delay and reverb disabled."
+      ],
+      "historical_different_midi_output": {
+        "path": "build-fidelity/hardware-benchmark/filter-implementation/after/dist-bs-1/septum-raw.wav",
+        "sha256": "5c0363e6e324d46fed8c8315bc57ab76a51367edb5b416f909563f5978ef364d",
+        "byte_identical_to_after": true,
+        "qualification": "Different MIDI transcription; old notes were 24 semitones higher."
+      }
+    }
+  ],
+  "final_source_sha256": {
+    "Source/DSP/SeptumSysEx.cpp": "8d7a431f7275e7a9185f5e718080335b40a23331f9f200fe0f07557ac47bf138",
+    "Source/DSP/SeptumSysEx.h": "a8e557ae053fafa412df42ead941a756a8fa2a6fbf0ea5a1ecdedec443e83e9a",
+    "Source/PluginProcessor.cpp": "23c4fb6c8f48d8cbf433421bf1594ae5b47372a3a801cb792c7b5338a46abf38",
+    "Source/PluginProcessor.h": "bcedbd658ddf15cf7da1d0f43e7f250a881528c176edf93e736b1cb6ea17b104",
+    "Tools/RenderMidi.cpp": "38ce0a4e253100d09f2027d7d368ec421f714100b290fa8860012fd5421259c3"
+  },
+  "validation": {
+    "ctest": {
+      "passed": 12,
+      "failed": 0,
+      "elapsed_seconds": 33.7,
+      "last_test_log_sha256": "fd8eee26fdd03dfd92dab03707dc40245ab429299cf9d7bf7fc9d8a4ae93bff4",
+      "checks": [
+        "Septum engine tests passed (4599 checks).",
+        "Septum plug-in tests passed (4122 checks)."
+      ]
+    },
+    "build": "Release, native arm64; cmake --build build-fidelity -j 6; AU, VST3, Standalone and tools built",
+    "bundles": [
+      {
+        "path": "build-fidelity/Septum_artefacts/Release/AU/Septum.component",
+        "binary_sha256": "d76f77a7ae48de0ba3296de4686c9ced4ec238198248f71d4c6c6dc714a97e58",
+        "signature": "ad hoc, verified --deep --strict",
+        "architecture": "arm64"
+      },
+      {
+        "path": "build-fidelity/Septum_artefacts/Release/VST3/Septum.vst3",
+        "binary_sha256": "5273d9673572fa73ab8a14b382f1db7715ba2faaf646c9ee32e7a298e4a9aea3",
+        "signature": "ad hoc, verified --deep --strict",
+        "architecture": "arm64"
+      },
+      {
+        "path": "build-fidelity/Septum_artefacts/Release/Standalone/Septum.app",
+        "binary_sha256": "fd8d9e55ac1529fd0c5d1abcc67e87a4608f64b5d8e6f94edd433c5840aa30ce",
+        "signature": "ad hoc, verified --deep --strict",
+        "architecture": "arm64"
+      }
+    ],
+    "player": "http://127.0.0.1:8898/player/",
+    "ui_verification": "CUA accessibility state verified corrected playback and switching to hardware; four cases and disclosure text present."
+  }
+}

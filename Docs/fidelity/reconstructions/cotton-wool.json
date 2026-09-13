@@ -1,0 +1,292 @@
+{
+  "schema_version": 1,
+  "id": "cotton-wool",
+  "title": "Cotton Wool \u2014 opening polyphonic phrase",
+  "reference_id": "pad-01",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 0,
+  "duration_seconds": 5,
+  "method": "Hann-windowed FFT and STFT of hardware MP3; grouped fundamental/harmonic families; independent attacks distinguished lower C2 from later C3 where possible. No Septum render used.",
+  "uncertainties": [
+    "This is an estimated reconstruction, not a recovered original MIDI performance.",
+    "Bass C2/C3 octave allocation is less certain than the Eb/F/Bb and Eb/F/A chord pitch classes because their harmonics overlap.",
+    "Onsets are approximate within roughly30\u201370 ms, with the later F3 strum less certain. Short-time analysis window smears exact attacks.",
+    "Note-off times are placeholders informed by audible-band decay; release envelopes and reverb prevent exact recovery.",
+    "Velocities, controllers, pitch bend, system transpose/tuning, master gain, and recording processing are unknown.",
+    "Small note overlaps, extra quiet notes, and the exact voicing may differ from this estimate.",
+    "All note-on velocities fixed to100 as an explicit placeholder. Original velocities were not recoverable, and filter velocity sensitivity is+18 in the published patch. No velocity or preset parameters were fitted against Septum output.",
+    "Five-second excerpt only; the later untranscribed performance is not compared with the rendered release tail."
+  ],
+  "notes": [
+    {
+      "note": 36,
+      "velocity": 100,
+      "pitch_confidence": "medium-high",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "Distinct 65.4 Hz fundamental family begins near 0.12 s; 130.8 and 261.6 Hz harmonics. Low C family also repeats near 4.12 s.",
+      "on": 0.125,
+      "off": 0.37
+    },
+    {
+      "note": 48,
+      "velocity": 100,
+      "pitch_confidence": "medium",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "130.8/261.6 Hz bands have independent attacks near 0.54, 0.92, 1.17 s after the 65.4 Hz band has decayed. C3 interpreted separately from initial C2 harmonics.",
+      "on": 0.5,
+      "off": 0.625
+    },
+    {
+      "note": 51,
+      "velocity": 100,
+      "pitch_confidence": "high",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+      "on": 0.625,
+      "off": 0.75
+    },
+    {
+      "note": 53,
+      "velocity": 100,
+      "pitch_confidence": "high",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+      "on": 0.625,
+      "off": 0.75
+    },
+    {
+      "note": 58,
+      "velocity": 100,
+      "pitch_confidence": "high",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+      "on": 0.625,
+      "off": 0.75
+    },
+    {
+      "note": 48,
+      "velocity": 100,
+      "pitch_confidence": "medium",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "130.8/261.6 Hz bands have independent attacks near 0.54, 0.92, 1.17 s after the 65.4 Hz band has decayed. C3 interpreted separately from initial C2 harmonics.",
+      "on": 0.875,
+      "off": 1.0
+    },
+    {
+      "note": 48,
+      "velocity": 100,
+      "pitch_confidence": "medium",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "130.8/261.6 Hz bands have independent attacks near 0.54, 0.92, 1.17 s after the 65.4 Hz band has decayed. C3 interpreted separately from initial C2 harmonics.",
+      "on": 1.125,
+      "off": 1.25
+    },
+    {
+      "note": 51,
+      "velocity": 100,
+      "pitch_confidence": "high",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+      "on": 1.375,
+      "off": 1.5
+    },
+    {
+      "note": 53,
+      "velocity": 100,
+      "pitch_confidence": "high",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+      "on": 1.375,
+      "off": 1.5
+    },
+    {
+      "note": 58,
+      "velocity": 100,
+      "pitch_confidence": "high",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+      "on": 1.375,
+      "off": 1.5
+    },
+    {
+      "note": 51,
+      "velocity": 100,
+      "pitch_confidence": "high",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+      "on": 1.875,
+      "off": 2.0
+    },
+    {
+      "note": 53,
+      "velocity": 100,
+      "pitch_confidence": "high",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+      "on": 1.875,
+      "off": 2.0
+    },
+    {
+      "note": 58,
+      "velocity": 100,
+      "pitch_confidence": "high",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+      "on": 1.875,
+      "off": 2.0
+    },
+    {
+      "note": 51,
+      "velocity": 100,
+      "pitch_confidence": "high",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "A3 220/440 Hz family replaces Bb3; Eb3/F3 families remain. Short envelope peak near2.45 s.",
+      "on": 2.375,
+      "off": 2.5
+    },
+    {
+      "note": 53,
+      "velocity": 100,
+      "pitch_confidence": "high",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "A3 220/440 Hz family replaces Bb3; Eb3/F3 families remain. Short envelope peak near2.45 s.",
+      "on": 2.375,
+      "off": 2.5
+    },
+    {
+      "note": 57,
+      "velocity": 100,
+      "pitch_confidence": "high",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "A3 220/440 Hz family replaces Bb3; Eb3/F3 families remain. Short envelope peak near2.45 s.",
+      "on": 2.375,
+      "off": 2.5
+    },
+    {
+      "note": 51,
+      "velocity": 100,
+      "pitch_confidence": "high",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "Long held passage: Eb3 near155.6/311.1 Hz and A3 near220/440 Hz from approximately2.6\u20133.7 s. Release inferred from decay.",
+      "on": 2.625,
+      "off": 3.625
+    },
+    {
+      "note": 57,
+      "velocity": 100,
+      "pitch_confidence": "high",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "Long held passage: Eb3 near155.6/311.1 Hz and A3 near220/440 Hz from approximately2.6\u20133.7 s. Release inferred from decay.",
+      "on": 2.625,
+      "off": 3.625
+    },
+    {
+      "note": 53,
+      "velocity": 100,
+      "pitch_confidence": "high",
+      "onset_confidence": "low-medium",
+      "note_off_confidence": "low",
+      "evidence": "Long F3 family near174.6/349.2 Hz has a later clear growth near2.75 s. The strummed onset is less certain than its pitch.",
+      "on": 2.75,
+      "off": 3.75
+    },
+    {
+      "note": 46,
+      "velocity": 100,
+      "pitch_confidence": "medium-high",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "Independent low Bb2 116.5 Hz attacks centered near3.45 and3.70 s; harmonics overlap earlier Bb3.",
+      "on": 3.375,
+      "off": 3.475
+    },
+    {
+      "note": 46,
+      "velocity": 100,
+      "pitch_confidence": "medium-high",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "Independent low Bb2 116.5 Hz attacks centered near3.45 and3.70 s; harmonics overlap earlier Bb3.",
+      "on": 3.625,
+      "off": 3.725
+    },
+    {
+      "note": 48,
+      "velocity": 100,
+      "pitch_confidence": "medium",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "130.8/261.6 Hz bands grow near3.78\u20133.9 s before the next low C2 attack.",
+      "on": 3.75,
+      "off": 4.0
+    },
+    {
+      "note": 36,
+      "velocity": 100,
+      "pitch_confidence": "medium-high",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "65.4 Hz family repeats the opening bass attack near4.12 s.",
+      "on": 4.125,
+      "off": 4.37
+    },
+    {
+      "note": 48,
+      "velocity": 100,
+      "pitch_confidence": "medium",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "130.8/261.6 Hz repeat the earlier C3 attack atapproximately4.53 s.",
+      "on": 4.5,
+      "off": 4.625
+    },
+    {
+      "note": 51,
+      "velocity": 100,
+      "pitch_confidence": "high",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "Eb3/F3/Bb3 families repeat the first chord atapproximately4.65\u20134.71 s.",
+      "on": 4.625,
+      "off": 4.75
+    },
+    {
+      "note": 53,
+      "velocity": 100,
+      "pitch_confidence": "high",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "Eb3/F3/Bb3 families repeat the first chord atapproximately4.65\u20134.71 s.",
+      "on": 4.625,
+      "off": 4.75
+    },
+    {
+      "note": 58,
+      "velocity": 100,
+      "pitch_confidence": "high",
+      "onset_confidence": "medium",
+      "note_off_confidence": "low",
+      "evidence": "Eb3/F3/Bb3 families repeat the first chord atapproximately4.65\u20134.71 s.",
+      "on": 4.625,
+      "off": 4.75
+    }
+  ]
+}

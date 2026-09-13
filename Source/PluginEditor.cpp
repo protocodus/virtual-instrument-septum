@@ -69,7 +69,7 @@ constexpr int editorWidth = 1760;
 constexpr int instrumentTopPadding = 20;
 constexpr int outerPadding = 24;
 constexpr int presetPanelWidth = 540;
-constexpr int systemPanelWidth = 316 + 2 * sectionPadding;
+constexpr int systemPanelWidth = 600 + 2 * sectionPadding;
 constexpr int performancePanelWidth = 400 + 2 * sectionPadding;
 // One contiguous part surface, followed by shared effects and performance.
 constexpr int partTop = instrumentTopPadding + headerHeight + 8;
@@ -890,14 +890,19 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
     // instrument rather than to the patch, and are not saved with one. Built
     // last so the band index lists below keep the construction order they
     // name.
-    systemSection = section ("SYSTEM", Band::Perform);
-    systemSection->rowCounts = { 3 };
+    systemSection = section ("SYSTEM / MIDI", Band::Perform);
+    systemSection->rowCounts = { 7 };
+    systemSection->fixedColumns = { 84, 80, 80, 84, 96, 80, 96 };
     addControl (*systemSection, "system_master_tune", "TUNE", Style::Knob,
                 false);
     addControl (*systemSection, "system_key_shift", "KEY SHIFT", Style::Knob,
                 false, " st");
     addControl (*systemSection, "system_transpose", "TRANSPOSE", Style::Knob,
                 false, " st");
+    addControl (*systemSection, "system_midi_channel", "MIDI CH", Style::Knob, false);
+    addControl (*systemSection, "system_receive_program", "RX PROGRAM", Style::Toggle, false);
+    addControl (*systemSection, "system_device_id", "DEVICE ID", Style::Knob, false);
+    addControl (*systemSection, "system_active_sensing", "SENSING", Style::Toggle, false);
 
     // Routing sits alongside the part tabs, with its own shared scope.
     // Appended so the signal-chain section indices remain stable.

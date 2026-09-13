@@ -8,6 +8,62 @@ instrument sounds identical to the hardware.
 The following circuit and reference-rate measurements describe the first audio
 round (`c29a21f`). [Round 2](quality-round2.md) adds five shipping quality fixes for
 MIDI timing, gain/pan transitions and effects, with separate regression evidence.
+[Round 3](hardware-round3.md) implements ten further corrections from Roland's
+manuals, the AK4552 datasheet and a firsthand SH-201 hardware review, including
+polyphonic keyed LFOs and the reported one-octave pitch-envelope limit.
+
+[Hardware audio benchmark](hardware-audio-benchmark.md) adds 64 acquired demo
+recordings, 400 published Roland patches and three rendered comparisons using
+unmodified published presets with explicitly reconstructed MIDI. Original
+performance MIDI remains unverified; the report preserves that limitation.
+
+The [benchmark audit](hardware-benchmark-audit.md) independently checks the
+librarian bytes against eight author-supplied SysEx SMFs, measures all 127
+uniform velocities for each comparison, and fixes fragmented multibyte SysEx
+in the shipping importer and live MIDI receiver. It also restores Super Saw
+oscillator SYNC with an explicitly unmeasured phase-reset topology, and adds
+an independently revised Moogie 1 reconstruction.
+
+The [filter darkness investigation](filter-darkness-investigation.md) rules out
+an import/coefficient arithmetic error and identifies an overly fast Moogie
+filter decay. Its selected production correction uses a dedicated linear filter
+decay, approximately 419 ms at raw 49, with provisional power interpolation
+between 2 ms and 12 s. Other slider values are unmeasured; cutoff, filter
+release, amplifier and pitch envelopes retain their existing behavior.
+Fresh [production renders](source-audits/filter-production-renders.json) for all
+three comparisons are byte-identical to the accepted linear candidate; the
+[before/after/hardware player](http://127.0.0.1:8897/) is available while its
+local server runs. Historical candidate recordings retain their original labels.
+These are historical filter-stage renders with the earlier coarse-tuning interpretation.
+
+The [WIDE pitch correction](wide-pitch-correction.md) fixes normal-range hardware
+coarse tuning from three octaves to one, including live SysEx and pitch CCs.
+Cotton/Pedal and a new SupaJuce comparison establish the oscillator interval.
+The [pitch-correction player](http://127.0.0.1:8898/player/) uses revised,
+explicitly reconstructed MIDI and unchanged published presets. Cotton loses
+most of its excess sub-bass; waveform and filter differences remain. Native
+sessions retain their sounding pitches; re-import original SysEx for this fix.
+
+The [resonance investigation](resonance-investigation.md) identifies insufficient
+moderate-resonance emphasis and calibrates the voice filter against SupaJuce 1
+and Air Lead 1. A bounded second resonant section improves the 24 dB response;
+zero-resonance and AUDIO FILTER behavior are preserved. The
+[resonance-stage player](http://127.0.0.1:8899/) compares identical MIDI/preset
+inputs before and after. Cutoff position and waveform differences remain;
+the exact hardware topology and full control table are unverified.
+
+The [envelope brightness investigation](brightness-investigation.md) finds
+that the filter envelope's former 10-octave range leaves SupaJuce's peak cutoff
+about an octave too low. A 12-octave range restores its early upper harmonics
+across multiple notes; cutoff, resonance and envelope timing remain unchanged.
+The [latest comparison player](http://127.0.0.1:8900/) retains the same published
+presets and reconstructed MIDI, with before/after/hardware listening copies.
+
+The [Cotton Wool investigation](cotton-wool-investigation.md) independently
+verifies all 22 published preset blocks and native decoded values, then traces
+the actual filter envelope and tests reconstructed note gates. Preset identity
+is confirmed; envelope calibration, Super Saw phase and wet tails remain
+distinct from the unknown original performance.
 
 ## Implemented output circuit
 
@@ -103,10 +159,13 @@ latencies. Remaining integration gates are:
   beyond one 44.1 kHz sample.
 - Measure and reduce CPU cost before replacing the shipping renderer.
 
-The native voice filter, envelope, Super Saw and FB OSC voicings have not been
-retuned from assumptions. Round 2 changes effects bypass and numerical delay
-interpolation; exact hardware effects calibration remains open. Listening decisions remain in
-`Docs/decisions.md`; a preference does not close a hardware calibration question.
+The initial circuit/reference-rate round did not retune the native voice filter,
+envelopes, Super Saw or FB OSC. Later work adopts an empirical filter-decay
+anchor from the Moogie recording; the remaining time curve and synthesis
+calibrations are still provisional. Round 2 changes effects bypass and numerical
+delay interpolation; exact hardware effects calibration remains open. Listening
+decisions remain in `Docs/decisions.md`; a preference does not close a hardware
+calibration question.
 
 ## Reproduce measurements
 

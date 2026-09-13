@@ -1,0 +1,17 @@
+{
+  "case": "moogie-1-octave-revision",
+  "checks": [
+    {
+      "profile": "linear-slow",
+      "rebuilt_wav_sha256": "29ab1181af4bb9c20b4befe2a04f95df9d6a678117221110da90efab011003b9",
+      "existing_wav_sha256": "29ab1181af4bb9c20b4befe2a04f95df9d6a678117221110da90efab011003b9",
+      "exact_match": true
+    },
+    {
+      "profile": "exponential-slow",
+      "rebuilt_wav_sha256": "c6e7dc60721892d297de16121d9b6b35fa65bf414649db11eccd89c27959d724",
+      "existing_wav_sha256": "c6e7dc60721892d297de16121d9b6b35fa65bf414649db11eccd89c27959d724",
+      "exact_match": true
+    }
+  ]
+}

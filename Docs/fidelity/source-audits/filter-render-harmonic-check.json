@@ -1,0 +1,181 @@
+{
+  "method": "Direct windowed twelve-harmonic least-squares on unnormalized recorded/rendered first Moogie note; no fitted ratio offsets, no latency compensation. Forty millisecond windows. Original performance reconstructed. HW triangle asymmetry and recording processing unknown.",
+  "results": [
+    {
+      "series": "hardware",
+      "time_after_estimated_note_on": 0.075,
+      "fundamental": 38.557708532071686,
+      "ratios_h4_h6_h8_over_h2_db": [
+        -9.691818713166988,
+        -6.43247591401229,
+        -10.122334915903608
+      ],
+      "harmonic_fit_relative_residual": 0.011499302168311742
+    },
+    {
+      "series": "hardware",
+      "time_after_estimated_note_on": 0.15,
+      "fundamental": 38.557708532071686,
+      "ratios_h4_h6_h8_over_h2_db": [
+        -9.329598245045904,
+        -6.0048949013015225,
+        -9.598748964697252
+      ],
+      "harmonic_fit_relative_residual": 0.002161783867491801
+    },
+    {
+      "series": "hardware",
+      "time_after_estimated_note_on": 0.225,
+      "fundamental": 38.557708532071686,
+      "ratios_h4_h6_h8_over_h2_db": [
+        -9.429100977893938,
+        -6.699302763237216,
+        -13.795597436325721
+      ],
+      "harmonic_fit_relative_residual": 0.0005622789121854857
+    },
+    {
+      "series": "hardware",
+      "time_after_estimated_note_on": 0.285,
+      "fundamental": 38.557708532071686,
+      "ratios_h4_h6_h8_over_h2_db": [
+        -9.916225091879546,
+        -12.944651191831465,
+        -24.61783562981506
+      ],
+      "harmonic_fit_relative_residual": 0.0018203717368687126
+    },
+    {
+      "series": "current",
+      "time_after_estimated_note_on": 0.075,
+      "fundamental": 38.889279106505704,
+      "ratios_h4_h6_h8_over_h2_db": [
+        -24.985245881736017,
+        -41.232922810049914,
+        -50.17706730613444
+      ],
+      "harmonic_fit_relative_residual": 2.8792383135168085e-06
+    },
+    {
+      "series": "current",
+      "time_after_estimated_note_on": 0.15,
+      "fundamental": 38.889279106505704,
+      "ratios_h4_h6_h8_over_h2_db": [
+        -25.01284060607439,
+        -41.42126439382758,
+        -51.17722949046004
+      ],
+      "harmonic_fit_relative_residual": 1.2948713297681671e-06
+    },
+    {
+      "series": "current",
+      "time_after_estimated_note_on": 0.225,
+      "fundamental": 38.889279106505704,
+      "ratios_h4_h6_h8_over_h2_db": [
+        -25.018704527705673,
+        -41.46725226502247,
+        -50.38476690788312
+      ],
+      "harmonic_fit_relative_residual": 1.2572124740356651e-06
+    },
+    {
+      "series": "current",
+      "time_after_estimated_note_on": 0.285,
+      "fundamental": 38.889279106505704,
+      "ratios_h4_h6_h8_over_h2_db": [
+        -25.029641267936494,
+        -41.438465480696436,
+        -50.89090199892269
+      ],
+      "harmonic_fit_relative_residual": 1.5685448813190716e-06
+    },
+    {
+      "series": "linear-slow",
+      "time_after_estimated_note_on": 0.075,
+      "fundamental": 38.62208531728497,
+      "ratios_h4_h6_h8_over_h2_db": [
+        -12.003331839873763,
+        -16.221843250707536,
+        -16.947279595757987
+      ],
+      "harmonic_fit_relative_residual": 0.0006397714199547459
+    },
+    {
+      "series": "linear-slow",
+      "time_after_estimated_note_on": 0.15,
+      "fundamental": 38.62208531728497,
+      "ratios_h4_h6_h8_over_h2_db": [
+        -11.956124049904,
+        -16.880989067855168,
+        -17.73309351646364
+      ],
+      "harmonic_fit_relative_residual": 0.00017586453119353897
+    },
+    {
+      "series": "linear-slow",
+      "time_after_estimated_note_on": 0.225,
+      "fundamental": 38.62208531728497,
+      "ratios_h4_h6_h8_over_h2_db": [
+        -12.824219801204844,
+        -18.783635596407386,
+        -22.387354679120786
+      ],
+      "harmonic_fit_relative_residual": 2.2448497067229634e-05
+    },
+    {
+      "series": "linear-slow",
+      "time_after_estimated_note_on": 0.285,
+      "fundamental": 38.62208531728497,
+      "ratios_h4_h6_h8_over_h2_db": [
+        -13.785814840094307,
+        -22.743635474899342,
+        -28.636640854014214
+      ],
+      "harmonic_fit_relative_residual": 2.797870726860548e-05
+    },
+    {
+      "series": "exponential-slow",
+      "time_after_estimated_note_on": 0.075,
+      "fundamental": 38.66303825471819,
+      "ratios_h4_h6_h8_over_h2_db": [
+        -11.940779977373094,
+        -16.523544215620685,
+        -17.112645627671906
+      ],
+      "harmonic_fit_relative_residual": 0.0005037329716492666
+    },
+    {
+      "series": "exponential-slow",
+      "time_after_estimated_note_on": 0.15,
+      "fundamental": 38.66303825471819,
+      "ratios_h4_h6_h8_over_h2_db": [
+        -12.337010189038812,
+        -17.47606682218183,
+        -19.073138786484353
+      ],
+      "harmonic_fit_relative_residual": 0.00011069156642118092
+    },
+    {
+      "series": "exponential-slow",
+      "time_after_estimated_note_on": 0.225,
+      "fundamental": 38.66303825471819,
+      "ratios_h4_h6_h8_over_h2_db": [
+        -13.078948396673473,
+        -19.615830454297097,
+        -23.766207386903197
+      ],
+      "harmonic_fit_relative_residual": 3.2577067843094915e-05
+    },
+    {
+      "series": "exponential-slow",
+      "time_after_estimated_note_on": 0.285,
+      "fundamental": 38.66303825471819,
+      "ratios_h4_h6_h8_over_h2_db": [
+        -13.774832571325543,
+        -22.261880706639996,
+        -28.485903264334947
+      ],
+      "harmonic_fit_relative_residual": 1.6546817155985954e-05
+    }
+  ]
+}

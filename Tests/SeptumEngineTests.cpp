@@ -3428,6 +3428,147 @@ void testSysExChecksumAndProtocol()
                 + std::to_string (endOfPatch) + ")");
 }
 
+void testSysExCoarseTuneUsesTheHardwareRange()
+{
+    // Endpoints are supported by recorded oscillator intervals. Interior
+    // examples fence the explicitly provisional nearest-semitone rule.
+    for (const auto [raw, normal] : std::array<std::pair<int, int>, 11> {{
+             {-36, -12}, {-23, -8}, {-22, -7}, {-2, -1}, {-1, 0},
+             {0, 0}, {1, 0}, {2, 1}, {22, 7}, {23, 8}, {36, 12} }})
+    {
+        expect (septum::sysex::decodeCoarseTune (raw, false) == normal,
+                "normal PITCH maps the raw control into +/-12 semitones");
+        expect (septum::sysex::decodeCoarseTune (raw, true) == raw,
+                "WIDE PITCH retains the raw +/-36 semitone range");
+        for (const bool wide : { false, true })
+        {
+            auto tone = septum::initPatch().upper;
+            std::array<std::uint8_t, septum::sysex::sizeTonePatch> bytes {};
+            septum::sysex::encodeTonePatch (tone, bytes.data());
+            bytes[1] = bytes[7] = wide ? 1 : 0;
+            bytes[2] = bytes[8] = static_cast<std::uint8_t> (raw + 64);
+            bytes[3] = bytes[9] = 57;
+            septum::sysex::decodeTonePatch (bytes.data(), bytes.size(), tone);
+            expect (tone.osc1.coarse == (wide ? raw : normal)
+                        && tone.osc2.coarse == (wide ? raw : normal)
+                        && tone.osc1.fine == -7 && tone.osc2.fine == -7,
+                    "both wire oscillator pitches decode with their WIDE state and unchanged fine tune");
+            septum::sysex::encodeTonePatch (tone, bytes.data());
+            expect (bytes[2] == (wide ? raw : normal * 3) + 64
+                        && bytes[8] == bytes[2],
+                    "export canonicalizes nonmultiple-of-three raw values at the same sounding pitch");
+        }
+    }
+    for (int coarse = -36; coarse <= 36; ++coarse)
+    {
+        auto tone = septum::initPatch().upper;
+        tone.osc1.coarse = coarse;
+        tone.osc1.pitchWide = false;
+        tone.osc2.coarse = -coarse;
+        tone.osc2.pitchWide = true;
+        std::array<std::uint8_t, septum::sysex::sizeTonePatch> bytes {};
+        septum::sysex::encodeTonePatch (tone, bytes.data());
+        auto restored = septum::initPatch().upper;
+        septum::sysex::decodeTonePatch (bytes.data(), bytes.size(), restored);
+        expect (restored.osc1.coarse == coarse && restored.osc2.coarse == -coarse,
+                "every native physical semitone survives hardware export/import");
+        expect (bytes[1] == (std::abs (coarse) > 12 ? 1 : 0)
+                    && ! tone.osc1.pitchWide && tone.osc1.coarse == coarse,
+                "export promotes an out-of-normal-range wire pitch without mutating native state");
+    }
+}
+
+void testSysExCoarseAndWideFragmentsStayCoupled()
+{
+    for (const bool lower : { false, true })
+    for (const bool second : { false, true })
+    {
+        const std::uint32_t base = lower ? 0x10000200u : 0x10000100u;
+        const std::uint32_t offset = second ? 7u : 1u;
+        const auto oscillator = [lower, second] (septum::Patch& patch) -> septum::OscParams&
+        {
+            auto& tone = lower ? patch.lower : patch.upper;
+            return second ? tone.osc2 : tone.osc1;
+        };
+        const auto write = [base] (septum::sysex::PatchDataDecoder& decoder,
+                                  septum::Patch& patch, std::uint32_t at, std::uint8_t value)
+        {
+            const auto packet = septum::sysex::makeDt1Message (base + at, &value, 1);
+            expect (decoder.decode (packet.data(), packet.size(), patch),
+                    "fragmented oscillator parameter is accepted");
+        };
+        for (const bool wideFirst : { false, true })
+        {
+            auto patch = septum::initPatch();
+            septum::sysex::PatchDataDecoder decoder;
+            write (decoder, patch, offset + (wideFirst ? 0 : 1), wideFirst ? 1 : 87);
+            write (decoder, patch, 0x13, 79); // unrelated controller between paired writes
+            write (decoder, patch, offset + (wideFirst ? 1 : 0), wideFirst ? 87 : 1);
+            expect (oscillator (patch).pitchWide && oscillator (patch).coarse == 23,
+                    "WIDE and noncanonical coarse fragments reach the same pitch in either order");
+        }
+        {
+            auto patch = septum::initPatch();
+            septum::sysex::PatchDataDecoder decoder;
+            write (decoder, patch, offset + 1, 87); // normal raw23 -> physical8
+            oscillator (patch).coarse = 9;          // native edit -> canonical normal raw27
+            write (decoder, patch, offset, 1);
+            expect (oscillator (patch).coarse == 27,
+                    "a native coarse edit retires the prior noncanonical raw value before WIDE changes");
+        }
+        {
+            auto patch = septum::initPatch();
+            septum::sysex::PatchDataDecoder decoder;
+            write (decoder, patch, offset + 1, 65); // normal raw1 rounds to physical0
+            oscillator (patch).pitchWide = true;   // encoded coarse byte stays64
+            write (decoder, patch, offset, 1);
+            expect (oscillator (patch).coarse == 0,
+                    "a native WIDE edit rebases its unchanged coarse companion, discarding hidden raw1");
+        }
+        {
+            auto patch = septum::initPatch();
+            oscillator (patch).coarse = 24;
+            oscillator (patch).pitchWide = false;
+            septum::sysex::PatchDataDecoder decoder;
+            write (decoder, patch, 0x13, 79);
+            expect (oscillator (patch).coarse == 24 && ! oscillator (patch).pitchWide,
+                    "unrelated live DT1 leaves a legacy native out-of-range WIDE switch unchanged");
+            const std::uint8_t cutoff = 80;
+            const auto message = septum::sysex::makeDt1Message (base + 0x13, &cutoff, 1);
+            expect (septum::sysex::decodeSysExMessage (message.data(), message.size(), patch)
+                        && oscillator (patch).coarse == 24 && ! oscillator (patch).pitchWide,
+                    "isolated unrelated DT1 also preserves the native pitch pair");
+        }
+    }
+}
+
+void testNativeHighCoarseSysExExportPreservesAudio()
+{
+    for (const int coarse : { -24, 19, 36 })
+    {
+        auto patch = septum::initPatch();
+        patch.upper.osc1.coarse = coarse;
+        patch.upper.osc1.pitchWide = false;
+        patch.upper.filterType = septum::FilterType::Bypass;
+        const auto bytes = septum::sysex::encodePatchToSyxBuffer (patch);
+        std::vector<septum::NamedPatch> restored;
+        expect (septum::sysex::parseSyxBankFile (bytes.data(), bytes.size(), restored)
+                    && restored.size() == 1,
+                "native high-pitch export is a valid hardware patch");
+        if (restored.empty()) continue;
+        const auto render = [] (const septum::Patch& p)
+        {
+            septum::Engine engine;
+            engine.prepare (44100.0, 256);
+            engine.setPatch (p);
+            return renderScore (engine, {{0.0, true, 48, 100}, {0.1, false, 48, 0}}, .2);
+        };
+        const auto before = render (patch), after = render (restored.front().patch);
+        expect (before.left == after.left && before.right == after.right,
+                "wire WIDE promotion preserves native high-pitch audio sample for sample");
+    }
+}
+
 void testSysExPatchSerializationRoundtrip()
 {
     for (const auto& entry : septum::factoryPatches())
@@ -3962,9 +4103,10 @@ void testFilterDoesNotDistortAtZeroResonance()
                 + std::to_string (thd) + " dB)");
 }
 
-// The -24 dB path's second stage is the fixed, non-resonant one the contract
-// describes. Pinned so a re-pin cannot be silent again.
-void testTwentyFourDbPeakIsPinned()
+// The recorded moderate-resonance peak motivates extra emphasis in the
+// empirical -24 dB model. The previous assertion that this stage must always
+// reduce the peak encoded an unmeasured topology, not a hardware contract.
+void testTwentyFourDbResonantEmphasis()
 {
     const double sampleRate = 96000.0;
     const auto peakOverPassband = [&] (septum::FilterSlope slope, int resonance)
@@ -3986,15 +4128,15 @@ void testTwentyFourDbPeakIsPinned()
         const double pass = bandPower (take.left, sampleRate, 40.0, 160.0, skip, 32);
         return 10.0 * std::log10 (band / pass);
     };
-    // The -12 dB stage is the resonant one, so at every setting it must peak
-    // at least as hard as the -24 dB path, whose second stage is fixed.
-    for (int resonance : { 64, 100, 120 })
+    // Include the recording's raw40 anchor and higher settings where the
+    // second section's Q cap must retain a bounded contribution.
+    for (int resonance : { 40, 64, 100 })
     {
         const double twelve = peakOverPassband (septum::FilterSlope::Db12, resonance);
         const double twentyFour =
             peakOverPassband (septum::FilterSlope::Db24, resonance);
-        expect (twelve > twentyFour,
-                "the -24 dB path's second stage is not resonant at RESONANCE "
+        expect (twentyFour > twelve + 3.0,
+                "the -24 dB path adds resonant emphasis at RESONANCE "
                     + std::to_string (resonance) + " (-12 dB " + std::to_string (twelve)
                     + " dB, -24 dB " + std::to_string (twentyFour) + " dB)");
     }
@@ -5590,6 +5732,9 @@ int main()
     testAllNotesOffAndReset();
     testAllNotesOffLeavesThePedalsHolding();
     testSysExChecksumAndProtocol();
+    testSysExCoarseTuneUsesTheHardwareRange();
+    testSysExCoarseAndWideFragmentsStayCoupled();
+    testNativeHighCoarseSysExExportPreservesAudio();
     testSysExPatchSerializationRoundtrip();
     testAForeignSysExMessageDoesNotSplitAPatch();
     testADt1WritesAtTheAddressItNames();
@@ -5597,7 +5742,7 @@ int main()
     testNoiseKeepsTheTopOfItsBandAtEveryHostRate();
     testNoiseLevelDoesNotFollowTheHostRate();
     testFilterDoesNotDistortAtZeroResonance();
-    testTwentyFourDbPeakIsPinned();
+    testTwentyFourDbResonantEmphasis();
     testFilterEnvelopeReArmsOnAFreshVoice();
     testRaisingSustainDoesNotStep();
     testSustainMovedUnderASettledNoteWalks();

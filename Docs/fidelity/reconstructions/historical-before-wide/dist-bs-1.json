@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "dist-bs-1",
+  "title": "Dist Bs 1 \u2014 three gated bass notes",
+  "reference_id": "bass-03",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 1.94,
+  "duration_seconds": 1.26,
+  "method": "Inspected raw librarian patch parameters against Roland MIDI Implementation map. No engine synthesis parameters were optimized. Decoded official MP3 to stereo44.1kHz16-bit PCM; used channel mean for pitch and gating analysis. Detected six amplitude gates from4ms RMS of a100Hz high-pass analysis signal with10\u201350milliFS thresholds; threshold variation typically<6ms. Onset/gate intervals padded in uncertainty for MP3 and filter response. Confirmed sounding MIDI27 and29 using harmonic spectra and90ms-window autocorrelation; adding36 semitones reverses the documented oscillator coarse tune in both tones. Gate-on/off estimates do not distinguish silent keyboard onset from recording latency or encoded pre-echo.",
+  "uncertainties": [
+    "Three-note crop from 1.94\u20133.20 seconds of the original demo; the earlier note with obvious pitch movement is outside this excerpt.",
+    "Notes 63, 63, 65 are inferred from hardware fundamentals and the unchanged preset oscillator tuning. Onsets have approximately 10 ms and note-offs 12 ms uncertainty.",
+    "All velocities are fixed to 100, an unknown placeholder. Both tones have amplitude velocity sensitivity +8.",
+    "Original MIDI, controller events, system tuning/transposition, gain and processing are unavailable; no waveform null or absolute loudness calibration is justified.",
+    "Septum starts from reset; hardware was already sounding earlier in the recording. The crop begins in a quiet gap, with preset delay and reverb disabled."
+  ],
+  "notes": [
+    {
+      "note": 63,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "high relative to documented -36-semitone oscillators, assuming default system transpose",
+      "onset_uncertainty_seconds": 0.01,
+      "release_uncertainty_seconds": 0.012,
+      "velocity_source": "unknown; constant placeholder, not estimated from amplitude",
+      "on": 0.048,
+      "off": 0.28
+    },
+    {
+      "note": 63,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "high relative to documented -36-semitone oscillators, assuming default system transpose",
+      "onset_uncertainty_seconds": 0.01,
+      "release_uncertainty_seconds": 0.012,
+      "velocity_source": "unknown; constant placeholder, not estimated from amplitude",
+      "on": 0.418,
+      "off": 0.622
+    },
+    {
+      "note": 65,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "high relative to documented -36-semitone oscillators, assuming default system transpose",
+      "onset_uncertainty_seconds": 0.01,
+      "release_uncertainty_seconds": 0.012,
+      "velocity_source": "unknown; constant placeholder, not estimated from amplitude",
+      "on": 0.774,
+      "off": 1.094
+    }
+  ]
+}

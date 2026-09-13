@@ -44,13 +44,13 @@ audio.
 | `02-supersaw-spread-sweep.wav` | One chord while the spread knob sweeps the seven-saw detune curve | 7.8 s | −11.5 dBFS | +8.5 dB |
 | `03-fb-osc-lead.wav` | FB OSC from clean saw into feedback, then a legato solo phrase | 9.7 s | −23.6 dBFS | +20.6 dB |
 | `04-acid-filter-24db.wav` | The -24 dB low-pass at high resonance under a 16th-note line | 9.3 s | −28.7 dBFS | +25.7 dB |
-| `05-sync-sweeper.wav` | Oscillator sync swept by the pitch envelope and by hand | 8.8 s | −24.6 dBFS | +21.6 dB |
+| `05-sync-sweeper.wav` | Oscillator sync swept by the pitch envelope and by hand | 8.8 s | −24.7 dBFS | +21.7 dB |
 | `06-ring-bell.wav` | Ring modulation: equal-sine product bells | 9.2 s | −17.4 dBFS | +14.4 dB |
 | `07-pwm-strings.wav` | Pulse-width modulation strings through the chorus delay template | 15.8 s | −2.4 dBFS | −0.6 dB |
 | `08-sub-bass.wav` | Square plus sine an octave down with the LOW FREQ boost | 8.0 s | −14.9 dBFS | +11.9 dB |
 | `09-sample-hold-fx.wav` | Sample & hold LFO into the band-pass filter | 9.2 s | −17.0 dBFS | +14.0 dB |
 | `10-dual-pad.wav` | DUAL keyboard mode: two complete tones layered under one hall | 23.9 s | −8.2 dBFS | +5.2 dB |
-| `11-arpeggiator.wav` | One chord through the arpeggiator: UP, UP&DOWN(L&H) with a heavy shuffle, then OCTAVE RANGE +2 on HOLD | 15.1 s | −17.8 dBFS | +14.8 dB |
+| `11-arpeggiator.wav` | One chord through the arpeggiator: UP, UP&DOWN(L&H) with a heavy shuffle, then OCTAVE RANGE +2 on HOLD | 15.1 s | −17.6 dBFS | +14.6 dB |
 <!-- peaks-table-end -->
 
 ### Listening against the real instrument
@@ -258,44 +258,59 @@ the pivot at C4 with +100 tracking the keyboard 1:1 and +200 at 2:1.
 *Reported:* the 24 dB filter is "similar in character to that of the JP8000"
 (SoS) — a clean digital resonant filter, not a modelled analog ladder.
 
-Implemented as a TPT state-variable filter: −12 dB is one resonant 2-pole
-stage, −24 dB cascades a second non-resonant stage (*voiced* topology). All
-three responses are raw integrator taps, so all three gain with RESONANCE and
-all three reach the documented oscillation. Resonance maps to SVF damping
-through a square-root taper, `k = 2 − 2.04·√(v/127)`: Q ≈ 0.5 at zero,
-slightly negative damping at 127 so self-oscillation grows until a continuous
-soft-knee state limiter holds it, matching the manual's "may not stop at all".
-Cutoff maps exponentially over 20 Hz → 20.48 kHz; envelope depth ±63 spans
-±10 octaves linearly; cutoff velocity sensitivity ±63 spans ±4 octaves.
+Implemented as a TPT state-variable filter. The −12 dB voice path uses one
+resonant section; −24 dB adds a second section with Q capped at 2. An empirical
+calibration from SupaJuce 1 and Air Lead 1 recordings strengthens the original
+resonance curve: for positive base damping `b = 2 − 2.04·√(v/127)`, the voice
+uses `k1 = 2·(b/2)^1.5`, then `k2 = clamp(k1, 0.5, 1.2)`. Zero resonance and
+the first section's self-oscillation threshold retain their prior behavior.
+The modeled raw40 peak rises from about 2.2 to 10.8 dB. This is a recording-informed
+model, not a recovered Roland topology or complete Q table. The separate
+AUDIO FILTER retains its original curve. See the
+[resonance investigation](Docs/fidelity/resonance-investigation.md).
+Cutoff maps exponentially over 20 Hz → 20.48 kHz; cutoff velocity sensitivity
+±63 spans ±4 octaves. Filter-envelope depth ±63 now spans ±12 octaves linearly.
+The previous ±10 range left SupaJuce's early resonant peak about an octave too
+low. The 12-octave range is an empirical correction supported by several notes
+and an independent Cotton Wool comparison; its extremes remain unmeasured.
+See the [brightness investigation](Docs/fidelity/brightness-investigation.md).
 
 The cutoff sum is assembled in two parts, deliberately. The *panel* side —
 cutoff knob, key follow, velocity offset, LFO — passes a 2.5 ms one-pole slew
 that models nothing the hardware does and exists only so a patch edit or an
-S&H LFO edge cannot put a discontinuity into the coefficient. The *envelope*
-side does not: filter and amp envelopes read the same slider through the same
-mapping, so smoothing one and not the other would make the reported "fast ADSR
-response times ensure bags of punch" true of the amp and false of the filter.
-Both stages' coefficients then walk sample by sample across the control tick,
-so taking the envelope out of the slew put no staircase back in.
+S&H LFO edge cannot put a discontinuity into the coefficient. The envelope's
+own level bypasses this extra slew so its selected segment timing reaches the
+filter directly. Both stages' coefficients then walk sample by sample across
+the control tick, avoiding a staircase when the envelope moves.
 
 ### Envelopes
 
 *Settled:* PITCH ENV is attack/decay only with shared A/D and per-oscillator
 signed depth; FILTER ENV is ADSR with signed depth; AMP ENV is ADSR; all
 sliders 0–127. *Reported:* "fast ADSR response times ensure bags of punch"
-(SoS). *Voiced:* linear-ramp attack, exponential decay and release measured to
-−60 dB, times mapping exponentially over A: 1 ms → 5 s and D/R: 2 ms → 12 s,
-pitch-env A/D on the same law, pitch-env depth ±63 → ±24 semitones linear, and
-a stolen voice in POLY restarting its envelope from its current level.
+(SoS). *Voiced:* linear-ramp attack, with attack times mapping exponentially
+over 1 ms → 5 s. Amp/pitch decay and envelope release remain exponential,
+with the existing 2 ms → 12 s mapping measured to −60 dB. Filter decay uses a
+separate linear segment: raw 49 takes approximately 419 ms, an empirical anchor
+from conditional Moogie hardware-audio analysis. A provisional power curve
+interpolates the other values between 2 ms and 12 s; those values and the
+segment curvature are not a measured Roland table. See the
+[filter investigation](Docs/fidelity/filter-darkness-investigation.md).
+A stolen voice in POLY restarts its envelope from its current level.
+Pitch-env depth ±63 now reaches ±12 semitones:
+the one-octave limit is *reported* in Jim Aikin's firsthand SH-201 review
+(Electronic Musician, March 2007, p. 92); the linear taper remains *voiced*.
 
 ### LFOs
 
-*Settled:* two identical LFOs per tone, shared by that tone's voices to match
-the hardware's per-tone "2 LFOs"; shapes TRI, SIN, SAW, SQR, TRP, S&H (one
+*Settled:* two identical LFO parameter sets per tone; shapes TRI, SIN, SAW, SQR, TRP, S&H (one
 change per cycle) and RND; rate 0–127 or the 20-entry tempo-sync table against
 the patch tempo; fade time; key trigger restarting the cycle on a key press;
 destination 1 ∈ {PITCH1, PW1, FILTER, AUDIO-FILTER}, destination 2 ∈ {PITCH2,
 PW2, AMP}, each with a signed depth whose negative half inverts the waveform.
+With KEY TRIGGER on, each voice has its own LFO phase (*reported*, Aikin p. 93);
+otherwise the waveform free-runs across the tone. Each note has its own fade.
+The single external AUDIO FILTER retains a shared modulation source.
 *Voiced:* rate 0.03 → 30 Hz exponential, the trapezoid as
 rise-¼/high-¼/fall-¼/low-¼, RND as linearly interpolated random targets per
 cycle against S&H's stepped ones, fade time `(v/127)² × 10 s`, and the depth
@@ -348,8 +363,9 @@ renders silence, as the hardware does with nothing plugged in.
   survives the trip and a dump Septum writes never asserts a beam setting it
   invented. They are published as non-automatable: a host should not offer a
   lane that cannot change what the player hears. CC#69, the beam's own
-  controller, is accepted and ignored. The same rule covers PITCH WIDE, which
-  the address map stores and the engine has no use for.
+  controller, is accepted and ignored. PITCH WIDE is a hardware control-range
+  setting: SysEx and panel pitch CCs use it to select ±12 or ±36 semitones;
+  native pitch parameters already store physical semitones.
 - **The step recorder** and **tap tempo**.
 - **CLOCK SOURCE**, and with it external MIDI clock: the arpeggiator runs from
   PATCH TEMPO only.
@@ -389,6 +405,26 @@ line/headphone circuitry, finite op-amp bandwidth, noise and the codec's digital
 filter are not yet reproduced. The service test's roughly −4 dB at 20 kHz is
 an **analog-input loop-through** result and is not a synth-output-only target.
 See [fidelity measurements and reproduction commands](Docs/fidelity/README.md).
+The [hardware audio benchmark](Docs/fidelity/hardware-audio-benchmark.md) includes
+three listening comparisons against acquired Roland demos, using published
+presets and explicitly labeled MIDI reconstructions, plus source hashes and
+reproduction tools. Original performance MIDI was not found in the audited sources.
+The [follow-up audit](Docs/fidelity/hardware-benchmark-audit.md) verifies the
+librarian extraction against paired author SysEx files and measures velocity
+sensitivity across 381 additional renders. It fixes fragmented SysEx reception,
+restores Super Saw oscillator SYNC, and adds a revised Moogie 1 transcription.
+The [filter darkness investigation](Docs/fidelity/filter-darkness-investigation.md)
+checks the actual filter response and identifies overly fast Moogie filter decay.
+The selected production correction adopts the approximately 419 ms linear
+filter decay at raw 49, with explicitly provisional interpolation elsewhere.
+It preserves cutoff, amplifier/pitch envelopes and filter release; Dist Bs 1
+and Cotton Wool retain audible differences. Historical candidate A/B clips
+are kept separate from production verification.
+The [WIDE pitch correction](Docs/fidelity/wide-pitch-correction.md) fixes another
+large mismatch: normal-range oscillator pitch was imported as three octaves
+instead of one. Four updated comparisons retain original presets and disclose
+the revised MIDI reconstructions. Existing native sessions preserve their
+pitches; re-import original hardware SysEx to apply the corrected interpretation.
 
 ### Voice allocation and MIDI
 
@@ -400,6 +436,13 @@ resolved to CC#83. Sostenuto holds only the keys that were down when it went
 down; a note caught by both pedals releases only when both are up, and a
 stolen voice loses its latch, since the latch belonged to the note the pedal
 caught and not to the physical voice.
+
+SYSTEM / MIDI adds receive channel 1–16 (ALL is a plug-in compatibility option),
+Receive Program Change, SysEx Device ID 17–24 and Receive Active Sensing.
+New instances receive channel 1; older sessions and native presets migrate to
+ALL. Active Sensing starts only after FE and resets sound and performance
+controllers after a message gap exceeding 420 ms. Live SysEx matches the selected
+device or broadcast; explicit file imports accept any device ID.
 
 ### Presets
 
@@ -435,7 +478,7 @@ it; the constants they own are tagged in the engine's `mapping` namespace.
 | OQ-06 | FB-OSC comb delay ratio, feedback law, in-loop nonlinearity | Capture feedback-knob sweeps at fixed pitch, match partial structure |
 | OQ-07 | BALANCE law; LOW FREQ shelf corner and gain | Capture BALANCE at −63/−32/0/+32/+63 with dissimilar waves; fit the shelf from a saw |
 | OQ-08 | Filter calibration — cutoff-to-Hz table, resonance-to-Q curve, oscillation onset, whether −24 dB puts resonance on one stage or both, envelope and velocity depth scalings | Measure a real unit's swept responses at a grid of knob values |
-| OQ-09 | Envelope time tables and segment curvature | Measure attack/decay/release at slider 0/32/64/96/127 from dry captures |
+| OQ-09 | Envelope time tables and segment curvature; filter decay now has a conditional empirical anchor of about 419 ms at raw 49, with provisional interpolation and linear shape | Measure attack/decay/release at slider 0/32/37/49/58/64/96/127 from dry captures |
 | OQ-10 | LFO rate table, trapezoid segment ratios, RND smoothing, depth scalings | Film the rate LED or capture PWM audio at rate 0/64/127; scope filter-cutoff modulation |
 | OQ-11 | Overdrive transfer curve | Capture a sine through DRIVE 0/32/64/96/127 and fit the static curve |
 | OQ-12 | Effect calibration — delay TIME-to-ms, the 16 template parameter sets, reverb RT60 per TIME/SIZE. Reverb PRE DELAY is now *settled*: the manual prints only the endpoints, and Roland's editor gives the table — four regular runs, 0.1 ms steps to 4.9, 0.5 ms to 9.5, 1 ms to 49, 2 ms to 100. Read linearly, raw 50 sat at 40 ms where the unit puts it at 5 | Tap the repeats; dump SysEx after applying each template |
@@ -444,6 +487,7 @@ it; the constants they own are tagged in the engine's `mapping` namespace.
 | OQ-15 | Arpeggiator calibration — shuffle amounts behind 1/8L, 1/8H, 1/16L, 1/16H; the ACCENT blend; the OCTAVE RANGE cycle order; how a PHRASE style's rows become intervals | Record the arpeggiator's MIDI output across GRID, ACCENT and OCTAVE RANGE and read note times and velocities straight off it — the one open question here that a MIDI capture alone can close |
 | OQ-16 | *Withdrawn, not answered.* The D Beam is a control surface a plug-in has no hand above, so the question has nothing to calibrate here. Its four bytes are still stored and round-tripped | — |
 | OQ-18 | *Answered against what the codec wrote.* The address map prints the LFO Tempo Sync Switch `ON, OFF` where all 26 other switches read `OFF, ON`. It is the misprint: Roland's editor gives it no entry in the `inverse0-1Table` its three genuinely inverted parameters use, and binds it to the same latch button as ARPEGGIO, DELAY and REVERB — all off at 0. Two of Roland's own 2007 demo recordings carry the byte as 1 with SYNC NOTE 2 at PATCH TEMPO 120, and sweep at 15.91 s and 16.06 s against the 16.0 s eight whole notes predict | — |
+| OQ-19 | Super Saw SYNC is now active; the chosen all-seven slave reset and center-saw master trigger are unmeasured topology choices. FB OSC, noise and external-input slave behavior remain unresolved. | Capture MIX/SYNC with isolated oscillator assignments, fixed MIDI/patch bytes and effects off; inspect phase and spectral repetition |
 
 A SysEx dump of the factory bank would additionally give regression vectors
 for the parameter codec and settle the bank-select LSB discrepancy (manual
@@ -472,6 +516,31 @@ one from the audio thread, and nothing orders the two.
 
 ### Unreleased
 
+- Increased the filter-envelope range from ±10 to ±12 octaves after named
+  hardware recordings showed its peak cutoff opening too little. SupaJuce's
+  early upper harmonics improve across six notes; Cotton's opening high band
+  provides an independent check. Cutoff, resonance and envelope timing retain
+  their prior behavior. The range remains an empirical calibration.
+
+- Strengthened voice-filter resonance from two independent recorded patches.
+  The 24 dB path now adds bounded resonance in its second section. Zero
+  resonance, external AUDIO FILTER and existing cutoff/envelope timing remain
+  unchanged. The moderate Q calibration and high-range cap are empirical.
+
+- Corrected WIDE-dependent hardware coarse tuning in SysEx and pitch CCs:
+  the normal range is ±12 semitones, WIDE is ±36. Retained raw pitch positions
+  across CC/SysEx fragments and preserved native-session pitch semantics.
+  Added a fourth hardware comparison and revised the labeled transcriptions.
+
+- Adopted a dedicated linear filter decay after the Moogie hardware comparison
+  showed the old curve closing too soon: approximately 419 ms at raw 49, with
+  provisional power interpolation between 2 ms and 12 s. Filter release,
+  cutoff, amplifier and pitch envelopes retain their existing behavior;
+  this does not establish a complete hardware envelope table.
+- Implemented [ten further hardware-fidelity corrections](Docs/fidelity/hardware-round3.md):
+  polyphonic keyed LFOs, individual note fades, the reported pitch-envelope
+  limit, codec input DC filtering, signed linear delay feedback, sample-grid
+  arpeggio timing and four MIDI reception behaviors, with source-linked tests.
 - First complete instrument: both tones with every tone parameter, all nine
   waveforms, MIX/SYNC/RING, the filter, three envelopes, two LFOs with tempo
   sync, overdrive, delay → reverb with per-tone sends and the 16 templates,

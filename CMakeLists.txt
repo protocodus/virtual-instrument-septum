@@ -40,6 +40,7 @@ set(SEPTUM_DSP_SOURCES
     Source/DSP/SeptumPresets.cpp
     Source/DSP/SeptumSysEx.cpp)
 set(SEPTUM_DSP_HEADERS
+    Source/DSP/AnalogInput.h
     Source/DSP/AnalogOutput.h
     Source/DSP/DelayInterpolation.h
     Source/DSP/SeptumEngine.h
@@ -147,6 +148,10 @@ endif()
 option(SEPTUM_BUILD_TOOLS "Build offline Septum tools" ON)
 
 if(SEPTUM_BUILD_TOOLS)
+    add_executable(SeptumRenderMidi Tools/RenderMidi.cpp)
+    target_link_libraries(SeptumRenderMidi PRIVATE SeptumDSP)
+    target_compile_features(SeptumRenderMidi PRIVATE cxx_std_20)
+
     add_executable(SeptumAnalyzeFidelity Tools/AnalyzeFidelity.cpp)
     target_link_libraries(SeptumAnalyzeFidelity PRIVATE SeptumReferenceDSP)
     target_compile_features(SeptumAnalyzeFidelity PRIVATE cxx_std_20)
@@ -164,6 +169,16 @@ if(SEPTUM_BUILD_TOOLS)
 endif()
 
 if(BUILD_TESTING)
+    add_executable(SeptumHardwareVoiceFidelityTests Tests/HardwareVoiceFidelityTests.cpp)
+    target_link_libraries(SeptumHardwareVoiceFidelityTests PRIVATE SeptumDSP)
+    add_test(NAME Septum.HardwareVoiceFidelity COMMAND SeptumHardwareVoiceFidelityTests)
+    set_tests_properties(Septum.HardwareVoiceFidelity PROPERTIES TIMEOUT 120)
+
+    add_executable(SeptumHardwarePerformanceFidelityTests Tests/HardwarePerformanceFidelityTests.cpp)
+    target_link_libraries(SeptumHardwarePerformanceFidelityTests PRIVATE SeptumDSP)
+    add_test(NAME Septum.HardwarePerformanceFidelity COMMAND SeptumHardwarePerformanceFidelityTests)
+    set_tests_properties(Septum.HardwarePerformanceFidelity PROPERTIES TIMEOUT 120)
+
     add_executable(SeptumControlSmoothingTests Tests/ControlSmoothingTests.cpp)
     target_link_libraries(SeptumControlSmoothingTests PRIVATE SeptumDSP)
     add_test(NAME Septum.ControlSmoothing COMMAND SeptumControlSmoothingTests)
@@ -181,6 +196,13 @@ if(BUILD_TESTING)
 
     find_package(Python3 COMPONENTS Interpreter QUIET)
     if(Python3_Interpreter_FOUND)
+        if(SEPTUM_BUILD_TOOLS)
+            add_test(NAME Septum.MidiRender
+                     COMMAND "${Python3_EXECUTABLE}" -B
+                             "${CMAKE_CURRENT_SOURCE_DIR}/Tests/MidiRenderTests.py"
+                             --renderer "$<TARGET_FILE:SeptumRenderMidi>")
+            set_tests_properties(Septum.MidiRender PROPERTIES TIMEOUT 120)
+        endif()
         add_test(NAME Septum.ReferencePatchExtraction
                  COMMAND "${Python3_EXECUTABLE}" -B
                          "${CMAKE_CURRENT_SOURCE_DIR}/Tests/ReferencePatchExtractionTests.py")

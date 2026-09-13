@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "claim": "Functional before/after check on published Super Sync; generated MIDI is not a hardware performance and neither take is a hardware recording. No patch parameters were edited.",
+  "bank_url": "https://www.rolandus.com/go/sh-201_patches/shl/SH-201_Patch_LEAD.zip",
+  "bank_sha256": "102c47ee393c09115779172b8cbbb2c2f2563e0b4fdb2f57e0c8fca2a23c3b29",
+  "patch_record": 20,
+  "performance": {
+    "title": "Super Sync \u2014 generated validation notes, not a hardware transcription",
+    "duration_seconds": 6.0,
+    "notes": [
+      {
+        "on": 0.1,
+        "off": 1.8,
+        "note": 63,
+        "velocity": 100
+      },
+      {
+        "on": 2.1,
+        "off": 3.8,
+        "note": 67,
+        "velocity": 100
+      },
+      {
+        "on": 4.1,
+        "off": 5.8,
+        "note": 70,
+        "velocity": 100
+      }
+    ]
+  },
+  "listening_method": "Each full 8-second take scaled to -20dBFS RMS. Sequential file adds221-sample edge fades to each take and0.5s silence between before and after; no EQ or alignment.",
+  "takes": [
+    {
+      "version": "before",
+      "inputs": {
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/super-sync-validation/validation-performance.mid",
+          "sha256": "1c743767e9aebaacd6513957b07d901f9660a2770406150536e4e9f590a9162f"
+        },
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/super-sync-validation/original-patch.syx",
+          "sha256": "8de5947b90cfa19b8e50c11600f8420f479fee6954d5b4ec4126ab16a424b75c"
+        },
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/super-sync-validation/SeptumRenderMidi-before",
+          "sha256": "c60db8e886008e708f37d1c42716d2200c783fba0ee5f13fc4f4fbfe972d8bf1"
+        }
+      },
+      "raw_output": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/super-sync-validation/septum-before.wav",
+        "sha256": "c1c2c45d37c06110347a3c1460a034d017c97d559aeace31f5f8820fa30c3f79",
+        "encoding": "IEEE float32 stereo WAV",
+        "normalised": false,
+        "latency_compensated": false,
+        "frames": 352800,
+        "sample_rate": 44100,
+        "latency_samples": 93,
+        "peak": 0.114001773298,
+        "active_voices_at_end": 0,
+        "patch_name": "Super Sync",
+        "patch_arpeggio_on": false,
+        "patch_tempo_at_end": 102,
+        "master_level": 100,
+        "initial_patch": {
+          "name": "Super Sync",
+          "tempo": 102,
+          "keyboard_mode": "dual",
+          "single_part": "upper",
+          "split_point": 53,
+          "patch_level": 127,
+          "tone_balance": 0,
+          "arpeggio_on": false,
+          "delay_on": true,
+          "reverb_on": true,
+          "upper": {
+            "mono_mode": 2,
+            "octave_shift": 0,
+            "level": 75,
+            "level_velocity_sensitivity": 0,
+            "cutoff_velocity_sensitivity": 0,
+            "oscillator_balance": 0,
+            "osc1": {
+              "wave": 7,
+              "coarse_semitones": 26,
+              "fine_cents": 0,
+              "pw_feedback": 64
+            },
+            "osc2": {
+              "wave": 7,
+              "coarse_semitones": -36,
+              "fine_cents": 0,
+              "pw_feedback": 64
+            }
+          },
+          "lower": {
+            "mono_mode": 2,
+            "octave_shift": 0,
+            "level": 122,
+            "level_velocity_sensitivity": 8,
+            "cutoff_velocity_sensitivity": 0,
+            "oscillator_balance": -13,
+            "osc1": {
+              "wave": 7,
+              "coarse_semitones": 0,
+              "fine_cents": 0,
+              "pw_feedback": 64
+            },
+            "osc2": {
+              "wave": 7,
+              "coarse_semitones": 0,
+              "fine_cents": 0,
+              "pw_feedback": 64
+            }
+          }
+        },
+        "patch_load_warning": null
+      },
+      "listening_scalar_gain": 6.453453934955984,
+      "raw_statistics": {
+        "peak": 0.11400177329778671,
+        "peak_dbfs": -18.861767863190934,
+        "rms_dbfs": -36.195844287770626,
+        "samples_at_or_above_full_scale": 0,
+        "power_spectral_centroid_20_16000_hz": 1421.0436051001502,
+        "identical_stereo_channels": false,
+        "side_to_mid_db": -13.767179638818314
+      }
+    },
+    {
+      "version": "after",
+      "inputs": {
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/super-sync-validation/validation-performance.mid",
+          "sha256": "1c743767e9aebaacd6513957b07d901f9660a2770406150536e4e9f590a9162f"
+        },
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/super-sync-validation/original-patch.syx",
+          "sha256": "8de5947b90cfa19b8e50c11600f8420f479fee6954d5b4ec4126ab16a424b75c"
+        },
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+          "sha256": "c1a107291c17de0c248978523c882817d8289a5bb87fb7fbbb031629009fbe35"
+        }
+      },
+      "raw_output": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/super-sync-validation/septum-after.wav",
+        "sha256": "1e5bbed1cbd128efa975c037305a26edc7d107a2e50a1e0e2b715f08ba0c3099",
+        "encoding": "IEEE float32 stereo WAV",
+        "normalised": false,
+        "latency_compensated": false,
+        "frames": 352800,
+        "sample_rate": 44100,
+        "latency_samples": 93,
+        "peak": 0.233178973198,
+        "active_voices_at_end": 0,
+        "patch_name": "Super Sync",
+        "patch_arpeggio_on": false,
+        "patch_tempo_at_end": 102,
+        "master_level": 100,
+        "initial_patch": {
+          "name": "Super Sync",
+          "tempo": 102,
+          "keyboard_mode": "dual",
+          "single_part": "upper",
+          "split_point": 53,
+          "patch_level": 127,
+          "tone_balance": 0,
+          "arpeggio_on": false,
+          "delay_on": true,
+          "reverb_on": true,
+          "upper": {
+            "mono_mode": 2,
+            "octave_shift": 0,
+            "level": 75,
+            "level_velocity_sensitivity": 0,
+            "cutoff_velocity_sensitivity": 0,
+            "oscillator_balance": 0,
+            "osc1": {
+              "wave": 7,
+              "coarse_semitones": 26,
+              "fine_cents": 0,
+              "pw_feedback": 64
+            },
+            "osc2": {
+              "wave": 7,
+              "coarse_semitones": -36,
+              "fine_cents": 0,
+              "pw_feedback": 64
+            }
+          },
+          "lower": {
+            "mono_mode": 2,
+            "octave_shift": 0,
+            "level": 122,
+            "level_velocity_sensitivity": 8,
+            "cutoff_velocity_sensitivity": 0,
+            "oscillator_balance": -13,
+            "osc1": {
+              "wave": 7,
+              "coarse_semitones": 0,
+              "fine_cents": 0,
+              "pw_feedback": 64
+            },
+            "osc2": {
+              "wave": 7,
+              "coarse_semitones": 0,
+              "fine_cents": 0,
+              "pw_feedback": 64
+            }
+          }
+        },
+        "patch_load_warning": null
+      },
+      "listening_scalar_gain": 3.4317841586702182,
+      "raw_statistics": {
+        "peak": 0.233178973197937,
+        "peak_dbfs": -12.646212288880074,
+        "rms_dbfs": -30.710399303543458,
+        "samples_at_or_above_full_scale": 0,
+        "power_spectral_centroid_20_16000_hz": 1564.8820562582619,
+        "identical_stereo_channels": false,
+        "side_to_mid_db": -15.276061838499134
+      }
+    }
+  ],
+  "files": {
+    "septum-after-listen.wav": "a15b902514a196475fc7a46fdf009ab94551423306f118ce2e6d2c02a1e80414",
+    "septum-before-listen.wav": "10bfef06d957fbdd43f9eb912da6f71be63ed3124c81bfa8e0935f1934626a8a",
+    "septum-before-then-after.wav": "dec147b8b4342245860f141444e3867e2ed19613c7bfc7810954ba98f88c2e99",
+    "septum-after.wav": "1e5bbed1cbd128efa975c037305a26edc7d107a2e50a1e0e2b715f08ba0c3099",
+    "septum-before.wav": "c1c2c45d37c06110347a3c1460a034d017c97d559aeace31f5f8820fa30c3f79"
+  }
+}

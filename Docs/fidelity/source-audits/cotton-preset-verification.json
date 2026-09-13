@@ -1,0 +1,3167 @@
+{
+  "schema_version": 1,
+  "claim": "Same published preset and current native decoded values verified; exact recorded patch revision and original performance remain unverified.",
+  "sources": {
+    "page_url": "https://www.rolandus.com/go/sh-201_patches/patch_pad.html",
+    "bank_url": "https://www.rolandus.com/go/sh-201_patches/shl/SH-201_Patch_PAD.zip",
+    "audio_url": "https://www.rolandus.com/go/sh-201_patches/mp3/PAD/TOP8_Cotton_Wool.mp3",
+    "zip_sha256": "d00b19491c2cec27ee640147e0dfb6d1b8a47bcb70831a93a819a70d21a2a222",
+    "archive_member": "SH-201_Patch_PAD/100_PAD.shl",
+    "shl_sha256": "78a518f63fe6ce2c15042a8f6258b4b6d6d3519727c7b0befc1f99d097c8a3ea",
+    "patch_number": 1
+  },
+  "identity": {
+    "sysex_sha256": "e7f23e39445895f2158482037b37a19dfe413e536869c0e6f78352de6e49fbef",
+    "sysex_size": 1526,
+    "payload_sha256": "23106382cb9794ad6903b46b91e8ba5d5b963f6cbb55cd54103f63246ad3dc6d",
+    "parameter_bytes": 1240,
+    "blocks_checked": 22,
+    "native_export_byte_identical": true,
+    "native_fields_sha256": "862c6d3821b71ac30a6a3c163aa7b9d070e9931e4872689cfb0057e0f6fa9df8",
+    "native_fields_checked": 170,
+    "all_fields_match": true
+  },
+  "native_utility": {
+    "source_sha256": "600c24d452d0f3792ac727ae587561f3c43850ef7c1caaad8f9cc2583041a464",
+    "executable_sha256": "9ce44ed016ba5fe472b25b1ea03886025ead10e914ac2ac8f1a97ce75091be93",
+    "compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+    "compile_command": [
+      "c++",
+      "-std=c++20",
+      "-O2",
+      "-I",
+      "REPO/Source",
+      "SCRATCH/decode.cpp",
+      "REPO/Source/DSP/SeptumSysEx.cpp",
+      "REPO/Source/DSP/SeptumPresets.cpp",
+      "-o",
+      "SCRATCH/decode"
+    ],
+    "sources": {
+      "Source/DSP/SeptumSysEx.cpp": "8d7a431f7275e7a9185f5e718080335b40a23331f9f200fe0f07557ac47bf138",
+      "Source/DSP/SeptumSysEx.h": "a8e557ae053fafa412df42ead941a756a8fa2a6fbf0ea5a1ecdedec443e83e9a",
+      "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+      "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+      "Source/DSP/SeptumPatch.h": "6c677cc4eb5f407196de99f8602a11b7fe1947dfacdee5a5de9139d0fe3f4fe7"
+    }
+  },
+  "benchmark": {
+    "directory": "build-fidelity/hardware-benchmark/brightness-investigation/production-after/cotton-wool",
+    "sysex_path": "build-fidelity/hardware-benchmark/brightness-investigation/production-after/cotton-wool/original-patch.syx",
+    "manifest_sha256": "4f37d7a7f03684c03a762010c597ddc13854809a4b06f99176d02bd5dc59dba4",
+    "summary_fields_checked": 42,
+    "initial_patch_summary": {
+      "name": "Cotton Wool",
+      "tempo": 120,
+      "keyboard_mode": "single",
+      "single_part": "upper",
+      "split_point": 53,
+      "patch_level": 127,
+      "tone_balance": 0,
+      "arpeggio_on": false,
+      "delay_on": true,
+      "reverb_on": true,
+      "upper": {
+        "mono_mode": 0,
+        "octave_shift": 0,
+        "level": 70,
+        "level_velocity_sensitivity": 0,
+        "cutoff_velocity_sensitivity": 18,
+        "oscillator_balance": 0,
+        "osc1": {
+          "wave": 7,
+          "pitch_wide": false,
+          "coarse_semitones": 0,
+          "fine_cents": 0,
+          "pw_feedback": 41
+        },
+        "osc2": {
+          "wave": 4,
+          "pitch_wide": false,
+          "coarse_semitones": -12,
+          "fine_cents": -7,
+          "pw_feedback": 64
+        }
+      },
+      "lower": {
+        "mono_mode": 0,
+        "octave_shift": 0,
+        "level": 127,
+        "level_velocity_sensitivity": 8,
+        "cutoff_velocity_sensitivity": 0,
+        "oscillator_balance": -63,
+        "osc1": {
+          "wave": 0,
+          "pitch_wide": false,
+          "coarse_semitones": 0,
+          "fine_cents": 0,
+          "pw_feedback": 64
+        },
+        "osc2": {
+          "wave": 1,
+          "pitch_wide": false,
+          "coarse_semitones": 0,
+          "fine_cents": 0,
+          "pw_feedback": 64
+        }
+      }
+    },
+    "settings": {
+      "sample_rate": 44100,
+      "tail_seconds": 2.0,
+      "master_level": 100,
+      "midi_channel": 1,
+      "tempo_policy": "preserve-patch",
+      "tempo_to_patch_mapping": "nearest integer BPM, 5–300; timing remains exact SMF tempo",
+      "note_semantics": "arpeggio-off patch required",
+      "automatic_note_offs_at_end": false,
+      "unsupported_policy": "reject",
+      "program_bank_policy": "reject"
+    },
+    "midi": {
+      "format": 0,
+      "track_count": 1,
+      "timing": {
+        "mode": "ppq",
+        "ticks_per_quarter": 10000
+      },
+      "tempo_map": [
+        {
+          "tick": 0,
+          "sample": 0,
+          "microseconds_per_quarter": 500000,
+          "bpm": 120.0,
+          "implicit_default": true
+        },
+        {
+          "tick": 0,
+          "sample": 0,
+          "microseconds_per_quarter": 500000,
+          "bpm": 120.0,
+          "implicit_default": false
+        }
+      ],
+      "end_tick": 100000,
+      "end_sample": 220500,
+      "sample_rate": 44100,
+      "same_tick_order": "track number, then event order within track",
+      "sample_rounding": "nearest sample, exact rational timing, ties upward"
+    },
+    "replay_event_counts": {
+      "note_off": 27,
+      "note_on": 27
+    },
+    "note_on_velocities": [
+      100
+    ],
+    "controller_events_present": false,
+    "inputs": {
+      "midi": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/brightness-investigation/production-after/cotton-wool/reconstructed-performance.mid",
+        "sha256": "9794993003bca0f1af71f2a39d30e294c6bf862ab1d6aabdbea50d145d0ce69f"
+      },
+      "sysex": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/brightness-investigation/production-after/cotton-wool/original-patch.syx",
+        "sha256": "e7f23e39445895f2158482037b37a19dfe413e536869c0e6f78352de6e49fbef"
+      },
+      "renderer": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+        "sha256": "37fd4c87d4e96b47fdfc2e5a193ee5b0bebfdf783fe87eea1b887075a16b9cb9"
+      }
+    },
+    "output_audio": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/brightness-investigation/production-after/cotton-wool/septum-raw.wav",
+      "sha256": "38ff7e62a22b4d65d5785072093ec5d9022bfba8d442770a723fbb4d159adb12",
+      "encoding": "IEEE float32 stereo WAV",
+      "normalised": false,
+      "latency_compensated": false,
+      "frames": 308700,
+      "sample_rate": 44100,
+      "latency_samples": 93,
+      "peak": 0.212552726269,
+      "active_voices_at_end": 0,
+      "patch_name": "Cotton Wool",
+      "patch_arpeggio_on": false,
+      "patch_tempo_at_end": 120,
+      "master_level": 100,
+      "initial_patch": {
+        "name": "Cotton Wool",
+        "tempo": 120,
+        "keyboard_mode": "single",
+        "single_part": "upper",
+        "split_point": 53,
+        "patch_level": 127,
+        "tone_balance": 0,
+        "arpeggio_on": false,
+        "delay_on": true,
+        "reverb_on": true,
+        "upper": {
+          "mono_mode": 0,
+          "octave_shift": 0,
+          "level": 70,
+          "level_velocity_sensitivity": 0,
+          "cutoff_velocity_sensitivity": 18,
+          "oscillator_balance": 0,
+          "osc1": {
+            "wave": 7,
+            "pitch_wide": false,
+            "coarse_semitones": 0,
+            "fine_cents": 0,
+            "pw_feedback": 41
+          },
+          "osc2": {
+            "wave": 4,
+            "pitch_wide": false,
+            "coarse_semitones": -12,
+            "fine_cents": -7,
+            "pw_feedback": 64
+          }
+        },
+        "lower": {
+          "mono_mode": 0,
+          "octave_shift": 0,
+          "level": 127,
+          "level_velocity_sensitivity": 8,
+          "cutoff_velocity_sensitivity": 0,
+          "oscillator_balance": -63,
+          "osc1": {
+            "wave": 0,
+            "pitch_wide": false,
+            "coarse_semitones": 0,
+            "fine_cents": 0,
+            "pw_feedback": 64
+          },
+          "osc2": {
+            "wave": 1,
+            "pitch_wide": false,
+            "coarse_semitones": 0,
+            "fine_cents": 0,
+            "pw_feedback": 64
+          }
+        }
+      },
+      "patch_load_warning": null
+    },
+    "comparison_metadata": {
+      "schema_version": 1,
+      "case": {
+        "schema_version": 1,
+        "id": "cotton-wool",
+        "title": "Cotton Wool — octave-corrected reconstruction",
+        "reference_id": "pad-01",
+        "midi_status": "reconstructed_not_original",
+        "source_start_seconds": 0,
+        "duration_seconds": 5,
+        "method": "Hardware FFT/STFT pitch families and attack estimates from the historical reconstruction, reinterpreted using the WIDE-off one-octave oscillator interval supported by Cotton Wool and Pedal Bs 1 recordings. The low peaks are the sine one octave below the Super Saw. All MIDI notes raised by 12 from the historical estimate; gates and velocity unchanged. No preset bytes modified.",
+        "uncertainties": [
+          "This is an estimated reconstruction, not a recovered original MIDI performance.",
+          "Played MIDI octave is conditional on the measured WIDE-off range and default system transpose. The original performance MIDI has not been recovered.",
+          "Bass C2/C3 octave allocation is less certain than the Eb/F/Bb and Eb/F/A chord pitch classes because their harmonics overlap.",
+          "Onsets are approximate within roughly30–70 ms, with the later F3 strum less certain. Short-time analysis window smears exact attacks.",
+          "Note-off times are placeholders informed by audible-band decay; release envelopes and reverb prevent exact recovery.",
+          "Velocities, controllers, pitch bend, system transpose/tuning, master gain, and recording processing are unknown.",
+          "Small note overlaps, extra quiet notes, and the exact voicing may differ from this estimate.",
+          "All note-on velocities fixed to100 as an explicit placeholder. Original velocities were not recoverable, and filter velocity sensitivity is+18 in the published patch. No velocity or preset parameters were fitted against Septum output.",
+          "Five-second excerpt only; the later untranscribed performance is not compared with the rendered release tail."
+        ],
+        "notes": [
+          {
+            "note": 48,
+            "velocity": 100,
+            "pitch_confidence": "medium-high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Distinct 65.4 Hz fundamental family begins near 0.12 s; 130.8 and 261.6 Hz harmonics. Low C family also repeats near 4.12 s.",
+            "on": 0.125,
+            "off": 0.37,
+            "previous_reconstructed_note": 36
+          },
+          {
+            "note": 60,
+            "velocity": 100,
+            "pitch_confidence": "medium",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "130.8/261.6 Hz bands have independent attacks near 0.54, 0.92, 1.17 s after the 65.4 Hz band has decayed. C3 interpreted separately from initial C2 harmonics.",
+            "on": 0.5,
+            "off": 0.625,
+            "previous_reconstructed_note": 48
+          },
+          {
+            "note": 63,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+            "on": 0.625,
+            "off": 0.75,
+            "previous_reconstructed_note": 51
+          },
+          {
+            "note": 65,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+            "on": 0.625,
+            "off": 0.75,
+            "previous_reconstructed_note": 53
+          },
+          {
+            "note": 70,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+            "on": 0.625,
+            "off": 0.75,
+            "previous_reconstructed_note": 58
+          },
+          {
+            "note": 60,
+            "velocity": 100,
+            "pitch_confidence": "medium",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "130.8/261.6 Hz bands have independent attacks near 0.54, 0.92, 1.17 s after the 65.4 Hz band has decayed. C3 interpreted separately from initial C2 harmonics.",
+            "on": 0.875,
+            "off": 1.0,
+            "previous_reconstructed_note": 48
+          },
+          {
+            "note": 60,
+            "velocity": 100,
+            "pitch_confidence": "medium",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "130.8/261.6 Hz bands have independent attacks near 0.54, 0.92, 1.17 s after the 65.4 Hz band has decayed. C3 interpreted separately from initial C2 harmonics.",
+            "on": 1.125,
+            "off": 1.25,
+            "previous_reconstructed_note": 48
+          },
+          {
+            "note": 63,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+            "on": 1.375,
+            "off": 1.5,
+            "previous_reconstructed_note": 51
+          },
+          {
+            "note": 65,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+            "on": 1.375,
+            "off": 1.5,
+            "previous_reconstructed_note": 53
+          },
+          {
+            "note": 70,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+            "on": 1.375,
+            "off": 1.5,
+            "previous_reconstructed_note": 58
+          },
+          {
+            "note": 63,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+            "on": 1.875,
+            "off": 2.0,
+            "previous_reconstructed_note": 51
+          },
+          {
+            "note": 65,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+            "on": 1.875,
+            "off": 2.0,
+            "previous_reconstructed_note": 53
+          },
+          {
+            "note": 70,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+            "on": 1.875,
+            "off": 2.0,
+            "previous_reconstructed_note": 58
+          },
+          {
+            "note": 63,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "A3 220/440 Hz family replaces Bb3; Eb3/F3 families remain. Short envelope peak near2.45 s.",
+            "on": 2.375,
+            "off": 2.5,
+            "previous_reconstructed_note": 51
+          },
+          {
+            "note": 65,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "A3 220/440 Hz family replaces Bb3; Eb3/F3 families remain. Short envelope peak near2.45 s.",
+            "on": 2.375,
+            "off": 2.5,
+            "previous_reconstructed_note": 53
+          },
+          {
+            "note": 69,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "A3 220/440 Hz family replaces Bb3; Eb3/F3 families remain. Short envelope peak near2.45 s.",
+            "on": 2.375,
+            "off": 2.5,
+            "previous_reconstructed_note": 57
+          },
+          {
+            "note": 63,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Long held passage: Eb3 near155.6/311.1 Hz and A3 near220/440 Hz from approximately2.6–3.7 s. Release inferred from decay.",
+            "on": 2.625,
+            "off": 3.625,
+            "previous_reconstructed_note": 51
+          },
+          {
+            "note": 69,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Long held passage: Eb3 near155.6/311.1 Hz and A3 near220/440 Hz from approximately2.6–3.7 s. Release inferred from decay.",
+            "on": 2.625,
+            "off": 3.625,
+            "previous_reconstructed_note": 57
+          },
+          {
+            "note": 65,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "low-medium",
+            "note_off_confidence": "low",
+            "evidence": "Long F3 family near174.6/349.2 Hz has a later clear growth near2.75 s. The strummed onset is less certain than its pitch.",
+            "on": 2.75,
+            "off": 3.75,
+            "previous_reconstructed_note": 53
+          },
+          {
+            "note": 58,
+            "velocity": 100,
+            "pitch_confidence": "medium-high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Independent low Bb2 116.5 Hz attacks centered near3.45 and3.70 s; harmonics overlap earlier Bb3.",
+            "on": 3.375,
+            "off": 3.475,
+            "previous_reconstructed_note": 46
+          },
+          {
+            "note": 58,
+            "velocity": 100,
+            "pitch_confidence": "medium-high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Independent low Bb2 116.5 Hz attacks centered near3.45 and3.70 s; harmonics overlap earlier Bb3.",
+            "on": 3.625,
+            "off": 3.725,
+            "previous_reconstructed_note": 46
+          },
+          {
+            "note": 60,
+            "velocity": 100,
+            "pitch_confidence": "medium",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "130.8/261.6 Hz bands grow near3.78–3.9 s before the next low C2 attack.",
+            "on": 3.75,
+            "off": 4.0,
+            "previous_reconstructed_note": 48
+          },
+          {
+            "note": 48,
+            "velocity": 100,
+            "pitch_confidence": "medium-high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "65.4 Hz family repeats the opening bass attack near4.12 s.",
+            "on": 4.125,
+            "off": 4.37,
+            "previous_reconstructed_note": 36
+          },
+          {
+            "note": 60,
+            "velocity": 100,
+            "pitch_confidence": "medium",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "130.8/261.6 Hz repeat the earlier C3 attack atapproximately4.53 s.",
+            "on": 4.5,
+            "off": 4.625,
+            "previous_reconstructed_note": 48
+          },
+          {
+            "note": 63,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Eb3/F3/Bb3 families repeat the first chord atapproximately4.65–4.71 s.",
+            "on": 4.625,
+            "off": 4.75,
+            "previous_reconstructed_note": 51
+          },
+          {
+            "note": 65,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Eb3/F3/Bb3 families repeat the first chord atapproximately4.65–4.71 s.",
+            "on": 4.625,
+            "off": 4.75,
+            "previous_reconstructed_note": 53
+          },
+          {
+            "note": 70,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Eb3/F3/Bb3 families repeat the first chord atapproximately4.65–4.71 s.",
+            "on": 4.625,
+            "off": 4.75,
+            "previous_reconstructed_note": 58
+          }
+        ],
+        "pitch_revision": {
+          "reason": "WIDE-off raw coarse +/-36 means physical +/-12 semitones, not +/-36; see source-audits/cotton-tuning-audit.md",
+          "semitone_shift_from_previous_reconstruction": 12,
+          "previous_reconstruction": "Docs/fidelity/reconstructions/historical-before-wide/cotton-wool.json",
+          "previous_reconstruction_sha256": "c4ad29ff167f11f51488f741a090529aff16c22f08541325927c349975bc657e",
+          "preset_parameter_modifications": []
+        }
+      },
+      "qualification": "same published preset; reconstructed MIDI, not verified original MIDI",
+      "reference": {
+        "id": "pad-01",
+        "title": "Cotton Wool",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_pad.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/PAD/TOP8_Cotton_Wool.mp3",
+        "local_filename": "TOP8_Cotton_Wool.mp3",
+        "sha256": "abf9d3ad400119ab0546fd724ab7a7442ea724bb164f8e9d024c642c791a1379",
+        "size_bytes": 744869,
+        "bank_id": "pad",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 1,
+        "patch_name": "Cotton Wool",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+      },
+      "bank": {
+        "id": "pad",
+        "category": "PAD",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_pad.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/shl/SH-201_Patch_PAD.zip",
+        "local_filename": "SH-201_Patch_PAD.zip",
+        "sha256": "d00b19491c2cec27ee640147e0dfb6d1b8a47bcb70831a93a819a70d21a2a222",
+        "size_bytes": 44345,
+        "archive_member": "SH-201_Patch_PAD/100_PAD.shl",
+        "bank_sha256": "78a518f63fe6ce2c15042a8f6258b4b6d6d3519727c7b0befc1f99d097c8a3ea",
+        "patch_count": 100,
+        "parameter_blocks_per_patch": 22,
+        "contains_original_performance_midi": false
+      },
+      "archive_member": "SH-201_Patch_PAD/100_PAD.shl",
+      "parameter_modifications": [],
+      "raw_excerpt_statistics": {
+        "hardware": {
+          "peak": 0.8876089453697205,
+          "peak_dbfs": -1.0355665915060412,
+          "rms_dbfs": -17.309348932465312,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 316.28238187903884,
+          "identical_stereo_channels": false,
+          "side_to_mid_db": -17.264011799829312
+        },
+        "septum": {
+          "peak": 0.2125527262687683,
+          "peak_dbfs": -13.450666405243775,
+          "rms_dbfs": -27.716328706403743,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 211.42451083645827,
+          "identical_stereo_channels": false,
+          "side_to_mid_db": -9.155033851074924
+        }
+      },
+      "listening_transform": {
+        "method": "whole-excerpt RMS matching; no EQ, compression or time warp",
+        "target_rms_dbfs": -20,
+        "hardware_gain": 0.7336137229322517,
+        "septum_gain": 2.431176198619686,
+        "common_peak_attenuation": 1.0,
+        "ab_only_edge_fade_seconds": 0.005011337868480726,
+        "ab_gap_seconds": 0.5
+      },
+      "alignment": "transcribed event times on decoded hardware timeline; no post-render alignment",
+      "hardware_start_sample": 0,
+      "comparison_frames": 220500,
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "build-fidelity/hardware-benchmark/sources/TOP8_Cotton_Wool.mp3",
+        "-ar",
+        "44100",
+        "-ac",
+        "2",
+        "-c:a",
+        "pcm_f32le",
+        "build-fidelity/hardware-benchmark/brightness-investigation/production-after/cotton-wool/hardware-decoded-full.wav"
+      ],
+      "retained_engine_latency_samples": 93,
+      "catalog_sha256": "32e356db740bd827792b6d98800aa7f923b34ceb3b7a164dd2cfcb5220119736",
+      "comparison_limits": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "This is an estimated reconstruction, not a recovered original MIDI performance.",
+        "Played MIDI octave is conditional on the measured WIDE-off range and default system transpose. The original performance MIDI has not been recovered.",
+        "Bass C2/C3 octave allocation is less certain than the Eb/F/Bb and Eb/F/A chord pitch classes because their harmonics overlap.",
+        "Onsets are approximate within roughly30–70 ms, with the later F3 strum less certain. Short-time analysis window smears exact attacks.",
+        "Note-off times are placeholders informed by audible-band decay; release envelopes and reverb prevent exact recovery.",
+        "Velocities, controllers, pitch bend, system transpose/tuning, master gain, and recording processing are unknown.",
+        "Small note overlaps, extra quiet notes, and the exact voicing may differ from this estimate.",
+        "All note-on velocities fixed to100 as an explicit placeholder. Original velocities were not recoverable, and filter velocity sensitivity is+18 in the published patch. No velocity or preset parameters were fitted against Septum output.",
+        "Five-second excerpt only; the later untranscribed performance is not compared with the rendered release tail."
+      ],
+      "reconstruction_file_sha256": "85d65a5bf0dc30ef06f0130023c4a623d36b1a3a7264500cd590fb3190b8e6cc",
+      "runtime": {
+        "python": "3.11.0",
+        "numpy": "1.26.4",
+        "scipy": "1.14.1",
+        "matplotlib": "3.9.2",
+        "ffmpeg": "ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers"
+      },
+      "source_code_sha256": {
+        "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+        "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+        "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+        "Source/DSP/ReferenceRateEngine.cpp": "226ebd3981a180fdaf4d4973ec35519a46157c6b4c8ba89ef6f0adbac978ba98",
+        "Source/DSP/ReferenceRateEngine.h": "c5b41d6382cea820cfa7e0890fdb576f8926719aeb2a2dc81c2a47aff340540f",
+        "Source/DSP/SeptumEngine.cpp": "5026b016905b7743091b010078d4d378087ea3b15e48a19d722fd19739998bd4",
+        "Source/DSP/SeptumEngine.h": "28589536fc40d9ea4a5b13f92cb94a726556ae3e5ff6062d8a28b14348b2e7df",
+        "Source/DSP/SeptumPatch.h": "7b94a422f570f7273e322e0a6d99681f30529f976cd870ebb8d1ebbd7a6302c5",
+        "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+        "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+        "Source/DSP/SeptumSysEx.cpp": "8d7a431f7275e7a9185f5e718080335b40a23331f9f200fe0f07557ac47bf138",
+        "Source/DSP/SeptumSysEx.h": "a8e557ae053fafa412df42ead941a756a8fa2a6fbf0ea5a1ecdedec443e83e9a"
+      },
+      "tool_sha256": {
+        "compare_hardware.py": "566088493f25d8c7685b474f82f0eb5eb1b3b36287b9cae8f7f91aab5eff6ccb",
+        "render_midi.py": "2ceedb470a06ac34bb1fae22ad682fb125f40ac7ec03932bc7cc05966e28e415",
+        "RenderMidi.cpp": "38ce0a4e253100d09f2027d7d368ec421f714100b290fa8860012fd5421259c3",
+        "extract_reference_patch.py": "461407495e9f5bfc99767a0146a750708c5cdb2fd34c0d029aaf5e5f5a80703b"
+      },
+      "files": {
+        "hardware-then-septum.wav": "0470a4c85fb7eab692c6d15c3bca2c79dc485e56a4ced87d9368841729dcd956",
+        "hardware-listen.wav": "38155609b5840520c22a2ec1c921f0e8929ecaca348de188f0e5adcfe6fd3206",
+        "septum-listen.wav": "366327b9ac2f074209f22ce0f3c37c98416d5cc706684bb02e225a655ae8de1c",
+        "reconstructed-performance.mid": "9794993003bca0f1af71f2a39d30e294c6bf862ab1d6aabdbea50d145d0ce69f",
+        "septum-raw.render.json": "4f37d7a7f03684c03a762010c597ddc13854809a4b06f99176d02bd5dc59dba4",
+        "comparison.png": "ea65df0190afc4d6a900c5bf26f7bc7120d2ef69bbaca718b2a9f21f42f3900c",
+        "original-patch.syx": "e7f23e39445895f2158482037b37a19dfe413e536869c0e6f78352de6e49fbef",
+        "plot-data.json": "69ef3342a3c8fd79bc7346c24b1406a615c40742bb0fd5da480be2f6ef3b86d8",
+        "septum-raw.wav": "38ff7e62a22b4d65d5785072093ec5d9022bfba8d442770a723fbb4d159adb12",
+        "hardware-excerpt-raw.wav": "cf85c5a424f99365f5d6fc2517608529f03f1d07ffae34646e2f3d0a16af16ef",
+        "hardware-decoded-full.wav": "9c05ef61182c5a3b72ddbf33330b344ef4b1bfa5e5b72e4a7b40f6f2e7a57ec1"
+      }
+    }
+  },
+  "block_identity": [
+    {
+      "block": 0,
+      "address": "10 00 00 00",
+      "size": 33,
+      "sha256": "5e74d81e3719525f4d6d33cebf9d42ce91b6bd2256091206947063691a2024d8",
+      "matches_official": true
+    },
+    {
+      "block": 1,
+      "address": "10 00 01 00",
+      "size": 64,
+      "sha256": "3af1d3206820106763c1b41a8a90359b770cc631d62267d82381979c6e980447",
+      "matches_official": true
+    },
+    {
+      "block": 2,
+      "address": "10 00 02 00",
+      "size": 64,
+      "sha256": "fb780ec5822c6a6f3f4b524924ff19e9f785c35897306b468b14605674fe1c84",
+      "matches_official": true
+    },
+    {
+      "block": 3,
+      "address": "10 00 03 00",
+      "size": 5,
+      "sha256": "6f663920653f02e3cb92e630b0f012fca9e05a6448e686171e3b5cc2477b51cc",
+      "matches_official": true
+    },
+    {
+      "block": 4,
+      "address": "10 00 04 00",
+      "size": 10,
+      "sha256": "c95fce6985d0345f7dd5291b5d96daebfcd4a0270a39055ddf8364afb02bd344",
+      "matches_official": true
+    },
+    {
+      "block": 5,
+      "address": "10 00 05 00",
+      "size": 8,
+      "sha256": "341690345267d0e1e78495a3a5a7622ef943d6ffba53dc07fb27a596a1c69e2e",
+      "matches_official": true
+    },
+    {
+      "block": 6,
+      "address": "10 00 06 00",
+      "size": 66,
+      "sha256": "9d2d61a3eefbcf5ddf662c27f4226abaf10c11cb39efb1c789b46569c1b6e521",
+      "matches_official": true
+    },
+    {
+      "block": 7,
+      "address": "10 00 07 00",
+      "size": 66,
+      "sha256": "b3951689ba07e6c5e31d6242683240049b8744557da658b26c353cda17709a2f",
+      "matches_official": true
+    },
+    {
+      "block": 8,
+      "address": "10 00 08 00",
+      "size": 66,
+      "sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+      "matches_official": true
+    },
+    {
+      "block": 9,
+      "address": "10 00 09 00",
+      "size": 66,
+      "sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+      "matches_official": true
+    },
+    {
+      "block": 10,
+      "address": "10 00 0A 00",
+      "size": 66,
+      "sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+      "matches_official": true
+    },
+    {
+      "block": 11,
+      "address": "10 00 0B 00",
+      "size": 66,
+      "sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+      "matches_official": true
+    },
+    {
+      "block": 12,
+      "address": "10 00 0C 00",
+      "size": 66,
+      "sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+      "matches_official": true
+    },
+    {
+      "block": 13,
+      "address": "10 00 0D 00",
+      "size": 66,
+      "sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+      "matches_official": true
+    },
+    {
+      "block": 14,
+      "address": "10 00 0E 00",
+      "size": 66,
+      "sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+      "matches_official": true
+    },
+    {
+      "block": 15,
+      "address": "10 00 0F 00",
+      "size": 66,
+      "sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+      "matches_official": true
+    },
+    {
+      "block": 16,
+      "address": "10 00 10 00",
+      "size": 66,
+      "sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+      "matches_official": true
+    },
+    {
+      "block": 17,
+      "address": "10 00 11 00",
+      "size": 66,
+      "sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+      "matches_official": true
+    },
+    {
+      "block": 18,
+      "address": "10 00 12 00",
+      "size": 66,
+      "sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+      "matches_official": true
+    },
+    {
+      "block": 19,
+      "address": "10 00 13 00",
+      "size": 66,
+      "sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+      "matches_official": true
+    },
+    {
+      "block": 20,
+      "address": "10 00 14 00",
+      "size": 66,
+      "sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+      "matches_official": true
+    },
+    {
+      "block": 21,
+      "address": "10 00 15 00",
+      "size": 66,
+      "sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+      "matches_official": true
+    }
+  ],
+  "fields": [
+    {
+      "path": "name",
+      "block": 0,
+      "offset": 0,
+      "width": 12,
+      "conversion": "ASCII, trailing spaces removed",
+      "address": "10 00 00 00",
+      "raw_bytes": [
+        67,
+        111,
+        116,
+        116,
+        111,
+        110,
+        32,
+        87,
+        111,
+        111,
+        108,
+        32
+      ],
+      "native_value": "Cotton Wool",
+      "matches_official": true
+    },
+    {
+      "path": "patchLevel",
+      "block": 0,
+      "offset": 12,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 00 0C",
+      "raw_bytes": [
+        127
+      ],
+      "native_value": 127,
+      "matches_official": true
+    },
+    {
+      "path": "toneBalance",
+      "block": 0,
+      "offset": 13,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 00 0D",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "tempo",
+      "block": 0,
+      "offset": 14,
+      "width": 3,
+      "conversion": "three big-endian nibbles, BPM",
+      "address": "10 00 00 0E",
+      "raw_bytes": [
+        0,
+        7,
+        8
+      ],
+      "native_value": 120,
+      "matches_official": true
+    },
+    {
+      "path": "keyboardMode",
+      "block": 0,
+      "offset": 17,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 00 11",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "SINGLE"
+    },
+    {
+      "path": "keyboardPart",
+      "block": 0,
+      "offset": 18,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 00 12",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "UPPER"
+    },
+    {
+      "path": "splitPoint",
+      "block": 0,
+      "offset": 19,
+      "width": 1,
+      "conversion": "MIDI note number",
+      "address": "10 00 00 13",
+      "raw_bytes": [
+        53
+      ],
+      "native_value": 53,
+      "matches_official": true
+    },
+    {
+      "path": "arpeggio.splitArpeggio",
+      "block": 0,
+      "offset": 20,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 00 14",
+      "raw_bytes": [
+        2
+      ],
+      "native_value": 2,
+      "matches_official": true,
+      "display_label": "BOTH"
+    },
+    {
+      "path": "modulationDestination",
+      "block": 0,
+      "offset": 21,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 00 15",
+      "raw_bytes": [
+        2
+      ],
+      "native_value": 2,
+      "matches_official": true,
+      "display_label": "BOTH"
+    },
+    {
+      "path": "dBeamDestination",
+      "block": 0,
+      "offset": 22,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 00 16",
+      "raw_bytes": [
+        2
+      ],
+      "native_value": 2,
+      "matches_official": true,
+      "display_label": "BOTH"
+    },
+    {
+      "path": "pitchBendDestination",
+      "block": 0,
+      "offset": 23,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 00 17",
+      "raw_bytes": [
+        2
+      ],
+      "native_value": 2,
+      "matches_official": true,
+      "display_label": "BOTH"
+    },
+    {
+      "path": "expressionDestination",
+      "block": 0,
+      "offset": 24,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 00 18",
+      "raw_bytes": [
+        2
+      ],
+      "native_value": 2,
+      "matches_official": true,
+      "display_label": "BOTH"
+    },
+    {
+      "path": "activeExpression",
+      "block": 0,
+      "offset": 25,
+      "width": 1,
+      "conversion": "boolean",
+      "address": "10 00 00 19",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "OFF"
+    },
+    {
+      "path": "arpeggio.on",
+      "block": 0,
+      "offset": 26,
+      "width": 1,
+      "conversion": "boolean",
+      "address": "10 00 00 1A",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "OFF"
+    },
+    {
+      "path": "arpeggio.hold",
+      "block": 0,
+      "offset": 27,
+      "width": 1,
+      "conversion": "boolean",
+      "address": "10 00 00 1B",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "OFF"
+    },
+    {
+      "path": "delayOn",
+      "block": 0,
+      "offset": 28,
+      "width": 1,
+      "conversion": "boolean",
+      "address": "10 00 00 1C",
+      "raw_bytes": [
+        1
+      ],
+      "native_value": 1,
+      "matches_official": true,
+      "display_label": "ON"
+    },
+    {
+      "path": "reverbOn",
+      "block": 0,
+      "offset": 29,
+      "width": 1,
+      "conversion": "boolean",
+      "address": "10 00 00 1D",
+      "raw_bytes": [
+        1
+      ],
+      "native_value": 1,
+      "matches_official": true,
+      "display_label": "ON"
+    },
+    {
+      "path": "modulationAssign",
+      "block": 0,
+      "offset": 30,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 00 1E",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "OSC1+2"
+    },
+    {
+      "path": "dBeamAssign",
+      "block": 0,
+      "offset": 31,
+      "width": 1,
+      "conversion": "enum; stored, D Beam not modeled",
+      "address": "10 00 00 1F",
+      "raw_bytes": [
+        7
+      ],
+      "native_value": 7,
+      "matches_official": true
+    },
+    {
+      "path": "dBeamPolarity",
+      "block": 0,
+      "offset": 32,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 00 20",
+      "raw_bytes": [
+        1
+      ],
+      "native_value": 1,
+      "matches_official": true,
+      "display_label": "MINUS"
+    },
+    {
+      "path": "upper.osc1.wave",
+      "block": 1,
+      "offset": 0,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 01 00",
+      "raw_bytes": [
+        7
+      ],
+      "native_value": 7,
+      "matches_official": true,
+      "display_label": "SUPER SAW"
+    },
+    {
+      "path": "upper.osc1.pitchWide",
+      "block": 1,
+      "offset": 1,
+      "width": 1,
+      "conversion": "boolean",
+      "address": "10 00 01 01",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "OFF"
+    },
+    {
+      "path": "upper.osc1.coarse",
+      "block": 1,
+      "offset": 2,
+      "width": 1,
+      "conversion": "WIDE off: round((raw-64)/3); WIDE on: raw-64 semitones",
+      "address": "10 00 01 02",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "signed_raw": 0
+    },
+    {
+      "path": "upper.osc1.fine",
+      "block": 1,
+      "offset": 3,
+      "width": 1,
+      "conversion": "raw - 64 cents",
+      "address": "10 00 01 03",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "upper.osc1.pulseWidth",
+      "block": 1,
+      "offset": 4,
+      "width": 1,
+      "conversion": "PW / feedback / Super Saw spread, by waveform",
+      "address": "10 00 01 04",
+      "raw_bytes": [
+        41
+      ],
+      "native_value": 41,
+      "matches_official": true
+    },
+    {
+      "path": "upper.osc1.pitchEnvDepth",
+      "block": 1,
+      "offset": 5,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 01 05",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "upper.osc2.wave",
+      "block": 1,
+      "offset": 6,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 01 06",
+      "raw_bytes": [
+        4
+      ],
+      "native_value": 4,
+      "matches_official": true,
+      "display_label": "SINE"
+    },
+    {
+      "path": "upper.osc2.pitchWide",
+      "block": 1,
+      "offset": 7,
+      "width": 1,
+      "conversion": "boolean",
+      "address": "10 00 01 07",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "OFF"
+    },
+    {
+      "path": "upper.osc2.coarse",
+      "block": 1,
+      "offset": 8,
+      "width": 1,
+      "conversion": "WIDE off: round((raw-64)/3); WIDE on: raw-64 semitones",
+      "address": "10 00 01 08",
+      "raw_bytes": [
+        28
+      ],
+      "native_value": -12,
+      "matches_official": true,
+      "signed_raw": -36
+    },
+    {
+      "path": "upper.osc2.fine",
+      "block": 1,
+      "offset": 9,
+      "width": 1,
+      "conversion": "raw - 64 cents",
+      "address": "10 00 01 09",
+      "raw_bytes": [
+        57
+      ],
+      "native_value": -7,
+      "matches_official": true
+    },
+    {
+      "path": "upper.osc2.pulseWidth",
+      "block": 1,
+      "offset": 10,
+      "width": 1,
+      "conversion": "PW / feedback / Super Saw spread, by waveform",
+      "address": "10 00 01 0A",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 64,
+      "matches_official": true
+    },
+    {
+      "path": "upper.osc2.pitchEnvDepth",
+      "block": 1,
+      "offset": 11,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 01 0B",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "upper.pitchEnvAttack",
+      "block": 1,
+      "offset": 12,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 01 0C",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "upper.pitchEnvDecay",
+      "block": 1,
+      "offset": 13,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 01 0D",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "upper.mixType",
+      "block": 1,
+      "offset": 14,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 01 0E",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "MIX"
+    },
+    {
+      "path": "upper.balance",
+      "block": 1,
+      "offset": 15,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 01 0F",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "upper.lowFreq",
+      "block": 1,
+      "offset": 16,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 01 10",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "FLAT"
+    },
+    {
+      "path": "upper.filterType",
+      "block": 1,
+      "offset": 17,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 01 11",
+      "raw_bytes": [
+        1
+      ],
+      "native_value": 1,
+      "matches_official": true,
+      "display_label": "LPF"
+    },
+    {
+      "path": "upper.filterSlope",
+      "block": 1,
+      "offset": 18,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 01 12",
+      "raw_bytes": [
+        1
+      ],
+      "native_value": 1,
+      "matches_official": true,
+      "display_label": "24 dB/oct"
+    },
+    {
+      "path": "upper.cutoff",
+      "block": 1,
+      "offset": 19,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 01 13",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "upper.keyFollow",
+      "block": 1,
+      "offset": 20,
+      "width": 1,
+      "conversion": "(raw - 64) × 10 percent",
+      "address": "10 00 01 14",
+      "raw_bytes": [
+        70
+      ],
+      "native_value": 60,
+      "matches_official": true
+    },
+    {
+      "path": "upper.cutoffVelocitySens",
+      "block": 1,
+      "offset": 21,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 01 15",
+      "raw_bytes": [
+        82
+      ],
+      "native_value": 18,
+      "matches_official": true
+    },
+    {
+      "path": "upper.resonance",
+      "block": 1,
+      "offset": 22,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 01 16",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "upper.filterEnvAttack",
+      "block": 1,
+      "offset": 23,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 01 17",
+      "raw_bytes": [
+        10
+      ],
+      "native_value": 10,
+      "matches_official": true
+    },
+    {
+      "path": "upper.filterEnvDecay",
+      "block": 1,
+      "offset": 24,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 01 18",
+      "raw_bytes": [
+        58
+      ],
+      "native_value": 58,
+      "matches_official": true
+    },
+    {
+      "path": "upper.filterEnvSustain",
+      "block": 1,
+      "offset": 25,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 01 19",
+      "raw_bytes": [
+        87
+      ],
+      "native_value": 87,
+      "matches_official": true
+    },
+    {
+      "path": "upper.filterEnvRelease",
+      "block": 1,
+      "offset": 26,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 01 1A",
+      "raw_bytes": [
+        105
+      ],
+      "native_value": 105,
+      "matches_official": true
+    },
+    {
+      "path": "upper.filterEnvDepth",
+      "block": 1,
+      "offset": 27,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 01 1B",
+      "raw_bytes": [
+        103
+      ],
+      "native_value": 39,
+      "matches_official": true
+    },
+    {
+      "path": "upper.overdrive",
+      "block": 1,
+      "offset": 28,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 01 1C",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "OFF"
+    },
+    {
+      "path": "upper.drive",
+      "block": 1,
+      "offset": 29,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 01 1D",
+      "raw_bytes": [
+        50
+      ],
+      "native_value": 50,
+      "matches_official": true
+    },
+    {
+      "path": "upper.level",
+      "block": 1,
+      "offset": 30,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 01 1E",
+      "raw_bytes": [
+        70
+      ],
+      "native_value": 70,
+      "matches_official": true
+    },
+    {
+      "path": "upper.levelVelocitySens",
+      "block": 1,
+      "offset": 31,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 01 1F",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "upper.pan",
+      "block": 1,
+      "offset": 32,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 01 20",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "upper.ampEnvAttack",
+      "block": 1,
+      "offset": 33,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 01 21",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "upper.ampEnvDecay",
+      "block": 1,
+      "offset": 34,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 01 22",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "upper.ampEnvSustain",
+      "block": 1,
+      "offset": 35,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 01 23",
+      "raw_bytes": [
+        127
+      ],
+      "native_value": 127,
+      "matches_official": true
+    },
+    {
+      "path": "upper.ampEnvRelease",
+      "block": 1,
+      "offset": 36,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 01 24",
+      "raw_bytes": [
+        39
+      ],
+      "native_value": 39,
+      "matches_official": true
+    },
+    {
+      "path": "upper.delayDepth",
+      "block": 1,
+      "offset": 37,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 01 25",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "upper.reverbDepth",
+      "block": 1,
+      "offset": 38,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 01 26",
+      "raw_bytes": [
+        35
+      ],
+      "native_value": 35,
+      "matches_official": true
+    },
+    {
+      "path": "upper.bendRange",
+      "block": 1,
+      "offset": 59,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 01 3B",
+      "raw_bytes": [
+        2
+      ],
+      "native_value": 2,
+      "matches_official": true
+    },
+    {
+      "path": "upper.octaveShift",
+      "block": 1,
+      "offset": 60,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 01 3C",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "upper.portamento",
+      "block": 1,
+      "offset": 61,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 01 3D",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "OFF"
+    },
+    {
+      "path": "upper.portamentoTime",
+      "block": 1,
+      "offset": 62,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 01 3E",
+      "raw_bytes": [
+        20
+      ],
+      "native_value": 20,
+      "matches_official": true
+    },
+    {
+      "path": "upper.mono",
+      "block": 1,
+      "offset": 63,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 01 3F",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "POLY"
+    },
+    {
+      "path": "upper.lfo1.shape",
+      "block": 1,
+      "offset": 39,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 01 27",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "TRIANGLE"
+    },
+    {
+      "path": "upper.lfo1.rate",
+      "block": 1,
+      "offset": 40,
+      "width": 1,
+      "conversion": "identity / documented table index",
+      "address": "10 00 01 28",
+      "raw_bytes": [
+        92
+      ],
+      "native_value": 92,
+      "matches_official": true
+    },
+    {
+      "path": "upper.lfo1.tempoSync",
+      "block": 1,
+      "offset": 41,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 01 29",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "OFF"
+    },
+    {
+      "path": "upper.lfo1.tempoSyncNote",
+      "block": 1,
+      "offset": 42,
+      "width": 1,
+      "conversion": "identity / documented table index",
+      "address": "10 00 01 2A",
+      "raw_bytes": [
+        17
+      ],
+      "native_value": 17,
+      "matches_official": true
+    },
+    {
+      "path": "upper.lfo1.fadeTime",
+      "block": 1,
+      "offset": 43,
+      "width": 1,
+      "conversion": "identity / documented table index",
+      "address": "10 00 01 2B",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "upper.lfo1.keyTrigger",
+      "block": 1,
+      "offset": 44,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 01 2C",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "OFF"
+    },
+    {
+      "path": "upper.lfo1.destination1",
+      "block": 1,
+      "offset": 45,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 01 2D",
+      "raw_bytes": [
+        2
+      ],
+      "native_value": 2,
+      "matches_official": true,
+      "display_label": "FILTER"
+    },
+    {
+      "path": "upper.lfo1.depth1",
+      "block": 1,
+      "offset": 46,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 01 2E",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "upper.lfo1.destination2",
+      "block": 1,
+      "offset": 47,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 01 2F",
+      "raw_bytes": [
+        2
+      ],
+      "native_value": 2,
+      "matches_official": true,
+      "display_label": "AMP"
+    },
+    {
+      "path": "upper.lfo1.depth2",
+      "block": 1,
+      "offset": 48,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 01 30",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "upper.lfo2.shape",
+      "block": 1,
+      "offset": 49,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 01 31",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "TRIANGLE"
+    },
+    {
+      "path": "upper.lfo2.rate",
+      "block": 1,
+      "offset": 50,
+      "width": 1,
+      "conversion": "identity / documented table index",
+      "address": "10 00 01 32",
+      "raw_bytes": [
+        92
+      ],
+      "native_value": 92,
+      "matches_official": true
+    },
+    {
+      "path": "upper.lfo2.tempoSync",
+      "block": 1,
+      "offset": 51,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 01 33",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "OFF"
+    },
+    {
+      "path": "upper.lfo2.tempoSyncNote",
+      "block": 1,
+      "offset": 52,
+      "width": 1,
+      "conversion": "identity / documented table index",
+      "address": "10 00 01 34",
+      "raw_bytes": [
+        17
+      ],
+      "native_value": 17,
+      "matches_official": true
+    },
+    {
+      "path": "upper.lfo2.fadeTime",
+      "block": 1,
+      "offset": 53,
+      "width": 1,
+      "conversion": "identity / documented table index",
+      "address": "10 00 01 35",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "upper.lfo2.keyTrigger",
+      "block": 1,
+      "offset": 54,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 01 36",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "OFF"
+    },
+    {
+      "path": "upper.lfo2.destination1",
+      "block": 1,
+      "offset": 55,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 01 37",
+      "raw_bytes": [
+        2
+      ],
+      "native_value": 2,
+      "matches_official": true,
+      "display_label": "FILTER"
+    },
+    {
+      "path": "upper.lfo2.depth1",
+      "block": 1,
+      "offset": 56,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 01 38",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "upper.lfo2.destination2",
+      "block": 1,
+      "offset": 57,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 01 39",
+      "raw_bytes": [
+        2
+      ],
+      "native_value": 2,
+      "matches_official": true,
+      "display_label": "AMP"
+    },
+    {
+      "path": "upper.lfo2.depth2",
+      "block": 1,
+      "offset": 58,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 01 3A",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.osc1.wave",
+      "block": 2,
+      "offset": 0,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 02 00",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "SAW"
+    },
+    {
+      "path": "lower.osc1.pitchWide",
+      "block": 2,
+      "offset": 1,
+      "width": 1,
+      "conversion": "boolean",
+      "address": "10 00 02 01",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "OFF"
+    },
+    {
+      "path": "lower.osc1.coarse",
+      "block": 2,
+      "offset": 2,
+      "width": 1,
+      "conversion": "WIDE off: round((raw-64)/3); WIDE on: raw-64 semitones",
+      "address": "10 00 02 02",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "signed_raw": 0
+    },
+    {
+      "path": "lower.osc1.fine",
+      "block": 2,
+      "offset": 3,
+      "width": 1,
+      "conversion": "raw - 64 cents",
+      "address": "10 00 02 03",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.osc1.pulseWidth",
+      "block": 2,
+      "offset": 4,
+      "width": 1,
+      "conversion": "PW / feedback / Super Saw spread, by waveform",
+      "address": "10 00 02 04",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 64,
+      "matches_official": true
+    },
+    {
+      "path": "lower.osc1.pitchEnvDepth",
+      "block": 2,
+      "offset": 5,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 02 05",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.osc2.wave",
+      "block": 2,
+      "offset": 6,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 02 06",
+      "raw_bytes": [
+        1
+      ],
+      "native_value": 1,
+      "matches_official": true,
+      "display_label": "SQUARE"
+    },
+    {
+      "path": "lower.osc2.pitchWide",
+      "block": 2,
+      "offset": 7,
+      "width": 1,
+      "conversion": "boolean",
+      "address": "10 00 02 07",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "OFF"
+    },
+    {
+      "path": "lower.osc2.coarse",
+      "block": 2,
+      "offset": 8,
+      "width": 1,
+      "conversion": "WIDE off: round((raw-64)/3); WIDE on: raw-64 semitones",
+      "address": "10 00 02 08",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "signed_raw": 0
+    },
+    {
+      "path": "lower.osc2.fine",
+      "block": 2,
+      "offset": 9,
+      "width": 1,
+      "conversion": "raw - 64 cents",
+      "address": "10 00 02 09",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.osc2.pulseWidth",
+      "block": 2,
+      "offset": 10,
+      "width": 1,
+      "conversion": "PW / feedback / Super Saw spread, by waveform",
+      "address": "10 00 02 0A",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 64,
+      "matches_official": true
+    },
+    {
+      "path": "lower.osc2.pitchEnvDepth",
+      "block": 2,
+      "offset": 11,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 02 0B",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.pitchEnvAttack",
+      "block": 2,
+      "offset": 12,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 02 0C",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.pitchEnvDecay",
+      "block": 2,
+      "offset": 13,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 02 0D",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.mixType",
+      "block": 2,
+      "offset": 14,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 02 0E",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "MIX"
+    },
+    {
+      "path": "lower.balance",
+      "block": 2,
+      "offset": 15,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 02 0F",
+      "raw_bytes": [
+        1
+      ],
+      "native_value": -63,
+      "matches_official": true
+    },
+    {
+      "path": "lower.lowFreq",
+      "block": 2,
+      "offset": 16,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 02 10",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "FLAT"
+    },
+    {
+      "path": "lower.filterType",
+      "block": 2,
+      "offset": 17,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 02 11",
+      "raw_bytes": [
+        1
+      ],
+      "native_value": 1,
+      "matches_official": true,
+      "display_label": "LPF"
+    },
+    {
+      "path": "lower.filterSlope",
+      "block": 2,
+      "offset": 18,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 02 12",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "12 dB/oct"
+    },
+    {
+      "path": "lower.cutoff",
+      "block": 2,
+      "offset": 19,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 02 13",
+      "raw_bytes": [
+        127
+      ],
+      "native_value": 127,
+      "matches_official": true
+    },
+    {
+      "path": "lower.keyFollow",
+      "block": 2,
+      "offset": 20,
+      "width": 1,
+      "conversion": "(raw - 64) × 10 percent",
+      "address": "10 00 02 14",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.cutoffVelocitySens",
+      "block": 2,
+      "offset": 21,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 02 15",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.resonance",
+      "block": 2,
+      "offset": 22,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 02 16",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.filterEnvAttack",
+      "block": 2,
+      "offset": 23,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 02 17",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.filterEnvDecay",
+      "block": 2,
+      "offset": 24,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 02 18",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.filterEnvSustain",
+      "block": 2,
+      "offset": 25,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 02 19",
+      "raw_bytes": [
+        127
+      ],
+      "native_value": 127,
+      "matches_official": true
+    },
+    {
+      "path": "lower.filterEnvRelease",
+      "block": 2,
+      "offset": 26,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 02 1A",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.filterEnvDepth",
+      "block": 2,
+      "offset": 27,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 02 1B",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.overdrive",
+      "block": 2,
+      "offset": 28,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 02 1C",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "OFF"
+    },
+    {
+      "path": "lower.drive",
+      "block": 2,
+      "offset": 29,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 02 1D",
+      "raw_bytes": [
+        100
+      ],
+      "native_value": 100,
+      "matches_official": true
+    },
+    {
+      "path": "lower.level",
+      "block": 2,
+      "offset": 30,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 02 1E",
+      "raw_bytes": [
+        127
+      ],
+      "native_value": 127,
+      "matches_official": true
+    },
+    {
+      "path": "lower.levelVelocitySens",
+      "block": 2,
+      "offset": 31,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 02 1F",
+      "raw_bytes": [
+        72
+      ],
+      "native_value": 8,
+      "matches_official": true
+    },
+    {
+      "path": "lower.pan",
+      "block": 2,
+      "offset": 32,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 02 20",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.ampEnvAttack",
+      "block": 2,
+      "offset": 33,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 02 21",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.ampEnvDecay",
+      "block": 2,
+      "offset": 34,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 02 22",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.ampEnvSustain",
+      "block": 2,
+      "offset": 35,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 02 23",
+      "raw_bytes": [
+        127
+      ],
+      "native_value": 127,
+      "matches_official": true
+    },
+    {
+      "path": "lower.ampEnvRelease",
+      "block": 2,
+      "offset": 36,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 02 24",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.delayDepth",
+      "block": 2,
+      "offset": 37,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 02 25",
+      "raw_bytes": [
+        20
+      ],
+      "native_value": 20,
+      "matches_official": true
+    },
+    {
+      "path": "lower.reverbDepth",
+      "block": 2,
+      "offset": 38,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 02 26",
+      "raw_bytes": [
+        20
+      ],
+      "native_value": 20,
+      "matches_official": true
+    },
+    {
+      "path": "lower.bendRange",
+      "block": 2,
+      "offset": 59,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 02 3B",
+      "raw_bytes": [
+        2
+      ],
+      "native_value": 2,
+      "matches_official": true
+    },
+    {
+      "path": "lower.octaveShift",
+      "block": 2,
+      "offset": 60,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 02 3C",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.portamento",
+      "block": 2,
+      "offset": 61,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 02 3D",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "OFF"
+    },
+    {
+      "path": "lower.portamentoTime",
+      "block": 2,
+      "offset": 62,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 02 3E",
+      "raw_bytes": [
+        20
+      ],
+      "native_value": 20,
+      "matches_official": true
+    },
+    {
+      "path": "lower.mono",
+      "block": 2,
+      "offset": 63,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 02 3F",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "POLY"
+    },
+    {
+      "path": "lower.lfo1.shape",
+      "block": 2,
+      "offset": 39,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 02 27",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "TRIANGLE"
+    },
+    {
+      "path": "lower.lfo1.rate",
+      "block": 2,
+      "offset": 40,
+      "width": 1,
+      "conversion": "identity / documented table index",
+      "address": "10 00 02 28",
+      "raw_bytes": [
+        92
+      ],
+      "native_value": 92,
+      "matches_official": true
+    },
+    {
+      "path": "lower.lfo1.tempoSync",
+      "block": 2,
+      "offset": 41,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 02 29",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "OFF"
+    },
+    {
+      "path": "lower.lfo1.tempoSyncNote",
+      "block": 2,
+      "offset": 42,
+      "width": 1,
+      "conversion": "identity / documented table index",
+      "address": "10 00 02 2A",
+      "raw_bytes": [
+        17
+      ],
+      "native_value": 17,
+      "matches_official": true
+    },
+    {
+      "path": "lower.lfo1.fadeTime",
+      "block": 2,
+      "offset": 43,
+      "width": 1,
+      "conversion": "identity / documented table index",
+      "address": "10 00 02 2B",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.lfo1.keyTrigger",
+      "block": 2,
+      "offset": 44,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 02 2C",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "OFF"
+    },
+    {
+      "path": "lower.lfo1.destination1",
+      "block": 2,
+      "offset": 45,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 02 2D",
+      "raw_bytes": [
+        2
+      ],
+      "native_value": 2,
+      "matches_official": true,
+      "display_label": "FILTER"
+    },
+    {
+      "path": "lower.lfo1.depth1",
+      "block": 2,
+      "offset": 46,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 02 2E",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.lfo1.destination2",
+      "block": 2,
+      "offset": 47,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 02 2F",
+      "raw_bytes": [
+        2
+      ],
+      "native_value": 2,
+      "matches_official": true,
+      "display_label": "AMP"
+    },
+    {
+      "path": "lower.lfo1.depth2",
+      "block": 2,
+      "offset": 48,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 02 30",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.lfo2.shape",
+      "block": 2,
+      "offset": 49,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 02 31",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "TRIANGLE"
+    },
+    {
+      "path": "lower.lfo2.rate",
+      "block": 2,
+      "offset": 50,
+      "width": 1,
+      "conversion": "identity / documented table index",
+      "address": "10 00 02 32",
+      "raw_bytes": [
+        92
+      ],
+      "native_value": 92,
+      "matches_official": true
+    },
+    {
+      "path": "lower.lfo2.tempoSync",
+      "block": 2,
+      "offset": 51,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 02 33",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "OFF"
+    },
+    {
+      "path": "lower.lfo2.tempoSyncNote",
+      "block": 2,
+      "offset": 52,
+      "width": 1,
+      "conversion": "identity / documented table index",
+      "address": "10 00 02 34",
+      "raw_bytes": [
+        17
+      ],
+      "native_value": 17,
+      "matches_official": true
+    },
+    {
+      "path": "lower.lfo2.fadeTime",
+      "block": 2,
+      "offset": 53,
+      "width": 1,
+      "conversion": "identity / documented table index",
+      "address": "10 00 02 35",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.lfo2.keyTrigger",
+      "block": 2,
+      "offset": 54,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 02 36",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true,
+      "display_label": "OFF"
+    },
+    {
+      "path": "lower.lfo2.destination1",
+      "block": 2,
+      "offset": 55,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 02 37",
+      "raw_bytes": [
+        2
+      ],
+      "native_value": 2,
+      "matches_official": true,
+      "display_label": "FILTER"
+    },
+    {
+      "path": "lower.lfo2.depth1",
+      "block": 2,
+      "offset": 56,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 02 38",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "lower.lfo2.destination2",
+      "block": 2,
+      "offset": 57,
+      "width": 1,
+      "conversion": "enum",
+      "address": "10 00 02 39",
+      "raw_bytes": [
+        2
+      ],
+      "native_value": 2,
+      "matches_official": true,
+      "display_label": "AMP"
+    },
+    {
+      "path": "lower.lfo2.depth2",
+      "block": 2,
+      "offset": 58,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 02 3A",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "delay.time",
+      "block": 3,
+      "offset": 0,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 03 00",
+      "raw_bytes": [
+        70
+      ],
+      "native_value": 70,
+      "matches_official": true
+    },
+    {
+      "path": "delay.feedback",
+      "block": 3,
+      "offset": 1,
+      "width": 1,
+      "conversion": "(raw - 49) × 2 percent",
+      "address": "10 00 03 01",
+      "raw_bytes": [
+        66
+      ],
+      "native_value": 34,
+      "matches_official": true
+    },
+    {
+      "path": "delay.hfDamp",
+      "block": 3,
+      "offset": 2,
+      "width": 1,
+      "conversion": "documented frequency index",
+      "address": "10 00 03 02",
+      "raw_bytes": [
+        8
+      ],
+      "native_value": 8,
+      "matches_official": true
+    },
+    {
+      "path": "delay.modulationRate",
+      "block": 3,
+      "offset": 3,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 03 03",
+      "raw_bytes": [
+        5
+      ],
+      "native_value": 5,
+      "matches_official": true
+    },
+    {
+      "path": "delay.modulationDepth",
+      "block": 3,
+      "offset": 4,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 03 04",
+      "raw_bytes": [
+        10
+      ],
+      "native_value": 10,
+      "matches_official": true
+    },
+    {
+      "path": "reverb.time",
+      "block": 4,
+      "offset": 0,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 04 00",
+      "raw_bytes": [
+        104
+      ],
+      "native_value": 104,
+      "matches_official": true
+    },
+    {
+      "path": "reverb.preDelay",
+      "block": 4,
+      "offset": 1,
+      "width": 1,
+      "conversion": "documented table index",
+      "address": "10 00 04 01",
+      "raw_bytes": [
+        125
+      ],
+      "native_value": 125,
+      "matches_official": true
+    },
+    {
+      "path": "reverb.size",
+      "block": 4,
+      "offset": 2,
+      "width": 1,
+      "conversion": "displayed as native + 1",
+      "address": "10 00 04 02",
+      "raw_bytes": [
+        7
+      ],
+      "native_value": 7,
+      "matches_official": true
+    },
+    {
+      "path": "reverb.highCut",
+      "block": 4,
+      "offset": 3,
+      "width": 1,
+      "conversion": "documented table index",
+      "address": "10 00 04 03",
+      "raw_bytes": [
+        19
+      ],
+      "native_value": 19,
+      "matches_official": true
+    },
+    {
+      "path": "reverb.density",
+      "block": 4,
+      "offset": 4,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 04 04",
+      "raw_bytes": [
+        127
+      ],
+      "native_value": 127,
+      "matches_official": true
+    },
+    {
+      "path": "reverb.diffusion",
+      "block": 4,
+      "offset": 5,
+      "width": 1,
+      "conversion": "identity",
+      "address": "10 00 04 05",
+      "raw_bytes": [
+        127
+      ],
+      "native_value": 127,
+      "matches_official": true
+    },
+    {
+      "path": "reverb.lfDampFrequency",
+      "block": 4,
+      "offset": 6,
+      "width": 1,
+      "conversion": "documented table index",
+      "address": "10 00 04 06",
+      "raw_bytes": [
+        19
+      ],
+      "native_value": 19,
+      "matches_official": true
+    },
+    {
+      "path": "reverb.lfDampGain",
+      "block": 4,
+      "offset": 7,
+      "width": 1,
+      "conversion": "raw - 36 dB",
+      "address": "10 00 04 07",
+      "raw_bytes": [
+        36
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "reverb.hfDampFrequency",
+      "block": 4,
+      "offset": 8,
+      "width": 1,
+      "conversion": "documented table index",
+      "address": "10 00 04 08",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "reverb.hfDampGain",
+      "block": 4,
+      "offset": 9,
+      "width": 1,
+      "conversion": "raw - 36 dB",
+      "address": "10 00 04 09",
+      "raw_bytes": [
+        36
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "arpeggio.grid",
+      "block": 5,
+      "offset": 0,
+      "width": 1,
+      "conversion": "identity / documented enum",
+      "address": "10 00 05 00",
+      "raw_bytes": [
+        5
+      ],
+      "native_value": 5,
+      "matches_official": true
+    },
+    {
+      "path": "arpeggio.duration",
+      "block": 5,
+      "offset": 1,
+      "width": 1,
+      "conversion": "identity / documented enum",
+      "address": "10 00 05 01",
+      "raw_bytes": [
+        5
+      ],
+      "native_value": 5,
+      "matches_official": true
+    },
+    {
+      "path": "arpeggio.motif",
+      "block": 5,
+      "offset": 2,
+      "width": 1,
+      "conversion": "identity / documented enum",
+      "address": "10 00 05 02",
+      "raw_bytes": [
+        11
+      ],
+      "native_value": 11,
+      "matches_official": true
+    },
+    {
+      "path": "arpeggio.octaveRange",
+      "block": 5,
+      "offset": 3,
+      "width": 1,
+      "conversion": "raw - 64",
+      "address": "10 00 05 03",
+      "raw_bytes": [
+        64
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "arpeggio.accent",
+      "block": 5,
+      "offset": 4,
+      "width": 1,
+      "conversion": "identity / documented enum",
+      "address": "10 00 05 04",
+      "raw_bytes": [
+        100
+      ],
+      "native_value": 100,
+      "matches_official": true
+    },
+    {
+      "path": "arpeggio.velocity",
+      "block": 5,
+      "offset": 5,
+      "width": 1,
+      "conversion": "identity / documented enum",
+      "address": "10 00 05 05",
+      "raw_bytes": [
+        0
+      ],
+      "native_value": 0,
+      "matches_official": true
+    },
+    {
+      "path": "arpeggio.style.endStep",
+      "block": 5,
+      "offset": 6,
+      "width": 2,
+      "conversion": "two big-endian nibbles",
+      "address": "10 00 05 06",
+      "raw_bytes": [
+        0,
+        8
+      ],
+      "native_value": 8,
+      "matches_official": true
+    }
+  ],
+  "limitations": [
+    "Published name/category association does not authenticate the exact recorded patch revision.",
+    "No original performance MIDI: notes, gates, and velocity100 are reconstructed, not original values.",
+    "Live controller moves and hardware system/output settings are undocumented.",
+    "Byte and decoder identity do not establish the accuracy of DSP parameter-to-sound curves.",
+    "Native WIDE-off coarse decoding is deliberate; the one-octave Cotton endpoint is supported by recordings, interior rounding remains provisional."
+  ]
+}

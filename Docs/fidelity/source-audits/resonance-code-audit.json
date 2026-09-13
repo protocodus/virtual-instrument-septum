@@ -1,0 +1,585 @@
+{
+  "baseline": {
+    "schema_version": 1,
+    "status": "production audit",
+    "profile": "baseline",
+    "sample_rate": 48000,
+    "seconds_per_render": 2,
+    "measurement_window_seconds": [
+      1,
+      2
+    ],
+    "stimulus": "EXT-IN sine at modeled natural frequency; LPF/HPF/BPF, both slopes, raw0..127",
+    "input_amplitudes": [
+      0.001,
+      1.0
+    ],
+    "post_filter_tone_level": 25,
+    "cutoff": 64,
+    "audio_filter_on": false,
+    "cautions": [
+      "Finite-duration sweep; high-Q cases may still be building, so RMS is not steady-state Q.",
+      "Adjacent settings use independent reset renders, not a live automation transition.",
+      "Output peak includes the initial EXT-IN direct-monitor handover; RMS and projection use seconds1..2.",
+      "State2 runs even on slope12; its limiter counts need not affect selected output.",
+      "These are implementation diagnostics, not measurements of Roland hardware."
+    ],
+    "original_engine_cpp_sha256": "9ccc217358ec9e629cc661639aacd16efb88a123f2237a0f3aac3dc0ad7a5483",
+    "original_engine_h_sha256": "68b77d084bf4f53d7db5393225d471ebf91f6d385c8a600d91d616113a437d71",
+    "compiler_command": [
+      "c++",
+      "-std=c++20",
+      "-O3",
+      "-I",
+      "/private/tmp/septum-hw-benchmark/resonance-code-audit/profiles-v1/baseline/Source",
+      "/private/tmp/septum-hw-benchmark/resonance-code-audit/profiles-v1/baseline/AnalyzeResonance.cpp",
+      "/private/tmp/septum-hw-benchmark/resonance-code-audit/profiles-v1/baseline/Source/DSP/SeptumEngine.cpp",
+      "/private/tmp/septum-hw-benchmark/resonance-code-audit/profiles-v1/libSeptumDSP.a",
+      "-o",
+      "/private/tmp/septum-hw-benchmark/resonance-code-audit/profiles-v1/baseline/AnalyzeResonance"
+    ],
+    "files": {
+      "AnalyzeResonance": "418470741076e49b4dc07305c82b886b676b7495fcdffc3b925a52b9f0c1ff0f",
+      "AnalyzeResonance.cpp": "526faf7b271690f20734b2c21c61fa71a2af25dcc5d3398a27955e2f344ba513",
+      "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+      "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+      "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+      "Source/DSP/ReferenceRateEngine.h": "c5b41d6382cea820cfa7e0890fdb576f8926719aeb2a2dc81c2a47aff340540f",
+      "Source/DSP/SeptumEngine.cpp": "1ee582b6d98af23d32a267efbf8a518933200e1b9f9070bdcb42671f4dbaecf9",
+      "Source/DSP/SeptumEngine.h": "68b77d084bf4f53d7db5393225d471ebf91f6d385c8a600d91d616113a437d71",
+      "Source/DSP/SeptumPatch.h": "7b94a422f570f7273e322e0a6d99681f30529f976cd870ebb8d1ebbd7a6302c5",
+      "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+      "Source/DSP/SeptumSysEx.h": "a8e557ae053fafa412df42ead941a756a8fa2a6fbf0ea5a1ecdedec443e83e9a",
+      "sweep.csv": "a87e979ff71eb7ce4e301198c86748f5c2fa39c14b1d28fd927b6b65e8a2ef3c",
+      "transfer.csv": "64378e00a521da8f140a68fb5f8135e2c414a887d09a9eeaaf661bdb230f38dc"
+    },
+    "archive_sha256": "cd05a0c98326b5bd88edff8e3a78d9b4287d73c0a4f6b7a76c05c0d5c38d8fc5",
+    "summary": {
+      "renders": 1536,
+      "all_finite": true,
+      "maximum_output_peak": 0.920817017555,
+      "trends": [
+        {
+          "type": "LPF",
+          "slope": 12,
+          "input_amplitude": 0.001,
+          "worst_downward_step_db": 0.029966726657359184,
+          "downward_step_raw": 127,
+          "largest_upward_step_db": 22.117127091468607,
+          "upward_step_raw": 122,
+          "stage1_first_limited_raw": 123,
+          "stage2_first_limited_raw": null
+        },
+        {
+          "type": "LPF",
+          "slope": 12,
+          "input_amplitude": 1.0,
+          "worst_downward_step_db": 0.013229263379006559,
+          "downward_step_raw": 127,
+          "largest_upward_step_db": 0.8238422157984542,
+          "upward_step_raw": 1,
+          "stage1_first_limited_raw": 108,
+          "stage2_first_limited_raw": null
+        },
+        {
+          "type": "LPF",
+          "slope": 24,
+          "input_amplitude": 0.001,
+          "worst_downward_step_db": 0.0355109310709363,
+          "downward_step_raw": 127,
+          "largest_upward_step_db": 22.1162558817765,
+          "upward_step_raw": 122,
+          "stage1_first_limited_raw": 123,
+          "stage2_first_limited_raw": null
+        },
+        {
+          "type": "LPF",
+          "slope": 24,
+          "input_amplitude": 1.0,
+          "worst_downward_step_db": 0.013116928673929664,
+          "downward_step_raw": 127,
+          "largest_upward_step_db": 0.8237581400759955,
+          "upward_step_raw": 1,
+          "stage1_first_limited_raw": 108,
+          "stage2_first_limited_raw": null
+        },
+        {
+          "type": "HPF",
+          "slope": 12,
+          "input_amplitude": 0.001,
+          "worst_downward_step_db": 0.03048125511224327,
+          "downward_step_raw": 127,
+          "largest_upward_step_db": 22.117126560150968,
+          "upward_step_raw": 122,
+          "stage1_first_limited_raw": 123,
+          "stage2_first_limited_raw": null
+        },
+        {
+          "type": "HPF",
+          "slope": 12,
+          "input_amplitude": 1.0,
+          "worst_downward_step_db": 0.03307006536213881,
+          "downward_step_raw": 127,
+          "largest_upward_step_db": 0.8238353041675974,
+          "upward_step_raw": 1,
+          "stage1_first_limited_raw": 108,
+          "stage2_first_limited_raw": null
+        },
+        {
+          "type": "HPF",
+          "slope": 24,
+          "input_amplitude": 0.001,
+          "worst_downward_step_db": 0.028345131436296744,
+          "downward_step_raw": 127,
+          "largest_upward_step_db": 22.11625505238496,
+          "upward_step_raw": 122,
+          "stage1_first_limited_raw": 123,
+          "stage2_first_limited_raw": null
+        },
+        {
+          "type": "HPF",
+          "slope": 24,
+          "input_amplitude": 1.0,
+          "worst_downward_step_db": 0.03315808657830845,
+          "downward_step_raw": 127,
+          "largest_upward_step_db": 0.8237584602124517,
+          "upward_step_raw": 1,
+          "stage1_first_limited_raw": 108,
+          "stage2_first_limited_raw": null
+        },
+        {
+          "type": "BPF",
+          "slope": 12,
+          "input_amplitude": 0.001,
+          "worst_downward_step_db": 0.03185444779501808,
+          "downward_step_raw": 127,
+          "largest_upward_step_db": 22.117157807299538,
+          "upward_step_raw": 122,
+          "stage1_first_limited_raw": 123,
+          "stage2_first_limited_raw": null
+        },
+        {
+          "type": "BPF",
+          "slope": 12,
+          "input_amplitude": 1.0,
+          "worst_downward_step_db": 0.019809361355413356,
+          "downward_step_raw": 127,
+          "largest_upward_step_db": 0.8238299852700061,
+          "upward_step_raw": 1,
+          "stage1_first_limited_raw": 108,
+          "stage2_first_limited_raw": null
+        },
+        {
+          "type": "BPF",
+          "slope": 24,
+          "input_amplitude": 0.001,
+          "worst_downward_step_db": 0.03178389178107354,
+          "downward_step_raw": 127,
+          "largest_upward_step_db": 22.116254129832654,
+          "upward_step_raw": 122,
+          "stage1_first_limited_raw": 123,
+          "stage2_first_limited_raw": null
+        },
+        {
+          "type": "BPF",
+          "slope": 24,
+          "input_amplitude": 1.0,
+          "worst_downward_step_db": 0.01951654008742354,
+          "downward_step_raw": 127,
+          "largest_upward_step_db": 0.8237373516500313,
+          "upward_step_raw": 1,
+          "stage1_first_limited_raw": 108,
+          "stage2_first_limited_raw": null
+        }
+      ]
+    }
+  },
+  "first-stage-2.7": {
+    "schema_version": 1,
+    "status": "experimental; not hardware validated",
+    "profile": "first-stage-2.7",
+    "sample_rate": 48000,
+    "seconds_per_render": 2,
+    "measurement_window_seconds": [
+      1,
+      2
+    ],
+    "stimulus": "EXT-IN sine at modeled natural frequency; LPF/HPF/BPF, both slopes, raw0..127",
+    "input_amplitudes": [
+      0.001,
+      1.0
+    ],
+    "post_filter_tone_level": 25,
+    "cutoff": 64,
+    "audio_filter_on": false,
+    "cautions": [
+      "Finite-duration sweep; high-Q cases may still be building, so RMS is not steady-state Q.",
+      "Adjacent settings use independent reset renders, not a live automation transition.",
+      "Output peak includes the initial EXT-IN direct-monitor handover; RMS and projection use seconds1..2.",
+      "State2 runs even on slope12; its limiter counts need not affect selected output.",
+      "These are implementation diagnostics, not measurements of Roland hardware."
+    ],
+    "original_engine_cpp_sha256": "9ccc217358ec9e629cc661639aacd16efb88a123f2237a0f3aac3dc0ad7a5483",
+    "original_engine_h_sha256": "68b77d084bf4f53d7db5393225d471ebf91f6d385c8a600d91d616113a437d71",
+    "compiler_command": [
+      "c++",
+      "-std=c++20",
+      "-O3",
+      "-I",
+      "/private/tmp/septum-hw-benchmark/resonance-code-audit/profiles-v1/first-stage-2.7/Source",
+      "/private/tmp/septum-hw-benchmark/resonance-code-audit/profiles-v1/first-stage-2.7/AnalyzeResonance.cpp",
+      "/private/tmp/septum-hw-benchmark/resonance-code-audit/profiles-v1/first-stage-2.7/Source/DSP/SeptumEngine.cpp",
+      "/private/tmp/septum-hw-benchmark/resonance-code-audit/profiles-v1/libSeptumDSP.a",
+      "-o",
+      "/private/tmp/septum-hw-benchmark/resonance-code-audit/profiles-v1/first-stage-2.7/AnalyzeResonance"
+    ],
+    "files": {
+      "AnalyzeResonance": "7f73e21f179f9620ccd430b9ee2b0db3cd55610aa11087fc198bc53ba15f44f7",
+      "AnalyzeResonance.cpp": "526faf7b271690f20734b2c21c61fa71a2af25dcc5d3398a27955e2f344ba513",
+      "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+      "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+      "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+      "Source/DSP/ReferenceRateEngine.h": "c5b41d6382cea820cfa7e0890fdb576f8926719aeb2a2dc81c2a47aff340540f",
+      "Source/DSP/SeptumEngine.cpp": "1df770377b0b16517df1e634883268677f678f70d98062c5562184cecdb816d8",
+      "Source/DSP/SeptumEngine.h": "68b77d084bf4f53d7db5393225d471ebf91f6d385c8a600d91d616113a437d71",
+      "Source/DSP/SeptumPatch.h": "7b94a422f570f7273e322e0a6d99681f30529f976cd870ebb8d1ebbd7a6302c5",
+      "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+      "Source/DSP/SeptumSysEx.h": "a8e557ae053fafa412df42ead941a756a8fa2a6fbf0ea5a1ecdedec443e83e9a",
+      "sweep.csv": "3acb6fb67459aea9a7706b2e9669e6d84f158de530c87c1b6d7f144dc085941f"
+    },
+    "archive_sha256": "cd05a0c98326b5bd88edff8e3a78d9b4287d73c0a4f6b7a76c05c0d5c38d8fc5",
+    "summary": {
+      "renders": 1536,
+      "all_finite": true,
+      "maximum_output_peak": 0.920817017555,
+      "trends": [
+        {
+          "type": "LPF",
+          "slope": 12,
+          "input_amplitude": 0.001,
+          "worst_downward_step_db": 0.01236617820123535,
+          "downward_step_raw": 122,
+          "largest_upward_step_db": 8.249905136221823,
+          "upward_step_raw": 123,
+          "stage1_first_limited_raw": 123,
+          "stage2_first_limited_raw": null
+        },
+        {
+          "type": "LPF",
+          "slope": 12,
+          "input_amplitude": 1.0,
+          "worst_downward_step_db": 1.646301700682948e-06,
+          "downward_step_raw": 122,
+          "largest_upward_step_db": 2.2244517351018493,
+          "upward_step_raw": 1,
+          "stage1_first_limited_raw": 51,
+          "stage2_first_limited_raw": null
+        },
+        {
+          "type": "LPF",
+          "slope": 24,
+          "input_amplitude": 0.001,
+          "worst_downward_step_db": 0.012362427112462299,
+          "downward_step_raw": 122,
+          "largest_upward_step_db": 8.253107933469757,
+          "upward_step_raw": 123,
+          "stage1_first_limited_raw": 123,
+          "stage2_first_limited_raw": null
+        },
+        {
+          "type": "LPF",
+          "slope": 24,
+          "input_amplitude": 1.0,
+          "worst_downward_step_db": 1.6383810307410863e-06,
+          "downward_step_raw": 122,
+          "largest_upward_step_db": 2.2242579213562848,
+          "upward_step_raw": 1,
+          "stage1_first_limited_raw": 51,
+          "stage2_first_limited_raw": null
+        },
+        {
+          "type": "HPF",
+          "slope": 12,
+          "input_amplitude": 0.001,
+          "worst_downward_step_db": 0.01236617604558045,
+          "downward_step_raw": 122,
+          "largest_upward_step_db": 8.250250598122243,
+          "upward_step_raw": 123,
+          "stage1_first_limited_raw": 123,
+          "stage2_first_limited_raw": null
+        },
+        {
+          "type": "HPF",
+          "slope": 12,
+          "input_amplitude": 1.0,
+          "worst_downward_step_db": 3.4913016100295594e-06,
+          "downward_step_raw": 122,
+          "largest_upward_step_db": 2.224434439866666,
+          "upward_step_raw": 1,
+          "stage1_first_limited_raw": 51,
+          "stage2_first_limited_raw": null
+        },
+        {
+          "type": "HPF",
+          "slope": 24,
+          "input_amplitude": 0.001,
+          "worst_downward_step_db": 0.01236243591610977,
+          "downward_step_raw": 122,
+          "largest_upward_step_db": 8.252516344933511,
+          "upward_step_raw": 123,
+          "stage1_first_limited_raw": 123,
+          "stage2_first_limited_raw": null
+        },
+        {
+          "type": "HPF",
+          "slope": 24,
+          "input_amplitude": 1.0,
+          "worst_downward_step_db": 3.5003157981870364e-06,
+          "downward_step_raw": 122,
+          "largest_upward_step_db": 2.2242586695696716,
+          "upward_step_raw": 1,
+          "stage1_first_limited_raw": 51,
+          "stage2_first_limited_raw": null
+        },
+        {
+          "type": "BPF",
+          "slope": 12,
+          "input_amplitude": 0.001,
+          "worst_downward_step_db": 0.012365338831550261,
+          "downward_step_raw": 122,
+          "largest_upward_step_db": 8.250553720130743,
+          "upward_step_raw": 123,
+          "stage1_first_limited_raw": 123,
+          "stage2_first_limited_raw": null
+        },
+        {
+          "type": "BPF",
+          "slope": 12,
+          "input_amplitude": 1.0,
+          "worst_downward_step_db": 2.3076463508945743e-06,
+          "downward_step_raw": 122,
+          "largest_upward_step_db": 2.22442117371212,
+          "upward_step_raw": 1,
+          "stage1_first_limited_raw": 51,
+          "stage2_first_limited_raw": null
+        },
+        {
+          "type": "BPF",
+          "slope": 24,
+          "input_amplitude": 0.001,
+          "worst_downward_step_db": 0.012362431603679162,
+          "downward_step_raw": 122,
+          "largest_upward_step_db": 8.252802264001867,
+          "upward_step_raw": 123,
+          "stage1_first_limited_raw": 123,
+          "stage2_first_limited_raw": null
+        },
+        {
+          "type": "BPF",
+          "slope": 24,
+          "input_amplitude": 1.0,
+          "worst_downward_step_db": 2.285925555483259e-06,
+          "downward_step_raw": 122,
+          "largest_upward_step_db": 2.2242059603470903,
+          "upward_step_raw": 1,
+          "stage1_first_limited_raw": 51,
+          "stage2_first_limited_raw": null
+        }
+      ]
+    }
+  },
+  "two-stage-1.6": {
+    "schema_version": 1,
+    "status": "experimental; not hardware validated",
+    "profile": "two-stage-1.6",
+    "sample_rate": 48000,
+    "seconds_per_render": 2,
+    "measurement_window_seconds": [
+      1,
+      2
+    ],
+    "stimulus": "EXT-IN sine at modeled natural frequency; LPF/HPF/BPF, both slopes, raw0..127",
+    "input_amplitudes": [
+      0.001,
+      1.0
+    ],
+    "post_filter_tone_level": 25,
+    "cutoff": 64,
+    "audio_filter_on": false,
+    "cautions": [
+      "Finite-duration sweep; high-Q cases may still be building, so RMS is not steady-state Q.",
+      "Adjacent settings use independent reset renders, not a live automation transition.",
+      "Output peak includes the initial EXT-IN direct-monitor handover; RMS and projection use seconds1..2.",
+      "State2 runs even on slope12; its limiter counts need not affect selected output.",
+      "These are implementation diagnostics, not measurements of Roland hardware."
+    ],
+    "original_engine_cpp_sha256": "9ccc217358ec9e629cc661639aacd16efb88a123f2237a0f3aac3dc0ad7a5483",
+    "original_engine_h_sha256": "68b77d084bf4f53d7db5393225d471ebf91f6d385c8a600d91d616113a437d71",
+    "compiler_command": [
+      "c++",
+      "-std=c++20",
+      "-O3",
+      "-I",
+      "/private/tmp/septum-hw-benchmark/resonance-code-audit/profiles-v1/two-stage-1.6/Source",
+      "/private/tmp/septum-hw-benchmark/resonance-code-audit/profiles-v1/two-stage-1.6/AnalyzeResonance.cpp",
+      "/private/tmp/septum-hw-benchmark/resonance-code-audit/profiles-v1/two-stage-1.6/Source/DSP/SeptumEngine.cpp",
+      "/private/tmp/septum-hw-benchmark/resonance-code-audit/profiles-v1/libSeptumDSP.a",
+      "-o",
+      "/private/tmp/septum-hw-benchmark/resonance-code-audit/profiles-v1/two-stage-1.6/AnalyzeResonance"
+    ],
+    "files": {
+      "AnalyzeResonance": "60c48c7a28d6d0f5779ea1097f5185185aa7028850bd040f2cbd16feeebcc621",
+      "AnalyzeResonance.cpp": "526faf7b271690f20734b2c21c61fa71a2af25dcc5d3398a27955e2f344ba513",
+      "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+      "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+      "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+      "Source/DSP/ReferenceRateEngine.h": "c5b41d6382cea820cfa7e0890fdb576f8926719aeb2a2dc81c2a47aff340540f",
+      "Source/DSP/SeptumEngine.cpp": "dc3c2b4118b379990bace8b096bf2158e45f66ad4171360c4d38856a3682fa08",
+      "Source/DSP/SeptumEngine.h": "68b77d084bf4f53d7db5393225d471ebf91f6d385c8a600d91d616113a437d71",
+      "Source/DSP/SeptumPatch.h": "7b94a422f570f7273e322e0a6d99681f30529f976cd870ebb8d1ebbd7a6302c5",
+      "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+      "Source/DSP/SeptumSysEx.h": "a8e557ae053fafa412df42ead941a756a8fa2a6fbf0ea5a1ecdedec443e83e9a",
+      "sweep.csv": "a9cf054d89f9a477f2cb554304f3c2dac6f51666f243763c0752ed9ddb871b78"
+    },
+    "archive_sha256": "cd05a0c98326b5bd88edff8e3a78d9b4287d73c0a4f6b7a76c05c0d5c38d8fc5",
+    "summary": {
+      "renders": 1536,
+      "all_finite": true,
+      "maximum_output_peak": 0.920817017555,
+      "trends": [
+        {
+          "type": "LPF",
+          "slope": 12,
+          "input_amplitude": 0.001,
+          "worst_downward_step_db": 0.029966726657359184,
+          "downward_step_raw": 127,
+          "largest_upward_step_db": 8.309432231825859,
+          "upward_step_raw": 123,
+          "stage1_first_limited_raw": 123,
+          "stage2_first_limited_raw": 113
+        },
+        {
+          "type": "LPF",
+          "slope": 12,
+          "input_amplitude": 1.0,
+          "worst_downward_step_db": 0.0006408820046664074,
+          "downward_step_raw": 122,
+          "largest_upward_step_db": 1.3181649260695232,
+          "upward_step_raw": 1,
+          "stage1_first_limited_raw": 83,
+          "stage2_first_limited_raw": 54
+        },
+        {
+          "type": "LPF",
+          "slope": 24,
+          "input_amplitude": 0.001,
+          "worst_downward_step_db": 0.005421472914046269,
+          "downward_step_raw": 126,
+          "largest_upward_step_db": 2.692861734766545,
+          "upward_step_raw": 112,
+          "stage1_first_limited_raw": 123,
+          "stage2_first_limited_raw": 113
+        },
+        {
+          "type": "LPF",
+          "slope": 24,
+          "input_amplitude": 1.0,
+          "worst_downward_step_db": 0.0001665702011076957,
+          "downward_step_raw": 122,
+          "largest_upward_step_db": 1.3180378261883625,
+          "upward_step_raw": 1,
+          "stage1_first_limited_raw": 83,
+          "stage2_first_limited_raw": 54
+        },
+        {
+          "type": "HPF",
+          "slope": 12,
+          "input_amplitude": 0.001,
+          "worst_downward_step_db": 0.03048125511224327,
+          "downward_step_raw": 127,
+          "largest_upward_step_db": 8.309777702380797,
+          "upward_step_raw": 123,
+          "stage1_first_limited_raw": 123,
+          "stage2_first_limited_raw": 113
+        },
+        {
+          "type": "HPF",
+          "slope": 12,
+          "input_amplitude": 1.0,
+          "worst_downward_step_db": 0.0013554732853218307,
+          "downward_step_raw": 122,
+          "largest_upward_step_db": 1.318154161882274,
+          "upward_step_raw": 1,
+          "stage1_first_limited_raw": 83,
+          "stage2_first_limited_raw": 54
+        },
+        {
+          "type": "HPF",
+          "slope": 24,
+          "input_amplitude": 0.001,
+          "worst_downward_step_db": 0.042053536868307435,
+          "downward_step_raw": 116,
+          "largest_upward_step_db": 2.6928617344302825,
+          "upward_step_raw": 112,
+          "stage1_first_limited_raw": 123,
+          "stage2_first_limited_raw": 113
+        },
+        {
+          "type": "HPF",
+          "slope": 24,
+          "input_amplitude": 1.0,
+          "worst_downward_step_db": 0.0021198451358772534,
+          "downward_step_raw": 122,
+          "largest_upward_step_db": 1.3180383089243128,
+          "upward_step_raw": 1,
+          "stage1_first_limited_raw": 83,
+          "stage2_first_limited_raw": 54
+        },
+        {
+          "type": "BPF",
+          "slope": 12,
+          "input_amplitude": 0.001,
+          "worst_downward_step_db": 0.03185444779501808,
+          "downward_step_raw": 127,
+          "largest_upward_step_db": 8.31007676957747,
+          "upward_step_raw": 123,
+          "stage1_first_limited_raw": 123,
+          "stage2_first_limited_raw": 113
+        },
+        {
+          "type": "BPF",
+          "slope": 12,
+          "input_amplitude": 1.0,
+          "worst_downward_step_db": 0.0008966404965277371,
+          "downward_step_raw": 122,
+          "largest_upward_step_db": 1.31814588265831,
+          "upward_step_raw": 1,
+          "stage1_first_limited_raw": 83,
+          "stage2_first_limited_raw": 54
+        },
+        {
+          "type": "BPF",
+          "slope": 24,
+          "input_amplitude": 0.001,
+          "worst_downward_step_db": 0.011806575662672195,
+          "downward_step_raw": 127,
+          "largest_upward_step_db": 2.6928617275500777,
+          "upward_step_raw": 112,
+          "stage1_first_limited_raw": 123,
+          "stage2_first_limited_raw": 113
+        },
+        {
+          "type": "BPF",
+          "slope": 24,
+          "input_amplitude": 1.0,
+          "worst_downward_step_db": 0.0004760878772913976,
+          "downward_step_raw": 122,
+          "largest_upward_step_db": 1.3180054637469498,
+          "upward_step_raw": 1,
+          "stage1_first_limited_raw": 83,
+          "stage2_first_limited_raw": 54
+        }
+      ]
+    }
+  }
+}

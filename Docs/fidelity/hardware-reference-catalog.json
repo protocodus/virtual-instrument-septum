@@ -1,0 +1,722 @@
+{
+  "schema_version": 1,
+  "title": "Official Roland SH-201 Patch 100 audio and preset reference catalog",
+  "retrieved_date": "2026-09-12",
+  "original_midi_available": false,
+  "original_midi_status": "Not found in the audited official pages, six patch ZIPs, or Mac Editor 1.10 distribution. This does not prove no original MIDI exists elsewhere.",
+  "provenance_scope": "Public Roland pages and byte-validated downloaded librarian banks. This catalog contains URLs and factual metadata only; no Roland patch payloads or audio.",
+  "unknowns": [
+    "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+    "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+    "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+  ],
+  "banks": [
+    {
+      "id": "bass",
+      "category": "BASS",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_bass.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/shl/SH-201_Patch_BASS.zip",
+      "local_filename": "SH-201_Patch_BASS.zip",
+      "sha256": "782e04766bec4dc8b8485e82499a0a7f12fe2408a8a04141a5e1db098c7f36fc",
+      "size_bytes": 42580,
+      "archive_member": "SH-201_Patch_BASS/100_BASS.shl",
+      "bank_sha256": "b69051b35e433f6a4ee879e28d76707dd9689bbc5199949fc38e19b9cdcca3bf",
+      "patch_count": 100,
+      "parameter_blocks_per_patch": 22,
+      "contains_original_performance_midi": false
+    },
+    {
+      "id": "pad",
+      "category": "PAD",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_pad.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/shl/SH-201_Patch_PAD.zip",
+      "local_filename": "SH-201_Patch_PAD.zip",
+      "sha256": "d00b19491c2cec27ee640147e0dfb6d1b8a47bcb70831a93a819a70d21a2a222",
+      "size_bytes": 44345,
+      "archive_member": "SH-201_Patch_PAD/100_PAD.shl",
+      "bank_sha256": "78a518f63fe6ce2c15042a8f6258b4b6d6d3519727c7b0befc1f99d097c8a3ea",
+      "patch_count": 100,
+      "parameter_blocks_per_patch": 22,
+      "contains_original_performance_midi": false
+    },
+    {
+      "id": "lead",
+      "category": "LEAD",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/shl/SH-201_Patch_LEAD.zip",
+      "local_filename": "SH-201_Patch_LEAD.zip",
+      "sha256": "102c47ee393c09115779172b8cbbb2c2f2563e0b4fdb2f57e0c8fca2a23c3b29",
+      "size_bytes": 42223,
+      "archive_member": "SH-201_Patch_LEAD/100_LEAD.shl",
+      "bank_sha256": "d6649236cd89c1652480f9ae194bc20f0a3e33e147cb16828216871fba35b26c",
+      "patch_count": 100,
+      "parameter_blocks_per_patch": 22,
+      "contains_original_performance_midi": false
+    },
+    {
+      "id": "fx",
+      "category": "FX",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_fx.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/shl/SH-201_Patch_FX.zip",
+      "local_filename": "SH-201_Patch_FX.zip",
+      "sha256": "efcdc25d20f934df545987336d201b8d11372b9fa17d747ad0fc9c8f94514348",
+      "size_bytes": 45167,
+      "archive_member": "SH-201_Patch_FX/100_FX.shl",
+      "bank_sha256": "7fdeb222f931ea9c3c612f2838b5d32e0060be7bd1dca28101a5f258a9e08c9f",
+      "patch_count": 100,
+      "parameter_blocks_per_patch": 22,
+      "contains_original_performance_midi": false
+    }
+  ],
+  "recordings": [
+    {
+      "id": "bass-01",
+      "title": "Moogie 1",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_bass.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/BASS/TOP8_Moogie1.mp3",
+      "local_filename": "TOP8_Moogie1.mp3",
+      "sha256": "32a354043a57a6cac3b85d6366dbe9cb253a67964f478f412ee2ceab38505e9e",
+      "size_bytes": 497396,
+      "bank_id": "bass",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 1,
+      "patch_name": "Moogie 1",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "bass-02",
+      "title": "So Juno 1",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_bass.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/BASS/TOP8_SoJuno1.mp3",
+      "local_filename": "TOP8_SoJuno1.mp3",
+      "sha256": "af1bff218ac868555d70cb9d630cd93caac8b8c19ea22df07979aca2313eedf5",
+      "size_bytes": 513279,
+      "bank_id": "bass",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 2,
+      "patch_name": "So Juno 1",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "bass-03",
+      "title": "Dist Bs 1",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_bass.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/BASS/TOP8_DistBs1.mp3",
+      "local_filename": "TOP8_DistBs1.mp3",
+      "sha256": "4d1c6c0d8f32aaefd690f65fecee25952b2a5975aa9faed5e2d463a87099f9aa",
+      "size_bytes": 509099,
+      "bank_id": "bass",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 3,
+      "patch_name": "Dist Bs 1",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "bass-04",
+      "title": "Pedal Bs 1",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_bass.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/BASS/TOP8_PedalBs1.mp3",
+      "local_filename": "TOP8_PedalBs1.mp3",
+      "sha256": "1a48e24dc525cc0e317fcc9220284c7a6dc599c0ece3ae7599823fcca8f82ee2",
+      "size_bytes": 642010,
+      "bank_id": "bass",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 4,
+      "patch_name": "Pedal Bs 1",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "bass-05",
+      "title": "Club Bass",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_bass.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/BASS/TOP8_ClubBass.mp3",
+      "local_filename": "TOP8_ClubBass.mp3",
+      "sha256": "4376b5196eb9be233e85a4dc528dda1bdb6e4f8ba01a7163aa298c8ebbdb68a4",
+      "size_bytes": 968018,
+      "bank_id": "bass",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 5,
+      "patch_name": "Club Bass",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "bass-06",
+      "title": "Sexy Back",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_bass.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/BASS/TOP8_SexyBack.mp3",
+      "local_filename": "TOP8_SexyBack.mp3",
+      "sha256": "29c5dbeb11875ec69513291b3a4f699adaad418cf3fdfb96741990edaf4a0be7",
+      "size_bytes": 491545,
+      "bank_id": "bass",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 6,
+      "patch_name": "Sexy Back",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "bass-07",
+      "title": "Juicy Fat",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_bass.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/BASS/TOP8_JuicyFat.mp3",
+      "local_filename": "TOP8_JuicyFat.mp3",
+      "sha256": "0800f1fe60c5039ff7752dca88a14af584e2bcfc9be086c7e16ff9ae8f05eb99",
+      "size_bytes": 545880,
+      "bank_id": "bass",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 7,
+      "patch_name": "Juicy Fat",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "bass-08",
+      "title": "Sequence Bs",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_bass.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/BASS/TOP8_SequenceBs.mp3",
+      "local_filename": "TOP8_SequenceBs.mp3",
+      "sha256": "f68f82b8a64632917f5405e5838df325f61bbefe8c0190d8fbf139e704bbcd6d",
+      "size_bytes": 707212,
+      "bank_id": "bass",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 8,
+      "patch_name": "Sequence Bs",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "pad-01",
+      "title": "Cotton Wool",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_pad.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/PAD/TOP8_Cotton_Wool.mp3",
+      "local_filename": "TOP8_Cotton_Wool.mp3",
+      "sha256": "abf9d3ad400119ab0546fd724ab7a7442ea724bb164f8e9d024c642c791a1379",
+      "size_bytes": 744869,
+      "bank_id": "pad",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 1,
+      "patch_name": "Cotton Wool",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "pad-02",
+      "title": "Soundtrack",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_pad.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/PAD/TOP8_Soundtrack.mp3",
+      "local_filename": "TOP8_Soundtrack.mp3",
+      "sha256": "b0352755c05b15b1c52248800330baeb4674df6cae2d8726ad9d9fbb699d21ae",
+      "size_bytes": 964474,
+      "bank_id": "pad",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 2,
+      "patch_name": "Soundtrack",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "pad-03",
+      "title": "The Choir",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_pad.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/PAD/TOP8_The_Choir.mp3",
+      "local_filename": "TOP8_The_Choir.mp3",
+      "sha256": "aa02b5be1e219b8083772b5c896bc4612f2f9a1d7aef61f03edad59b9fc6355f",
+      "size_bytes": 1399509,
+      "bank_id": "pad",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 3,
+      "patch_name": "The Choir",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "pad-04",
+      "title": "Reso Sweep",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_pad.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/PAD/TOP8_Reso_Sweep.mp3",
+      "local_filename": "TOP8_Reso_Sweep.mp3",
+      "sha256": "1ece46c869165d25c7407e65bbfbc53611df80afd68daf64ca1ca5ca337b71b8",
+      "size_bytes": 1731839,
+      "bank_id": "pad",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 4,
+      "patch_name": "Reso Sweep",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "pad-05",
+      "title": "Pulsatron",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_pad.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/PAD/TOP8_Pulsatron.mp3",
+      "local_filename": "TOP8_Pulsatron.mp3",
+      "sha256": "c7f9cf9ec9aee8a92a9fbcf6fb61572cb3507b1760439bacbc09eada3208f5bb",
+      "size_bytes": 890994,
+      "bank_id": "pad",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 5,
+      "patch_name": "Pulsatron",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "pad-06",
+      "title": "201vsJP8000",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_pad.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/PAD/TOP8_SH-201vsJP-8000.mp3",
+      "local_filename": "TOP8_SH-201vsJP-8000.mp3",
+      "sha256": "0681718b242a89b23d350237e3f2aad2085e877ee5818256a004eca921d49e2c",
+      "size_bytes": 1005389,
+      "bank_id": "pad",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 6,
+      "patch_name": "201vsJP8000",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "pad-07",
+      "title": "Crystalize",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_pad.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/PAD/TOP8_Crystalize.mp3",
+      "local_filename": "TOP8_Crystalize.mp3",
+      "sha256": "99144cbcd445965856ba441b94edbe1656c2a171da13f0df256f6f9135ec0756",
+      "size_bytes": 1465474,
+      "bank_id": "pad",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 7,
+      "patch_name": "Crystalize",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "pad-08",
+      "title": "Moving Str.",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_pad.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/PAD/TOP8_Moving_Strings.mp3",
+      "local_filename": "TOP8_Moving_Strings.mp3",
+      "sha256": "aeaff4ebd7713d7f342857602fe99497d2f66eb03d6da82e3b41a3354fcd0e6d",
+      "size_bytes": 1696769,
+      "bank_id": "pad",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 8,
+      "patch_name": "Moving Str.",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "lead-01",
+      "title": "Class A",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_ClassA.mp3",
+      "local_filename": "TOP8_ClassA.mp3",
+      "sha256": "88dc73e66c854e6ea57d976a96cd884dddb85275d56f73719000806f1609b886",
+      "size_bytes": 670432,
+      "bank_id": "lead",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 1,
+      "patch_name": "Class A",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "lead-02",
+      "title": "Daft Lead",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_DaftLead.mp3",
+      "local_filename": "TOP8_DaftLead.mp3",
+      "sha256": "52778cfcdc261befcdba0d7be8d35597610c3db5ebf80631e3fdb1aaa04307c1",
+      "size_bytes": 493217,
+      "bank_id": "lead",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 2,
+      "patch_name": "Daft Lead",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "lead-03",
+      "title": "Air Lead 1",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_AirLead1.mp3",
+      "local_filename": "TOP8_AirLead1.mp3",
+      "sha256": "eda084781108d6de6961f6b6807fff283eac097173b5675dc52c678dc2ad3d3b",
+      "size_bytes": 402102,
+      "bank_id": "lead",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 3,
+      "patch_name": "Air Lead 1",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "lead-04",
+      "title": "Trancefloor",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_Trancefloor.mp3",
+      "local_filename": "TOP8_Trancefloor.mp3",
+      "sha256": "e9d9a0a8385a9a9d51b4463339f69c3d46f9fec7905238a39c3a903b574e20e8",
+      "size_bytes": 751516,
+      "bank_id": "lead",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 4,
+      "patch_name": "Trancefloor",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "lead-05",
+      "title": "Vangelead",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_Vangelead.mp3",
+      "local_filename": "TOP8_Vangelead.mp3",
+      "sha256": "cee761c24369a781b9b0b42a3d4b96f7f31cff5aa0903a686993212a322cab31",
+      "size_bytes": 929566,
+      "bank_id": "lead",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 5,
+      "patch_name": "Vangelead",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "lead-06",
+      "title": "SupaJuice 1",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_SupaJuce1.mp3",
+      "local_filename": "TOP8_SupaJuce1.mp3",
+      "sha256": "e9c1dbe5cddf241f69b0d7b044201bb18e212345dc080c35a09001cb9afe103f",
+      "size_bytes": 647026,
+      "bank_id": "lead",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 6,
+      "patch_name": "SupaJuce 1",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank.",
+      "name_note": "Official HTML spells the title SupaJuice 1; downloaded librarian record spells it SupaJuce 1."
+    },
+    {
+      "id": "lead-07",
+      "title": "Ambient SQR",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_AmbientSQR.mp3",
+      "local_filename": "TOP8_AmbientSQR.mp3",
+      "sha256": "d113bb3d65c34bb6827d29561e29dd9c9d4a6236143d5528685643f84a86e565",
+      "size_bytes": 468139,
+      "bank_id": "lead",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 7,
+      "patch_name": "Ambient SQR",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "lead-08",
+      "title": "Brassy Ld 1",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_BrassyLd1.mp3",
+      "local_filename": "TOP8_BrassyLd1.mp3",
+      "sha256": "37b1c739ad3e1df4611b542f745111b78b51d9b372034275f5f1ceab48ed4c00",
+      "size_bytes": 513279,
+      "bank_id": "lead",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+      ],
+      "association_status": "named_patch_on_official_page",
+      "patch_number": 8,
+      "patch_name": "Brassy Ld 1",
+      "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+    },
+    {
+      "id": "fx-01",
+      "title": "Drum",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_fx.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/FX/TOP8_Drums.mp3",
+      "local_filename": "TOP8_Drums.mp3",
+      "sha256": "a3c43296fe2dddceb84af62176424baf2cd15a27e21b3f484d4e7b96ab55e561",
+      "size_bytes": 1276764,
+      "bank_id": "fx",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Individual patches used within this category recording and transition times are unidentified."
+      ],
+      "association_status": "category_montage_individual_patches_unidentified",
+      "patch_number": null,
+      "patch_name": null,
+      "association_evidence": "Official demo labels describe categories or selections of sounds. No individual patch/time mapping is supplied; demo index is not a patch number."
+    },
+    {
+      "id": "fx-02",
+      "title": "FX",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_fx.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/FX/TOP8_FX.mp3",
+      "local_filename": "TOP8_FX.mp3",
+      "sha256": "a94232be7dda4bd510c8d1349970ca9737303d0840effa31fa46f1e45b4916af",
+      "size_bytes": 526099,
+      "bank_id": "fx",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Individual patches used within this category recording and transition times are unidentified."
+      ],
+      "association_status": "category_montage_individual_patches_unidentified",
+      "patch_number": null,
+      "patch_name": null,
+      "association_evidence": "Official demo labels describe categories or selections of sounds. No individual patch/time mapping is supplied; demo index is not a patch number."
+    },
+    {
+      "id": "fx-03",
+      "title": "Ambient SFX",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_fx.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/FX/TOP8_Ambient_SFX.mp3",
+      "local_filename": "TOP8_Ambient_SFX.mp3",
+      "sha256": "dc32e26b7cb7c84d5f8841c865515ecc0e7d1d22bde5f5a7809dee1df96a7eb7",
+      "size_bytes": 1799474,
+      "bank_id": "fx",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Individual patches used within this category recording and transition times are unidentified."
+      ],
+      "association_status": "category_montage_individual_patches_unidentified",
+      "patch_number": null,
+      "patch_name": null,
+      "association_evidence": "Official demo labels describe categories or selections of sounds. No individual patch/time mapping is supplied; demo index is not a patch number."
+    },
+    {
+      "id": "fx-04",
+      "title": "Electronic SFX",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_fx.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/FX/TOP8_Electronic_SFX.mp3",
+      "local_filename": "TOP8_Electronic_SFX.mp3",
+      "sha256": "674672e239c7de69202bc2fab5fcca6bc3867d941a25dc7cc41782e091b13807",
+      "size_bytes": 3369274,
+      "bank_id": "fx",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Individual patches used within this category recording and transition times are unidentified."
+      ],
+      "association_status": "category_montage_individual_patches_unidentified",
+      "patch_number": null,
+      "patch_name": null,
+      "association_evidence": "Official demo labels describe categories or selections of sounds. No individual patch/time mapping is supplied; demo index is not a patch number."
+    },
+    {
+      "id": "fx-05",
+      "title": "Pulsed",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_fx.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/FX/TOP8_Pulsed.mp3",
+      "local_filename": "TOP8_Pulsed.mp3",
+      "sha256": "5045d97e6755ee626ed9e1c4c97c7af85e8246ada5e51d5af2db85f39616ac32",
+      "size_bytes": 1650009,
+      "bank_id": "fx",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Individual patches used within this category recording and transition times are unidentified."
+      ],
+      "association_status": "category_montage_individual_patches_unidentified",
+      "patch_number": null,
+      "patch_name": null,
+      "association_evidence": "Official demo labels describe categories or selections of sounds. No individual patch/time mapping is supplied; demo index is not a patch number."
+    },
+    {
+      "id": "fx-06",
+      "title": "Tuned",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_fx.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/FX/TOP8_Tuned.mp3",
+      "local_filename": "TOP8_Tuned.mp3",
+      "sha256": "704757a7bfcb6ec63237ec3ea3a7c48cf10b45209d197423be6d7fbd06938f3f",
+      "size_bytes": 2167709,
+      "bank_id": "fx",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Individual patches used within this category recording and transition times are unidentified."
+      ],
+      "association_status": "category_montage_individual_patches_unidentified",
+      "patch_number": null,
+      "patch_name": null,
+      "association_evidence": "Official demo labels describe categories or selections of sounds. No individual patch/time mapping is supplied; demo index is not a patch number."
+    },
+    {
+      "id": "fx-07",
+      "title": "Sequence",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_fx.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/FX/TOP8_Sequence.mp3",
+      "local_filename": "TOP8_Sequence.mp3",
+      "sha256": "fe01e929ec0e5ff68e06a7f50b750c3c246637db6f808b6fdecdff5d1be00807",
+      "size_bytes": 2751374,
+      "bank_id": "fx",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Individual patches used within this category recording and transition times are unidentified."
+      ],
+      "association_status": "category_montage_individual_patches_unidentified",
+      "patch_number": null,
+      "patch_name": null,
+      "association_evidence": "Official demo labels describe categories or selections of sounds. No individual patch/time mapping is supplied; demo index is not a patch number."
+    },
+    {
+      "id": "fx-08",
+      "title": "Pad/Eerie",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_fx.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/mp3/FX/TOP8_Pad_Eerie.mp3",
+      "local_filename": "TOP8_Pad_Eerie.mp3",
+      "sha256": "80f3016cbc24aaf02558e3419b7e935700fc88737e6c2518731745d7b680a7d0",
+      "size_bytes": 2028264,
+      "bank_id": "fx",
+      "original_midi_available": false,
+      "unknowns": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Individual patches used within this category recording and transition times are unidentified."
+      ],
+      "association_status": "category_montage_individual_patches_unidentified",
+      "patch_number": null,
+      "patch_name": null,
+      "association_evidence": "Official demo labels describe categories or selections of sounds. No individual patch/time mapping is supplied; demo index is not a patch number."
+    }
+  ]
+}

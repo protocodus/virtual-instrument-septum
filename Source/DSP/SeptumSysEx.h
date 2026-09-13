@@ -108,6 +108,12 @@ void encodeArpeggioPattern (const ArpeggioStyle& style, int row, std::uint8_t* d
 // --------------------------------------------------------------------------
 // Block Deserializers (decode raw SysEx byte blocks into structured C++ patch)
 // --------------------------------------------------------------------------
+// Hardware PITCH uses the signed raw -36..+36 control range. WIDE off spans
+// one octave, WIDE on spans three (OM pp.29/60; independently corroborated by
+// recorded oscillator intervals). Interior nearest-semitone quantization is
+// provisional. Native/host OscParams::coarse remains physical semitones.
+[[nodiscard]] int decodeCoarseTune (int signedRawCoarse, bool wide) noexcept;
+
 void decodePatchCommon (const std::uint8_t* src, std::size_t size, Patch& patch) noexcept;
 void decodeTonePatch (const std::uint8_t* src, std::size_t size, TonePatch& tone) noexcept;
 void decodeDelayParams (const std::uint8_t* src, std::size_t size, DelayParams& delay) noexcept;
@@ -238,6 +244,31 @@ struct Dt1Packet
 // Can target a live `Patch`.
 bool decodeSysExMessage (const std::uint8_t* msg, std::size_t msgLen,
                          Patch& targetPatch, std::uint8_t expectedDeviceId = 0x7F);
+
+// Stateful DT1 reception preserves raw multi-byte values across packets even
+// when an intermediate value cannot be represented by the clamped Patch.
+// Storage is fixed-size; use one instance per receiving thread/patch stream.
+// Before each write, fields edited by another source are rebased from target.
+// WIDE and coarse tune form one dependent field. Noncanonical received coarse
+// bytes survive here; ordinary export uses canonical pitch-equivalent bytes.
+// Reset on whole-patch replacement, including replacement by identical values.
+class PatchDataDecoder
+{
+public:
+    void reset() noexcept;
+    bool decode (const std::uint8_t* msg, std::size_t msgLen, Patch& target,
+                 std::uint8_t expectedDeviceId = 0x7F) noexcept;
+
+private:
+    using Image = std::array<std::uint8_t, sizeArpeggioPattern>;
+    struct Block
+    {
+        Image raw {}, decoded {};
+        bool valid { false };
+    };
+    std::array<Block, patchBlockCount> blocks {};
+    std::uint32_t patchBase { 0 };
+};
 
 // Parses a .syx file byte buffer (which may contain multiple SysEx messages or
 // multiple patches for a full 32-patch or 64-patch bank).

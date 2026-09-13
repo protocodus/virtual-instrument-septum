@@ -1,0 +1,1071 @@
+{
+  "schema_version": 1,
+  "claim": "Isolate filter contributions to the reconstructed SH-201 comparisons.\n\nEvery changed preset is a labeled diagnostic intervention, not the published\npreset. Notes, gates, velocity and all other patch bytes stay fixed. This does\nnot infer hardware parameters from a whole-excerpt brightness score.",
+  "renderer_sha256": "c1a107291c17de0c248978523c882817d8289a5bb87fb7fbbb031629009fbe35",
+  "tool_sha256": "9cd991693bd43ef28499011ec63265847ea63d4213d89c0830f345769cc4cb22",
+  "cases": [
+    {
+      "id": "moogie-1-octave-revision",
+      "baseline_manifest_sha256": "e46589134cdb47ed00c28fe74206f437aa7e8fe9670b6a80f96dad6d0a2ebaae",
+      "hardware_statistics": {
+        "peak": 0.8723894357681274,
+        "peak_dbfs": -1.1857920433290778,
+        "rms_dbfs": -10.115285622301226,
+        "samples_at_or_above_full_scale": 0,
+        "power_spectral_centroid_20_16000_hz": 75.53933877036322,
+        "identical_stereo_channels": false,
+        "side_to_mid_db": -35.510754676676115
+      },
+      "variants": [
+        {
+          "variant": "unchanged",
+          "changes": [],
+          "statistics": {
+            "peak": 0.671356737613678,
+            "peak_dbfs": -3.4609329645010267,
+            "rms_dbfs": -9.682892623177482,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 50.619374689244935,
+            "identical_stereo_channels": true,
+            "side_to_mid_db": null
+          },
+          "patch_sha256": "33d39a6b1cbf47abd830ecf879e1ef6774b50eb6a4eb4db6997749f4f7cffabc",
+          "raw_render_sha256": "520a5f988b71b4d070f9041274071e9767c3ea8223d18c57a080207cf7a81965",
+          "listening_gain": 0.3048910185568195,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/moogie-1-octave-revision/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/moogie-1-octave-revision/unchanged.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/moogie-1-octave-revision/unchanged.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        },
+        {
+          "variant": "filter-bypass",
+          "changes": [
+            {
+              "tone": "upper",
+              "field": "filter_type",
+              "before": 1,
+              "after": 0
+            },
+            {
+              "tone": "lower",
+              "field": "filter_type",
+              "before": 1,
+              "after": 0
+            }
+          ],
+          "statistics": {
+            "peak": 0.6654679179191589,
+            "peak_dbfs": -3.5374575387681557,
+            "rms_dbfs": -7.438894178492113,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 72.77330525411145,
+            "identical_stereo_channels": true,
+            "side_to_mid_db": null
+          },
+          "patch_sha256": "c09949b82e4bdf3338859f964e88b87a179ff096c2b2f675f885e941e7b3e9ea",
+          "raw_render_sha256": "31d0052b9ff93d9f6bf4412cd7cab92be604dd7212894eb76379db6b31de75e9",
+          "listening_gain": 0.23547494759905166,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/moogie-1-octave-revision/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/moogie-1-octave-revision/filter-bypass.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/moogie-1-octave-revision/filter-bypass.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        },
+        {
+          "variant": "cutoff-plus-12",
+          "changes": [
+            {
+              "tone": "upper",
+              "field": "cutoff",
+              "before": 30,
+              "after": 42
+            },
+            {
+              "tone": "lower",
+              "field": "cutoff",
+              "before": 47,
+              "after": 59
+            }
+          ],
+          "statistics": {
+            "peak": 0.6819126009941101,
+            "peak_dbfs": -3.3254256839466096,
+            "rms_dbfs": -8.171085622134864,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 56.395668707889705,
+            "identical_stereo_channels": true,
+            "side_to_mid_db": null
+          },
+          "patch_sha256": "f25654fd8b2b3bd47c0a67bdc0e9df140d6716b5ed2030edbfff936b8dbcfb9f",
+          "raw_render_sha256": "4efec3061955e61b8d9809c90bf2f3b64b41f85451f7061d5e5c9208ef656f4a",
+          "listening_gain": 0.25618534421145084,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/moogie-1-octave-revision/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/moogie-1-octave-revision/cutoff-plus-12.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/moogie-1-octave-revision/cutoff-plus-12.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        },
+        {
+          "variant": "cutoff-plus-24",
+          "changes": [
+            {
+              "tone": "upper",
+              "field": "cutoff",
+              "before": 30,
+              "after": 54
+            },
+            {
+              "tone": "lower",
+              "field": "cutoff",
+              "before": 47,
+              "after": 71
+            }
+          ],
+          "statistics": {
+            "peak": 0.6742734909057617,
+            "peak_dbfs": -3.4232782859172115,
+            "rms_dbfs": -7.674528794710388,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 59.946821055085714,
+            "identical_stereo_channels": true,
+            "side_to_mid_db": null
+          },
+          "patch_sha256": "af7fd2382ecd35506009c16438609dca13817681a67334f58fc2eda9759abb50",
+          "raw_render_sha256": "dcc9ec6d6c019d57c3cc651a3c95be4cd207c19db8f5b0cca674b96a0b71ac6f",
+          "listening_gain": 0.2419504530932813,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/moogie-1-octave-revision/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/moogie-1-octave-revision/cutoff-plus-24.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/moogie-1-octave-revision/cutoff-plus-24.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        },
+        {
+          "variant": "cutoff-plus-36",
+          "changes": [
+            {
+              "tone": "upper",
+              "field": "cutoff",
+              "before": 30,
+              "after": 66
+            },
+            {
+              "tone": "lower",
+              "field": "cutoff",
+              "before": 47,
+              "after": 83
+            }
+          ],
+          "statistics": {
+            "peak": 0.6709099411964417,
+            "peak_dbfs": -3.4667154585096993,
+            "rms_dbfs": -7.51838246123782,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 62.65413951554874,
+            "identical_stereo_channels": true,
+            "side_to_mid_db": null
+          },
+          "patch_sha256": "72036934c90c3e390f1dd18cd04f5feefcbaa617bc4ee65eb5fac84597a9d367",
+          "raw_render_sha256": "a8fee9bf70208fb94f73c4e15b73a56199eb0c457359a12a968e6853bc452235",
+          "listening_gain": 0.23763976983014787,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/moogie-1-octave-revision/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/moogie-1-octave-revision/cutoff-plus-36.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/moogie-1-octave-revision/cutoff-plus-36.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        },
+        {
+          "variant": "slope-12",
+          "changes": [
+            {
+              "tone": "upper",
+              "field": "filter_slope",
+              "before": 1,
+              "after": 0
+            },
+            {
+              "tone": "lower",
+              "field": "filter_slope",
+              "before": 1,
+              "after": 0
+            }
+          ],
+          "statistics": {
+            "peak": 0.6615475416183472,
+            "peak_dbfs": -3.588778802149459,
+            "rms_dbfs": -9.356286581582845,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 52.9150955484244,
+            "identical_stereo_channels": true,
+            "side_to_mid_db": null
+          },
+          "patch_sha256": "3250b273fa293a075b030a144f91bf785faee6a6277a441ae17194dbe0fc3a2a",
+          "raw_render_sha256": "ac4aec79bf8f6858aa1d122939a9491dd890bfffea799673533338ba0daa3489",
+          "listening_gain": 0.293639400731923,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/moogie-1-octave-revision/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/moogie-1-octave-revision/slope-12.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/moogie-1-octave-revision/slope-12.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        },
+        {
+          "variant": "envelope-disabled",
+          "changes": [
+            {
+              "tone": "upper",
+              "field": "filter_envelope_depth_raw",
+              "before": 86,
+              "after": 64
+            },
+            {
+              "tone": "lower",
+              "field": "filter_envelope_depth_raw",
+              "before": 79,
+              "after": 64
+            }
+          ],
+          "statistics": {
+            "peak": 0.6414411664009094,
+            "peak_dbfs": -3.8568634273768687,
+            "rms_dbfs": -10.00077803313111,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 48.29230527321214,
+            "identical_stereo_channels": true,
+            "side_to_mid_db": null
+          },
+          "patch_sha256": "302ad7d3e10972864ae71410c8a31cddda2c1946229260a8bce0a174d1a41228",
+          "raw_render_sha256": "b828502ad04a6a6bd06309ad1eb9500119a9f89105e47f5e1b05f50fa458f613",
+          "listening_gain": 0.3162560931898468,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/moogie-1-octave-revision/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/moogie-1-octave-revision/envelope-disabled.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/moogie-1-octave-revision/envelope-disabled.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        },
+        {
+          "variant": "envelope-held-at-peak",
+          "changes": [
+            {
+              "tone": "upper",
+              "field": "filter_envelope_sustain",
+              "before": 0,
+              "after": 127
+            },
+            {
+              "tone": "lower",
+              "field": "filter_envelope_sustain",
+              "before": 0,
+              "after": 127
+            }
+          ],
+          "statistics": {
+            "peak": 0.6660956740379333,
+            "peak_dbfs": -3.5292677372382952,
+            "rms_dbfs": -7.481126782963312,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 63.93122597131796,
+            "identical_stereo_channels": true,
+            "side_to_mid_db": null
+          },
+          "patch_sha256": "c026bf01633e8ddc2013ff2a57814d747a9aee4455691029568d0dc07fc34500",
+          "raw_render_sha256": "72ff4d96fd4685b0765b6e56f1226e8e6bef7904cb7caccb1bd64377606539e2",
+          "listening_gain": 0.23662266379423705,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/moogie-1-octave-revision/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/moogie-1-octave-revision/envelope-held-at-peak.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/moogie-1-octave-revision/envelope-held-at-peak.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dist-bs-1",
+      "baseline_manifest_sha256": "e5634024d857adda868496be71f46ae10d4db8104e66a825c5e5f5c96b22814b",
+      "hardware_statistics": {
+        "peak": 0.9807952046394348,
+        "peak_dbfs": -0.1684333239627014,
+        "rms_dbfs": -10.966776437402167,
+        "samples_at_or_above_full_scale": 0,
+        "power_spectral_centroid_20_16000_hz": 64.62882125582603,
+        "identical_stereo_channels": false,
+        "side_to_mid_db": -32.86823977402427
+      },
+      "variants": [
+        {
+          "variant": "unchanged",
+          "changes": [],
+          "statistics": {
+            "peak": 0.5504453778266907,
+            "peak_dbfs": -5.185715415240525,
+            "rms_dbfs": -11.774146290286204,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 48.80738274790132,
+            "identical_stereo_channels": true,
+            "side_to_mid_db": null
+          },
+          "patch_sha256": "774bed5b7e3155c4c2efadcffc388c972e7fdd9a9ed82af08cb7333b14980060",
+          "raw_render_sha256": "afce41a0172e3108161cd598046ddc7d746334fdfe3f0a6014c7aec86ea777c8",
+          "listening_gain": 0.3878888666847652,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/dist-bs-1/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/dist-bs-1/unchanged.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/dist-bs-1/unchanged.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        },
+        {
+          "variant": "filter-bypass",
+          "changes": [
+            {
+              "tone": "upper",
+              "field": "filter_type",
+              "before": 1,
+              "after": 0
+            },
+            {
+              "tone": "lower",
+              "field": "filter_type",
+              "before": 1,
+              "after": 0
+            }
+          ],
+          "statistics": {
+            "peak": 0.5429867506027222,
+            "peak_dbfs": -5.304215349671643,
+            "rms_dbfs": -11.783551873221437,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 54.27176770154071,
+            "identical_stereo_channels": true,
+            "side_to_mid_db": null
+          },
+          "patch_sha256": "35a861f74a51c65f680b3011bc4481536319384d69ecb7f9764b5fd0309f4288",
+          "raw_render_sha256": "f43f3e3ce8d086609052823965b654d10a037577cd0f4c8860350542dbe4edd1",
+          "listening_gain": 0.3883091226489596,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/dist-bs-1/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/dist-bs-1/filter-bypass.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/dist-bs-1/filter-bypass.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        },
+        {
+          "variant": "cutoff-plus-12",
+          "changes": [
+            {
+              "tone": "upper",
+              "field": "cutoff",
+              "before": 36,
+              "after": 48
+            },
+            {
+              "tone": "lower",
+              "field": "cutoff",
+              "before": 57,
+              "after": 69
+            }
+          ],
+          "statistics": {
+            "peak": 0.5199097990989685,
+            "peak_dbfs": -5.681439940826223,
+            "rms_dbfs": -11.769907492294408,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 50.26224471856989,
+            "identical_stereo_channels": true,
+            "side_to_mid_db": null
+          },
+          "patch_sha256": "bba42d10400d82060605c759bd58c7cc406a5ae328b98577958570465f1d3988",
+          "raw_render_sha256": "c0af659f0c4f59bf62a7ab061786c47fac7cc2da38ebed44af032ce2d283d215",
+          "listening_gain": 0.3876996193543921,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/dist-bs-1/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/dist-bs-1/cutoff-plus-12.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/dist-bs-1/cutoff-plus-12.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        },
+        {
+          "variant": "cutoff-plus-24",
+          "changes": [
+            {
+              "tone": "upper",
+              "field": "cutoff",
+              "before": 36,
+              "after": 60
+            },
+            {
+              "tone": "lower",
+              "field": "cutoff",
+              "before": 57,
+              "after": 81
+            }
+          ],
+          "statistics": {
+            "peak": 0.5254730582237244,
+            "peak_dbfs": -5.588990919630828,
+            "rms_dbfs": -11.779110807135204,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 51.46923773803133,
+            "identical_stereo_channels": true,
+            "side_to_mid_db": null
+          },
+          "patch_sha256": "1d501503bd655043776c0e937dfc182b101b827a6f5117ab17970f9d89f0c043",
+          "raw_render_sha256": "5ac2feef7a7112a377923ee93998e762fec48ec7c439084800c4a98aeda921fa",
+          "listening_gain": 0.38811063225184805,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/dist-bs-1/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/dist-bs-1/cutoff-plus-24.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/dist-bs-1/cutoff-plus-24.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        },
+        {
+          "variant": "cutoff-plus-36",
+          "changes": [
+            {
+              "tone": "upper",
+              "field": "cutoff",
+              "before": 36,
+              "after": 72
+            },
+            {
+              "tone": "lower",
+              "field": "cutoff",
+              "before": 57,
+              "after": 93
+            }
+          ],
+          "statistics": {
+            "peak": 0.530352771282196,
+            "peak_dbfs": -5.508703149259405,
+            "rms_dbfs": -11.781892359021747,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 52.500101519140564,
+            "identical_stereo_channels": true,
+            "side_to_mid_db": null
+          },
+          "patch_sha256": "292eeaa16b5366ee2198e06c53a3ae557f9b4fd0d0acd60e9d814839f998816c",
+          "raw_render_sha256": "80ec8b80614fa49eaa79c3aa3efcc562e5b41d9f553b04eefe2c48b4b2bf7e97",
+          "listening_gain": 0.3882349399256976,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/dist-bs-1/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/dist-bs-1/cutoff-plus-36.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/dist-bs-1/cutoff-plus-36.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        },
+        {
+          "variant": "slope-12",
+          "changes": [
+            {
+              "tone": "upper",
+              "field": "filter_slope",
+              "before": 1,
+              "after": 0
+            },
+            {
+              "tone": "lower",
+              "field": "filter_slope",
+              "before": 1,
+              "after": 0
+            }
+          ],
+          "statistics": {
+            "peak": 0.5133665204048157,
+            "peak_dbfs": -5.791449151840531,
+            "rms_dbfs": -11.910851217540383,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 48.22223827721079,
+            "identical_stereo_channels": true,
+            "side_to_mid_db": null
+          },
+          "patch_sha256": "4e9a0e5805a90f1e811b344b42991f3e9b064e65e1cb686e8d582715a712dae3",
+          "raw_render_sha256": "0641566ad722609277d34c614b32fdf826ae8a0a9280f7509b7b2269f1b26e1d",
+          "listening_gain": 0.39404204188886455,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/dist-bs-1/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/dist-bs-1/slope-12.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/dist-bs-1/slope-12.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        },
+        {
+          "variant": "envelope-disabled",
+          "changes": [
+            {
+              "tone": "upper",
+              "field": "filter_envelope_depth_raw",
+              "before": 86,
+              "after": 64
+            },
+            {
+              "tone": "lower",
+              "field": "filter_envelope_depth_raw",
+              "before": 79,
+              "after": 64
+            }
+          ],
+          "statistics": {
+            "peak": 0.5499730110168457,
+            "peak_dbfs": -5.193172444807831,
+            "rms_dbfs": -11.74303076022361,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 49.02470111803467,
+            "identical_stereo_channels": true,
+            "side_to_mid_db": null
+          },
+          "patch_sha256": "50d60a77a1a7774136f5e3b28c8dd5651e86700c7787eb1ba6de7fea9e02a23b",
+          "raw_render_sha256": "c9b830c71b245b90ba8daa7500fa34bd771ba76ee56dd1ed62c636385f464509",
+          "listening_gain": 0.38650181528410243,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/dist-bs-1/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/dist-bs-1/envelope-disabled.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/dist-bs-1/envelope-disabled.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        },
+        {
+          "variant": "envelope-held-at-peak",
+          "changes": [
+            {
+              "tone": "upper",
+              "field": "filter_envelope_sustain",
+              "before": 0,
+              "after": 127
+            },
+            {
+              "tone": "lower",
+              "field": "filter_envelope_sustain",
+              "before": 0,
+              "after": 127
+            }
+          ],
+          "statistics": {
+            "peak": 0.5280386805534363,
+            "peak_dbfs": -5.546685256307933,
+            "rms_dbfs": -11.801739675217348,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 51.54231441272016,
+            "identical_stereo_channels": true,
+            "side_to_mid_db": null
+          },
+          "patch_sha256": "5b76b85c0baeeab235d88a0cbbffb466dfaafd165356cd1b93ef56e41c5503bb",
+          "raw_render_sha256": "9f1281fc699a21329c6d65fb678f6693c34bf38b6112733f90e98a6f2ded3909",
+          "listening_gain": 0.3891230736818903,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/dist-bs-1/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/dist-bs-1/envelope-held-at-peak.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/dist-bs-1/envelope-held-at-peak.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cotton-wool",
+      "baseline_manifest_sha256": "d320b5f731fda630297be6eb694960203e76a923881ff82432a87e5160de70a5",
+      "hardware_statistics": {
+        "peak": 0.8876089453697205,
+        "peak_dbfs": -1.0355665915060412,
+        "rms_dbfs": -17.309348932465312,
+        "samples_at_or_above_full_scale": 0,
+        "power_spectral_centroid_20_16000_hz": 316.28238187903884,
+        "identical_stereo_channels": false,
+        "side_to_mid_db": -17.264011799829312
+      },
+      "variants": [
+        {
+          "variant": "unchanged",
+          "changes": [],
+          "statistics": {
+            "peak": 0.1532096564769745,
+            "peak_dbfs": -16.294277223768013,
+            "rms_dbfs": -29.356772359422614,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 51.16335143866813,
+            "identical_stereo_channels": false,
+            "side_to_mid_db": -12.787201603318337
+          },
+          "patch_sha256": "e7f23e39445895f2158482037b37a19dfe413e536869c0e6f78352de6e49fbef",
+          "raw_render_sha256": "7ed9a1de93a91aefbb1e428cab78aab7115286743a5f15d480173032240d7b43",
+          "listening_gain": 2.9365582363258205,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/cotton-wool/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/cotton-wool/unchanged.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/cotton-wool/unchanged.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        },
+        {
+          "variant": "filter-bypass",
+          "changes": [
+            {
+              "tone": "upper",
+              "field": "filter_type",
+              "before": 1,
+              "after": 0
+            },
+            {
+              "tone": "lower",
+              "field": "filter_type",
+              "before": 1,
+              "after": 0
+            }
+          ],
+          "statistics": {
+            "peak": 0.21558359265327454,
+            "peak_dbfs": -13.327685898582809,
+            "rms_dbfs": -28.941158358356734,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 182.81466729197277,
+            "identical_stereo_channels": false,
+            "side_to_mid_db": -12.633433660024185
+          },
+          "patch_sha256": "2fa8ac631c82b196431cc5c28f8edfe06a2d131045a21e14fb25495345507f79",
+          "raw_render_sha256": "d6fea5aa651879d6fee194bd77309ac7ca9afc1f72d4a793451ef63fbf0ea055",
+          "listening_gain": 2.7993546192892778,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/cotton-wool/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/cotton-wool/filter-bypass.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/cotton-wool/filter-bypass.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        },
+        {
+          "variant": "cutoff-plus-12",
+          "changes": [
+            {
+              "tone": "upper",
+              "field": "cutoff",
+              "before": 0,
+              "after": 12
+            },
+            {
+              "tone": "lower",
+              "field": "cutoff",
+              "before": 127,
+              "after": 127
+            }
+          ],
+          "statistics": {
+            "peak": 0.17335790395736694,
+            "peak_dbfs": -15.22112705282943,
+            "rms_dbfs": -29.186988357450765,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 71.20465849327925,
+            "identical_stereo_channels": false,
+            "side_to_mid_db": -12.707285178140356
+          },
+          "patch_sha256": "0889b8c22c956018ece1d1786a68226dd7bec6c0448f9d9be2fce02e8555a2d8",
+          "raw_render_sha256": "e8a3db18027a9dcbb762c1a830154f2e0c49cbc8d9013fb2fd834414d8071107",
+          "listening_gain": 2.879714398574399,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/cotton-wool/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/cotton-wool/cutoff-plus-12.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/cotton-wool/cutoff-plus-12.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        },
+        {
+          "variant": "cutoff-plus-24",
+          "changes": [
+            {
+              "tone": "upper",
+              "field": "cutoff",
+              "before": 0,
+              "after": 24
+            },
+            {
+              "tone": "lower",
+              "field": "cutoff",
+              "before": 127,
+              "after": 127
+            }
+          ],
+          "statistics": {
+            "peak": 0.18407376110553741,
+            "peak_dbfs": -14.700162276548712,
+            "rms_dbfs": -29.080153271857977,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 93.07209438022677,
+            "identical_stereo_channels": false,
+            "side_to_mid_db": -12.659821180335785
+          },
+          "patch_sha256": "5a86407e0170ec70232263df250962d83927d40f34c727ba5eecae2e8c502d17",
+          "raw_render_sha256": "fef2dbf0c322448513d1a4e4b22140a90fc5255f721a3086de5737a6a077494b",
+          "listening_gain": 2.844511301464154,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/cotton-wool/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/cotton-wool/cutoff-plus-24.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/cotton-wool/cutoff-plus-24.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        },
+        {
+          "variant": "cutoff-plus-36",
+          "changes": [
+            {
+              "tone": "upper",
+              "field": "cutoff",
+              "before": 0,
+              "after": 36
+            },
+            {
+              "tone": "lower",
+              "field": "cutoff",
+              "before": 127,
+              "after": 127
+            }
+          ],
+          "statistics": {
+            "peak": 0.196157306432724,
+            "peak_dbfs": -14.147910214179362,
+            "rms_dbfs": -29.016595568486846,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 116.37916333473049,
+            "identical_stereo_channels": false,
+            "side_to_mid_db": -12.640903094713693
+          },
+          "patch_sha256": "6486c847262bae9f9324231df6e8773ed60e3db45ab42ed5bbac6ce93dcd99da",
+          "raw_render_sha256": "e5b5d021f0185df648be0df90aff0ddf50f1c2e142287b1479c9eb9232ea9dba",
+          "listening_gain": 2.823772981119704,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/cotton-wool/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/cotton-wool/cutoff-plus-36.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/cotton-wool/cutoff-plus-36.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        },
+        {
+          "variant": "slope-12",
+          "changes": [
+            {
+              "tone": "upper",
+              "field": "filter_slope",
+              "before": 1,
+              "after": 0
+            },
+            {
+              "tone": "lower",
+              "field": "filter_slope",
+              "before": 0,
+              "after": 0
+            }
+          ],
+          "statistics": {
+            "peak": 0.15351682901382446,
+            "peak_dbfs": -16.27688017608497,
+            "rms_dbfs": -29.36309657221883,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 52.70152347656162,
+            "identical_stereo_channels": false,
+            "side_to_mid_db": -12.792116378754898
+          },
+          "patch_sha256": "2af3bd2f3a6307a8f75ab7bfe061195d73ea0c721de7ca88029dda7d321da05b",
+          "raw_render_sha256": "f96dfd17891ca63061406890d1b3965769b90d5955aca3b23168a9cd76520ab2",
+          "listening_gain": 2.938697128544485,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/cotton-wool/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/cotton-wool/slope-12.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/cotton-wool/slope-12.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        },
+        {
+          "variant": "envelope-disabled",
+          "changes": [
+            {
+              "tone": "upper",
+              "field": "filter_envelope_depth_raw",
+              "before": 103,
+              "after": 64
+            },
+            {
+              "tone": "lower",
+              "field": "filter_envelope_depth_raw",
+              "before": 64,
+              "after": 64
+            }
+          ],
+          "statistics": {
+            "peak": 0.06663063168525696,
+            "peak_dbfs": -23.52652138851061,
+            "rms_dbfs": -35.02281432780679,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 24.26158414011029,
+            "identical_stereo_channels": false,
+            "side_to_mid_db": -13.372810292363058
+          },
+          "patch_sha256": "8f47cc4391cf1267df6313b943e63f84016e3cb5efee932e3d21d84f4c254b26",
+          "raw_render_sha256": "edbfd41d1afd67803405fe769929963960116f2d605a3e57f42c78da6edb75ee",
+          "listening_gain": 5.638203104767741,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/cotton-wool/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/cotton-wool/envelope-disabled.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/cotton-wool/envelope-disabled.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        },
+        {
+          "variant": "envelope-held-at-peak",
+          "changes": [
+            {
+              "tone": "upper",
+              "field": "filter_envelope_sustain",
+              "before": 87,
+              "after": 127
+            },
+            {
+              "tone": "lower",
+              "field": "filter_envelope_sustain",
+              "before": 127,
+              "after": 127
+            }
+          ],
+          "statistics": {
+            "peak": 0.18465879559516907,
+            "peak_dbfs": -14.672600027525464,
+            "rms_dbfs": -29.097315766485078,
+            "samples_at_or_above_full_scale": 0,
+            "power_spectral_centroid_20_16000_hz": 91.42343223584854,
+            "identical_stereo_channels": false,
+            "side_to_mid_db": -12.664624984939936
+          },
+          "patch_sha256": "5674945194c5b61deab22e3fdfa988a4728cf5c41bea2e7371de60bca6df83d4",
+          "raw_render_sha256": "668a66d99b1f4f0312a2394ca64a2e0621e0b940ec1479aa2a895a369254a726",
+          "listening_gain": 2.8501373426085723,
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/SeptumRenderMidi",
+            "--midi",
+            "build-fidelity/hardware-benchmark/comparison-audit/cotton-wool/reconstructed-performance.mid",
+            "--syx",
+            "build-fidelity/hardware-benchmark/filter-isolation/cotton-wool/envelope-held-at-peak.syx",
+            "--output",
+            "build-fidelity/hardware-benchmark/filter-isolation/cotton-wool/envelope-held-at-peak.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--strict"
+          ]
+        }
+      ]
+    }
+  ],
+  "listening_method": "Per-excerpt scalar RMS matching to -20dBFS; no EQ, time alignment or fades."
+}

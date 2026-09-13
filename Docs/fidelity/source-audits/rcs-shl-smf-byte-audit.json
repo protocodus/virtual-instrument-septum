@@ -1,0 +1,1384 @@
+{
+  "schema_version": 1,
+  "audited_date": "2026-09-13",
+  "question": "Are librarian block payloads already hardware SysEx bytes, or do they require parameter transformations?",
+  "conclusion": "For all eight author-paired RCS patches, extractor output equals all 22 companion SMF DT1 frames byte for byte, including headers, address, payload and checksum. No field transformation is indicated. This confirms the sampled container interpretation, not the synthesis DSP or performance MIDI.",
+  "source": {
+    "author": "Csaba Rozgonyi / RCS",
+    "page_url": "https://www.rcssound.com/index.php?page=6",
+    "archive_url": "https://www.rcssound.com/download.php?kod=6",
+    "archive_filename": "RCS-Analog-Basses-SH201.zip",
+    "archive_sha256": "203fde7b29ee2c377b06f61bfef10675fa50338b1509dc1a1bb39438a9e7b11f",
+    "bank_archive_member": "Analog Basses patchbank for Roland SH-201 by RCS/Analog_basses_by_rcs.shl",
+    "bank_sha256": "fe26cb295c131a862f535466ee3dce7f7443c2c37003fed127e3d385119e4e70",
+    "author_association": "The archive information file identifies the SHL for Librarian and the MID files for Editor Import SMF, and expressly identifies the MID files as patch data rather than musical scores."
+  },
+  "method": {
+    "extractor": "Tools/extract_reference_patch.py",
+    "extractor_sha256": "461407495e9f5bfc99767a0146a750708c5cdb2fd34c0d029aaf5e5f5a80703b",
+    "smf_parser": "Tools/render_midi.py",
+    "smf_parser_sha256": "2ceedb470a06ac34bb1fae22ad682fb125f40ac7ec03932bc7cc05966e28e415",
+    "comparison": "Pair SHL order with author A01-A08 filenames. Parse SMF events, verify Roland model/DT1 framing and each checksum; compare each payload at its block address and compare complete concatenated frames against encode_syx(parse_bank(...)[patch]).",
+    "addresses": "Temporary Patch blocks 10 00 00 00 through 10 00 15 00; every packet starts at offset 00.",
+    "coverage": "All 22 native blocks of each of eight patches; no omitted bytes."
+  },
+  "official_editor_evidence": {
+    "source_url": "https://static.roland.com/assets/media/dmg/SH201_Editor110_osx.dmg",
+    "source_sha256": "4552fd6d51c184b876fb1522108cee95abce604c90ca0299b4f55fc01a555e86",
+    "resources": [
+      {
+        "installer_member": "Roland/SH-201 Editor/Script/BufferModel.xml",
+        "sha256": "e8b51e54b397eb1715a05a2efa52e984e1d7cd4929e071ded58d30b022c313d5"
+      },
+      {
+        "installer_member": "Roland/SH-201 Editor/Script/PatchOsc.xml",
+        "sha256": "d7fd3106d0f1d3bd612185ef52c369cfd5d8dac3882fb98700cd4bf35483e164"
+      }
+    ],
+    "interpretation": "BufferModel represents coarse tune directly as int1x7 at tone offsets00 02 and00 08 with range28..100 and default64. PatchOsc binds the display to those values with offset -64. Thus stored28/0x1c denotes -36 in the official Editor; it is not a librarian-specific encoding. Editor and Librarian manuals describe SMF export/import as patch-setting interchange."
+  },
+  "patches": [
+    {
+      "patch_name": "MoogBass",
+      "smf_archive_member": "Analog Basses patchbank for Roland SH-201 by RCS/SH-201 Editor patches/A01 MoogBASS.mid",
+      "smf_sha256": "80db95a784aaeb3943d1d01795fea7c5b28428775ed60a20195ecb96a3cafbb3",
+      "smf_note_event_count": 0,
+      "dt1_frame_count": 22,
+      "total_payload_bytes": 1240,
+      "generated_syx_sha256": "f0dd2c0f662d7e5d466888f01b0b4339ccdd6565bb5441e65dd9efdbedf24a87",
+      "smf_concatenated_dt1_sha256": "f0dd2c0f662d7e5d466888f01b0b4339ccdd6565bb5441e65dd9efdbedf24a87",
+      "complete_wire_bytes_identical": true,
+      "blocks": [
+        {
+          "address": "10 00 00 00",
+          "payload_bytes": 33,
+          "shl_payload_sha256": "1b0d92c93e969683c1d590626a98a89e42ad3289ba3e214e99deb7951c5b08eb",
+          "smf_payload_sha256": "1b0d92c93e969683c1d590626a98a89e42ad3289ba3e214e99deb7951c5b08eb",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 01 00",
+          "payload_bytes": 64,
+          "shl_payload_sha256": "0fb8452de3efea4be1847083c7d933ad0e5f5ce8bbd917a05ec64770657177c6",
+          "smf_payload_sha256": "0fb8452de3efea4be1847083c7d933ad0e5f5ce8bbd917a05ec64770657177c6",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 02 00",
+          "payload_bytes": 64,
+          "shl_payload_sha256": "2712f5aa1cd432831bd80e37eac844ae2001febc633d074ef54c2e3658e4f522",
+          "smf_payload_sha256": "2712f5aa1cd432831bd80e37eac844ae2001febc633d074ef54c2e3658e4f522",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 03 00",
+          "payload_bytes": 5,
+          "shl_payload_sha256": "127099c71feafaabd29bcbf6c996a59f3813dbc80fd908dd3aa011438d738f0f",
+          "smf_payload_sha256": "127099c71feafaabd29bcbf6c996a59f3813dbc80fd908dd3aa011438d738f0f",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 04 00",
+          "payload_bytes": 10,
+          "shl_payload_sha256": "272b184b6f08513e158dae2aaf6f67a10106f270b3120df7ea2862fe2ac5ca3c",
+          "smf_payload_sha256": "272b184b6f08513e158dae2aaf6f67a10106f270b3120df7ea2862fe2ac5ca3c",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 05 00",
+          "payload_bytes": 8,
+          "shl_payload_sha256": "4204b484b37506df31fcbc0b7862fb61c1a7593b7db71512c6a5bdd8cc89b3c8",
+          "smf_payload_sha256": "4204b484b37506df31fcbc0b7862fb61c1a7593b7db71512c6a5bdd8cc89b3c8",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 06 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "58b12ba80cdc787d600cd2bb946f5d04dce01e1a337820a05e339f55ad90e533",
+          "smf_payload_sha256": "58b12ba80cdc787d600cd2bb946f5d04dce01e1a337820a05e339f55ad90e533",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 07 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 08 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 09 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0A 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0B 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0C 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0D 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0E 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0F 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 10 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 11 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 12 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 13 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 14 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 15 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        }
+      ]
+    },
+    {
+      "patch_name": "MoogBass PW",
+      "smf_archive_member": "Analog Basses patchbank for Roland SH-201 by RCS/SH-201 Editor patches/A02 MoogBASS PW.mid",
+      "smf_sha256": "d03da60f724c03bdf8dd0a85216a71445f9899d87f75216145a7ef8fa6fa4c9c",
+      "smf_note_event_count": 0,
+      "dt1_frame_count": 22,
+      "total_payload_bytes": 1240,
+      "generated_syx_sha256": "1d8852b039a22559f388d1af0567c2805b8315b9e76eb8fdc604d6bf16444ac3",
+      "smf_concatenated_dt1_sha256": "1d8852b039a22559f388d1af0567c2805b8315b9e76eb8fdc604d6bf16444ac3",
+      "complete_wire_bytes_identical": true,
+      "blocks": [
+        {
+          "address": "10 00 00 00",
+          "payload_bytes": 33,
+          "shl_payload_sha256": "0af2cffd2314f13ad612a13968e8cbb86339dec3962bb8364abb01dfce55089e",
+          "smf_payload_sha256": "0af2cffd2314f13ad612a13968e8cbb86339dec3962bb8364abb01dfce55089e",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 01 00",
+          "payload_bytes": 64,
+          "shl_payload_sha256": "1b58e3912bdea0ca0a3cbef2d72d1b82c90b603c99c91b02989064585101a1d4",
+          "smf_payload_sha256": "1b58e3912bdea0ca0a3cbef2d72d1b82c90b603c99c91b02989064585101a1d4",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 02 00",
+          "payload_bytes": 64,
+          "shl_payload_sha256": "7724a50934823b6777bd615323d4f660179f5f37142347d444b608d47db66bda",
+          "smf_payload_sha256": "7724a50934823b6777bd615323d4f660179f5f37142347d444b608d47db66bda",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 03 00",
+          "payload_bytes": 5,
+          "shl_payload_sha256": "d1564809f5860942938c15694c9872aee1760cdacc705862b749e0e3697b91d5",
+          "smf_payload_sha256": "d1564809f5860942938c15694c9872aee1760cdacc705862b749e0e3697b91d5",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 04 00",
+          "payload_bytes": 10,
+          "shl_payload_sha256": "272b184b6f08513e158dae2aaf6f67a10106f270b3120df7ea2862fe2ac5ca3c",
+          "smf_payload_sha256": "272b184b6f08513e158dae2aaf6f67a10106f270b3120df7ea2862fe2ac5ca3c",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 05 00",
+          "payload_bytes": 8,
+          "shl_payload_sha256": "4204b484b37506df31fcbc0b7862fb61c1a7593b7db71512c6a5bdd8cc89b3c8",
+          "smf_payload_sha256": "4204b484b37506df31fcbc0b7862fb61c1a7593b7db71512c6a5bdd8cc89b3c8",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 06 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "58b12ba80cdc787d600cd2bb946f5d04dce01e1a337820a05e339f55ad90e533",
+          "smf_payload_sha256": "58b12ba80cdc787d600cd2bb946f5d04dce01e1a337820a05e339f55ad90e533",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 07 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 08 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 09 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0A 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0B 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0C 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0D 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0E 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0F 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 10 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 11 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 12 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 13 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 14 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 15 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        }
+      ]
+    },
+    {
+      "patch_name": "Jupiter8wide",
+      "smf_archive_member": "Analog Basses patchbank for Roland SH-201 by RCS/SH-201 Editor patches/A03 Jupiter-8 BASS wide.mid",
+      "smf_sha256": "fd4f177fc8314e1e0c92a1e6c6ee016fefdaaa7a01df802f895daee4d680c44f",
+      "smf_note_event_count": 0,
+      "dt1_frame_count": 22,
+      "total_payload_bytes": 1240,
+      "generated_syx_sha256": "ac6e5f6c901903172b2b24b35c6a7d36b899818200304d7b8759d5dca1c901dc",
+      "smf_concatenated_dt1_sha256": "ac6e5f6c901903172b2b24b35c6a7d36b899818200304d7b8759d5dca1c901dc",
+      "complete_wire_bytes_identical": true,
+      "blocks": [
+        {
+          "address": "10 00 00 00",
+          "payload_bytes": 33,
+          "shl_payload_sha256": "4a2247d5ae9ba3d92782f99e6833167215d10238d20e5b8ef1c4c116fb2affc8",
+          "smf_payload_sha256": "4a2247d5ae9ba3d92782f99e6833167215d10238d20e5b8ef1c4c116fb2affc8",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 01 00",
+          "payload_bytes": 64,
+          "shl_payload_sha256": "94fb959e90a158ef72e3834ffb1b74bde0a71212942778370a9a7bd28ba51b7a",
+          "smf_payload_sha256": "94fb959e90a158ef72e3834ffb1b74bde0a71212942778370a9a7bd28ba51b7a",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 02 00",
+          "payload_bytes": 64,
+          "shl_payload_sha256": "593105cf770747f6f1e7f15c2a9fda67629056ea05112e89e0723179159d2de1",
+          "smf_payload_sha256": "593105cf770747f6f1e7f15c2a9fda67629056ea05112e89e0723179159d2de1",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 03 00",
+          "payload_bytes": 5,
+          "shl_payload_sha256": "d1564809f5860942938c15694c9872aee1760cdacc705862b749e0e3697b91d5",
+          "smf_payload_sha256": "d1564809f5860942938c15694c9872aee1760cdacc705862b749e0e3697b91d5",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 04 00",
+          "payload_bytes": 10,
+          "shl_payload_sha256": "272b184b6f08513e158dae2aaf6f67a10106f270b3120df7ea2862fe2ac5ca3c",
+          "smf_payload_sha256": "272b184b6f08513e158dae2aaf6f67a10106f270b3120df7ea2862fe2ac5ca3c",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 05 00",
+          "payload_bytes": 8,
+          "shl_payload_sha256": "4204b484b37506df31fcbc0b7862fb61c1a7593b7db71512c6a5bdd8cc89b3c8",
+          "smf_payload_sha256": "4204b484b37506df31fcbc0b7862fb61c1a7593b7db71512c6a5bdd8cc89b3c8",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 06 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "58b12ba80cdc787d600cd2bb946f5d04dce01e1a337820a05e339f55ad90e533",
+          "smf_payload_sha256": "58b12ba80cdc787d600cd2bb946f5d04dce01e1a337820a05e339f55ad90e533",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 07 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 08 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 09 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0A 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0B 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0C 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0D 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0E 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0F 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 10 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 11 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 12 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 13 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 14 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 15 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        }
+      ]
+    },
+    {
+      "patch_name": "Jupiter8reso",
+      "smf_archive_member": "Analog Basses patchbank for Roland SH-201 by RCS/SH-201 Editor patches/A04 Jupiter-8 BASS Reso.mid",
+      "smf_sha256": "1f86696e6105c09b39407fd04db0243737fa281404b8a9d34c6b213540c88556",
+      "smf_note_event_count": 0,
+      "dt1_frame_count": 22,
+      "total_payload_bytes": 1240,
+      "generated_syx_sha256": "2faa981f99e5a992c532ca8398b268be7ffa01be0f3c74d1b3b6db9252d597ee",
+      "smf_concatenated_dt1_sha256": "2faa981f99e5a992c532ca8398b268be7ffa01be0f3c74d1b3b6db9252d597ee",
+      "complete_wire_bytes_identical": true,
+      "blocks": [
+        {
+          "address": "10 00 00 00",
+          "payload_bytes": 33,
+          "shl_payload_sha256": "fc69480c8279de53b565269a12854fea799562a349acd87ccdd6adabf3f72c9e",
+          "smf_payload_sha256": "fc69480c8279de53b565269a12854fea799562a349acd87ccdd6adabf3f72c9e",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 01 00",
+          "payload_bytes": 64,
+          "shl_payload_sha256": "b66fa99bf460fefb979d899c3f99c0416a91a040086bdfef0b4e9711adec5a3a",
+          "smf_payload_sha256": "b66fa99bf460fefb979d899c3f99c0416a91a040086bdfef0b4e9711adec5a3a",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 02 00",
+          "payload_bytes": 64,
+          "shl_payload_sha256": "7724a50934823b6777bd615323d4f660179f5f37142347d444b608d47db66bda",
+          "smf_payload_sha256": "7724a50934823b6777bd615323d4f660179f5f37142347d444b608d47db66bda",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 03 00",
+          "payload_bytes": 5,
+          "shl_payload_sha256": "d1564809f5860942938c15694c9872aee1760cdacc705862b749e0e3697b91d5",
+          "smf_payload_sha256": "d1564809f5860942938c15694c9872aee1760cdacc705862b749e0e3697b91d5",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 04 00",
+          "payload_bytes": 10,
+          "shl_payload_sha256": "272b184b6f08513e158dae2aaf6f67a10106f270b3120df7ea2862fe2ac5ca3c",
+          "smf_payload_sha256": "272b184b6f08513e158dae2aaf6f67a10106f270b3120df7ea2862fe2ac5ca3c",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 05 00",
+          "payload_bytes": 8,
+          "shl_payload_sha256": "4204b484b37506df31fcbc0b7862fb61c1a7593b7db71512c6a5bdd8cc89b3c8",
+          "smf_payload_sha256": "4204b484b37506df31fcbc0b7862fb61c1a7593b7db71512c6a5bdd8cc89b3c8",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 06 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "58b12ba80cdc787d600cd2bb946f5d04dce01e1a337820a05e339f55ad90e533",
+          "smf_payload_sha256": "58b12ba80cdc787d600cd2bb946f5d04dce01e1a337820a05e339f55ad90e533",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 07 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 08 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 09 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0A 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0B 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0C 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0D 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0E 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0F 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 10 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 11 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 12 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 13 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 14 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 15 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        }
+      ]
+    },
+    {
+      "patch_name": "Jupiter8Perc",
+      "smf_archive_member": "Analog Basses patchbank for Roland SH-201 by RCS/SH-201 Editor patches/A05 Jupiter-8 BASS perc.mid",
+      "smf_sha256": "b0f050e84efffe09ed20e25bcd0956d3c7af308baad5fc4ee21c7ff65d22970a",
+      "smf_note_event_count": 0,
+      "dt1_frame_count": 22,
+      "total_payload_bytes": 1240,
+      "generated_syx_sha256": "584a1e75e2cfb735cab9bd3f26c56429f9cbcf655f1486e941ba0112bdf9dd7d",
+      "smf_concatenated_dt1_sha256": "584a1e75e2cfb735cab9bd3f26c56429f9cbcf655f1486e941ba0112bdf9dd7d",
+      "complete_wire_bytes_identical": true,
+      "blocks": [
+        {
+          "address": "10 00 00 00",
+          "payload_bytes": 33,
+          "shl_payload_sha256": "5aa0a58cf0c68793b6187f1e2f5259f010eee2f7a6d4461cb08b17ac003f8209",
+          "smf_payload_sha256": "5aa0a58cf0c68793b6187f1e2f5259f010eee2f7a6d4461cb08b17ac003f8209",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 01 00",
+          "payload_bytes": 64,
+          "shl_payload_sha256": "3a783fce5301393f857008a522b34f1593e0858da85aa9c6d1034f8791d62f73",
+          "smf_payload_sha256": "3a783fce5301393f857008a522b34f1593e0858da85aa9c6d1034f8791d62f73",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 02 00",
+          "payload_bytes": 64,
+          "shl_payload_sha256": "c210a72251c3d3c8060535908ba1abf1a9c38d08502c740f32d6c02436f88bdc",
+          "smf_payload_sha256": "c210a72251c3d3c8060535908ba1abf1a9c38d08502c740f32d6c02436f88bdc",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 03 00",
+          "payload_bytes": 5,
+          "shl_payload_sha256": "a15471fb9d9b147b4cf8d516a59f563cf0c64ad52390126b3b06a3e4b1d9bbe7",
+          "smf_payload_sha256": "a15471fb9d9b147b4cf8d516a59f563cf0c64ad52390126b3b06a3e4b1d9bbe7",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 04 00",
+          "payload_bytes": 10,
+          "shl_payload_sha256": "272b184b6f08513e158dae2aaf6f67a10106f270b3120df7ea2862fe2ac5ca3c",
+          "smf_payload_sha256": "272b184b6f08513e158dae2aaf6f67a10106f270b3120df7ea2862fe2ac5ca3c",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 05 00",
+          "payload_bytes": 8,
+          "shl_payload_sha256": "3b84b5eae1e9ee4b5adeb9bee73a85e833503c841fc45c798264170822d2a4be",
+          "smf_payload_sha256": "3b84b5eae1e9ee4b5adeb9bee73a85e833503c841fc45c798264170822d2a4be",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 06 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "58b12ba80cdc787d600cd2bb946f5d04dce01e1a337820a05e339f55ad90e533",
+          "smf_payload_sha256": "58b12ba80cdc787d600cd2bb946f5d04dce01e1a337820a05e339f55ad90e533",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 07 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 08 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 09 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0A 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0B 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0C 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0D 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0E 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0F 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 10 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 11 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 12 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 13 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 14 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 15 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        }
+      ]
+    },
+    {
+      "patch_name": "Jupiter8wet",
+      "smf_archive_member": "Analog Basses patchbank for Roland SH-201 by RCS/SH-201 Editor patches/A06 Jupiter-8 BASS wet reso.mid",
+      "smf_sha256": "2d0ee7363f582ea6981104d9bb48e8c7a88bff4a36d7f4762e33b7d3d2ebc935",
+      "smf_note_event_count": 0,
+      "dt1_frame_count": 22,
+      "total_payload_bytes": 1240,
+      "generated_syx_sha256": "8262c4756e08ceb4d669490ed147f1e49a15b62ddebec9b6c552801ddbd6f548",
+      "smf_concatenated_dt1_sha256": "8262c4756e08ceb4d669490ed147f1e49a15b62ddebec9b6c552801ddbd6f548",
+      "complete_wire_bytes_identical": true,
+      "blocks": [
+        {
+          "address": "10 00 00 00",
+          "payload_bytes": 33,
+          "shl_payload_sha256": "ede1ddc7b5b6b1e5d89087467c48d7c6e7d7ffd629ff0aa12f1d4e8ffcb6d346",
+          "smf_payload_sha256": "ede1ddc7b5b6b1e5d89087467c48d7c6e7d7ffd629ff0aa12f1d4e8ffcb6d346",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 01 00",
+          "payload_bytes": 64,
+          "shl_payload_sha256": "c60fbed951b42aba73e58217592f8cb5326d13b73d7207a18335efbe5e7d51d1",
+          "smf_payload_sha256": "c60fbed951b42aba73e58217592f8cb5326d13b73d7207a18335efbe5e7d51d1",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 02 00",
+          "payload_bytes": 64,
+          "shl_payload_sha256": "4832519f4de1aae5aaa2b55d918d34ddbf154398cf078d7e717b26d84d067a93",
+          "smf_payload_sha256": "4832519f4de1aae5aaa2b55d918d34ddbf154398cf078d7e717b26d84d067a93",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 03 00",
+          "payload_bytes": 5,
+          "shl_payload_sha256": "1024cd48524a87cff7f6a01dc87609f865f3e811c1dc849e7690955eef72a20f",
+          "smf_payload_sha256": "1024cd48524a87cff7f6a01dc87609f865f3e811c1dc849e7690955eef72a20f",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 04 00",
+          "payload_bytes": 10,
+          "shl_payload_sha256": "272b184b6f08513e158dae2aaf6f67a10106f270b3120df7ea2862fe2ac5ca3c",
+          "smf_payload_sha256": "272b184b6f08513e158dae2aaf6f67a10106f270b3120df7ea2862fe2ac5ca3c",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 05 00",
+          "payload_bytes": 8,
+          "shl_payload_sha256": "3b84b5eae1e9ee4b5adeb9bee73a85e833503c841fc45c798264170822d2a4be",
+          "smf_payload_sha256": "3b84b5eae1e9ee4b5adeb9bee73a85e833503c841fc45c798264170822d2a4be",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 06 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "58b12ba80cdc787d600cd2bb946f5d04dce01e1a337820a05e339f55ad90e533",
+          "smf_payload_sha256": "58b12ba80cdc787d600cd2bb946f5d04dce01e1a337820a05e339f55ad90e533",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 07 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 08 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 09 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0A 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0B 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0C 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0D 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0E 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0F 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 10 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 11 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 12 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 13 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 14 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 15 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        }
+      ]
+    },
+    {
+      "patch_name": "SmoothClicky",
+      "smf_archive_member": "Analog Basses patchbank for Roland SH-201 by RCS/SH-201 Editor patches/A07 SmoothClicky BASS.mid",
+      "smf_sha256": "20ea2a73e62699c0361b82182a902bda9c2530771435e01b9470927300868ac0",
+      "smf_note_event_count": 0,
+      "dt1_frame_count": 22,
+      "total_payload_bytes": 1240,
+      "generated_syx_sha256": "5895d5d5cf2baa84053b88cc4ea74d341c0eb7315c9853ab8e9e68d22275a40b",
+      "smf_concatenated_dt1_sha256": "5895d5d5cf2baa84053b88cc4ea74d341c0eb7315c9853ab8e9e68d22275a40b",
+      "complete_wire_bytes_identical": true,
+      "blocks": [
+        {
+          "address": "10 00 00 00",
+          "payload_bytes": 33,
+          "shl_payload_sha256": "cd7dba70aeaaa94bffaeb9a44cdc1617f5a1e6111d99b5a70abbe04d06ba8fef",
+          "smf_payload_sha256": "cd7dba70aeaaa94bffaeb9a44cdc1617f5a1e6111d99b5a70abbe04d06ba8fef",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 01 00",
+          "payload_bytes": 64,
+          "shl_payload_sha256": "c53c7808f9bf465f2419fcf0c3f64b6267f95168aa1920f56197809bccaab94c",
+          "smf_payload_sha256": "c53c7808f9bf465f2419fcf0c3f64b6267f95168aa1920f56197809bccaab94c",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 02 00",
+          "payload_bytes": 64,
+          "shl_payload_sha256": "19fd30ed8278a3d283b9852c142815eb77c208a1a1cca5368fb36ae6ea30a579",
+          "smf_payload_sha256": "19fd30ed8278a3d283b9852c142815eb77c208a1a1cca5368fb36ae6ea30a579",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 03 00",
+          "payload_bytes": 5,
+          "shl_payload_sha256": "46e1b113610e28756e167f1d2bb7cf78122fbb6d30a0887451e62f344d033e28",
+          "smf_payload_sha256": "46e1b113610e28756e167f1d2bb7cf78122fbb6d30a0887451e62f344d033e28",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 04 00",
+          "payload_bytes": 10,
+          "shl_payload_sha256": "272b184b6f08513e158dae2aaf6f67a10106f270b3120df7ea2862fe2ac5ca3c",
+          "smf_payload_sha256": "272b184b6f08513e158dae2aaf6f67a10106f270b3120df7ea2862fe2ac5ca3c",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 05 00",
+          "payload_bytes": 8,
+          "shl_payload_sha256": "3b84b5eae1e9ee4b5adeb9bee73a85e833503c841fc45c798264170822d2a4be",
+          "smf_payload_sha256": "3b84b5eae1e9ee4b5adeb9bee73a85e833503c841fc45c798264170822d2a4be",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 06 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "58b12ba80cdc787d600cd2bb946f5d04dce01e1a337820a05e339f55ad90e533",
+          "smf_payload_sha256": "58b12ba80cdc787d600cd2bb946f5d04dce01e1a337820a05e339f55ad90e533",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 07 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 08 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 09 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0A 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0B 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0C 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0D 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0E 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0F 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 10 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 11 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 12 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 13 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 14 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 15 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        }
+      ]
+    },
+    {
+      "patch_name": "HouseBASS",
+      "smf_archive_member": "Analog Basses patchbank for Roland SH-201 by RCS/SH-201 Editor patches/A08 House BASS.mid",
+      "smf_sha256": "583c60490b455a495fa1b1aef750449fb2f17203b244d3c769c3a0ba2e03c42b",
+      "smf_note_event_count": 0,
+      "dt1_frame_count": 22,
+      "total_payload_bytes": 1240,
+      "generated_syx_sha256": "c38abf68553cb8b1cd8a392fdf04bc4f608ec26c95b95392cdfcb9fc581349e8",
+      "smf_concatenated_dt1_sha256": "c38abf68553cb8b1cd8a392fdf04bc4f608ec26c95b95392cdfcb9fc581349e8",
+      "complete_wire_bytes_identical": true,
+      "blocks": [
+        {
+          "address": "10 00 00 00",
+          "payload_bytes": 33,
+          "shl_payload_sha256": "3f467c1bb5e0961741757efa0bceeb9fbc78a59fb7406ff9527aa1fc27de6de8",
+          "smf_payload_sha256": "3f467c1bb5e0961741757efa0bceeb9fbc78a59fb7406ff9527aa1fc27de6de8",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 01 00",
+          "payload_bytes": 64,
+          "shl_payload_sha256": "9f0a77cea25a2cf49ece40032113a87caa7223c7602087af8b39ff132d4ee47b",
+          "smf_payload_sha256": "9f0a77cea25a2cf49ece40032113a87caa7223c7602087af8b39ff132d4ee47b",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 02 00",
+          "payload_bytes": 64,
+          "shl_payload_sha256": "19fd30ed8278a3d283b9852c142815eb77c208a1a1cca5368fb36ae6ea30a579",
+          "smf_payload_sha256": "19fd30ed8278a3d283b9852c142815eb77c208a1a1cca5368fb36ae6ea30a579",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 03 00",
+          "payload_bytes": 5,
+          "shl_payload_sha256": "46e1b113610e28756e167f1d2bb7cf78122fbb6d30a0887451e62f344d033e28",
+          "smf_payload_sha256": "46e1b113610e28756e167f1d2bb7cf78122fbb6d30a0887451e62f344d033e28",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 04 00",
+          "payload_bytes": 10,
+          "shl_payload_sha256": "d5e2ac5e20068a77af537a91d5732e3b3b363c10d2ca38ebd5aa67e8e4f53531",
+          "smf_payload_sha256": "d5e2ac5e20068a77af537a91d5732e3b3b363c10d2ca38ebd5aa67e8e4f53531",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 05 00",
+          "payload_bytes": 8,
+          "shl_payload_sha256": "3b84b5eae1e9ee4b5adeb9bee73a85e833503c841fc45c798264170822d2a4be",
+          "smf_payload_sha256": "3b84b5eae1e9ee4b5adeb9bee73a85e833503c841fc45c798264170822d2a4be",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 06 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "58b12ba80cdc787d600cd2bb946f5d04dce01e1a337820a05e339f55ad90e533",
+          "smf_payload_sha256": "58b12ba80cdc787d600cd2bb946f5d04dce01e1a337820a05e339f55ad90e533",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 07 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 08 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 09 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0A 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0B 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0C 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0D 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0E 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 0F 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 10 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 11 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 12 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 13 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 14 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        },
+        {
+          "address": "10 00 15 00",
+          "payload_bytes": 66,
+          "shl_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "smf_payload_sha256": "86b79c4fec01831c032849375650c931183e994a4d962939a9bae3d3729f91da",
+          "different_bytes": 0
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "patches": 8,
+    "dt1_frames": 176,
+    "payload_bytes": 9920,
+    "different_bytes": 0
+  }
+}

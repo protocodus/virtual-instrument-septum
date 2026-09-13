@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "id": "dist-bs-1",
+  "title": "Dist Bs 1 \u2014 octave-corrected reconstruction",
+  "reference_id": "bass-03",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 1.94,
+  "duration_seconds": 1.26,
+  "method": "Hardware-only periodicity and harmonic-family analysis from the historical reconstruction, with physical oscillator coarse tuning corrected from -36 to -12 semitones for WIDE off. All inferred played MIDI notes reduced by 24; sounding pitch, event times and velocities unchanged. No preset bytes modified.",
+  "uncertainties": [
+    "Three-note crop from 1.94\u20133.20 seconds of the original demo; the earlier note with obvious pitch movement is outside this excerpt.",
+    "Played MIDI octave is conditional on the measured WIDE-off range and default system transpose. The original performance MIDI has not been recovered.",
+    "All velocities are fixed to 100, an unknown placeholder. Both tones have amplitude velocity sensitivity +8.",
+    "Original MIDI, controller events, system tuning/transposition, gain and processing are unavailable; no waveform null or absolute loudness calibration is justified.",
+    "Septum starts from reset; hardware was already sounding earlier in the recording. The crop begins in a quiet gap, with preset delay and reverb disabled."
+  ],
+  "notes": [
+    {
+      "note": 39,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "high for sounding pitch; played note conditional on WIDE range and default system transpose",
+      "onset_uncertainty_seconds": 0.01,
+      "release_uncertainty_seconds": 0.012,
+      "velocity_source": "unknown; constant placeholder, not estimated from amplitude",
+      "on": 0.048,
+      "off": 0.28,
+      "previous_reconstructed_note": 63
+    },
+    {
+      "note": 39,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "high for sounding pitch; played note conditional on WIDE range and default system transpose",
+      "onset_uncertainty_seconds": 0.01,
+      "release_uncertainty_seconds": 0.012,
+      "velocity_source": "unknown; constant placeholder, not estimated from amplitude",
+      "on": 0.418,
+      "off": 0.622,
+      "previous_reconstructed_note": 63
+    },
+    {
+      "note": 41,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "high for sounding pitch; played note conditional on WIDE range and default system transpose",
+      "onset_uncertainty_seconds": 0.01,
+      "release_uncertainty_seconds": 0.012,
+      "velocity_source": "unknown; constant placeholder, not estimated from amplitude",
+      "on": 0.774,
+      "off": 1.094,
+      "previous_reconstructed_note": 65
+    }
+  ],
+  "pitch_revision": {
+    "reason": "WIDE-off raw coarse +/-36 means physical +/-12 semitones, not +/-36; see source-audits/cotton-tuning-audit.md",
+    "semitone_shift_from_previous_reconstruction": -24,
+    "previous_reconstruction": "Docs/fidelity/reconstructions/historical-before-wide/dist-bs-1.json",
+    "previous_reconstruction_sha256": "b66b0a2da827ac0afd4ea086a14216dd962ac7b9cff393a65efc2dd08f7ddbaa",
+    "preset_parameter_modifications": []
+  }
+}

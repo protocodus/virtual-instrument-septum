@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "benchmark_status": "exploratory_reconstructed_midi",
+  "results": [
+    {
+      "qualification": "same published preset; reconstructed MIDI, not verified original MIDI",
+      "raw_excerpt_statistics": {
+        "hardware": {
+          "peak": 0.8876089453697205,
+          "peak_dbfs": -1.0355665915060412,
+          "rms_dbfs": -17.309348932465312,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 316.28238187903884,
+          "identical_stereo_channels": false,
+          "side_to_mid_db": -17.264011799829312
+        },
+        "septum": {
+          "peak": 0.1532096564769745,
+          "peak_dbfs": -16.294277223768013,
+          "rms_dbfs": -29.356772359422614,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 51.16335143866813,
+          "identical_stereo_channels": false,
+          "side_to_mid_db": -12.787201603318337
+        }
+      },
+      "listening_transform": {
+        "method": "whole-excerpt RMS matching; no EQ, compression or time warp",
+        "target_rms_dbfs": -20,
+        "hardware_gain": 0.7336137229322517,
+        "septum_gain": 2.9365582363258205,
+        "common_peak_attenuation": 1.0,
+        "ab_only_edge_fade_seconds": 0.005011337868480726,
+        "ab_gap_seconds": 0.5
+      },
+      "hardware_start_sample": 0,
+      "comparison_frames": 220500,
+      "retained_engine_latency_samples": 93,
+      "runtime": {
+        "python": "3.11.0",
+        "numpy": "1.26.4",
+        "scipy": "1.14.1",
+        "matplotlib": "3.9.2",
+        "ffmpeg": "ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers"
+      },
+      "id": "cotton-wool",
+      "reference_id": "pad-01",
+      "reference_sha256": "abf9d3ad400119ab0546fd724ab7a7442ea724bb164f8e9d024c642c791a1379",
+      "midi_sha256": "bc1d33acfc257d7fa3251eb2e81eea6d5fdca99d663511e657102eabf0ab6a32",
+      "sysex_sha256": "e7f23e39445895f2158482037b37a19dfe413e536869c0e6f78352de6e49fbef",
+      "renderer_sha256": "c60db8e886008e708f37d1c42716d2200c783fba0ee5f13fc4f4fbfe972d8bf1",
+      "raw_render_sha256": "7ed9a1de93a91aefbb1e428cab78aab7115286743a5f15d480173032240d7b43"
+    },
+    {
+      "qualification": "same published preset; reconstructed MIDI, not verified original MIDI",
+      "raw_excerpt_statistics": {
+        "hardware": {
+          "peak": 0.9807952046394348,
+          "peak_dbfs": -0.1684333239627014,
+          "rms_dbfs": -10.966776437402167,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 64.62882125582603,
+          "identical_stereo_channels": false,
+          "side_to_mid_db": -32.86823977402427
+        },
+        "septum": {
+          "peak": 0.5504453778266907,
+          "peak_dbfs": -5.185715415240525,
+          "rms_dbfs": -11.774146290286204,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 48.80738274790132,
+          "identical_stereo_channels": true,
+          "side_to_mid_db": null
+        }
+      },
+      "listening_transform": {
+        "method": "whole-excerpt RMS matching; no EQ, compression or time warp",
+        "target_rms_dbfs": -20,
+        "hardware_gain": 0.35345881887101344,
+        "septum_gain": 0.3878888666847652,
+        "common_peak_attenuation": 1.0,
+        "ab_only_edge_fade_seconds": 0.005011337868480726,
+        "ab_gap_seconds": 0.5
+      },
+      "hardware_start_sample": 85554,
+      "comparison_frames": 55566,
+      "retained_engine_latency_samples": 93,
+      "runtime": {
+        "python": "3.11.0",
+        "numpy": "1.26.4",
+        "scipy": "1.14.1",
+        "matplotlib": "3.9.2",
+        "ffmpeg": "ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers"
+      },
+      "id": "dist-bs-1",
+      "reference_id": "bass-03",
+      "reference_sha256": "4d1c6c0d8f32aaefd690f65fecee25952b2a5975aa9faed5e2d463a87099f9aa",
+      "midi_sha256": "f20b5108b5de2ed051f604b06303257ee560d68b76d3234b53bf9b5f99c3fdb9",
+      "sysex_sha256": "774bed5b7e3155c4c2efadcffc388c972e7fdd9a9ed82af08cb7333b14980060",
+      "renderer_sha256": "c60db8e886008e708f37d1c42716d2200c783fba0ee5f13fc4f4fbfe972d8bf1",
+      "raw_render_sha256": "afce41a0172e3108161cd598046ddc7d746334fdfe3f0a6014c7aec86ea777c8"
+    },
+    {
+      "qualification": "same published preset; reconstructed MIDI, not verified original MIDI",
+      "raw_excerpt_statistics": {
+        "hardware": {
+          "peak": 0.8723894357681274,
+          "peak_dbfs": -1.1857920433290778,
+          "rms_dbfs": -10.115285622301226,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 75.53933877036322,
+          "identical_stereo_channels": false,
+          "side_to_mid_db": -35.510754676676115
+        },
+        "septum": {
+          "peak": 0.6743443012237549,
+          "peak_dbfs": -3.422366165950414,
+          "rms_dbfs": -9.496832105937393,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 47.75193669281201,
+          "identical_stereo_channels": true,
+          "side_to_mid_db": null
+        }
+      },
+      "listening_transform": {
+        "method": "whole-excerpt RMS matching; no EQ, compression or time warp",
+        "target_rms_dbfs": -20,
+        "hardware_gain": 0.320452955300382,
+        "septum_gain": 0.2984293996814465,
+        "common_peak_attenuation": 1.0,
+        "ab_only_edge_fade_seconds": 0.005011337868480726,
+        "ab_gap_seconds": 0.5
+      },
+      "hardware_start_sample": 0,
+      "comparison_frames": 163170,
+      "retained_engine_latency_samples": 93,
+      "runtime": {
+        "python": "3.11.0",
+        "numpy": "1.26.4",
+        "scipy": "1.14.1",
+        "matplotlib": "3.9.2",
+        "ffmpeg": "ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers"
+      },
+      "id": "moogie-1",
+      "reference_id": "bass-01",
+      "reference_sha256": "32a354043a57a6cac3b85d6366dbe9cb253a67964f478f412ee2ceab38505e9e",
+      "midi_sha256": "0b217624764a85a7f83d0059d8e3f4e8833df59518d37a0a02154a738d91de9d",
+      "sysex_sha256": "33d39a6b1cbf47abd830ecf879e1ef6774b50eb6a4eb4db6997749f4f7cffabc",
+      "renderer_sha256": "c60db8e886008e708f37d1c42716d2200c783fba0ee5f13fc4f4fbfe972d8bf1",
+      "raw_render_sha256": "4ec53d683af11db76a32ba009ccdeed951d4e419143bacdff1fc7b870ae11bc6"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "linear-slow": {
+    "wav_sha256": "29ab1181af4bb9c20b4befe2a04f95df9d6a678117221110da90efab011003b9",
+    "byte_identical_to_prior_candidate": true,
+    "profile_status": "production linear implementation"
+  },
+  "exponential-slow": {
+    "wav_sha256": "c6e7dc60721892d297de16121d9b6b35fa65bf414649db11eccd89c27959d724",
+    "byte_identical_to_prior_candidate": true,
+    "profile_status": "experimental comparison"
+  },
+  "default_linear_source_unchanged": true,
+  "custom_duration_overrides_verified": true
+}

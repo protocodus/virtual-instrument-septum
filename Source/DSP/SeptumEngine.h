@@ -12,6 +12,7 @@
 #pragma once
 
 #include "SeptumPatch.h"
+#include "AnalogInput.h"
 #include "AnalogOutput.h"
 
 #include <algorithm>
@@ -45,12 +46,15 @@ namespace mapping
         return 20.0 * std::exp2 (value * (10.0 / 127.0));
     }
 
-    // [voiced, OQ-08] RESONANCE 0-127 -> state-variable damping k. k = 2 is
+    // [voiced, OQ-08] Original RESONANCE 0-127 -> damping k, retained for the
+    // separate AUDIO FILTER and as the base curve for the voice calibration.
+    // k = 2 is
     // Q = 0.5; zero is the oscillation threshold; the top of the knob goes
     // slightly negative so self-oscillation grows until the stage limiter
     // holds it, matching the manual's "may not stop at all" warning.
     //
-    // Both endpoints are settled. The shape between them is not, and a linear
+    // The oscillation behavior is documented; the numeric endpoints and
+    // intermediate shape are voiced. A linear
     // taper put the whole audible range of the control in the top fifth of
     // its travel: the filter peaked by 1.38 dB at the exact centre of the
     // knob. The square-root taper below was **chosen by ear** in the
@@ -61,6 +65,19 @@ namespace mapping
     [[nodiscard]] inline double resonanceDamping (double value) noexcept
     {
         return 2.0 - 2.04 * std::sqrt (std::clamp (value / 127.0, 0.0, 1.0));
+    }
+
+    // [conditional recording fit, OQ-08] SupaJuce 1's upper square harmonics
+    // require substantially more resonant contrast at raw40 than the original
+    // curve. Air Lead 1 supports stronger contrast near raw44, with effects
+    // and waveform assumptions. Power1.5 is a conservative interpolation:
+    // k40=0.559, k44=0.505 (Q1.79/1.98 per resonant section). This is not a
+    // recovered Roland parameter table. Preserve zero resonance and the
+    // original self-oscillation threshold/negative damping at the top.
+    [[nodiscard]] inline double voiceResonanceDamping (double value) noexcept
+    {
+        const double base = resonanceDamping (value);
+        return base > 0.0 ? 2.0 * std::pow (base * 0.5, 1.5) : base;
     }
 
     // [voiced, OQ-09] Envelope attack 0-127 -> seconds, 1 ms to 5 s.
@@ -74,6 +91,20 @@ namespace mapping
     [[nodiscard]] inline double decaySeconds (int value) noexcept
     {
         return 0.002 * std::pow (6000.0, value / 127.0);
+    }
+
+    // [conditional recording fit, OQ-09] Filter decay is linear in envelope
+    // control amount. Moogie 1's raw D=49 fits a 419 ms segment; its two other
+    // opening low notes validate the temporal fit. Endpoints and interpolation
+    // remain provisional, not a measured Roland time table. See
+    // Docs/fidelity/filter-darkness-investigation.md.
+    [[nodiscard]] inline double filterDecaySeconds (int value) noexcept
+    {
+        constexpr double fittedDuration = 0.4189852819747085;
+        const double power = std::log ((fittedDuration - 0.002) / (12.0 - 0.002))
+                             / std::log (49.0 / 127.0);
+        return 0.002 + (12.0 - 0.002)
+                           * std::pow (std::clamp (value, 0, 127) / 127.0, power);
     }
 
     // [voiced, OQ-10] LFO RATE 0-127 -> Hz, 0.03 to 30 Hz.
@@ -144,16 +175,25 @@ namespace mapping
         return 1.15 * (value / 127.0);
     }
 
-    // [voiced, OQ-09] Pitch-envelope depth -63..+63 -> semitones.
+    // [reported endpoint, voiced taper, OQ-09] Jim Aikin's SH-201 hardware
+    // review (Electronic Musician, March 2007, p. 92) reports a one-octave
+    // maximum pitch-envelope depth. The signed range is in Roland OM p. 60;
+    // linear interpolation between zero and +/-12 semitones remains voiced.
     [[nodiscard]] inline double pitchEnvSemitones (int depth) noexcept
     {
-        return depth * (24.0 / 63.0);
+        return depth * (12.0 / 63.0);
     }
 
-    // [voiced, OQ-08] Filter-envelope depth -63..+63 -> octaves of cutoff.
+    // [conditional recording fit, OQ-08] SupaJuce 1's published depth 31
+    // implies a linear range near 12 octaves: the first-note estimate is 12.04,
+    // and 12 improves the upper-square harmonics on five other early notes.
+    // The prior 10-octave range left its peak cutoff about an octave too low.
+    // This is an empirical range/interpolation, not a recovered Roland table;
+    // extreme/negative settings and other envelope shapes remain unmeasured.
+    // See Docs/fidelity/brightness-investigation.md. Depth 0 stays neutral.
     [[nodiscard]] inline double filterEnvOctaves (int depth) noexcept
     {
-        return depth * (10.0 / 63.0);
+        return depth * (12.0 / 63.0);
     }
 
     // [voiced, OQ-08] Cutoff velocity sensitivity: offset in octaves at the
@@ -466,16 +506,21 @@ namespace mapping
     inline constexpr double reverbInputInjection = 0.35;
     inline constexpr double reverbWetReturn = 0.8;
 
-    // [voiced, OQ-08] The -24 dB path's second stage. The first stage carries
-    // the resonance; the second is a fixed, gentler 2-pole that adds the extra
-    // 12 dB/oct. Whether the hardware resonates on one stage or both is open,
-    // and OQ-08 names the capture that would settle it. A coupled second stage
-    // fitted as `max(0.12, 0.40*k1 + 0.35)` shipped briefly: three constants
-    // no measurement produced, under a comment asserting that the SH-201
-    // couples resonance into its second stage, which no source in the
-    // contract states. It moved the -24 dB resonant peak by up to 5 dB and
-    // invalidated the measurement table Step 7 published.
+    // [voiced, OQ-08] Original voice second-stage damping, retained at low
+    // resonance. The separate AUDIO FILTER has its own stage configuration.
     inline constexpr double filterSecondStageDamping = 1.2;
+
+    // [empirical, OQ-08] A resonant second section better matches SupaJuce's
+    // early spectral peak under the current TPT model. Its Q is capped at 2:
+    // the measured moderate settings do not establish a second autonomous
+    // oscillator, and extrapolating both stages to negative damping caused
+    // HPF headroom and filter-modulation regressions. Zero-resonance response
+    // is unchanged. Exact hardware topology remains unverified; see
+    // Docs/fidelity/resonance-investigation.md.
+    [[nodiscard]] inline double voiceSecondStageDamping (double firstStage) noexcept
+    {
+        return std::clamp (firstStage, 0.5, filterSecondStageDamping);
+    }
     // [voiced, OQ-08] Where the resonant stage's integrator states stop
     // growing, so self-oscillation is bounded as the manual's "may not stop at
     // all" implies rather than divergent.
@@ -528,8 +573,8 @@ namespace mapping
 
     // [voiced, OQ-14] The AUDIO FILTER's RESONANCE. The manual describes it as
     // a boost around the cutoff and, unlike the voice filter's, never warns
-    // that it may not stop: the curve is the voice filter's, floored short of
-    // the oscillation threshold so an input filter cannot run away.
+    // that it may not stop: retain the original base curve, floored short of
+    // the oscillation threshold. The empirical voice correction is separate.
     [[nodiscard]] inline double audioFilterDamping (double value) noexcept
     {
         return std::max (0.05, resonanceDamping (value));
@@ -1119,6 +1164,7 @@ private:
     struct Envelope
     {
         enum class Stage { Idle, Attack, Decay, Sustain, Release };
+        enum class DecayShape { Exponential, Linear };
         // Where a decay counts as arrived. Shared by the Decay branch's exit
         // test and by `configure`'s re-entry test so the two cannot disagree
         // about whether a level and its sustain are the same number.
@@ -1129,8 +1175,12 @@ private:
         double decayCoeff { 0.0 };
         double releaseCoeff { 0.0 };
         double sustain { 1.0 };
+        DecayShape decayShape { DecayShape::Exponential };
+        double decayStep { 0.0 };
+        double sustainRiseStep { 0.0 };
 
-        void configure (double sr, int a, int d, int s, int r) noexcept;
+        void configure (double sr, int a, int d, int s, int r,
+                        DecayShape shape = DecayShape::Exponential) noexcept;
         void trigger() noexcept { stage = Stage::Attack; }
         void release() noexcept
         {
@@ -1163,7 +1213,9 @@ private:
         double randomFrom { 0.0 };     // RND segment endpoints
         double randomTo { 0.0 };
         double fadeLevel { 1.0 };
+        double unfadedValue { 0.0 };
         bool primed { false };
+        bool cycleRestarted { false };
         // S&H and RANDOM draw from here. Seeded per LFO in prepare(), because
         // one shared default made all four of a patch's LFOs — both tones,
         // both slots — walk the same sequence: two S&H modulators at the same
@@ -1174,6 +1226,7 @@ private:
         void seed (std::uint32_t value) noexcept { rng = value | 1u; }
 
         void restart (bool resetFade) noexcept;
+        double advanceFade (double fadePerTick) noexcept;
         double nextRandomValue() noexcept;
         double advance (const LfoParams& params, double hz, double fadePerTick,
                         int samples, double sr) noexcept;
@@ -1243,6 +1296,10 @@ private:
         OscState osc1 {}, osc2 {};
         PitchEnvelope pitchEnv {};
         Envelope filterEnv {}, ampEnv {};
+        // KEY TRIGGER selects polyphonic LFO operation (Jim Aikin, EM
+        // March 2007, p. 93). Each keyed voice owns its phase and each note
+        // owns its fade, including when the waveform itself free-runs.
+        Lfo lfo1 {}, lfo2 {};
         SvfStage filter1 {}, filter2 {};
         double shelfState { 0.0 };
         // How much of the shelf's output is currently added: crossed between
@@ -1325,14 +1382,14 @@ private:
         struct Row
         {
             int note { -1 };
-            int remaining { 0 };   // samples until the scheduled note-off
+            double remaining { 0.0 };   // samples until the scheduled note-off
             bool sustained { false };  // DURATION = FUL: no scheduled off
             // DURATION 120 % means a gate outlives its grid, so the note it
             // overlaps into has to start while the previous one is still
             // running. One tail slot is enough: the overlap is a fifth of a
             // step, so at most one predecessor is ever still sounding.
             int tailNote { -1 };
-            int tailRemaining { 0 };
+            double tailRemaining { 0.0 };
         };
         std::array<Row, arpeggioMaxRows> rows {};
 
@@ -1423,6 +1480,7 @@ private:
     Voice* allocateVoice (Part part);
     void triggerVoice (Voice& voice, Part part, int note, double velocity,
                        bool legato);
+    void triggerVoiceLfos (Voice& voice);
     void updateVoiceControls (Voice& voice, int tickSamples);
     void renderVoiceTick (Voice& voice, float* mono, int samples,
                           const float* external);
@@ -1446,7 +1504,9 @@ private:
     // render, because a host can land both at the same sample position.
     void syncArpeggioRouting();
     void handleArpeggioRouting (Part part, bool nowDriven);
-    void advanceArpeggiator (int samples);
+    void advanceArpeggiator();
+    [[nodiscard]] int samplesUntilArpeggioEvent (int maximum) const noexcept;
+    void elapseArpeggiator (int samples) noexcept;
     void arpeggioFireStep();
     void arpeggioFireStepForPart (Part part, double stepSeconds);
     void processEffects (const float* dryL, const float* dryR,
@@ -1513,6 +1573,7 @@ private:
     // External input: INPUT VOL -> CENTER CANCEL -> AUDIO FILTER on the direct
     // monitor path, and the pre-filter mono sum feeding any EXT-IN oscillator.
     ExternalInput external_ {};
+    std::array<AnalogInput, 2> analogInput_ {};
     std::vector<float> externalDirectL_, externalDirectR_, externalMono_;
     SvfStage audioFilter1_[2] {}, audioFilter2_[2] {};
     double audioFilterG_ { 0.1 }, audioFilterK_ { 2.0 };

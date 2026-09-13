@@ -109,9 +109,8 @@ enum class SplitArpeggio { Upper, Lower, Both };
 // [settled range, no effect] The replica does not implement the D Beam: an
 // infrared distance sensor is a control surface, and a plug-in has no hand
 // above it to read. The four bytes the beam owns in the patch are still
-// patch data, so they are stored and round-tripped and change nothing that
-// sounds, exactly as PITCH WIDE does. This enumeration survives because it
-// is what bounds offset 1F.
+// patch data, so they are stored and round-tripped without an active sensor
+// contribution. This enumeration survives because it bounds offset 1F.
 enum class DBeamAssign
 {
     Osc1Pitch, Osc1Detune, Osc1Pw,
@@ -442,13 +441,11 @@ inline constexpr std::array<double, 6> reverbHfDampHz {
 
 inline void clampToDocumentedRanges (OscParams& osc) noexcept
 {
-    // [settled] Coarse Tune is raw 28-100, i.e. -36..+36 semitones, and the
-    // address map does not narrow it when PITCH WIDE is off: the switch is
-    // its own byte and the manual says what it gates — "This button expands
-    // the range of the PITCH knob by a multiple of three" (OM p. 29). It is
-    // the knob's travel, not the stored pitch, so a stored +24 with WIDE off
-    // sounds +24 on the instrument and does here. Clamping the sounding pitch
-    // by it made the panel and the host show a pitch the engine did not play.
+    // Native coarse values are physical semitones. The SysEx codec converts
+    // Roland's signed control positions to +/-12 without WIDE or +/-36 with
+    // WIDE before they reach this structure. Preserve the full native range
+    // here so existing sessions keep their pitch; applying the hardware knob
+    // range again would incorrectly clamp already-decoded or native values.
     osc.coarse = clampRaw (osc.coarse, -36, 36);
     osc.fine = clampRaw (osc.fine, -50, 50);
     osc.pulseWidth = clampRaw (osc.pulseWidth, 0, 127);

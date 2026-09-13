@@ -1,0 +1,176 @@
+{
+  "source_title": "ALL. AV&M 05 - TEST ROLAND SH-201",
+  "author": "Pier Calderan",
+  "source_page_url": "https://www.calderan.info/downloads.asp?id=44",
+  "download_url": "https://www.calderan.info/download.asp?dl=44",
+  "retrieved_date": "2026-09-12",
+  "description_translation": "MP3 demos: 32 presets with their arpeggios.",
+  "local_archive_filename": "calderan-sh201-preset-demos.zip",
+  "archive_sha256": "7cfb37cc81d59c20bd639bad6252e41bfeae189156c7c934b5a6c2b604f6a3c7",
+  "bytes": 10213735,
+  "original_midi_available": false,
+  "sysex_available_in_archive": false,
+  "qualification": "32 numbered preset audio files are verified in the archive. The archive does not name patches or include MIDI/preset data. A per-file factory bank mapping and exact matching factory SysEx were not verified. Excluded from matched-preset renders.",
+  "files": [
+    {
+      "filename": "sh-201-028.mp3",
+      "bytes": 330315,
+      "sha256": "24155038db276542e79a871a3260647053f5eb2a8ac778b420c5b36c10156523"
+    },
+    {
+      "filename": "sh-201-029.mp3",
+      "bytes": 664683,
+      "sha256": "fb87af9f99f8f43a27d1e1e67d33d3a823fa011c770a8e5ff9c27b85397168c6"
+    },
+    {
+      "filename": "sh-201-030.mp3",
+      "bytes": 429790,
+      "sha256": "eacd7e085484cc75ac229e3608eb743c4877861f341f1ea430d370a26e72bd0b"
+    },
+    {
+      "filename": "sh-201-031.mp3",
+      "bytes": 612020,
+      "sha256": "27b915a44a159b4b61e8957eb0597d94862ec200ec0d18c0f77fe38a57112c48"
+    },
+    {
+      "filename": "sh-201-000.mp3",
+      "bytes": 188209,
+      "sha256": "b891f31c1de9d2fb45a2072b8be6ebb10047e96810117007c1b511f52a410883"
+    },
+    {
+      "filename": "sh-201-001.mp3",
+      "bytes": 272637,
+      "sha256": "70e81db20e728d1ffe1a6d602f14906988806431b392769b929533d310da5419"
+    },
+    {
+      "filename": "sh-201-002.mp3",
+      "bytes": 270547,
+      "sha256": "f9246bf94e5bbc87343400b03602c1225a42bcdb85af24910d0c2d65df84926e"
+    },
+    {
+      "filename": "sh-201-003.mp3",
+      "bytes": 196568,
+      "sha256": "1c2c48b9e8928665bebdb04d77e49fd2e00286572f9690aff3ac290d6bae2fb7"
+    },
+    {
+      "filename": "sh-201-004.mp3",
+      "bytes": 234603,
+      "sha256": "a5d54662832a8f9f347ec6a8a8e4c3adff07e8d609fa93fb9a2d402e613eb8fd"
+    },
+    {
+      "filename": "sh-201-005.mp3",
+      "bytes": 360826,
+      "sha256": "9e417f487be12df8d52778f801c0e258529cd9ad83f2f74bc0b188dfe2d3bb54"
+    },
+    {
+      "filename": "sh-201-006.mp3",
+      "bytes": 273891,
+      "sha256": "4d30116ebb473a9c62e83a34c1c49a487f24b746919883fbf284c43deed51ead"
+    },
+    {
+      "filename": "sh-201-007.mp3",
+      "bytes": 227497,
+      "sha256": "997b0d1537d1783496749a43a27f4752cf03074b904e7ea4ef3991f5f26afa60"
+    },
+    {
+      "filename": "sh-201-008.mp3",
+      "bytes": 271801,
+      "sha256": "c1cf95e771093af8c0a4ae34cae63a772075ae7efd79329f90cdc382902a45d1"
+    },
+    {
+      "filename": "sh-201-009.mp3",
+      "bytes": 314433,
+      "sha256": "a4e27b941c9947cb9f241b6522b70c5041367c3297f7f9ab68844185ef494903"
+    },
+    {
+      "filename": "sh-201-010.mp3",
+      "bytes": 306910,
+      "sha256": "f60fdd51dcd7645fe74868e76c486a5529e3238697849a80b1f960d75af8c0ee"
+    },
+    {
+      "filename": "sh-201-011.mp3",
+      "bytes": 357065,
+      "sha256": "b26cfc4151e656cc380a23c99efd1d872c6086d0e7091a448db203f2c7b03e09"
+    },
+    {
+      "filename": "sh-201-012.mp3",
+      "bytes": 345780,
+      "sha256": "489d51fb0c7ccbd1de1a7850e99ea8571dafffb61f6df181bff04a6f12125582"
+    },
+    {
+      "filename": "sh-201-013.mp3",
+      "bytes": 276817,
+      "sha256": "02fec1dfc9ae1d6ebf3d8a3781da823a333afc7cd75e71ebab52feaffe80f85c"
+    },
+    {
+      "filename": "sh-201-014.mp3",
+      "bytes": 395935,
+      "sha256": "90b68df0ee989c0affa9b4301a3dd5c633885e183201edbd630e31ead6e630bb"
+    },
+    {
+      "filename": "sh-201-015.mp3",
+      "bytes": 218720,
+      "sha256": "611effb0c94ce8bd1bc715f23b5d0c443db80ac06b3c1924d7c89a7f34f1ae7b"
+    },
+    {
+      "filename": "sh-201-016.mp3",
+      "bytes": 262188,
+      "sha256": "74fa9357501d6f27ec9c357d07fe79c8734d607d9efd1d8825e37482189f3de2"
+    },
+    {
+      "filename": "sh-201-017.mp3",
+      "bytes": 183612,
+      "sha256": "259e3f7dc663da1a9fc029a2f687bc65c89b3587ed1f398d9e21b2c578cda251"
+    },
+    {
+      "filename": "sh-201-018.mp3",
+      "bytes": 339928,
+      "sha256": "e58fe76e8c7ee3d843c8a516edb88c0bd6c5890018b6f0e0f3d146ff338214b9"
+    },
+    {
+      "filename": "sh-201-019.mp3",
+      "bytes": 213705,
+      "sha256": "5a30e6827d38c8e7f953f75256cb1a3f05889881de3d46be7c5097c986de54ae"
+    },
+    {
+      "filename": "sh-201-020.mp3",
+      "bytes": 266785,
+      "sha256": "ae4eb1935c5ca94cfbc8ca55ce8da27eed27f24500fd4b21bb123b116c7b2cbb"
+    },
+    {
+      "filename": "sh-201-021.mp3",
+      "bytes": 414743,
+      "sha256": "1904fb6f0492499e12dfbcdc51a0d2204e70f98954c2be22e797214a9cca2c2e"
+    },
+    {
+      "filename": "sh-201-022.mp3",
+      "bytes": 336585,
+      "sha256": "2c4cdc2f1afdfe0a72ba2a124b022e242b11bf423ebd54f4f61c334d3cb0321f"
+    },
+    {
+      "filename": "sh-201-023.mp3",
+      "bytes": 466988,
+      "sha256": "860c6ed40a021b1653555ccb34fc77dec0d62419b956fe1b6cd6e69f45d4b102"
+    },
+    {
+      "filename": "sh-201-024.mp3",
+      "bytes": 305656,
+      "sha256": "f37b0236b151ba5957bc8d6a093f4f444f617ff6d5efc28333286b3aae07c57e"
+    },
+    {
+      "filename": "sh-201-025.mp3",
+      "bytes": 484542,
+      "sha256": "e0546d01c582d0a7669a75f871964dfc73db7aaf2923bd066a4c3ce648c03a10"
+    },
+    {
+      "filename": "sh-201-026.mp3",
+      "bytes": 376291,
+      "sha256": "5b9c25eda0e503d182a2e4d6fa629bc75f5fd18068c377288729127283fc06fe"
+    },
+    {
+      "filename": "sh-201-027.mp3",
+      "bytes": 395517,
+      "sha256": "720c4dbd23847e2af709d7ca98db5ed4e208284df9e9aa8d87363ec1723bcf8a"
+    }
+  ]
+}

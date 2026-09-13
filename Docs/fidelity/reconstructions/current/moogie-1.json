@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "id": "moogie-1",
+  "title": "Moogie 1 \u2014 octave-corrected reconstruction",
+  "reference_id": "bass-01",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 0,
+  "duration_seconds": 3.7,
+  "method": "Hardware-only periodicity and harmonic-family analysis from the historical reconstruction, with physical oscillator coarse tuning corrected from -36 to -12 semitones for WIDE off. All inferred played MIDI notes reduced by 24; sounding pitch, event times and velocities unchanged. No preset bytes modified.",
+  "uncertainties": [
+    "Original performance MIDI is unavailable; these notes are an estimate, not a recovered original file.",
+    "Played MIDI octave is conditional on the measured WIDE-off range and default system transpose. The original performance MIDI has not been recovered.",
+    "Repeated-note onsets and pitch transitions have roughly 20\u201340 ms uncertainty. Note-offs are assumed to meet the following onset; the hardware audio does not uniquely reveal key release timing.",
+    "Velocity is assumed 100 for every note. Both tones have level velocity sensitivity +8; absolute amplitude and any velocity variation remain unverified.",
+    "Controller automation, master settings, recording processing and exact demo patch revision are unknown. No controller events were invented.",
+    "The excerpt stops before the next phrase; its final release is an artificial crop boundary and is excluded from release-time conclusions."
+  ],
+  "notes": [
+    {
+      "on": 0.029,
+      "off": 0.4,
+      "note": 39,
+      "velocity": 100,
+      "previous_reconstructed_note": 63
+    },
+    {
+      "on": 0.4,
+      "off": 0.495,
+      "note": 51,
+      "velocity": 100,
+      "previous_reconstructed_note": 75
+    },
+    {
+      "on": 0.495,
+      "off": 0.738,
+      "note": 39,
+      "velocity": 100,
+      "previous_reconstructed_note": 63
+    },
+    {
+      "on": 0.738,
+      "off": 0.939,
+      "note": 51,
+      "velocity": 100,
+      "previous_reconstructed_note": 75
+    },
+    {
+      "on": 0.939,
+      "off": 1.315,
+      "note": 39,
+      "velocity": 100,
+      "previous_reconstructed_note": 63
+    },
+    {
+      "on": 1.315,
+      "off": 1.41,
+      "note": 51,
+      "velocity": 100,
+      "previous_reconstructed_note": 75
+    },
+    {
+      "on": 1.41,
+      "off": 1.661,
+      "note": 39,
+      "velocity": 100,
+      "previous_reconstructed_note": 63
+    },
+    {
+      "on": 1.661,
+      "off": 1.901,
+      "note": 51,
+      "velocity": 100,
+      "previous_reconstructed_note": 75
+    },
+    {
+      "on": 1.901,
+      "off": 2.245,
+      "note": 39,
+      "velocity": 100,
+      "previous_reconstructed_note": 63
+    },
+    {
+      "on": 2.245,
+      "off": 2.335,
+      "note": 51,
+      "velocity": 100,
+      "previous_reconstructed_note": 75
+    },
+    {
+      "on": 2.335,
+      "off": 2.577,
+      "note": 39,
+      "velocity": 100,
+      "previous_reconstructed_note": 63
+    },
+    {
+      "on": 2.577,
+      "off": 2.787,
+      "note": 51,
+      "velocity": 100,
+      "previous_reconstructed_note": 75
+    },
+    {
+      "on": 2.787,
+      "off": 3.011,
+      "note": 42,
+      "velocity": 100,
+      "previous_reconstructed_note": 66
+    },
+    {
+      "on": 3.011,
+      "off": 3.25,
+      "note": 54,
+      "velocity": 100,
+      "previous_reconstructed_note": 78
+    },
+    {
+      "on": 3.25,
+      "off": 3.476,
+      "note": 44,
+      "velocity": 100,
+      "previous_reconstructed_note": 68
+    },
+    {
+      "on": 3.476,
+      "off": 3.7,
+      "note": 56,
+      "velocity": 100,
+      "previous_reconstructed_note": 80
+    }
+  ],
+  "baseline_reconstruction": "Docs/fidelity/reconstructions/moogie-1.json",
+  "baseline_sha256": "9e9ad62d96f6201c0c74eda64914e11c42590e50c435f31d384df9220341bd07",
+  "pitch_revision": {
+    "reason": "WIDE-off raw coarse +/-36 means physical +/-12 semitones, not +/-36; see source-audits/cotton-tuning-audit.md",
+    "semitone_shift_from_previous_reconstruction": -24,
+    "previous_reconstruction": "Docs/fidelity/source-audits/moogie-1-octave-revision.json",
+    "previous_reconstruction_sha256": "0b14aaa6f5ceceb7752b6fe2852d461425350b3bf756e35d9b335ed16ae4c509",
+    "preset_parameter_modifications": []
+  }
+}
