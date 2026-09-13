@@ -1305,6 +1305,17 @@ private:
         OscState osc1 {}, osc2 {};
         PitchEnvelope pitchEnv {};
         Envelope filterEnv {}, ampEnv {};
+        // The overdrive's numerical transport delays the voice audio. Carry
+        // AMP ENV through the same delay so fast articulation stays aligned
+        // at every oversampling factor, then drain it before freeing a voice.
+        std::array<double, 32> ampEnvelopeDelay {};
+        int ampEnvelopeWrite { 0 };
+        int ampEnvelopeTail { 0 };
+        void clearAmpEnvelopeDelay() noexcept
+        {
+            ampEnvelopeDelay.fill (0.0);
+            ampEnvelopeWrite = ampEnvelopeTail = 0;
+        }
         // KEY TRIGGER selects polyphonic LFO operation (Jim Aikin, EM
         // March 2007, p. 93). Each keyed voice owns its phase and each note
         // owns its fade, including when the waveform itself free-runs.

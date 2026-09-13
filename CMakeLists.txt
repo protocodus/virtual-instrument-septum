@@ -171,6 +171,11 @@ if(SEPTUM_BUILD_TOOLS)
 endif()
 
 if(BUILD_TESTING)
+    add_executable(SeptumAmpEnvelopeLatencyTests Tests/AmpEnvelopeLatencyTests.cpp)
+    target_link_libraries(SeptumAmpEnvelopeLatencyTests PRIVATE SeptumDSP)
+    add_test(NAME Septum.AmpEnvelopeLatency COMMAND SeptumAmpEnvelopeLatencyTests)
+    set_tests_properties(Septum.AmpEnvelopeLatency PROPERTIES TIMEOUT 120)
+
     add_executable(SeptumSplitPolyphonyTests Tests/SplitPolyphonyTests.cpp)
     target_link_libraries(SeptumSplitPolyphonyTests PRIVATE SeptumDSP)
     add_test(NAME Septum.SplitPolyphony COMMAND SeptumSplitPolyphonyTests)

@@ -538,6 +538,7 @@ void Engine::reset()
         voice.held = false;
         voice.ampEnv.kill();
         voice.filterEnv.kill();
+        voice.clearAmpEnvelopeDelay();
         voice.pitchEnv.active = false;
         voice.lfo1 = Lfo {};
         voice.lfo2 = Lfo {};
@@ -1093,7 +1094,7 @@ Engine::Voice* Engine::allocateVoice (Part part)
             // release the bass, and the bass has the smaller trigger age
             // while the melody's tail has been decaying far longer. Ordering
             // by trigger age took the loudest surviving tail.
-            if (voice.ampEnv.stage == Envelope::Stage::Release
+            if ((voice.ampEnv.stage == Envelope::Stage::Release || voice.ampEnv.idle())
                 && (released == nullptr || voice.releaseAge < released->releaseAge))
                 released = &voice;
             if (oldest == nullptr || voice.age < oldest->age)
@@ -1117,8 +1118,9 @@ Engine::Voice* Engine::allocateVoice (Part part)
             continue;
         }
         const bool voiceReleased =
-            voice.ampEnv.stage == Envelope::Stage::Release;
-        const bool bestReleased = best->ampEnv.stage == Envelope::Stage::Release;
+            voice.ampEnv.stage == Envelope::Stage::Release || voice.ampEnv.idle();
+        const bool bestReleased = best->ampEnv.stage == Envelope::Stage::Release
+                                  || best->ampEnv.idle();
         if (voiceReleased != bestReleased)
         {
             if (voiceReleased)
@@ -1226,6 +1228,7 @@ void Engine::triggerVoice (Voice& voice, Part part, int note, double velocity,
             // silent for the whole of the reported latency before the new
             // one arrived.
             voice.overdrive.clear();
+            voice.clearAmpEnvelopeDelay();
         }
     }
 }
@@ -2251,7 +2254,17 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
         filtered = voice.overdrive.process (filtered, overdrivePreGain,
                                             overdriveCompensation, tone.overdrive);
 
-        const double env = voice.ampEnv.advance (1);
+        // The envelope and source describe the same note time. Delaying only
+        // audio through the oversampler consumed up to 43% of the minimum
+        // attack before that audio arrived and released it prematurely.
+        const double envelopeNow = voice.ampEnv.advance (1);
+        const int envelopeSize = static_cast<int> (voice.ampEnvelopeDelay.size());
+        voice.ampEnvelopeDelay[static_cast<std::size_t> (voice.ampEnvelopeWrite)] = envelopeNow;
+        const double env = voice.ampEnvelopeDelay[static_cast<std::size_t> (
+            (voice.ampEnvelopeWrite - voiceLatencySamples_ + envelopeSize) % envelopeSize)];
+        voice.ampEnvelopeWrite = (voice.ampEnvelopeWrite + 1) % envelopeSize;
+        voice.ampEnvelopeTail = envelopeNow > 0.0 ? voiceLatencySamples_
+            : std::max (0, voice.ampEnvelopeTail - 1);
         mono[i] = static_cast<float> (filtered * env);
     }
 
@@ -3409,7 +3422,7 @@ void Engine::process (float* left, float* right, int numSamples,
             renderVoiceTick (voice, scratchMono_.data(), guarded,
                              externalMono_.data());
 
-            if (voice.ampEnv.idle())
+            if (voice.ampEnv.idle() && voice.ampEnvelopeTail == 0)
                 voice.active = false;
 
             const TonePatch& tone = tonePatch (voice.part);
