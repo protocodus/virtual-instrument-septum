@@ -89,18 +89,24 @@ namespace
 // ---------------------------------------------------------------------------
 
 void Engine::Envelope::configure (double sr, int a, int d, int s, int r,
-                                 DecayShape shape) noexcept
+                                 DecayShape shape, const TimbreCalibration* calibration) noexcept
 {
-    const double attackTime = mapping::attackSeconds (a);
+    const double attackTime = calibration != nullptr
+        ? calibration->attackSeconds[static_cast<std::size_t> (a)] : mapping::attackSeconds (a);
     attackRate = 1.0 / std::max (1.0, attackTime * sr);
     // Exponential fall covering 60 dB over the mapped time.
     decayCoeff = std::exp (-6.907755 / std::max (1.0, mapping::decaySeconds (d) * sr));
-    releaseCoeff = std::exp (-6.907755 / std::max (1.0, mapping::decaySeconds (r) * sr));
-    sustain = s / 127.0;
+    const double releaseTime = calibration != nullptr
+        ? calibration->releaseSeconds[static_cast<std::size_t> (r)] : mapping::decaySeconds (r);
+    releaseCoeff = std::exp (-6.907755 / std::max (1.0, releaseTime * sr));
+    sustain = calibration != nullptr
+        ? calibration->sustainLevel[static_cast<std::size_t> (s)] : s / 127.0;
     decayShape = shape;
     if (decayShape == DecayShape::Linear)
     {
-        const double samples = std::max (1.0, mapping::filterDecaySeconds (d) * sr);
+        const double duration = calibration != nullptr
+            ? calibration->decaySeconds[static_cast<std::size_t> (d)] : mapping::filterDecaySeconds (d);
+        const double samples = std::max (1.0, duration * sr);
         decayStep = (1.0 - sustain) / samples;
         // A live sustain increase must also converge, including sustain=1
         // where the peak-to-sustain downward step is zero. Keep the current
@@ -711,7 +717,8 @@ void Engine::setPatch (const Patch& patch)
                                 tone.ampEnvSustain, tone.ampEnvRelease);
         voice.filterEnv.configure (sampleRate_, tone.filterEnvAttack,
                                    tone.filterEnvDecay, tone.filterEnvSustain,
-                                   tone.filterEnvRelease, Envelope::DecayShape::Linear);
+                                   tone.filterEnvRelease, Envelope::DecayShape::Linear,
+                                   timbre_.envelopeEnabled ? &timbre_ : nullptr);
         voice.pitchEnv.configure (sampleRate_, tone.pitchEnvAttack,
                                   tone.pitchEnvDecay);
     }
@@ -1363,7 +1370,8 @@ void Engine::triggerVoice (Voice& voice, Part part, int note, double velocity,
                             tone.ampEnvSustain, tone.ampEnvRelease);
     voice.filterEnv.configure (sampleRate_, tone.filterEnvAttack,
                                tone.filterEnvDecay, tone.filterEnvSustain,
-                               tone.filterEnvRelease, Envelope::DecayShape::Linear);
+                               tone.filterEnvRelease, Envelope::DecayShape::Linear,
+                               timbre_.envelopeEnabled ? &timbre_ : nullptr);
     voice.pitchEnv.configure (sampleRate_, tone.pitchEnvAttack, tone.pitchEnvDecay);
 
     if (! legato)

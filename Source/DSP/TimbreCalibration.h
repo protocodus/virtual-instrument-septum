@@ -58,7 +58,7 @@ struct TimbreCalibration
             || ! array (waveGain, -2, 2) || ! array (pulseDuty, 0.01, 0.99, 1))) return false;
         if (superSawEnabled)
         {
-            if (! array (superDetune, 0, 2, 1) || ! array (superOffsets, -0.25, 0.25, 1)
+            if (! array (superDetune, 0, 2) || ! array (superOffsets, -0.25, 0.25, 1)
                 || superOffsets[3] != 0 || ! array (superCenterGain, 0, 2)
                 || ! array (superSideGain, 0, 2)
                 || ! scalar (superHpfRatio, 0.05, 4) || ! scalar (superHpfQ, 0.25, 2)

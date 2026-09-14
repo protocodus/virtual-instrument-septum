@@ -1212,7 +1212,8 @@ private:
         double sustainRiseStep { 0.0 };
 
         void configure (double sr, int a, int d, int s, int r,
-                        DecayShape shape = DecayShape::Exponential) noexcept;
+                        DecayShape shape = DecayShape::Exponential,
+                        const TimbreCalibration* calibration = nullptr) noexcept;
         void trigger() noexcept { stage = Stage::Attack; }
         void release() noexcept
         {
