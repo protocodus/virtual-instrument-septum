@@ -1018,6 +1018,8 @@ public:
     // Call between renders, on the engine's owning thread. prepare/reset keep it.
     [[nodiscard]] bool setTimbreCalibration (const TimbreCalibration&) noexcept;
 
+    // Nonfinite rates fall back to 44.1 kHz; finite rates are bounded to
+    // 8..768 kHz. maxBlockSize is a hint: larger process blocks are chunked.
     void prepare (double sampleRate, int maxBlockSize);
     void reset();
 
@@ -1529,6 +1531,18 @@ private:
         void clear();
     };
 
+    // Only patch changes and prepare alter these coefficients. Computing
+    // powers and exponentials every eight samples wasted callback time,
+    // even in silence. Keep the exact laws, evaluated once per update.
+    struct EffectsCoefficients
+    {
+        double switchStep {}, delayTargetSamples {}, timeSmoothing {}, feedback {};
+        double dampCoeff {}, modDepthSamples {}, modInc {}, highCutCoeff {};
+        double lfCoeff {}, hfCoeff {}, lfGain {}, hfGain {};
+        double diffusionGain {}, densityGain {}, geometryStep {};
+        std::array<double, Reverb::lineCount> lineFeedback {};
+    };
+
     // -- helpers -----------------------------------------------------------
     const TonePatch& tonePatch (Part part) const noexcept
     {
@@ -1593,6 +1607,7 @@ private:
     void elapseArpeggiator (int samples) noexcept;
     void arpeggioFireStep();
     void arpeggioFireStepForPart (Part part, double stepSeconds);
+    void refreshEffectsCoefficients() noexcept;
     void processEffects (const float* dryL, const float* dryR,
                          const float* delaySendL, const float* delaySendR,
                          const float* reverbSendL, const float* reverbSendR,
@@ -1656,6 +1671,7 @@ private:
     DelayLine delayL_ {}, delayR_ {};
     double delayModPhase_ { 0.0 };
     Reverb reverb_ {};
+    EffectsCoefficients effects_ {};
     double delayTimeSmoothed_ { 0.0 };
     double delayWetGain_ { 0.0 }, reverbWetGain_ { 0.0 };
 
@@ -1689,7 +1705,7 @@ private:
     // Smoothed globals.
     double smoothedMaster_ { 0.0 };
 
-    // Scratch buffers sized in prepare().
+    // Scratch buffers hold one control tick, independent of host block size.
     std::vector<float> scratchMono_, dryL_, dryR_, sendDelayL_, sendDelayR_,
         sendReverbL_, sendReverbR_;
 

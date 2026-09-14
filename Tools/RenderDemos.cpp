@@ -8,6 +8,8 @@
 
 #include <algorithm>
 #include <array>
+#include <atomic>
+#include <charconv>
 #include <cctype>
 #include <cmath>
 #include <cstdint>
@@ -17,6 +19,8 @@
 #include <filesystem>
 #include <fstream>
 #include <memory>
+#include <stdexcept>
+#include <thread>
 #include <string>
 #include <vector>
 
@@ -47,6 +51,8 @@ void appendLittleEndian (std::vector<std::uint8_t>& bytes, std::uint32_t value,
 bool writeWav (const std::filesystem::path& path, const std::vector<float>& left,
                const std::vector<float>& right)
 {
+    if (left.size() != right.size() || left.size() > (0xffffffffu - 36u) / 4u)
+        return false;
     const auto frames = static_cast<std::uint32_t> (left.size());
     constexpr std::uint16_t channels = 2u;
     const std::uint32_t byteRate =
@@ -96,8 +102,8 @@ bool writeWav (const std::filesystem::path& path, const std::vector<float>& left
         return false;
     const bool written =
         std::fwrite (bytes.data(), 1, bytes.size(), file) == bytes.size();
-    std::fclose (file);
-    return written;
+    const bool closed = std::fclose (file) == 0;
+    return written && closed;
 }
 
 // ---------------------------------------------------------------------------
@@ -223,11 +229,7 @@ const Patch& bankPatch (const char* name)
         if (entry.name == name || entry.patch.name == name
             || entry.name.find (name) != std::string::npos)
             return entry.patch;
-    std::fprintf (stderr,
-                  "error: no bank patch matches \"%s\" — a demo names a patch "
-                  "the bank does not have\n",
-                  name);
-    std::exit (2);
+    throw std::runtime_error (std::string ("No bank patch matches ") + name);
 }
 
 // ---------------------------------------------------------------------------
@@ -530,11 +532,36 @@ const std::array<Demo, 11>& demos()
 // A short render used by the regression suite: it proves the tool and the
 // engine still produce finite, audible audio and a readable WAV without
 // committing anything.
-int runSmokeTest (const std::filesystem::path& directory)
+int runSmokeTest (const std::filesystem::path& directory, unsigned jobs)
 {
-    Take take (bankPatch ("SuperLead201"));
-    take.note (57, 110, 0.2, 0.1);
-    take.note (64, 110, 0.2, 0.3);
+    const auto renderSmoke = []
+    {
+        Take take (bankPatch ("SuperLead201"));
+        take.note (57, 110, 0.2, 0.1);
+        take.note (64, 110, 0.2, 0.3);
+        return take;
+    };
+    auto take = renderSmoke();
+    // Every worker owns its engine and scratch buffers. Check byte-identical
+    // audio against the serial reference, including independent random state.
+    std::vector<std::string> failures (jobs);
+    {
+        std::vector<std::jthread> workers;
+        for (unsigned job = 0; job < jobs; ++job)
+            workers.emplace_back ([&, job]
+            {
+                try
+                {
+                    const auto parallel = renderSmoke();
+                    if (parallel.left() != take.left() || parallel.right() != take.right())
+                        failures[job] = "parallel render differs from serial render";
+                }
+                catch (const std::exception& error) { failures[job] = error.what(); }
+                catch (...) { failures[job] = "unknown worker failure"; }
+            });
+    }
+    for (const auto& failure : failures)
+        if (! failure.empty()) throw std::runtime_error (failure);
 
     if (! take.finite())
     {
@@ -721,94 +748,110 @@ bool updatePeaksTable (const std::filesystem::path& directory,
 }
 } // namespace
 
-int main (int argc, char** argv)
+int run (int argc, char** argv)
 {
-    std::vector<std::string> arguments (argv + 1, argv + argc);
-    bool smoke = false;
+    bool smoke = false, hasDirectory = false;
     std::filesystem::path directory = "Docs/audio";
-
-    for (const auto& argument : arguments)
+    // Bound the default working set; users can explicitly use more cores.
+    unsigned jobs = std::max (1u, std::min (4u, std::thread::hardware_concurrency()));
+    for (int index = 1; index < argc; ++index)
     {
-        if (argument == "--smoke")
+        const std::string argument = argv[index];
+        if (argument == "--smoke") smoke = true;
+        else if (argument == "--jobs")
         {
-            smoke = true;
+            if (++index == argc) throw std::runtime_error ("Missing --jobs value");
+            const std::string count = argv[index];
+            const auto parsed = std::from_chars (count.data(), count.data() + count.size(), jobs);
+            if (parsed.ec != std::errc {} || parsed.ptr != count.data() + count.size()
+                || jobs < 1 || jobs > demos().size())
+                throw std::runtime_error ("--jobs must be between 1 and 11");
         }
         else if (argument == "--help" || argument == "-h")
         {
-            std::printf ("usage: SeptumRenderDemos [--smoke] [output-directory]\n");
+            std::printf ("usage: SeptumRenderDemos [--smoke] [--jobs 1..11] [output-directory]\n"
+                         "Independent takes render concurrently; default uses up to 4 cores.\n");
             return 0;
         }
         else
         {
+            if (argument.starts_with ("-") || hasDirectory)
+                throw std::runtime_error ("Unknown option or extra output directory: " + argument);
             directory = argument;
+            hasDirectory = true;
         }
     }
 
-    if (smoke)
-        return runSmokeTest (directory);
+    if (smoke) return runSmokeTest (directory, jobs);
 
     std::error_code error;
     std::filesystem::create_directories (directory, error);
-    if (! std::filesystem::is_directory (directory))
+    if (error || ! std::filesystem::is_directory (directory))
+        throw std::runtime_error ("Not a writable directory: " + directory.string());
+    if (! removeStaleWavs (directory)) return 1;
+
+    const auto& table = demos();
+    std::vector<RenderedLevel> levels (table.size());
+    std::vector<std::string> failures (table.size());
+    std::atomic<std::size_t> next { 0 };
+    const auto worker = [&]
     {
-        std::fprintf (stderr, "not a directory: %s\n", directory.string().c_str());
-        return 1;
-    }
-
-    if (! removeStaleWavs (directory))
-        return 1;
-
-    std::vector<RenderedLevel> levels;
-
-    for (const auto& demo : demos())
+        for (;;)
+        {
+            const auto index = next.fetch_add (1, std::memory_order_relaxed);
+            if (index >= table.size()) return;
+            const auto& demo = table[index];
+            try
+            {
+                auto take = demo.render();
+                if (! take.finite()) throw std::runtime_error ("Rendered a non-finite sample");
+                const auto renderedPeak = take.peak();
+                if (renderedPeak < 1.0e-4) throw std::runtime_error ("Rendered silence");
+                // Keep the demonstration outside the output limiter's range.
+                if (renderedPeak >= 0.9)
+                    throw std::runtime_error ("Reached output saturation; lower the render level");
+                const auto gain = take.normalise();
+                const auto path = directory / demo.fileName;
+                if (! writeWav (path, take.left(), take.right()))
+                    throw std::runtime_error ("Could not write " + path.string());
+                levels[index] = { demo.fileName, demo.description,
+                    static_cast<double> (take.left().size()) / demoSampleRate,
+                    20.0 * std::log10 (renderedPeak), 20.0 * std::log10 (gain) };
+            }
+            catch (const std::exception& failure) { failures[index] = failure.what(); }
+            catch (...) { failures[index] = "Unknown render failure"; }
+        }
+    };
+    if (jobs == 1) worker();
+    else
     {
-        auto take = demo.render();
-
-        if (! take.finite())
-        {
-            std::fprintf (stderr, "%s rendered a non-finite sample\n", demo.fileName);
-            return 1;
-        }
-
-        const auto renderedPeak = take.peak();
-        if (renderedPeak < 1.0e-4)
-        {
-            std::fprintf (stderr, "%s rendered silence (peak %.6f)\n", demo.fileName,
-                          renderedPeak);
-            return 1;
-        }
-        // The output stage saturates above 0.9; a take that entered that
-        // region would document the limiter rather than the engine.
-        if (renderedPeak >= 0.9)
-        {
-            std::fprintf (stderr,
-                          "%s reached %.6f, inside the output stage's saturation "
-                          "region; render it at a lower level\n",
-                          demo.fileName, renderedPeak);
-            return 1;
-        }
-
-        const auto gain = take.normalise();
-        const auto path = directory / demo.fileName;
-        if (! writeWav (path, take.left(), take.right()))
-        {
-            std::fprintf (stderr, "could not write %s\n", path.string().c_str());
-            return 1;
-        }
-
-        levels.push_back ({ demo.fileName, demo.description,
-                            static_cast<double> (take.left().size()) / demoSampleRate,
-                            20.0 * std::log10 (renderedPeak),
-                            20.0 * std::log10 (gain) });
-
-        std::printf ("Rendered %-28s %5.1f s  peak %6.1f dBFS\n", demo.fileName,
-                     levels.back().seconds, levels.back().renderedPeakDb);
+        // jthread joins on every exit path, including failed thread creation.
+        std::vector<std::jthread> workers;
+        for (unsigned job = 0; job < jobs; ++job) workers.emplace_back (worker);
     }
-
-    if (! updatePeaksTable (directory, levels))
-        return 1;
-
-    std::printf ("Wrote %zu demonstration files to %s\n", levels.size(),
-                 directory.string().c_str());
+    // Report in score order regardless of worker completion order.
+    bool failed = false;
+    for (std::size_t index = 0; index < table.size(); ++index)
+        if (! failures[index].empty())
+        {
+            std::fprintf (stderr, "%s: %s\n", table[index].fileName, failures[index].c_str());
+            failed = true;
+        }
+        else
+            std::printf ("Rendered %-28s %5.1f s  peak %6.1f dBFS\n",
+                         table[index].fileName, levels[index].seconds, levels[index].renderedPeakDb);
+    if (failed || ! updatePeaksTable (directory, levels)) return 1;
+    std::printf ("Wrote %zu demonstration files to %s (%u workers)\n", levels.size(),
+                 directory.string().c_str(), jobs);
     return 0;
+}
+
+int main (int argc, char** argv)
+{
+    try { return run (argc, argv); }
+    catch (const std::exception& error)
+    {
+        std::fprintf (stderr, "SeptumRenderDemos: %s\n", error.what());
+        return 1;
+    }
 }

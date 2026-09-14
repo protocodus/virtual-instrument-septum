@@ -9,6 +9,9 @@ on:
 permissions:
   contents: read
 
+env:
+  BUILD_NUMBER: ${{ github.run_number }}
+
 # A newer push to the same branch/PR cancels the older, still-running check.
 concurrency:
   group: ci-${{ github.ref }}
@@ -82,12 +85,12 @@ jobs:
           test -x "$artefacts/Standalone/Septum"
           dist="build-dsp/dist"
           mkdir -p "$dist"
-          archive="$dist/Septum-Linux-x64.tar.gz"
+          archive="$dist/Septum-build-${BUILD_NUMBER}-Linux-x64.tar.gz"
           # Licence and notice files ship inside the binary archive when the
           # instrument carries them (the MIT licence requires the notice to
           # accompany binaries).
           contents=("VST3/Septum.vst3" "Standalone/Septum")
-          for notice in LICENSE THIRD_PARTY_NOTICES.md ThirdParty/JUCE-LICENSE.md; do
+          for notice in LICENSE THIRD_PARTY_NOTICES.md ThirdParty/JUCE-LICENSE.md ThirdParty/JUCE-DEPENDENCY-NOTICES.txt; do
             if [[ -f "$notice" ]]; then
               cp "$notice" "$artefacts/$(basename "$notice")"
               contents+=("$(basename "$notice")")
@@ -100,8 +103,8 @@ jobs:
       - name: Upload Linux package
         uses: actions/upload-artifact@v4
         with:
-          name: ci-linux-septum
-          path: build-dsp/dist/Septum-Linux-x64.tar.gz
+          name: ci-linux-septum-build-${{ github.run_number }}
+          path: build-dsp/dist/Septum-build-${{ github.run_number }}-Linux-x64.tar.gz
           if-no-files-found: error
           retention-days: 7
 
@@ -144,6 +147,19 @@ jobs:
           fi
           echo "Rendered $screenshot ($(wc -c < "$screenshot") bytes)."
 
+      - name: Package macOS VST3, Audio Unit and standalone
+        run: ./scripts/sign-and-package-macos.sh
+
+      - name: Upload macOS packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-macos-septum-build-${{ github.run_number }}
+          path: |
+            build-macos/dist/Septum-*-build-${{ github.run_number }}-macOS-*.zip
+            build-macos/dist/Septum-*-build-${{ github.run_number }}-macOS-*.pkg
+          if-no-files-found: error
+          retention-days: 7
+
   dsp-tests-windows:
     name: DSP tests (Septum, JUCE-free, Windows)
     runs-on: windows-2025
@@ -183,12 +199,12 @@ jobs:
           }
           $dist = "build-win/dist"
           New-Item -ItemType Directory -Force -Path $dist | Out-Null
-          $zip = Join-Path $dist "Septum-Windows-x64.zip"
+          $zip = Join-Path $dist "Septum-build-${env:BUILD_NUMBER}-Windows-x64.zip"
           # Licence and notice files ship inside the binary archive when the
           # instrument carries them (the MIT licence requires the notice to
           # accompany binaries).
           $contents = @((Join-Path $artefacts "VST3"), (Join-Path $artefacts "Standalone"))
-          foreach ($notice in @("LICENSE", "THIRD_PARTY_NOTICES.md", "ThirdParty/JUCE-LICENSE.md")) {
+          foreach ($notice in @("LICENSE", "THIRD_PARTY_NOTICES.md", "ThirdParty/JUCE-LICENSE.md", "ThirdParty/JUCE-DEPENDENCY-NOTICES.txt")) {
             $source = Join-Path "." $notice
             if (Test-Path -LiteralPath $source -PathType Leaf) {
               $contents += $source
@@ -203,7 +219,7 @@ jobs:
       - name: Upload Windows package
         uses: actions/upload-artifact@v4
         with:
-          name: ci-windows-septum
-          path: build-win/dist/Septum-Windows-x64.zip
+          name: ci-windows-septum-build-${{ github.run_number }}
+          path: build-win/dist/Septum-build-${{ github.run_number }}-Windows-x64.zip
           if-no-files-found: error
           retention-days: 7

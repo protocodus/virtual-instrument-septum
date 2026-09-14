@@ -2109,17 +2109,17 @@ void testAProgramLoadDoesNotSwallowADumpThatOverlappedIt()
     processor.parameters.removeParameterListener ("lo_cutoff", &probe);
     expect (probe.sent == 1, "a dump landed inside the program spray");
 
-    // The spray passed up_cutoff before the dump wrote it, so the engine is
-    // rendering the dump's value.
-    expect ((int) raw->load() == 31,
-            "the engine renders the dump's value (up_cutoff "
+    // An explicit host program transaction wins in full over colliding MIDI
+    // patch edits, including an edit injected after its cutoff was written.
+    const float hostCutoff = static_cast<float> (septum::factoryPatches()[5].patch.upper.cutoff);
+    expect ((int) raw->load() == static_cast<int> (hostCutoff),
+            "the engine retains the coherent host program (up_cutoff "
                 + juce::String (raw->load()).toStdString() + ")");
 
     processor.republishPatchParameters();       // the queued reconciler
     const auto& range = processor.parameters.getParameterRange ("up_cutoff");
-    expect (std::abs (parameter->getValue() - range.convertTo0to1 (31.0f)) < 1.0e-6,
-            "and the host and the panel were told about it rather than being "
-            "left on the program's value (host "
+    expect (std::abs (parameter->getValue() - range.convertTo0to1 (hostCutoff)) < 1.0e-6,
+            "the host and panel agree with the program that won the transaction (host "
                 + juce::String (range.convertFrom0to1 (parameter->getValue()))
                       .toStdString()
                 + ")");
@@ -2527,10 +2527,8 @@ void testAnImportedArpeggioPatternSurvivesAndPlays()
                     + ")");
     }
 
-    // A restore whose grid property is present but unreadable must retire the
-    // grid this processor was holding: it belongs to the session that has
-    // just been replaced. Leaving it valid meant a restored patch whose
-    // selector happened to match played the stale grid instead of its style.
+    // A corrupt grid makes the entire host state invalid. Reject it before
+    // replacing any part of the currently audible patch or imported style.
     {
         SeptumAudioProcessor host;
         host.prepareToPlay (44100.0, 256);
@@ -2564,21 +2562,18 @@ void testAnImportedArpeggioPatternSurvivesAndPlays()
             host.setStateInformation (broken.getData(), (int) broken.getSize());
         }
 
-        septum::Patch reference = septum::initPatch();
-        reference.arpeggio.endStep = 0;
-        septum::applyArpeggioStyle (reference, 0);
         const auto after = host.snapshotPatch();
         bool matchesTemplate = true;
         for (int step = 0; step < septum::arpeggioMaxSteps && matchesTemplate; ++step)
             for (int row = 0; row < septum::arpeggioMaxRows; ++row)
                 if (after.arpeggio.style.cell (step, row)
-                    != reference.arpeggio.style.cell (step, row))
+                    != atZero.arpeggio.style.cell (step, row))
                 {
                     matchesTemplate = false;
                     break;
                 }
         expect (matchesTemplate,
-                "a restore with an unreadable grid retires the one being held");
+                "a restore with an unreadable grid preserves the current patch and pattern");
     }
 
     // A factory program carries its own style. The selector is only the key
@@ -3603,8 +3598,12 @@ void testMutedPartControlsStayInspectableAndFollowHostState()
     const auto preserveToneValues = [&]
     {
         for (const auto& [id, value] : toneValues)
-            expect (processor.parameters.getRawParameterValue (id)->load() == value,
-                    "muting, switching and restoring preserve " + id);
+            // A restore canonicalizes JUCE's normalized-float round trip
+            // (e.g. 7.9999995 becomes the documented integer 8).
+            expect (std::abs (processor.parameters.getRawParameterValue (id)->load() - value) < 0.0001f,
+                    "muting, switching and restoring preserve " + id
+                        + " (expected " + juce::String (value, 9)
+                        + ", actual " + juce::String (processor.parameters.getRawParameterValue (id)->load(), 9) + ")");
     };
     const auto automateTone = [&] (const char* id, float value)
     {

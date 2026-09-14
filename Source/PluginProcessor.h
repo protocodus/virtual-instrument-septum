@@ -11,6 +11,9 @@
 #include <array>
 #include <atomic>
 #include <memory>
+#include <mutex>
+#include <optional>
+#include <thread>
 
 namespace septum::parameters
 {
@@ -27,7 +30,7 @@ class SeptumAudioProcessor final : public juce::AudioProcessor
 {
 public:
     SeptumAudioProcessor();
-    ~SeptumAudioProcessor() override = default;
+    ~SeptumAudioProcessor() override;
 
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
@@ -119,7 +122,7 @@ public:
     // (a received SysEx dump) writes only atomics there and is republished to
     // the host and the UI from the message loop. Public so the harness can
     // stand in for that loop.
-    // `publishGrid` puts the arpeggio grid into the same generation-odd
+    // `publishGrid` puts the arpeggio grid into the same guarded write
     // window as the parameters, so a concurrent state save cannot pair one
     // patch revision's parameters with another's grid.
     void writePatchToParameters (const septum::Patch& patch,
@@ -153,6 +156,113 @@ public:
         createParameterLayout();
 
 private:
+    void loadPatchUnderWriteAccess (const septum::Patch& patch);
+
+    // Explicit host patch loads supersede MIDI parameter edits that overlap
+    // them. Notification-only collisions defer those edits instead of losing
+    // them. Audio makes a bounded atomic try;
+    // notes, releases and performance controllers do not use this gate.
+    // Only host/control callers take the mutex or wait for an audio writer.
+    std::recursive_mutex hostParameterMutex;
+    // 0 = none, 1 = explicit host transaction, 2 = notification only.
+    std::atomic<int> hostParameterWritePending { 0 };
+    std::atomic<std::uint64_t> hostParameterTransaction { 0 };
+    std::atomic<bool> audioParameterWriteActive { false };
+    struct ParameterWriteAccess
+    {
+        enum class Mode { Host, Audio, Notification };
+        ParameterWriteAccess (SeptumAudioProcessor& processor, Mode requested)
+            : owner (processor), mode (requested), hostLock (processor.hostParameterMutex,
+                                                            std::defer_lock)
+        {
+            transaction = owner.hostParameterTransaction.load();
+            // A notification may reenter the processor. Nested audio helpers
+            // share an acquired audio gate; a host notification cannot start
+            // another host transaction, or inject a MIDI patch into its own
+            // half-written state. The outer transaction wins in both cases.
+            for (auto* previous = current; previous != nullptr; previous = previous->parent)
+                if (&previous->owner == &owner)
+                {
+                    if (mode == Mode::Audio && previous->mode == Mode::Audio)
+                        enter (false);
+                    else if (mode == Mode::Audio && previous->mode == Mode::Notification)
+                        deferred = true;
+                    return;
+                }
+            if (mode != Mode::Audio)
+            {
+                hostLock.lock();
+                owner.hostParameterWritePending.store (mode == Mode::Host ? 1 : 2);
+                while (owner.audioParameterWriteActive.load())
+                    std::this_thread::yield();
+                if (mode == Mode::Host)
+                    owner.hostParameterTransaction.fetch_add (1);
+                enter (true);
+            }
+            else
+            {
+                const int pending = owner.hostParameterWritePending.load();
+                if (pending != 0) { deferred = pending == 2; return; }
+                bool available = false;
+                if (! owner.audioParameterWriteActive.compare_exchange_strong (available, true))
+                    return;
+                const int pendingAfterClaim = owner.hostParameterWritePending.load();
+                if (pendingAfterClaim != 0)
+                {
+                    deferred = pendingAfterClaim == 2;
+                    owner.audioParameterWriteActive.store (false);
+                    return;
+                }
+                enter (true);
+            }
+        }
+        ~ParameterWriteAccess()
+        {
+            if (! acquired) return;
+            current = parent;
+            if (! ownsGate) return;
+            if (mode != Mode::Audio) owner.hostParameterWritePending.store (0);
+            else owner.audioParameterWriteActive.store (false);
+        }
+        explicit operator bool() const noexcept { return acquired; }
+        bool shouldDefer() const noexcept { return deferred; }
+        std::uint64_t transactionAtEntry() const noexcept { return transaction; }
+        ParameterWriteAccess (const ParameterWriteAccess&) = delete;
+        ParameterWriteAccess& operator= (const ParameterWriteAccess&) = delete;
+    private:
+        void enter (bool owns) noexcept
+        {
+            acquired = true;
+            ownsGate = owns;
+            parent = current;
+            current = this;
+        }
+        SeptumAudioProcessor& owner;
+        Mode mode;
+        std::unique_lock<std::recursive_mutex> hostLock;
+        bool acquired { false }, ownsGate { false };
+        bool deferred { false };
+        std::uint64_t transaction {};
+        ParameterWriteAccess* parent { nullptr };
+        inline static thread_local ParameterWriteAccess* current { nullptr };
+    };
+
+    // Notification collisions are replayed by the audio thread in FIFO order
+    // at the next available boundary. Explicit host transactions invalidate
+    // older queued edits. Overflow retains the newest parameter edits; notes
+    // and pedals never enter this queue and always keep their original timing.
+    struct DeferredParameterMidi
+    {
+        std::array<std::uint8_t, 79> data {};
+        int size {};
+    };
+    static constexpr std::size_t deferredParameterCapacity = 256;
+    std::array<DeferredParameterMidi, deferredParameterCapacity> deferredParameterMidi {};
+    std::size_t deferredParameterRead { 0 }, deferredParameterCount { 0 };
+    std::uint64_t deferredParameterTransaction { 0 };
+    void deferParameterMidi (const std::uint8_t* data, int size,
+                             std::uint64_t transaction) noexcept;
+    bool drainDeferredParameterMidi();
     // Both return true when the event edited a patch parameter, so the audio
     // path can refresh the engine patch before rendering the next segment.
     bool handleMidiMessage (const juce::MidiMessage& message);
@@ -231,25 +341,16 @@ private:
     // when the dump arrived; moving the selector picks a template, which is
     // what the hardware's panel does too.
     //
-    // Published into a ring of slots, because the audio thread writes it (a
-    // dump is decoded in the render callback) and reads it, and the message
-    // thread reads it to save the session and writes it to restore one.
-    //
-    // A plain seqlock over one buffer would let a reader's copy overlap a
-    // writer's — it detects the tear and retries, but the overlapping access
-    // is a data race in its own right. A ring means the slot being written is
-    // never the slot being published, so a reader would have to be overtaken
-    // by `slotCount` further publishes before it even shared memory with a
-    // writer; the published counter is still checked afterwards, so a reader
-    // that was overtaken retries rather than returning a torn grid.
+    // Readers pin a slot before copying its ordinary payload. A writer only
+    // claims an unpinned, unpublished slot, so a suspended state-save thread
+    // remains safe even after arbitrarily many subsequent MIDI dumps.
     struct ImportedArpeggioStyle
     {
-        // Comfortably more than the 22 blocks of a whole patch dump, so even
-        // a reader preempted across an entire dump is not lapped. It is a
-        // bound rather than a proof — see the note on the reader below.
         static constexpr std::size_t slotCount = 32;
         struct Slot
         {
+            // -1: writer owns this slot; >= 0: number of pinned readers.
+            mutable std::atomic<int> users { 0 };
             septum::ArpeggioStyle style {};
             // The selector this grid belongs to travels *in* the slot. Held
             // in an atomic of its own it could be observed a moment ahead of
@@ -259,11 +360,11 @@ private:
         };
         std::array<Slot, slotCount> slots {};
         // Handed out to writers, so two of them never pick the same slot.
-        std::atomic<std::uint32_t> reserved { 0 };
+        std::atomic<std::uint64_t> reserved { 0 };
         // How many publishes have completed; the newest is slot
         // (published - 1) % slotCount, and zero means nothing is published.
         // This one store publishes the grid and its selector together.
-        std::atomic<std::uint32_t> published { 0 };
+        std::atomic<std::uint64_t> published { 0 };
         std::atomic<bool> valid { false };
     };
     // Mutable because `snapshotPatch()` is const and retires the grid when it
@@ -289,7 +390,8 @@ private:
     // So the read itself never retires: it reports, and the caller decides.
     [[nodiscard]] bool readImportedArpeggioStyle (
         int selector, septum::ArpeggioStyle& out,
-        bool* selectorMoved = nullptr) const noexcept;
+        bool* selectorMoved = nullptr, int* storedSelector = nullptr,
+        std::uint64_t* observedTicket = nullptr) const noexcept;
     void writeImportedArpeggioToState (juce::ValueTree& state) const;
     void readImportedArpeggioFromState (const juce::ValueTree& state);
     std::atomic<float>* masterValue { nullptr };
@@ -342,21 +444,25 @@ private:
     // received CC wrote on the audio thread. Coalescing, so a knob sweep of
     // 128 messages a second costs one message-thread pass per frame rather
     // than 128.
-    struct CcReconciler final : public juce::AsyncUpdater
+    // Requesting host/UI publication from the callback must not allocate or
+    // post an OS message. One message-thread timer polls these atomic flags.
+    struct CcReconciler final
     {
         explicit CcReconciler (SeptumAudioProcessor& o) : owner (o) {}
-        ~CcReconciler() override { cancelPendingUpdate(); }
-        void handleAsyncUpdate() override { owner.reconcileControlChanges(); }
+        void triggerAsyncUpdate() noexcept { pending.store (true, std::memory_order_release); }
+        void poll() { if (pending.exchange (false, std::memory_order_acquire)) owner.reconcileControlChanges(); }
+        std::atomic<bool> pending { false };
         SeptumAudioProcessor& owner;
     };
     CcReconciler ccReconciler { *this };
     // The same shape for a whole patch, after a SysEx dump lands on the audio
     // path.
-    struct PatchReconciler final : public juce::AsyncUpdater
+    struct PatchReconciler final
     {
         explicit PatchReconciler (SeptumAudioProcessor& o) : owner (o) {}
-        ~PatchReconciler() override { cancelPendingUpdate(); }
-        void handleAsyncUpdate() override { owner.republishPatchParameters(); }
+        void triggerAsyncUpdate() noexcept { pending.store (true, std::memory_order_release); }
+        void poll() { if (pending.exchange (false, std::memory_order_acquire)) owner.republishPatchParameters(); }
+        std::atomic<bool> pending { false };
         SeptumAudioProcessor& owner;
     };
     PatchReconciler patchReconciler { *this };
@@ -382,15 +488,17 @@ private:
     // earlier put it back over a message that had arrived in between.
     std::array<std::atomic<float>, deviceControlCount> deviceControlShadow {};
     std::atomic<unsigned> deviceControlDirty { 0u };
-    struct SystemReconciler final : public juce::AsyncUpdater
+    struct SystemReconciler final
     {
         explicit SystemReconciler (SeptumAudioProcessor& o) : owner (o) {}
-        ~SystemReconciler() override { cancelPendingUpdate(); }
-        void handleAsyncUpdate() override { owner.republishSystemParameters(); }
+        void triggerAsyncUpdate() noexcept { pending.store (true, std::memory_order_release); }
+        void poll() { if (pending.exchange (false, std::memory_order_acquire)) owner.republishSystemParameters(); }
+        std::atomic<bool> pending { false };
         SeptumAudioProcessor& owner;
     };
     SystemReconciler systemReconciler { *this };
     std::vector<float> monoScratch;
+    bool prepared { false };
 
     septum::Engine engine;
     std::atomic<int> activeVoices { 0 };
@@ -417,9 +525,11 @@ private:
     std::atomic<float> uiBend { 0.0f };
     std::atomic<float> uiMod { 0.0f };
     std::atomic<bool> uiLeverDirty { false };
-    // When the UI queue overflows, a note-off must still reach the engine
-    // eventually: the release is latched here and applied on the next block.
+    // Overflow coalesces to the latest requested state per note. Retaining
+    // presses as well as releases avoids clearing a release for a retrigger
+    // whose note-on did not fit in the FIFO.
     std::array<std::atomic<std::uint64_t>, 2> forcedRelease { 0u, 0u };
+    std::array<std::atomic<int>, 128> overflowUiVelocity {};
     // Set only while applyProgram sprays a program into the APVTS on the
     // message thread: the audio path then renders that factory patch
     // atomically instead of a half-updated parameter snapshot. MIDI program
@@ -428,13 +538,81 @@ private:
     // One atomic prevents a later MIDI selection from consuming an older
     // message-thread staged program under the later revision.
     std::atomic<std::uint64_t> stagedProgram { 0 };
-    // Seqlock guard for multi-parameter write bursts — message-thread program
-    // sprays and state restores, and the audio path's own program writes:
-    // odd while a burst is in flight, bumped again when it completes. The
-    // audio thread discards a patch snapshot that saw a burst and keeps the
-    // previous block's patch; a state save retries its raw-value copy.
+    // A revision plus active-writer count guards complete snapshot reads.
+    // Generation parity alone is insufficient: two concurrent parameter
+    // sprays make an even generation while both are still writing. Readers
+    // reject every active writer without making the audio thread wait.
+    // ParameterWriteAccess serializes complete writes; this revision guard
+    // also protects readers that do not take that gate, including state save.
     std::atomic<std::uint32_t> patchGeneration { 0 };
+    std::atomic<std::uint32_t> activePatchWriters { 0 };
 
-    JUCE_DECLARE_WEAK_REFERENCEABLE (SeptumAudioProcessor)
+    struct PatchWriteScope
+    {
+        explicit PatchWriteScope (SeptumAudioProcessor& processor) noexcept
+            : owner (processor)
+        {
+            owner.activePatchWriters.fetch_add (1, std::memory_order_acq_rel);
+            generation = owner.patchGeneration.fetch_add (1, std::memory_order_acq_rel) + 1u;
+        }
+        ~PatchWriteScope() { finish(); }
+        void finish() noexcept
+        {
+            if (! active) return;
+            owner.patchGeneration.fetch_add (1, std::memory_order_acq_rel);
+            owner.activePatchWriters.fetch_sub (1, std::memory_order_acq_rel);
+            active = false;
+        }
+        SeptumAudioProcessor& owner;
+        std::uint32_t generation {};
+        bool active { true };
+        PatchWriteScope (const PatchWriteScope&) = delete;
+        PatchWriteScope& operator= (const PatchWriteScope&) = delete;
+    };
+
+    [[nodiscard]] bool patchSnapshotStable (std::uint32_t generation) const noexcept
+    {
+        return activePatchWriters.load (std::memory_order_acquire) == 0u
+            && patchGeneration.load (std::memory_order_acquire) == generation;
+    }
+
+    std::atomic<int> pendingProgram { -1 };
+    struct ReconciliationState
+    {
+        explicit ReconciliationState (SeptumAudioProcessor& o) : owner (&o) {}
+        juce::CriticalSection lock;
+        SeptumAudioProcessor* owner;
+    };
+    // Timer ownership stays on the message thread. Destruction on a host
+    // worker detaches under the state lock; the next tick disposes the timer.
+    // DeletedAtShutdown also covers hosts that never pump their message loop.
+    struct ReconciliationTimer final : private juce::Timer, private juce::DeletedAtShutdown
+    {
+        explicit ReconciliationTimer (std::shared_ptr<ReconciliationState> s) : state (std::move (s))
+        {
+            startTimerHz (30);
+        }
+        ~ReconciliationTimer() override { stopTimer(); }
+        void timerCallback() override
+        {
+            // Keep the state alive if this callback disposes the timer.
+            const auto keepAlive = state;
+            const juce::ScopedLock guard (keepAlive->lock);
+            if (auto* owner = keepAlive->owner)
+            {
+                const int program = owner->pendingProgram.exchange (-1, std::memory_order_acquire);
+                if (program >= 0 && owner->getCurrentProgram() == program)
+                    owner->reconcileProgram (program);
+                owner->ccReconciler.poll();
+                owner->patchReconciler.poll();
+                owner->systemReconciler.poll();
+            }
+            else
+                delete this;
+        }
+        std::shared_ptr<ReconciliationState> state;
+    };
+    std::shared_ptr<ReconciliationState> reconciliationState;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SeptumAudioProcessor)
 };

@@ -18,6 +18,94 @@ using septum::TonePatch;
 constexpr int nativePresetVersion = 6;
 constexpr std::size_t maximumPresetBytes = 1024 * 1024;
 
+// APVTS atomics are normally range checked by JUCE, but malformed host
+// automation must not reach a float-to-integer conversion with NaN/Inf or
+// an out-of-range operand. The documented ranges are applied afterwards.
+int roundedParameter (double value) noexcept
+{
+    return std::isfinite (value)
+        ? static_cast<int> (std::lround (std::clamp (value, -1000000.0, 1000000.0))) : 0;
+}
+
+bool isValidLiveMidi (const juce::MidiMessageMetadata& event) noexcept
+{
+    if (event.data == nullptr || event.numBytes <= 0 || event.data[0] < 0x80)
+        return false;
+    const auto status = event.data[0];
+    if (status == 0xf0)
+        return event.numBytes >= 2 && event.numBytes <= 79
+            && event.data[event.numBytes - 1] == 0xf7;
+    // Meta messages belong to MIDI files, not a live instrument callback.
+    if (status >= 0xf8)
+        return event.numBytes == 1;
+    int expected = 1;
+    if (status < 0xf0)
+        expected = (status & 0xe0) == 0xc0 ? 2 : 3;
+    else if (status == 0xf1 || status == 0xf3)
+        expected = 2;
+    else if (status == 0xf2)
+        expected = 3;
+    if (event.numBytes != expected)
+        return false;
+    for (int i = 1; i < expected; ++i)
+        if (event.data[i] >= 0x80)
+            return false;
+    return true;
+}
+
+bool isParameterMidi (const std::uint8_t* data) noexcept
+{
+    const int status = data[0] & 0xf0;
+    if (data[0] == 0xf0 || status == 0xc0) return true;
+    if (status != 0xb0) return false;
+    switch (data[1])
+    {
+        case 1: case 7: case 10: case 11: case 64: case 66: case 69:
+        case 84: case 120: case 121: case 123: case 124: case 125:
+            return false;
+        default: return true;
+    }
+}
+
+bool hasSafeStateXmlStructure (const void* data, int sizeInBytes) noexcept
+{
+    // JUCE's XML parser is recursive. Bound nesting before it sees an
+    // untrusted host blob, and disallow declarations/entity definitions:
+    // native state needs only a root, PARAM children and scalar attributes.
+    const auto* bytes = static_cast<const char*> (data);
+    int depth = 0, elements = 0;
+    for (int i = 8; i < sizeInBytes; ++i)
+    {
+        if (bytes[i] != '<')
+            continue;
+        if (++i >= sizeInBytes || bytes[i] == '!')
+            return false;
+        const bool closing = bytes[i] == '/';
+        const bool instruction = bytes[i] == '?';
+        if (! closing && ! instruction && (++depth > 16 || ++elements > 4096))
+            return false;
+        char quote = 0;
+        for (; i < sizeInBytes; ++i)
+        {
+            const auto character = bytes[i];
+            if (quote != 0)
+            {
+                if (character == quote) quote = 0;
+            }
+            else if (character == '\'' || character == '"')
+                quote = character;
+            else if (character == '>')
+                break;
+        }
+        if (i >= sizeInBytes)
+            return false;
+        if (closing || (! instruction && bytes[i - 1] == '/'))
+            if (--depth < 0)
+                return false;
+    }
+    return depth == 0;
+}
+
 // Version 1 predates the MIDI receiver settings. Fill only those additions;
 // native preset validation must still reject missing original parameters.
 void addMissingMidiSettings (juce::ValueTree& state)
@@ -209,13 +297,13 @@ const juce::StringArray reverbHfDampChoices {
 // Shorthand for the field accessors.
 #define TONE_INT(field) \
     [] (const TonePatch& t) { return (float) t.field; }, \
-    [] (TonePatch& t, float v) { t.field = (int) std::lround (v); }
+    [] (TonePatch& t, float v) { t.field = (int) roundedParameter (v); }
 #define TONE_BOOL(field) \
     [] (const TonePatch& t) { return t.field ? 1.0f : 0.0f; }, \
     [] (TonePatch& t, float v) { t.field = v >= 0.5f; }
 #define TONE_ENUM(field, type) \
     [] (const TonePatch& t) { return (float) (int) t.field; }, \
-    [] (TonePatch& t, float v) { t.field = (type) (int) std::lround (v); }
+    [] (TonePatch& t, float v) { t.field = (type) (int) roundedParameter (v); }
 
 const std::vector<ToneBinding>& toneBindings()
 {
@@ -392,13 +480,13 @@ const juce::StringArray audioFilterTypeChoices { "LPF", "HPF", "BPF", "NOTCH" };
 
 #define EXT_INT(field) \
     [] (const septum::ExternalInput& e) { return (float) e.field; }, \
-    [] (septum::ExternalInput& e, float v) { e.field = (int) std::lround (v); }
+    [] (septum::ExternalInput& e, float v) { e.field = (int) roundedParameter (v); }
 #define EXT_BOOL(field) \
     [] (const septum::ExternalInput& e) { return e.field ? 1.0f : 0.0f; }, \
     [] (septum::ExternalInput& e, float v) { e.field = v >= 0.5f; }
 #define EXT_ENUM(field, type) \
     [] (const septum::ExternalInput& e) { return (float) (int) e.field; }, \
-    [] (septum::ExternalInput& e, float v) { e.field = (type) (int) std::lround (v); }
+    [] (septum::ExternalInput& e, float v) { e.field = (type) (int) roundedParameter (v); }
 
 const std::vector<ExternalBinding>& externalBindings()
 {
@@ -438,13 +526,13 @@ const juce::StringArray& systemParameterIds()
 
 #define PATCH_INT(field) \
     [] (const Patch& p) { return (float) p.field; }, \
-    [] (Patch& p, float v) { p.field = (int) std::lround (v); }
+    [] (Patch& p, float v) { p.field = (int) roundedParameter (v); }
 #define PATCH_BOOL(field) \
     [] (const Patch& p) { return p.field ? 1.0f : 0.0f; }, \
     [] (Patch& p, float v) { p.field = v >= 0.5f; }
 #define PATCH_ENUM(field, type) \
     [] (const Patch& p) { return (float) (int) p.field; }, \
-    [] (Patch& p, float v) { p.field = (type) (int) std::lround (v); }
+    [] (Patch& p, float v) { p.field = (type) (int) roundedParameter (v); }
 
 const std::vector<PatchBinding>& patchBindings()
 {
@@ -615,6 +703,14 @@ SeptumAudioProcessor::SeptumAudioProcessor()
       parameters (*this, nullptr, "Septum", createParameterLayout())
 {
     cacheParameterPointers();
+    reconciliationState = std::make_shared<ReconciliationState> (*this);
+    new ReconciliationTimer (reconciliationState);
+}
+
+SeptumAudioProcessor::~SeptumAudioProcessor()
+{
+    const juce::ScopedLock guard (reconciliationState->lock);
+    reconciliationState->owner = nullptr;
 }
 
 void SeptumAudioProcessor::cacheParameterPointers()
@@ -820,7 +916,7 @@ const std::vector<juce::String>& signedParameterSuffixes()
             {
                 const int snapped =
                     2 * juce::jlimit (-49, 49,
-                                      (int) std::lround (value / 2.0));
+                                      (int) roundedParameter (value / 2.0));
                 return snapped > 0 ? "+" + juce::String (snapped)
                                    : juce::String (snapped);
             });
@@ -830,7 +926,7 @@ const std::vector<juce::String>& signedParameterSuffixes()
             {
                 const int snapped =
                     10 * juce::jlimit (-20, 20,
-                                       (int) std::lround (value / 10.0));
+                                       (int) roundedParameter (value / 10.0));
                 return snapped > 0 ? "+" + juce::String (snapped)
                                    : juce::String (snapped);
             });
@@ -868,7 +964,7 @@ SeptumAudioProcessor::createParameterLayout()
                 case Kind::Int:
                     layout.add (std::make_unique<AudioParameterInt> (
                         ParameterID { id, 1 }, name, binding.low, binding.high,
-                        (int) std::lround (defaultValue), intAttributes (id)));
+                        (int) roundedParameter (defaultValue), intAttributes (id)));
                     break;
                 case Kind::Bool:
                     layout.add (std::make_unique<AudioParameterBool> (
@@ -879,7 +975,7 @@ SeptumAudioProcessor::createParameterLayout()
                 case Kind::Choice:
                     layout.add (std::make_unique<AudioParameterChoice> (
                         ParameterID { id, 1 }, name, *binding.choices,
-                        (int) std::lround (defaultValue)));
+                        (int) roundedParameter (defaultValue)));
                     break;
             }
         }
@@ -914,7 +1010,7 @@ SeptumAudioProcessor::createParameterLayout()
             case Kind::Int:
                 layout.add (std::make_unique<juce::AudioParameterInt> (
                     juce::ParameterID { binding.id, 1 }, binding.label,
-                    binding.low, binding.high, (int) std::lround (defaultValue),
+                    binding.low, binding.high, (int) roundedParameter (defaultValue),
                     intAttributes (binding.id)));
                 break;
             case Kind::Bool:
@@ -925,7 +1021,7 @@ SeptumAudioProcessor::createParameterLayout()
             case Kind::Choice:
                 layout.add (std::make_unique<juce::AudioParameterChoice> (
                     juce::ParameterID { binding.id, 1 }, binding.label,
-                    *binding.choices, (int) std::lround (defaultValue)));
+                    *binding.choices, (int) roundedParameter (defaultValue)));
                 break;
         }
     }
@@ -942,7 +1038,7 @@ SeptumAudioProcessor::createParameterLayout()
             case Kind::Int:
                 layout.add (std::make_unique<juce::AudioParameterInt> (
                     juce::ParameterID { binding.id, 1 }, binding.label,
-                    binding.low, binding.high, (int) std::lround (defaultValue),
+                    binding.low, binding.high, (int) roundedParameter (defaultValue),
                     intAttributes (binding.id).withAutomatable (automatable)));
                 break;
             case Kind::Bool:
@@ -955,7 +1051,7 @@ SeptumAudioProcessor::createParameterLayout()
             case Kind::Choice:
                 layout.add (std::make_unique<juce::AudioParameterChoice> (
                     juce::ParameterID { binding.id, 1 }, binding.label,
-                    *binding.choices, (int) std::lround (defaultValue),
+                    *binding.choices, (int) roundedParameter (defaultValue),
                     juce::AudioParameterChoiceAttributes().withAutomatable (
                         automatable)));
                 break;
@@ -1008,11 +1104,11 @@ void SeptumAudioProcessor::applySystemSettings() noexcept
     // Settled SYSTEM COMMON. Cached atomics only, so this costs the audio
     // thread four loads a block.
     engine.setMasterTuneHz (systemTuneValue->load (std::memory_order_relaxed));
-    engine.setMasterKeyShift ((int) std::lround (
+    engine.setMasterKeyShift ((int) roundedParameter (
         systemValues[0]->load (std::memory_order_relaxed)));
-    engine.setKeyboardOctaveShift ((int) std::lround (
+    engine.setKeyboardOctaveShift ((int) roundedParameter (
         systemValues[1]->load (std::memory_order_relaxed)));
-    engine.setTranspose ((int) std::lround (
+    engine.setTranspose ((int) roundedParameter (
         systemValues[2]->load (std::memory_order_relaxed)));
 }
 
@@ -1033,17 +1129,7 @@ septum::ExternalInput SeptumAudioProcessor::snapshotExternalInput() const
 // and the wire agree and there is no second format to keep right.
 void SeptumAudioProcessor::writeImportedArpeggioToState (juce::ValueTree& state) const
 {
-    // Read the selector out of the published slot, so the pair that is
-    // written to the session is the pair that was published together.
     int selector = -1;
-    {
-        const auto published =
-            importedArpeggio.published.load (std::memory_order_acquire);
-        if (published != 0u)
-            selector = importedArpeggio
-                           .slots[(published - 1u) % ImportedArpeggioStyle::slotCount]
-                           .selector;
-    }
     septum::ArpeggioStyle style;
     // The flag is not even asked for. The selector this reads with was
     // scraped from the slot itself a moment ago, so a mismatch cannot mean
@@ -1051,7 +1137,7 @@ void SeptumAudioProcessor::writeImportedArpeggioToState (juce::ValueTree& state)
     // reads. A save is a read of the patch; retiring on that threw away a
     // grid nobody moved away from, and then stripped it from the session.
     if (! importedArpeggio.valid.load (std::memory_order_acquire)
-        || ! readImportedArpeggioStyle (selector, style))
+        || ! readImportedArpeggioStyle (-1, style, nullptr, &selector))
     {
         // The tree being written is a copy of the last state, so it may still
         // carry a grid from a session that was restored earlier. Leaving it
@@ -1119,15 +1205,26 @@ void SeptumAudioProcessor::readImportedArpeggioFromState (const juce::ValueTree&
 void SeptumAudioProcessor::publishImportedArpeggioStyle (
     const septum::ArpeggioStyle& style, int selector) noexcept
 {
-    // A slot of this writer's own, so two writers never share one.
-    const auto mine =
-        importedArpeggio.reserved.fetch_add (1, std::memory_order_acq_rel);
-    auto& slot = importedArpeggio.slots[mine % ImportedArpeggioStyle::slotCount];
-    slot.style = style;
-    slot.selector = selector;
-    importedArpeggio.valid.store (true, std::memory_order_release);
-    // One store publishes the grid and the selector it belongs to together.
-    importedArpeggio.published.store (mine + 1, std::memory_order_release);
+    for (std::size_t attempt = 0; attempt < ImportedArpeggioStyle::slotCount; ++attempt)
+    {
+        const auto mine = importedArpeggio.reserved.fetch_add (1, std::memory_order_relaxed);
+        const auto index = mine % ImportedArpeggioStyle::slotCount;
+        const auto published = importedArpeggio.published.load (std::memory_order_acquire);
+        if (published != 0 && (published - 1u) % ImportedArpeggioStyle::slotCount == index)
+            continue;
+        auto& slot = importedArpeggio.slots[index];
+        int free = 0;
+        if (! slot.users.compare_exchange_strong (free, -1, std::memory_order_acquire))
+            continue;
+        slot.style = style;
+        slot.selector = selector;
+        importedArpeggio.valid.store (true, std::memory_order_release);
+        importedArpeggio.published.store (mine + 1u, std::memory_order_release);
+        slot.users.store (0, std::memory_order_release);
+        return;
+    }
+    // Every slot is pinned by concurrent readers: preserve the last complete
+    // grid instead of blocking the callback or racing a reader's copy.
 }
 
 void SeptumAudioProcessor::invalidateImportedArpeggioStyle() const noexcept
@@ -1136,7 +1233,8 @@ void SeptumAudioProcessor::invalidateImportedArpeggioStyle() const noexcept
 }
 
 bool SeptumAudioProcessor::readImportedArpeggioStyle (
-    int selector, septum::ArpeggioStyle& out, bool* selectorMoved) const noexcept
+    int selector, septum::ArpeggioStyle& out, bool* selectorMoved,
+    int* storedSelector, std::uint64_t* observedTicket) const noexcept
 {
     if (! importedArpeggio.valid.load (std::memory_order_acquire))
         return false;
@@ -1149,12 +1247,24 @@ bool SeptumAudioProcessor::readImportedArpeggioStyle (
             return false;
         const auto& slot =
             importedArpeggio.slots[(published - 1u) % ImportedArpeggioStyle::slotCount];
+        int users = slot.users.load (std::memory_order_relaxed);
+        if (users < 0 || ! slot.users.compare_exchange_strong (
+                users, users + 1, std::memory_order_acquire))
+            continue;
+        if (importedArpeggio.published.load (std::memory_order_acquire) != published)
+        {
+            slot.users.fetch_sub (1, std::memory_order_release);
+            continue;
+        }
         const int slotSelector = slot.selector;
         out = slot.style;
-        // Only a reader overtaken by a whole lap of publishes can have shared
-        // a slot with a writer, and this catches it.
+        slot.users.fetch_sub (1, std::memory_order_release);
         if (importedArpeggio.published.load (std::memory_order_acquire) != published)
             continue;
+        if (storedSelector != nullptr)
+            *storedSelector = slotSelector;
+        if (observedTicket != nullptr)
+            *observedTicket = published;
 
         // The grid belongs to the selector position it arrived under, and
         // moving the selector chooses a template — the manual says editing a
@@ -1162,7 +1272,7 @@ bool SeptumAudioProcessor::readImportedArpeggioStyle (
         // a selection replaces what the patch held. Retiring the grid on that
         // first move is what makes returning to the same index load the
         // template rather than resurrect the import.
-        if (slotSelector != selector)
+        if (selector >= 0 && slotSelector != selector)
         {
             // Reported, never acted on. `loadPatch` publishes the grid first
             // and then writes some ninety parameters one at a time, so for the
@@ -1185,6 +1295,7 @@ septum::Patch SeptumAudioProcessor::snapshotPatch() const
 {
     // Runs on the audio thread every block: only cached atomic loads, no
     // string building or lookups.
+    const bool quietAtEntry = activePatchWriters.load (std::memory_order_acquire) == 0u;
     const auto generationAtEntry =
         patchGeneration.load (std::memory_order_acquire);
     Patch patch = septum::initPatch();
@@ -1206,8 +1317,9 @@ septum::Patch SeptumAudioProcessor::snapshotPatch() const
     // engine actually plays — unless a SysEx dump brought a grid of its own,
     // which no parameter can hold and which the hardware stores in the patch.
     bool selectorMoved = false;
+    std::uint64_t importedTicket = 0;
     if (readImportedArpeggioStyle (patch.arpeggio.styleIndex, patch.arpeggio.style,
-                                   &selectorMoved))
+                                   &selectorMoved, nullptr, &importedTicket))
     {
         // END STEP still overrides, exactly as it does over a template.
         if (patch.arpeggio.endStep > 0)
@@ -1220,19 +1332,22 @@ septum::Patch SeptumAudioProcessor::snapshotPatch() const
     }
 
     // Whether everything read above — the selector among it — belongs to one
-    // patch revision. A writer holds the generation odd across its whole
-    // burst, so an odd reading, or one that moved while this ran, means the
+    // patch revision. Writers stay counted across their whole bursts, so
+    // an active writer, or a revision that moved while this ran, means the
     // selector may be from a different revision than the slot it was compared
     // against. `applyCurrentPatch` throws such a snapshot away; the retire is
     // the one part of it that used to survive. Closing the window *below* the
     // read is the whole point: closed above it, a burst starting in between
     // was still free to publish a new grid under a new selector and have this
     // read retire it.
-    const bool settled = (generationAtEntry & 1u) == 0u
-                         && patchGeneration.load (std::memory_order_acquire)
-                                == generationAtEntry;
+    const bool settled = quietAtEntry && patchSnapshotStable (generationAtEntry);
     if (selectorMoved && settled)
-        invalidateImportedArpeggioStyle();
+    {
+        // A new import may publish after the generation check. Retire only
+        // the exact slot revision this snapshot compared, never a newer grid.
+        importedArpeggio.published.compare_exchange_strong (
+            importedTicket, 0, std::memory_order_acq_rel, std::memory_order_acquire);
+    }
 
     septum::clampToDocumentedRanges (patch);
     return patch;
@@ -1241,9 +1356,15 @@ septum::Patch SeptumAudioProcessor::snapshotPatch() const
 void SeptumAudioProcessor::prepareToPlay (double sampleRate,
                                               int samplesPerBlock)
 {
+    prepared = false;
+    deferredParameterRead = deferredParameterCount = 0;
+    sampleRate = std::isfinite (sampleRate) ? std::clamp (sampleRate, 8000.0, 768000.0) : 44100.0;
+    // Hosts may exceed their advertised maximum later. The render loop
+    // chunks those calls into this fixed workspace without reallocating.
+    samplesPerBlock = juce::jlimit (16, 65536, samplesPerBlock);
     midiTempoClock.prepare (sampleRate);
     hostTempoBpm = 0.0;
-    appliedClockSource = static_cast<int> (std::lround (clockSourceValue->load()));
+    appliedClockSource = static_cast<int> (roundedParameter (clockSourceValue->load()));
     liveSysExDecoder.reset();
     appliedLiveSysExRevision = liveSysExRevision.load (std::memory_order_acquire);
     activeSensingArmed = false;
@@ -1252,13 +1373,13 @@ void SeptumAudioProcessor::prepareToPlay (double sampleRate,
     // beyond that interval, including at rates where 420 ms is integral.
     activeSensingTimeoutSamples = static_cast<std::uint64_t> (
         std::floor (sampleRate * 0.420)) + 1u;
-    appliedMidiChannel = static_cast<int> (std::lround (midiChannelValue->load()));
+    appliedMidiChannel = static_cast<int> (roundedParameter (midiChannelValue->load()));
     midiBankSelect.reset();
-    appliedRemoteKeyboard = static_cast<int> (std::lround (remoteKeyboardValue->load()));
+    appliedRemoteKeyboard = static_cast<int> (roundedParameter (remoteKeyboardValue->load()));
     appliedPatchSelectionRevision = patchSelectionRevision.load (std::memory_order_acquire);
     retainedReleaseSeconds.store (0.0, std::memory_order_relaxed);
     engine.prepare (sampleRate, samplesPerBlock);
-    engine.setMasterLevel ((int) std::lround (masterValue->load()));
+    engine.setMasterLevel ((int) roundedParameter (masterValue->load()));
     applySystemSettings();
     engine.setPatch (snapshotPatch());
     engine.setExternalInput (snapshotExternalInput());
@@ -1278,9 +1399,26 @@ void SeptumAudioProcessor::prepareToPlay (double sampleRate,
     // All voices and monitored input carry the overdrive alignment delay and
     // shared output-circuit reconstruction delay. Report the complete path.
     setLatencySamples (engine.latencySamples());
+    prepared = true;
 }
 
-void SeptumAudioProcessor::releaseResources() {}
+void SeptumAudioProcessor::releaseResources()
+{
+    prepared = false;
+    deferredParameterRead = deferredParameterCount = 0;
+    engine.reset();
+    activeSensingArmed = false;
+    midiTempoClock.reset();
+    uiRead.store (uiWrite.load (std::memory_order_acquire), std::memory_order_release);
+    for (auto& release : forcedRelease)
+        release.store (0, std::memory_order_relaxed);
+    activeVoices.store (0, std::memory_order_relaxed);
+    for (std::size_t part = 0; part < partActiveVoices.size(); ++part)
+    {
+        partActiveVoices[part].store (0, std::memory_order_relaxed);
+        partHeldVoices[part].store (0, std::memory_order_relaxed);
+    }
+}
 
 bool SeptumAudioProcessor::isBusesLayoutSupported (
     const BusesLayout& layouts) const
@@ -1321,36 +1459,39 @@ double SeptumAudioProcessor::getTailLengthSeconds() const
 
 void SeptumAudioProcessor::triggerFromUi (int note, int velocity) noexcept
 {
-    // A release latched during an earlier overflow is now stale: this press
-    // supersedes it, and if it survived, the audio thread could apply it
-    // right after the new note-on and cut the note short. Clearing it before
-    // publishing the note-on makes that impossible — the audio thread drains
-    // the queue before the latches, so once it can see this note-on, the
-    // stale bit is already gone.
     note = juce::jlimit (0, 127, note);
-    forcedRelease[(std::size_t) (note >> 6)].fetch_and (
-        ~(1ull << (note & 63)), std::memory_order_acq_rel);
+    velocity = juce::jlimit (1, 127, velocity);
     const auto write = uiWrite.load (std::memory_order_relaxed);
     const auto read = uiRead.load (std::memory_order_acquire);
     if (write - read >= uiQueueCapacity)
+    {
+        overflowUiVelocity[static_cast<std::size_t> (note)].store (velocity, std::memory_order_relaxed);
+        forcedRelease[static_cast<std::size_t> (note >> 6)].fetch_or (
+            1ull << (note & 63), std::memory_order_release);
         return;
-    uiQueue[write % uiQueueCapacity] = { note, juce::jlimit (1, 127, velocity) };
+    }
+    forcedRelease[static_cast<std::size_t> (note >> 6)].fetch_and (
+        ~(1ull << (note & 63)), std::memory_order_acq_rel);
+    uiQueue[write % uiQueueCapacity] = { note, velocity };
     uiWrite.store (write + 1, std::memory_order_release);
 }
 
 void SeptumAudioProcessor::releaseFromUi (int note) noexcept
 {
+    note = juce::jlimit (0, 127, note);
     const auto write = uiWrite.load (std::memory_order_relaxed);
     const auto read = uiRead.load (std::memory_order_acquire);
     if (write - read >= uiQueueCapacity)
     {
         // A dropped note-off would leave the note stuck once processing
         // resumes; latch the release instead of losing it.
-        note = juce::jlimit (0, 127, note);
+        overflowUiVelocity[static_cast<std::size_t> (note)].store (0, std::memory_order_relaxed);
         forcedRelease[(std::size_t) (note >> 6)].fetch_or (
             1ull << (note & 63), std::memory_order_release);
         return;
     }
+    forcedRelease[static_cast<std::size_t> (note >> 6)].fetch_and (
+        ~(1ull << (note & 63)), std::memory_order_acq_rel);
     uiQueue[write % uiQueueCapacity] = { note, 0 };
     uiWrite.store (write + 1, std::memory_order_release);
 }
@@ -1394,6 +1535,8 @@ bool SeptumAudioProcessor::handleController (int controller, int value, int chan
             // channel-count byte. Follow MIDI's general mono-legato
             // recommendation; SH-201 CC126 articulation is unmeasured.
             engine.allSoundOff();
+            ParameterWriteAccess parameterWrite (*this, ParameterWriteAccess::Mode::Audio);
+            if (! parameterWrite) return false;
             Patch livePatch = snapshotPatch();
             livePatch.upper.mono = livePatch.lower.mono =
                 controller == 126 ? septum::MonoMode::SoloLegato : septum::MonoMode::Poly;
@@ -1403,6 +1546,9 @@ bool SeptumAudioProcessor::handleController (int controller, int value, int chan
         }
         default: break;
     }
+
+    ParameterWriteAccess parameterWrite (*this, ParameterWriteAccess::Mode::Audio);
+    if (! parameterWrite) return false;
 
     // Panel parameters per the documented CC map: received CCs edit the
     // corresponding patch parameter, exactly as the hardware does.
@@ -1464,6 +1610,8 @@ bool SeptumAudioProcessor::handleController (int controller, int value, int chan
 
 void SeptumAudioProcessor::reconcileControlChanges()
 {
+    ParameterWriteAccess parameterWrite (*this, ParameterWriteAccess::Mode::Notification);
+    if (! parameterWrite) return;
     for (std::size_t word = 0; word < ccDirty.size(); ++word)
     {
         auto bits = ccDirty[word].exchange (0u, std::memory_order_acquire);
@@ -1525,6 +1673,9 @@ bool SeptumAudioProcessor::handleDeviceControlSysEx (const std::uint8_t* data,
         || data[2] != 0x04)
         return false;
 
+    ParameterWriteAccess parameterWrite (*this, ParameterWriteAccess::Mode::Audio);
+    if (! parameterWrite) return false;
+
     const int lsb = data[4] & 0x7F;
     const int msb = data[5] & 0x7F;
 
@@ -1572,6 +1723,8 @@ bool SeptumAudioProcessor::handleDeviceControlSysEx (const std::uint8_t* data,
 
 void SeptumAudioProcessor::republishSystemParameters()
 {
+    ParameterWriteAccess parameterWrite (*this, ParameterWriteAccess::Mode::Notification);
+    if (! parameterWrite) return;
     auto bits = deviceControlDirty.exchange (0u, std::memory_order_acquire);
     for (std::size_t i = 0; i < deviceControlCount; ++i)
     {
@@ -1621,7 +1774,7 @@ bool SeptumAudioProcessor::acceptsLiveSysEx (const std::uint8_t* data,
         return false;
     if (data[0] != septum::sysex::rolandId)
         return true; // Universal realtime controls specify broadcast separately.
-    const auto device = static_cast<int> (std::lround (
+    const auto device = static_cast<int> (roundedParameter (
         deviceIdValue->load (std::memory_order_relaxed))) - 1;
     // OM p. 70 displays 17–24; the wire carries 10H–17H. DT1 also
     // explicitly permits 7FH broadcast (MIDI Implementation p. 3).
@@ -1687,6 +1840,8 @@ bool SeptumAudioProcessor::handleMidiMessage (const juce::MidiMessage& message)
                                  message.getControllerValue(), channel);
     else if (message.isProgramChange())
     {
+        ParameterWriteAccess parameterWrite (*this, ParameterWriteAccess::Mode::Audio);
+        if (! parameterWrite) return false;
         if (receiveProgramValue->load (std::memory_order_relaxed) < 0.5f)
             return false;
         const int program = midiBankSelect.program (channel, message.getProgramChangeNumber());
@@ -1704,6 +1859,8 @@ bool SeptumAudioProcessor::handleMidiMessage (const juce::MidiMessage& message)
     }
     else if (message.isSysEx())
     {
+        ParameterWriteAccess parameterWrite (*this, ParameterWriteAccess::Mode::Audio);
+        if (! parameterWrite) return false;
         const auto* rawData = message.getSysExData();
         const auto rawSize = (std::size_t) message.getSysExDataSize();
         if (! acceptsLiveSysEx (rawData, rawSize))
@@ -1722,7 +1879,7 @@ bool SeptumAudioProcessor::handleMidiMessage (const juce::MidiMessage& message)
             // The grid rides outside the parameters, so it goes in with them
             // rather than before: a dump is sixteen pattern packets and each
             // one starts from the snapshot the previous one left behind, and
-            // publishing it inside the same generation-odd window is what
+            // publishing it inside the same guarded write window is what
             // keeps a concurrent state save from pairing this grid with the
             // previous packet's parameters.
             writePatchToParameters (livePatch, true);
@@ -1749,15 +1906,17 @@ void SeptumAudioProcessor::writeProgramToParameters (int index) noexcept
 {
     if (index < 0 || index >= getNumPrograms())
         return;
+    ParameterWriteAccess parameterWrite (*this, ParameterWriteAccess::Mode::Audio);
+    if (! parameterWrite) return;
     const Patch& patch =
         septum::factoryPatches()[(std::size_t) index].patch;
     liveSysExRevision.fetch_add (1, std::memory_order_acq_rel);
 
-    // Hold the generation odd across the burst, program index included, so a
+    // Guard the entire write burst, program index included, so a
     // concurrent state save — which seqlocks its raw-value copy against the
     // generation — can never serialize a half-written program or pair the
     // new index with the old values.
-    patchGeneration.fetch_add (1, std::memory_order_acq_rel);
+    PatchWriteScope patchWrite (*this);
     patchSelectionRevision.fetch_add (1, std::memory_order_release);
     currentProgram.store (index, std::memory_order_relaxed);
     presetIdentityRevision.fetch_add (1, std::memory_order_acq_rel);
@@ -1794,13 +1953,15 @@ void SeptumAudioProcessor::writeProgramToParameters (int index) noexcept
             patchShadow[i].store (shared[i].get (patch), std::memory_order_relaxed);
     patchDirty.store (false, std::memory_order_release);
 
-    patchGeneration.fetch_add (1, std::memory_order_acq_rel);
+    patchWrite.finish();
 }
 
 void SeptumAudioProcessor::reconcileProgram (int index)
 {
     if (index < 0 || index >= getNumPrograms())
         return;
+    ParameterWriteAccess parameterWrite (*this, ParameterWriteAccess::Mode::Notification);
+    if (! parameterWrite) return;
     const Patch& patch =
         septum::factoryPatches()[(std::size_t) index].patch;
 
@@ -1845,27 +2006,10 @@ void SeptumAudioProcessor::reconcileProgram (int index)
 
 void SeptumAudioProcessor::applyProgramAsync (int program)
 {
-    // A MIDI program change already landed in the raw values on the audio
-    // path; the message thread only repeats those values with host and UI
-    // notification, skipping anything edited since. The writes are
-    // value-identical to the current raw values, so no staging or
-    // generation guard is needed around them.
-    juce::MessageManager::callAsync (
-        [weakThis = juce::WeakReference<SeptumAudioProcessor> (this), program]
-        {
-            if (auto* self = weakThis.get())
-                self->reconcileProgram (program);
-        });
+    // The newest program supersedes previous unpublished selections. The
+    // timer owns notification; audio only makes an atomic mailbox write.
+    pendingProgram.store (program, std::memory_order_release);
 }
-
-namespace
-{
-[[nodiscard]] const float* externalPointer (int position, bool present,
-                                            const std::vector<float>& buffer)
-{
-    return present ? buffer.data() + position : nullptr;
-}
-} // namespace
 
 void SeptumAudioProcessor::applyTempoSource() noexcept
 {
@@ -1878,12 +2022,98 @@ void SeptumAudioProcessor::applyTempoSource() noexcept
     }
 }
 
+void SeptumAudioProcessor::deferParameterMidi (const std::uint8_t* data, int size,
+                                              std::uint64_t transaction) noexcept
+{
+    if (size <= 0 || size > static_cast<int> (DeferredParameterMidi {}.data.size()))
+        return;
+    if (deferredParameterTransaction != transaction)
+    {
+        deferredParameterRead = deferredParameterCount = 0;
+        deferredParameterTransaction = transaction;
+    }
+    if (deferredParameterCount == deferredParameterCapacity)
+    {
+        // A lost DT1 packet breaks the continuity of raw multi-byte fields.
+        // Remaining fragments must rebase from the current canonical patch.
+        if (deferredParameterMidi[deferredParameterRead].data[0] == 0xf0)
+            liveSysExDecoder.reset();
+        deferredParameterRead = (deferredParameterRead + 1) % deferredParameterCapacity;
+        --deferredParameterCount;
+    }
+    auto& event = deferredParameterMidi[
+        (deferredParameterRead + deferredParameterCount) % deferredParameterCapacity];
+    std::copy_n (data, size, event.data.begin());
+    event.size = size;
+    ++deferredParameterCount;
+}
+
+bool SeptumAudioProcessor::drainDeferredParameterMidi()
+{
+    if (deferredParameterCount == 0) return false;
+    ParameterWriteAccess parameterWrite (*this, ParameterWriteAccess::Mode::Audio);
+    if (! parameterWrite) return false;
+    if (deferredParameterTransaction != hostParameterTransaction.load())
+    {
+        deferredParameterRead = deferredParameterCount = 0;
+        return false;
+    }
+    bool changed = false;
+    while (deferredParameterCount > 0)
+    {
+        const auto& event = deferredParameterMidi[deferredParameterRead];
+        deferredParameterRead = (deferredParameterRead + 1) % deferredParameterCapacity;
+        --deferredParameterCount;
+        if (event.data[0] == 0xf0)
+        {
+            const auto* body = event.data.data() + 1;
+            const auto size = static_cast<std::size_t> (event.size - 2);
+            if (! acceptsLiveSysEx (body, size)) continue;
+            if (handleDeviceControlSysEx (body, size))
+                changed = true;
+            else
+            {
+                Patch patch = snapshotPatch();
+                if (decodeLivePatchMessage (body, size, patch))
+                {
+                    writePatchToParameters (patch, true);
+                    patchReconciler.triggerAsyncUpdate();
+                    changed = true;
+                }
+            }
+        }
+        else if ((event.data[0] & 0xf0) == 0xb0
+                 && (event.data[1] == 126 || event.data[1] == 127))
+        {
+            // The mode message's panic already occurred at its original
+            // timestamp. Replay only its deferred parameter change, so a
+            // later note is not killed a second time by draining the queue.
+            Patch patch = snapshotPatch();
+            patch.upper.mono = patch.lower.mono = event.data[1] == 126
+                ? septum::MonoMode::SoloLegato : septum::MonoMode::Poly;
+            writePatchToParameters (patch, true);
+            patchReconciler.triggerAsyncUpdate();
+            changed = true;
+        }
+        else
+            changed = handleMidiMessage (juce::MidiMessage (
+                event.data.data(), event.size, 0.0)) || changed;
+    }
+    return changed;
+}
+
 void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
                                              juce::MidiBuffer& midiMessages)
 {
     juce::ScopedNoDenormals noDenormals;
+    if (! prepared)
+    {
+        buffer.clear();
+        midiMessages.clear();
+        return;
+    }
 
-    const int clockSource = static_cast<int> (std::lround (
+    const int clockSource = static_cast<int> (roundedParameter (
         clockSourceValue->load (std::memory_order_relaxed)));
     if (clockSource != appliedClockSource)
     {
@@ -1897,29 +2127,14 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
                 if (const auto bpm = position->getBpm(); bpm && std::isfinite (*bpm) && *bpm > 0.0)
                     hostTempoBpm = *bpm;
 
-    // The input bus shares this buffer with the output, so the external audio
-    // has to be copied out before the buffer is cleared. With the bus
-    // disabled — the default, and what a synth normally gets — there is
-    // nothing to copy and the engine sees the hardware's empty INPUT jacks.
+    // Copy input immediately before rendering each bounded chunk. Output
+    // only overwrites that chunk, leaving later input samples intact.
     const auto samples = buffer.getNumSamples();
-    if ((int) externalInputL.size() < samples)
-    {
-        externalInputL.resize ((std::size_t) juce::jmax (samples, 16));
-        externalInputR.resize ((std::size_t) juce::jmax (samples, 16));
-    }
-    const auto inputBus = getBusBuffer (buffer, true, 0);
-    const int inputChannels = inputBus.getNumChannels();
+    const int outputChannels = buffer.getNumChannels();
+    const int inputChannels = std::min (getTotalNumInputChannels(), outputChannels);
     const bool haveExternalInput = inputChannels > 0 && samples > 0;
-    if (haveExternalInput)
-    {
-        const float* sourceL = inputBus.getReadPointer (0);
-        const float* sourceR = inputBus.getReadPointer (inputChannels > 1 ? 1 : 0);
-        std::copy (sourceL, sourceL + samples, externalInputL.begin());
-        std::copy (sourceR, sourceR + samples, externalInputR.begin());
-    }
-    buffer.clear();
 
-    const int midiChannel = static_cast<int> (std::lround (
+    const int midiChannel = static_cast<int> (roundedParameter (
         midiChannelValue->load (std::memory_order_relaxed)));
     if (midiChannel != appliedMidiChannel)
     {
@@ -1932,7 +2147,7 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     if (activeSensingValue->load (std::memory_order_relaxed) < 0.5f)
         activeSensingArmed = false;
 
-    const int remoteKeyboard = static_cast<int> (std::lround (remoteKeyboardValue->load()));
+    const int remoteKeyboard = static_cast<int> (roundedParameter (remoteKeyboardValue->load()));
     if (remoteKeyboard != appliedRemoteKeyboard)
     {
         // A route change cannot leave releases addressed to the old input.
@@ -1941,7 +2156,8 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
         appliedRemoteKeyboard = remoteKeyboard;
     }
 
-    engine.setMasterLevel ((int) std::lround (
+    drainDeferredParameterMidi();
+    engine.setMasterLevel ((int) roundedParameter (
         masterValue->load (std::memory_order_relaxed)));
     applySystemSettings();
 
@@ -1958,6 +2174,7 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
         // and it is read *inside* the same seqlock the patch snapshot uses,
         // because a state restore writes both in one burst and a mixture of
         // old and new external settings is as torn as a mixed patch.
+        const bool quietAtEntry = activePatchWriters.load (std::memory_order_acquire) == 0u;
         const auto generation = patchGeneration.load (std::memory_order_acquire);
         const auto selection = patchSelectionRevision.load (std::memory_order_acquire);
         const septum::ExternalInput external = snapshotExternalInput();
@@ -1977,9 +2194,7 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
         // Otherwise a burst was in flight while the snapshots were read: keep
         // the previous values for this segment and pick up the completed ones
         // on the next.
-        const bool stable =
-            (generation & 1u) == 0u
-            && patchGeneration.load (std::memory_order_acquire) == generation;
+        const bool stable = quietAtEntry && patchSnapshotStable (generation);
         if (stable)
         {
             engine.setExternalInput (external);
@@ -2026,15 +2241,19 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     }
     uiRead.store (read, std::memory_order_release);
 
-    // Releases latched when the UI queue overflowed: apply them now so no
-    // on-screen key can stay stuck.
+    // Under UI overload, the latest requested state for each note follows
+    // the FIFO. Repeated states coalesce; notes are visited in pitch order.
     for (std::size_t word = 0; word < forcedRelease.size(); ++word)
     {
         auto bits = forcedRelease[word].exchange (0u, std::memory_order_acquire);
         while (bits != 0u)
         {
             const int note = (int) (word * 64) + std::countr_zero (bits);
-            engine.noteOff (note);
+            const int velocity = overflowUiVelocity[static_cast<std::size_t> (note)].load (std::memory_order_relaxed);
+            if (velocity > 0)
+                engine.noteOn (note, velocity);
+            else
+                engine.noteOff (note);
             bits &= bits - 1u;
         }
     }
@@ -2046,30 +2265,34 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     }
 
 
-    auto* left = buffer.getWritePointer (0);
-    // The declared bus is stereo-only, but a defensive mono path must not
-    // alias the channels: the engine writes L and R independently and the
-    // output stage carries per-channel state.
-    if ((int) monoScratch.size() < buffer.getNumSamples())
-        monoScratch.resize ((std::size_t) juce::jmax (buffer.getNumSamples(), 16));
-    auto* right = buffer.getNumChannels() > 1 ? buffer.getWritePointer (1)
-                                              : monoScratch.data();
-
     // Sample-accurate segmentation around MIDI events.
     int position = 0;
     const auto renderTo = [&] (int end)
     {
         while (position < end)
         {
-            int count = end - position;
+            int count = std::min (end - position, static_cast<int> (monoScratch.size()));
             if (appliedClockSource == 2)
                 count = midiTempoClock.samplesUntilTimeout (count);
             if (activeSensingArmed)
                 count = static_cast<int> (std::min (
                     static_cast<std::uint64_t> (count), activeSensingSamplesRemaining));
-            engine.process (left + position, right + position, count,
-                            externalPointer (position, haveExternalInput, externalInputL),
-                            externalPointer (position, haveExternalInput, externalInputR));
+            if (haveExternalInput)
+            {
+                std::copy_n (buffer.getReadPointer (0) + position, count, externalInputL.data());
+                std::copy_n (buffer.getReadPointer (inputChannels > 1 ? 1 : 0) + position,
+                             count, externalInputR.data());
+            }
+            // A host's zero-channel callback still advances MIDI, clocks and
+            // releases. Render into scratch; never dereference channel zero.
+            auto* left = outputChannels > 0 ? buffer.getWritePointer (0) + position : externalInputL.data();
+            auto* right = outputChannels > 1 ? buffer.getWritePointer (1) + position : monoScratch.data();
+            engine.process (left, right, count,
+                            haveExternalInput ? externalInputL.data() : nullptr,
+                            haveExternalInput ? externalInputR.data() : nullptr);
+            if (outputChannels == 1)
+                for (int i = 0; i < count; ++i)
+                    left[i] = 0.5f * (left[i] + right[i]);
             position += count;
             if (appliedClockSource == 2)
             {
@@ -2097,14 +2320,63 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
             juce::jlimit (0, buffer.getNumSamples(), metadata.samplePosition);
         renderTo (eventPosition);
 
-        const auto& message = metadata.getMessage();
-        observeMidiActivity (message);
+        if (! isValidLiveMidi (metadata))
+        {
+            ++it;
+            continue;
+        }
+        const bool isSysEx = metadata.data[0] == 0xf0;
+        // Only fixed-size short messages are materialized. A SysEx view
+        // remains borrowed from the host's MidiBuffer throughout decoding.
+        const auto message = isSysEx ? juce::MidiMessage (0xfe) : metadata.getMessage();
+        if (! isSysEx)
+            observeMidiActivity (message);
+        else if (activeSensingArmed)
+            activeSensingSamplesRemaining = activeSensingTimeoutSamples;
         if (appliedClockSource == 2 && message.isMidiClock())
         {
             midiTempoClock.pulse();
             applyTempoSource();
         }
-        if (message.isSysEx())
+        const auto applyDeferred = [&]
+        {
+            if (! drainDeferredParameterMidi()) return;
+            engine.setMasterLevel (roundedParameter (masterValue->load (std::memory_order_relaxed)));
+            applySystemSettings();
+            applyCurrentPatch();
+        };
+        applyDeferred();
+        std::optional<ParameterWriteAccess> parameterWrite;
+        if (isParameterMidi (metadata.data))
+        {
+            // Parameter edits stay on the receive channel even with remote
+            // keyboard enabled. Admit them before deferring or applying the
+            // panic half of a mode message, at their original timestamp.
+            const int channel = (metadata.data[0] & 0x0f) + 1;
+            if (! isSysEx && appliedMidiChannel != 0 && channel != appliedMidiChannel)
+            {
+                ++it;
+                continue;
+            }
+            parameterWrite.emplace (*this, ParameterWriteAccess::Mode::Audio);
+            if (! *parameterWrite)
+            {
+                if (parameterWrite->shouldDefer())
+                    deferParameterMidi (metadata.data, metadata.numBytes,
+                                        parameterWrite->transactionAtEntry());
+                // Mode changes include a panic, which retains its timestamp
+                // even if changing the stored mode is deferred or rejected.
+                if ((metadata.data[0] & 0xf0) == 0xb0
+                    && (metadata.data[1] == 126 || metadata.data[1] == 127))
+                    engine.allSoundOff();
+                ++it;
+                continue;
+            }
+            // The notification may have finished between the first drain
+            // and acquiring this gate. Older edits must precede this one.
+            applyDeferred();
+        }
+        if (isSysEx)
         {
             // Consecutive SysEx packets at this sample (such as multi-packet
             // patch dumps) share one atomic commit. A later timestamp must
@@ -2116,13 +2388,12 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
             while (it != midiMessages.end())
             {
                 const auto nextMeta = *it;
-                const auto& nextMsg = nextMeta.getMessage();
-                if (! nextMsg.isSysEx()
+                if (! isValidLiveMidi (nextMeta) || nextMeta.data[0] != 0xf0
                     || juce::jlimit (0, samples, nextMeta.samplePosition)
                            != eventPosition)
                     break;
-                const auto* rawData = nextMsg.getSysExData();
-                const auto rawSize = (std::size_t) nextMsg.getSysExDataSize();
+                const auto* rawData = nextMeta.data + 1;
+                const auto rawSize = static_cast<std::size_t> (nextMeta.numBytes - 2);
                 if (! acceptsLiveSysEx (rawData, rawSize))
                 {
                     ++it;
@@ -2146,7 +2417,7 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
             }
             if (anyHandled)
             {
-                engine.setMasterLevel ((int) std::lround (
+                engine.setMasterLevel ((int) roundedParameter (
                     masterValue->load (std::memory_order_relaxed)));
                 applySystemSettings();
                 applyCurrentPatch();
@@ -2162,7 +2433,7 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
             // so one arriving mid-block did not take effect until the next
             // one, which in an offline render with a large buffer is an
             // arbitrarily long delay.
-            engine.setMasterLevel ((int) std::lround (
+            engine.setMasterLevel ((int) roundedParameter (
                 masterValue->load (std::memory_order_relaxed)));
             applySystemSettings();
             applyCurrentPatch();  // panel CC or program: next segment uses it
@@ -2171,9 +2442,9 @@ void SeptumAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     }
     renderTo (samples);
 
-    if (buffer.getNumChannels() == 1)
-        for (int i = 0; i < buffer.getNumSamples(); ++i)
-            left[i] = 0.5f * (left[i] + monoScratch[(std::size_t) i]);
+    for (int channel = 2; channel < outputChannels; ++channel)
+        buffer.clear (channel, 0, samples);
+    midiMessages.clear();
 
     activeVoices.store (engine.activeVoiceCount(), std::memory_order_relaxed);
     retainedReleaseSeconds.store (engine.retainedReleaseSeconds(), std::memory_order_relaxed);
@@ -2207,17 +2478,17 @@ void SeptumAudioProcessor::applyProgram (int index)
 {
     if (index < 0 || index >= getNumPrograms())
         return;
+    ParameterWriteAccess parameterWrite (*this, ParameterWriteAccess::Mode::Host);
+    if (! parameterWrite) return;
     const Patch& patch =
         septum::factoryPatches()[(std::size_t) index].patch;
     liveSysExRevision.fetch_add (1, std::memory_order_acq_rel);
 
     // The audio path renders this factory patch directly until every
     // parameter below has been written, so a block can never snapshot a
-    // half-loaded program. The generation goes odd behind it: a snapshot
+    // half-loaded program. The write scope guards the spray: a snapshot
     // that overlapped this spray in any way is discarded.
-    // Remembered so the tail of this function can tell whether anything else
-    // wrote the parameters while the spray below was running.
-    const auto burst = patchGeneration.fetch_add (1, std::memory_order_acq_rel) + 1;
+    PatchWriteScope patchWrite (*this);
     const auto selection = patchSelectionRevision.fetch_add (1, std::memory_order_release) + 1u;
     stagedProgram.store ((selection << 7u) | static_cast<std::uint64_t> (index + 1),
                           std::memory_order_release);
@@ -2250,18 +2521,9 @@ void SeptumAudioProcessor::applyProgram (int index)
     // Every parameter now matches the program; the audio path can go back to
     // snapshotting the APVTS.
     syncPatchShadows();
-    // Unless a dump landed on the audio thread while the spray was running, in
-    // which case it does not: the two writers interleave per binding, so the
-    // parameters now hold some of each, and `syncPatchShadows` has adopted that
-    // mixture and dropped the dump's pending notification — leaving the host
-    // and the panel on the program's values for every binding the dump reached
-    // after the spray had passed it, permanently, because nothing re-arms the
-    // flag. This is the same defect Step 48 removed from `reconcileProgram`,
-    // one function along. The generation counter already knows: nothing else
-    // bumps it but the two audio-thread patch writers.
-    if (patchGeneration.load (std::memory_order_acquire) != burst)
-        patchDirty.store (true, std::memory_order_release);
-    patchGeneration.fetch_add (1, std::memory_order_acq_rel);
+    // ParameterWriteAccess excludes conflicting MIDI edits from this whole
+    // transaction, so the final values belong to one complete program.
+    patchWrite.finish();
     stagedProgram.store (0, std::memory_order_release);
     liveSysExRevision.fetch_add (1, std::memory_order_release);
 }
@@ -2271,10 +2533,12 @@ void SeptumAudioProcessor::applyProgram (int index)
 void SeptumAudioProcessor::writePatchToParameters (const septum::Patch& patch,
                                                    bool publishGrid) noexcept
 {
+    ParameterWriteAccess parameterWrite (*this, ParameterWriteAccess::Mode::Audio);
+    if (! parameterWrite) return;
     // This also receives individual streamed DT1 knob edits. They update
     // native patch data without changing the plug-in's independent mutes.
-    patchGeneration.fetch_add (1, std::memory_order_acq_rel);
-    // Inside the odd window with the parameters. Published outside it, a
+    PatchWriteScope patchWrite (*this);
+    // Inside the guarded write with the parameters. Published outside it, a
     // state save could copy the old parameter values, then see and serialise
     // the new grid, and still pass its generation check — pairing one patch
     // revision's settings with another's grid.
@@ -2312,7 +2576,7 @@ void SeptumAudioProcessor::writePatchToParameters (const septum::Patch& patch,
         patchShadow[i].store (natural, std::memory_order_relaxed);   // shadow last
     }
     patchDirty.store (true, std::memory_order_release);
-    patchGeneration.fetch_add (1, std::memory_order_acq_rel);
+    patchWrite.finish();
 }
 
 // The message-thread half: republishes whatever the raw values now hold, with
@@ -2337,6 +2601,7 @@ void SeptumAudioProcessor::syncPatchShadows() noexcept
 
 void SeptumAudioProcessor::cancelPendingRepublishes() noexcept
 {
+    pendingProgram.store (-1, std::memory_order_release);
     syncPatchShadows();
 
     for (std::size_t i = 0; i < ccCache.size(); ++i)
@@ -2356,6 +2621,8 @@ void SeptumAudioProcessor::cancelPendingRepublishes() noexcept
 
 void SeptumAudioProcessor::republishPatchParameters()
 {
+    ParameterWriteAccess parameterWrite (*this, ParameterWriteAccess::Mode::Notification);
+    if (! parameterWrite) return;
     // Nothing to do unless the audio thread has actually written a dump. The
     // guard is what keeps a republish from putting the shadows back over a
     // program change or a preset load, both of which write the parameters
@@ -2427,8 +2694,15 @@ void SeptumAudioProcessor::republishPatchParameters()
 
 void SeptumAudioProcessor::loadPatch (const septum::Patch& patch)
 {
+    ParameterWriteAccess parameterWrite (*this, ParameterWriteAccess::Mode::Host);
+    if (! parameterWrite) return;
+    loadPatchUnderWriteAccess (patch);
+}
+
+void SeptumAudioProcessor::loadPatchUnderWriteAccess (const septum::Patch& patch)
+{
     liveSysExRevision.fetch_add (1, std::memory_order_acq_rel);
-    patchGeneration.fetch_add (1, std::memory_order_acq_rel);
+    PatchWriteScope patchWrite (*this);
     patchSelectionRevision.fetch_add (1, std::memory_order_release);
     for (const auto* id : { "upper_enabled", "lower_enabled" })
         parameters.getParameter (id)->setValueNotifyingHost (1.0f);
@@ -2467,7 +2741,7 @@ void SeptumAudioProcessor::loadPatch (const septum::Patch& patch)
     }
 
     syncPatchShadows();
-    patchGeneration.fetch_add (1, std::memory_order_acq_rel);
+    patchWrite.finish();
     liveSysExRevision.fetch_add (1, std::memory_order_release);
 }
 
@@ -2483,11 +2757,13 @@ void SeptumAudioProcessor::loadSysExData (const void* data, std::size_t sizeInBy
     }
     else
     {
+        ParameterWriteAccess parameterWrite (*this, ParameterWriteAccess::Mode::Host);
+        if (! parameterWrite) return;
         septum::Patch single = snapshotPatch();
         if (septum::sysex::decodeSysExMessage (static_cast<const std::uint8_t*> (data),
                                                sizeInBytes, single))
         {
-            loadPatch (single);
+            loadPatchUnderWriteAccess (single);
         }
     }
 }
@@ -2496,7 +2772,7 @@ std::vector<std::uint8_t> SeptumAudioProcessor::createSysExDataForCurrentPatch()
 {
     return septum::sysex::encodePatchToSyxBuffer (snapshotPatch(),
         septum::sysex::addrTemporaryPatch, static_cast<std::uint8_t> (
-            std::lround (deviceIdValue->load (std::memory_order_relaxed)) - 1));
+            roundedParameter (deviceIdValue->load (std::memory_order_relaxed)) - 1));
 }
 
 const juce::String SeptumAudioProcessor::getProgramName (int index)
@@ -2644,7 +2920,8 @@ juce::Result SeptumAudioProcessor::loadPresetFromFile (const juce::File& file)
     const auto* bytes = static_cast<const std::uint8_t*> (data.getData());
     if (data.getSize() < 9 || data.getSize() > maximumPresetBytes
         || static_cast<std::size_t> (juce::ByteOrder::littleEndianInt (bytes + 4)) != data.getSize() - 9
-        || bytes[data.getSize() - 1] != 0)
+        || bytes[data.getSize() - 1] != 0
+        || ! hasSafeStateXmlStructure (data.getData(), static_cast<int> (data.getSize())))
         return juce::Result::fail ("The preset file is damaged or is not in Septum format.");
     const auto xml = getXmlFromBinary (data.getData(), static_cast<int> (data.getSize()));
     if (xml == nullptr)
@@ -2705,7 +2982,7 @@ void SeptumAudioProcessor::getStateInformation (
         {
             const auto generation =
                 patchGeneration.load (std::memory_order_acquire);
-            if ((generation & 1u) != 0u)
+            if (activePatchWriters.load (std::memory_order_acquire) != 0u)
             {
                 std::this_thread::yield();
                 continue;
@@ -2733,7 +3010,7 @@ void SeptumAudioProcessor::getStateInformation (
             // the same reading or from neither.
             juce::ValueTree grid ("grid");
             writeImportedArpeggioToState (grid);
-            if (patchGeneration.load (std::memory_order_acquire) != generation)
+            if (! patchSnapshotStable (generation))
             {
                 std::this_thread::yield();
                 continue;
@@ -2767,11 +3044,23 @@ void SeptumAudioProcessor::getStateInformation (
 void SeptumAudioProcessor::setStateInformation (const void* data,
                                                     int sizeInBytes)
 {
+    if (data == nullptr || sizeInBytes < 9
+        || static_cast<std::size_t> (sizeInBytes) > maximumPresetBytes
+        || ! hasSafeStateXmlStructure (data, sizeInBytes))
+        return;
     if (const auto xml = getXmlFromBinary (data, sizeInBytes))
     {
         auto state = juce::ValueTree::fromXml (*xml);
-        if (state.isValid())
+        if (state.isValid() && state.hasType (parameters.state.getType()))
         {
+            if (state.hasProperty ("preset_format_version"))
+            {
+                double version = 0.0;
+                if (! readPresetNumber (state["preset_format_version"], version)
+                    || version < 1 || version > nativePresetVersion
+                    || version != std::floor (version))
+                    return;
+            }
             addMissingMidiSettings (state);
             addMissingTempoSettings (state);
             addMissingBankSettings (state);
@@ -2787,46 +3076,45 @@ void SeptumAudioProcessor::setStateInformation (const void* data,
                     parameterState.setProperty ("value", 1.0f, nullptr);
                     state.addChild (parameterState, -1, nullptr);
                 }
+            // Host state is an untrusted binary document too. Validate the
+            // migrated tree before replacing any live parameter: a wrong
+            // root, duplicate ID, nonfinite value or malformed pattern must
+            // leave the previous sound intact.
+            state.setProperty ("preset_format_version", nativePresetVersion, nullptr);
+            if (! state.hasProperty ("program"))
+                state.setProperty ("program", 0, nullptr);
+            if (validatePresetState (state).failed())
+                return;
+            ParameterWriteAccess parameterWrite (*this, ParameterWriteAccess::Mode::Host);
+            if (! parameterWrite) return;
             // A state restore is a multi-parameter write burst like a
-            // program spray: keep the generation odd across it so the audio
+            // program spray: keep its writer guard active so the audio
             // thread discards any snapshot that overlapped it.
             liveSysExRevision.fetch_add (1, std::memory_order_acq_rel);
-            patchGeneration.fetch_add (1, std::memory_order_acq_rel);
+            PatchWriteScope patchWrite (*this);
             patchSelectionRevision.fetch_add (1, std::memory_order_release);
             currentProgram.store (state.getProperty ("program", 0),
                                   std::memory_order_relaxed);
             const auto identityRevision = presetIdentityRevision.fetch_add (1, std::memory_order_acq_rel) + 1;
             setCurrentPresetName (state.getProperty ("preset_name").toString(), identityRevision);
-            // Before the restore, not after. The restored session supersedes a
-            // dump, a CC or a device-control message whose republish is still
-            // queued — but only the ones that were already queued. Cancelling
-            // afterwards also cleared the flag of a message that arrived
-            // *during* the restore, and that message had already written the
-            // raw value the engine renders from: the sound followed the MIDI
-            // while the host and the panel stayed on the restored session, with
-            // nothing left to tell them.
-            //
-            // Cancelling first ends that disagreement, which is what it is for.
-            // It does not save the message, and an earlier version of this
-            // comment claimed it did. A message landing in the window between
-            // the cancel and the `replaceState` below writes both of its cells
-            // and re-arms its flag, and then `replaceState` overwrites the raw
-            // value; the republish that follows publishes what the restore put
-            // there and finds its shadow baseline unmoved, so it consumes the
-            // flag without restoring anything. All three agree — on the
-            // restored session — and the message is gone.
-            //
-            // Which is the right answer is not something this code can know:
-            // the restore is a message-thread write of every parameter at once
-            // and the message is an audio-thread write of one, with no ordering
-            // between them. It is the same "who wrote last" question the
-            // publish protocol cannot answer and the same restructuring would,
-            // and it is named under Known gaps with the others rather than
-            // papered over here.
+            // The explicit host transaction wins over older queued edits and
+            // conflicting MIDI parameter writes. Notes and pedal releases
+            // remain immediate; the audio thread never waits for this load.
             cancelPendingRepublishes();
             parameters.replaceState (state);
+            // JUCE bool parameters may retain a fractional normalized host
+            // value while APVTS already holds the same canonical 0/1. In that
+            // case replaceState skips the setter. Republish validated natural
+            // values to synchronize the parameter objects as well as APVTS.
+            for (int index = 0; index < state.getNumChildren(); ++index)
+            {
+                const auto child = state.getChild (index);
+                if (auto* parameter = parameters.getParameter (child.getProperty ("id").toString()))
+                    parameter->setValueNotifyingHost (parameter->convertTo0to1 (
+                        static_cast<float> (child.getProperty ("value"))));
+            }
             readImportedArpeggioFromState (state);
-            patchGeneration.fetch_add (1, std::memory_order_acq_rel);
+            patchWrite.finish();
             liveSysExRevision.fetch_add (1, std::memory_order_release);
         }
     }

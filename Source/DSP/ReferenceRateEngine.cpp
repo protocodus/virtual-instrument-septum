@@ -30,6 +30,10 @@ double besselI0 (double x) noexcept
 void detail::ReferenceRateConverter::prepare (double sourceRate,
                                              double destinationRate)
 {
+    if (! std::isfinite (sourceRate) || ! std::isfinite (destinationRate)
+        || sourceRate < 8000.0 || sourceRate > 768000.0
+        || destinationRate < 8000.0 || destinationRate > 768000.0)
+        throw std::invalid_argument ("Converter rates must be finite and between 8000 and 768000 Hz");
     // Windowed-sinc bandlimited interpolation with a lower cutoff when
     // decimating; mathematical reference: Julius O. Smith, Physical Audio
     // Signal Processing, "Windowed Sinc Interpolation":
@@ -83,13 +87,21 @@ void detail::ReferenceRateConverter::reset() noexcept
 
 void detail::ReferenceRateConverter::push (float left, float right) noexcept
 {
-    history_[static_cast<std::size_t> (written_) & historyMask_] = { left, right };
+    if (history_.empty())
+        return;
+    history_[static_cast<std::size_t> (written_) & historyMask_] = {
+        std::isfinite (left) ? std::clamp (left, -64.0f, 64.0f) : 0.0f,
+        std::isfinite (right) ? std::clamp (right, -64.0f, 64.0f) : 0.0f };
     ++written_;
 }
 
 std::array<float, 2> detail::ReferenceRateConverter::read (
     double sourcePosition) const noexcept
 {
+    if (history_.empty() || ! std::isfinite (sourcePosition)
+        || sourcePosition < -static_cast<double> (halfWidth_) - 1.0
+        || sourcePosition > static_cast<double> (written_) + halfWidth_)
+        return {};
     const auto centre = static_cast<std::int64_t> (std::floor (sourcePosition));
     const double fraction = sourcePosition - static_cast<double> (centre);
     const double phasePosition = fraction * phases;
@@ -175,8 +187,8 @@ void ReferenceRateEngine::process (float* left, float* right, int numSamples,
     {
         if (numSamples > 0)
         {
-            std::fill_n (left, numSamples, 0.0f);
-            std::fill_n (right, numSamples, 0.0f);
+            if (left != nullptr) std::fill_n (left, numSamples, 0.0f);
+            if (right != nullptr) std::fill_n (right, numSamples, 0.0f);
         }
         return;
     }
@@ -195,8 +207,8 @@ void ReferenceRateEngine::process (float* left, float* right, int numSamples,
             hostTime * synthesisRate_ / hostRate_);
         const auto output = outputConverter_.read (
             outputTime - outputConverter_.groupDelay());
-        left[i] = output[0];
-        right[i] = output[1];
+        if (left != nullptr) left[i] = output[0];
+        if (right != nullptr) right[i] = output[1];
 
         // Finish the open interval [H, H+1) using its existing controls.
         // The delayed input FIR's last possible tap is floor(inputTime),

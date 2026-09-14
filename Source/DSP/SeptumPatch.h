@@ -439,6 +439,13 @@ inline constexpr std::array<double, 6> reverbHfDampHz {
     return std::clamp (value, low, high);
 }
 
+template <typename Enum>
+[[nodiscard]] inline Enum clampEnum (Enum value, Enum last) noexcept
+{
+    return static_cast<Enum> (std::clamp (static_cast<int> (value), 0,
+                                        static_cast<int> (last)));
+}
+
 inline void clampToDocumentedRanges (OscParams& osc) noexcept
 {
     // Native coarse values are physical semitones. The SysEx codec converts
@@ -446,6 +453,7 @@ inline void clampToDocumentedRanges (OscParams& osc) noexcept
     // WIDE before they reach this structure. Preserve the full native range
     // here so existing sessions keep their pitch; applying the hardware knob
     // range again would incorrectly clamp already-decoded or native values.
+    osc.wave = clampEnum (osc.wave, Waveform::ExtIn);
     osc.coarse = clampRaw (osc.coarse, -36, 36);
     osc.fine = clampRaw (osc.fine, -50, 50);
     osc.pulseWidth = clampRaw (osc.pulseWidth, 0, 127);
@@ -454,6 +462,9 @@ inline void clampToDocumentedRanges (OscParams& osc) noexcept
 
 inline void clampToDocumentedRanges (LfoParams& lfo) noexcept
 {
+    lfo.shape = clampEnum (lfo.shape, LfoShape::Random);
+    lfo.destination1 = clampEnum (lfo.destination1, LfoDest1::AudioFilter);
+    lfo.destination2 = clampEnum (lfo.destination2, LfoDest2::Amp);
     lfo.rate = clampRaw (lfo.rate, 0, 127);
     lfo.tempoSyncNote = clampRaw (lfo.tempoSyncNote, 0, 19);
     lfo.fadeTime = clampRaw (lfo.fadeTime, 0, 127);
@@ -467,6 +478,11 @@ inline void clampToDocumentedRanges (TonePatch& tone) noexcept
     clampToDocumentedRanges (tone.osc2);
     clampToDocumentedRanges (tone.lfo1);
     clampToDocumentedRanges (tone.lfo2);
+    tone.mixType = clampEnum (tone.mixType, MixModType::Ring);
+    tone.lowFreq = clampEnum (tone.lowFreq, LowFreqMode::Cut);
+    tone.filterType = clampEnum (tone.filterType, FilterType::Bpf);
+    tone.filterSlope = clampEnum (tone.filterSlope, FilterSlope::Db24);
+    tone.mono = clampEnum (tone.mono, MonoMode::Solo);
     tone.pitchEnvAttack = clampRaw (tone.pitchEnvAttack, 0, 127);
     tone.pitchEnvDecay = clampRaw (tone.pitchEnvDecay, 0, 127);
     tone.balance = clampRaw (tone.balance, -63, 63);
@@ -501,6 +517,8 @@ inline void clampToDocumentedRanges (TonePatch& tone) noexcept
 
 inline void clampToDocumentedRanges (ExternalInput& input) noexcept
 {
+    input.type = clampEnum (input.type, AudioFilterType::Notch);
+    input.slope = clampEnum (input.slope, FilterSlope::Db24);
     input.inputVolume = clampRaw (input.inputVolume, 0, 127);
     input.cutoff = clampRaw (input.cutoff, 0, 127);
     input.resonance = clampRaw (input.resonance, 0, 127);
@@ -510,6 +528,19 @@ inline void clampToDocumentedRanges (Patch& patch) noexcept
 {
     clampToDocumentedRanges (patch.upper);
     clampToDocumentedRanges (patch.lower);
+    patch.keyboardMode = clampEnum (patch.keyboardMode, KeyboardMode::Split);
+    patch.keyboardPart = clampEnum (patch.keyboardPart, KeyboardPart::Lower);
+    patch.modulationAssign = clampEnum (patch.modulationAssign, ModulationAssign::AudioFilter);
+    patch.modulationDestination = clampEnum (patch.modulationDestination, ToneDestination::Both);
+    patch.pitchBendDestination = clampEnum (patch.pitchBendDestination, ToneDestination::Both);
+    patch.expressionDestination = clampEnum (patch.expressionDestination, ToneDestination::Both);
+    patch.dBeamDestination = clampEnum (patch.dBeamDestination, ToneDestination::Both);
+    patch.dBeamAssign = clampEnum (patch.dBeamAssign, DBeamAssign::Bender);
+    patch.dBeamPolarity = clampEnum (patch.dBeamPolarity, DBeamPolarity::Minus);
+    patch.arpeggio.splitArpeggio = clampEnum (patch.arpeggio.splitArpeggio, SplitArpeggio::Both);
+    patch.arpeggio.grid = clampEnum (patch.arpeggio.grid, ArpeggioGrid::TwentyFourth);
+    patch.arpeggio.duration = clampEnum (patch.arpeggio.duration, ArpeggioDuration::Full);
+    patch.arpeggio.motif = clampEnum (patch.arpeggio.motif, ArpeggioMotif::Phrase);
     patch.patchLevel = clampRaw (patch.patchLevel, 0, 127);
     patch.toneBalance = clampRaw (patch.toneBalance, -63, 63);
     patch.tempo = clampRaw (patch.tempo, 5, 300);
@@ -542,6 +573,10 @@ inline void clampToDocumentedRanges (Patch& patch) noexcept
     patch.arpeggio.styleIndex = std::max (0, patch.arpeggio.styleIndex);
     for (auto& note : patch.arpeggio.style.originalNote)
         note = clampRaw (note, 0, 128);
+    for (auto& step : patch.arpeggio.style.cells)
+        for (auto& cell : step)
+            if (cell < arpeggioTie)
+                cell = arpeggioRest;
     patch.arpeggio.endStep = clampRaw (patch.arpeggio.endStep, 0, arpeggioMaxSteps);
 }
 

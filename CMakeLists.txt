@@ -35,6 +35,16 @@ set(SEPTUM_JUCE_PATH "" CACHE PATH
 
 include(CTest)
 
+option(SEPTUM_ENABLE_SANITIZERS "Instrument development builds with ASan and UBSan" OFF)
+if(SEPTUM_ENABLE_SANITIZERS)
+    if(NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
+        message(FATAL_ERROR "SEPTUM_ENABLE_SANITIZERS requires Clang or GCC")
+    endif()
+    add_compile_options(-fsanitize=address,undefined,float-cast-overflow
+                        -fno-sanitize-recover=all -fno-omit-frame-pointer)
+    add_link_options(-fsanitize=address,undefined,float-cast-overflow)
+endif()
+
 set(SEPTUM_DSP_SOURCES
     Source/DSP/SeptumEngine.cpp
     Source/DSP/SeptumPresets.cpp
@@ -171,7 +181,8 @@ if(SEPTUM_BUILD_TOOLS)
     target_compile_features(SeptumAnalyzeFidelity PRIVATE cxx_std_20)
 
     add_executable(SeptumRenderDemos Tools/RenderDemos.cpp)
-    target_link_libraries(SeptumRenderDemos PRIVATE SeptumDSP)
+    find_package(Threads REQUIRED)
+    target_link_libraries(SeptumRenderDemos PRIVATE SeptumDSP Threads::Threads)
     target_compile_features(SeptumRenderDemos PRIVATE cxx_std_20)
 
     if(MSVC)
@@ -183,6 +194,16 @@ if(SEPTUM_BUILD_TOOLS)
 endif()
 
 if(BUILD_TESTING)
+    add_executable(SeptumEngineRobustnessTests Tests/EngineRobustnessTests.cpp)
+    target_link_libraries(SeptumEngineRobustnessTests PRIVATE SeptumDSP)
+    add_test(NAME Septum.EngineRobustness COMMAND SeptumEngineRobustnessTests)
+    set_tests_properties(Septum.EngineRobustness PROPERTIES TIMEOUT 120)
+
+    add_executable(SeptumProtocolRobustnessTests Tests/ProtocolRobustnessTests.cpp)
+    target_link_libraries(SeptumProtocolRobustnessTests PRIVATE SeptumReferenceDSP)
+    add_test(NAME Septum.ProtocolRobustness COMMAND SeptumProtocolRobustnessTests)
+    set_tests_properties(Septum.ProtocolRobustness PROPERTIES TIMEOUT 120)
+
     add_executable(SeptumTimbreCalibrationTests Tests/TimbreCalibrationTests.cpp)
     target_link_libraries(SeptumTimbreCalibrationTests PRIVATE SeptumDSP)
     add_test(NAME Septum.TimbreCalibration COMMAND SeptumTimbreCalibrationTests)
@@ -275,7 +296,18 @@ if(BUILD_TESTING)
 
     find_package(Python3 COMPONENTS Interpreter QUIET)
     if(Python3_Interpreter_FOUND)
+        add_test(NAME Septum.Packaging
+                 COMMAND "${Python3_EXECUTABLE}" -B
+                         "${CMAKE_CURRENT_SOURCE_DIR}/Tests/PackagingTests.py")
+        set_tests_properties(Septum.Packaging PROPERTIES TIMEOUT 120)
+
         if(SEPTUM_BUILD_TOOLS)
+            add_test(NAME Septum.RenderToolRobustness
+                     COMMAND "${Python3_EXECUTABLE}" -B
+                             "${CMAKE_CURRENT_SOURCE_DIR}/Tests/RenderToolRobustnessTests.py"
+                             --renderer "$<TARGET_FILE:SeptumRenderMidi>"
+                             --demos "$<TARGET_FILE:SeptumRenderDemos>")
+            set_tests_properties(Septum.RenderToolRobustness PROPERTIES TIMEOUT 120)
             add_test(NAME Septum.TimbreCapture
                      COMMAND "${Python3_EXECUTABLE}" -B
                              "${CMAKE_CURRENT_SOURCE_DIR}/Tests/TimbreCaptureTests.py"
@@ -331,6 +363,15 @@ if(BUILD_TESTING)
     endif()
 
     if(SEPTUM_BUILD_PLUGIN)
+        add_executable(SeptumProcessorRobustnessTests Tests/ProcessorRobustnessTests.cpp)
+        target_link_libraries(SeptumProcessorRobustnessTests PRIVATE Septum)
+        target_include_directories(SeptumProcessorRobustnessTests PRIVATE
+            "${CMAKE_CURRENT_SOURCE_DIR}/Source"
+            "$<TARGET_PROPERTY:Septum,JUCE_GENERATED_SOURCES_DIRECTORY>"
+            "$<TARGET_PROPERTY:Septum,INCLUDE_DIRECTORIES>")
+        add_test(NAME Septum.ProcessorRobustness COMMAND SeptumProcessorRobustnessTests)
+        set_tests_properties(Septum.ProcessorRobustness PROPERTIES TIMEOUT 120)
+
         add_executable(SeptumPatchRemainProcessorTests Tests/PatchRemainProcessorTests.cpp)
         target_link_libraries(SeptumPatchRemainProcessorTests PRIVATE Septum)
         target_include_directories(SeptumPatchRemainProcessorTests PRIVATE

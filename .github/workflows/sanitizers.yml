@@ -1,0 +1,79 @@
+name: Release validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sanitizers-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  address-and-undefined:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      ASAN_OPTIONS: detect_leaks=1:halt_on_error=1
+      UBSAN_OPTIONS: print_stacktrace=1:halt_on_error=1
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Configure instrumented DSP and render tools
+        run: >-
+          cmake -S . -B build-sanitize
+          -DCMAKE_BUILD_TYPE=RelWithDebInfo
+          -DSEPTUM_BUILD_PLUGIN=OFF
+          -DSEPTUM_ENABLE_SANITIZERS=ON
+          -DBUILD_TESTING=ON
+      - name: Build
+        run: cmake --build build-sanitize --parallel 2
+      - name: Test and fuzz
+        run: ctest --test-dir build-sanitize --output-on-failure --parallel 2
+
+  vst3-validation:
+    runs-on: macos-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Configure release plug-in
+        run: >-
+          cmake -S . -B build-validation -DCMAKE_BUILD_TYPE=Release
+          -DSEPTUM_BUILD_UNIVERSAL=OFF -DSEPTUM_BUILD_PLUGIN=ON
+          -DSEPTUM_BUILD_TOOLS=OFF -DBUILD_TESTING=ON
+      - name: Verify bundled dependency notices
+        run: python3 -B Tools/collect_juce_notices.py --check --juce-root build-validation/_deps/juce-src
+      - name: Build and run processor regressions
+        run: |
+          cmake --build build-validation --parallel 3
+          ctest --test-dir build-validation --output-on-failure --parallel 3
+      - name: Download pinned pluginval
+        run: |
+          curl --fail --location --retry 3 \
+            https://github.com/Tracktion/pluginval/releases/download/v1.0.4/pluginval_macOS.zip \
+            --output pluginval.zip
+          echo '3c4c533bda0c5059eea3ddaea752d757ee2025041f0f47e6bcb0e87f6082b29f  pluginval.zip' | shasum -a 256 -c -
+          ditto -x -k pluginval.zip pluginval
+      - name: Validate VST3 at strictness 10
+        run: >-
+          pluginval/pluginval.app/Contents/MacOS/pluginval
+          --strictness-level 10 --random-seed 0x53455054 --timeout-ms 120000
+          --output-dir build-validation/pluginval-logs
+          --validate build-validation/Septum_artefacts/Release/VST3/Septum.vst3
+      - name: Preserve validation logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: septum-validation-logs
+          path: |
+            build-validation/pluginval-logs
+            build-validation/Testing/Temporary/LastTest.log
+          if-no-files-found: warn
+          retention-days: 14

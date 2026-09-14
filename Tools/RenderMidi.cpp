@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <array>
 #include <bit>
+#include <charconv>
 #include <cmath>
 #include <cstdint>
 #include <filesystem>
@@ -23,14 +24,20 @@ namespace
 {
 using Bytes = std::vector<std::uint8_t>;
 constexpr int blockSize = 256;
+constexpr std::uintmax_t maxInputBytes = 64u * 1024u * 1024u;
 
 Bytes readBytes (const std::filesystem::path& path)
 {
     std::ifstream input (path, std::ios::binary);
     if (! input) throw std::runtime_error ("Cannot read " + path.string());
     const auto size = std::filesystem::file_size (path);
-    if (size > 64u * 1024u * 1024u) throw std::runtime_error ("Input exceeds 64 MiB");
-    return { std::istreambuf_iterator<char> (input), {} };
+    if (size > maxInputBytes) throw std::runtime_error ("Input exceeds 64 MiB");
+    Bytes bytes (static_cast<std::size_t> (size));
+    input.read (reinterpret_cast<char*> (bytes.data()), static_cast<std::streamsize> (size));
+    if (input.gcount() != static_cast<std::streamsize> (size)
+        || input.peek() != std::char_traits<char>::eof() || input.bad())
+        throw std::runtime_error ("Input changed or could not be read completely");
+    return bytes;
 }
 
 void writeBytes (const std::filesystem::path& path, const Bytes& bytes)
@@ -201,12 +208,32 @@ bool panelCc (septum::Patch& patch, int cc, int value)
 #undef CC
 }
 
+// Preflight all events before creating audio output. Same-sample messages
+// deliberately retain file order (including note-off/note-on retriggers).
+void validateMidi (const Bytes& data)
+{
+    if (data.size() != 3 || data[0] < 0x80 || data[0] >= 0xf0
+        || data[1] > 127 || data[2] > 127)
+        throw std::runtime_error ("Replay event is not a three-byte channel message");
+    const auto kind = data[0] & 0xf0;
+    if (kind == 0x80 || kind == 0x90 || kind == 0xe0) return;
+    if (kind != 0xb0) throw std::runtime_error ("Unsupported MIDI status in replay");
+    switch (data[1])
+    {
+        case 1: case 2: case 4: case 7: case 10: case 11: case 64: case 66:
+        case 84: case 120: case 121: case 123: case 124: case 125: case 126: case 127:
+            return;
+        default: break;
+    }
+    auto probe = septum::initPatch();
+    if (! panelCc (probe, data[1], data[2]))
+        throw std::runtime_error ("Unsupported CC " + std::to_string (data[1]));
+}
+
 void applyMidi (septum::Engine& engine, septum::Patch& patch,
                 septum::ExternalInput& external, const Bytes& data)
 {
-    const auto kind = data.at (0) & 0xf0;
-    if (data.size() != 3 || data[1] > 127 || data[2] > 127)
-        throw std::runtime_error ("Replay event is not a three-byte channel message");
+    const auto kind = data[0] & 0xf0;
     const int key = data[1], value = data[2];
     if (kind == 0x80 || (kind == 0x90 && value == 0)) { engine.noteOff (key); return; }
     if (kind == 0x90) { engine.noteOn (key, value); return; }
@@ -245,25 +272,58 @@ void applyMidi (septum::Engine& engine, septum::Patch& patch,
 
 struct Event { std::uint64_t sample; std::string kind; Bytes data; double tempo = 0.0; };
 
-std::vector<Event> readEvents (const std::filesystem::path& path, std::uint64_t& end)
+std::uint64_t unsignedDecimal (const std::string& value)
+{
+    std::uint64_t number = 0;
+    const auto result = std::from_chars (value.data(), value.data() + value.size(), number);
+    if (value.empty() || result.ec != std::errc {} || result.ptr != value.data() + value.size())
+        throw std::runtime_error ("Invalid nonnegative sample timestamp");
+    return number;
+}
+
+bool readReplayLine (std::istream& input, std::string& line)
+{
+    // A legal record is under 100 bytes. Bound allocation independently of
+    // the file-size check so a concurrently growing file cannot exhaust RAM.
+    line.clear();
+    char character = 0;
+    while (input.get (character))
+    {
+        if (character == '\n') return true;
+        if (line.size() >= 256) throw std::runtime_error ("Replay line exceeds 256 bytes");
+        line.push_back (character);
+    }
+    if (input.bad()) throw std::runtime_error ("Replay read failed");
+    return ! line.empty();
+}
+
+std::vector<Event> readEvents (const std::filesystem::path& path, std::uint64_t& end,
+                              std::uint64_t maximumEnd)
 {
     std::ifstream input (path);
-    std::string header, extra;
+    if (! input) throw std::runtime_error ("Cannot read replay events");
+    if (std::filesystem::file_size (path) > maxInputBytes)
+        throw std::runtime_error ("Input exceeds 64 MiB");
+    std::string header, extra, endText;
     int version = 0;
-    if (! std::getline (input, header)) throw std::runtime_error ("Missing replay header");
+    if (! readReplayLine (input, header)) throw std::runtime_error ("Missing replay header");
     std::istringstream first (header);
-    if (! (first >> header >> version >> end) || header != "SEPTUM_RENDER_EVENTS"
+    if (! (first >> header >> version >> endText) || header != "SEPTUM_RENDER_EVENTS"
         || version != 1 || (first >> extra)) throw std::runtime_error ("Invalid replay header");
+    end = unsignedDecimal (endText);
+    if (end > maximumEnd) throw std::runtime_error ("Render exceeds one hour");
     std::vector<Event> events;
     std::string line;
-    while (std::getline (input, line))
+    while (readReplayLine (input, line))
     {
         if (events.size() >= 1000000) throw std::runtime_error ("Too many replay events");
         Event event {};
-        std::string value;
+        std::string sampleText, value;
         std::istringstream row (line);
-        if (! (row >> event.sample >> event.kind >> value) || (row >> extra)
-            || event.sample > end || (! events.empty() && event.sample < events.back().sample))
+        if (! (row >> sampleText >> event.kind >> value) || (row >> extra))
+            throw std::runtime_error ("Invalid replay event");
+        event.sample = unsignedDecimal (sampleText);
+        if (event.sample > end || (! events.empty() && event.sample < events.back().sample))
             throw std::runtime_error ("Invalid or unsorted replay event");
         if (event.kind == "tempo")
         {
@@ -276,19 +336,37 @@ std::vector<Event> readEvents (const std::filesystem::path& path, std::uint64_t&
         else if (event.kind == "midi")
         {
             if (value.size() != 6) throw std::runtime_error ("Invalid replay MIDI encoding");
-            for (std::size_t i = 0; i < value.size(); i += 2)
+            const auto hexDigit = [] (char digit) -> unsigned
             {
-                std::size_t consumed = 0;
-                const auto byte = std::stoul (value.substr (i, 2), &consumed, 16);
-                if (consumed != 2) throw std::runtime_error ("Invalid MIDI hex digit");
-                event.data.push_back (static_cast<std::uint8_t> (byte));
-            }
+                if (digit >= '0' && digit <= '9') return static_cast<unsigned> (digit - '0');
+                if (digit >= 'a' && digit <= 'f') return static_cast<unsigned> (digit - 'a' + 10);
+                if (digit >= 'A' && digit <= 'F') return static_cast<unsigned> (digit - 'A' + 10);
+                throw std::runtime_error ("Invalid MIDI hex digit");
+            };
+            for (std::size_t i = 0; i < value.size(); i += 2)
+                event.data.push_back (static_cast<std::uint8_t> (
+                    16u * hexDigit (value[i]) + hexDigit (value[i + 1])));
+            validateMidi (event.data);
         }
         else throw std::runtime_error ("Unknown replay event kind");
         events.push_back (std::move (event));
     }
     return events;
 }
+
+struct IncompleteOutput
+{
+    std::filesystem::path path;
+    bool remove = false;
+    ~IncompleteOutput()
+    {
+        if (remove)
+        {
+            std::error_code ignored;
+            std::filesystem::remove (path, ignored);
+        }
+    }
+};
 
 void little (std::ostream& output, std::uint32_t value, int count)
 {
@@ -362,7 +440,7 @@ int main (int argc, char** argv)
         if (patch.arpeggio.on && ! keyboardMode)
             throw std::runtime_error ("Arpeggio-on patch requires explicit --keyboard-mode replay");
         std::uint64_t end = 0;
-        const auto events = readEvents (eventFile, end);
+        const auto events = readEvents (eventFile, end, static_cast<std::uint64_t> (rate) * 3600u);
         const auto frames = end + static_cast<std::uint64_t> (std::llround (tail * rate));
         if (end > static_cast<std::uint64_t> (rate) * 3600u || frames > (0xffffffffu - 48u) / 8u)
             throw std::runtime_error ("Render exceeds one hour or the RIFF size limit");
@@ -372,10 +450,13 @@ int main (int argc, char** argv)
         engine->setMasterLevel (master);
         engine->reset();
         septum::ExternalInput external {};
+        IncompleteOutput cleanup { outputFile };
         std::ofstream output (outputFile, std::ios::binary);
         if (! output) throw std::runtime_error ("Cannot create output WAV");
+        cleanup.remove = true;
         wavHeader (output, static_cast<std::uint32_t> (frames), rate);
         std::array<float, blockSize> left {}, right {};
+        std::array<char, blockSize * 8> encoded {};
         std::uint64_t position = 0;
         double peak = 0.0;
         const auto renderTo = [&] (std::uint64_t target)
@@ -384,14 +465,19 @@ int main (int argc, char** argv)
             {
                 const int count = static_cast<int> (std::min<std::uint64_t> (blockSize, target - position));
                 engine->process (left.data(), right.data(), count);
+                std::size_t byteIndex = 0;
                 for (int sample = 0; sample < count; ++sample)
                     for (const float value : { left[static_cast<std::size_t> (sample)],
                                               right[static_cast<std::size_t> (sample)] })
                     {
                         if (! std::isfinite (value)) throw std::runtime_error ("Non-finite render sample");
                         peak = std::max (peak, std::abs (static_cast<double> (value)));
-                        little (output, std::bit_cast<std::uint32_t> (value), 4);
+                        const auto bits = std::bit_cast<std::uint32_t> (value);
+                        for (int byte = 0; byte < 4; ++byte)
+                            encoded[byteIndex++] = static_cast<char> ((bits >> (8 * byte)) & 255u);
                     }
+                output.write (encoded.data(), static_cast<std::streamsize> (byteIndex));
+                if (! output) throw std::runtime_error ("WAV write failed");
                 position += static_cast<std::uint64_t> (count);
             }
         };
@@ -402,8 +488,9 @@ int main (int argc, char** argv)
             else engine->setTempoClock (event.tempo);
         }
         renderTo (frames);
-        output.flush();
+        output.close();
         if (! output) throw std::runtime_error ("WAV write failed");
+        cleanup.remove = false;
         std::cout << "{\"frames\":" << frames << ",\"sample_rate\":" << rate
                   << ",\"latency_samples\":" << engine->latencySamples()
                   << ",\"peak\":" << std::setprecision (12) << peak

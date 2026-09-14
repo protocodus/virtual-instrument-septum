@@ -24,6 +24,23 @@ It is an independent original implementation, not affiliated with or licensed
 by Roland Corporation, and contains no firmware, ROM data, samples, captured
 audio, or factory patch data.
 
+## Downloads
+
+[Download compiled binaries from CI builds on main](https://github.com/protocodus/virtual-instrument-septum/actions/workflows/ci.yml?query=branch%3Amain).
+Open the latest successful run, sign in to GitHub, and choose your platform
+under **Artifacts**. Each download contains the distributable packages below;
+artifacts are retained for seven days.
+
+| Platform | Artifact | Distributable files |
+| --- | --- | --- |
+| Linux x64 | `ci-linux-septum-build-<build>` | `Septum-build-<build>-Linux-x64.tar.gz` — VST3 and standalone |
+| Windows x64 | `ci-windows-septum-build-<build>` | `Septum-build-<build>-Windows-x64.zip` — VST3 and standalone |
+| macOS | `ci-macos-septum-build-<build>` | `Septum-<version>-build-<build>-macOS-<arch>.pkg` and `.zip` — VST3, Audio Unit and standalone |
+
+`<build>` is the CI run number, also included in every package filename.
+macOS CI packages target the runner's native architecture, shown in the
+filename; they are ad-hoc signed and are not notarized.
+
 ## Audio demos
 
 WAV files are omitted from this repository. Generate the eleven demos locally
@@ -41,16 +58,16 @@ audio.
 | File | What it is | Length | Rendered peak | Normalisation |
 | --- | --- | ---: | ---: | ---: |
 | `01-supersaw-lead.wav` | Both oscillators SUPER SAW: a trance line into a held stack | 8.5 s | −8.8 dBFS | +5.8 dB |
-| `02-supersaw-spread-sweep.wav` | One chord while the spread knob sweeps the seven-saw detune curve | 7.8 s | −11.5 dBFS | +8.5 dB |
+| `02-supersaw-spread-sweep.wav` | One chord while the spread knob sweeps the seven-saw detune curve | 7.8 s | −11.6 dBFS | +8.6 dB |
 | `03-fb-osc-lead.wav` | FB OSC from clean saw into feedback, then a legato solo phrase | 9.7 s | −23.6 dBFS | +20.6 dB |
-| `04-acid-filter-24db.wav` | The -24 dB low-pass at high resonance under a 16th-note line | 9.3 s | −28.7 dBFS | +25.7 dB |
+| `04-acid-filter-24db.wav` | The -24 dB low-pass at high resonance under a 16th-note line | 9.3 s | −29.4 dBFS | +26.4 dB |
 | `05-sync-sweeper.wav` | Oscillator sync swept by the pitch envelope and by hand | 8.8 s | −24.7 dBFS | +21.7 dB |
-| `06-ring-bell.wav` | Ring modulation: equal-sine product bells | 9.2 s | −17.4 dBFS | +14.4 dB |
-| `07-pwm-strings.wav` | Pulse-width modulation strings through the chorus delay template | 15.8 s | −2.4 dBFS | −0.6 dB |
+| `06-ring-bell.wav` | Ring modulation: equal-sine product bells | 9.2 s | −17.1 dBFS | +14.1 dB |
+| `07-pwm-strings.wav` | Pulse-width modulation strings through the chorus delay template | 15.8 s | −2.3 dBFS | −0.7 dB |
 | `08-sub-bass.wav` | Square plus sine an octave down with the LOW FREQ boost | 8.0 s | −14.9 dBFS | +11.9 dB |
-| `09-sample-hold-fx.wav` | Sample & hold LFO into the band-pass filter | 9.2 s | −17.0 dBFS | +14.0 dB |
-| `10-dual-pad.wav` | DUAL keyboard mode: two complete tones layered under one hall | 23.9 s | −8.2 dBFS | +5.2 dB |
-| `11-arpeggiator.wav` | One chord through the arpeggiator: UP, UP&DOWN(L&H) with a heavy shuffle, then OCTAVE RANGE +2 on HOLD | 15.1 s | −17.6 dBFS | +14.6 dB |
+| `09-sample-hold-fx.wav` | Sample & hold LFO into the band-pass filter | 9.2 s | −5.9 dBFS | +2.9 dB |
+| `10-dual-pad.wav` | DUAL keyboard mode: two complete tones layered under one hall | 23.9 s | −7.0 dBFS | +4.0 dB |
+| `11-arpeggiator.wav` | One chord through the arpeggiator: UP, UP&DOWN(L&H) with a heavy shuffle, then OCTAVE RANGE +2 on HOLD | 15.1 s | −17.5 dBFS | +14.5 dB |
 <!-- peaks-table-end -->
 
 ### Listening against the real instrument
@@ -512,27 +529,34 @@ p. 84 says PRESET LSB 64; MIDI implementation p. 1 says LSB 0 for preset and
 20H for user). That data is Roland's and none ships here; the plug-in already
 loads user-supplied dumps.
 
-**Known concurrency limits.** A dump arrives on the audio thread while the
-host, the panel and the engine all read the same parameter storage, and two
-of the seams there are patched rather than solved. `patchGeneration` is a
-one-bit seqlock, and `applyProgram`, `loadPatch` and `setStateInformation`
-each open a window an audio-thread dump can bump twice from inside, so a
-parity check can accept a copy taken mid-spray; the answer is one program
-writer instead of two, which is a restructuring rather than a patch. And a
-control change can still be lost outright, about once in some thousands
-arriving a sample apart: the re-seed that recovers a CC overwritten
-mid-publish is a read-then-store and can itself be overtaken, which no
-compare-exchange closes — the overtaking value is the one the publish just
-wrote. It self-corrects on the next move of that controller, and it is the
-same defect the restructuring above is for. A device-control message landing
-inside a session restore is lost the same way and for the same reason: the
-restore writes every parameter from the message thread while the message writes
-one from the audio thread, and nothing orders the two.
+**Concurrent MIDI and host writes.** Complete host program, patch and session
+transactions serialize their parameter writes. A transaction takes priority
+over overlapping MIDI parameter edits; notes and pedal releases continue.
+UI notification uses a separate policy: colliding parameter messages enter a
+fixed 256-message FIFO and replay before newer parameter messages once
+notification finishes. An explicit host transaction invalidates older queued
+edits. If that queue fills, the oldest parameter edit is discarded to retain
+the newest controls; note and pedal events never enter it. The audio callback
+never waits for the host writer. Same-sample events otherwise retain the host's
+supplied order, and out-of-block timestamps clamp to the block boundaries.
+
+See [release validation](Docs/release-readiness.md) for stress tests, sanitizer
+builds, CPU benchmarking, multicore offline rendering and distribution gates.
 
 ## Release history
 
 ### Unreleased
 
+- Hardened malformed parameters, nonfinite external input, SysEx/MIDI parsing,
+  host-state loading and processor lifecycle boundaries; added seeded fuzzing,
+  sanitizer CI, allocation audits and strict VST3 validation.
+- Removed callback buffer growth and MIDI publication allocations, fixed
+  concurrent patch publication and UI note overflow, and made host-state recall
+  normalize on/off parameters after fractional automation.
+- Cached unchanged effect coefficients and added deterministic `--jobs` demo
+  rendering across independent engine instances.
+- Added full bundled dependency notices and commercial macOS packaging checks,
+  with notarized/stapled ZIP bundles and installer validation.
 - Increased the filter-envelope range from ±10 to ±12 octaves after named
   hardware recordings showed its peak cutoff opening too little. SupaJuce's
   early upper harmonics improve across six notes; Cotton's opening high band
@@ -625,8 +649,8 @@ one from the audio thread, and nothing orders the two.
 - Fixed the publish protocol between the audio and message threads across
   several rounds: every republish now publishes the value the engine renders
   from, a state save can no longer serialise a patch that never existed, and
-  a save no longer destroys the arpeggio grid it is saving. Two residuals are
-  named under Known gaps rather than papered over.
+  a save no longer destroys the arpeggio grid it is saving. The remaining
+  whole-patch and notification collisions now use the policy documented above.
 
 ## Build
 
@@ -650,6 +674,16 @@ On macOS, `./scripts/build-macos.sh` drives the same build through Xcode as a
 universal binary and renders the committed editor screenshot while the suite
 runs. VST3 + Standalone also build on Linux and Windows; CI exercises all
 three platforms.
+
+To package a local macOS build as a distributable installer and ZIP, supply a
+numeric build number (CI uses its run number automatically):
+
+```bash
+BUILD_NUMBER=42 ./scripts/sign-and-package-macos.sh
+```
+
+The packages are written to `build-macos/dist/`, for example
+`Septum-0.9.0-build-42-macOS-universal.pkg` and the matching `.zip`.
 
 The plug-in declares a stereo input bus for the modelled instrument's INPUT
 jacks. It is disabled by default, so a host that gives a synthesizer no input

@@ -499,7 +499,10 @@ Engine::Engine()
 
 void Engine::prepare (double sampleRate, int maxBlockSize)
 {
-    sampleRate_ = std::max (8000.0, sampleRate);
+    // Reject nonfinite values before buffer-size and delay-index conversions.
+    // Keep valid professional rates, while bounding corrupt host requests.
+    sampleRate_ = std::isfinite (sampleRate)
+        ? std::clamp (sampleRate, 8000.0, 768000.0) : 44100.0;
     maxBlock_ = std::max (16, maxBlockSize);
 
     const auto combSamples = static_cast<std::size_t> (sampleRate_ * 0.07) + 8;
@@ -551,16 +554,19 @@ void Engine::prepare (double sampleRate, int maxBlockSize)
                              * 0.001 * sampleRate_),
             static_cast<int> (reverb_.preDelay.size()) - 2);
 
-    externalDirectL_.assign (static_cast<std::size_t> (maxBlock_), 0.0f);
-    externalDirectR_.assign (static_cast<std::size_t> (maxBlock_), 0.0f);
-    externalMono_.assign (static_cast<std::size_t> (maxBlock_), 0.0f);
-    scratchMono_.assign (static_cast<std::size_t> (maxBlock_), 0.0f);
-    dryL_.assign (static_cast<std::size_t> (maxBlock_), 0.0f);
-    dryR_.assign (static_cast<std::size_t> (maxBlock_), 0.0f);
-    sendDelayL_.assign (static_cast<std::size_t> (maxBlock_), 0.0f);
-    sendDelayR_.assign (static_cast<std::size_t> (maxBlock_), 0.0f);
-    sendReverbL_.assign (static_cast<std::size_t> (maxBlock_), 0.0f);
-    sendReverbR_.assign (static_cast<std::size_t> (maxBlock_), 0.0f);
+    // Rendering is chunked into controlInterval samples even when a host
+    // supplies a larger block than promised. Scratch space is independent
+    // of that host hint, including absurd or negative block-size requests.
+    externalDirectL_.assign (static_cast<std::size_t> (controlInterval), 0.0f);
+    externalDirectR_.assign (static_cast<std::size_t> (controlInterval), 0.0f);
+    externalMono_.assign (static_cast<std::size_t> (controlInterval), 0.0f);
+    scratchMono_.assign (static_cast<std::size_t> (controlInterval), 0.0f);
+    dryL_.assign (static_cast<std::size_t> (controlInterval), 0.0f);
+    dryR_.assign (static_cast<std::size_t> (controlInterval), 0.0f);
+    sendDelayL_.assign (static_cast<std::size_t> (controlInterval), 0.0f);
+    sendDelayR_.assign (static_cast<std::size_t> (controlInterval), 0.0f);
+    sendReverbL_.assign (static_cast<std::size_t> (controlInterval), 0.0f);
+    sendReverbR_.assign (static_cast<std::size_t> (controlInterval), 0.0f);
 
     // C219 returns to the op-amp output: the service circuit is an active
     // Sallen-Key network, not two isolated RC poles. Its separate helper
@@ -570,6 +576,7 @@ void Engine::prepare (double sampleRate, int maxBlockSize)
     for (auto& input : analogInput_)
         input.prepare (sampleRate_);
 
+    refreshEffectsCoefficients();
     reset();
 }
 
@@ -708,6 +715,8 @@ void Engine::setPatch (const Patch& patch)
         }
     }
 
+    refreshEffectsCoefficients();
+
     for (auto& voice : voices_)
     {
         if (! voice.active)
@@ -808,7 +817,8 @@ void Engine::setMasterLevel (int level) noexcept
 
 void Engine::setMasterTuneHz (double a4Hz) noexcept
 {
-    masterTuneHz_ = std::clamp (a4Hz, 415.30, 466.20);
+    if (std::isfinite (a4Hz))
+        masterTuneHz_ = std::clamp (a4Hz, 415.30, 466.20);
 }
 
 void Engine::setMasterKeyShift (int semitones) noexcept
@@ -1530,27 +1540,32 @@ void Engine::setSostenuto (bool down)
 
 void Engine::setPitchBend (double normalised)
 {
-    pitchBend_ = std::clamp (normalised, -1.0, 1.0);
+    if (std::isfinite (normalised))
+        pitchBend_ = std::clamp (normalised, -1.0, 1.0);
 }
 
 void Engine::setModulation (double amount)
 {
-    modulation_ = std::clamp (amount, 0.0, 1.0);
+    if (std::isfinite (amount))
+        modulation_ = std::clamp (amount, 0.0, 1.0);
 }
 
 void Engine::setExpression (double amount)
 {
-    expression_ = std::clamp (amount, 0.0, 1.0);
+    if (std::isfinite (amount))
+        expression_ = std::clamp (amount, 0.0, 1.0);
 }
 
 void Engine::setPartLevel (double amount)
 {
-    partLevel_ = std::clamp (amount, 0.0, 1.0);
+    if (std::isfinite (amount))
+        partLevel_ = std::clamp (amount, 0.0, 1.0);
 }
 
 void Engine::setPartPan (double pan)
 {
-    partPan_ = std::clamp (pan, -1.0, 1.0);
+    if (std::isfinite (pan))
+        partPan_ = std::clamp (pan, -1.0, 1.0);
 }
 
 void Engine::setPortamentoControl (int note)
@@ -3244,8 +3259,15 @@ void Engine::prepareExternalTick (const float* inputLeft, const float* inputRigh
         double left = 0.0, right = 0.0;
         if (haveInput)
         {
-            left = inputLeft[offset + i] * smoothedInputGain_;
-            right = inputRight[offset + i] * smoothedInputGain_;
+            // Host audio is untrusted: reject NaN/Inf before any stateful
+            // stage, and allow 36 dB above full scale without permitting
+            // extreme finite samples to overflow float feedback buffers.
+            const auto inputSample = [] (float sample) -> double
+            {
+                return std::isfinite (sample) ? std::clamp (sample, -64.0f, 64.0f) : 0.0;
+            };
+            left = inputSample (inputLeft[offset + i]) * smoothedInputGain_;
+            right = inputSample (inputRight[offset + i]) * smoothedInputGain_;
         }
         // The codec HPF precedes both the monitor and EXT-IN oscillator taps.
         // It keeps running with zero input when the input bus disappears.
@@ -3371,16 +3393,11 @@ void Engine::prepareExternalTick (const float* inputLeft, const float* inputRigh
 // Effects
 // ---------------------------------------------------------------------------
 
-void Engine::processEffects (const float* dryL, const float* dryR,
-                             const float* delaySendL, const float* delaySendR,
-                             const float* reverbSendL, const float* reverbSendR,
-                             float* outL, float* outR, int samples)
+void Engine::refreshEffectsCoefficients() noexcept
 {
     const DelayParams& delayParams = patch_.delay;
     const ReverbParams& reverbParams = patch_.reverb;
 
-    const bool delayOn = patch_.delayOn;
-    const bool reverbOn = patch_.reverbOn;
     const double switchStep =
         1.0 / std::max (1.0, mapping::effectsSwitchFadeSeconds * sampleRate_);
 
@@ -3401,7 +3418,6 @@ void Engine::processEffects (const float* dryL, const float* dryR,
         (delayParams.modulationDepth / 127.0)
         * mapping::delayModulationDepthSeconds * sampleRate_;
     const double modInc = modRateHz / sampleRate_;
-    const int delaySize = static_cast<int> (delayL_.buffer.size());
 
     // -- reverb coefficients -------------------------------------------------
     const double rt60 = mapping::reverbSeconds (reverbParams.time, reverbParams.size);
@@ -3430,6 +3446,23 @@ void Engine::processEffects (const float* dryL, const float* dryR,
             std::pow (10.0, -3.0 * lengthSeconds / std::max (0.05, rt60));
     }
 
+    effects_ = { switchStep, delayTargetSamples, timeSmoothing, feedback,
+                 dampCoeff, modDepthSamples, modInc, highCutCoeff,
+                 lfCoeff, hfCoeff, lfGain, hfGain, diffusionGain, densityGain,
+                 geometryStep, lineFeedback };
+}
+
+void Engine::processEffects (const float* dryL, const float* dryR,
+                             const float* delaySendL, const float* delaySendR,
+                             const float* reverbSendL, const float* reverbSendR,
+                             float* outL, float* outR, int samples)
+{
+    const ReverbParams& reverbParams = patch_.reverb;
+    const bool delayOn = patch_.delayOn;
+    const bool reverbOn = patch_.reverbOn;
+    const int delaySize = static_cast<int> (delayL_.buffer.size());
+    const auto& c = effects_;
+
     for (int i = 0; i < samples; ++i)
     {
         // OFF fades new input and the return; it does not stop time in the
@@ -3437,14 +3470,14 @@ void Engine::processEffects (const float* dryL, const float* dryR,
         // was enabled again, even after seconds of silence. Once the fade
         // reaches zero, OFF accepts no new signal.
         delayWetGain_ += std::clamp ((delayOn ? 1.0 : 0.0) - delayWetGain_,
-                                     -switchStep, switchStep);
+                                     -c.switchStep, c.switchStep);
         reverbWetGain_ += std::clamp ((reverbOn ? 1.0 : 0.0) - reverbWetGain_,
-                                      -switchStep, switchStep);
+                                      -c.switchStep, c.switchStep);
         double wetDelayL = 0.0, wetDelayR = 0.0;
 
         {
-            delayTimeSmoothed_ += (delayTargetSamples - delayTimeSmoothed_) * timeSmoothing;
-            delayModPhase_ = frac (delayModPhase_ + modInc);
+            delayTimeSmoothed_ += (c.delayTargetSamples - delayTimeSmoothed_) * c.timeSmoothing;
+            delayModPhase_ = frac (delayModPhase_ + c.modInc);
             const double lfoL = std::sin (twoPi * delayModPhase_);
             const double lfoR = std::sin (twoPi * delayModPhase_ + pi * 0.5);
 
@@ -3473,7 +3506,7 @@ void Engine::processEffects (const float* dryL, const float* dryR,
                     past ((index0 + delaySize - 1) % delaySize, centreAge + 1),
                     past (index0, centreAge), past (index1, centreAge - 1),
                     past ((index1 + 1) % delaySize, centreAge - 2), fracPos);
-                line.dampState += dampCoeff * (tapped - line.dampState);
+                line.dampState += c.dampCoeff * (tapped - line.dampState);
                 const double damped = line.dampState;
                 // OM p. 63 specifies signed feedback in percent. A cubic shaper at
                 // every write compressed even the first echo with feedback
@@ -3482,15 +3515,15 @@ void Engine::processEffects (const float* dryL, const float* dryR,
                 // linear feedback loop. Modulated extremes are regression
                 // tested separately; no hardware overload curve is assumed.
                 line.buffer[static_cast<std::size_t> (line.write)] =
-                    static_cast<float> (flushDenormal (input + damped * feedback));
+                    static_cast<float> (flushDenormal (input + damped * c.feedback));
                 line.write = (line.write + 1) % delaySize;
                 line.fresh = std::min (line.fresh + 1, delaySize);
                 return damped;
             };
 
-            wetDelayL = tapLine (delayL_, lfoL * modDepthSamples,
+            wetDelayL = tapLine (delayL_, lfoL * c.modDepthSamples,
                                 delaySendL[i] * delayWetGain_) * delayWetGain_;
-            wetDelayR = tapLine (delayR_, lfoR * modDepthSamples,
+            wetDelayR = tapLine (delayR_, lfoR * c.modDepthSamples,
                                 delaySendR[i] * delayWetGain_) * delayWetGain_;
         }
 
@@ -3509,8 +3542,8 @@ void Engine::processEffects (const float* dryL, const float* dryR,
             // in every buffer below — the network's write heads advance in
             // lockstep, so one freshness count covers them all.
             const int reverbFresh = reverb_.fresh;
-            reverb_.preDelayHeads.advance (reverbParams.preDelay, geometryStep);
-            reverb_.sizeHeads.advance (reverbParams.size, geometryStep);
+            reverb_.preDelayHeads.advance (reverbParams.preDelay, c.geometryStep);
+            reverb_.sizeHeads.advance (reverbParams.size, c.geometryStep);
             reverb_.preDelay[static_cast<std::size_t> (reverb_.preDelayWrite)] =
                 static_cast<float> (input);
             input = reverb_.preDelayHeads.read ([&] (std::size_t position) -> double
@@ -3530,7 +3563,7 @@ void Engine::processEffects (const float* dryL, const float* dryR,
             {
                 auto& buffer = reverb_.diffusers[static_cast<std::size_t> (d)];
                 int& write = reverb_.diffuserWrites[static_cast<std::size_t> (d)];
-                const double gain = d < 2 ? diffusionGain : densityGain;
+                const double gain = d < 2 ? c.diffusionGain : c.densityGain;
                 const double delayed =
                     static_cast<int> (buffer.size()) > reverbFresh
                         ? 0.0
@@ -3567,14 +3600,14 @@ void Engine::processEffects (const float* dryL, const float* dryR,
                 auto& buffer = reverb_.lines[static_cast<std::size_t> (line)];
                 const int size = static_cast<int> (buffer.size());
                 double value = taps[static_cast<std::size_t> (line)] - householder;
-                value *= lineFeedback[static_cast<std::size_t> (line)];
+                value *= c.lineFeedback[static_cast<std::size_t> (line)];
 
                 // HF damping: shelve down content above hfHz by hfGain.
                 auto& high = reverb_.highStates[static_cast<std::size_t> (line)];
-                value = detail::reverbHighShelf (value, hfGain, hfCoeff, high);
+                value = detail::reverbHighShelf (value, c.hfGain, c.hfCoeff, high);
                 // LF damping: shelve down content below lfHz by lfGain.
                 auto& low = reverb_.lowStates[static_cast<std::size_t> (line)];
-                value = detail::reverbLowShelf (value, lfGain, lfCoeff, low);
+                value = detail::reverbLowShelf (value, c.lfGain, c.lfCoeff, low);
 
                 buffer[static_cast<std::size_t> (
                     reverb_.writes[static_cast<std::size_t> (line)])] =
@@ -3593,8 +3626,8 @@ void Engine::processEffects (const float* dryL, const float* dryR,
             wetReverbR = taps[1] + taps[3] + taps[5] + taps[7];
 
             // Settled HIGH CUT on the wet return.
-            reverb_.highCutStateL += highCutCoeff * (wetReverbL - reverb_.highCutStateL);
-            reverb_.highCutStateR += highCutCoeff * (wetReverbR - reverb_.highCutStateR);
+            reverb_.highCutStateL += c.highCutCoeff * (wetReverbL - reverb_.highCutStateL);
+            reverb_.highCutStateR += c.highCutCoeff * (wetReverbR - reverb_.highCutStateR);
             wetReverbL = reverb_.highCutStateL;
             wetReverbR = reverb_.highCutStateR;
             reverb_.fresh = std::min (reverb_.fresh + 1, 1 << 30);
@@ -3628,6 +3661,16 @@ void Engine::processEffects (const float* dryL, const float* dryR,
 void Engine::process (float* left, float* right, int numSamples,
                       const float* inputLeft, const float* inputRight)
 {
+    if (numSamples <= 0 || left == nullptr || right == nullptr)
+        return;
+    // Lifecycle mistakes must be silent, never index unallocated delay lines.
+    // Preparation remains an explicit, non-realtime operation.
+    if (dryL_.empty())
+    {
+        std::fill_n (left, numSamples, 0.0f);
+        std::fill_n (right, numSamples, 0.0f);
+        return;
+    }
     int offset = 0;
     float blockPeakL = 0.0f, blockPeakR = 0.0f;
     std::array<float, 2> partPeak {};

@@ -208,9 +208,9 @@ struct Dt1Packet
     // block, at offset zero, of exactly that block's size.
     [[nodiscard]] bool isForThisInstrument() const noexcept
     {
-        return patchBaseIsKnown() && blockIsKnown() && dataLength > 0
+        return patchBaseIsKnown() && blockIsKnown() && data != nullptr && dataLength > 0
                && offsetInBlock() < blockSize()
-               && offsetInBlock() + dataLength <= blockSize();
+               && dataLength <= blockSize() - offsetInBlock();
     }
 };
 

@@ -16,7 +16,8 @@ class MidiTempoClock
 public:
     void prepare (double sampleRate) noexcept
     {
-        rate = sampleRate;
+        rate = std::isfinite (sampleRate) ? std::clamp (sampleRate, 8000.0, 768000.0)
+                                         : 44100.0;
         reset();
     }
 
@@ -64,6 +65,8 @@ public:
 
     [[nodiscard]] int samplesUntilTimeout (int maximum) const noexcept
     {
+        if (maximum <= 0)
+            return 0;
         if (! havePulse)
             return maximum;
         const auto limit = timeout();
@@ -73,7 +76,7 @@ public:
 
     void advance (int samples) noexcept
     {
-        if (! havePulse)
+        if (! havePulse || samples <= 0)
             return;
         elapsed += static_cast<std::uint64_t> (samples);
         if (elapsed >= timeout())

@@ -155,6 +155,8 @@ def parse_smf(data: bytes, sample_rate: int = 44100) -> dict:
                                  else Fraction(microseconds, division * 1000000))
         previous_tick = event["tick"]
         event["sample"] = nearest(seconds * sample_rate)
+        if event["sample"] > sample_rate * 3600:
+            raise MidiError("Render exceeds one hour")
         if event["kind"] == "tempo":
             microseconds = event["microseconds_per_quarter"]
             tempo_map.append({"tick": event["tick"], "sample": event["sample"],
@@ -226,6 +228,18 @@ def replay_events(parsed: dict, channel: int = 1, allow_unsupported: bool = Fals
     return replay, ignored
 
 
+def read_input(path: Path) -> bytes:
+    """Enforce the input cap while reading, before allocating an entire file."""
+    limit = 64 * 1024 * 1024
+    with path.open("rb") as source:
+        if path.stat().st_size > limit:
+            raise MidiError("Input exceeds 64 MiB")
+        data = source.read(limit + 1)
+    if len(data) > limit:
+        raise MidiError("Input exceeds 64 MiB")
+    return data
+
+
 def sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as source:
@@ -246,8 +260,8 @@ def render(args: argparse.Namespace) -> dict:
         raise MidiError("Tail must be finite and between 0 and 120 seconds")
     if not 0 <= args.master_level <= 127:
         raise MidiError("Master level must be 0–127")
-    midi_bytes = midi_path.read_bytes()
-    patch_bytes = patch_path.read_bytes()
+    midi_bytes = read_input(midi_path)
+    patch_bytes = read_input(patch_path)
     parsed = parse_smf(midi_bytes, args.sample_rate)
     replay, ignored = replay_events(parsed, args.channel, args.allow_unsupported,
                                     args.ignore_program_changes, args.tempo_policy)

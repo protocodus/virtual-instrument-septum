@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <cmath>
 #include <cstring>
+#include <stdexcept>
 
 namespace septum::sysex
 {
@@ -16,7 +17,7 @@ namespace
 
     [[nodiscard]] inline std::uint8_t signedTo7Bit (int value) noexcept
     {
-        return clampTo7Bit (value + 64);
+        return static_cast<std::uint8_t> (std::clamp (value, -64, 63) + 64);
     }
 
     [[nodiscard]] inline int from7BitSigned (std::uint8_t raw) noexcept
@@ -529,6 +530,10 @@ std::vector<std::uint8_t> makeDt1Message (std::uint32_t address,
     // F0 41 <dev> 00 00 16 12 <addr0..3> <data...> <sum> F7
     // Total size = 1 + 1 + 1 + 3 + 1 + 4 + dataSize + 1 + 1 = 13 + dataSize
     std::vector<std::uint8_t> msg;
+    if (dataSize != 0 && data == nullptr)
+        throw std::invalid_argument ("DT1 payload is null");
+    if (dataSize > msg.max_size() - 13)
+        throw std::length_error ("DT1 payload is too large");
     msg.reserve (13 + dataSize);
 
     msg.push_back (0xF0);
@@ -549,22 +554,13 @@ std::vector<std::uint8_t> makeDt1Message (std::uint32_t address,
     msg.push_back (addr2);
     msg.push_back (addr3);
 
-    std::vector<std::uint8_t> checksumPayload;
-    checksumPayload.reserve (4 + dataSize);
-    checksumPayload.push_back (addr0);
-    checksumPayload.push_back (addr1);
-    checksumPayload.push_back (addr2);
-    checksumPayload.push_back (addr3);
-
     for (std::size_t i = 0; i < dataSize; ++i)
     {
         const std::uint8_t b = data[i] & 0x7Fu;
         msg.push_back (b);
-        checksumPayload.push_back (b);
     }
 
-    const std::uint8_t sum = calculateChecksum (checksumPayload.data(),
-                                                checksumPayload.size());
+    const std::uint8_t sum = calculateChecksum (msg.data() + 7, 4 + dataSize);
     msg.push_back (sum);
     msg.push_back (0xF7);
     return msg;
@@ -678,6 +674,7 @@ std::vector<std::uint8_t> encodePatchToSyxBuffer (const Patch& patch,
 bool parseDt1Packet (const std::uint8_t* msg, std::size_t msgLen,
                      std::uint8_t expectedDeviceId, Dt1Packet& out) noexcept
 {
+    out = {};
     if (msg == nullptr || msgLen < 12)
         return false;
 
@@ -699,11 +696,18 @@ bool parseDt1Packet (const std::uint8_t* msg, std::size_t msgLen,
         return false;
 
     const std::uint8_t* p = msg + offset;
+    // Status bytes inside a SysEx frame are malformed, not seven-bit data.
+    // In particular masking the device ID or checksum can turn corrupt or
+    // foreign packets into valid writes to this instrument.
+    for (std::size_t i = 0; i < payloadLen; ++i)
+        if (p[i] >= 0x80)
+            return false;
     if (p[0] != rolandId)
         return false;
 
-    const std::uint8_t devId = p[1] & 0x1Fu;
-    if (expectedDeviceId != 0x7F && devId != (expectedDeviceId & 0x1Fu))
+    const std::uint8_t devId = p[1];
+    if ((devId > 0x1f && devId != 0x7f)
+        || (expectedDeviceId != 0x7F && devId != 0x7f && devId != expectedDeviceId))
         return false;
 
     if (p[2] != sh201ModelId[0] || p[3] != sh201ModelId[1]
@@ -713,6 +717,9 @@ bool parseDt1Packet (const std::uint8_t* msg, std::size_t msgLen,
     if (p[5] != cmdDt1)
         return false; // an RQ1 or anything else is not a write
 
+    if (! verifyChecksum (p + 6, payloadLen - 7, p[payloadLen - 1]))
+        return false;
+
     out.address = (static_cast<std::uint32_t> (p[6] & 0x7Fu) << 24)
                   | (static_cast<std::uint32_t> (p[7] & 0x7Fu) << 16)
                   | (static_cast<std::uint32_t> (p[8] & 0x7Fu) << 8)
@@ -720,7 +727,7 @@ bool parseDt1Packet (const std::uint8_t* msg, std::size_t msgLen,
     out.dataLength = payloadLen - 11; // minus 41 dev 00 00 16 12 a0 a1 a2 a3 sum
     out.data = p + 10;
 
-    return verifyChecksum (p + 6, out.dataLength + 4, p[payloadLen - 1]);
+    return true;
 }
 
 bool decodeSysExMessage (const std::uint8_t* msg, std::size_t msgLen,
@@ -989,11 +996,13 @@ bool parseSyxBankFile (const std::uint8_t* fileBytes, std::size_t byteCount,
         if (pos >= byteCount)
             break;
 
-        const std::size_t start = pos;
-        while (pos < byteCount && fileBytes[pos] != 0xF7)
+        const std::size_t start = pos++;
+        while (pos < byteCount && fileBytes[pos] != 0xF7 && fileBytes[pos] != 0xF0)
             ++pos;
         if (pos >= byteCount)
             break;
+        if (fileBytes[pos] == 0xF0)
+            continue; // Resynchronise after an unterminated preceding frame.
 
         const std::size_t end = pos;
         const std::size_t msgLen = end - start + 1;

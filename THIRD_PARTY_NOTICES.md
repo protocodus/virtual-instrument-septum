@@ -22,9 +22,12 @@ AGPLv3 for the complete combined work or an appropriate commercial JUCE
 licence. Review the JUCE 8 licence terms before distribution:
 <https://github.com/juce-framework/JUCE/blob/8.0.14/LICENSE.md>
 
-JUCE includes or interfaces with additional third-party components. Their
-copyright notices and licence terms are listed in JUCE's own `LICENSE.md` and
-in the JUCE source tree. The VST3 SDK portions used through JUCE are identified
+JUCE includes or interfaces with additional third-party components. The
+bundled components' licence texts are collected in
+[`ThirdParty/JUCE-DEPENDENCY-NOTICES.txt`](ThirdParty/JUCE-DEPENDENCY-NOTICES.txt),
+with upstream paths and hashes. This file accompanies each distribution.
+Regenerate it from the pinned JUCE checkout using
+`Tools/collect_juce_notices.py`; JUCE's own `LICENSE.md` also indexes the sources. The VST3 SDK portions used through JUCE are identified
 there as MIT-licensed; Apple's Audio Unit frameworks are supplied by the macOS
 SDK and remain subject to Apple's terms.
 

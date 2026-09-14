@@ -29,7 +29,7 @@ struct TimbreCalibration
 
     static double lookup (const Table& table, double control) noexcept
     {
-        const double x = std::clamp (control, 0.0, 127.0);
+        const double x = std::isfinite (control) ? std::clamp (control, 0.0, 127.0) : 0.0;
         const auto index = static_cast<std::size_t> (x);
         const auto next = std::min (index + 1, std::size_t { 127 });
         return table[index] + (table[next] - table[index]) * (x - index);
