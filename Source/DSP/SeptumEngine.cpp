@@ -1884,8 +1884,14 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
     const double pw2 = pwValue (2, tone.osc2);
     voice.duty1 = timbre_.wavesEnabled ? TimbreCalibration::lookup (timbre_.pulseDuty, pw1) : mapping::pulseDuty (pw1);
     voice.duty2 = timbre_.wavesEnabled ? TimbreCalibration::lookup (timbre_.pulseDuty, pw2) : mapping::pulseDuty (pw2);
-    voice.superAmount1 = mapping::superSawDetuneAmount (pw1 / 127.0);
-    voice.superAmount2 = mapping::superSawDetuneAmount (pw2 / 127.0);
+    voice.superAmount1 = timbre_.superSawEnabled && timbre_.superDetuneTableEnabled ? TimbreCalibration::lookup (timbre_.superDetune, pw1)
+                                               : mapping::superSawDetuneAmount (pw1 / 127.0);
+    voice.superAmount2 = timbre_.superSawEnabled && timbre_.superDetuneTableEnabled ? TimbreCalibration::lookup (timbre_.superDetune, pw2)
+                                               : mapping::superSawDetuneAmount (pw2 / 127.0);
+    voice.superCenter1 = timbre_.superSawEnabled ? TimbreCalibration::lookup (timbre_.superCenterGain, pw1) : mapping::superSawCenterGain();
+    voice.superCenter2 = timbre_.superSawEnabled ? TimbreCalibration::lookup (timbre_.superCenterGain, pw2) : mapping::superSawCenterGain();
+    voice.superSide1 = timbre_.superSawEnabled ? TimbreCalibration::lookup (timbre_.superSideGain, pw1) : mapping::superSawSideGain();
+    voice.superSide2 = timbre_.superSawEnabled ? TimbreCalibration::lookup (timbre_.superSideGain, pw2) : mapping::superSawSideGain();
     voice.fbGain1 = mapping::fbOscGain (pw1);
     voice.fbGain2 = mapping::fbOscGain (pw2);
 
@@ -1893,11 +1899,11 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
     // corner/Q pair is OQ-04). RBJ high-pass, Q = 0.707, per oscillator.
     const auto trackedHighPass = [this] (double f0Hz)
     {
-        const double f0 = std::clamp (f0Hz, 10.0, 0.45 * sampleRate_);
+        const double f0 = std::clamp (f0Hz * (timbre_.superSawEnabled ? timbre_.superHpfRatio : 1.0), 10.0, 0.45 * sampleRate_);
         const double w0 = twoPi * f0 / sampleRate_;
         const double cw = std::cos (w0);
         const double sw = std::sin (w0);
-        const double alpha = sw / (2.0 * 0.7071067811865476);
+        const double alpha = sw / (2.0 * (timbre_.superSawEnabled ? timbre_.superHpfQ : 0.7071067811865476));
         const double a0 = 1.0 + alpha;
         BiquadCoeffs coeffs;
         coeffs.b0 = ((1.0 + cw) * 0.5) / a0;
@@ -2146,22 +2152,22 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
     const double legGain1 = mapping::balanceLegGain (tone.balance, true);
     const double legGain2 = mapping::balanceLegGain (tone.balance, false);
 
-    const double centerGain = mapping::superSawCenterGain();
-    const double sideGain = mapping::superSawSideGain();
+    const auto& superOffsets = timbre_.superSawEnabled ? timbre_.superOffsets : mapping::superSawOffsets;
+    const double superNormalization = timbre_.superSawEnabled ? timbre_.superNormalization : mapping::superSawStackNormalisation;
 
     const auto superSaw = [&] (OscState& osc, double inc, double amount,
-                               const BiquadCoeffs& hpf)
+                               const BiquadCoeffs& hpf, double centerGain, double sideGain)
     {
         double sum = 0.0;
         for (std::size_t index = 0; index < 7; ++index)
         {
-            const double detune = 1.0 + mapping::superSawOffsets[index] * amount;
+            const double detune = 1.0 + superOffsets[index] * amount;
             double& phase = osc.superPhases[index];
             phase = frac (phase + inc * detune);
             sum += (index == 3 ? centerGain : sideGain) * (2.0 * phase - 1.0);
         }
         // The reported pitch-tracked HPF on the summed stack.
-        const double x = sum * mapping::superSawStackNormalisation;
+        const double x = sum * superNormalization;
         const double y = hpf.b0 * x + hpf.b1 * osc.hpfX1 + hpf.b2 * osc.hpfX2
                          - hpf.a1 * osc.hpfY1 - hpf.a2 * osc.hpfY2;
         osc.hpfX2 = osc.hpfX1;
@@ -2247,7 +2253,7 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
                 // offset is zero, so it advances by exactly inc2.
                 const double centerBefore = voice.osc2.superPhases[3];
                 sample2 = superSaw (voice.osc2, voice.inc2, voice.superAmount2,
-                                    voice.superHpf2);
+                                    voice.superHpf2, voice.superCenter2, voice.superSide2);
                 if (centerBefore + voice.inc2 >= 1.0)
                 {
                     osc2Wrapped = true;
@@ -2317,7 +2323,7 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
             for (std::size_t index = 0; index < voice.osc1.superPhases.size(); ++index)
             {
                 const double detunedInc = voice.inc1
-                    * (1.0 + mapping::superSawOffsets[index] * voice.superAmount1);
+                    * (1.0 + superOffsets[index] * voice.superAmount1);
                 voice.osc1.superPhases[index] =
                     frac ((osc2WrapOffset - 1.0) * detunedInc);
             }
@@ -2345,7 +2351,7 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
         {
             case Waveform::SuperSaw:
                 sample1 = superSaw (voice.osc1, voice.inc1, voice.superAmount1,
-                                    voice.superHpf1);
+                                    voice.superHpf1, voice.superCenter1, voice.superSide1);
                 break;
             case Waveform::FbOsc:
                 sample1 = feedbackOsc (voice.osc1, voice.inc1, voice.fbGain1);
@@ -2418,7 +2424,7 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
             const double a1 = 1.0 / (1.0 + g * (g + k));
             const double a2 = g * a1;
             // The empirical voice model adds bounded resonance in stage two.
-            const double k2 = timbre_.filterEnabled
+            const double k2 = timbre_.filterEnabled && timbre_.secondStageIndependent
                 ? voice.calibratedK2 + k2Step * (i + 1)
                 : mapping::voiceSecondStageDamping (k);
             const double b1 = 1.0 / (1.0 + g * (g + k2));

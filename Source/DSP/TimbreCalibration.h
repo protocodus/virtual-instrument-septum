@@ -15,6 +15,9 @@ struct TimbreCalibration
     using Table = std::array<double, 128>;
     bool filterEnabled { false }, envelopeEnabled { false };
     bool wavesEnabled { false }, superSawEnabled { false };
+    // Omitted model families retain the original dynamic law, not just its
+    // integer endpoints. Set these only for an explicit table experiment.
+    bool secondStageIndependent { false }, superDetuneTableEnabled { false };
     Table cutoffHz {}, resonanceDamping {}, secondStageDamping {};
     Table attackSeconds {}, decaySeconds {}, sustainLevel {}, releaseSeconds {};
     std::array<double, 5> phaseCycles {}, waveGain {};

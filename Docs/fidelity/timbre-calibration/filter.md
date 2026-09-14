@@ -13,9 +13,10 @@ establishes control behavior, without specifying a natural-frequency or Q
 table. Existing wet MP3s do not uniquely identify those curves.
 
 `Engine::defaultTimbreCalibration()` supplies all incumbent values. Disabled
-sections retain the exact equations. Explicit table mode uses independent
-second-stage control smoothing, allowing a future measured response to avoid
-the incumbent clamp coupling. Both pole dampings and log cutoff remain
+sections retain the exact equations. An explicitly supplied second-stage table
+uses independent control smoothing, allowing a future measured response to avoid
+the incumbent clamp coupling. A cutoff-only profile keeps that coupling even
+during resonance automation. Both pole dampings and log cutoff remain
 continuous during patch automation. Model replacement itself is a comparison
 setup operation and clears voices/effects; it is not a patch parameter.
 

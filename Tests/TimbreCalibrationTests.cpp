@@ -1,6 +1,7 @@
 #include "DSP/SeptumEngine.h"
 #include <algorithm>
 #include <cmath>
+#include <complex>
 #include <cstdio>
 #include <limits>
 #include <vector>
@@ -45,6 +46,9 @@ void filterTests()
             expect (identity.setTimbreCalibration (c), "valid default filter model");
             prepare (base, rate, p); prepare (identity, rate, p);
             expect (difference (render (base), render (identity)) == 0, "static default filter table equals production equations");
+            p.upper.resonance = 100; base.setPatch (p); identity.setPatch (p);
+            expect (difference (render (base), render (identity)) == 0, "cutoff-only model retains original resonance coupling during automation");
+            p.upper.resonance = 40;
             // Shift the full cutoff and damping curves by twelve control steps.
             // Compare actual audio against independently selecting those controls.
             for (std::size_t i = 0; i < 128; ++i)
@@ -67,6 +71,13 @@ void filterTests()
             bad = c; bad.cutoffHz[64] = 4; expect (! bad.valid(), "reject unsafe cutoff");
             bad = c; bad.resonanceDamping[64] = -1; expect (! bad.valid(), "reject unsafe feedback");
             bad = c; bad.secondStageDamping[64] = 0; expect (! bad.valid(), "reject autonomous second pole oscillation");
+            // An explicitly supplied second-stage table is independently
+            // active. Copy the shifted reference's k2 to verify that route too.
+            c.secondStageIndependent = true;
+            expect (candidate.setTimbreCalibration (c), "explicit second-pole table accepted");
+            p.upper.cutoff -= 12; p.upper.resonance -= 12; prepare (candidate, rate, p);
+            p.upper.cutoff += 12; p.upper.resonance += 12; prepare (reference, rate, p);
+            expect (difference (render (candidate), render (reference)) < 1e-8, "independent second-pole table reaches reference response");
         }
 }
 void envelopeTests()
@@ -146,12 +157,70 @@ void waveformTests()
     prepare (custom, 48000, p); p.upper.osc1.pulseWidth += 20; prepare (reference, 48000, p);
     expect (difference (render (custom), render (reference)) == 0, "PW table matches independently shifted control");
 }
+void superSawTests()
+{
+    for (double rate : { 44100., 48000., 96000. })
+        for (auto mix : { septum::MixModType::Mix, septum::MixModType::Sync })
+            for (int spread : { 0, 41, 115 })
+            {
+                auto p = patch(); p.upper.osc1.wave = septum::Waveform::SuperSaw;
+                p.upper.osc2.wave = septum::Waveform::Sine; p.upper.osc2.coarse = 7;
+                p.upper.mixType = mix; p.upper.osc1.pulseWidth = spread;
+                septum::Engine base, identity, custom, reference;
+                auto c = septum::Engine::defaultTimbreCalibration(); c.superSawEnabled = true;
+                expect (identity.setTimbreCalibration (c), "valid default Super Saw including polynomial wiggle");
+                prepare (base, rate, p); prepare (identity, rate, p);
+                expect (difference (render (base), render (identity)) == 0, "default Super Saw preserves phase, gain, filter and sync");
+                auto modulated = p;
+                modulated.upper.lfo1.destination1 = septum::LfoDest1::Pw1;
+                modulated.upper.lfo1.depth1 = 45; modulated.upper.lfo1.rate = 81;
+                base.setPatch (modulated); identity.setPatch (modulated);
+                expect (difference (render (base), render (identity)) == 0, "mix-only Super Saw profile retains fractional detune polynomial");
+                for (std::size_t i = 0; i < 128; ++i)
+                    c.superDetune[i] = septum::mapping::superSawDetuneAmount (std::min (127, static_cast<int> (i) + 12) / 127.0);
+                c.superDetuneTableEnabled = true;
+                expect (custom.setTimbreCalibration (c), "valid alternative detune curve");
+                prepare (custom, rate, p); p.upper.osc1.pulseWidth += 12; prepare (reference, rate, p);
+                expect (difference (render (custom), render (reference)) == 0, "detune table matches independent patch control including slave reset");
+            }
+    auto p = patch(); p.upper.osc1.wave = septum::Waveform::SuperSaw;
+    p.upper.filterType = septum::FilterType::Bypass;
+    septum::Engine low, high, silent;
+    auto c = septum::Engine::defaultTimbreCalibration(); c.superSawEnabled = true;
+    c.superSideGain.fill (0); c.superCenterGain.fill (1); c.superDetune.fill (0);
+    c.superDetuneTableEnabled = true;
+    expect (low.setTimbreCalibration (c), "isolated center saw");
+    c.superHpfRatio = 2;
+    expect (high.setTimbreCalibration (c), "pitch-tracked filter calibration");
+    prepare (low, 48000, p); prepare (high, 48000, p);
+    render (low, 48000); render (high, 48000);
+    const auto a = render (low, 48000), b = render (high, 48000);
+    const auto fundamental = [] (const std::vector<float>& values)
+    {
+        std::complex<double> sum {};
+        for (std::size_t i = 0; i < values.size(); ++i)
+            sum += double (values[i]) * std::polar (1.0, -2 * septum::mapping::pi * 220 * i / 48000.0);
+        return std::abs (sum);
+    };
+    const double x = std::tan (septum::mapping::pi * 220 / 48000) / std::tan (septum::mapping::pi * 440 / 48000);
+    const double predicted = (x * x / std::sqrt (1 + x * x * x * x)) * std::sqrt (2.0);
+    expect (std::abs (fundamental (b) / fundamental (a) - predicted) < 1e-5,
+            "tracked high-pass obeys independent Butterworth magnitude ratio");
+    c.superCenterGain.fill (0); expect (silent.setTimbreCalibration (c), "zero center and side gains");
+    prepare (silent, 48000, p);
+    const auto zero = render (silent);
+    expect (std::all_of (zero.begin(), zero.end(), [] (float v) { return v == 0; }), "independent center/side gains reach silence");
+    auto bad = c; bad.superOffsets[3] = 0.1; expect (! bad.valid(), "keep sync center at nominal pitch");
+    bad = c; bad.superHpfQ = 0; expect (! bad.valid(), "reject singular tracked filter");
+    bad = c; bad.superOffsets[0] = -1; expect (! bad.valid(), "reject reverse/out-of-range oscillator offsets");
+}
 } // namespace
 int main()
 {
     filterTests();
     envelopeTests();
     waveformTests();
+    superSawTests();
     std::printf ("Timbre calibration: %d checks, %d failures\n", checks, failures);
     return failures != 0;
 }

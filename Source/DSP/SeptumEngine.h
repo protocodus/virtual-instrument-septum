@@ -1397,6 +1397,8 @@ private:
         // Audio-rate gain controls. Fresh notes snap to their patch; sounding
         // and stolen voices retain the current value when targets change.
         double delaySendGain { 0.0 }, reverbSendGain { 0.0 }, toneBalanceGain { 1.0 };
+        double superCenter1 { 0.0 }, superCenter2 { 0.0 };
+        double superSide1 { 0.0 }, superSide2 { 0.0 };
         BiquadCoeffs superHpf1 {}, superHpf2 {};
         OverdriveStage overdrive {};
         std::uint32_t noiseRng { 0x1234567u };
