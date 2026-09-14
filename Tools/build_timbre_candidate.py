@@ -216,7 +216,7 @@ def _sources(root):
         if path.is_symlink():
             raise CandidateError("DSP source snapshots cannot contain symlinks: " + str(path))
         if path.is_file():
-            result[str(path.relative_to(root))] = path.read_bytes()
+            result[path.relative_to(root).as_posix()] = path.read_bytes()
     renderer = root / "Tools/RenderMidi.cpp"
     if renderer.is_symlink():
         raise CandidateError("Renderer must be a regular source file")
@@ -280,8 +280,9 @@ def build_candidate(profile_path, output, *, compiler="c++", source_root=ROOT):
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(data)
     cpp = sorted(name for name in snapshot if name.startswith("Source/DSP/") and name.endswith(".cpp"))
+    renderer_name = "SeptumRenderMidi.exe" if sys.platform == "win32" else "SeptumRenderMidi"
     command = [executable, "-std=c++20", "-O2", "-fno-fast-math", "-ISource", "-I.",
-               "Tools/RenderMidi.cpp", *cpp, "-o", "SeptumRenderMidi"]
+               "Tools/RenderMidi.cpp", *cpp, "-o", renderer_name]
     manifest = {
         "version": 1, "status": "building", "id": profile["id"], "evidence": profile["evidence"],
         "experimental": True, "hardware_match_claim": False,
@@ -327,14 +328,14 @@ def build_candidate(profile_path, output, *, compiler="c++", source_root=ROOT):
         manifest["error"] = failure
         save_manifest()
         raise CandidateError(failure)
-    binary = output / "SeptumRenderMidi"
+    binary = output / renderer_name
     if not binary.is_file():
         manifest["status"] = "failed"
         manifest["error"] = "Compiler reported success but did not produce the renderer"
         save_manifest()
         raise CandidateError(manifest["error"])
     manifest["status"] = "complete"
-    manifest["renderer"] = {"path": "SeptumRenderMidi", "sha256": _sha(binary.read_bytes())}
+    manifest["renderer"] = {"path": renderer_name, "sha256": _sha(binary.read_bytes())}
     manifest["build_log_sha256"] = _sha((output / "build.log").read_bytes())
     save_manifest()
     return manifest
@@ -351,7 +352,7 @@ def main(argv=None):
     except (CandidateError, OSError) as error:
         print("Timbre candidate: " + str(error), file=sys.stderr)
         return 1
-    print(json.dumps({"id": result["id"], "renderer": str(args.output.resolve() / "SeptumRenderMidi"),
+    print(json.dumps({"id": result["id"], "renderer": str(args.output.resolve() / result["renderer"]["path"]),
                       "manifest": str(args.output.resolve() / "manifest.json"), "experimental": True}))
     return 0
 

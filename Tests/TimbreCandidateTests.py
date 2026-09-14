@@ -6,7 +6,7 @@ import hashlib
 import importlib.util
 import json
 import math
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 import shutil
 import struct
 import subprocess
@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SPEC = importlib.util.spec_from_file_location("build_timbre_candidate", ROOT / "Tools/build_timbre_candidate.py")
 candidate = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(candidate)
+EXE_SUFFIX = ".exe" if sys.platform == "win32" else ""
 
 
 def baseline():
@@ -161,6 +162,21 @@ class SchemaTests(unittest.TestCase):
             with self.assertRaisesRegex(candidate.CandidateError, "integration point"):
                 candidate.candidate_renderer(broken, baseline())
 
+    def test_snapshot_uses_portable_keys_with_windows_relative_paths(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            fixtures = {"Source/DSP/TimbreCalibration.h": b"// header\r\n",
+                        "Source/DSP/SeptumEngine.cpp": b"// source\r\n",
+                        "Tools/RenderMidi.cpp": b"// renderer\r\n"}
+            for name, data in fixtures.items():
+                path = root / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(data)
+            relative_to = Path.relative_to
+            with mock.patch.object(Path, "relative_to", autospec=True,
+                                   side_effect=lambda path, parent: PureWindowsPath(relative_to(path, parent))):
+                self.assertEqual(candidate._sources(root), fixtures)
+
     def test_failed_or_tampered_build_retains_failure_provenance(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -221,7 +237,7 @@ class BuildTests(unittest.TestCase):
         # A separately compiled shipping renderer verifies the disabled-section
         # baseline against the original entry point, not another candidate.
         source = cls.path / "baseline"
-        cls.native = cls.path / "native-renderer"
+        cls.native = cls.path / ("native-renderer" + EXE_SUFFIX)
         sources = sorted((source / "Source/DSP").glob("*.cpp"))
         subprocess.run(["c++", "-std=c++20", "-O2", "-fno-fast-math", "-I" + str(source / "Source"),
                         str(source / "original/Tools/RenderMidi.cpp"), *map(str, sources),
@@ -248,6 +264,9 @@ class BuildTests(unittest.TestCase):
         if hasattr(cls, "temporary"):
             cls.temporary.cleanup()
 
+    def renderer(self, name):
+        return self.path / name / self.results[name]["renderer"]["path"]
+
     def render(self, name, binary, patch=None):
         target = self.path / (name + ".wav")
         result = subprocess.run([str(binary), "--syx", str(patch or self.patch), "--events", str(self.events),
@@ -263,22 +282,22 @@ class BuildTests(unittest.TestCase):
 
     def test_disabled_profile_is_bit_identical_to_shipping_renderer(self):
         native, _, _ = self.render("native", self.native)
-        built, _, _ = self.render("baseline", self.path / "baseline/SeptumRenderMidi")
+        built, _, _ = self.render("baseline", self.renderer("baseline"))
         self.assertEqual(native, built)
 
     def test_emitted_profile_changes_audio_and_reference_rate_renders(self):
-        _, normal, report = self.render("normal", self.path / "baseline/SeptumRenderMidi")
-        _, inverted, _ = self.render("inverted", self.path / "triangle/SeptumRenderMidi")
+        _, normal, report = self.render("normal", self.renderer("baseline"))
+        _, inverted, _ = self.render("inverted", self.renderer("triangle"))
         energy = sum(x*x for x in normal)
         relative = math.sqrt(sum((a+b)**2 for a, b in zip(normal, inverted)) / energy)
         self.assertLess(relative, 1e-5, "emitted triangle gain must invert actual rendered audio")
-        _, converted, reference_report = self.render("reference", self.path / "reference/SeptumRenderMidi")
+        _, converted, reference_report = self.render("reference", self.renderer("reference"))
         self.assertNotEqual(converted, normal)
         self.assertGreater(reference_report["latency_samples"], report["latency_samples"])
 
     def test_emitted_cutoff_table_changes_audible_filter_response(self):
-        _, normal, _ = self.render("filter-control", self.path / "baseline/SeptumRenderMidi", self.filtered_patch)
-        _, changed, _ = self.render("filter-candidate", self.path / "filter/SeptumRenderMidi", self.filtered_patch)
+        _, normal, _ = self.render("filter-control", self.renderer("baseline"), self.filtered_patch)
+        _, changed, _ = self.render("filter-candidate", self.renderer("filter"), self.filtered_patch)
         energy = sum(value * value for value in normal)
         relative = math.sqrt(sum((a-b)**2 for a, b in zip(normal, changed)) / energy)
         self.assertGreater(relative, 0.02, "generated cutoff_hz assignments must reach the voice filter")
@@ -302,7 +321,7 @@ int main() {
     return 0;
 }
 ''')
-        binary = self.path / "factory-probe"
+        binary = self.path / ("factory-probe" + EXE_SUFFIX)
         subprocess.run(["c++", "-std=c++20", "-O2", "-I" + str(source / "Source"),
                         "-I" + str(source), str(probe), str(source / "Source/DSP/SeptumEngine.cpp"),
                         "-o", str(binary)], check=True, capture_output=True, timeout=120)
@@ -321,7 +340,7 @@ int main() {
             for file, digest in manifest["source"]["input_sha256"].items():
                 if file.startswith("Source/DSP/"):
                     self.assertEqual(hashlib.sha256((output / file).read_bytes()).hexdigest(), digest)
-            self.assertEqual(hashlib.sha256((output / "SeptumRenderMidi").read_bytes()).hexdigest(),
+            self.assertEqual(hashlib.sha256(self.renderer(name).read_bytes()).hexdigest(),
                              manifest["renderer"]["sha256"])
             self.assertTrue(manifest["compiler"]["version"])
             self.assertFalse(any(argument.endswith(".a") for argument in manifest["compiler"]["command"]))
