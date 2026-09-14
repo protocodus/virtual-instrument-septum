@@ -1,0 +1,737 @@
+{
+  "method": "Only official hardware MP3s and unmodified published patch metadata were inputs. No Septum rendering used. STFT images and dense FFT peaks are retained alongside this audit.",
+  "analysis_script_sha256": "9a2a8228d44f9fc8d49e675f5c22af70e064fe112b96918ddaa6eccd14410893",
+  "case_writer_sha256": "d4af24efdbf3e3868d4f27fe7edf0f0d2fff03b2970d7d7ca9483e39ef821287",
+  "cases": [
+    {
+      "id": "air-lead-1",
+      "source_sha256": "eda084781108d6de6961f6b6807fff283eac097173b5675dc52c678dc2ad3d3b",
+      "published_patch_name": "Air Lead 1",
+      "published_patch_number": 3,
+      "published_patch_syx_sha256": "e7e911d9be986fcc4987c41d79836034ef60ea5f9c70308a7d5f57348f4c091e",
+      "raw_tones": [
+        {
+          "waveforms": [
+            3,
+            0
+          ],
+          "coarse_bytes": [
+            100,
+            100
+          ],
+          "wide": [
+            0,
+            0
+          ],
+          "octave_shift": -1
+        },
+        {
+          "waveforms": [
+            0,
+            0
+          ],
+          "coarse_bytes": [
+            100,
+            100
+          ],
+          "wide": [
+            0,
+            0
+          ],
+          "octave_shift": 0
+        }
+      ],
+      "source_start_seconds": 0,
+      "duration_seconds": 3.45,
+      "reconstruction_sha256": "d71f3de9f26b5ab9bd02b6b5240bfe4d89bb00d37282bc21aedbe09cd45edc6c",
+      "stable_note_fft_checks": [
+        {
+          "note": 63,
+          "center_seconds": 0.1085,
+          "width_seconds": 0.045,
+          "expected_fundamental_hz": 311.127,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 312.9,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 615.04,
+              "peak_relative_global_db": -2.34
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 916.17,
+              "peak_relative_global_db": -6.32
+            }
+          ]
+        },
+        {
+          "note": 68,
+          "center_seconds": 0.1959,
+          "width_seconds": 0.043,
+          "expected_fundamental_hz": 415.305,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 417.21,
+              "peak_relative_global_db": -0.25
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 833.07,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 1251.95,
+              "peak_relative_global_db": -6.39
+            }
+          ]
+        },
+        {
+          "note": 70,
+          "center_seconds": 0.28905,
+          "width_seconds": 0.0485,
+          "expected_fundamental_hz": 466.164,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 469.36,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 935.35,
+              "peak_relative_global_db": -4.89
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 1406.72,
+              "peak_relative_global_db": -3.36
+            }
+          ]
+        },
+        {
+          "note": 75,
+          "center_seconds": 0.418,
+          "width_seconds": 0.06,
+          "expected_fundamental_hz": 622.254,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 619.08,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 1235.13,
+              "peak_relative_global_db": -10.9
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 1858.58,
+              "peak_relative_global_db": -7.87
+            }
+          ]
+        },
+        {
+          "note": 73,
+          "center_seconds": 1.27285,
+          "width_seconds": 0.06,
+          "expected_fundamental_hz": 554.365,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 553.13,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 1099.2,
+              "peak_relative_global_db": -7.84
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 1652.0,
+              "peak_relative_global_db": -1.53
+            }
+          ]
+        },
+        {
+          "note": 70,
+          "center_seconds": 1.3804,
+          "width_seconds": 0.048,
+          "expected_fundamental_hz": 466.164,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 471.38,
+              "peak_relative_global_db": -0.4
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 941.74,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 1417.83,
+              "peak_relative_global_db": -0.22
+            }
+          ]
+        },
+        {
+          "note": 73,
+          "center_seconds": 1.509,
+          "width_seconds": 0.06,
+          "expected_fundamental_hz": 554.365,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 555.15,
+              "peak_relative_global_db": -10.73
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 1098.87,
+              "peak_relative_global_db": -11.09
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 1650.99,
+              "peak_relative_global_db": 0.0
+            }
+          ]
+        },
+        {
+          "note": 75,
+          "center_seconds": 1.807,
+          "width_seconds": 0.06,
+          "expected_fundamental_hz": 622.254,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 618.41,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 1228.74,
+              "peak_relative_global_db": -7.5
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 1849.16,
+              "peak_relative_global_db": -4.83
+            }
+          ]
+        },
+        {
+          "note": 68,
+          "center_seconds": 2.115,
+          "width_seconds": 0.06,
+          "expected_fundamental_hz": 415.305,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 412.5,
+              "peak_relative_global_db": -2.3
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 822.64,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 1229.07,
+              "peak_relative_global_db": -7.68
+            }
+          ]
+        },
+        {
+          "note": 70,
+          "center_seconds": 2.674,
+          "width_seconds": 0.06,
+          "expected_fundamental_hz": 466.164,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 468.68,
+              "peak_relative_global_db": -15.67
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 920.88,
+              "peak_relative_global_db": -7.57
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 1385.53,
+              "peak_relative_global_db": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vangelead",
+      "source_sha256": "cee761c24369a781b9b0b42a3d4b96f7f31cff5aa0903a686993212a322cab31",
+      "published_patch_name": "Vangelead",
+      "published_patch_number": 5,
+      "published_patch_syx_sha256": "ae19b5e27dd1828815a6468fe4d0e3e49c1dea17f931cac02a4c452e204a7624",
+      "raw_tones": [
+        {
+          "waveforms": [
+            0,
+            0
+          ],
+          "coarse_bytes": [
+            64,
+            64
+          ],
+          "wide": [
+            0,
+            0
+          ],
+          "octave_shift": 0
+        },
+        {
+          "waveforms": [
+            7,
+            7
+          ],
+          "coarse_bytes": [
+            64,
+            64
+          ],
+          "wide": [
+            0,
+            0
+          ],
+          "octave_shift": 0
+        }
+      ],
+      "source_start_seconds": 0,
+      "duration_seconds": 5.15,
+      "reconstruction_sha256": "50b80073000d9060d10dcec8797da55202eb312bd5fbbaa6c6283740523cf916",
+      "stable_note_fft_checks": [
+        {
+          "note": 81,
+          "center_seconds": 0.232,
+          "width_seconds": 0.06,
+          "expected_fundamental_hz": 880.0,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 880.84,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 1775.14,
+              "peak_relative_global_db": -23.29
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 2641.52,
+              "peak_relative_global_db": -14.75
+            }
+          ]
+        },
+        {
+          "note": 74,
+          "center_seconds": 1.231,
+          "width_seconds": 0.06,
+          "expected_fundamental_hz": 587.33,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 588.13,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 1177.26,
+              "peak_relative_global_db": -12.27
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 1781.2,
+              "peak_relative_global_db": -27.81
+            }
+          ]
+        },
+        {
+          "note": 67,
+          "center_seconds": 2.2,
+          "width_seconds": 0.06,
+          "expected_fundamental_hz": 391.995,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 392.64,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 785.96,
+              "peak_relative_global_db": -8.55
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 1175.58,
+              "peak_relative_global_db": -12.69
+            }
+          ]
+        },
+        {
+          "note": 60,
+          "center_seconds": 3.247,
+          "width_seconds": 0.06,
+          "expected_fundamental_hz": 261.626,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 262.44,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 525.21,
+              "peak_relative_global_db": -7.12
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 785.29,
+              "peak_relative_global_db": -9.19
+            }
+          ]
+        },
+        {
+          "note": 53,
+          "center_seconds": 4.267,
+          "width_seconds": 0.06,
+          "expected_fundamental_hz": 174.614,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 175.29,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 351.26,
+              "peak_relative_global_db": -6.44
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 525.88,
+              "peak_relative_global_db": -10.03
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brassy-ld-1",
+      "source_sha256": "37b1c739ad3e1df4611b542f745111b78b51d9b372034275f5f1ceab48ed4c00",
+      "published_patch_name": "Brassy Ld 1",
+      "published_patch_number": 8,
+      "published_patch_syx_sha256": "daba0b97a4b9e2674c4832050bbd0d8e869a3b61e9ce867c7055d21b0f4a6f5a",
+      "raw_tones": [
+        {
+          "waveforms": [
+            0,
+            0
+          ],
+          "coarse_bytes": [
+            64,
+            64
+          ],
+          "wide": [
+            0,
+            0
+          ],
+          "octave_shift": 0
+        },
+        {
+          "waveforms": [
+            0,
+            1
+          ],
+          "coarse_bytes": [
+            64,
+            64
+          ],
+          "wide": [
+            0,
+            0
+          ],
+          "octave_shift": 0
+        }
+      ],
+      "source_start_seconds": 0,
+      "duration_seconds": 3.03,
+      "reconstruction_sha256": "79bbdee1d3b93ccbaef43892ee82d801e84657cc54d79cd4800e178e66e4fdd7",
+      "stable_note_fft_checks": [
+        {
+          "note": 75,
+          "center_seconds": 0.1546,
+          "width_seconds": 0.06,
+          "expected_fundamental_hz": 622.254,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 621.77,
+              "peak_relative_global_db": -3.01
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 1243.21,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 1863.97,
+              "peak_relative_global_db": -7.27
+            }
+          ]
+        },
+        {
+          "note": 63,
+          "center_seconds": 0.29405,
+          "width_seconds": 0.06,
+          "expected_fundamental_hz": 311.127,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 310.89,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 622.11,
+              "peak_relative_global_db": -19.25
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 932.32,
+              "peak_relative_global_db": -20.24
+            }
+          ]
+        },
+        {
+          "note": 66,
+          "center_seconds": 0.54275,
+          "width_seconds": 0.0575,
+          "expected_fundamental_hz": 369.994,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 370.1,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 740.2,
+              "peak_relative_global_db": -17.78
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 1109.97,
+              "peak_relative_global_db": -20.84
+            }
+          ]
+        },
+        {
+          "note": 68,
+          "center_seconds": 0.8039,
+          "width_seconds": 0.06,
+          "expected_fundamental_hz": 415.305,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 415.19,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 814.56,
+              "peak_relative_global_db": -26.21
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 1244.89,
+              "peak_relative_global_db": -14.76
+            }
+          ]
+        },
+        {
+          "note": 70,
+          "center_seconds": 1.099,
+          "width_seconds": 0.06,
+          "expected_fundamental_hz": 466.164,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 465.66,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 929.63,
+              "peak_relative_global_db": -18.6
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 1397.64,
+              "peak_relative_global_db": -10.03
+            }
+          ]
+        },
+        {
+          "note": 73,
+          "center_seconds": 1.583,
+          "width_seconds": 0.06,
+          "expected_fundamental_hz": 554.365,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 554.14,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 1108.29,
+              "peak_relative_global_db": -6.04
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 1662.77,
+              "peak_relative_global_db": -5.94
+            }
+          ]
+        },
+        {
+          "note": 75,
+          "center_seconds": 1.9649,
+          "width_seconds": 0.06,
+          "expected_fundamental_hz": 622.254,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 622.11,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 1243.54,
+              "peak_relative_global_db": -4.75
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 1865.31,
+              "peak_relative_global_db": -5.89
+            }
+          ]
+        },
+        {
+          "note": 75,
+          "center_seconds": 2.2042,
+          "width_seconds": 0.06,
+          "expected_fundamental_hz": 622.254,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 622.44,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 1243.88,
+              "peak_relative_global_db": -9.08
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 1866.32,
+              "peak_relative_global_db": -7.23
+            }
+          ]
+        },
+        {
+          "note": 63,
+          "center_seconds": 2.351,
+          "width_seconds": 0.06,
+          "expected_fundamental_hz": 311.127,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 310.89,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 622.11,
+              "peak_relative_global_db": -15.54
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 929.63,
+              "peak_relative_global_db": -27.69
+            }
+          ]
+        },
+        {
+          "note": 61,
+          "center_seconds": 2.6218,
+          "width_seconds": 0.06,
+          "expected_fundamental_hz": 277.183,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 277.24,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 554.48,
+              "peak_relative_global_db": -12.3
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 839.46,
+              "peak_relative_global_db": -28.8
+            }
+          ]
+        },
+        {
+          "note": 63,
+          "center_seconds": 2.86515,
+          "width_seconds": 0.06,
+          "expected_fundamental_hz": 311.127,
+          "observed_nearby_peaks": [
+            {
+              "harmonic": 1,
+              "peak_hz": 311.56,
+              "peak_relative_global_db": 0.0
+            },
+            {
+              "harmonic": 2,
+              "peak_hz": 622.11,
+              "peak_relative_global_db": -14.5
+            },
+            {
+              "harmonic": 3,
+              "peak_hz": 920.21,
+              "peak_relative_global_db": -29.47
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

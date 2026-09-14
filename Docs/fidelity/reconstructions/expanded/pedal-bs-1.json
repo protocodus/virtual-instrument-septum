@@ -1,0 +1,58 @@
+{
+  "id": "pedal-bs-1",
+  "title": "Pedal Bs 1 — three-note bass reconstruction",
+  "reference_id": "bass-04",
+  "duration_seconds": 1.55,
+  "method": "Hardware-only spectral inspection identifies low sine plateaus near 87, 32.3 and 38.5 Hz with Super Saw families roughly one octave above. The published Upper tone octave shift −1 plus WIDE-off sine coarse −12 produces a net −24-semitone sine, while Super Saw coarse 0 gives net −12. These families map to played MIDI 65, 48 and 51. Onsets come from visible spectral renewals; gates are explicitly low-confidence estimates from the start of declining low-band envelopes. The excerpt stops before the fourth attack. No Septum output was used for transcription.",
+  "uncertainties": [
+    "Original performance MIDI is unavailable; this is a source-audio reconstruction, not a recovered original performance.",
+    "All velocities are fixed to 100 as an explicit unknown placeholder; no velocity, preset parameter, or recording EQ was fitted to Septum output.",
+    "Played-note inference assumes default system transpose and the documented/current WIDE-dependent oscillator ranges. Original system settings, controller events, exact recorded patch revision, and recording processing are unknown.",
+    "Event times refer to decoded MP3 audio. Hardware latency, encoder history, oscillator state, and effect history are not recovered; no post-render alignment or time warping is implied.",
+    "The hardware attacks contain measurable pitch movement and the stable low sine is somewhat below equal temperament. No original pitch-bend/controller curve or master tune can be recovered, so none is invented in this note-only MIDI.",
+    "The published patch has long release and delay; note-off times are weak estimates (roughly ±100 ms), not measured key releases. Envelope shape differences must not be attributed solely to synthesizer fidelity.",
+    "Onset estimates have about 15–25 ms uncertainty; residual previous-note energy overlaps the next attack. The steady octave relation is stronger evidence than exact attack pitch or gates.",
+    "The final release continues beyond this 1.55-second crop and is not compared. The patch is kept unchanged, including its stored portamento-off value."
+  ],
+  "schema_version": 1,
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 0,
+  "notes": [
+    {
+      "on": 0.114,
+      "off": 0.19,
+      "note": 65,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "high for family and octave; exact played note conditional on unknown system transpose",
+      "onset_uncertainty_seconds": 0.025,
+      "note_off_confidence": "low; ±100 ms envelope-based placeholder",
+      "velocity_source": "unknown constant placeholder; not fitted to amplitude"
+    },
+    {
+      "on": 0.455,
+      "off": 0.64,
+      "note": 48,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "high for family and octave; exact played note conditional on unknown system transpose",
+      "onset_uncertainty_seconds": 0.025,
+      "note_off_confidence": "low; ±100 ms envelope-based placeholder",
+      "velocity_source": "unknown constant placeholder; not fitted to amplitude"
+    },
+    {
+      "on": 0.837,
+      "off": 1.04,
+      "note": 51,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "high for family and octave; exact played note conditional on unknown system transpose",
+      "onset_uncertainty_seconds": 0.025,
+      "note_off_confidence": "low; ±100 ms envelope-based placeholder",
+      "velocity_source": "unknown constant placeholder; not fitted to amplitude"
+    }
+  ],
+  "preset_parameter_modifications": [],
+  "published_tuning_audit": "SINGLE Upper, octave shift −1. Super Saw raw coarse64/WIDE off → 0, sine28/WIDE off → −12 with fine−7 cents. Net Super Saw −12 and sine −24 semitones. SOLO, portamento off, arpeggiator off. Delay on, reverb off.",
+  "evidence_artifact": "build-fidelity/hardware-benchmark/expanded-transcription-audit/bass-transcription-evidence.json"
+}
