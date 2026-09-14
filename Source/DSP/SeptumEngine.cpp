@@ -455,6 +455,37 @@ void Engine::Reverb::clear()
 // Engine lifecycle
 // ---------------------------------------------------------------------------
 
+TimbreCalibration Engine::defaultTimbreCalibration() noexcept
+{
+    TimbreCalibration result;
+    for (std::size_t i = 0; i < 128; ++i)
+    {
+        const auto raw = static_cast<int> (i);
+        result.cutoffHz[i] = mapping::cutoffHz (raw);
+        result.resonanceDamping[i] = std::max (-0.04, mapping::voiceResonanceDamping (raw));
+        result.secondStageDamping[i] = mapping::voiceSecondStageDamping (result.resonanceDamping[i]);
+        result.attackSeconds[i] = mapping::attackSeconds (raw);
+        result.decaySeconds[i] = mapping::filterDecaySeconds (raw);
+        result.sustainLevel[i] = raw / 127.0;
+        result.releaseSeconds[i] = mapping::decaySeconds (raw);
+        result.pulseDuty[i] = mapping::pulseDuty (raw);
+        result.superDetune[i] = mapping::superSawDetuneAmount (raw / 127.0);
+        result.superCenterGain[i] = mapping::superSawCenterGain();
+        result.superSideGain[i] = mapping::superSawSideGain();
+    }
+    result.waveGain.fill (1.0);
+    result.superOffsets = mapping::superSawOffsets;
+    return result;
+}
+
+bool Engine::setTimbreCalibration (const TimbreCalibration& profile) noexcept
+{
+    if (! profile.valid()) return false;
+    timbre_ = profile;
+    allSoundOff();
+    return true;
+}
+
 Engine::Engine()
 {
     clampToDocumentedRanges (patch_);
@@ -1884,7 +1915,9 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
     if (modulationAssign == ModulationAssign::Filter)
         lfoFilterOct += lever * mapping::leverFilterOctaves * lfo2Value;
 
-    const double cutoffBaseOct = std::log2 (mapping::cutoffHz (tone.cutoff));
+    const double cutoffBaseOct = std::log2 (timbre_.filterEnabled
+        ? TimbreCalibration::lookup (timbre_.cutoffHz, tone.cutoff)
+        : mapping::cutoffHz (tone.cutoff));
     const double keyTrack = mapping::keyFollowOctavesPerOctave (tone.keyFollow)
                             * (voice.glidePitch - 60.0) / 12.0;
     const double velocityOct = mapping::cutoffVelocityOctaves (
@@ -1900,12 +1933,17 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
     // envelope's own level is not, so the segment times the sliders ask for
     // are the segment times the filter gets.
     const double filterEnvOctTarget = mapping::filterEnvOctaves (tone.filterEnvDepth);
-    const double resonanceTarget = mapping::voiceResonanceDamping (tone.resonance);
+    const double resonanceTarget = timbre_.filterEnabled
+        ? TimbreCalibration::lookup (timbre_.resonanceDamping, tone.resonance)
+        : mapping::voiceResonanceDamping (tone.resonance);
+    const double k2Target = timbre_.filterEnabled
+        ? TimbreCalibration::lookup (timbre_.secondStageDamping, tone.resonance) : 1.2;
     if (! voice.controlsPrimed)
     {
         voice.cutoffParamOctSlewed = cutoffParamOctTarget;
         voice.filterEnvOctSlewed = filterEnvOctTarget;
         voice.resonanceSlewed = resonanceTarget;
+        voice.calibratedK2Slewed = k2Target;
         voice.controlsPrimed = true;
     }
     else
@@ -1917,18 +1955,21 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
         voice.filterEnvOctSlewed +=
             (filterEnvOctTarget - voice.filterEnvOctSlewed) * slew;
         voice.resonanceSlewed += (resonanceTarget - voice.resonanceSlewed) * slew;
+        voice.calibratedK2Slewed += (k2Target - voice.calibratedK2Slewed) * slew;
     }
     const double fc = std::clamp (
         std::exp2 (voice.cutoffParamOctSlewed + filterEnvLevel * voice.filterEnvOctSlewed),
         5.0, 0.45 * sampleRate_);
     voice.filterGTarget = std::tan (pi * fc / sampleRate_);
     voice.filterKTarget = voice.resonanceSlewed;
+    voice.calibratedK2Target = voice.calibratedK2Slewed;
     if (! wasPrimed)
     {
         // A fresh note starts *at* its coefficient rather than ramping to it
         // from whatever the previous owner of this voice left behind.
         voice.filterG = voice.filterGTarget;
         voice.filterK = voice.filterKTarget;
+        voice.calibratedK2 = voice.calibratedK2Target;
     }
 
     // -- amp ---------------------------------------------------------------
@@ -2149,6 +2190,7 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
     const double inverseSamples = 1.0 / std::max (1, samples);
     const double gStep = (voice.filterGTarget - voice.filterG) * inverseSamples;
     const double kStep = (voice.filterKTarget - voice.filterK) * inverseSamples;
+    const double k2Step = (voice.calibratedK2Target - voice.calibratedK2) * inverseSamples;
     // How far a crossed switch moves per sample, shared with the external
     // input's switches: the same registered constant, the same meaning.
     const double fadeStep =
@@ -2352,7 +2394,9 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
             const double a1 = 1.0 / (1.0 + g * (g + k));
             const double a2 = g * a1;
             // The empirical voice model adds bounded resonance in stage two.
-            const double k2 = mapping::voiceSecondStageDamping (k);
+            const double k2 = timbre_.filterEnabled
+                ? voice.calibratedK2 + k2Step * (i + 1)
+                : mapping::voiceSecondStageDamping (k);
             const double b1 = 1.0 / (1.0 + g * (g + k2));
             const double b2 = g * b1;
 
@@ -2460,6 +2504,7 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
 
     voice.filterG = voice.filterGTarget;
     voice.filterK = voice.filterKTarget;
+    voice.calibratedK2 = voice.calibratedK2Target;
 
     // Once per tick: keep decayed states out of denormal territory.
     voice.filter1.ic1eq = flushDenormal (voice.filter1.ic1eq);

@@ -16,6 +16,7 @@
 #include "AnalogOutput.h"
 #include "ReverbDamping.h"
 #include "ReverbReadHeads.h"
+#include "TimbreCalibration.h"
 
 #include <algorithm>
 #include <array>
@@ -1011,6 +1012,12 @@ class Engine
 public:
     Engine();
 
+    [[nodiscard]] static TimbreCalibration defaultTimbreCalibration() noexcept;
+    // Comparison-tool configuration, not a live or serialized patch edit.
+    // Validate atomically; installing a valid profile clears voices/effects.
+    // Call between renders, on the engine's owning thread. prepare/reset keep it.
+    [[nodiscard]] bool setTimbreCalibration (const TimbreCalibration&) noexcept;
+
     void prepare (double sampleRate, int maxBlockSize);
     void reset();
 
@@ -1370,6 +1377,8 @@ private:
         // must arrive by its end. The render loop walks between them one
         // sample at a time, so a control tick never steps the coefficient.
         double filterG { 0.1 }, filterK { 2.0 };
+        double calibratedK2 { 1.2 }, calibratedK2Target { 1.2 };
+        double calibratedK2Slewed { 1.2 };
         double filterGTarget { 0.1 }, filterKTarget { 2.0 };
         // TYPE and SLOPE are crossed, not thrown. TYPE has four positions and
         // is automatable, so it carries a weight each; SLOPE has two, and a
@@ -1615,6 +1624,7 @@ private:
     bool hold_ { false };
     bool sostenuto_ { false };
 
+    TimbreCalibration timbre_ {};
     std::array<Voice, maxPolyphony> voices_ {};
     std::array<ToneRuntime, partCount> tones_ {};
     std::array<ArpeggioRuntime, partCount> arpeggios_ {};

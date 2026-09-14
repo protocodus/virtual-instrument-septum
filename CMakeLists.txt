@@ -171,6 +171,11 @@ if(SEPTUM_BUILD_TOOLS)
 endif()
 
 if(BUILD_TESTING)
+    add_executable(SeptumTimbreCalibrationTests Tests/TimbreCalibrationTests.cpp)
+    target_link_libraries(SeptumTimbreCalibrationTests PRIVATE SeptumDSP)
+    add_test(NAME Septum.TimbreCalibration COMMAND SeptumTimbreCalibrationTests)
+    set_tests_properties(Septum.TimbreCalibration PROPERTIES TIMEOUT 120)
+
     add_executable(SeptumEffectSendSmoothingTests Tests/EffectSendSmoothingTests.cpp)
     target_link_libraries(SeptumEffectSendSmoothingTests PRIVATE SeptumDSP)
     add_test(NAME Septum.EffectSendSmoothing COMMAND SeptumEffectSendSmoothingTests)
