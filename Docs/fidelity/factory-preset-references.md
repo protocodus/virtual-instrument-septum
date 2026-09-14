@@ -30,7 +30,7 @@ All 17 demo titles in [Roland's SH-201 audio library](https://www.roland.com/glo
 | D-5 | JP-8SweepPad |
 | D-7 | S&H FX 2 |
 
-**Performance MIDI: unavailable for all 17. Exact MIDI: 0. Estimated MIDI files: 0.** No software render is presented as a matched A/B. The published names establish the intended factory sound, but do not verify the actual patch bytes, live control changes, effects, or mastering used in a recording. These are lossy stereo MP3 references, not confirmed dry captures.
+**Original performance MIDI: unavailable for all 17. Exact MIDI: 0.** A subsequent [recreation set](factory-recreations.md) provides 17 explicitly estimated MIDI files and approximate software patches with comparison audio. The source catalog describes the original downloads; the derived files have separate provenance. The published names establish the intended factory sound, but do not verify the actual patch bytes, live control changes, effects, or mastering used in a recording. These are lossy stereo MP3 references, not confirmed dry captures.
 
 ## Why the default bank is still missing
 
@@ -42,6 +42,8 @@ The official Editor 1.10 distribution and public patch archives were inspected. 
 - A creator's legacy SH-201 Drive archive now requires sign-in. The other checked legacy paths were unavailable or contained additional sounds. Public editor repositories yielded control code or patch-name lists, not factory parameter dumps.
 
 The [source audit](source-audits/factory-bank-search.json) retains archive hashes, candidate-name collisions, unavailable leads, and the scope of the inspection. All downloaded candidate files remain in the ignored research folder, outside the software's default bank.
+
+A [second acquisition pass](source-audits/factory-bank-second-pass.md) checked further owner discussions, indexed archives, code search and librarian leads. It also records the remaining concrete route: an unedited export of the hardware's read-only PRESET bank.
 
 ## Bank selection discrepancy
 

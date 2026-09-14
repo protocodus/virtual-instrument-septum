@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "id": "factory-preset-d5",
+  "title": "JP-8SweepPad — estimated opening excerpt",
+  "reference_id": "factory-preset-d5",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 0,
+  "duration_seconds": 8.15,
+  "method": "Source-only analysis: mono 22050 Hz decoding of the original Roland MP3, 8192-sample Hann STFT at 256-sample hops, nonnegative least-squares decomposition against detune-broadened harmonic templates over MIDI 36–88, and inspection of local FFT peaks and amplitude transitions. Candidate notes were screened for upper-harmonic and subharmonic errors. The first sustained chord has clear independent low families near 87/131/196 Hz (F2/C3/G3). At about 4.1 seconds it shifts up three semitones to roughly 104/156/233 Hz (Ab2/Eb3/Bb3). A slow descending concentration of spectral energy and gradual amplitude swell distinguish the pad from the other examples. Octave-related peaks are not automatically added as additional keys.",
+  "uncertainties": [
+    "Original performance MIDI is unavailable. Every event here is estimated from the MP3, not an exact original MIDI event.",
+    "Velocity 100 is an explicit placeholder. Original velocities, sustain pedal, pitch bend, modulation and other controller events are unavailable and are not recovered.",
+    "Sounding pitch families do not uniquely determine played keys when oscillator octave offsets or layered tones are unknown. This transcription uses sounding fundamentals with a newly designed patch at zero overall transpose.",
+    "MP3 encoding, detuned oscillators, effects and envelope release obscure key-down and key-up times. The MIDI contains practical gates, not measured hardware key releases.",
+    "The patch is newly authored in Septum from spectral and temporal cues. It is an approximation of the named factory sound, not Roland factory SysEx or a recovered hardware preset.",
+    "Long filter and amplifier attacks hide exact initial key-down timing; the two chord starts and releases are uncertain by roughly 150–300 ms.",
+    "The true voicing may contain octave-doubled notes or layered transposed oscillators; three independent sounding fundamentals per chord are used here.",
+    "The 8.15-second boundary excludes the third chord’s onset and ends during the second chord’s release."
+  ],
+  "notes": [
+    {
+      "on": 0.23,
+      "off": 3.84,
+      "note": 41,
+      "velocity": 100
+    },
+    {
+      "on": 0.23,
+      "off": 3.84,
+      "note": 48,
+      "velocity": 100
+    },
+    {
+      "on": 0.23,
+      "off": 3.84,
+      "note": 55,
+      "velocity": 100
+    },
+    {
+      "on": 4.14,
+      "off": 7.91,
+      "note": 44,
+      "velocity": 100
+    },
+    {
+      "on": 4.14,
+      "off": 7.91,
+      "note": 51,
+      "velocity": 100
+    },
+    {
+      "on": 4.14,
+      "off": 7.91,
+      "note": 58,
+      "velocity": 100
+    }
+  ],
+  "patch_design": {
+    "status": "approximate_factory_recreation",
+    "base_program": "INIT PATCH",
+    "name": "APX JP8 Pad",
+    "parameters": {
+      "patchLevel": 100,
+      "keyboardMode": 0,
+      "keyboardPart": 0,
+      "arpeggio.on": false,
+      "upper.mono": 0,
+      "upper.osc1.coarse": 0,
+      "upper.osc2.coarse": 0,
+      "upper.octaveShift": 0,
+      "upper.level": 105,
+      "upper.levelVelocitySens": 0,
+      "upper.cutoffVelocitySens": 0,
+      "upper.overdrive": false,
+      "upper.filterType": 1,
+      "upper.lfo1.depth1": 0,
+      "upper.lfo1.depth2": 0,
+      "upper.lfo2.depth1": 0,
+      "upper.lfo2.depth2": 0,
+      "upper.portamento": false,
+      "upper.osc1.wave": 7,
+      "upper.osc1.pulseWidth": 55,
+      "upper.osc1.fine": -4,
+      "upper.osc2.wave": 7,
+      "upper.osc2.fine": 6,
+      "upper.balance": -25,
+      "upper.filterSlope": 0,
+      "upper.cutoff": 115,
+      "upper.resonance": 35,
+      "upper.keyFollow": 20,
+      "upper.filterEnvAttack": 119,
+      "upper.filterEnvDecay": 127,
+      "upper.filterEnvSustain": 90,
+      "upper.filterEnvRelease": 95,
+      "upper.filterEnvDepth": -25,
+      "upper.ampEnvAttack": 108,
+      "upper.ampEnvDecay": 103,
+      "upper.ampEnvSustain": 108,
+      "upper.ampEnvRelease": 91,
+      "delayOn": true,
+      "upper.delayDepth": 22,
+      "delay.time": 57,
+      "delay.feedback": 0,
+      "delay.modulationRate": 31,
+      "delay.modulationDepth": 74,
+      "reverbOn": true,
+      "upper.reverbDepth": 35,
+      "reverb.time": 87,
+      "reverb.highCut": 15,
+      "upper.osc2.pulseWidth": 44
+    },
+    "rationale": [
+      "Broadly detuned saw-like ridges and a slow amplitude swell suggest a layered saw pad with long attack and release.",
+      "A negative filter envelope is an authored hypothesis for the descending bright-to-dark sweep visible at each chord onset.",
+      "Moderate resonance emphasizes the moving spectral band; quiet chorus-like delay and a longer reverb approximate the diffuse tail.",
+      "The first render removed nearly all upper harmonics after the sweep, whereas the recording retains a diffuse bright band. A 12 dB low-pass, modestly higher base cutoff and shallower/slower negative envelope retain more upper energy; two moderately spread Super Saws and a slower amplifier swell approximate the diffuse source."
+    ],
+    "uncertainties": [
+      "No authenticated factory PRESET dump is available; every changed control value is an authored approximation.",
+      "The recording does not uniquely reveal oscillator topology, layer routing, filter slope, modulation or effect settings.",
+      "Filter polarity and depth are not recovered control values; the slow spectral movement could also result from another envelope or modulation topology.",
+      "A first software render informed these control adjustments. This is a conditional audio match using estimated notes, not recovered factory settings or a hardware-calibrated DSP claim."
+    ]
+  }
+}

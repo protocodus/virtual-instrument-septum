@@ -1,0 +1,19 @@
+{
+  "date": "2026-09-14",
+  "dataset": "build-fidelity/hardware-benchmark/factory-recreations-700f4ee",
+  "cases": 17,
+  "estimated_notes": 619,
+  "excerpt_seconds": 122.19,
+  "exact_original_midi_files": 0,
+  "exact_factory_presets": 0,
+  "manifest_files_checked": 242,
+  "zip_crc_and_hashes": "passed",
+  "all_case_midi_events_and_syx_payloads": "passed independent artifact audit",
+  "all_listening_audio_finite_and_peak_at_most_0_98": true,
+  "http_links_checked": 156,
+  "browser_qa": "Hardware and software playback, Stop, layout and cross-card active-state clearing checked. Same-position A/B switching checked in preview; browser selector introspection timed out in final pass, with playback confirmed visually.",
+  "dataset_manifest_sha256": "d6267b15e44c37b1d24a99af40d1771e285779e118991974ac57d341caec9b61",
+  "archive_sha256": "8e97dcda521964ba363d8b4ebe63847f9d125f4d6a410a93cdd51033b0b8cbc4",
+  "archive_bytes": 383007134,
+  "shipping_dsp_modified": false
+}

@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "id": "factory-preset-a1",
+  "title": "Reso Bass — approximate factory recreation",
+  "reference_id": "factory-preset-a1",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 0,
+  "duration_seconds": 6.2,
+  "method": "Source-only FFT and waveform inspection of the opening phrase. The sustained opening family is 36.7/73.5/110/146.7 Hz (D1); the high stabs are 73.4 Hz D2 and 65.4 Hz C2. The middle run resolves to F1, G1, F1, E1, F1, E1 by multiple harmonic spacings. Attack restarts and near-silent gaps determine the gate estimates. No Septum audio was used to choose note pitches.",
+  "uncertainties": [
+    "ESTIMATED MIDI: original performance MIDI is unavailable. Notes, onsets, note-offs and overlaps are interpretations of the source MP3, not recovered original events.",
+    "Velocity 100 is an explicit constant placeholder, not an estimate of the original key velocities. Note-off velocity is 64. No original controller or pedal events have been recovered.",
+    "The factory parameter dump is unavailable. The companion patch is a newly authored approximate recreation, not exact factory SysEx; an exported SysEx file encodes this approximation only.",
+    "Audio frequencies do not uniquely reveal played key numbers: original oscillator tuning, octave switches and system transpose are unknown. The MIDI and companion patch jointly choose an octave interpretation.",
+    "Times are measured from decoded source MP3 audio; encoder delay, hardware response latency and prior effect state are not removed. Timing is approximate, generally 20–40 ms; short transitions can be less certain.",
+    "The brief middle run is less certain than the separated first four notes. Pitch bend or glide during attacks is simplified to discrete key changes.",
+    "The source has time-varying timbre and level; the static patch approximates the opening envelope without recovering live knob movement."
+  ],
+  "notes": [
+    {
+      "on": 0.105,
+      "off": 1.405,
+      "note": 26,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "medium; source harmonic family supports the sounded register, played-key octave is conditional on the approximate patch",
+      "onset_uncertainty_seconds": 0.03,
+      "note_off_confidence": "estimated from attack/release changes; original gates and overlap are unknown",
+      "velocity_source": "unknown constant placeholder; not inferred from amplitude"
+    },
+    {
+      "on": 1.405,
+      "off": 1.51,
+      "note": 38,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "medium; source harmonic family supports the sounded register, played-key octave is conditional on the approximate patch",
+      "onset_uncertainty_seconds": 0.03,
+      "note_off_confidence": "estimated from attack/release changes; original gates and overlap are unknown",
+      "velocity_source": "unknown constant placeholder; not inferred from amplitude"
+    },
+    {
+      "on": 1.665,
+      "off": 1.795,
+      "note": 36,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "medium; source harmonic family supports the sounded register, played-key octave is conditional on the approximate patch",
+      "onset_uncertainty_seconds": 0.03,
+      "note_off_confidence": "estimated from attack/release changes; original gates and overlap are unknown",
+      "velocity_source": "unknown constant placeholder; not inferred from amplitude"
+    },
+    {
+      "on": 1.795,
+      "off": 1.9,
+      "note": 38,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "medium; source harmonic family supports the sounded register, played-key octave is conditional on the approximate patch",
+      "onset_uncertainty_seconds": 0.03,
+      "note_off_confidence": "estimated from attack/release changes; original gates and overlap are unknown",
+      "velocity_source": "unknown constant placeholder; not inferred from amplitude"
+    },
+    {
+      "on": 2.89,
+      "off": 3.02,
+      "note": 26,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "medium; source harmonic family supports the sounded register, played-key octave is conditional on the approximate patch",
+      "onset_uncertainty_seconds": 0.03,
+      "note_off_confidence": "estimated from attack/release changes; original gates and overlap are unknown",
+      "velocity_source": "unknown constant placeholder; not inferred from amplitude"
+    },
+    {
+      "on": 3.145,
+      "off": 3.28,
+      "note": 29,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "medium; source harmonic family supports the sounded register, played-key octave is conditional on the approximate patch",
+      "onset_uncertainty_seconds": 0.03,
+      "note_off_confidence": "estimated from attack/release changes; original gates and overlap are unknown",
+      "velocity_source": "unknown constant placeholder; not inferred from amplitude"
+    },
+    {
+      "on": 3.28,
+      "off": 3.405,
+      "note": 31,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "medium; source harmonic family supports the sounded register, played-key octave is conditional on the approximate patch",
+      "onset_uncertainty_seconds": 0.03,
+      "note_off_confidence": "estimated from attack/release changes; original gates and overlap are unknown",
+      "velocity_source": "unknown constant placeholder; not inferred from amplitude"
+    },
+    {
+      "on": 3.405,
+      "off": 3.51,
+      "note": 29,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "medium; source harmonic family supports the sounded register, played-key octave is conditional on the approximate patch",
+      "onset_uncertainty_seconds": 0.03,
+      "note_off_confidence": "estimated from attack/release changes; original gates and overlap are unknown",
+      "velocity_source": "unknown constant placeholder; not inferred from amplitude"
+    },
+    {
+      "on": 3.66,
+      "off": 3.8,
+      "note": 28,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "medium; source harmonic family supports the sounded register, played-key octave is conditional on the approximate patch",
+      "onset_uncertainty_seconds": 0.03,
+      "note_off_confidence": "estimated from attack/release changes; original gates and overlap are unknown",
+      "velocity_source": "unknown constant placeholder; not inferred from amplitude"
+    },
+    {
+      "on": 3.8,
+      "off": 3.93,
+      "note": 29,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "medium; source harmonic family supports the sounded register, played-key octave is conditional on the approximate patch",
+      "onset_uncertainty_seconds": 0.03,
+      "note_off_confidence": "estimated from attack/release changes; original gates and overlap are unknown",
+      "velocity_source": "unknown constant placeholder; not inferred from amplitude"
+    },
+    {
+      "on": 3.93,
+      "off": 4.01,
+      "note": 28,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "medium; source harmonic family supports the sounded register, played-key octave is conditional on the approximate patch",
+      "onset_uncertainty_seconds": 0.03,
+      "note_off_confidence": "estimated from attack/release changes; original gates and overlap are unknown",
+      "velocity_source": "unknown constant placeholder; not inferred from amplitude"
+    },
+    {
+      "on": 4.145,
+      "off": 5.38,
+      "note": 26,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "medium; source harmonic family supports the sounded register, played-key octave is conditional on the approximate patch",
+      "onset_uncertainty_seconds": 0.03,
+      "note_off_confidence": "estimated from attack/release changes; original gates and overlap are unknown",
+      "velocity_source": "unknown constant placeholder; not inferred from amplitude"
+    },
+    {
+      "on": 5.38,
+      "off": 5.485,
+      "note": 38,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "medium; source harmonic family supports the sounded register, played-key octave is conditional on the approximate patch",
+      "onset_uncertainty_seconds": 0.03,
+      "note_off_confidence": "estimated from attack/release changes; original gates and overlap are unknown",
+      "velocity_source": "unknown constant placeholder; not inferred from amplitude"
+    },
+    {
+      "on": 5.62,
+      "off": 5.75,
+      "note": 36,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "medium; source harmonic family supports the sounded register, played-key octave is conditional on the approximate patch",
+      "onset_uncertainty_seconds": 0.03,
+      "note_off_confidence": "estimated from attack/release changes; original gates and overlap are unknown",
+      "velocity_source": "unknown constant placeholder; not inferred from amplitude"
+    },
+    {
+      "on": 5.75,
+      "off": 5.845,
+      "note": 38,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "medium; source harmonic family supports the sounded register, played-key octave is conditional on the approximate patch",
+      "onset_uncertainty_seconds": 0.03,
+      "note_off_confidence": "estimated from attack/release changes; original gates and overlap are unknown",
+      "velocity_source": "unknown constant placeholder; not inferred from amplitude"
+    }
+  ],
+  "evidence_artifact": "build-fidelity/hardware-benchmark/factory-reconstruction-audit/leads/reso_bass-fft.json",
+  "patch_design": {
+    "status": "approximate_factory_recreation",
+    "base_program": "INIT PATCH",
+    "name": "APX ResoBass",
+    "parameters": {
+      "patchLevel": 100,
+      "keyboardMode": 0,
+      "keyboardPart": 0,
+      "upper.level": 100,
+      "upper.levelVelocitySens": 0,
+      "upper.osc1.coarse": 0,
+      "upper.osc2.coarse": 0,
+      "upper.ampEnvAttack": 0,
+      "upper.ampEnvDecay": 0,
+      "upper.ampEnvSustain": 127,
+      "upper.ampEnvRelease": 12,
+      "upper.filterEnvSustain": 0,
+      "upper.filterEnvRelease": 15,
+      "upper.cutoffVelocitySens": 0,
+      "delayOn": false,
+      "reverbOn": false,
+      "upper.osc1.wave": 0,
+      "upper.balance": -63,
+      "upper.filterSlope": 1,
+      "upper.cutoff": 40,
+      "upper.resonance": 58,
+      "upper.filterEnvDepth": 24,
+      "upper.filterEnvDecay": 57,
+      "upper.mono": 2,
+      "upper.lowFreq": 1
+    },
+    "rationale": [
+      "A single saw family, resonant 24 dB low-pass and falling filter envelope reproduce the opening bright attack becoming a dark held bass.",
+      "The sustained reference eventually emphasizes roughly 147–183 Hz; the approximate cutoff and envelope target that range in Septum.",
+      "Effects are disabled because the chosen excerpt has nearly silent gaps and little evidence of a long reverb tail.",
+      "Preview spectrum showed the original draft envelope opening beyond the audible band for too long. Reduced depth and decay put its resonance sweep closer to the visible opening descent; this remains an approximate voicing change, not a recovered hardware parameter."
+    ],
+    "uncertainties": [
+      "All voicing values are authored approximation parameters, not measured or recovered Roland factory parameter values.",
+      "The brief middle run is less certain than the separated first four notes. Pitch bend or glide during attacks is simplified to discrete key changes.",
+      "The source has time-varying timbre and level; the static patch approximates the opening envelope without recovering live knob movement."
+    ]
+  }
+}
