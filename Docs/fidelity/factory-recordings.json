@@ -1,0 +1,817 @@
+{
+  "schema_version": 1,
+  "retrieved_date": "2026-09-14",
+  "scope": "Official Roland SH-201 product-page recordings whose names match factory PRESET bank entries. Distinct from the additional Patch 100 banks.",
+  "recording_count": 17,
+  "total_duration_seconds": 448.000289,
+  "total_bytes": 10789169,
+  "provenance_limits": [
+    "Exact factory names and slots are verified against Roland’s published patch list. Name association does not authenticate the patch bytes or live control changes used during recording.",
+    "None of these recordings has a published original performance MIDI file in the inspected product-page audio library. No MIDI is estimated or synthesized by this catalog.",
+    "The files are original publicly distributed MP3s. Their audio includes any effects or mastering present in the published demos; dry output and lossless fidelity are not claimed.",
+    "Factory USER and PRESET banks differ. Every recording here matches a PRESET name and slot. MIDI bank-selection values are transcribed from the Owner’s Manual p. 84 and remain unverified on hardware because the MIDI Implementation pp. 1 and 3 publishes conflicting values."
+  ],
+  "sources": [
+    {
+      "id": "roland-product",
+      "title": "Roland SH-201 product page, Audio Library",
+      "url": "https://www.roland.com/global/products/sh-201/",
+      "local_path": "build-fidelity/hardware-benchmark/exact-source-search-2026-09-14/official-inspection/roland-product.html",
+      "sha256": "4c03d0953e6e37b2372e88d7ab3f97bd5247d0fc554d3a1681a12f4d3f7893bf"
+    },
+    {
+      "id": "source_owner_manual",
+      "title": "SH-201 Owner’s Manual, p. 84, Patch list",
+      "url": "https://static.roland.com/assets/media/pdf/SH-201_OM.pdf",
+      "local_path": "build-fidelity/hardware-benchmark/factory-bank-research/SH-201_OM.pdf",
+      "bytes": 4249153,
+      "sha256": "b4a2968d429c7f3e907a6243723d5e803ae2e0014e8e9107c85bd966deea8e79",
+      "pdf_page_one_based": 84
+    },
+    {
+      "id": "source_midi_implementation",
+      "title": "SH-201 MIDI Implementation, pp. 1 and 3, Bank Select",
+      "url": "https://static.roland.com/assets/media/pdf/SH-201_MI.pdf",
+      "local_path": "build-fidelity/hardware-benchmark/factory-bank-research/SH-201_MI.pdf",
+      "bytes": 182623,
+      "sha256": "71a8fe00a8d232c494a5aba6885756d99e6650fc14671115260d9446c3009546",
+      "pdf_pages_one_based": [
+        1,
+        3
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "title": "SH-201 Demo Song",
+      "source_url": "https://static.roland.com/assets/media/mp3/sh_201_demo_song.mp3",
+      "reason": "Multi-sound song credited to Scott Tibbs; not a single named factory patch demo."
+    }
+  ],
+  "recordings": [
+    {
+      "id": "factory-preset-a1",
+      "name": "Reso Bass",
+      "factory_preset": {
+        "bank": "PRESET",
+        "slot": "A-1",
+        "index_zero_based": 0,
+        "bank_select_msb": 87,
+        "bank_select_lsb": 64,
+        "program_change_display": 1,
+        "program_change_wire": 0,
+        "bank_select_source": "source_owner_manual",
+        "bank_select_source_page_one_based": 84,
+        "bank_select_hardware_verified": false,
+        "bank_select_status": "conflicting_official_documents"
+      },
+      "audio": {
+        "source_url": "https://static.roland.com/assets/media/mp3/sh_201_reso_bass.mp3",
+        "local_path": "build-fidelity/hardware-benchmark/factory-bank-research/recordings/sh_201_reso_bass.mp3",
+        "format": "MP3",
+        "bytes": 474896,
+        "sha256": "c543d9befad2c62219f1247a6946096222c99c8eb9329f404a97e7daea7c2148",
+        "duration_seconds": 19.696333,
+        "sample_rate_hz": 44100,
+        "channels": 2,
+        "bit_rate": 192887,
+        "full_decode_verified": true
+      },
+      "preset_match": {
+        "status": "official_factory_name_match",
+        "evidence": "The official product page demo title exactly matches the factory PRESET name in the Owner’s Manual patch list, p. 84.",
+        "recording_specific_sysex": "unavailable",
+        "recorded_factory_revision_verified": false,
+        "live_controls_or_external_processing_verified": false
+      },
+      "midi": {
+        "status": "unavailable",
+        "exact_original_performance": false,
+        "reconstructed": false,
+        "file": null
+      },
+      "eligible_for_exact_input_ab": false
+    },
+    {
+      "id": "factory-preset-a2",
+      "name": "Fat Saw Lead",
+      "factory_preset": {
+        "bank": "PRESET",
+        "slot": "A-2",
+        "index_zero_based": 1,
+        "bank_select_msb": 87,
+        "bank_select_lsb": 64,
+        "program_change_display": 2,
+        "program_change_wire": 1,
+        "bank_select_source": "source_owner_manual",
+        "bank_select_source_page_one_based": 84,
+        "bank_select_hardware_verified": false,
+        "bank_select_status": "conflicting_official_documents"
+      },
+      "audio": {
+        "source_url": "https://static.roland.com/assets/media/mp3/sh_201_fat_saw_lead.mp3",
+        "local_path": "build-fidelity/hardware-benchmark/factory-bank-research/recordings/sh_201_fat_saw_lead.mp3",
+        "format": "MP3",
+        "bytes": 513143,
+        "sha256": "fce227ac4dac28d85760243f2ca7e10a621b7202925c715817ef936e9acb758d",
+        "duration_seconds": 21.289833,
+        "sample_rate_hz": 44100,
+        "channels": 2,
+        "bit_rate": 192821,
+        "full_decode_verified": true
+      },
+      "preset_match": {
+        "status": "official_factory_name_match",
+        "evidence": "The official product page demo title exactly matches the factory PRESET name in the Owner’s Manual patch list, p. 84.",
+        "recording_specific_sysex": "unavailable",
+        "recorded_factory_revision_verified": false,
+        "live_controls_or_external_processing_verified": false
+      },
+      "midi": {
+        "status": "unavailable",
+        "exact_original_performance": false,
+        "reconstructed": false,
+        "file": null
+      },
+      "eligible_for_exact_input_ab": false
+    },
+    {
+      "id": "factory-preset-a3",
+      "name": "SilkyStrings",
+      "factory_preset": {
+        "bank": "PRESET",
+        "slot": "A-3",
+        "index_zero_based": 2,
+        "bank_select_msb": 87,
+        "bank_select_lsb": 64,
+        "program_change_display": 3,
+        "program_change_wire": 2,
+        "bank_select_source": "source_owner_manual",
+        "bank_select_source_page_one_based": 84,
+        "bank_select_hardware_verified": false,
+        "bank_select_status": "conflicting_official_documents"
+      },
+      "audio": {
+        "source_url": "https://static.roland.com/assets/media/mp3/sh_201_silky_strings.mp3",
+        "local_path": "build-fidelity/hardware-benchmark/factory-bank-research/recordings/sh_201_silky_strings.mp3",
+        "format": "MP3",
+        "bytes": 782727,
+        "sha256": "bc28dfb1fcadaf8218e10c7522bf3f44a40386f9a68f1151dec31cc5ca5cad65",
+        "duration_seconds": 32.522458,
+        "sample_rate_hz": 44100,
+        "channels": 2,
+        "bit_rate": 192538,
+        "full_decode_verified": true
+      },
+      "preset_match": {
+        "status": "official_factory_name_match",
+        "evidence": "The official product page demo title exactly matches the factory PRESET name in the Owner’s Manual patch list, p. 84.",
+        "recording_specific_sysex": "unavailable",
+        "recorded_factory_revision_verified": false,
+        "live_controls_or_external_processing_verified": false
+      },
+      "midi": {
+        "status": "unavailable",
+        "exact_original_performance": false,
+        "reconstructed": false,
+        "file": null
+      },
+      "eligible_for_exact_input_ab": false
+    },
+    {
+      "id": "factory-preset-a5",
+      "name": "OSC SyncLead",
+      "factory_preset": {
+        "bank": "PRESET",
+        "slot": "A-5",
+        "index_zero_based": 4,
+        "bank_select_msb": 87,
+        "bank_select_lsb": 64,
+        "program_change_display": 5,
+        "program_change_wire": 4,
+        "bank_select_source": "source_owner_manual",
+        "bank_select_source_page_one_based": 84,
+        "bank_select_hardware_verified": false,
+        "bank_select_status": "conflicting_official_documents"
+      },
+      "audio": {
+        "source_url": "https://static.roland.com/assets/media/mp3/sh_201_osc_sync_lead.mp3",
+        "local_path": "build-fidelity/hardware-benchmark/factory-bank-research/recordings/sh_201_osc_sync_lead.mp3",
+        "format": "MP3",
+        "bytes": 564553,
+        "sha256": "89b52a52601a2e8591e20809ec1f2d495335fd700840c8d6526569d08557de87",
+        "duration_seconds": 23.431875,
+        "sample_rate_hz": 44100,
+        "channels": 2,
+        "bit_rate": 192747,
+        "full_decode_verified": true
+      },
+      "preset_match": {
+        "status": "official_factory_name_match",
+        "evidence": "The official product page demo title exactly matches the factory PRESET name in the Owner’s Manual patch list, p. 84.",
+        "recording_specific_sysex": "unavailable",
+        "recorded_factory_revision_verified": false,
+        "live_controls_or_external_processing_verified": false
+      },
+      "midi": {
+        "status": "unavailable",
+        "exact_original_performance": false,
+        "reconstructed": false,
+        "file": null
+      },
+      "eligible_for_exact_input_ab": false
+    },
+    {
+      "id": "factory-preset-a6",
+      "name": "SuperSawBrs",
+      "factory_preset": {
+        "bank": "PRESET",
+        "slot": "A-6",
+        "index_zero_based": 5,
+        "bank_select_msb": 87,
+        "bank_select_lsb": 64,
+        "program_change_display": 6,
+        "program_change_wire": 5,
+        "bank_select_source": "source_owner_manual",
+        "bank_select_source_page_one_based": 84,
+        "bank_select_hardware_verified": false,
+        "bank_select_status": "conflicting_official_documents"
+      },
+      "audio": {
+        "source_url": "https://static.roland.com/assets/media/mp3/sh_201_super_saw_brs.mp3",
+        "local_path": "build-fidelity/hardware-benchmark/factory-bank-research/recordings/sh_201_super_saw_brs.mp3",
+        "format": "MP3",
+        "bytes": 515651,
+        "sha256": "fa2a238bb07fa17403eb7ef5c4b839959ab518764c961b16121d1dd7e08870fd",
+        "duration_seconds": 21.394292,
+        "sample_rate_hz": 44100,
+        "channels": 2,
+        "bit_rate": 192818,
+        "full_decode_verified": true
+      },
+      "preset_match": {
+        "status": "official_factory_name_match",
+        "evidence": "The official product page demo title exactly matches the factory PRESET name in the Owner’s Manual patch list, p. 84.",
+        "recording_specific_sysex": "unavailable",
+        "recorded_factory_revision_verified": false,
+        "live_controls_or_external_processing_verified": false
+      },
+      "midi": {
+        "status": "unavailable",
+        "exact_original_performance": false,
+        "reconstructed": false,
+        "file": null
+      },
+      "eligible_for_exact_input_ab": false
+    },
+    {
+      "id": "factory-preset-a7",
+      "name": "Electro Seq",
+      "factory_preset": {
+        "bank": "PRESET",
+        "slot": "A-7",
+        "index_zero_based": 6,
+        "bank_select_msb": 87,
+        "bank_select_lsb": 64,
+        "program_change_display": 7,
+        "program_change_wire": 6,
+        "bank_select_source": "source_owner_manual",
+        "bank_select_source_page_one_based": 84,
+        "bank_select_hardware_verified": false,
+        "bank_select_status": "conflicting_official_documents"
+      },
+      "audio": {
+        "source_url": "https://static.roland.com/assets/media/mp3/sh_201_electro_seq.mp3",
+        "local_path": "build-fidelity/hardware-benchmark/factory-bank-research/recordings/sh_201_electro_seq.mp3",
+        "format": "MP3",
+        "bytes": 507499,
+        "sha256": "fbcf0bfa60ded7cf49a20f16762f30864c3987cffdc886674a48bca38c5047d2",
+        "duration_seconds": 21.054708,
+        "sample_rate_hz": 44100,
+        "channels": 2,
+        "bit_rate": 192830,
+        "full_decode_verified": true
+      },
+      "preset_match": {
+        "status": "official_factory_name_match",
+        "evidence": "The official product page demo title exactly matches the factory PRESET name in the Owner’s Manual patch list, p. 84.",
+        "recording_specific_sysex": "unavailable",
+        "recorded_factory_revision_verified": false,
+        "live_controls_or_external_processing_verified": false
+      },
+      "midi": {
+        "status": "unavailable",
+        "exact_original_performance": false,
+        "reconstructed": false,
+        "file": null
+      },
+      "eligible_for_exact_input_ab": false
+    },
+    {
+      "id": "factory-preset-b1",
+      "name": "Fat Bass",
+      "factory_preset": {
+        "bank": "PRESET",
+        "slot": "B-1",
+        "index_zero_based": 8,
+        "bank_select_msb": 87,
+        "bank_select_lsb": 64,
+        "program_change_display": 9,
+        "program_change_wire": 8,
+        "bank_select_source": "source_owner_manual",
+        "bank_select_source_page_one_based": 84,
+        "bank_select_hardware_verified": false,
+        "bank_select_status": "conflicting_official_documents"
+      },
+      "audio": {
+        "source_url": "https://static.roland.com/assets/media/mp3/sh_201_fat_bass.mp3",
+        "local_path": "build-fidelity/hardware-benchmark/factory-bank-research/recordings/sh_201_fat_bass.mp3",
+        "format": "MP3",
+        "bytes": 575205,
+        "sha256": "b1b61f2c52f025aca1d2dbccad5943587eebcaa8629dcc0a3257caa0ebe2dd17",
+        "duration_seconds": 23.875917,
+        "sample_rate_hz": 44100,
+        "channels": 2,
+        "bit_rate": 192731,
+        "full_decode_verified": true
+      },
+      "preset_match": {
+        "status": "official_factory_name_match",
+        "evidence": "The official product page demo title exactly matches the factory PRESET name in the Owner’s Manual patch list, p. 84.",
+        "recording_specific_sysex": "unavailable",
+        "recorded_factory_revision_verified": false,
+        "live_controls_or_external_processing_verified": false
+      },
+      "midi": {
+        "status": "unavailable",
+        "exact_original_performance": false,
+        "reconstructed": false,
+        "file": null
+      },
+      "eligible_for_exact_input_ab": false
+    },
+    {
+      "id": "factory-preset-b4",
+      "name": "SuperSawKey",
+      "factory_preset": {
+        "bank": "PRESET",
+        "slot": "B-4",
+        "index_zero_based": 11,
+        "bank_select_msb": 87,
+        "bank_select_lsb": 64,
+        "program_change_display": 12,
+        "program_change_wire": 11,
+        "bank_select_source": "source_owner_manual",
+        "bank_select_source_page_one_based": 84,
+        "bank_select_hardware_verified": false,
+        "bank_select_status": "conflicting_official_documents"
+      },
+      "audio": {
+        "source_url": "https://static.roland.com/assets/media/mp3/sh_201_super_saw_key.mp3",
+        "local_path": "build-fidelity/hardware-benchmark/factory-bank-research/recordings/sh_201_super_saw_key.mp3",
+        "format": "MP3",
+        "bytes": 689940,
+        "sha256": "f0f8e77969fc74bfad3838df8a427cf57355d982a43fed8c89ee7026a658b50b",
+        "duration_seconds": 28.656333,
+        "sample_rate_hz": 44100,
+        "channels": 2,
+        "bit_rate": 192610,
+        "full_decode_verified": true
+      },
+      "preset_match": {
+        "status": "official_factory_name_match",
+        "evidence": "The official product page demo title exactly matches the factory PRESET name in the Owner’s Manual patch list, p. 84.",
+        "recording_specific_sysex": "unavailable",
+        "recorded_factory_revision_verified": false,
+        "live_controls_or_external_processing_verified": false
+      },
+      "midi": {
+        "status": "unavailable",
+        "exact_original_performance": false,
+        "reconstructed": false,
+        "file": null
+      },
+      "eligible_for_exact_input_ab": false
+    },
+    {
+      "id": "factory-preset-b5",
+      "name": "FB OSC Lead",
+      "factory_preset": {
+        "bank": "PRESET",
+        "slot": "B-5",
+        "index_zero_based": 12,
+        "bank_select_msb": 87,
+        "bank_select_lsb": 64,
+        "program_change_display": 13,
+        "program_change_wire": 12,
+        "bank_select_source": "source_owner_manual",
+        "bank_select_source_page_one_based": 84,
+        "bank_select_hardware_verified": false,
+        "bank_select_status": "conflicting_official_documents"
+      },
+      "audio": {
+        "source_url": "https://static.roland.com/assets/media/mp3/sh_201_fb_osc_lead.mp3",
+        "local_path": "build-fidelity/hardware-benchmark/factory-bank-research/recordings/sh_201_fb_osc_lead.mp3",
+        "format": "MP3",
+        "bytes": 788368,
+        "sha256": "f8caca227320b8be5eca2ae18b4fe3971028c5e34ff0eecf04989b1945399365",
+        "duration_seconds": 32.757583,
+        "sample_rate_hz": 44100,
+        "channels": 2,
+        "bit_rate": 192533,
+        "full_decode_verified": true
+      },
+      "preset_match": {
+        "status": "official_factory_name_match",
+        "evidence": "The official product page demo title exactly matches the factory PRESET name in the Owner’s Manual patch list, p. 84.",
+        "recording_specific_sysex": "unavailable",
+        "recorded_factory_revision_verified": false,
+        "live_controls_or_external_processing_verified": false
+      },
+      "midi": {
+        "status": "unavailable",
+        "exact_original_performance": false,
+        "reconstructed": false,
+        "file": null
+      },
+      "eligible_for_exact_input_ab": false
+    },
+    {
+      "id": "factory-preset-b6",
+      "name": "Poly Synth",
+      "factory_preset": {
+        "bank": "PRESET",
+        "slot": "B-6",
+        "index_zero_based": 13,
+        "bank_select_msb": 87,
+        "bank_select_lsb": 64,
+        "program_change_display": 14,
+        "program_change_wire": 13,
+        "bank_select_source": "source_owner_manual",
+        "bank_select_source_page_one_based": 84,
+        "bank_select_hardware_verified": false,
+        "bank_select_status": "conflicting_official_documents"
+      },
+      "audio": {
+        "source_url": "https://static.roland.com/assets/media/mp3/sh_201_poly_synth.mp3",
+        "local_path": "build-fidelity/hardware-benchmark/factory-bank-research/recordings/sh_201_poly_synth.mp3",
+        "format": "MP3",
+        "bytes": 450447,
+        "sha256": "677a6b7c78d7d060019db2b4c5276ccbbc7435a294976cd9977be1a7cedfe6a1",
+        "duration_seconds": 18.677583,
+        "sample_rate_hz": 44100,
+        "channels": 2,
+        "bit_rate": 192935,
+        "full_decode_verified": true
+      },
+      "preset_match": {
+        "status": "official_factory_name_match",
+        "evidence": "The official product page demo title exactly matches the factory PRESET name in the Owner’s Manual patch list, p. 84.",
+        "recording_specific_sysex": "unavailable",
+        "recorded_factory_revision_verified": false,
+        "live_controls_or_external_processing_verified": false
+      },
+      "midi": {
+        "status": "unavailable",
+        "exact_original_performance": false,
+        "reconstructed": false,
+        "file": null
+      },
+      "eligible_for_exact_input_ab": false
+    },
+    {
+      "id": "factory-preset-b7",
+      "name": "Sweep Arp",
+      "factory_preset": {
+        "bank": "PRESET",
+        "slot": "B-7",
+        "index_zero_based": 14,
+        "bank_select_msb": 87,
+        "bank_select_lsb": 64,
+        "program_change_display": 15,
+        "program_change_wire": 14,
+        "bank_select_source": "source_owner_manual",
+        "bank_select_source_page_one_based": 84,
+        "bank_select_hardware_verified": false,
+        "bank_select_status": "conflicting_official_documents"
+      },
+      "audio": {
+        "source_url": "https://static.roland.com/assets/media/mp3/sh_201_sweep_arp.mp3",
+        "local_path": "build-fidelity/hardware-benchmark/factory-bank-research/recordings/sh_201_sweep_arp.mp3",
+        "format": "MP3",
+        "bytes": 710625,
+        "sha256": "16bac9a92a00daa355b8e29aab7c872effd74cb6baf746950230cff445fa4c19",
+        "duration_seconds": 29.518375,
+        "sample_rate_hz": 44100,
+        "channels": 2,
+        "bit_rate": 192591,
+        "full_decode_verified": true
+      },
+      "preset_match": {
+        "status": "official_factory_name_match",
+        "evidence": "The official product page demo title exactly matches the factory PRESET name in the Owner’s Manual patch list, p. 84.",
+        "recording_specific_sysex": "unavailable",
+        "recorded_factory_revision_verified": false,
+        "live_controls_or_external_processing_verified": false
+      },
+      "midi": {
+        "status": "unavailable",
+        "exact_original_performance": false,
+        "reconstructed": false,
+        "file": null
+      },
+      "eligible_for_exact_input_ab": false
+    },
+    {
+      "id": "factory-preset-c4",
+      "name": "SH-201 EP",
+      "factory_preset": {
+        "bank": "PRESET",
+        "slot": "C-4",
+        "index_zero_based": 19,
+        "bank_select_msb": 87,
+        "bank_select_lsb": 64,
+        "program_change_display": 20,
+        "program_change_wire": 19,
+        "bank_select_source": "source_owner_manual",
+        "bank_select_source_page_one_based": 84,
+        "bank_select_hardware_verified": false,
+        "bank_select_status": "conflicting_official_documents"
+      },
+      "audio": {
+        "source_url": "https://static.roland.com/assets/media/mp3/sh_201_sh_201_ep.mp3",
+        "local_path": "build-fidelity/hardware-benchmark/factory-bank-research/recordings/sh_201_sh_201_ep.mp3",
+        "format": "MP3",
+        "bytes": 604673,
+        "sha256": "7a9c0ae5b88f5a5fdb72dfa5cd1225f03ebd2671eaaaf74fed3f376498fb3d4c",
+        "duration_seconds": 25.103708,
+        "sample_rate_hz": 44100,
+        "channels": 2,
+        "bit_rate": 192695,
+        "full_decode_verified": true
+      },
+      "preset_match": {
+        "status": "official_factory_name_match",
+        "evidence": "The official product page demo title exactly matches the factory PRESET name in the Owner’s Manual patch list, p. 84.",
+        "recording_specific_sysex": "unavailable",
+        "recorded_factory_revision_verified": false,
+        "live_controls_or_external_processing_verified": false
+      },
+      "midi": {
+        "status": "unavailable",
+        "exact_original_performance": false,
+        "reconstructed": false,
+        "file": null
+      },
+      "eligible_for_exact_input_ab": false
+    },
+    {
+      "id": "factory-preset-c5",
+      "name": "Sweep Up",
+      "factory_preset": {
+        "bank": "PRESET",
+        "slot": "C-5",
+        "index_zero_based": 20,
+        "bank_select_msb": 87,
+        "bank_select_lsb": 64,
+        "program_change_display": 21,
+        "program_change_wire": 20,
+        "bank_select_source": "source_owner_manual",
+        "bank_select_source_page_one_based": 84,
+        "bank_select_hardware_verified": false,
+        "bank_select_status": "conflicting_official_documents"
+      },
+      "audio": {
+        "source_url": "https://static.roland.com/assets/media/mp3/sh_201_sweep_up.mp3",
+        "local_path": "build-fidelity/hardware-benchmark/factory-bank-research/recordings/sh_201_sweep_up.mp3",
+        "format": "MP3",
+        "bytes": 845416,
+        "sha256": "f374805fd6d8db4e0cfbb5c67a6bc7eaee21abb4e8ae6abb7af32f5d5132c3ed",
+        "duration_seconds": 35.134708,
+        "sample_rate_hz": 44100,
+        "channels": 2,
+        "bit_rate": 192497,
+        "full_decode_verified": true
+      },
+      "preset_match": {
+        "status": "official_factory_name_match",
+        "evidence": "The official product page demo title exactly matches the factory PRESET name in the Owner’s Manual patch list, p. 84.",
+        "recording_specific_sysex": "unavailable",
+        "recorded_factory_revision_verified": false,
+        "live_controls_or_external_processing_verified": false
+      },
+      "midi": {
+        "status": "unavailable",
+        "exact_original_performance": false,
+        "reconstructed": false,
+        "file": null
+      },
+      "eligible_for_exact_input_ab": false
+    },
+    {
+      "id": "factory-preset-c6",
+      "name": "Trancy 201",
+      "factory_preset": {
+        "bank": "PRESET",
+        "slot": "C-6",
+        "index_zero_based": 21,
+        "bank_select_msb": 87,
+        "bank_select_lsb": 64,
+        "program_change_display": 22,
+        "program_change_wire": 21,
+        "bank_select_source": "source_owner_manual",
+        "bank_select_source_page_one_based": 84,
+        "bank_select_hardware_verified": false,
+        "bank_select_status": "conflicting_official_documents"
+      },
+      "audio": {
+        "source_url": "https://static.roland.com/assets/media/mp3/sh_201_trancy_201.mp3",
+        "local_path": "build-fidelity/hardware-benchmark/factory-bank-research/recordings/sh_201_trancy_201.mp3",
+        "format": "MP3",
+        "bytes": 383364,
+        "sha256": "2686491ed872f22e7a02f9487f1ae698faa547e635f945ed72fed8c91266476f",
+        "duration_seconds": 15.882458,
+        "sample_rate_hz": 44100,
+        "channels": 2,
+        "bit_rate": 193100,
+        "full_decode_verified": true
+      },
+      "preset_match": {
+        "status": "official_factory_name_match",
+        "evidence": "The official product page demo title exactly matches the factory PRESET name in the Owner’s Manual patch list, p. 84.",
+        "recording_specific_sysex": "unavailable",
+        "recorded_factory_revision_verified": false,
+        "live_controls_or_external_processing_verified": false
+      },
+      "midi": {
+        "status": "unavailable",
+        "exact_original_performance": false,
+        "reconstructed": false,
+        "file": null
+      },
+      "eligible_for_exact_input_ab": false
+    },
+    {
+      "id": "factory-preset-c7",
+      "name": "Sliced Pd/Bs",
+      "factory_preset": {
+        "bank": "PRESET",
+        "slot": "C-7",
+        "index_zero_based": 22,
+        "bank_select_msb": 87,
+        "bank_select_lsb": 64,
+        "program_change_display": 23,
+        "program_change_wire": 22,
+        "bank_select_source": "source_owner_manual",
+        "bank_select_source_page_one_based": 84,
+        "bank_select_hardware_verified": false,
+        "bank_select_status": "conflicting_official_documents"
+      },
+      "audio": {
+        "source_url": "https://static.roland.com/assets/media/mp3/sh_201_sliced_pd_bs.mp3",
+        "local_path": "build-fidelity/hardware-benchmark/factory-bank-research/recordings/sh_201_sliced_pd_bs.mp3",
+        "format": "MP3",
+        "bytes": 475526,
+        "sha256": "18f831686eb8c74c30e0f723f6abc54d7ed1173cb713c48d2f2c608aa723ffe0",
+        "duration_seconds": 19.722458,
+        "sample_rate_hz": 44100,
+        "channels": 2,
+        "bit_rate": 192887,
+        "full_decode_verified": true
+      },
+      "preset_match": {
+        "status": "official_factory_name_match",
+        "evidence": "The official product page demo title exactly matches the factory PRESET name in the Owner’s Manual patch list, p. 84.",
+        "recording_specific_sysex": "unavailable",
+        "recorded_factory_revision_verified": false,
+        "live_controls_or_external_processing_verified": false
+      },
+      "midi": {
+        "status": "unavailable",
+        "exact_original_performance": false,
+        "reconstructed": false,
+        "file": null
+      },
+      "eligible_for_exact_input_ab": false
+    },
+    {
+      "id": "factory-preset-d5",
+      "name": "JP-8SweepPad",
+      "factory_preset": {
+        "bank": "PRESET",
+        "slot": "D-5",
+        "index_zero_based": 28,
+        "bank_select_msb": 87,
+        "bank_select_lsb": 64,
+        "program_change_display": 29,
+        "program_change_wire": 28,
+        "bank_select_source": "source_owner_manual",
+        "bank_select_source_page_one_based": 84,
+        "bank_select_hardware_verified": false,
+        "bank_select_status": "conflicting_official_documents"
+      },
+      "audio": {
+        "source_url": "https://static.roland.com/assets/media/mp3/sh_201_jp_8_sweep_pad.mp3",
+        "local_path": "build-fidelity/hardware-benchmark/factory-bank-research/recordings/sh_201_jp_8_sweep_pad.mp3",
+        "format": "MP3",
+        "bytes": 916893,
+        "sha256": "4ea96105a6c511a48bccda5895ff734b058f3092e0e1999abc342cf597dc13cd",
+        "duration_seconds": 38.112667,
+        "sample_rate_hz": 44100,
+        "channels": 2,
+        "bit_rate": 192459,
+        "full_decode_verified": true
+      },
+      "preset_match": {
+        "status": "official_factory_name_match",
+        "evidence": "The official product page demo title exactly matches the factory PRESET name in the Owner’s Manual patch list, p. 84.",
+        "recording_specific_sysex": "unavailable",
+        "recorded_factory_revision_verified": false,
+        "live_controls_or_external_processing_verified": false
+      },
+      "midi": {
+        "status": "unavailable",
+        "exact_original_performance": false,
+        "reconstructed": false,
+        "file": null
+      },
+      "eligible_for_exact_input_ab": false
+    },
+    {
+      "id": "factory-preset-d7",
+      "name": "S&H FX 2",
+      "factory_preset": {
+        "bank": "PRESET",
+        "slot": "D-7",
+        "index_zero_based": 30,
+        "bank_select_msb": 87,
+        "bank_select_lsb": 64,
+        "program_change_display": 31,
+        "program_change_wire": 30,
+        "bank_select_source": "source_owner_manual",
+        "bank_select_source_page_one_based": 84,
+        "bank_select_hardware_verified": false,
+        "bank_select_status": "conflicting_official_documents"
+      },
+      "audio": {
+        "source_url": "https://static.roland.com/assets/media/mp3/sh_201_s_and_h_fx_2.mp3",
+        "local_path": "build-fidelity/hardware-benchmark/factory-bank-research/recordings/sh_201_s_and_h_fx_2.mp3",
+        "format": "MP3",
+        "bytes": 990243,
+        "sha256": "39b05b2e809ad743e31c2d38e40520042dd95385cdbb323112db46af5488e614",
+        "duration_seconds": 41.169,
+        "sample_rate_hz": 44100,
+        "channels": 2,
+        "bit_rate": 192424,
+        "full_decode_verified": true
+      },
+      "preset_match": {
+        "status": "official_factory_name_match",
+        "evidence": "The official product page demo title exactly matches the factory PRESET name in the Owner’s Manual patch list, p. 84.",
+        "recording_specific_sysex": "unavailable",
+        "recorded_factory_revision_verified": false,
+        "live_controls_or_external_processing_verified": false
+      },
+      "midi": {
+        "status": "unavailable",
+        "exact_original_performance": false,
+        "reconstructed": false,
+        "file": null
+      },
+      "eligible_for_exact_input_ab": false
+    }
+  ],
+  "bank_selection_provenance": {
+    "status": "conflicting_official_documents_hardware_unverified",
+    "catalog_value_source": "source_owner_manual",
+    "source_owner_manual": {
+      "source_id": "source_owner_manual",
+      "page_one_based": 84,
+      "preset": {
+        "msb": 87,
+        "lsb": 64
+      },
+      "user": {
+        "msb": 87,
+        "lsb": 0
+      }
+    },
+    "source_midi_implementation": {
+      "source_id": "source_midi_implementation",
+      "pages_one_based": [
+        1,
+        3
+      ],
+      "preset": {
+        "msb": 87,
+        "lsb": 0
+      },
+      "user": {
+        "msb": 87,
+        "lsb": 20
+      }
+    },
+    "hardware_verified": false,
+    "note": "Factory names and slots remain verified. The conflicting bank-select tables prevent treating either documented MIDI mapping as verified hardware behavior."
+  }
+}

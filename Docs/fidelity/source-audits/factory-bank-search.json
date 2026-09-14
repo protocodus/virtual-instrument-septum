@@ -1,0 +1,443 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-09-14",
+  "factory_bank_found": false,
+  "verified_factory_patches_added_to_software": 0,
+  "scope": "Bounded public-source search; lack of a verified acquisition is not proof no factory dump exists elsewhere.",
+  "full_local_audit": "build-fidelity/hardware-benchmark/factory-bank-research/factory-bank-search-audit.json",
+  "full_local_audit_sha256": "9e714936060ac5b106ea4eb852050f6855ac553898a90b7b5a43c98dfb4fdd62",
+  "archives": [
+    {
+      "file": "Lello Caliendo collection.zip",
+      "url": "https://www.rolandclan.com/media/20/Lello%20Caliendo%20collection.zip",
+      "sha256": "ffc214b8e354a497e5ce53042d6c6118d0a37911d4b91202936e460f8344bb54",
+      "bytes": 3022,
+      "library_patch_counts": [
+        {
+          "member": "lello caliendo vol1+ vol2.shl",
+          "patch_count": 18
+        }
+      ],
+      "classification": "Custom designer bank, not the factory bank."
+    },
+    {
+      "file": "Nutrient_collection.zip",
+      "url": "https://www.rolandclan.com/media/20/Nutrient_collection.zip",
+      "sha256": "f3a6d22cf900c992b7f3d2e6d6b4cc699a57802e737799385e7d85b08341d533",
+      "bytes": 54345,
+      "library_patch_counts": [],
+      "classification": "Factory-name candidates among edited variants; exact factory identity unverified.",
+      "she_file_count": 123,
+      "distinct_factory_name_matches": 15,
+      "name_collision_evidence": {
+        "Brite Bass": "Five different parameter payloads under the same embedded name.",
+        "JP-8 SoftPAD": "Two parameter payloads differ at44bytes.",
+        "Sweep Arp": "Two parameter payloads differ at265bytes.",
+        "Fat Bass": "Two parameter payloads differ at35bytes."
+      },
+      "factory_name_candidates": [
+        {
+          "member": "Nutrient_collection/Bass/Angry Bass.she",
+          "embedded_name": "Angry Bass",
+          "source_sha256": "e34df7b1f580c870a99807dcb85b9bceaf83120d0b0d1127f12c6d2d795bd857",
+          "factory_group_by_name_only": "USER",
+          "factory_program_by_name_only": 17,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/Bass/Brite Bass.she",
+          "embedded_name": "Brite Bass",
+          "source_sha256": "783ae1e0b5c88697f5efd44c2f5d1bbff4330eec118362125ce5b74b571d1077",
+          "factory_group_by_name_only": "USER",
+          "factory_program_by_name_only": 9,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/Bass/Fat Bass.she",
+          "embedded_name": "Fat Bass",
+          "source_sha256": "ede8df2e08016d33c9213b65f1bca1485d9f0365774e9b251142b5809a0e41e3",
+          "factory_group_by_name_only": "PRESET",
+          "factory_program_by_name_only": 9,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/Bass/SweepSFat Bass    she.she",
+          "embedded_name": "Fat Bass",
+          "source_sha256": "1a1c94727c166a9987a3703fa4e048098c3e6925a3a3d493859086529def114f",
+          "factory_group_by_name_only": "PRESET",
+          "factory_program_by_name_only": 9,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/FX/Brite Bass3.she",
+          "embedded_name": "Brite Bass",
+          "source_sha256": "6260804528f3d78004c3d428e76fe20d92d47737689c2a0fedd60e3e5c98bce5",
+          "factory_group_by_name_only": "USER",
+          "factory_program_by_name_only": 9,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/FX/Fat Bass2.she",
+          "embedded_name": "Fat Bass",
+          "source_sha256": "276a195de969f271277e37e0bc9e4ad561ccacfaba80144c4c4f95a3c970922c",
+          "factory_group_by_name_only": "PRESET",
+          "factory_program_by_name_only": 9,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/FX/FormantMover.she",
+          "embedded_name": "FormantMover",
+          "source_sha256": "2b71b3955514e5df571b4fd38356c2a8cb099bc0542a0ef531b22f6f699b1584",
+          "factory_group_by_name_only": "USER",
+          "factory_program_by_name_only": 8,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/FX/S&H FX 1.she",
+          "embedded_name": "S&H FX 1",
+          "source_sha256": "fa23ad1e40da35f11e07c4362e01cdcbe5566fa9b7b3d2c548c6dac0314142c7",
+          "factory_group_by_name_only": "PRESET",
+          "factory_program_by_name_only": 16,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/Keys/FB Ring Lead3.she",
+          "embedded_name": "FB Ring Lead",
+          "source_sha256": "379db39e7b09b46309e04d4d0beda103c92c475329da7bb2d6480d20467aa329",
+          "factory_group_by_name_only": "USER",
+          "factory_program_by_name_only": 29,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/Keys/JP-8 SoftPA2.she",
+          "embedded_name": "JP-8 SoftPAD",
+          "source_sha256": "a13a22de5617370b13c8cc7094900bb76a215f14be3f703767045afb78968908",
+          "factory_group_by_name_only": "PRESET",
+          "factory_program_by_name_only": 27,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/Keys/JP-8 SoftPAD.she",
+          "embedded_name": "JP-8 SoftPAD",
+          "source_sha256": "4decb8f97f57449f50e64bf2d0b680dab3ddcd518975372dd950fb2e0e37776a",
+          "factory_group_by_name_only": "PRESET",
+          "factory_program_by_name_only": 27,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/Keys/ProfessorKe2.she",
+          "embedded_name": "ProfessorKey",
+          "source_sha256": "6be5aeaac56eb5e558082cc3f57037ef1f1cbda4166d3fbdb35e56e00ec0f525",
+          "factory_group_by_name_only": "USER",
+          "factory_program_by_name_only": 22,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/Keys/RingBellStk.she",
+          "embedded_name": "RingBellStk",
+          "source_sha256": "8f67ed6ade38d2fcea033c3ef1df471ed3942e06b35c852adaf0b342af528ab2",
+          "factory_group_by_name_only": "USER",
+          "factory_program_by_name_only": 4,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/Keys/SBF FRingBellStk.she",
+          "embedded_name": "RingBellStk",
+          "source_sha256": "dacf174de6365fa5bc4d0e47c18794c90735280ac26b8ce7e84dc1ea38cf72c1",
+          "factory_group_by_name_only": "USER",
+          "factory_program_by_name_only": 4,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/Keys/Soft Keys.she",
+          "embedded_name": "Soft Keys",
+          "source_sha256": "dda345538d86085635dad01bd7e332016c0dd6f2a224606824ce599a537512ff",
+          "factory_group_by_name_only": "USER",
+          "factory_program_by_name_only": 20,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/Keys/Trancy 201a.she",
+          "embedded_name": "Trancy 201",
+          "source_sha256": "ba4a56a4124aac8771be78b835931a5a23db89e342565e3fa9c0c05318cb6817",
+          "factory_group_by_name_only": "PRESET",
+          "factory_program_by_name_only": 22,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/Leads/Brite Bass3a.she",
+          "embedded_name": "Brite Bass",
+          "source_sha256": "b1a8edbe5bb654facb7d5c278e2b036f940492389833fed1494219c28a496098",
+          "factory_group_by_name_only": "USER",
+          "factory_program_by_name_only": 9,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/Leads/Brite Bass4.she",
+          "embedded_name": "Brite Bass",
+          "source_sha256": "f0246cfba6e2b54cdbb87c6c8984e9f9f3af3c6e93c19d5b063ff902e42d9d0f",
+          "factory_group_by_name_only": "USER",
+          "factory_program_by_name_only": 9,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/Leads/Brite Bass5.she",
+          "embedded_name": "Brite Bass",
+          "source_sha256": "11e79621058116d7f205691ac1e38189a1633aa44aed8fd10e966ffc1bd00373",
+          "factory_group_by_name_only": "USER",
+          "factory_program_by_name_only": 9,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/Leads/FB Ring Lead.she",
+          "embedded_name": "FB Ring Lead",
+          "source_sha256": "2dd2637d01b06021994a57464a5afcf6bad1a3f59714ac681a0f61cea08ed563",
+          "factory_group_by_name_only": "USER",
+          "factory_program_by_name_only": 29,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/Leads/SBF FeedBack.she",
+          "embedded_name": "SBF FeedBack",
+          "source_sha256": "3c0e9afea29ab58b79353197ca6c6f0192461e1271dccdbd8d4cf68688673f8d",
+          "factory_group_by_name_only": "USER",
+          "factory_program_by_name_only": 5,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/Leads/Sweep Arp.she",
+          "embedded_name": "Sweep Arp",
+          "source_sha256": "3dbec5e9eb654a1a9f6393468ee6a594aee50fc210205abc5826686861fbbe56",
+          "factory_group_by_name_only": "PRESET",
+          "factory_program_by_name_only": 15,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/Leads/Sweep Arp3.she",
+          "embedded_name": "Sweep Arp",
+          "source_sha256": "0866b1193a82e33e0a237e1861703b5e4d51938360dd4202236b516149c4477a",
+          "factory_group_by_name_only": "PRESET",
+          "factory_program_by_name_only": 15,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/Leads/SweepSweep Arp.she",
+          "embedded_name": "Sweep Arp",
+          "source_sha256": "6d02bf1a280c9b704cd5a75959ce253c6521cd581abecf33f610cc0e3e5b101f",
+          "factory_group_by_name_only": "PRESET",
+          "factory_program_by_name_only": 15,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/Pads/AsteroidBelt.she",
+          "embedded_name": "AsteroidBelt",
+          "source_sha256": "8c98ffa361e080c29a8138610e09442b446e57b9aff7b6965c424e291b703797",
+          "factory_group_by_name_only": "USER",
+          "factory_program_by_name_only": 24,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        },
+        {
+          "member": "Nutrient_collection/Pads/Retro Str.she",
+          "embedded_name": "Retro Str",
+          "source_sha256": "52d8fbe6e46fe2cc1a1c2e6e3256fe3c05f11413b14c445ca876f4ea82cc5875",
+          "factory_group_by_name_only": "USER",
+          "factory_program_by_name_only": 27,
+          "apparent_parameter_bytes": 1240,
+          "expected_parameter_bytes": 1240,
+          "all_parameter_bytes_7bit": true,
+          "qualification": "Name match only; untouched factory parameters unverified. Do not distribute as exact factory patch."
+        }
+      ]
+    },
+    {
+      "file": "Roland collection.zip",
+      "url": "https://www.rolandclan.com/media/20/Roland%20collection.zip",
+      "sha256": "f5b8693e56e5c2bce8fe5110a807c2b7ac78abf15d4d2f9c9438575e031264f4",
+      "bytes": 39346,
+      "library_patch_counts": [
+        {
+          "member": "SH-201_PD100_20081120.shl",
+          "patch_count": 100
+        },
+        {
+          "member": "SH201_BS100_20081022.shl",
+          "patch_count": 100
+        },
+        {
+          "member": "SH201_FX100_20081120.shl",
+          "patch_count": 100
+        },
+        {
+          "member": "SH201_LD100_20081026.shl",
+          "patch_count": 100
+        }
+      ],
+      "classification": "Additional Patch 100 banks, not the factory bank."
+    },
+    {
+      "file": "Synthdesign collection.zip",
+      "url": "https://www.rolandclan.com/media/20/Synthdesign%20collection.zip",
+      "sha256": "c184006dceed07412d1c02f519d3f3ad2e27816e71ca9ff55f819bc3c6960310",
+      "bytes": 20384,
+      "library_patch_counts": [
+        {
+          "member": "Synthdesign_SH-201/Effects/Effects ST.shl",
+          "patch_count": 32
+        },
+        {
+          "member": "Synthdesign_SH-201/Nostradamos/Nostradamos.shl",
+          "patch_count": 32
+        },
+        {
+          "member": "Synthdesign_SH-201/Teamworx/Teamworx.shl",
+          "patch_count": 32
+        }
+      ],
+      "classification": "Custom designer banks, not the factory bank."
+    }
+  ],
+  "unavailable_leads": [
+    {
+      "url": "https://synthetic242.se/sh201/",
+      "result": "HTTP404"
+    },
+    {
+      "url": "https://acpc.me/#ACME/_BONUS/ROLAND_SH-201",
+      "result": "Current index no SH-201 directory; direct directory HTTP404"
+    },
+    {
+      "url": "https://sysexdb.com",
+      "result": "TLS connection reset"
+    },
+    {
+      "url": "https://api.github.com/search/repositories?q=SH-201",
+      "result": "HTTP403; public web GitHub search HTTP429"
+    },
+    {
+      "url": "https://web.archive.org/cdx/search/cdx?url=acpc.me/ACME/_BONUS/ROLAND_SH-201/*&output=json&filter=statuscode:200&collapse=urlkey",
+      "result": "Empty CDX result."
+    },
+    {
+      "url": "https://drive.google.com/drive/folders/0B3PzgxleWwMIQkJMeVY5RWtaNVU",
+      "referring_page": "https://techiesexpedition.blogspot.com/2017/02/volkaoss-arduino-firmware-sources.html",
+      "result": "Redirects to Google Drive: Sign-in, no public files listed. Blog SH-201 row promises documents, Win64 drivers, VST editor and Cubase text mixermap; it does not advertise a factory bank or SH-201 firmware."
+    }
+  ],
+  "official_editor_inspection": {
+    "url": "https://static.roland.com/assets/media/dmg/SH201_Editor110_osx.dmg",
+    "sha256": "4552fd6d51c184b876fb1522108cee95abce604c90ca0299b4f55fc01a555e86",
+    "method": "Read-only image mount; archive member inventory and raw ASCII/UTF-16 representative-name search. No installer or downloaded executable executed. Does not exhaust compressed or proprietary encodings.",
+    "query_names": [
+      "Reso Bass",
+      "SilkyStrings",
+      "Fat Saw Lead",
+      "TB Dist Lead",
+      "INIT PATCH"
+    ],
+    "result": "Only INIT PATCH matched; no complete factory bank acquired.",
+    "hit_members": [
+      {
+        "archive": "SH-201 Editor Installer/SH-201 Editor Installer.mpkg/Contents/Packages/SH2E.mpkg/Contents/Packages/SH2Script.pkg/Contents/Archive.pax.gz",
+        "member": "./Roland/SH-201 Editor/Script/BufferModel.xml",
+        "size": 43822,
+        "sha256": "e8b51e54b397eb1715a05a2efa52e984e1d7cd4929e071ded58d30b022c313d5",
+        "known_name_hits": [
+          "INIT PATCH"
+        ]
+      },
+      {
+        "archive": "SH-201 Editor Installer/SH-201 Editor Installer.mpkg/Contents/Packages/SH2E.mpkg/Contents/Packages/SH2Script.pkg/Contents/Archive.pax.gz",
+        "member": "./Roland/SH-201 Editor/Script/SH-201EditorScript.xml",
+        "size": 200212,
+        "sha256": "ada7ac0700d8f6453c390c6164e07f94bcbaf68fb5a79e144f89c42f3b9afa7d",
+        "known_name_hits": [
+          "INIT PATCH"
+        ]
+      },
+      {
+        "archive": "SH-201 Editor Installer/SH-201 Editor Installer.mpkg/Contents/Packages/SH2L.pkg/Contents/Archive.pax.gz",
+        "member": "./Roland/SH-201 Editor/SH-201 Librarian.app/Contents/MacOS/SH-201 Librarian",
+        "size": 5391436,
+        "sha256": "9424adc67a55d9e34134e493e224ed0781aa409d6a6d3bb8fce0da9d3eadfb60",
+        "known_name_hits": [
+          "INIT PATCH"
+        ]
+      }
+    ]
+  }
+}
