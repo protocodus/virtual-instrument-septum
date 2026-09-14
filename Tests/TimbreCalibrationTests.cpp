@@ -106,11 +106,52 @@ void envelopeTests()
         bad = c; bad.releaseSeconds[61] = 121; expect (! bad.valid(), "reject excessive release");
     }
 }
+void waveformTests()
+{
+    for (double rate : { 44100., 48000., 96000. })
+        for (int wave = 0; wave < 5; ++wave)
+        {
+            auto p = patch(); p.upper.filterType = septum::FilterType::Bypass;
+            p.upper.osc1.wave = static_cast<septum::Waveform> (wave);
+            septum::Engine base, identity, inverted, shifted;
+            auto c = septum::Engine::defaultTimbreCalibration(); c.wavesEnabled = true;
+            expect (identity.setTimbreCalibration (c), "valid waveform identity");
+            prepare (base, rate, p); prepare (identity, rate, p);
+            const auto original = render (base);
+            expect (difference (original, render (identity)) == 0, "default wave convention preserves all five waveforms");
+            c.waveGain[static_cast<std::size_t> (wave)] = -1;
+            expect (inverted.setTimbreCalibration (c), "valid waveform polarity diagnostic");
+            prepare (inverted, rate, p);
+            auto negative = render (inverted);
+            for (auto& x : negative) x = -x;
+            expect (difference (original, negative) < 1e-8, "whole waveform including correction inverts exactly");
+            c.waveGain[static_cast<std::size_t> (wave)] = 1;
+            c.phaseCycles[static_cast<std::size_t> (wave)] = 0.5;
+            expect (shifted.setTimbreCalibration (c), "valid half-cycle convention");
+            prepare (shifted, rate, p);
+            auto half = render (shifted);
+            if (wave == 1 || wave == 3 || wave == 4)
+            {
+                for (auto& x : half) x = -x;
+                expect (difference (original, half) < 1e-7, "symmetric waveform phase shift agrees with independent polarity control");
+            }
+            auto bad = c; bad.phaseCycles[0] = 1; expect (! bad.valid(), "reject unwrapped phase");
+            bad = c; bad.pulseDuty[0] = 0; expect (! bad.valid(), "reject zero-width pulse");
+        }
+    auto p = patch(); p.upper.osc1.wave = septum::Waveform::PulseSquare; p.upper.osc1.pulseWidth = 40;
+    septum::Engine custom, reference;
+    auto c = septum::Engine::defaultTimbreCalibration(); c.wavesEnabled = true;
+    for (std::size_t i = 0; i < 128; ++i) c.pulseDuty[i] = septum::mapping::pulseDuty (std::min (127, static_cast<int> (i) + 20));
+    expect (custom.setTimbreCalibration (c), "valid PW curve");
+    prepare (custom, 48000, p); p.upper.osc1.pulseWidth += 20; prepare (reference, 48000, p);
+    expect (difference (render (custom), render (reference)) == 0, "PW table matches independently shifted control");
+}
 } // namespace
 int main()
 {
     filterTests();
     envelopeTests();
+    waveformTests();
     std::printf ("Timbre calibration: %d checks, %d failures\n", checks, failures);
     return failures != 0;
 }

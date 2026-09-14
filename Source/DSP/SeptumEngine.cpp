@@ -1882,8 +1882,8 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
 
     const double pw1 = pwValue (1, tone.osc1);
     const double pw2 = pwValue (2, tone.osc2);
-    voice.duty1 = mapping::pulseDuty (pw1);
-    voice.duty2 = mapping::pulseDuty (pw2);
+    voice.duty1 = timbre_.wavesEnabled ? TimbreCalibration::lookup (timbre_.pulseDuty, pw1) : mapping::pulseDuty (pw1);
+    voice.duty2 = timbre_.wavesEnabled ? TimbreCalibration::lookup (timbre_.pulseDuty, pw2) : mapping::pulseDuty (pw2);
     voice.superAmount1 = mapping::superSawDetuneAmount (pw1 / 127.0);
     voice.superAmount2 = mapping::superSawDetuneAmount (pw2 / 127.0);
     voice.fbGain1 = mapping::fbOscGain (pw1);
@@ -2058,7 +2058,7 @@ namespace
     inline OscOutput renderClassicWave (Waveform wave, double& phase, double inc,
                                         double duty, std::uint32_t& noiseRng,
                                         NoiseSource& noise,
-                                        bool corrected = true) noexcept
+                                        bool corrected = true, double phaseOffset = 0.0) noexcept
     {
         phase += inc;
         bool wrapped = false;
@@ -2070,30 +2070,34 @@ namespace
             wrapOffset = phase / std::max (1.0e-9, inc);
         }
 
+        // Waveform convention is separate from the canonical clock used by
+        // SYNC. Offset the waveform and its BLEP/BLAMP together; shifting only
+        // the naive function would leave correction impulses at the old edge.
+        const double position = phaseOffset == 0.0 ? phase : frac (phase + phaseOffset);
         switch (wave)
         {
             case Waveform::Saw:
             {
-                double value = 2.0 * phase - 1.0;
+                double value = 2.0 * position - 1.0;
                 if (corrected)
-                    value -= polyBlep (phase, inc);
+                    value -= polyBlep (position, inc);
                 return { value, wrapped, wrapOffset };
             }
             case Waveform::Square:
             case Waveform::PulseSquare:
             {
                 const double width = wave == Waveform::Square ? 0.5 : duty;
-                double value = phase < width ? 1.0 : -1.0;
+                double value = position < width ? 1.0 : -1.0;
                 if (corrected)
                 {
-                    value += polyBlep (phase, inc);
-                    value -= polyBlep (frac (phase - width + 1.0), inc);
+                    value += polyBlep (position, inc);
+                    value -= polyBlep (frac (position - width + 1.0), inc);
                 }
                 return { value, wrapped, wrapOffset };
             }
             case Waveform::Triangle:
             {
-                double value = phase < 0.5 ? 4.0 * phase - 1.0 : 3.0 - 4.0 * phase;
+                double value = position < 0.5 ? 4.0 * position - 1.0 : 3.0 - 4.0 * position;
                 if (! corrected)
                     return { value, wrapped, wrapOffset };
                 // polyBlamp is the antiderivative of polyBlep with respect to
@@ -2104,12 +2108,12 @@ namespace
                 // overshoots by exactly as much as it corrects and the
                 // triangle measures the same as no correction at all.
                 const double scale = 4.0 * inc;
-                value += scale * polyBlamp (phase, inc);
-                value -= scale * polyBlamp (frac (phase + 0.5), inc);
+                value += scale * polyBlamp (position, inc);
+                value -= scale * polyBlamp (frac (position + 0.5), inc);
                 return { value, wrapped, wrapOffset };
             }
             case Waveform::Sine:
-                return { std::sin (twoPi * phase), wrapped, wrapOffset };
+                return { std::sin (twoPi * position), wrapped, wrapOffset };
             case Waveform::Noise:
                 // [voiced, OQ-03] White across the audio band, at the
                 // instrument's own rate rather than the host's — see
@@ -2128,6 +2132,16 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
     const TonePatch& tone = voiceTonePatch (voice);
     const Waveform wave1 = tone.osc1.wave;
     const Waveform wave2 = tone.osc2.wave;
+
+    const auto classicParameter = [&] (Waveform wave, const std::array<double, 5>& values, double fallback)
+    {
+        const auto index = static_cast<std::size_t> (wave);
+        return timbre_.wavesEnabled && index < values.size() ? values[index] : fallback;
+    };
+    const double phaseOffset1 = classicParameter (wave1, timbre_.phaseCycles, 0.0);
+    const double phaseOffset2 = classicParameter (wave2, timbre_.phaseCycles, 0.0);
+    const double classicGain1 = classicParameter (wave1, timbre_.waveGain, 1.0);
+    const double classicGain2 = classicParameter (wave2, timbre_.waveGain, 1.0);
 
     const double legGain1 = mapping::balanceLegGain (tone.balance, true);
     const double legGain2 = mapping::balanceLegGain (tone.balance, false);
@@ -2276,7 +2290,7 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
                 const auto out = renderClassicWave (wave2, voice.osc2.phase,
                                                     voice.inc2, voice.duty2,
                                                     voice.noiseRng,
-                                                    voice.osc2.noise);
+                                                    voice.osc2.noise, true, phaseOffset2);
                 sample2 = out.value;
                 osc2Wrapped = out.wrapped;
                 osc2WrapOffset = out.wrapOffset;
@@ -2346,13 +2360,15 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
                                                     voice.inc1, voice.duty1,
                                                     voice.noiseRng,
                                                     voice.osc1.noise,
-                                                    ! osc1SyncReset);
+                                                    ! osc1SyncReset, phaseOffset1);
                 sample1 = out.value;
                 break;
             }
         }
 
         // ---- MIX/MOD -----------------------------------------------------
+        sample1 *= classicGain1;
+        sample2 *= classicGain2;
         // RING replaces the OSC1 leg with the product (settled: balance fully
         // left outputs the ring-modulated sound).
         const double leg1 = tone.mixType == MixModType::Ring ? sample1 * sample2
