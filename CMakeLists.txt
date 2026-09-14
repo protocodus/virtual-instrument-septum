@@ -150,6 +150,18 @@ endif()
 option(SEPTUM_BUILD_TOOLS "Build offline Septum tools" ON)
 
 if(SEPTUM_BUILD_TOOLS)
+    if(SEPTUM_BUILD_PLUGIN)
+        # Native .septum files use the processor's existing save/load format.
+        # Keep the other offline tools usable without JUCE.
+        add_executable(SeptumConvertPresets Tools/ConvertPresets.cpp)
+        target_link_libraries(SeptumConvertPresets PRIVATE Septum)
+        target_include_directories(SeptumConvertPresets PRIVATE
+            "${CMAKE_CURRENT_SOURCE_DIR}/Source"
+            "$<TARGET_PROPERTY:Septum,JUCE_GENERATED_SOURCES_DIRECTORY>"
+            "$<TARGET_PROPERTY:Septum,INCLUDE_DIRECTORIES>")
+        target_compile_features(SeptumConvertPresets PRIVATE cxx_std_20)
+    endif()
+
     add_executable(SeptumRenderMidi Tools/RenderMidi.cpp)
     target_link_libraries(SeptumRenderMidi PRIVATE SeptumDSP)
     target_compile_features(SeptumRenderMidi PRIVATE cxx_std_20)

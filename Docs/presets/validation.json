@@ -1,0 +1,43 @@
+{
+  "date": "2026-09-14",
+  "patches": 400,
+  "native_files": 400,
+  "sysex_files": 400,
+  "category_counts": {
+    "Bass": 100,
+    "Leads": 100,
+    "Pads": 100,
+    "Effects": 100
+  },
+  "subcategory_folders": 72,
+  "exact_source_parameter_duplicates": 0,
+  "complete_22_block_sources_verified": 400,
+  "native_reload_and_arpeggio_grid_verified": 400,
+  "native_parameter_normalizations": {
+    "patches": 39,
+    "bytes": 43,
+    "type": "WIDE-off coarse-tuning positions canonicalized by existing codec",
+    "per_category": {
+      "Bass": 2,
+      "Leads": 11,
+      "Pads": 12,
+      "Effects": 14
+    },
+    "independent_patch_by_patch_comparison": "passed"
+  },
+  "converter_negative_checks": {
+    "existing_output_preserved": "passed",
+    "incomplete_patch_rejected": "passed",
+    "duplicate_block_rejected": "passed"
+  },
+  "synthetic_full_arpeggio_grid_reload": "passed",
+  "browser_category_and_subcategory_expansion": "passed",
+  "local_http_links_checked": 803,
+  "archive_files_checked": 810,
+  "archive_bytes": 1079370,
+  "archive_sha256": "47d8c633d28ea3a47a629087af65b90f2cfaa66a093965941f2269db264889b0",
+  "converter_sha256": "1ee1e0f501b43cdbc091b2e90f7f4927ca827c281e9a6dc5000001af4bbf2d9f",
+  "builder_sha256": "bb53606c2bab518a53af21f20104d422a3db6533fa13ece05cd2f1d9c59d7262",
+  "native_audio_equivalence_to_hardware_claimed": false,
+  "shipping_dsp_modified": false
+}
