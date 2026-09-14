@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "id": "brassy-ld-1",
+  "title": "Brassy Ld 1 — opening staccato phrase",
+  "reference_id": "lead-08",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 0,
+  "duration_seconds": 3.03,
+  "method": "Hardware-only 4096-sample STFT and 70 ms Hann-window FFT inspection. Settled fundamental families near 622, 311, 370, 415, 466, 554 and 277 Hz identify MIDI 75, 63, 66, 68, 70, 73 and 61. The published single Upper tone has oscillator coarse bytes 64, WIDE off and octave shift 0; no transposition is needed. Note onsets come from renewed harmonic families and the initial energy rise. Short key releases are approximated just before the large RMS falls, separated from the much quieter delay tails; pitch transient peaks are not interpreted as extra MIDI notes. No software audio or patch fitting was used.",
+  "uncertainties": [
+    "Original performance MIDI is unavailable. This is an audio-derived estimate, not an original MIDI file.",
+    "Velocity 100 is a placeholder for every note; original velocity, controllers, system transpose and exact recording patch revision are unverified.",
+    "Published delay/reverb and recording processing obscure exact key-down/up times. Note boundaries are estimated, generally within 10–30 ms; longer ambiguity is described below.",
+    "No Septum audio or synthesis parameter search was used to choose these notes. The paired Roland preset must remain unmodified.",
+    "Early pitch/brightness transients and beating do not reveal original pitch controllers or oscillator phase. Stable pitch centers, rather than transient frequency maxima, determine note numbers.",
+    "The 3.03-second excerpt ends in the quiet tail before the next note at about 3.06 seconds. Exact releases are less certain than stable pitches; velocities and expression are not recovered."
+  ],
+  "notes": [
+    {
+      "on": 0.061,
+      "off": 0.205,
+      "note": 75,
+      "velocity": 100
+    },
+    {
+      "on": 0.205,
+      "off": 0.342,
+      "note": 63,
+      "velocity": 100
+    },
+    {
+      "on": 0.468,
+      "off": 0.583,
+      "note": 66,
+      "velocity": 100
+    },
+    {
+      "on": 0.722,
+      "off": 0.848,
+      "note": 68,
+      "velocity": 100
+    },
+    {
+      "on": 1.004,
+      "off": 1.481,
+      "note": 70,
+      "velocity": 100
+    },
+    {
+      "on": 1.488,
+      "off": 1.792,
+      "note": 73,
+      "velocity": 100
+    },
+    {
+      "on": 1.87,
+      "off": 2.016,
+      "note": 75,
+      "velocity": 100
+    },
+    {
+      "on": 2.121,
+      "off": 2.249,
+      "note": 75,
+      "velocity": 100
+    },
+    {
+      "on": 2.256,
+      "off": 2.421,
+      "note": 63,
+      "velocity": 100
+    },
+    {
+      "on": 2.536,
+      "off": 2.668,
+      "note": 61,
+      "velocity": 100
+    },
+    {
+      "on": 2.78,
+      "off": 2.911,
+      "note": 63,
+      "velocity": 100
+    }
+  ]
+}

@@ -1,0 +1,666 @@
+{
+  "schema_version": 1,
+  "id": "factory-preset-b6",
+  "title": "Poly Synth — estimated opening excerpt",
+  "reference_id": "factory-preset-b6",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 0,
+  "duration_seconds": 7.15,
+  "method": "Source-only analysis: mono 22050 Hz decoding of the original Roland MP3, 8192-sample Hann STFT at 256-sample hops, nonnegative least-squares decomposition against detune-broadened harmonic templates over MIDI 36–88, and inspection of local FFT peaks and amplitude transitions. Candidate notes were screened for upper-harmonic and subharmonic errors. Four chord families are directly visible in the fundamental region: C4/D4/F4/G4, C4/E4/G4, Ab3/C4/Eb4/G4, and Bb3/D4/F4/G4. Local FFTs show their distinct ~262/294/349/392 Hz components, separating real chord tones from octave harmonics. Repeated broadband amplitude attacks determine the syncopated rhythm; the excerpt stops before the next chord family.",
+  "uncertainties": [
+    "Original performance MIDI is unavailable. Every event here is estimated from the MP3, not an exact original MIDI event.",
+    "Velocity 100 is an explicit placeholder. Original velocities, sustain pedal, pitch bend, modulation and other controller events are unavailable and are not recovered.",
+    "Sounding pitch families do not uniquely determine played keys when oscillator octave offsets or layered tones are unknown. This transcription uses sounding fundamentals with a newly designed patch at zero overall transpose.",
+    "MP3 encoding, detuned oscillators, effects and envelope release obscure key-down and key-up times. The MIDI contains practical gates, not measured hardware key releases.",
+    "The patch is newly authored in Septum from spectral and temporal cues. It is an approximation of the named factory sound, not Roland factory SysEx or a recovered hardware preset.",
+    "Short staccato note releases and envelope decay are difficult to separate. Gates between 70 and 260 ms are authored estimates guided by visible amplitude gaps.",
+    "Additional quiet octave doubles may be masked. No low NNLS subharmonic candidates were accepted without a corresponding fundamental peak."
+  ],
+  "notes": [
+    {
+      "on": 0.118,
+      "off": 0.188,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 0.118,
+      "off": 0.188,
+      "note": 62,
+      "velocity": 100
+    },
+    {
+      "on": 0.118,
+      "off": 0.188,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 0.118,
+      "off": 0.188,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 0.225,
+      "off": 0.295,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 0.225,
+      "off": 0.295,
+      "note": 62,
+      "velocity": 100
+    },
+    {
+      "on": 0.225,
+      "off": 0.295,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 0.225,
+      "off": 0.295,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 0.446,
+      "off": 0.706,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 0.446,
+      "off": 0.706,
+      "note": 62,
+      "velocity": 100
+    },
+    {
+      "on": 0.446,
+      "off": 0.706,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 0.446,
+      "off": 0.706,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 0.775,
+      "off": 0.875,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 0.775,
+      "off": 0.875,
+      "note": 62,
+      "velocity": 100
+    },
+    {
+      "on": 0.775,
+      "off": 0.875,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 0.775,
+      "off": 0.875,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 1.219,
+      "off": 1.319,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 1.219,
+      "off": 1.319,
+      "note": 62,
+      "velocity": 100
+    },
+    {
+      "on": 1.219,
+      "off": 1.319,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 1.219,
+      "off": 1.319,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 1.658,
+      "off": 1.758,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 1.658,
+      "off": 1.758,
+      "note": 62,
+      "velocity": 100
+    },
+    {
+      "on": 1.658,
+      "off": 1.758,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 1.658,
+      "off": 1.758,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 1.878,
+      "off": 1.948,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 1.878,
+      "off": 1.948,
+      "note": 64,
+      "velocity": 100
+    },
+    {
+      "on": 1.878,
+      "off": 1.948,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 1.987,
+      "off": 2.057,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 1.987,
+      "off": 2.057,
+      "note": 64,
+      "velocity": 100
+    },
+    {
+      "on": 1.987,
+      "off": 2.057,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 2.207,
+      "off": 2.467,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 2.207,
+      "off": 2.467,
+      "note": 64,
+      "velocity": 100
+    },
+    {
+      "on": 2.207,
+      "off": 2.467,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 2.541,
+      "off": 2.641,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 2.541,
+      "off": 2.641,
+      "note": 64,
+      "velocity": 100
+    },
+    {
+      "on": 2.541,
+      "off": 2.641,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 2.98,
+      "off": 3.08,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 2.98,
+      "off": 3.08,
+      "note": 64,
+      "velocity": 100
+    },
+    {
+      "on": 2.98,
+      "off": 3.08,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 3.419,
+      "off": 3.519,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 3.419,
+      "off": 3.519,
+      "note": 64,
+      "velocity": 100
+    },
+    {
+      "on": 3.419,
+      "off": 3.519,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 3.639,
+      "off": 3.709,
+      "note": 56,
+      "velocity": 100
+    },
+    {
+      "on": 3.639,
+      "off": 3.709,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 3.639,
+      "off": 3.709,
+      "note": 63,
+      "velocity": 100
+    },
+    {
+      "on": 3.639,
+      "off": 3.709,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 3.753,
+      "off": 3.823,
+      "note": 56,
+      "velocity": 100
+    },
+    {
+      "on": 3.753,
+      "off": 3.823,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 3.753,
+      "off": 3.823,
+      "note": 63,
+      "velocity": 100
+    },
+    {
+      "on": 3.753,
+      "off": 3.823,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 3.973,
+      "off": 4.233,
+      "note": 56,
+      "velocity": 100
+    },
+    {
+      "on": 3.973,
+      "off": 4.233,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 3.973,
+      "off": 4.233,
+      "note": 63,
+      "velocity": 100
+    },
+    {
+      "on": 3.973,
+      "off": 4.233,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 4.302,
+      "off": 4.402,
+      "note": 56,
+      "velocity": 100
+    },
+    {
+      "on": 4.302,
+      "off": 4.402,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 4.302,
+      "off": 4.402,
+      "note": 63,
+      "velocity": 100
+    },
+    {
+      "on": 4.302,
+      "off": 4.402,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 4.741,
+      "off": 4.841,
+      "note": 56,
+      "velocity": 100
+    },
+    {
+      "on": 4.741,
+      "off": 4.841,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 4.741,
+      "off": 4.841,
+      "note": 63,
+      "velocity": 100
+    },
+    {
+      "on": 4.741,
+      "off": 4.841,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 5.185,
+      "off": 5.285,
+      "note": 56,
+      "velocity": 100
+    },
+    {
+      "on": 5.185,
+      "off": 5.285,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 5.185,
+      "off": 5.285,
+      "note": 63,
+      "velocity": 100
+    },
+    {
+      "on": 5.185,
+      "off": 5.285,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 5.405,
+      "off": 5.475,
+      "note": 58,
+      "velocity": 100
+    },
+    {
+      "on": 5.405,
+      "off": 5.475,
+      "note": 62,
+      "velocity": 100
+    },
+    {
+      "on": 5.405,
+      "off": 5.475,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 5.405,
+      "off": 5.475,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 5.519,
+      "off": 5.589,
+      "note": 58,
+      "velocity": 100
+    },
+    {
+      "on": 5.519,
+      "off": 5.589,
+      "note": 62,
+      "velocity": 100
+    },
+    {
+      "on": 5.519,
+      "off": 5.589,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 5.519,
+      "off": 5.589,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 5.739,
+      "off": 5.999,
+      "note": 58,
+      "velocity": 100
+    },
+    {
+      "on": 5.739,
+      "off": 5.999,
+      "note": 62,
+      "velocity": 100
+    },
+    {
+      "on": 5.739,
+      "off": 5.999,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 5.739,
+      "off": 5.999,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 6.068,
+      "off": 6.168,
+      "note": 58,
+      "velocity": 100
+    },
+    {
+      "on": 6.068,
+      "off": 6.168,
+      "note": 62,
+      "velocity": 100
+    },
+    {
+      "on": 6.068,
+      "off": 6.168,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 6.068,
+      "off": 6.168,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 6.288,
+      "off": 6.388,
+      "note": 58,
+      "velocity": 100
+    },
+    {
+      "on": 6.288,
+      "off": 6.388,
+      "note": 62,
+      "velocity": 100
+    },
+    {
+      "on": 6.288,
+      "off": 6.388,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 6.288,
+      "off": 6.388,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 6.397,
+      "off": 6.497,
+      "note": 58,
+      "velocity": 100
+    },
+    {
+      "on": 6.397,
+      "off": 6.497,
+      "note": 62,
+      "velocity": 100
+    },
+    {
+      "on": 6.397,
+      "off": 6.497,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 6.397,
+      "off": 6.497,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 6.622,
+      "off": 6.882,
+      "note": 58,
+      "velocity": 100
+    },
+    {
+      "on": 6.622,
+      "off": 6.882,
+      "note": 62,
+      "velocity": 100
+    },
+    {
+      "on": 6.622,
+      "off": 6.882,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 6.622,
+      "off": 6.882,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 6.951,
+      "off": 7.051,
+      "note": 58,
+      "velocity": 100
+    },
+    {
+      "on": 6.951,
+      "off": 7.051,
+      "note": 62,
+      "velocity": 100
+    },
+    {
+      "on": 6.951,
+      "off": 7.051,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 6.951,
+      "off": 7.051,
+      "note": 67,
+      "velocity": 100
+    }
+  ],
+  "patch_design": {
+    "status": "approximate_factory_recreation",
+    "base_program": "INIT PATCH",
+    "name": "APX Poly",
+    "parameters": {
+      "patchLevel": 100,
+      "keyboardMode": 0,
+      "keyboardPart": 0,
+      "arpeggio.on": false,
+      "upper.mono": 0,
+      "upper.osc1.coarse": 0,
+      "upper.osc2.coarse": 0,
+      "upper.octaveShift": 0,
+      "upper.level": 105,
+      "upper.levelVelocitySens": 0,
+      "upper.cutoffVelocitySens": 0,
+      "upper.overdrive": false,
+      "upper.filterType": 1,
+      "upper.lfo1.depth1": 0,
+      "upper.lfo1.depth2": 0,
+      "upper.lfo2.depth1": 0,
+      "upper.lfo2.depth2": 0,
+      "upper.portamento": false,
+      "upper.osc1.wave": 7,
+      "upper.osc1.fine": -5,
+      "upper.osc2.wave": 0,
+      "upper.osc2.fine": 6,
+      "upper.balance": -30,
+      "upper.filterSlope": 1,
+      "upper.cutoff": 82,
+      "upper.resonance": 16,
+      "upper.keyFollow": 40,
+      "upper.filterEnvAttack": 0,
+      "upper.filterEnvDecay": 41,
+      "upper.filterEnvSustain": 65,
+      "upper.filterEnvRelease": 22,
+      "upper.filterEnvDepth": 12,
+      "upper.ampEnvAttack": 0,
+      "upper.ampEnvDecay": 75,
+      "upper.ampEnvSustain": 96,
+      "upper.ampEnvRelease": 49,
+      "delayOn": false,
+      "reverbOn": false,
+      "upper.osc1.pulseWidth": 48
+    },
+    "rationale": [
+      "Detuned harmonic ridges motivate a modest-spread Super Saw blended with a close-detuned regular saw; this adds diffusion while retaining a clear fundamental.",
+      "Abrupt attacks and near-silent gaps suggest short release and limited effects; a compact positive filter envelope gives the chord stabs a bright transient.",
+      "The first render had very narrow harmonic lines compared with the source. One close-detuned saw was replaced by a modest-spread Super Saw while retaining the other saw; release was lengthened slightly to match visible decaying gaps."
+    ],
+    "uncertainties": [
+      "No authenticated factory PRESET dump is available; every changed control value is an authored approximation.",
+      "The recording does not uniquely reveal oscillator topology, layer routing, filter slope, modulation or effect settings.",
+      "Whether the original uses saw or pulse-like oscillators is unresolved; saw is a plausible initial harmonic source.",
+      "A first software render informed these control adjustments. This is a conditional audio match using estimated notes, not recovered factory settings or a hardware-calibrated DSP claim."
+    ]
+  }
+}

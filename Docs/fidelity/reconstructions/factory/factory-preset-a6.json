@@ -1,0 +1,436 @@
+{
+  "schema_version": 1,
+  "id": "factory-preset-a6",
+  "title": "SuperSawBrs — estimated opening excerpt",
+  "reference_id": "factory-preset-a6",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 0,
+  "duration_seconds": 8.0,
+  "method": "Source-only analysis: mono 22050 Hz decoding of the original Roland MP3, 8192-sample Hann STFT at 256-sample hops, nonnegative least-squares decomposition against detune-broadened harmonic templates over MIDI 36–88, and inspection of local FFT peaks and amplitude transitions. Candidate notes were screened for upper-harmonic and subharmonic errors. The first phrase is centred on sounding F2/F3/F4 with a moving middle voice C4, Bb3 and Ab3; the second phrase moves the bass to Ab2 at roughly 4.05 seconds. FFT peaks at about 86/176/261/353 Hz support the opening voicing. Repeated amplitude attacks provide the brass-stab rhythm; intermediate beat-induced peaks were excluded. Inspection of the first rendered comparison exposed a source bass family that continues through upper-voice gaps; F2 and Ab2 are therefore encoded as held bass notes rather than repeated stabs.",
+  "uncertainties": [
+    "Original performance MIDI is unavailable. Every event here is estimated from the MP3, not an exact original MIDI event.",
+    "Velocity 100 is an explicit placeholder. Original velocities, sustain pedal, pitch bend, modulation and other controller events are unavailable and are not recovered.",
+    "Sounding pitch families do not uniquely determine played keys when oscillator octave offsets or layered tones are unknown. This transcription uses sounding fundamentals with a newly designed patch at zero overall transpose.",
+    "MP3 encoding, detuned oscillators, effects and envelope release obscure key-down and key-up times. The MIDI contains practical gates, not measured hardware key releases.",
+    "The patch is newly authored in Septum from spectral and temporal cues. It is an approximation of the named factory sound, not Roland factory SysEx or a recovered hardware preset.",
+    "Octave doubling at F3/F4 may partly be oscillator harmonics rather than separately pressed keys. It is an explicit voicing assumption in this approximation.",
+    "The bass is estimated as held through upper-voice gaps. Whether F3/F4 were also held, or retriggered with the middle voice, remains unknown; the upper voicing is retriggered to reproduce broad attacks.",
+    "Brass attack and effect tails leave gate estimates uncertain by roughly 30–100 ms. The 8-second crop truncates the transition into the following phrase."
+  ],
+  "notes": [
+    {
+      "on": 0.045,
+      "off": 4.02,
+      "note": 41,
+      "velocity": 100
+    },
+    {
+      "on": 0.045,
+      "off": 0.7,
+      "note": 53,
+      "velocity": 100
+    },
+    {
+      "on": 0.045,
+      "off": 0.7,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 0.045,
+      "off": 0.7,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 0.81,
+      "off": 0.96,
+      "note": 53,
+      "velocity": 100
+    },
+    {
+      "on": 0.81,
+      "off": 0.96,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 0.81,
+      "off": 0.96,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 1.06,
+      "off": 1.28,
+      "note": 53,
+      "velocity": 100
+    },
+    {
+      "on": 1.06,
+      "off": 1.28,
+      "note": 58,
+      "velocity": 100
+    },
+    {
+      "on": 1.06,
+      "off": 1.28,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 1.435,
+      "off": 1.66,
+      "note": 53,
+      "velocity": 100
+    },
+    {
+      "on": 1.435,
+      "off": 1.66,
+      "note": 58,
+      "velocity": 100
+    },
+    {
+      "on": 1.435,
+      "off": 1.66,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 1.81,
+      "off": 2.0,
+      "note": 53,
+      "velocity": 100
+    },
+    {
+      "on": 1.81,
+      "off": 2.0,
+      "note": 58,
+      "velocity": 100
+    },
+    {
+      "on": 1.81,
+      "off": 2.0,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 2.105,
+      "off": 2.29,
+      "note": 53,
+      "velocity": 100
+    },
+    {
+      "on": 2.105,
+      "off": 2.29,
+      "note": 56,
+      "velocity": 100
+    },
+    {
+      "on": 2.105,
+      "off": 2.29,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 2.44,
+      "off": 2.64,
+      "note": 53,
+      "velocity": 100
+    },
+    {
+      "on": 2.44,
+      "off": 2.64,
+      "note": 56,
+      "velocity": 100
+    },
+    {
+      "on": 2.44,
+      "off": 2.64,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 2.795,
+      "off": 2.98,
+      "note": 53,
+      "velocity": 100
+    },
+    {
+      "on": 2.795,
+      "off": 2.98,
+      "note": 56,
+      "velocity": 100
+    },
+    {
+      "on": 2.795,
+      "off": 2.98,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 3.08,
+      "off": 3.64,
+      "note": 53,
+      "velocity": 100
+    },
+    {
+      "on": 3.08,
+      "off": 3.64,
+      "note": 58,
+      "velocity": 100
+    },
+    {
+      "on": 3.08,
+      "off": 3.64,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 3.825,
+      "off": 3.98,
+      "note": 53,
+      "velocity": 100
+    },
+    {
+      "on": 3.825,
+      "off": 3.98,
+      "note": 58,
+      "velocity": 100
+    },
+    {
+      "on": 3.825,
+      "off": 3.98,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 4.05,
+      "off": 7.94,
+      "note": 44,
+      "velocity": 100
+    },
+    {
+      "on": 4.05,
+      "off": 4.71,
+      "note": 53,
+      "velocity": 100
+    },
+    {
+      "on": 4.05,
+      "off": 4.71,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 4.05,
+      "off": 4.71,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 4.8,
+      "off": 4.96,
+      "note": 53,
+      "velocity": 100
+    },
+    {
+      "on": 4.8,
+      "off": 4.96,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 4.8,
+      "off": 4.96,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 5.055,
+      "off": 5.25,
+      "note": 53,
+      "velocity": 100
+    },
+    {
+      "on": 5.055,
+      "off": 5.25,
+      "note": 58,
+      "velocity": 100
+    },
+    {
+      "on": 5.055,
+      "off": 5.25,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 5.43,
+      "off": 5.63,
+      "note": 53,
+      "velocity": 100
+    },
+    {
+      "on": 5.43,
+      "off": 5.63,
+      "note": 58,
+      "velocity": 100
+    },
+    {
+      "on": 5.43,
+      "off": 5.63,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 5.81,
+      "off": 5.99,
+      "note": 53,
+      "velocity": 100
+    },
+    {
+      "on": 5.81,
+      "off": 5.99,
+      "note": 58,
+      "velocity": 100
+    },
+    {
+      "on": 5.81,
+      "off": 5.99,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 6.075,
+      "off": 6.27,
+      "note": 53,
+      "velocity": 100
+    },
+    {
+      "on": 6.075,
+      "off": 6.27,
+      "note": 56,
+      "velocity": 100
+    },
+    {
+      "on": 6.075,
+      "off": 6.27,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 6.44,
+      "off": 6.65,
+      "note": 53,
+      "velocity": 100
+    },
+    {
+      "on": 6.44,
+      "off": 6.65,
+      "note": 56,
+      "velocity": 100
+    },
+    {
+      "on": 6.44,
+      "off": 6.65,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 6.8,
+      "off": 7.38,
+      "note": 53,
+      "velocity": 100
+    },
+    {
+      "on": 6.8,
+      "off": 7.38,
+      "note": 58,
+      "velocity": 100
+    },
+    {
+      "on": 6.8,
+      "off": 7.38,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 7.57,
+      "off": 7.92,
+      "note": 53,
+      "velocity": 100
+    },
+    {
+      "on": 7.57,
+      "off": 7.92,
+      "note": 58,
+      "velocity": 100
+    },
+    {
+      "on": 7.57,
+      "off": 7.92,
+      "note": 65,
+      "velocity": 100
+    }
+  ],
+  "patch_design": {
+    "status": "approximate_factory_recreation",
+    "base_program": "INIT PATCH",
+    "name": "APX SawBrs",
+    "parameters": {
+      "patchLevel": 100,
+      "keyboardMode": 0,
+      "keyboardPart": 0,
+      "arpeggio.on": false,
+      "upper.mono": 0,
+      "upper.osc1.coarse": 0,
+      "upper.osc2.coarse": 0,
+      "upper.octaveShift": 0,
+      "upper.level": 105,
+      "upper.levelVelocitySens": 0,
+      "upper.cutoffVelocitySens": 0,
+      "upper.overdrive": false,
+      "upper.filterType": 1,
+      "upper.lfo1.depth1": 0,
+      "upper.lfo1.depth2": 0,
+      "upper.lfo2.depth1": 0,
+      "upper.lfo2.depth2": 0,
+      "upper.portamento": false,
+      "upper.osc1.wave": 7,
+      "upper.osc1.pulseWidth": 55,
+      "upper.osc2.wave": 7,
+      "upper.osc2.pulseWidth": 38,
+      "upper.osc2.fine": 4,
+      "upper.balance": -18,
+      "upper.filterSlope": 1,
+      "upper.cutoff": 59,
+      "upper.resonance": 17,
+      "upper.keyFollow": 40,
+      "upper.filterEnvAttack": 45,
+      "upper.filterEnvDecay": 55,
+      "upper.filterEnvSustain": 48,
+      "upper.filterEnvRelease": 56,
+      "upper.filterEnvDepth": 16,
+      "upper.ampEnvAttack": 38,
+      "upper.ampEnvDecay": 70,
+      "upper.ampEnvSustain": 105,
+      "upper.ampEnvRelease": 69,
+      "delayOn": false,
+      "reverbOn": true,
+      "upper.reverbDepth": 24,
+      "reverb.time": 65,
+      "reverb.highCut": 16
+    },
+    "rationale": [
+      "Dense spread harmonic peaks motivate two moderately detuned Super Saw oscillators.",
+      "The rounded onset followed by a darker held body suggests a short positive filter attack and a medium filter decay; amplitude gates retain the pronounced stabs.",
+      "Comparison of the first render showed overly bright chord stabs and overly deep gaps. The cutoff/envelope were softened and release lengthened; sustained bass is now represented separately in the estimated MIDI."
+    ],
+    "uncertainties": [
+      "No authenticated factory PRESET dump is available; every changed control value is an authored approximation.",
+      "The recording does not uniquely reveal oscillator topology, layer routing, filter slope, modulation or effect settings.",
+      "The octave chord voicing and single-tone topology are approximations; exact hardware layer allocation is unknown.",
+      "A first software render informed these control adjustments. This is a conditional audio match using estimated notes, not recovered factory settings or a hardware-calibrated DSP claim."
+    ]
+  }
+}

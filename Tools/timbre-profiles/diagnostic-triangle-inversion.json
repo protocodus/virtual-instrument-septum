@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "diagnostic-triangle-inversion",
+  "evidence": "Experimental diagnostic polarity inversion of the triangle only, intended to verify the candidate path. No SH-201 measurement or fidelity ranking supports this setting.",
+  "waves": {
+    "wave_gain": [
+      1,
+      1,
+      1,
+      -1,
+      1
+    ]
+  }
+}

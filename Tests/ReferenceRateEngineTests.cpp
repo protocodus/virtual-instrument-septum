@@ -11,6 +11,7 @@
 #include <cstdlib>
 #include <limits>
 #include <new>
+#include <stdexcept>
 #include <string>
 #include <vector>
 
@@ -222,10 +223,10 @@ void converterTests()
     }
 }
 
-Audio renderEvents (double rate, int block)
+Audio renderEvents (double rate, int block, double coreRate = 44100.0)
 {
     septum::ReferenceRateEngine engine;
-    engine.prepare (rate, block);
+    engine.prepare (rate, block, coreRate);
     auto patch = dryPatch (septum::Waveform::SuperSaw);
     patch.upper.filterType = septum::FilterType::Lpf;
     patch.upper.cutoff = 80;
@@ -273,9 +274,9 @@ Audio renderEvents (double rate, int block)
                         count);
         position += count;
         const auto expected = static_cast<std::uint64_t> (
-            std::floor ((position - 1) * 44100.0L / rate)) + 1;
+            std::ceil (position * static_cast<long double> (coreRate) / rate));
         expect (engine.renderedInternalSamples() == expected,
-                "clock renders only internal frames at or before current host sample");
+                "clock completes every core frame strictly before next host boundary");
     }
     return output;
 }
@@ -353,8 +354,8 @@ void clockAndInputTests()
         expect (engine.renderedInternalSamples() == 0,
                 "reset and empty process preserve initial clock");
         engine.process (output.left.data(), output.right.data(), 1);
-        expect (engine.renderedInternalSamples() == 1,
-                "first host frame renders exactly internal frame zero");
+        expect (engine.renderedInternalSamples() == static_cast<std::uint64_t> (std::ceil (44100.0 / rate)),
+                "first host interval completes exactly its contained core frames");
     }
 }
 
@@ -421,22 +422,21 @@ void realtimeAndTimingTests()
     expect (expected.left == actual.left && expected.right == actual.right,
             "in-place stereo input matches separate buffers exactly");
 
-    // Public-inherited immediate controls cannot retrospectively timestamp
-    // pending core frames at host rates below the reference rate. Record this
-    // limitation explicitly: at 32 kHz an event at frame8 reaches core frame10,
-    // 1.025 core frames early (23.24 us), still under one host frame.
+    // At 32 kHz, host frame 8 is core time 11.025. The next control
+    // must start on frame 12; the old scheduler left frame 10 pending and
+    // applied the event more than one core frame before its timestamp.
     septum::ReferenceRateEngine lowRate;
     lowRate.prepare (32000.0, 64);
     std::array<float, 8> left {}, right {};
     lowRate.process (left.data(), right.data(), 8);
     const auto nextCore = lowRate.renderedInternalSamples();
     const double eventInCoreFrames = 8.0 * 44100.0 / 32000.0;
-    const double earlySeconds = (eventInCoreFrames - nextCore) / 44100.0;
+    const double lateSeconds = (nextCore - eventInCoreFrames) / 44100.0;
     lowRate.noteOn (60, 100);
     expect (lowRate.renderedInternalSamples() == nextCore,
             "immediate MIDI does not render future core audio");
-    expect (earlySeconds > 1.0 / 44100.0 && earlySeconds < 1.0 / 32000.0,
-            "32k immediate MIDI has the documented one-host-frame timing bound");
+    expect (nextCore == 12 && lateSeconds >= 0.0 && lateSeconds < 1.0 / 44100.0,
+            "32k immediate MIDI quantizes to the first causal core frame");
 
     septum::ReferenceRateEngine unprepared;
     left.fill (1.0f);
@@ -449,11 +449,233 @@ void realtimeAndTimingTests()
     near (unprepared.sampleRate(), 44100.0, 0.0, "invalid host rate falls back to reference");
 }
 
+void selectedRateTests()
+{
+    for (double coreRate : { 32000.0, 44100.0, 48000.0, 96000.0 })
+    {
+        double firstAmplitude = 0.0;
+        for (double hostRate : { 32000.0, 44100.0, 48000.0, 96000.0 })
+        {
+            septum::ReferenceRateEngine engine;
+            engine.prepare (hostRate, 256, coreRate);
+            auto patch = dryPatch();
+            patch.upper.ampEnvAttack = patch.upper.ampEnvDecay = 0;
+            patch.upper.ampEnvSustain = 127;
+            engine.setPatch (patch);
+            engine.reset();
+            engine.noteOn (69, 100);
+            Audio output (static_cast<std::size_t> (hostRate * 0.6));
+            engine.process (output.left.data(), output.right.data(), static_cast<int> (output.left.size()));
+            near (engine.synthesisRate(), coreRate, 0.0, "selected synthesis rate is exposed");
+            near (engine.Engine::sampleRate(), coreRate, 0.0, "selected rate reaches the synthesis engine");
+            const double level = amplitude (output.left, hostRate, 440.0);
+            expect (output.finite() && level > 0.01, "selected core renders an audible 440 Hz note");
+            expect (amplitude (output.left, hostRate, 430.0) < level * .002
+                    && amplitude (output.left, hostRate, 450.0) < level * .002,
+                    "changing core rate preserves note frequency rather than changing playback speed");
+            if (firstAmplitude == 0.0) firstAmplitude = level;
+            else near (db (level / firstAmplitude), 0.0, .01,
+                       "selected core's steady tone level is consistent across hosts");
+            const int outputDelay = static_cast<int> (std::ceil (
+                64.0 / std::min (1.0, hostRate / coreRate)));
+            near (engine.exactLatencySamples(),
+                  (engine.Engine::latencySamples() + outputDelay) * hostRate / coreRate,
+                  1.0e-9, "selected rate is included in exact latency conversion");
+            const auto whole = renderEvents (hostRate, 256, coreRate);
+            const auto split = renderEvents (hostRate, 127, coreRate);
+            expect (whole.left == split.left && whole.right == split.right,
+                    "selected-rate events preserve exact block-partition invariance");
+        }
+    }
+
+    septum::ReferenceRateEngine engine;
+    engine.prepare (48000.0, 256, 96000.0);
+    for (double invalid : { 0.0, -44100.0, 7999.0, 192001.0,
+                           std::numeric_limits<double>::infinity(),
+                           std::numeric_limits<double>::quiet_NaN() })
+    {
+        bool rejected = false;
+        try { engine.prepare (32000.0, 64, invalid); }
+        catch (const std::invalid_argument&) { rejected = true; }
+        expect (rejected && engine.sampleRate() == 48000.0 && engine.synthesisRate() == 96000.0,
+                "invalid synthesis rate is rejected without altering a prepared setup");
+    }
+    for (double endpoint : { 8000.0, 192000.0 })
+    {
+        engine.prepare (48000.0, 64, endpoint);
+        near (engine.synthesisRate(), endpoint, 0.0, "bounded synthesis-rate endpoint is accepted");
+    }
+    engine.prepare (48000.0, 64);
+    near (engine.synthesisRate(), 44100.0, 0.0, "two-argument API keeps its default synthesis rate");
+}
+
+void selectedAliasTests()
+{
+    for (double coreRate : { 32000.0, 44100.0, 48000.0 })
+    {
+        // A6's sixteenth naive harmonic folds around the selected core clock.
+        // Retain that numerical fingerprint; do not assert that it is Roland's.
+        const double aliasHz = coreRate - 16.0 * 1760.0;
+        double reference = 0.0;
+        for (double hostRate : { 48000.0, 96000.0, 192000.0 })
+        {
+            septum::ReferenceRateEngine engine;
+            engine.prepare (hostRate, 256, coreRate);
+            auto patch = dryPatch (septum::Waveform::SuperSaw);
+            patch.upper.osc1.pulseWidth = 0;
+            engine.setPatch (patch);
+            engine.noteOn (93, 110);
+            Audio audio (static_cast<std::size_t> (hostRate * .7));
+            engine.process (audio.left.data(), audio.right.data(), static_cast<int> (audio.left.size()));
+            const double alias = db (amplitude (audio.left, hostRate, aliasHz)
+                / amplitude (audio.left, hostRate, 1760.0));
+            expect (alias > -60.0 && alias < -10.0,
+                    "selected core rate changes the tested naive alias location");
+            if (hostRate == 48000.0) reference = alias;
+            else near (alias, reference, .15,
+                       "selected core's alias fingerprint is stable across host rates");
+        }
+    }
+}
+
+// Compare against events placed on an explicitly constructed core timeline,
+// independent of when the streaming wrapper elects to execute core samples.
+// A note or edit at host frame H belongs at ceil(H * core / host), never floor.
+void causalEventAudioTests()
+{
+    constexpr std::array<int, 4> events { 8, 37, 73, 105 };
+    for (const auto rates : { std::array<double, 2> { 32000.0, 44100.0 },
+                             std::array<double, 2> { 48000.0, 44100.0 },
+                             std::array<double, 2> { 32000.0, 96000.0 },
+                             std::array<double, 2> { 96000.0, 48000.0 },
+                             std::array<double, 2> { 8000.0, 192000.0 } })
+    {
+        const double hostRate = rates[0], coreRate = rates[1];
+        constexpr int frames = 2048;
+        auto patch = dryPatch();
+        patch.upper.ampEnvAttack = patch.upper.ampEnvDecay = patch.upper.ampEnvRelease = 0;
+        patch.upper.ampEnvSustain = 127;
+        septum::ReferenceRateEngine wrapper;
+        wrapper.prepare (hostRate, 64, coreRate);
+        wrapper.setPatch (patch);
+        wrapper.reset();
+        Audio actual (frames), expected (frames);
+        const auto event = [&] (septum::Engine& engine, int index)
+        {
+            if (index == 0) engine.noteOn (69, 100);
+            if (index == 1) engine.setPitchBend (.4);
+            if (index == 2) engine.noteOff (69);
+            if (index == 3) engine.noteOn (72, 110);
+        };
+        int nextEvent = 0;
+        allocationAudit::count = 0;
+        allocationAudit::active = true;
+        for (int i = 0; i < frames; ++i)
+        {
+            if (nextEvent < static_cast<int> (events.size()) && i == events[nextEvent])
+                event (wrapper, nextEvent++);
+            wrapper.process (&actual.left[static_cast<std::size_t> (i)],
+                             &actual.right[static_cast<std::size_t> (i)], 1);
+        }
+        allocationAudit::active = false;
+        expect (allocationAudit::count == 0, "causal scheduling and controls allocate no render memory");
+
+        septum::Engine core;
+        core.prepare (coreRate, 16);
+        core.setPatch (patch);
+        core.reset();
+        const int coreFrames = static_cast<int> (std::ceil (frames * coreRate / hostRate));
+        Audio source (static_cast<std::size_t> (coreFrames));
+        nextEvent = 0;
+        for (int i = 0; i < coreFrames; ++i)
+        {
+            while (nextEvent < static_cast<int> (events.size())
+                   && i == static_cast<int> (std::ceil (events[nextEvent] * coreRate / hostRate)))
+                event (core, nextEvent++);
+            core.process (&source.left[static_cast<std::size_t> (i)],
+                          &source.right[static_cast<std::size_t> (i)], 1);
+        }
+        septum::detail::ReferenceRateConverter converter;
+        converter.prepare (coreRate, hostRate);
+        int written = 0;
+        for (int i = 0; i < frames; ++i)
+        {
+            const double time = i * coreRate / hostRate;
+            while (written <= static_cast<int> (std::floor (time)))
+            {
+                converter.push (source.left[static_cast<std::size_t> (written)],
+                                source.right[static_cast<std::size_t> (written)]);
+                ++written;
+            }
+            const auto output = converter.read (time - converter.groupDelay());
+            expected.left[static_cast<std::size_t> (i)] = output[0];
+            expected.right[static_cast<std::size_t> (i)] = output[1];
+        }
+        double error = 0.0;
+        for (int i = 0; i < frames; ++i)
+            error = std::max ({error, std::abs (double (actual.left[i]) - expected.left[i]),
+                              std::abs (double (actual.right[i]) - expected.right[i])});
+        expect (actual.peak() > .001 && error < 1.0e-7,
+                "rendered note/bend/release timeline matches causal core timestamps: "
+                + std::to_string (hostRate) + "/" + std::to_string (coreRate)
+                + " error=" + std::to_string (error));
+        wrapper.reset();
+        expect (wrapper.renderedInternalSamples() == 0, "reset clears configurable core clock");
+        Audio replay (frames);
+        nextEvent = 0;
+        for (int i = 0; i < frames; ++i)
+        {
+            if (nextEvent < static_cast<int> (events.size()) && i == events[nextEvent])
+                event (wrapper, nextEvent++);
+            wrapper.process (&replay.left[static_cast<std::size_t> (i)],
+                             &replay.right[static_cast<std::size_t> (i)], 1);
+        }
+        expect (replay.left == actual.left && replay.right == actual.right,
+                "reset reproduces a deterministic sine event score exactly");
+    }
+}
+
+void externalLatencyTests()
+{
+    // Alignment is intentionally not claimed: the monitor/EXT-IN path has
+    // another causal FIR. Verify its actual impulse timing as well as the
+    // reported difference, rather than silently compensating only one path.
+    for (const auto rates : { std::array<double, 2> { 32000.0, 44100.0 },
+                             std::array<double, 2> { 48000.0, 44100.0 },
+                             std::array<double, 2> { 96000.0, 48000.0 },
+                             std::array<double, 2> { 44100.0, 96000.0 } })
+    {
+        const double hostRate = rates[0], coreRate = rates[1];
+        septum::ReferenceRateEngine wrapper;
+        wrapper.prepare (hostRate, 256, coreRate);
+        Audio input (2048), output (2048);
+        input.left[97] = .1f;
+        wrapper.process (output.left.data(), output.right.data(), 2048,
+                         input.left.data(), input.right.data());
+        const auto maximum = std::max_element (output.left.begin(), output.left.end(),
+            [] (float a, float b) { return std::abs (a) < std::abs (b); });
+        const double peak = static_cast<double> (maximum - output.left.begin());
+        const double reported = 97 + wrapper.exactLatencySamples()
+            + wrapper.inputConversionLatencySamples();
+        expect (output.finite() && std::abs (*maximum) > .005,
+                "external latency probe traverses the actual audible monitor path");
+        near (peak, reported, 1.5,
+              "external impulse peak follows reported converter/core delay within analog phase and sampling");
+        expect (wrapper.externalInputLatencySamples() == static_cast<int> (std::ceil (
+                    wrapper.exactLatencySamples() + wrapper.inputConversionLatencySamples()))
+                && wrapper.externalInputLatencySamples() > wrapper.latencySamples(),
+                "external and MIDI latency difference remains explicit for every selected core");
+    }
+}
+
 template <typename EngineType>
-double benchmark (double rate)
+double benchmark (double rate, double coreRate = 44100.0)
 {
     EngineType engine;
-    engine.prepare (rate, 256);
+    if constexpr (requires { engine.prepare (rate, 256, coreRate); })
+        engine.prepare (rate, 256, coreRate);
+    else
+        engine.prepare (rate, 256);
     auto patch = dryPatch (septum::Waveform::SuperSaw);
     patch.upper.filterType = septum::FilterType::Lpf;
     patch.upper.cutoff = 93;
@@ -485,13 +707,28 @@ int main()
     clockAndInputTests();
     spectralTests();
     realtimeAndTimingTests();
+    selectedRateTests();
+    selectedAliasTests();
+    causalEventAudioTests();
+    externalLatencyTests();
     for (double rate : { 44100.0, 48000.0, 96000.0 })
     {
-        const auto native = benchmark<septum::Engine> (rate);
-        const auto reference = benchmark<septum::ReferenceRateEngine> (rate);
+        double native = 1.0e9, reference = 1.0e9;
+        for (int trial = 0; trial < 3; ++trial)
+        {
+            native = std::min (native, benchmark<septum::Engine> (rate));
+            reference = std::min (reference, benchmark<septum::ReferenceRateEngine> (rate));
+        }
         std::printf ("10 voices, 2 supersaws, filter + FX at %.0f Hz: "
                      "native %.3fx realtime CPU, reference %.3fx, slowdown %.2fx\n",
                      rate, native, reference, reference / native);
+    }
+    for (double coreRate : { 32000.0, 48000.0, 96000.0 })
+    {
+        double fastest = 1.0e9;
+        for (int trial = 0; trial < 3; ++trial)
+            fastest = std::min (fastest, benchmark<septum::ReferenceRateEngine> (48000.0, coreRate));
+        std::printf ("48000 Hz host, %.0f Hz core: %.3fx realtime CPU (best of 3)\n", coreRate, fastest);
     }
     std::printf ("%d checks, %d failures\n", checks, failures);
     return failures == 0 ? 0 : 1;

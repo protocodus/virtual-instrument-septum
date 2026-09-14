@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "id": "air-lead-1",
+  "title": "Air Lead 1 — opening melody",
+  "reference_id": "lead-03",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 0,
+  "duration_seconds": 3.45,
+  "method": "Hardware-only inspection of a 4096-sample STFT and 70 ms Hann-window FFTs of the opening phrase. Stable fundamental families near 311, 415, 466, 622 and 554 Hz identify sounding MIDI 63, 68, 70, 75 and 73. The published Upper tone has both oscillator coarse bytes 100 (signed +36), WIDE off, hence +12 semitones each; tone octave -1 cancels this, so played and sounding MIDI agree. Transition times come from changes of the fundamental/harmonic family and short RMS dips; note-off at the next onset is a practical estimate. No model parameter fitting.",
+  "uncertainties": [
+    "Original performance MIDI is unavailable. This is an audio-derived estimate, not an original MIDI file.",
+    "Velocity 100 is a placeholder for every note; original velocity, controllers, system transpose and exact recording patch revision are unverified.",
+    "Published delay/reverb and recording processing obscure exact key-down/up times. Note boundaries are estimated, generally within 10–30 ms; longer ambiguity is described below.",
+    "No Septum audio or synthesis parameter search was used to choose these notes. The paired Roland preset must remain unmodified.",
+    "The continuous melodic line, short portamento and active pitch modulation leave exact articulation and overlap unknown; adjacent notes use adjoining estimated gates.",
+    "The 3.45-second prefix intentionally stops during the final note; its final note-off at 3.445 seconds is an artificial crop boundary, not a measured hardware key release."
+  ],
+  "notes": [
+    {
+      "on": 0.05,
+      "off": 0.14,
+      "note": 63,
+      "velocity": 100
+    },
+    {
+      "on": 0.14,
+      "off": 0.226,
+      "note": 68,
+      "velocity": 100
+    },
+    {
+      "on": 0.226,
+      "off": 0.323,
+      "note": 70,
+      "velocity": 100
+    },
+    {
+      "on": 0.323,
+      "off": 1.189,
+      "note": 75,
+      "velocity": 100
+    },
+    {
+      "on": 1.189,
+      "off": 1.318,
+      "note": 73,
+      "velocity": 100
+    },
+    {
+      "on": 1.318,
+      "off": 1.414,
+      "note": 70,
+      "velocity": 100
+    },
+    {
+      "on": 1.414,
+      "off": 1.712,
+      "note": 73,
+      "velocity": 100
+    },
+    {
+      "on": 1.712,
+      "off": 2.02,
+      "note": 75,
+      "velocity": 100
+    },
+    {
+      "on": 2.02,
+      "off": 2.579,
+      "note": 68,
+      "velocity": 100
+    },
+    {
+      "on": 2.579,
+      "off": 3.445,
+      "note": 70,
+      "velocity": 100
+    }
+  ]
+}

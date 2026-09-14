@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "retrieved_date": "2026-09-14",
+  "scope": "Official Roland SH-201 additional Patch 100 banks; these are not hardware factory presets.",
+  "total_presets": 400,
+  "publisher": "Roland Corporation",
+  "individual_designers": "Not credited in the inspected Patch 100 pages or archive contents.",
+  "availability": "Public official downloads retrieved without payment or account.",
+  "license_summary": {
+    "formal_preset_license_found": false,
+    "spdx_identifier": null,
+    "download_and_librarian_loading_explicitly_offered": true,
+    "public_software_redistribution_permission": "Not found in the inspected pages or bundled PDFs. Free download is not evidence of an open license or a redistribution grant.",
+    "package_license_files": [],
+    "inspection_limit": "This records the inspected source material; it is not a legal determination of all applicable rights.",
+    "recommended_packaging": "Keep original third-party bank files local and excluded from public repository/releases; publish the reproducible downloader and factual source metadata."
+  },
+  "banks": [
+    {
+      "id": "bass",
+      "category": "BASS",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_bass.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/shl/SH-201_Patch_BASS.zip",
+      "local_filename": "SH-201_Patch_BASS.zip",
+      "sha256": "782e04766bec4dc8b8485e82499a0a7f12fe2408a8a04141a5e1db098c7f36fc",
+      "size_bytes": 42580,
+      "archive_member": "SH-201_Patch_BASS/100_BASS.shl",
+      "bank_sha256": "b69051b35e433f6a4ee879e28d76707dd9689bbc5199949fc38e19b9cdcca3bf",
+      "patch_count": 100,
+      "parameter_blocks_per_patch": 22,
+      "archive_members": [
+        {
+          "path": "SH-201_Patch_BASS/100_BASS.shl",
+          "bytes": 134361,
+          "sha256": "b69051b35e433f6a4ee879e28d76707dd9689bbc5199949fc38e19b9cdcca3bf"
+        },
+        {
+          "path": "SH-201_Patch_BASS/SH-201-PATCH_100_BASS_e.pdf",
+          "bytes": 34896,
+          "sha256": "a31cda40c86026abab7434d8486bdc5351a386fe091974b0cdadde79e08674f2"
+        }
+      ],
+      "license_evidence": {
+        "bundled_document": "SH-201_Patch_BASS/SH-201-PATCH_100_BASS_e.pdf",
+        "document_kind": "One-page name/number/memo list and loading instructions, not a license.",
+        "use_statement": "The bank may be loaded with SH-201 Librarian; its Help manual is referenced.",
+        "formal_redistribution_terms_found": false,
+        "original_bank_and_patch_bytes": "Preserve unchanged; extracted SysEx is a format conversion, not an authored preset."
+      },
+      "source_pages": [
+        {
+          "url": "https://www.rolandus.com/go/sh-201_patches/patch_bass.html",
+          "sha256": "a32f8c2e47d7a24c1f190a4ced1981e1fbc3822b928e3686e08830558103824a"
+        },
+        {
+          "url": "https://www.rolandus.com/go/sh-201_patches/patch_bass2.html",
+          "sha256": "5b26f78d29706dfacb122cdefb5fd5b08c4c905b1612e733d6381a5776bce47e"
+        }
+      ]
+    },
+    {
+      "id": "pad",
+      "category": "PAD",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_pad.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/shl/SH-201_Patch_PAD.zip",
+      "local_filename": "SH-201_Patch_PAD.zip",
+      "sha256": "d00b19491c2cec27ee640147e0dfb6d1b8a47bcb70831a93a819a70d21a2a222",
+      "size_bytes": 44345,
+      "archive_member": "SH-201_Patch_PAD/100_PAD.shl",
+      "bank_sha256": "78a518f63fe6ce2c15042a8f6258b4b6d6d3519727c7b0befc1f99d097c8a3ea",
+      "patch_count": 100,
+      "parameter_blocks_per_patch": 22,
+      "archive_members": [
+        {
+          "path": "SH-201_Patch_PAD/100_PAD.shl",
+          "bytes": 134351,
+          "sha256": "78a518f63fe6ce2c15042a8f6258b4b6d6d3519727c7b0befc1f99d097c8a3ea"
+        },
+        {
+          "path": "SH-201_Patch_PAD/SH-201-PATCH_100_PAD_e.pdf",
+          "bytes": 34559,
+          "sha256": "723db87f78926b2713fbfbe8434a1117322cd6a9f33db1c7951d72118b1762f6"
+        }
+      ],
+      "license_evidence": {
+        "bundled_document": "SH-201_Patch_PAD/SH-201-PATCH_100_PAD_e.pdf",
+        "document_kind": "One-page name/number/memo list and loading instructions, not a license.",
+        "use_statement": "The bank may be loaded with SH-201 Librarian; its Help manual is referenced.",
+        "formal_redistribution_terms_found": false,
+        "original_bank_and_patch_bytes": "Preserve unchanged; extracted SysEx is a format conversion, not an authored preset."
+      },
+      "source_pages": [
+        {
+          "url": "https://www.rolandus.com/go/sh-201_patches/patch_pad.html",
+          "sha256": "f716a9ad690763e15a735e1b03caf23f47aea50c465e905d797b437ed66dbe81"
+        },
+        {
+          "url": "https://www.rolandus.com/go/sh-201_patches/patch_pad2.html",
+          "sha256": "d5845ba6ae7489169980b37f21d09a1e0138e7ab97c33a169c11a37dd2b74ebb"
+        }
+      ]
+    },
+    {
+      "id": "lead",
+      "category": "LEAD",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/shl/SH-201_Patch_LEAD.zip",
+      "local_filename": "SH-201_Patch_LEAD.zip",
+      "sha256": "102c47ee393c09115779172b8cbbb2c2f2563e0b4fdb2f57e0c8fca2a23c3b29",
+      "size_bytes": 42223,
+      "archive_member": "SH-201_Patch_LEAD/100_LEAD.shl",
+      "bank_sha256": "d6649236cd89c1652480f9ae194bc20f0a3e33e147cb16828216871fba35b26c",
+      "patch_count": 100,
+      "parameter_blocks_per_patch": 22,
+      "archive_members": [
+        {
+          "path": "SH-201_Patch_LEAD/100_LEAD.shl",
+          "bytes": 134283,
+          "sha256": "d6649236cd89c1652480f9ae194bc20f0a3e33e147cb16828216871fba35b26c"
+        },
+        {
+          "path": "SH-201_Patch_LEAD/SH-201-PATCH_100_LEAD_e.pdf",
+          "bytes": 34270,
+          "sha256": "6d808608bd215a5fbe6e1faede7d9e1bf59d72bcba2f067015f169046519cb97"
+        }
+      ],
+      "license_evidence": {
+        "bundled_document": "SH-201_Patch_LEAD/SH-201-PATCH_100_LEAD_e.pdf",
+        "document_kind": "One-page name/number/memo list and loading instructions, not a license.",
+        "use_statement": "The bank may be loaded with SH-201 Librarian; its Help manual is referenced.",
+        "formal_redistribution_terms_found": false,
+        "original_bank_and_patch_bytes": "Preserve unchanged; extracted SysEx is a format conversion, not an authored preset."
+      },
+      "source_pages": [
+        {
+          "url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+          "sha256": "af8daead0af3cf6be8b966ca32e7b4f6f9cfce614779ed5b03264f79792fb674"
+        },
+        {
+          "url": "https://www.rolandus.com/go/sh-201_patches/patch_lead2.html",
+          "sha256": "10c1134278a639e5795cb7846e68386fd316823de6719c99a476aa88bfb56af9"
+        }
+      ]
+    },
+    {
+      "id": "fx",
+      "category": "FX",
+      "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_fx.html",
+      "url": "https://www.rolandus.com/go/sh-201_patches/shl/SH-201_Patch_FX.zip",
+      "local_filename": "SH-201_Patch_FX.zip",
+      "sha256": "efcdc25d20f934df545987336d201b8d11372b9fa17d747ad0fc9c8f94514348",
+      "size_bytes": 45167,
+      "archive_member": "SH-201_Patch_FX/100_FX.shl",
+      "bank_sha256": "7fdeb222f931ea9c3c612f2838b5d32e0060be7bd1dca28101a5f258a9e08c9f",
+      "patch_count": 100,
+      "parameter_blocks_per_patch": 22,
+      "archive_members": [
+        {
+          "path": "SH-201_Patch_FX/100_FX.shl",
+          "bytes": 134221,
+          "sha256": "7fdeb222f931ea9c3c612f2838b5d32e0060be7bd1dca28101a5f258a9e08c9f"
+        },
+        {
+          "path": "SH-201_Patch_FX/SH-201-PATCH_100_FX_e.pdf",
+          "bytes": 34860,
+          "sha256": "a242b0f25bc67925e9467c44121cdef3231bd8bcb220f92a2b316a5599bc59c5"
+        }
+      ],
+      "license_evidence": {
+        "bundled_document": "SH-201_Patch_FX/SH-201-PATCH_100_FX_e.pdf",
+        "document_kind": "One-page name/number/memo list and loading instructions, not a license.",
+        "use_statement": "The bank may be loaded with SH-201 Librarian; its Help manual is referenced.",
+        "formal_redistribution_terms_found": false,
+        "original_bank_and_patch_bytes": "Preserve unchanged; extracted SysEx is a format conversion, not an authored preset."
+      },
+      "source_pages": [
+        {
+          "url": "https://www.rolandus.com/go/sh-201_patches/patch_fx.html",
+          "sha256": "0d0b90a219c4d6030a938a09f6df7e26ecf814dc600b52b29a6df54d3f5db2e2"
+        },
+        {
+          "url": "https://www.rolandus.com/go/sh-201_patches/patch_fx2.html",
+          "sha256": "900b426956aaaa09ab878b5e69b0b2de8a7c3c74d34cb4477621c1f6f497bf36"
+        }
+      ]
+    }
+  ]
+}

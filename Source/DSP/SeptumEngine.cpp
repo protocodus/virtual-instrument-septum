@@ -89,18 +89,24 @@ namespace
 // ---------------------------------------------------------------------------
 
 void Engine::Envelope::configure (double sr, int a, int d, int s, int r,
-                                 DecayShape shape) noexcept
+                                 DecayShape shape, const TimbreCalibration* calibration) noexcept
 {
-    const double attackTime = mapping::attackSeconds (a);
+    const double attackTime = calibration != nullptr
+        ? calibration->attackSeconds[static_cast<std::size_t> (a)] : mapping::attackSeconds (a);
     attackRate = 1.0 / std::max (1.0, attackTime * sr);
     // Exponential fall covering 60 dB over the mapped time.
     decayCoeff = std::exp (-6.907755 / std::max (1.0, mapping::decaySeconds (d) * sr));
-    releaseCoeff = std::exp (-6.907755 / std::max (1.0, mapping::decaySeconds (r) * sr));
-    sustain = s / 127.0;
+    const double releaseTime = calibration != nullptr
+        ? calibration->releaseSeconds[static_cast<std::size_t> (r)] : mapping::decaySeconds (r);
+    releaseCoeff = std::exp (-6.907755 / std::max (1.0, releaseTime * sr));
+    sustain = calibration != nullptr
+        ? calibration->sustainLevel[static_cast<std::size_t> (s)] : s / 127.0;
     decayShape = shape;
     if (decayShape == DecayShape::Linear)
     {
-        const double samples = std::max (1.0, mapping::filterDecaySeconds (d) * sr);
+        const double duration = calibration != nullptr
+            ? calibration->decaySeconds[static_cast<std::size_t> (d)] : mapping::filterDecaySeconds (d);
+        const double samples = std::max (1.0, duration * sr);
         decayStep = (1.0 - sustain) / samples;
         // A live sustain increase must also converge, including sustain=1
         // where the peak-to-sustain downward step is zero. Keep the current
@@ -455,6 +461,37 @@ void Engine::Reverb::clear()
 // Engine lifecycle
 // ---------------------------------------------------------------------------
 
+TimbreCalibration Engine::defaultTimbreCalibration() noexcept
+{
+    TimbreCalibration result;
+    for (std::size_t i = 0; i < 128; ++i)
+    {
+        const auto raw = static_cast<int> (i);
+        result.cutoffHz[i] = mapping::cutoffHz (raw);
+        result.resonanceDamping[i] = std::max (-0.04, mapping::voiceResonanceDamping (raw));
+        result.secondStageDamping[i] = mapping::voiceSecondStageDamping (result.resonanceDamping[i]);
+        result.attackSeconds[i] = mapping::attackSeconds (raw);
+        result.decaySeconds[i] = mapping::filterDecaySeconds (raw);
+        result.sustainLevel[i] = raw / 127.0;
+        result.releaseSeconds[i] = mapping::decaySeconds (raw);
+        result.pulseDuty[i] = mapping::pulseDuty (raw);
+        result.superDetune[i] = mapping::superSawDetuneAmount (raw / 127.0);
+        result.superCenterGain[i] = mapping::superSawCenterGain();
+        result.superSideGain[i] = mapping::superSawSideGain();
+    }
+    result.waveGain.fill (1.0);
+    result.superOffsets = mapping::superSawOffsets;
+    return result;
+}
+
+bool Engine::setTimbreCalibration (const TimbreCalibration& profile) noexcept
+{
+    if (! profile.valid()) return false;
+    timbre_ = profile;
+    allSoundOff();
+    return true;
+}
+
 Engine::Engine()
 {
     clampToDocumentedRanges (patch_);
@@ -680,7 +717,8 @@ void Engine::setPatch (const Patch& patch)
                                 tone.ampEnvSustain, tone.ampEnvRelease);
         voice.filterEnv.configure (sampleRate_, tone.filterEnvAttack,
                                    tone.filterEnvDecay, tone.filterEnvSustain,
-                                   tone.filterEnvRelease, Envelope::DecayShape::Linear);
+                                   tone.filterEnvRelease, Envelope::DecayShape::Linear,
+                                   timbre_.envelopeEnabled ? &timbre_ : nullptr);
         voice.pitchEnv.configure (sampleRate_, tone.pitchEnvAttack,
                                   tone.pitchEnvDecay);
     }
@@ -1332,7 +1370,8 @@ void Engine::triggerVoice (Voice& voice, Part part, int note, double velocity,
                             tone.ampEnvSustain, tone.ampEnvRelease);
     voice.filterEnv.configure (sampleRate_, tone.filterEnvAttack,
                                tone.filterEnvDecay, tone.filterEnvSustain,
-                               tone.filterEnvRelease, Envelope::DecayShape::Linear);
+                               tone.filterEnvRelease, Envelope::DecayShape::Linear,
+                               timbre_.envelopeEnabled ? &timbre_ : nullptr);
     voice.pitchEnv.configure (sampleRate_, tone.pitchEnvAttack, tone.pitchEnvDecay);
 
     if (! legato)
@@ -1843,10 +1882,16 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
 
     const double pw1 = pwValue (1, tone.osc1);
     const double pw2 = pwValue (2, tone.osc2);
-    voice.duty1 = mapping::pulseDuty (pw1);
-    voice.duty2 = mapping::pulseDuty (pw2);
-    voice.superAmount1 = mapping::superSawDetuneAmount (pw1 / 127.0);
-    voice.superAmount2 = mapping::superSawDetuneAmount (pw2 / 127.0);
+    voice.duty1 = timbre_.wavesEnabled ? TimbreCalibration::lookup (timbre_.pulseDuty, pw1) : mapping::pulseDuty (pw1);
+    voice.duty2 = timbre_.wavesEnabled ? TimbreCalibration::lookup (timbre_.pulseDuty, pw2) : mapping::pulseDuty (pw2);
+    voice.superAmount1 = timbre_.superSawEnabled && timbre_.superDetuneTableEnabled ? TimbreCalibration::lookup (timbre_.superDetune, pw1)
+                                               : mapping::superSawDetuneAmount (pw1 / 127.0);
+    voice.superAmount2 = timbre_.superSawEnabled && timbre_.superDetuneTableEnabled ? TimbreCalibration::lookup (timbre_.superDetune, pw2)
+                                               : mapping::superSawDetuneAmount (pw2 / 127.0);
+    voice.superCenter1 = timbre_.superSawEnabled ? TimbreCalibration::lookup (timbre_.superCenterGain, pw1) : mapping::superSawCenterGain();
+    voice.superCenter2 = timbre_.superSawEnabled ? TimbreCalibration::lookup (timbre_.superCenterGain, pw2) : mapping::superSawCenterGain();
+    voice.superSide1 = timbre_.superSawEnabled ? TimbreCalibration::lookup (timbre_.superSideGain, pw1) : mapping::superSawSideGain();
+    voice.superSide2 = timbre_.superSawEnabled ? TimbreCalibration::lookup (timbre_.superSideGain, pw2) : mapping::superSawSideGain();
     voice.fbGain1 = mapping::fbOscGain (pw1);
     voice.fbGain2 = mapping::fbOscGain (pw2);
 
@@ -1854,11 +1899,11 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
     // corner/Q pair is OQ-04). RBJ high-pass, Q = 0.707, per oscillator.
     const auto trackedHighPass = [this] (double f0Hz)
     {
-        const double f0 = std::clamp (f0Hz, 10.0, 0.45 * sampleRate_);
+        const double f0 = std::clamp (f0Hz * (timbre_.superSawEnabled ? timbre_.superHpfRatio : 1.0), 10.0, 0.45 * sampleRate_);
         const double w0 = twoPi * f0 / sampleRate_;
         const double cw = std::cos (w0);
         const double sw = std::sin (w0);
-        const double alpha = sw / (2.0 * 0.7071067811865476);
+        const double alpha = sw / (2.0 * (timbre_.superSawEnabled ? timbre_.superHpfQ : 0.7071067811865476));
         const double a0 = 1.0 + alpha;
         BiquadCoeffs coeffs;
         coeffs.b0 = ((1.0 + cw) * 0.5) / a0;
@@ -1884,7 +1929,9 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
     if (modulationAssign == ModulationAssign::Filter)
         lfoFilterOct += lever * mapping::leverFilterOctaves * lfo2Value;
 
-    const double cutoffBaseOct = std::log2 (mapping::cutoffHz (tone.cutoff));
+    const double cutoffBaseOct = std::log2 (timbre_.filterEnabled
+        ? TimbreCalibration::lookup (timbre_.cutoffHz, tone.cutoff)
+        : mapping::cutoffHz (tone.cutoff));
     const double keyTrack = mapping::keyFollowOctavesPerOctave (tone.keyFollow)
                             * (voice.glidePitch - 60.0) / 12.0;
     const double velocityOct = mapping::cutoffVelocityOctaves (
@@ -1900,12 +1947,17 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
     // envelope's own level is not, so the segment times the sliders ask for
     // are the segment times the filter gets.
     const double filterEnvOctTarget = mapping::filterEnvOctaves (tone.filterEnvDepth);
-    const double resonanceTarget = mapping::voiceResonanceDamping (tone.resonance);
+    const double resonanceTarget = timbre_.filterEnabled
+        ? TimbreCalibration::lookup (timbre_.resonanceDamping, tone.resonance)
+        : mapping::voiceResonanceDamping (tone.resonance);
+    const double k2Target = timbre_.filterEnabled
+        ? TimbreCalibration::lookup (timbre_.secondStageDamping, tone.resonance) : 1.2;
     if (! voice.controlsPrimed)
     {
         voice.cutoffParamOctSlewed = cutoffParamOctTarget;
         voice.filterEnvOctSlewed = filterEnvOctTarget;
         voice.resonanceSlewed = resonanceTarget;
+        voice.calibratedK2Slewed = k2Target;
         voice.controlsPrimed = true;
     }
     else
@@ -1917,18 +1969,21 @@ void Engine::updateVoiceControls (Voice& voice, int tickSamples)
         voice.filterEnvOctSlewed +=
             (filterEnvOctTarget - voice.filterEnvOctSlewed) * slew;
         voice.resonanceSlewed += (resonanceTarget - voice.resonanceSlewed) * slew;
+        voice.calibratedK2Slewed += (k2Target - voice.calibratedK2Slewed) * slew;
     }
     const double fc = std::clamp (
         std::exp2 (voice.cutoffParamOctSlewed + filterEnvLevel * voice.filterEnvOctSlewed),
         5.0, 0.45 * sampleRate_);
     voice.filterGTarget = std::tan (pi * fc / sampleRate_);
     voice.filterKTarget = voice.resonanceSlewed;
+    voice.calibratedK2Target = voice.calibratedK2Slewed;
     if (! wasPrimed)
     {
         // A fresh note starts *at* its coefficient rather than ramping to it
         // from whatever the previous owner of this voice left behind.
         voice.filterG = voice.filterGTarget;
         voice.filterK = voice.filterKTarget;
+        voice.calibratedK2 = voice.calibratedK2Target;
     }
 
     // -- amp ---------------------------------------------------------------
@@ -2009,7 +2064,7 @@ namespace
     inline OscOutput renderClassicWave (Waveform wave, double& phase, double inc,
                                         double duty, std::uint32_t& noiseRng,
                                         NoiseSource& noise,
-                                        bool corrected = true) noexcept
+                                        bool corrected = true, double phaseOffset = 0.0) noexcept
     {
         phase += inc;
         bool wrapped = false;
@@ -2021,30 +2076,34 @@ namespace
             wrapOffset = phase / std::max (1.0e-9, inc);
         }
 
+        // Waveform convention is separate from the canonical clock used by
+        // SYNC. Offset the waveform and its BLEP/BLAMP together; shifting only
+        // the naive function would leave correction impulses at the old edge.
+        const double position = phaseOffset == 0.0 ? phase : frac (phase + phaseOffset);
         switch (wave)
         {
             case Waveform::Saw:
             {
-                double value = 2.0 * phase - 1.0;
+                double value = 2.0 * position - 1.0;
                 if (corrected)
-                    value -= polyBlep (phase, inc);
+                    value -= polyBlep (position, inc);
                 return { value, wrapped, wrapOffset };
             }
             case Waveform::Square:
             case Waveform::PulseSquare:
             {
                 const double width = wave == Waveform::Square ? 0.5 : duty;
-                double value = phase < width ? 1.0 : -1.0;
+                double value = position < width ? 1.0 : -1.0;
                 if (corrected)
                 {
-                    value += polyBlep (phase, inc);
-                    value -= polyBlep (frac (phase - width + 1.0), inc);
+                    value += polyBlep (position, inc);
+                    value -= polyBlep (frac (position - width + 1.0), inc);
                 }
                 return { value, wrapped, wrapOffset };
             }
             case Waveform::Triangle:
             {
-                double value = phase < 0.5 ? 4.0 * phase - 1.0 : 3.0 - 4.0 * phase;
+                double value = position < 0.5 ? 4.0 * position - 1.0 : 3.0 - 4.0 * position;
                 if (! corrected)
                     return { value, wrapped, wrapOffset };
                 // polyBlamp is the antiderivative of polyBlep with respect to
@@ -2055,12 +2114,12 @@ namespace
                 // overshoots by exactly as much as it corrects and the
                 // triangle measures the same as no correction at all.
                 const double scale = 4.0 * inc;
-                value += scale * polyBlamp (phase, inc);
-                value -= scale * polyBlamp (frac (phase + 0.5), inc);
+                value += scale * polyBlamp (position, inc);
+                value -= scale * polyBlamp (frac (position + 0.5), inc);
                 return { value, wrapped, wrapOffset };
             }
             case Waveform::Sine:
-                return { std::sin (twoPi * phase), wrapped, wrapOffset };
+                return { std::sin (twoPi * position), wrapped, wrapOffset };
             case Waveform::Noise:
                 // [voiced, OQ-03] White across the audio band, at the
                 // instrument's own rate rather than the host's — see
@@ -2080,25 +2139,35 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
     const Waveform wave1 = tone.osc1.wave;
     const Waveform wave2 = tone.osc2.wave;
 
+    const auto classicParameter = [&] (Waveform wave, const std::array<double, 5>& values, double fallback)
+    {
+        const auto index = static_cast<std::size_t> (wave);
+        return timbre_.wavesEnabled && index < values.size() ? values[index] : fallback;
+    };
+    const double phaseOffset1 = classicParameter (wave1, timbre_.phaseCycles, 0.0);
+    const double phaseOffset2 = classicParameter (wave2, timbre_.phaseCycles, 0.0);
+    const double classicGain1 = classicParameter (wave1, timbre_.waveGain, 1.0);
+    const double classicGain2 = classicParameter (wave2, timbre_.waveGain, 1.0);
+
     const double legGain1 = mapping::balanceLegGain (tone.balance, true);
     const double legGain2 = mapping::balanceLegGain (tone.balance, false);
 
-    const double centerGain = mapping::superSawCenterGain();
-    const double sideGain = mapping::superSawSideGain();
+    const auto& superOffsets = timbre_.superSawEnabled ? timbre_.superOffsets : mapping::superSawOffsets;
+    const double superNormalization = timbre_.superSawEnabled ? timbre_.superNormalization : mapping::superSawStackNormalisation;
 
     const auto superSaw = [&] (OscState& osc, double inc, double amount,
-                               const BiquadCoeffs& hpf)
+                               const BiquadCoeffs& hpf, double centerGain, double sideGain)
     {
         double sum = 0.0;
         for (std::size_t index = 0; index < 7; ++index)
         {
-            const double detune = 1.0 + mapping::superSawOffsets[index] * amount;
+            const double detune = 1.0 + superOffsets[index] * amount;
             double& phase = osc.superPhases[index];
             phase = frac (phase + inc * detune);
             sum += (index == 3 ? centerGain : sideGain) * (2.0 * phase - 1.0);
         }
         // The reported pitch-tracked HPF on the summed stack.
-        const double x = sum * mapping::superSawStackNormalisation;
+        const double x = sum * superNormalization;
         const double y = hpf.b0 * x + hpf.b1 * osc.hpfX1 + hpf.b2 * osc.hpfX2
                          - hpf.a1 * osc.hpfY1 - hpf.a2 * osc.hpfY2;
         osc.hpfX2 = osc.hpfX1;
@@ -2149,6 +2218,7 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
     const double inverseSamples = 1.0 / std::max (1, samples);
     const double gStep = (voice.filterGTarget - voice.filterG) * inverseSamples;
     const double kStep = (voice.filterKTarget - voice.filterK) * inverseSamples;
+    const double k2Step = (voice.calibratedK2Target - voice.calibratedK2) * inverseSamples;
     // How far a crossed switch moves per sample, shared with the external
     // input's switches: the same registered constant, the same meaning.
     const double fadeStep =
@@ -2183,7 +2253,7 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
                 // offset is zero, so it advances by exactly inc2.
                 const double centerBefore = voice.osc2.superPhases[3];
                 sample2 = superSaw (voice.osc2, voice.inc2, voice.superAmount2,
-                                    voice.superHpf2);
+                                    voice.superHpf2, voice.superCenter2, voice.superSide2);
                 if (centerBefore + voice.inc2 >= 1.0)
                 {
                     osc2Wrapped = true;
@@ -2226,7 +2296,7 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
                 const auto out = renderClassicWave (wave2, voice.osc2.phase,
                                                     voice.inc2, voice.duty2,
                                                     voice.noiseRng,
-                                                    voice.osc2.noise);
+                                                    voice.osc2.noise, true, phaseOffset2);
                 sample2 = out.value;
                 osc2Wrapped = out.wrapped;
                 osc2WrapOffset = out.wrapOffset;
@@ -2253,7 +2323,7 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
             for (std::size_t index = 0; index < voice.osc1.superPhases.size(); ++index)
             {
                 const double detunedInc = voice.inc1
-                    * (1.0 + mapping::superSawOffsets[index] * voice.superAmount1);
+                    * (1.0 + superOffsets[index] * voice.superAmount1);
                 voice.osc1.superPhases[index] =
                     frac ((osc2WrapOffset - 1.0) * detunedInc);
             }
@@ -2281,7 +2351,7 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
         {
             case Waveform::SuperSaw:
                 sample1 = superSaw (voice.osc1, voice.inc1, voice.superAmount1,
-                                    voice.superHpf1);
+                                    voice.superHpf1, voice.superCenter1, voice.superSide1);
                 break;
             case Waveform::FbOsc:
                 sample1 = feedbackOsc (voice.osc1, voice.inc1, voice.fbGain1);
@@ -2296,13 +2366,15 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
                                                     voice.inc1, voice.duty1,
                                                     voice.noiseRng,
                                                     voice.osc1.noise,
-                                                    ! osc1SyncReset);
+                                                    ! osc1SyncReset, phaseOffset1);
                 sample1 = out.value;
                 break;
             }
         }
 
         // ---- MIX/MOD -----------------------------------------------------
+        sample1 *= classicGain1;
+        sample2 *= classicGain2;
         // RING replaces the OSC1 leg with the product (settled: balance fully
         // left outputs the ring-modulated sound).
         const double leg1 = tone.mixType == MixModType::Ring ? sample1 * sample2
@@ -2352,7 +2424,9 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
             const double a1 = 1.0 / (1.0 + g * (g + k));
             const double a2 = g * a1;
             // The empirical voice model adds bounded resonance in stage two.
-            const double k2 = mapping::voiceSecondStageDamping (k);
+            const double k2 = timbre_.filterEnabled && timbre_.secondStageIndependent
+                ? voice.calibratedK2 + k2Step * (i + 1)
+                : mapping::voiceSecondStageDamping (k);
             const double b1 = 1.0 / (1.0 + g * (g + k2));
             const double b2 = g * b1;
 
@@ -2460,6 +2534,7 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
 
     voice.filterG = voice.filterGTarget;
     voice.filterK = voice.filterKTarget;
+    voice.calibratedK2 = voice.calibratedK2Target;
 
     // Once per tick: keep decayed states out of denormal territory.
     voice.filter1.ic1eq = flushDenormal (voice.filter1.ic1eq);

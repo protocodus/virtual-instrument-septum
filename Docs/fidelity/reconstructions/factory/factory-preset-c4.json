@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "id": "factory-preset-c4",
+  "title": "SH-201 EP — estimated opening excerpt",
+  "reference_id": "factory-preset-c4",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 0,
+  "duration_seconds": 7.98,
+  "method": "Source-only analysis: mono 22050 Hz decoding of the original Roland MP3, 8192-sample Hann STFT at 256-sample hops, nonnegative least-squares decomposition against detune-broadened harmonic templates over MIDI 36–88, and inspection of local FFT peaks and amplitude transitions. Candidate notes were screened for upper-harmonic and subharmonic errors. Local FFTs distinguish played-note fundamentals from the unusually loud third harmonics: D4 produces ~294/882 Hz, G4 ~392/1176 Hz, D5 ~587/1761 Hz, and G5 ~784/2352 Hz. The opening rising figure D4–G4–D5–G5–G4–D5 sits above a G3 accompaniment. The next groups use Bb3 with F4–G4–C5, Eb3 with Bb3–G4–D5–G5–G4–D5, and F3 with C4–G4–D5. Onsets are roughly quarter-second steps from 0.082 seconds, with two-second accompaniment changes.",
+  "uncertainties": [
+    "Original performance MIDI is unavailable. Every event here is estimated from the MP3, not an exact original MIDI event.",
+    "Velocity 100 is an explicit placeholder. Original velocities, sustain pedal, pitch bend, modulation and other controller events are unavailable and are not recovered.",
+    "Sounding pitch families do not uniquely determine played keys when oscillator octave offsets or layered tones are unknown. This transcription uses sounding fundamentals with a newly designed patch at zero overall transpose.",
+    "MP3 encoding, detuned oscillators, effects and envelope release obscure key-down and key-up times. The MIDI contains practical gates, not measured hardware key releases.",
+    "The patch is newly authored in Septum from spectral and temporal cues. It is an approximation of the named factory sound, not Roland factory SysEx or a recovered hardware preset.",
+    "Bass accompaniment and melody share overlapping harmonics; ringing previous notes can mask exact releases. The estimated melody uses 235 ms gates with long patch decay.",
+    "Odd partials are part of the timbre, not extra high MIDI notes. The original patch’s oscillator interval, ring modulation or feedback setting remains unknown.",
+    "Sustain-pedal use is unknown. The excerpt ends in the fourth group’s release tail."
+  ],
+  "notes": [
+    {
+      "on": 0.082,
+      "off": 1.53,
+      "note": 55,
+      "velocity": 100
+    },
+    {
+      "on": 0.082,
+      "off": 0.317,
+      "note": 62,
+      "velocity": 100
+    },
+    {
+      "on": 0.332,
+      "off": 0.567,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 0.582,
+      "off": 0.817,
+      "note": 74,
+      "velocity": 100
+    },
+    {
+      "on": 0.832,
+      "off": 1.067,
+      "note": 79,
+      "velocity": 100
+    },
+    {
+      "on": 1.082,
+      "off": 1.317,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 1.332,
+      "off": 1.567,
+      "note": 74,
+      "velocity": 100
+    },
+    {
+      "on": 2.082,
+      "off": 2.88,
+      "note": 58,
+      "velocity": 100
+    },
+    {
+      "on": 2.082,
+      "off": 2.317,
+      "note": 65,
+      "velocity": 100
+    },
+    {
+      "on": 2.332,
+      "off": 2.567,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 2.582,
+      "off": 2.817,
+      "note": 72,
+      "velocity": 100
+    },
+    {
+      "on": 4.082,
+      "off": 5.53,
+      "note": 51,
+      "velocity": 100
+    },
+    {
+      "on": 4.082,
+      "off": 4.317,
+      "note": 58,
+      "velocity": 100
+    },
+    {
+      "on": 4.332,
+      "off": 4.567,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 4.582,
+      "off": 4.817,
+      "note": 74,
+      "velocity": 100
+    },
+    {
+      "on": 4.832,
+      "off": 5.067,
+      "note": 79,
+      "velocity": 100
+    },
+    {
+      "on": 5.082,
+      "off": 5.317,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 5.332,
+      "off": 5.567,
+      "note": 74,
+      "velocity": 100
+    },
+    {
+      "on": 6.082,
+      "off": 6.93,
+      "note": 53,
+      "velocity": 100
+    },
+    {
+      "on": 6.082,
+      "off": 6.317,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 6.332,
+      "off": 6.567,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 6.582,
+      "off": 6.817,
+      "note": 74,
+      "velocity": 100
+    }
+  ],
+  "patch_design": {
+    "status": "approximate_factory_recreation",
+    "base_program": "INIT PATCH",
+    "name": "APX 201 EP",
+    "parameters": {
+      "patchLevel": 100,
+      "keyboardMode": 0,
+      "keyboardPart": 0,
+      "arpeggio.on": false,
+      "upper.mono": 0,
+      "upper.osc1.coarse": 0,
+      "upper.osc2.coarse": 12,
+      "upper.octaveShift": 0,
+      "upper.level": 105,
+      "upper.levelVelocitySens": 0,
+      "upper.cutoffVelocitySens": 0,
+      "upper.overdrive": false,
+      "upper.filterType": 1,
+      "upper.lfo1.depth1": 0,
+      "upper.lfo1.depth2": 0,
+      "upper.lfo2.depth1": 0,
+      "upper.lfo2.depth2": 0,
+      "upper.portamento": false,
+      "upper.osc1.wave": 4,
+      "upper.osc2.wave": 4,
+      "upper.osc2.fine": 2,
+      "upper.mixType": 2,
+      "upper.balance": -47,
+      "upper.filterSlope": 0,
+      "upper.cutoff": 105,
+      "upper.resonance": 3,
+      "upper.keyFollow": 100,
+      "upper.filterEnvAttack": 0,
+      "upper.filterEnvDecay": 60,
+      "upper.filterEnvSustain": 0,
+      "upper.filterEnvRelease": 70,
+      "upper.filterEnvDepth": 4,
+      "upper.ampEnvAttack": 0,
+      "upper.ampEnvDecay": 105,
+      "upper.ampEnvSustain": 0,
+      "upper.ampEnvRelease": 87,
+      "delayOn": true,
+      "upper.delayDepth": 16,
+      "delay.time": 53,
+      "delay.feedback": 0,
+      "delay.modulationRate": 35,
+      "delay.modulationDepth": 50,
+      "reverbOn": true,
+      "upper.reverbDepth": 15,
+      "reverb.time": 55,
+      "reverb.highCut": 15
+    },
+    "rationale": [
+      "A sine at the played pitch multiplied by an octave-up sine generates fundamental and third-harmonic components; a small direct octave component supplies the observed even partial. This is an explicit synthesis hypothesis for the EP’s bell-like spectrum.",
+      "A fast attack and long decay approximate the struck-key envelope; light modulated delay adds the small frequency spread seen around upper partials."
+    ],
+    "uncertainties": [
+      "No authenticated factory PRESET dump is available; every changed control value is an authored approximation.",
+      "The recording does not uniquely reveal oscillator topology, layer routing, filter slope, modulation or effect settings.",
+      "The ring-modulation topology is a deliberately chosen way to reproduce observed partial families, not a recovered fact about Roland’s preset.",
+      "Third-harmonic level and frequency-dependent decay will differ from the unknown factory design."
+    ]
+  }
+}

@@ -1,4 +1,4 @@
-// Experimental host-rate boundary for the fixed 44.1 kHz Septum model.
+// Experimental host-rate boundary for an explicitly selected synthesis rate.
 // This is an offline/comparison prototype, not the plug-in's default engine.
 #pragma once
 
@@ -37,33 +37,43 @@ private:
 };
 } // namespace detail
 
-// Controls are inherited and affect the next internal sample rendered. Render
-// calls deliberately use one internal sample: this makes control/envelope
+// Controls are inherited and affect the next internal sample rendered. Every
+// host interval is completed before process returns, so an event at host frame
+// H first reaches core frame ceil(H * coreRate / hostRate), never a past frame.
+// Its quantisation is therefore causal and shorter than one core sample.
+// Render calls deliberately use one internal sample: this makes control/envelope
 // cadence independent of host block and event segmentation, but changes the
 // incumbent engine's 8-sample control evaluation and costs more CPU. Do not
 // substitute this through an Engine pointer: lifecycle/render methods are not
 // virtual. The native engine remains available for comparison.
 //
-// FIR reconstruction is causal (no synthesis ahead of the host clock). At host
-// rates below 44.1 kHz, an immediate control can reach a pending internal frame
-// less than one host sample before its nominal host timestamp. At higher rates
-// it reaches the next internal frame within one internal sample. This explicit
-// quantisation limit is a prototype constraint, not sample-exact MIDI alignment.
+// FIR reconstruction uses only input already supplied by the host. Core
+// frames inside the last host interval are completed before the next control
+// boundary; they cannot affect an output frame already emitted. Compared with
+// the first prototype this changes event timing, not the static rate model.
+// Neither the default 44.1 kHz nor another selected rate is hardware calibration.
 class ReferenceRateEngine : public Engine
 {
 public:
     static constexpr double referenceRateHz = 44100.0;
+    static constexpr double minimumSynthesisRateHz = 8000.0;
+    static constexpr double maximumSynthesisRateHz = 192000.0;
 
-    void prepare (double hostRate, int maximumBlockSize);
+    // Invalid synthesis rates throw std::invalid_argument before changing the
+    // current setup. Host-rate clamping retains the original two-argument API.
+    void prepare (double hostRate, int maximumBlockSize,
+                  double synthesisRate = referenceRateHz);
     void reset();
     void process (float* left, float* right, int numSamples,
                   const float* inputLeft = nullptr,
                   const float* inputRight = nullptr);
 
     [[nodiscard]] double sampleRate() const noexcept { return hostRate_; }
-    // Synth/MIDI path: the core's reported latency plus output FIR group delay.
-    // Ceil is the conservative integer a host can report; fractional delay is
-    // not silently rounded inside the converter itself.
+    [[nodiscard]] double synthesisRate() const noexcept { return synthesisRate_; }
+    // Synth/MIDI transport: the core's reported latency plus output FIR group
+    // delay. Ceil rounds this fixed transport conservatively. An event also
+    // quantizes forward by [0, 1/coreRate) seconds depending on its timestamp;
+    // this variable scheduling offset is not included in the fixed latency.
     [[nodiscard]] int latencySamples() const noexcept;
     [[nodiscard]] double exactLatencySamples() const noexcept;
     [[nodiscard]] int inputConversionLatencySamples() const noexcept
@@ -79,7 +89,9 @@ public:
     }
 
 private:
+    void renderInternalSample();
     double hostRate_ { referenceRateHz };
+    double synthesisRate_ { referenceRateHz };
     std::uint64_t hostFrames_ { 0 }, internalFrames_ { 0 };
     detail::ReferenceRateConverter inputConverter_, outputConverter_;
     bool prepared_ { false };

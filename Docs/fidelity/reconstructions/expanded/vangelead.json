@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "id": "vangelead",
+  "title": "Vangelead — descending fifths",
+  "reference_id": "lead-05",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 0,
+  "duration_seconds": 5.15,
+  "method": "Hardware-only STFT and Hann-window FFT inspection identifies successive fundamental families near 880, 587, 392, 262 and 175 Hz: MIDI 81, 74, 67, 60 and 53. Both published tones have octave shift 0, both oscillator coarse bytes 64 (signed 0), and WIDE off, so no octave correction is applied. The dual patch supplies layered saw/Super Saw timbre and long tails; continuing old harmonics are treated as patch tails rather than guessed additional held keys. Note changes are placed at the observed spectral renewals/RMS dips. No software rendering or parameter fitting was used.",
+  "uncertainties": [
+    "Original performance MIDI is unavailable. This is an audio-derived estimate, not an original MIDI file.",
+    "Velocity 100 is a placeholder for every note; original velocity, controllers, system transpose and exact recording patch revision are unverified.",
+    "Published delay/reverb and recording processing obscure exact key-down/up times. Note boundaries are estimated, generally within 10–30 ms; longer ambiguity is described below.",
+    "No Septum audio or synthesis parameter search was used to choose these notes. The paired Roland preset must remain unmodified.",
+    "The Upper tone is monophonic and the Lower tone is polyphonic with a slow envelope; sustained old pitches may combine release tails with unknown key overlaps. This reconstruction uses adjoining single-note gates and cannot uniquely recover those overlaps.",
+    "The 5.15-second prefix stops before the next descending note. Its final release at 5.145 seconds is an artificial crop boundary."
+  ],
+  "notes": [
+    {
+      "on": 0.137,
+      "off": 1.136,
+      "note": 81,
+      "velocity": 100
+    },
+    {
+      "on": 1.136,
+      "off": 2.105,
+      "note": 74,
+      "velocity": 100
+    },
+    {
+      "on": 2.105,
+      "off": 3.152,
+      "note": 67,
+      "velocity": 100
+    },
+    {
+      "on": 3.152,
+      "off": 4.172,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 4.172,
+      "off": 5.145,
+      "note": 53,
+      "velocity": 100
+    }
+  ]
+}

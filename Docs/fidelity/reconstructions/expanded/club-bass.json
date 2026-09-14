@@ -1,0 +1,90 @@
+{
+  "id": "club-bass",
+  "title": "Club Bass — separated opening bass reconstruction",
+  "reference_id": "bass-05",
+  "duration_seconds": 3.25,
+  "method": "Hardware-only spectrograms show a low D1 family near 36.7 Hz together with components near 73.4 and 293 Hz. The original patch maps a played key to Lower oscillators at −12, Upper triangle at 0, and Upper sine at +24 semitones, so the first three keys are MIDI 38 (D2). Later 43.65/87.3/349 Hz families identify MIDI 41 (F2), followed by two more D2 events. Onsets, repeated-note renewals, and gates were read from the audio waveform and spectral changes without fitting to Septum.",
+  "uncertainties": [
+    "Original performance MIDI is unavailable; this is a source-audio reconstruction, not a recovered original performance.",
+    "All velocities are fixed to 100 as an explicit unknown placeholder; no velocity, preset parameter, or recording EQ was fitted to Septum output.",
+    "Played-note inference assumes default system transpose and the documented/current WIDE-dependent oscillator ranges. Original system settings, controller events, exact recorded patch revision, and recording processing are unknown.",
+    "Event times refer to decoded MP3 audio. Hardware latency, encoder history, oscillator state, and effect history are not recovered; no post-render alignment or time warping is implied.",
+    "Onsets and gates are approximate within 10–20 ms. The F-to-D transition may contain a short overlap; note-off and note-on are placed together as an explicit estimate.",
+    "The original Lower tone has SOLO LEGATO and portamento enabled, so overlap uncertainty can affect the F-to-D transition. The first three separated D notes are the strongest timing evidence.",
+    "Upper filter LFO, overdrive, and original reverb remain enabled. The residual reverb tail is retained in the crop and is not interpreted as additional MIDI notes."
+  ],
+  "schema_version": 1,
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 0,
+  "notes": [
+    {
+      "on": 0.163,
+      "off": 0.338,
+      "note": 38,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "high for family and octave; exact played note conditional on unknown system transpose",
+      "onset_uncertainty_seconds": 0.02,
+      "note_off_confidence": "medium; about ±20 ms, final cropped held note excepted",
+      "velocity_source": "unknown constant placeholder; not fitted to amplitude"
+    },
+    {
+      "on": 0.508,
+      "off": 0.679,
+      "note": 38,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "high for family and octave; exact played note conditional on unknown system transpose",
+      "onset_uncertainty_seconds": 0.02,
+      "note_off_confidence": "medium; about ±20 ms, final cropped held note excepted",
+      "velocity_source": "unknown constant placeholder; not fitted to amplitude"
+    },
+    {
+      "on": 0.852,
+      "off": 1.022,
+      "note": 38,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "high for family and octave; exact played note conditional on unknown system transpose",
+      "onset_uncertainty_seconds": 0.02,
+      "note_off_confidence": "medium; about ±20 ms, final cropped held note excepted",
+      "velocity_source": "unknown constant placeholder; not fitted to amplitude"
+    },
+    {
+      "on": 1.584,
+      "off": 1.826,
+      "note": 41,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "high for family and octave; exact played note conditional on unknown system transpose",
+      "onset_uncertainty_seconds": 0.02,
+      "note_off_confidence": "medium; about ±20 ms, final cropped held note excepted",
+      "velocity_source": "unknown constant placeholder; not fitted to amplitude"
+    },
+    {
+      "on": 1.826,
+      "off": 1.948,
+      "note": 38,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "high for family and octave; exact played note conditional on unknown system transpose",
+      "onset_uncertainty_seconds": 0.02,
+      "note_off_confidence": "medium; about ±20 ms, final cropped held note excepted",
+      "velocity_source": "unknown constant placeholder; not fitted to amplitude"
+    },
+    {
+      "on": 2.046,
+      "off": 2.21,
+      "note": 38,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "high for family and octave; exact played note conditional on unknown system transpose",
+      "onset_uncertainty_seconds": 0.02,
+      "note_off_confidence": "medium; about ±20 ms, final cropped held note excepted",
+      "velocity_source": "unknown constant placeholder; not fitted to amplitude"
+    }
+  ],
+  "preset_parameter_modifications": [],
+  "published_tuning_audit": "DUAL, octave shift 0 for both tones. Upper triangle raw coarse 64/WIDE off → 0; Upper sine 88/WIDE on → +24; both Lower oscillators 28/WIDE off → −12. Arpeggiator off. Upper POLY, portamento off; Lower SOLO LEGATO, portamento on/time20. Delay off, reverb on.",
+  "evidence_artifact": "build-fidelity/hardware-benchmark/expanded-transcription-audit/bass-transcription-evidence.json"
+}

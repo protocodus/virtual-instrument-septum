@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "id": "factory-preset-a3",
+  "title": "SilkyStrings — estimated opening excerpt",
+  "reference_id": "factory-preset-a3",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 0,
+  "duration_seconds": 7.75,
+  "method": "Source-only analysis: mono 22050 Hz decoding of the original Roland MP3, 8192-sample Hann STFT at 256-sample hops, nonnegative least-squares decomposition against detune-broadened harmonic templates over MIDI 36–88, and inspection of local FFT peaks and amplitude transitions. Candidate notes were screened for upper-harmonic and subharmonic errors. The opening has independent low families near 87/131 Hz (F2/C3), then 98/147/220/330 Hz (G2/D3/A3/E4), followed by 110/165/247/262 Hz (A2/E3/B3/C4). These sustained chord families are retained; the strong 785 Hz peak in the first chord is consistent with a sixth partial of C3, so it is not automatically added as another played key. Soft transitions near 2.2 and 4.3 seconds define the chord changes.",
+  "uncertainties": [
+    "Original performance MIDI is unavailable. Every event here is estimated from the MP3, not an exact original MIDI event.",
+    "Velocity 100 is an explicit placeholder. Original velocities, sustain pedal, pitch bend, modulation and other controller events are unavailable and are not recovered.",
+    "Sounding pitch families do not uniquely determine played keys when oscillator octave offsets or layered tones are unknown. This transcription uses sounding fundamentals with a newly designed patch at zero overall transpose.",
+    "MP3 encoding, detuned oscillators, effects and envelope release obscure key-down and key-up times. The MIDI contains practical gates, not measured hardware key releases.",
+    "The patch is newly authored in Septum from spectral and temporal cues. It is an approximation of the named factory sound, not Roland factory SysEx or a recovered hardware preset.",
+    "The first dyad may omit real octave-doubled keys that are inseparable from oscillator harmonics. The second and third chord voicings are provisional, including the B3/C4 cluster.",
+    "Slow attack and release make onset/off estimates uncertain by roughly 100–250 ms. The excerpt ends before the next chord."
+  ],
+  "notes": [
+    {
+      "on": 0.2,
+      "off": 2.13,
+      "note": 41,
+      "velocity": 100
+    },
+    {
+      "on": 0.2,
+      "off": 2.13,
+      "note": 48,
+      "velocity": 100
+    },
+    {
+      "on": 2.23,
+      "off": 4.21,
+      "note": 43,
+      "velocity": 100
+    },
+    {
+      "on": 2.23,
+      "off": 4.21,
+      "note": 50,
+      "velocity": 100
+    },
+    {
+      "on": 2.23,
+      "off": 4.21,
+      "note": 57,
+      "velocity": 100
+    },
+    {
+      "on": 2.23,
+      "off": 4.21,
+      "note": 64,
+      "velocity": 100
+    },
+    {
+      "on": 4.33,
+      "off": 7.24,
+      "note": 45,
+      "velocity": 100
+    },
+    {
+      "on": 4.33,
+      "off": 7.24,
+      "note": 52,
+      "velocity": 100
+    },
+    {
+      "on": 4.33,
+      "off": 7.24,
+      "note": 59,
+      "velocity": 100
+    },
+    {
+      "on": 4.33,
+      "off": 7.24,
+      "note": 60,
+      "velocity": 100
+    }
+  ],
+  "patch_design": {
+    "status": "approximate_factory_recreation",
+    "base_program": "INIT PATCH",
+    "name": "APX Strings",
+    "parameters": {
+      "patchLevel": 100,
+      "keyboardMode": 0,
+      "keyboardPart": 0,
+      "arpeggio.on": false,
+      "upper.mono": 0,
+      "upper.osc1.coarse": 0,
+      "upper.osc2.coarse": 0,
+      "upper.octaveShift": 0,
+      "upper.level": 105,
+      "upper.levelVelocitySens": 0,
+      "upper.cutoffVelocitySens": 0,
+      "upper.overdrive": false,
+      "upper.filterType": 1,
+      "upper.lfo1.depth1": 0,
+      "upper.lfo1.depth2": 0,
+      "upper.lfo2.depth1": 0,
+      "upper.lfo2.depth2": 0,
+      "upper.portamento": false,
+      "upper.osc1.wave": 7,
+      "upper.osc1.pulseWidth": 43,
+      "upper.osc1.fine": -3,
+      "upper.osc2.wave": 0,
+      "upper.osc2.fine": 5,
+      "upper.balance": -28,
+      "upper.filterSlope": 0,
+      "upper.cutoff": 75,
+      "upper.resonance": 18,
+      "upper.keyFollow": 20,
+      "upper.filterEnvAttack": 98,
+      "upper.filterEnvDecay": 96,
+      "upper.filterEnvSustain": 100,
+      "upper.filterEnvRelease": 88,
+      "upper.filterEnvDepth": 9,
+      "upper.ampEnvAttack": 98,
+      "upper.ampEnvDecay": 90,
+      "upper.ampEnvSustain": 115,
+      "upper.ampEnvRelease": 88,
+      "delayOn": true,
+      "upper.delayDepth": 22,
+      "delay.time": 56,
+      "delay.feedback": 0,
+      "delay.modulationRate": 40,
+      "delay.modulationDepth": 75,
+      "reverbOn": true,
+      "upper.reverbDepth": 28,
+      "reverb.time": 76,
+      "reverb.highCut": 15,
+      "reverb.hfDampGain": -8
+    },
+    "rationale": [
+      "Broad, gently beating harmonic families suggest detuned saw-like sources; one moderately spread Super Saw and one close saw supply a restrained string ensemble.",
+      "The source rises gradually and sustains through chord changes, motivating a soft amplitude attack, long release and gently opening low-pass envelope.",
+      "A quiet modulated short delay and reverb approximate the observed stereo tail.",
+      "A first Septum render rose appreciably earlier than the source in each chord; amplitude attack was lengthened from 85 to 98 to follow the slower observed swell."
+    ],
+    "uncertainties": [
+      "No authenticated factory PRESET dump is available; every changed control value is an authored approximation.",
+      "The recording does not uniquely reveal oscillator topology, layer routing, filter slope, modulation or effect settings.",
+      "Modulation delay and reverb are plausible voicing choices, not identified effect settings.",
+      "A first software render informed these control adjustments. This is a conditional audio match using estimated notes, not recovered factory settings or a hardware-calibrated DSP claim."
+    ]
+  }
+}

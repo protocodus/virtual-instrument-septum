@@ -239,9 +239,12 @@ def write_html(results, output):
     sections = []
     for result in results:
         case = result['case']; id_ = html.escape(case['id']); title = html.escape(case['title'])
+        if case.get('midi_status') != 'reconstructed_not_original':
+            raise ValueError('This comparison page requires explicitly estimated performance MIDI')
         notes = ''.join('<p>' + html.escape(note) + '</p>' for note in case['uncertainties'])
         sections.append(f'''<section><h2>{title}</h2>
-<p><b>Same published preset · reconstructed MIDI</b> · {case['duration_seconds']:g} seconds</p>
+<p><strong>MIDI: ESTIMATED — reconstructed from audio. Exact original performance MIDI: unavailable.</strong></p>
+<p>Notes and timing are estimates; velocities are placeholders. Published preset: verified byte-for-byte against the bank; exact recorded revision unknown. · {case['duration_seconds']:g} seconds</p>
 <div class="player" data-root="{id_}">
 <button data-play="hardware-listen.wav">Play hardware</button>
 <button data-play="septum-listen.wav">Play Septum</button>
@@ -250,7 +253,7 @@ def write_html(results, output):
 <details><summary>Reconstruction notes and limits</summary>{notes}</details>
 <p><a href="{id_}/hardware-then-septum.wav">Sequential A/B</a> ·
 <a href="{id_}/original-patch.syx">Published patch as SysEx</a> ·
-<a href="{id_}/reconstructed-performance.mid">Reconstructed MIDI</a> ·
+<a href="{id_}/reconstructed-performance.mid">Download ESTIMATED MIDI</a> ·
 <a href="{id_}/septum-raw.wav">Raw Septum render</a> ·
 <a href="{id_}/comparison.json">Provenance and measurements</a> ·
 <a href="{result['reference']['source_page_url']}">Roland source page</a></p>
@@ -263,6 +266,8 @@ h1{font-size:32px;line-height:1.2}h2{font-size:24px}section{border-top:1px solid
 a{color:#275679}button{font:inherit;padding:8px 12px;margin:0 8px 8px 0;border:1px solid #777;background:#f4f4f4;cursor:pointer}
 button[aria-pressed=true]{background:#222;color:white}audio{display:block;width:100%;margin:15px 0}img{max-width:100%}
 label{font-size:14px}p{max-width:90ch}summary{cursor:pointer}details p{font-size:15px}</style><h1>SH-201 hardware comparison</h1>
+<p><strong>Performance MIDI: all estimated. Exact original MIDI files: 0.</strong>
+Every MIDI file below was reconstructed from the recording. None is a captured original performance.</p>
 <p>Official Roland hardware demos compared with Septum playing short audio-derived MIDI reconstructions
 and unmodified published Roland presets. No original performance MIDI was found in the audited sources.
 These are exploratory listening benchmarks. Timing, velocity, controllers and the recording chain

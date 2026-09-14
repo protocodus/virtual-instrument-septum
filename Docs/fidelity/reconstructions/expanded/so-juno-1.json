@@ -1,0 +1,79 @@
+{
+  "id": "so-juno-1",
+  "title": "So Juno 1 — opening bass reconstruction",
+  "reference_id": "bass-02",
+  "duration_seconds": 1.55,
+  "method": "Hardware-only low-frequency peaks, octave-spaced harmonic families, and amplitude discontinuities identify five opening events. The lower sine and Upper square both sound one octave below the played key; the Upper saw sounds at the played key. The two low E-flat events therefore map to MIDI 39, the octave-up E-flat events to 51, and the final D-flat to 49. The crop stops before the later continuous pitch movement. No Septum rendering was consulted to derive notes or times.",
+  "uncertainties": [
+    "Original performance MIDI is unavailable; this is a source-audio reconstruction, not a recovered original performance.",
+    "All velocities are fixed to 100 as an explicit unknown placeholder; no velocity, preset parameter, or recording EQ was fitted to Septum output.",
+    "Played-note inference assumes default system transpose and the documented/current WIDE-dependent oscillator ranges. Original system settings, controller events, exact recorded patch revision, and recording processing are unknown.",
+    "Event times refer to decoded MP3 audio. Hardware latency, encoder history, oscillator state, and effect history are not recovered; no post-render alignment or time warping is implied.",
+    "Onsets and abrupt note-offs are approximate within 10–20 ms; an octave transition may contain a small overlap that cannot be recovered.",
+    "The final note is cropped while still sounding. Its note-off at 1.55 seconds is an artificial boundary, not a measured hardware release.",
+    "The published delay remains enabled. Earlier-note echoes and small pitch drift remain in the hardware excerpt."
+  ],
+  "schema_version": 1,
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 0,
+  "notes": [
+    {
+      "on": 0.097,
+      "off": 0.225,
+      "note": 51,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "high for family and octave; exact played note conditional on unknown system transpose",
+      "onset_uncertainty_seconds": 0.02,
+      "note_off_confidence": "medium; about ±20 ms, final cropped held note excepted",
+      "velocity_source": "unknown constant placeholder; not fitted to amplitude"
+    },
+    {
+      "on": 0.225,
+      "off": 0.337,
+      "note": 39,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "high for family and octave; exact played note conditional on unknown system transpose",
+      "onset_uncertainty_seconds": 0.02,
+      "note_off_confidence": "medium; about ±20 ms, final cropped held note excepted",
+      "velocity_source": "unknown constant placeholder; not fitted to amplitude"
+    },
+    {
+      "on": 0.491,
+      "off": 0.627,
+      "note": 51,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "high for family and octave; exact played note conditional on unknown system transpose",
+      "onset_uncertainty_seconds": 0.02,
+      "note_off_confidence": "medium; about ±20 ms, final cropped held note excepted",
+      "velocity_source": "unknown constant placeholder; not fitted to amplitude"
+    },
+    {
+      "on": 0.773,
+      "off": 0.877,
+      "note": 39,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "high for family and octave; exact played note conditional on unknown system transpose",
+      "onset_uncertainty_seconds": 0.02,
+      "note_off_confidence": "medium; about ±20 ms, final cropped held note excepted",
+      "velocity_source": "unknown constant placeholder; not fitted to amplitude"
+    },
+    {
+      "on": 0.877,
+      "off": 1.55,
+      "note": 49,
+      "velocity": 100,
+      "note_off_velocity": 64,
+      "pitch_confidence": "high for family and octave; exact played note conditional on unknown system transpose",
+      "onset_uncertainty_seconds": 0.02,
+      "note_off_confidence": "medium; about ±20 ms, final cropped held note excepted",
+      "velocity_source": "unknown constant placeholder; not fitted to amplitude"
+    }
+  ],
+  "preset_parameter_modifications": [],
+  "published_tuning_audit": "DUAL, octave shift 0 for both tones. Upper saw raw coarse 64/WIDE off → 0; Upper square 52/WIDE on → −12; Lower sine 28/WIDE off → −12. Arpeggiator off; both portamento switches off. Upper SOLO, Lower POLY. Delay on, reverb off.",
+  "evidence_artifact": "build-fidelity/hardware-benchmark/expanded-transcription-audit/bass-transcription-evidence.json"
+}
