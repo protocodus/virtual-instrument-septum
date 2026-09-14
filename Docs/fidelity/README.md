@@ -1,5 +1,7 @@
 # SH-201 fidelity work
 
+The [strict search for exact recording inputs](exact-reference-search.md) found no verified public set with both original performance MIDI and the exact preset used for a hardware recording. The estimated comparisons below do not qualify for that stricter requirement.
+
 The [ten-recording hardware A/B set](ten-recording-ab.md) pairs real official Roland recordings with unchanged published presets and explicitly reconstructed MIDI, including six new bass/lead transcriptions and current-engine renders.
 
 The [timbre calibration implementation](timbre-calibration/README.md) adds isolated filter, envelope, waveform and Super Saw models, plus causal configurable-rate comparison rendering. Its diagnostic profiles remain separate from the default plug-in sound.

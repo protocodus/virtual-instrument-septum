@@ -8,6 +8,11 @@ level-matched A/B audio. The four existing current reconstructions are joined
 by six new bass/lead reconstructions.
 
 **All ten MIDI files are reconstructed, not original captured performances.**
+**Estimated MIDI: 10. Exact original performance MIDI: 0.** This applies to
+Moogie 1, So Juno 1, Dist Bs 1, Pedal Bs 1, Club Bass, Cotton Wool, Air Lead 1,
+Vangelead, SupaJuce 1 and Brassy Ld 1. Notes and timing are estimated; velocities
+are fixed placeholders. The byte-exact verification applies to the published
+SysEx preset payloads, not to the performed MIDI or the exact recorded patch revision.
 The user accepted this fallback. Full hardware recordings contain more music
 than the short matched excerpts: together the excerpts cover **29.74 seconds**.
 No preset parameters or DSP models were fitted to make these examples agree.
@@ -24,18 +29,18 @@ listening set, about 69 MB. `dataset-manifest.json` records all included file
 hashes, source URLs, renderer/source identity and audio validation results.
 Generated media and third-party preset payloads remain outside Git.
 
-| Recording | Original excerpt | Notes | Reconstruction |
-| --- | ---: | ---: | --- |
-| Moogie 1 | 0–3.70 s | 16 | [Current octave-corrected](reconstructions/current/moogie-1.json) |
-| So Juno 1 | 0–1.55 s | 5 | [New opening phrase](reconstructions/expanded/so-juno-1.json) |
-| Dist Bs 1 | 1.94–3.20 s | 3 | [Current octave-corrected](reconstructions/current/dist-bs-1.json) |
-| Pedal Bs 1 | 0–1.55 s | 3 | [New short phrase](reconstructions/expanded/pedal-bs-1.json) |
-| Club Bass | 0–3.25 s | 6 | [New separated bass notes](reconstructions/expanded/club-bass.json) |
-| Cotton Wool | 0–5.00 s | 27 | [Current chord estimate](reconstructions/current/cotton-wool.json) |
-| Air Lead 1 | 0–3.45 s | 10 | [New opening phrase](reconstructions/expanded/air-lead-1.json) |
-| Vangelead | 0–5.15 s | 5 | [New descending phrase](reconstructions/expanded/vangelead.json) |
-| SupaJuce 1 | 0–1.80 s | 6 | [Current octave check](reconstructions/current/supa-juce-1.json) |
-| Brassy Ld 1 | 0–3.03 s | 11 | [New staccato phrase](reconstructions/expanded/brassy-ld-1.json) |
+| Recording | Original excerpt | Notes | MIDI status | Reconstruction |
+| --- | ---: | ---: | --- | --- |
+| Moogie 1 | 0–3.70 s | 16 | **Estimated** | [Current octave-corrected](reconstructions/current/moogie-1.json) |
+| So Juno 1 | 0–1.55 s | 5 | **Estimated** | [New opening phrase](reconstructions/expanded/so-juno-1.json) |
+| Dist Bs 1 | 1.94–3.20 s | 3 | **Estimated** | [Current octave-corrected](reconstructions/current/dist-bs-1.json) |
+| Pedal Bs 1 | 0–1.55 s | 3 | **Estimated** | [New short phrase](reconstructions/expanded/pedal-bs-1.json) |
+| Club Bass | 0–3.25 s | 6 | **Estimated** | [New separated bass notes](reconstructions/expanded/club-bass.json) |
+| Cotton Wool | 0–5.00 s | 27 | **Estimated** | [Current chord estimate](reconstructions/current/cotton-wool.json) |
+| Air Lead 1 | 0–3.45 s | 10 | **Estimated** | [New opening phrase](reconstructions/expanded/air-lead-1.json) |
+| Vangelead | 0–5.15 s | 5 | **Estimated** | [New descending phrase](reconstructions/expanded/vangelead.json) |
+| SupaJuce 1 | 0–1.80 s | 6 | **Estimated** | [Current octave check](reconstructions/current/supa-juce-1.json) |
+| Brassy Ld 1 | 0–3.03 s | 11 | **Estimated** | [New staccato phrase](reconstructions/expanded/brassy-ld-1.json) |
 
 ## What is verified
 
