@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <stdexcept>
 
 namespace septum
 {
@@ -113,15 +114,20 @@ std::array<float, 2> detail::ReferenceRateConverter::read (
     return { static_cast<float> (left), static_cast<float> (right) };
 }
 
-void ReferenceRateEngine::prepare (double hostRate, int maximumBlockSize)
+void ReferenceRateEngine::prepare (double hostRate, int maximumBlockSize,
+                                   double synthesisRate)
 {
+    if (! std::isfinite (synthesisRate) || synthesisRate < minimumSynthesisRateHz
+        || synthesisRate > maximumSynthesisRateHz)
+        throw std::invalid_argument ("Reference synthesis rate must be finite and between 8000 and 192000 Hz");
     // The prototype's supported rate range bounds FIR preparation/storage.
     hostRate_ = std::isfinite (hostRate) ? std::clamp (hostRate, 8000.0, 384000.0)
                                        : referenceRateHz;
     (void) maximumBlockSize; // Streaming history is independent of block size.
-    Engine::prepare (referenceRateHz, 16);
-    inputConverter_.prepare (hostRate_, referenceRateHz);
-    outputConverter_.prepare (referenceRateHz, hostRate_);
+    synthesisRate_ = synthesisRate;
+    Engine::prepare (synthesisRate_, 16);
+    inputConverter_.prepare (hostRate_, synthesisRate_);
+    outputConverter_.prepare (synthesisRate_, hostRate_);
     prepared_ = true;
     reset();
 }
@@ -137,7 +143,7 @@ void ReferenceRateEngine::reset()
 double ReferenceRateEngine::exactLatencySamples() const noexcept
 {
     return (Engine::latencySamples() + outputConverter_.groupDelay())
-           * hostRate_ / referenceRateHz;
+           * hostRate_ / synthesisRate_;
 }
 
 int ReferenceRateEngine::latencySamples() const noexcept
@@ -149,6 +155,17 @@ int ReferenceRateEngine::externalInputLatencySamples() const noexcept
 {
     return static_cast<int> (std::ceil (exactLatencySamples()
                                        + inputConversionLatencySamples()));
+}
+
+void ReferenceRateEngine::renderInternalSample()
+{
+    const double inputTime = static_cast<double> (
+        static_cast<long double> (internalFrames_) * hostRate_ / synthesisRate_);
+    const auto input = inputConverter_.read (inputTime - inputConverter_.groupDelay());
+    float coreLeft = 0.0f, coreRight = 0.0f;
+    Engine::process (&coreLeft, &coreRight, 1, &input[0], &input[1]);
+    outputConverter_.push (coreLeft, coreRight);
+    ++internalFrames_;
 }
 
 void ReferenceRateEngine::process (float* left, float* right, int numSamples,
@@ -169,28 +186,27 @@ void ReferenceRateEngine::process (float* left, float* right, int numSamples,
         inputConverter_.push (inputLeft != nullptr ? inputLeft[i] : 0.0f,
                               inputRight != nullptr ? inputRight[i] : 0.0f);
         // Integer frame counters and an absolute clock avoid per-block
-        // rounding or an accumulating fractional phase error. Never advance
-        // the engine beyond the host sample currently being emitted.
+        // rounding or an accumulating fractional phase error.
         const long double hostTime = static_cast<long double> (hostFrames_);
         while (static_cast<long double> (internalFrames_) * hostRate_
-               <= hostTime * referenceRateHz)
-        {
-            const double inputTime = static_cast<double> (
-                static_cast<long double> (internalFrames_) * hostRate_
-                / referenceRateHz);
-            const auto input = inputConverter_.read (
-                inputTime - inputConverter_.groupDelay());
-            float coreLeft = 0.0f, coreRight = 0.0f;
-            Engine::process (&coreLeft, &coreRight, 1, &input[0], &input[1]);
-            outputConverter_.push (coreLeft, coreRight);
-            ++internalFrames_;
-        }
+               <= hostTime * synthesisRate_)
+            renderInternalSample();
         const double outputTime = static_cast<double> (
-            hostTime * referenceRateHz / hostRate_);
+            hostTime * synthesisRate_ / hostRate_);
         const auto output = outputConverter_.read (
             outputTime - outputConverter_.groupDelay());
         left[i] = output[0];
         right[i] = output[1];
+
+        // Finish the open interval [H, H+1) using its existing controls.
+        // The delayed input FIR's last possible tap is floor(inputTime),
+        // which is H or earlier, so no future host input is needed. A control
+        // received at H+1 can then affect only core frames at/after H+1.
+        // Do this AFTER the current output read: at extreme rate ratios,
+        // extra core frames must not overwrite old FIR support before use.
+        while (static_cast<long double> (internalFrames_) * hostRate_
+               < (hostTime + 1.0L) * synthesisRate_)
+            renderInternalSample();
         ++hostFrames_;
     }
 }

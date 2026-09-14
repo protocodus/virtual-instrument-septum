@@ -264,12 +264,21 @@ if(BUILD_TESTING)
     find_package(Python3 COMPONENTS Interpreter QUIET)
     if(Python3_Interpreter_FOUND)
         if(SEPTUM_BUILD_TOOLS)
+            add_test(NAME Septum.TimbreCapture
+                     COMMAND "${Python3_EXECUTABLE}" -B
+                             "${CMAKE_CURRENT_SOURCE_DIR}/Tests/TimbreCaptureTests.py"
+                             --renderer "$<TARGET_FILE:SeptumRenderMidi>")
+            set_tests_properties(Septum.TimbreCapture PROPERTIES TIMEOUT 120)
             add_test(NAME Septum.MidiRender
                      COMMAND "${Python3_EXECUTABLE}" -B
                              "${CMAKE_CURRENT_SOURCE_DIR}/Tests/MidiRenderTests.py"
                              --renderer "$<TARGET_FILE:SeptumRenderMidi>")
             set_tests_properties(Septum.MidiRender PROPERTIES TIMEOUT 120)
         endif()
+        add_test(NAME Septum.TimbreCandidate
+                 COMMAND "${Python3_EXECUTABLE}" -B
+                         "${CMAKE_CURRENT_SOURCE_DIR}/Tests/TimbreCandidateTests.py")
+        set_tests_properties(Septum.TimbreCandidate PROPERTIES TIMEOUT 180)
         add_test(NAME Septum.ReferencePatchExtraction
                  COMMAND "${Python3_EXECUTABLE}" -B
                          "${CMAKE_CURRENT_SOURCE_DIR}/Tests/ReferencePatchExtractionTests.py")

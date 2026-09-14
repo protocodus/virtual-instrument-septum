@@ -1,5 +1,7 @@
 # SH-201 fidelity work
 
+The [timbre calibration implementation](timbre-calibration/README.md) adds isolated filter, envelope, waveform and Super Saw models, plus causal configurable-rate comparison rendering. Its diagnostic profiles remain separate from the default plug-in sound.
+
 The latest [ten additional improvements](ten-more-improvements.md) include a ranked source review, per-candidate audits, and [combined validation](ten-more-validation.md).
 
 [Five further improvements](five-further-improvements.md) ranks the remaining
