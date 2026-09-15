@@ -1,0 +1,3444 @@
+{
+  "date": "2026-09-15",
+  "status": "exploratory diagnostic; no DSP changes",
+  "result": {
+    "path": "build-fidelity/deepsonic/half-rate-images-v1/results.json",
+    "sha256": "a6747b8c832dfff02222be81b08972660a712bfe91f7a3e85f64aac4384d1b2b"
+  },
+  "tool": {
+    "path": "Tools/analyze_deepsonic_half_rate_images.py",
+    "sha256": "a20358377186e1dba03308d2bb5fb9157e74c54986dfbd67abb5d5c32ebc937f"
+  },
+  "protocol": {
+    "status": "exploratory_half_rate_image_family_not_internal_rate_measurement",
+    "parent_result_sha256": "cfae59640a1644b14979a64d7cc7db910c5fee7970c75479f53c2c66039e26ce",
+    "copied_helper_sha256": "99e07f49b6804d605df6376dacd957add4d7bbda49d9b1b7136d3885824dc1c0",
+    "capture_sample_rate": 44100,
+    "tested_family": 22050,
+    "frequency_range_hz": [
+      300,
+      15000
+    ],
+    "prediction": "abs(22050-h*f0), h>=1; both branches, including images above11025Hz",
+    "selection": [
+      [
+        8.5,
+        69
+      ],
+      [
+        12.5,
+        76
+      ],
+      [
+        13.25,
+        81
+      ],
+      [
+        18.25,
+        93
+      ],
+      [
+        18.75,
+        91
+      ],
+      [
+        19.25,
+        86
+      ],
+      [
+        19.75,
+        88
+      ],
+      [
+        20.25,
+        84
+      ]
+    ],
+    "offset_seconds": [
+      0.1,
+      0.16
+    ],
+    "width_seconds": 0.08,
+    "exclusion": "Bins and candidate centers must be >37.5Hz from true harmonics and either abs(44100-h*f0) branch.",
+    "threshold": "Interior local peak within +/-6Hz, >=12dB local residual median prominence and >=-75dB/H1; repeat in both windows.",
+    "candidates": {
+      "69": [
+        {
+          "parent_harmonic": 17,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 14570.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 18,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 14130.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 19,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 13690.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 20,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 13250.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 21,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 12810.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 22,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 12370.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 23,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 11930.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 24,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 11490.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 25,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 11050.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 26,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 10610.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 27,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 10170.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 28,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 9730.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 29,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 9290.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 30,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 8850.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 31,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 8410.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 32,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 7970.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 33,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 7530.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 34,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 7090.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 35,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 6650.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 36,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 6210.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 37,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 5770.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 38,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 5330.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 39,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 4890.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 40,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 4450.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 41,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 4010.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 42,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 3570.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 43,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 3130.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 44,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 2690.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 45,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 2250.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 46,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 1810.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 47,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 1370.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 48,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 930.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 49,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 490.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 51,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 390.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 52,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 830.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 53,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 1270.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 54,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 1710.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 55,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 2150.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 56,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 2590.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 57,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 3030.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 58,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 3470.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 59,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 3910.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 60,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 4350.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 61,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 4790.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 62,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 5230.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 63,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 5670.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 64,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 6110.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 65,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 6550.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 66,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 6990.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 67,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 7430.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 68,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 7870.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 69,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 8310.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 70,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 8750.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 71,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 9190.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 72,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 9630.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 73,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 10070.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 74,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 10510.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 75,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 10950.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 76,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 11390.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 77,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 11830.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 78,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 12270.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 79,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 12710.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 80,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 13150.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 81,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 13590.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 82,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 14030.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 83,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 14470.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 84,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 14910.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        }
+      ],
+      "76": [
+        {
+          "parent_harmonic": 11,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 14798.193747916863,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 12,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 14138.938634091122,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 13,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 13479.683520265382,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 14,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 12820.428406439642,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 15,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 12161.173292613903,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 16,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 11501.918178788163,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 17,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 10842.663064962422,
+          "nearest_excluded_family_hz": 224.48861742601002,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 18,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 10183.407951136684,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 19,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 9524.152837310943,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 20,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 8864.897723485203,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 21,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 8205.642609659464,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 22,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 7546.387495833724,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 23,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 6887.132382007983,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 24,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 6227.877268182245,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 25,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 5568.622154356504,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 26,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 4909.367040530764,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 27,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 4250.1119267050235,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 28,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 3590.856812879283,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 29,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 2931.6016990535463,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 30,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 2272.346585227806,
+          "nearest_excluded_family_hz": 224.48861742601002,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 31,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 1613.0914714020655,
+          "nearest_excluded_family_hz": 224.48861742601002,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 32,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 953.8363575763251,
+          "nearest_excluded_family_hz": 224.48861742601002,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 34,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 364.6738700751557,
+          "nearest_excluded_family_hz": 224.48861742601002,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 35,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 1023.9289839008961,
+          "nearest_excluded_family_hz": 224.48861742601002,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 36,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 1683.184097726633,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 37,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 2342.4392115523733,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 38,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 3001.6943253781137,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 39,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 3660.949439203854,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 40,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 4320.2045530295945,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 41,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 4979.459666855335,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 42,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 5638.714780681072,
+          "nearest_excluded_family_hz": 224.48861742602458,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 43,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 6297.969894506812,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 44,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 6957.2250083325525,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 45,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 7616.480122158293,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 46,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 8275.735235984033,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 47,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 8934.990349809774,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 48,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 9594.24546363551,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 49,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 10253.500577461251,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 50,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 10912.755691286991,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 51,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 11572.010805112732,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 52,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 12231.265918938472,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 53,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 12890.521032764213,
+          "nearest_excluded_family_hz": 224.48861742601366,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 54,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 13549.776146589953,
+          "nearest_excluded_family_hz": 224.48861742601366,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 55,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 14209.031260415693,
+          "nearest_excluded_family_hz": 224.48861742601366,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 56,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 14868.286374241434,
+          "nearest_excluded_family_hz": 224.48861742601366,
+          "eligible": true
+        }
+      ],
+      "81": [
+        {
+          "parent_harmonic": 9,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 14130.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 10,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 13250.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 11,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 12370.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 12,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 11490.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 13,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 10610.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 14,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 9730.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 15,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 8850.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 16,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 7970.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 17,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 7090.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 18,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 6210.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 19,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 5330.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 20,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 4450.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 21,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 3570.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 22,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 2690.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 23,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 1810.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 24,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 930.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 26,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 830.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 27,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 1710.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 28,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 2590.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 29,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 3470.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 30,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 4350.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 31,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 5230.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 32,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 6110.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 33,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 6990.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 34,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 7870.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 35,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 8750.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 36,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 9630.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 37,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 10510.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 38,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 11390.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 39,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 12270.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 40,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 13150.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 41,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 14030.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 42,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 14910.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true
+        }
+      ],
+      "93": [
+        {
+          "parent_harmonic": 5,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 13250.0,
+          "nearest_excluded_family_hz": 730.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 6,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 11490.0,
+          "nearest_excluded_family_hz": 730.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 7,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 9730.0,
+          "nearest_excluded_family_hz": 730.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 8,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 7970.0,
+          "nearest_excluded_family_hz": 730.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 9,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 6210.0,
+          "nearest_excluded_family_hz": 730.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 10,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 4450.0,
+          "nearest_excluded_family_hz": 730.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 11,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 2690.0,
+          "nearest_excluded_family_hz": 730.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 12,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 930.0,
+          "nearest_excluded_family_hz": 730.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 13,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 830.0,
+          "nearest_excluded_family_hz": 730.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 14,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 2590.0,
+          "nearest_excluded_family_hz": 730.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 15,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 4350.0,
+          "nearest_excluded_family_hz": 730.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 16,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 6110.0,
+          "nearest_excluded_family_hz": 730.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 17,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 7870.0,
+          "nearest_excluded_family_hz": 730.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 18,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 9630.0,
+          "nearest_excluded_family_hz": 730.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 19,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 11390.0,
+          "nearest_excluded_family_hz": 730.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 20,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 13150.0,
+          "nearest_excluded_family_hz": 730.0,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 21,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 14910.0,
+          "nearest_excluded_family_hz": 730.0,
+          "eligible": true
+        }
+      ],
+      "91": [
+        {
+          "parent_harmonic": 5,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 14210.091280365014,
+          "nearest_excluded_family_hz": 98.25558502203967,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 6,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 12642.109536438018,
+          "nearest_excluded_family_hz": 98.25558502204149,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 7,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 11074.12779251102,
+          "nearest_excluded_family_hz": 98.25558502204149,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 8,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 9506.146048584023,
+          "nearest_excluded_family_hz": 98.25558502204149,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 9,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 7938.164304657026,
+          "nearest_excluded_family_hz": 98.25558502204058,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 10,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 6370.182560730029,
+          "nearest_excluded_family_hz": 98.25558502204058,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 11,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 4802.200816803033,
+          "nearest_excluded_family_hz": 98.2555850220424,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 12,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 3234.219072876036,
+          "nearest_excluded_family_hz": 98.25558502204194,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 13,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 1666.2373289490388,
+          "nearest_excluded_family_hz": 98.25558502204171,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 15,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 1469.7261589049558,
+          "nearest_excluded_family_hz": 98.25558502204126,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 16,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 3037.707902831953,
+          "nearest_excluded_family_hz": 98.25558502204103,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 17,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 4605.68964675895,
+          "nearest_excluded_family_hz": 98.25558502204058,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 18,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 6173.671390685948,
+          "nearest_excluded_family_hz": 98.25558502204058,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 19,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 7741.653134612945,
+          "nearest_excluded_family_hz": 98.25558502204058,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 20,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 9309.634878539942,
+          "nearest_excluded_family_hz": 98.25558502203967,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 21,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 10877.616622466936,
+          "nearest_excluded_family_hz": 98.25558502203785,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 22,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 12445.598366393933,
+          "nearest_excluded_family_hz": 98.25558502203785,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 23,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 14013.58011032093,
+          "nearest_excluded_family_hz": 98.25558502203785,
+          "eligible": true
+        }
+      ],
+      "86": [
+        {
+          "parent_harmonic": 7,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 13827.386498312588,
+          "nearest_excluded_family_hz": 268.5223617229767,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 8,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 12652.727426642958,
+          "nearest_excluded_family_hz": 268.5223617229749,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 9,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 11478.068354973328,
+          "nearest_excluded_family_hz": 268.5223617229749,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 10,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 10303.409283303698,
+          "nearest_excluded_family_hz": 268.5223617229749,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 11,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 9128.750211634067,
+          "nearest_excluded_family_hz": 268.5223617229749,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 12,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 7954.091139964436,
+          "nearest_excluded_family_hz": 268.5223617229767,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 13,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 6779.4320682948055,
+          "nearest_excluded_family_hz": 268.52236172297125,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 14,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 5604.772996625175,
+          "nearest_excluded_family_hz": 268.5223617229758,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 15,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 4430.113924955545,
+          "nearest_excluded_family_hz": 268.52236172297125,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 16,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 3255.4548532859153,
+          "nearest_excluded_family_hz": 268.5223617229758,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 17,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 2080.7957816162852,
+          "nearest_excluded_family_hz": 268.52236172297125,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 18,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 906.1367099466552,
+          "nearest_excluded_family_hz": 268.5223617229751,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 20,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 1443.181433392605,
+          "nearest_excluded_family_hz": 268.52236172297467,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 21,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 2617.840505062235,
+          "nearest_excluded_family_hz": 268.52236172297125,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 22,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 3792.499576731865,
+          "nearest_excluded_family_hz": 268.522361722974,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 23,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 4967.158648401495,
+          "nearest_excluded_family_hz": 268.52236172297125,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 24,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 6141.817720071129,
+          "nearest_excluded_family_hz": 268.52236172297125,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 25,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 7316.476791740759,
+          "nearest_excluded_family_hz": 268.52236172297125,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 26,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 8491.135863410389,
+          "nearest_excluded_family_hz": 268.52236172297125,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 27,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 9665.794935080019,
+          "nearest_excluded_family_hz": 268.52236172297125,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 28,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 10840.45400674965,
+          "nearest_excluded_family_hz": 268.52236172297125,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 29,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 12015.11307841928,
+          "nearest_excluded_family_hz": 268.5223617229767,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 30,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 13189.77215008891,
+          "nearest_excluded_family_hz": 268.5223617229767,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 31,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 14364.43122175854,
+          "nearest_excluded_family_hz": 268.5223617229749,
+          "eligible": true
+        }
+      ],
+      "88": [
+        {
+          "parent_harmonic": 6,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 14138.938634091122,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 7,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 12820.428406439642,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 8,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 11501.918178788163,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 9,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 10183.407951136684,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 10,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 8864.897723485203,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 11,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 7546.387495833724,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 12,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 6227.877268182245,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 13,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 4909.367040530764,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 14,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 3590.856812879283,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 15,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 2272.346585227806,
+          "nearest_excluded_family_hz": 224.48861742601002,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 16,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 953.8363575763251,
+          "nearest_excluded_family_hz": 224.48861742601002,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 17,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 364.6738700751557,
+          "nearest_excluded_family_hz": 224.48861742601002,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 18,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 1683.184097726633,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 19,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 3001.6943253781137,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 20,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 4320.2045530295945,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 21,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 5638.714780681072,
+          "nearest_excluded_family_hz": 224.48861742602458,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 22,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 6957.2250083325525,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 23,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 8275.735235984033,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 24,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 9594.24546363551,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 25,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 10912.755691286991,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 26,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 12231.265918938472,
+          "nearest_excluded_family_hz": 224.4886174260173,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 27,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 13549.776146589953,
+          "nearest_excluded_family_hz": 224.48861742601366,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 28,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 14868.286374241434,
+          "nearest_excluded_family_hz": 224.48861742601366,
+          "eligible": true
+        }
+      ],
+      "84": [
+        {
+          "parent_harmonic": 7,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 14724.484171583239,
+          "nearest_excluded_family_hz": 73.45251474971701,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 8,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 13677.981910380844,
+          "nearest_excluded_family_hz": 73.45251474971519,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 9,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 12631.47964917845,
+          "nearest_excluded_family_hz": 73.45251474971519,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 10,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 11584.977387976054,
+          "nearest_excluded_family_hz": 73.45251474971519,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 11,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 10538.475126773661,
+          "nearest_excluded_family_hz": 73.45251474971519,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 12,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 9491.972865571266,
+          "nearest_excluded_family_hz": 73.45251474971155,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 13,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 8445.470604368871,
+          "nearest_excluded_family_hz": 73.45251474971519,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 14,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 7398.968343166478,
+          "nearest_excluded_family_hz": 73.45251474971701,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 15,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 6352.466081964083,
+          "nearest_excluded_family_hz": 73.45251474971155,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 16,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 5305.963820761688,
+          "nearest_excluded_family_hz": 73.45251474971519,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 17,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 4259.461559559295,
+          "nearest_excluded_family_hz": 73.45251474971701,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 18,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 3212.959298356898,
+          "nearest_excluded_family_hz": 73.45251474971155,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 19,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 2166.457037154505,
+          "nearest_excluded_family_hz": 73.45251474971155,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 20,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 1119.9547759521083,
+          "nearest_excluded_family_hz": 73.45251474971383,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 22,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 973.0497464526779,
+          "nearest_excluded_family_hz": 73.45251474971155,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 23,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 2019.5520076550747,
+          "nearest_excluded_family_hz": 73.45251474971428,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 24,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 3066.054268857468,
+          "nearest_excluded_family_hz": 73.45251474971155,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 25,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 4112.556530059861,
+          "nearest_excluded_family_hz": 73.45251474971155,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 26,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 5159.058791262258,
+          "nearest_excluded_family_hz": 73.45251474971519,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 27,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 6205.561052464651,
+          "nearest_excluded_family_hz": 73.45251474971155,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 28,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 7252.063313667044,
+          "nearest_excluded_family_hz": 73.45251474971155,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 29,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 8298.56557486944,
+          "nearest_excluded_family_hz": 73.45251474971519,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 30,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 9345.067836071834,
+          "nearest_excluded_family_hz": 73.45251474971155,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 31,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 10391.57009727423,
+          "nearest_excluded_family_hz": 73.45251474971519,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 32,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 11438.072358476624,
+          "nearest_excluded_family_hz": 73.45251474971519,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 33,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 12484.57461967902,
+          "nearest_excluded_family_hz": 73.45251474971337,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 34,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 13531.07688088141,
+          "nearest_excluded_family_hz": 73.45251474971155,
+          "eligible": true
+        },
+        {
+          "parent_harmonic": 35,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 14577.579142083807,
+          "nearest_excluded_family_hz": 73.45251474971519,
+          "eligible": true
+        }
+      ]
+    },
+    "interpretation": "No 22.05k DSP conclusion. Remaining lines may be unrelated sidebands. Two windows overlap by20ms. Positive controls test sensitivity, not hardware architecture."
+  },
+  "source_parent_result": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/deepsonic/saw-alias-audit-v2/results.json",
+    "sha256": "cfae59640a1644b14979a64d7cc7db910c5fee7970c75479f53c2c66039e26ce"
+  },
+  "groups": [
+    {
+      "id": "hardware-lp12",
+      "wav_sha256": "3154afa9bd5b509d44dbc8fcb1972cbc2ffeb46d9adb00d107da4c2d05cc8a37",
+      "summary": {
+        "tested_line_windows": 510,
+        "passing_line_windows": 0,
+        "repeated_lines": [],
+        "notes_with_repeated_lines": []
+      },
+      "interior_peak_count": 103,
+      "max_interior_peak_db": -78.55742035236409,
+      "above_minus75_count": 0,
+      "strongest_interior_candidates": [
+        {
+          "note": 93,
+          "offset_seconds": 0.1,
+          "parent_harmonic": 10,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 4450.0,
+          "nearest_excluded_family_hz": 730.0,
+          "eligible": true,
+          "peak_hz": 4454.513168334961,
+          "relative_h1_db": -78.55742035236409,
+          "local_prominence_db": 8.303394383371053,
+          "interior_peak": true,
+          "passes_line_threshold": false
+        },
+        {
+          "note": 69,
+          "offset_seconds": 0.16,
+          "parent_harmonic": 48,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 930.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true,
+          "peak_hz": 924.5819091796875,
+          "relative_h1_db": -79.80684469463138,
+          "local_prominence_db": 0.9314870779466456,
+          "interior_peak": true,
+          "passes_line_threshold": false
+        },
+        {
+          "note": 93,
+          "offset_seconds": 0.1,
+          "parent_harmonic": 15,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 4350.0,
+          "nearest_excluded_family_hz": 730.0,
+          "eligible": true,
+          "peak_hz": 4345.333099365234,
+          "relative_h1_db": -79.80986236364836,
+          "local_prominence_db": 9.184042778455767,
+          "interior_peak": true,
+          "passes_line_threshold": false
+        },
+        {
+          "note": 93,
+          "offset_seconds": 0.16,
+          "parent_harmonic": 15,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 4350.0,
+          "nearest_excluded_family_hz": 730.0,
+          "eligible": true,
+          "peak_hz": 4348.3612060546875,
+          "relative_h1_db": -80.06822320892337,
+          "local_prominence_db": 8.0787678120579,
+          "interior_peak": true,
+          "passes_line_threshold": false
+        },
+        {
+          "note": 69,
+          "offset_seconds": 0.1,
+          "parent_harmonic": 60,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 4350.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true,
+          "peak_hz": 4347.688293457031,
+          "relative_h1_db": -82.05584412922435,
+          "local_prominence_db": 5.007271200476069,
+          "interior_peak": true,
+          "passes_line_threshold": false
+        }
+      ]
+    },
+    {
+      "id": "hardware-lp24",
+      "wav_sha256": "92fc303c94e9bde908cbeb72571c06dd5a4a9d8fc59b10cb90378040404eed4f",
+      "summary": {
+        "tested_line_windows": 510,
+        "passing_line_windows": 0,
+        "repeated_lines": [],
+        "notes_with_repeated_lines": []
+      },
+      "interior_peak_count": 140,
+      "max_interior_peak_db": -78.96832663886165,
+      "above_minus75_count": 3,
+      "strongest_interior_candidates": [
+        {
+          "note": 93,
+          "offset_seconds": 0.16,
+          "parent_harmonic": 10,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 4450.0,
+          "nearest_excluded_family_hz": 730.0,
+          "eligible": true,
+          "peak_hz": 4454.176712036133,
+          "relative_h1_db": -78.96832663886165,
+          "local_prominence_db": 8.442329415473468,
+          "interior_peak": true,
+          "passes_line_threshold": false
+        },
+        {
+          "note": 93,
+          "offset_seconds": 0.16,
+          "parent_harmonic": 15,
+          "branch": "hf0-minus-22050",
+          "expected_hz": 4350.0,
+          "nearest_excluded_family_hz": 730.0,
+          "eligible": true,
+          "peak_hz": 4347.015380859375,
+          "relative_h1_db": -79.49349179374886,
+          "local_prominence_db": 9.16425732002995,
+          "interior_peak": true,
+          "passes_line_threshold": false
+        },
+        {
+          "note": 81,
+          "offset_seconds": 0.16,
+          "parent_harmonic": 20,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 4450.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true,
+          "peak_hz": 4455.017852783203,
+          "relative_h1_db": -79.58635665021654,
+          "local_prominence_db": 11.067481728841958,
+          "interior_peak": true,
+          "passes_line_threshold": false
+        },
+        {
+          "note": 81,
+          "offset_seconds": 0.1,
+          "parent_harmonic": 20,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 4450.0,
+          "nearest_excluded_family_hz": 50.0,
+          "eligible": true,
+          "peak_hz": 4449.129867553711,
+          "relative_h1_db": -80.33280997518601,
+          "local_prominence_db": 10.97660435467385,
+          "interior_peak": true,
+          "passes_line_threshold": false
+        },
+        {
+          "note": 91,
+          "offset_seconds": 0.16,
+          "parent_harmonic": 5,
+          "branch": "22050-minus-hf0",
+          "expected_hz": 14210.091280365014,
+          "nearest_excluded_family_hz": 98.25558502203967,
+          "eligible": true,
+          "peak_hz": 14212.418746948242,
+          "relative_h1_db": -80.59738778076662,
+          "local_prominence_db": 7.347142271431793,
+          "interior_peak": true,
+          "passes_line_threshold": false
+        }
+      ]
+    },
+    {
+      "id": "bandlimited-negative-pcm",
+      "wav_sha256": "2bed9c4895ce7ccbc3ab8c8c97ddac35b51124c984ef82a52c9e808d5e2f9356",
+      "summary": {
+        "tested_line_windows": 510,
+        "passing_line_windows": 0,
+        "repeated_lines": [],
+        "notes_with_repeated_lines": []
+      },
+      "interior_peak_count": 209,
+      "max_interior_peak_db": -109.99781790316322,
+      "above_minus75_count": 0
+    },
+    {
+      "id": "bandlimited-negative-mp3",
+      "wav_sha256": "40b6174aea864ed8e5f63f1279dbacaa1fd542be1f9405bdca0f8a46096f7678",
+      "summary": {
+        "tested_line_windows": 510,
+        "passing_line_windows": 0,
+        "repeated_lines": [],
+        "notes_with_repeated_lines": []
+      },
+      "interior_peak_count": 165,
+      "max_interior_peak_db": -79.34789973541444,
+      "above_minus75_count": 0
+    },
+    {
+      "id": "injected-44100-positive-pcm",
+      "wav_sha256": "f9278d1ad4d366683a974199a3e92e3f919066c2152007d5c77b9f4a4b463d28",
+      "summary": {
+        "tested_line_windows": 510,
+        "passing_line_windows": 0,
+        "repeated_lines": [],
+        "notes_with_repeated_lines": []
+      },
+      "interior_peak_count": 230,
+      "max_interior_peak_db": -110.00511793175156,
+      "above_minus75_count": 0
+    },
+    {
+      "id": "injected-44100-positive-mp3",
+      "wav_sha256": "cd106841e2e3c34e7ea49d754fb0f7ce5c30c0c195064576893b78ab70e4940f",
+      "summary": {
+        "tested_line_windows": 510,
+        "passing_line_windows": 0,
+        "repeated_lines": [],
+        "notes_with_repeated_lines": []
+      },
+      "interior_peak_count": 163,
+      "max_interior_peak_db": -80.21108843553313,
+      "above_minus75_count": 0
+    },
+    {
+      "id": "injected-22050-positive-pcm",
+      "wav_sha256": "2eac3baa088388cbdd7267c564752e3f025269b5ebb2548932dff4e9829d80f1",
+      "summary": {
+        "tested_line_windows": 510,
+        "passing_line_windows": 64,
+        "repeated_lines": [
+          {
+            "note": 69,
+            "parent_harmonic": 17,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 14570.0,
+            "nearest_excluded_family_hz": 50.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.0452951471359,
+              -60.07710562214382
+            ],
+            "peak_hz": [
+              14570.071792602539,
+              14569.903564453125
+            ],
+            "local_prominence_db": [
+              84.49623145060454,
+              81.84857132687247
+            ]
+          },
+          {
+            "note": 69,
+            "parent_harmonic": 18,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 14130.0,
+            "nearest_excluded_family_hz": 50.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.0431696848984,
+              -60.07931465438254
+            ],
+            "peak_hz": [
+              14129.986953735352,
+              14129.986953735352
+            ],
+            "local_prominence_db": [
+              85.15851820793416,
+              81.39336035439806
+            ]
+          },
+          {
+            "note": 69,
+            "parent_harmonic": 51,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 390.0,
+            "nearest_excluded_family_hz": 50.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.04549227793646,
+              -60.07724749613132
+            ],
+            "peak_hz": [
+              389.9528503417969,
+              389.9528503417969
+            ],
+            "local_prominence_db": [
+              85.57257413783468,
+              80.33956384314637
+            ]
+          },
+          {
+            "note": 69,
+            "parent_harmonic": 52,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 830.0,
+            "nearest_excluded_family_hz": 50.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.04379227376164,
+              -60.079137738131806
+            ],
+            "peak_hz": [
+              830.0376892089844,
+              830.0376892089844
+            ],
+            "local_prominence_db": [
+              84.9286787630193,
+              80.73196739851157
+            ]
+          },
+          {
+            "note": 76,
+            "parent_harmonic": 11,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 14798.193747916863,
+            "nearest_excluded_family_hz": 224.4886174260173,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.056250694921005,
+              -60.089825553347254
+            ],
+            "peak_hz": [
+              14798.189163208008,
+              14798.189163208008
+            ],
+            "local_prominence_db": [
+              73.00043955149368,
+              73.10715028190141
+            ]
+          },
+          {
+            "note": 76,
+            "parent_harmonic": 12,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 14138.938634091122,
+            "nearest_excluded_family_hz": 224.4886174260173,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.05630043600523,
+              -60.08987759952124
+            ],
+            "peak_hz": [
+              14138.903045654297,
+              14138.903045654297
+            ],
+            "local_prominence_db": [
+              75.58047990217989,
+              75.92383315495377
+            ]
+          },
+          {
+            "note": 76,
+            "parent_harmonic": 34,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 364.6738700751557,
+            "nearest_excluded_family_hz": 224.48861742601002,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.05633779622937,
+              -60.08991822642298
+            ],
+            "peak_hz": [
+              364.7186279296875,
+              364.7186279296875
+            ],
+            "local_prominence_db": [
+              68.94445828995735,
+              68.9623590143506
+            ]
+          },
+          {
+            "note": 76,
+            "parent_harmonic": 35,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 1023.9289839008961,
+            "nearest_excluded_family_hz": 224.48861742601002,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.056461717289395,
+              -60.09004084115902
+            ],
+            "peak_hz": [
+              1024.0047454833984,
+              1024.0047454833984
+            ],
+            "local_prominence_db": [
+              75.38407716739093,
+              75.34345876552155
+            ]
+          },
+          {
+            "note": 81,
+            "parent_harmonic": 9,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 14130.0,
+            "nearest_excluded_family_hz": 50.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.04019036603343,
+              -60.07310240772719
+            ],
+            "peak_hz": [
+              14129.986953735352,
+              14129.986953735352
+            ],
+            "local_prominence_db": [
+              84.5756366253582,
+              84.81093245919482
+            ]
+          },
+          {
+            "note": 81,
+            "parent_harmonic": 10,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 13250.0,
+            "nearest_excluded_family_hz": 50.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.040181569548636,
+              -60.07316773701565
+            ],
+            "peak_hz": [
+              13249.98550415039,
+              13249.98550415039
+            ],
+            "local_prominence_db": [
+              84.59570746016958,
+              84.7718959032232
+            ]
+          },
+          {
+            "note": 81,
+            "parent_harmonic": 26,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 830.0,
+            "nearest_excluded_family_hz": 50.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.04071448182859,
+              -60.07400934865336
+            ],
+            "peak_hz": [
+              830.0376892089844,
+              830.0376892089844
+            ],
+            "local_prominence_db": [
+              84.44344070025609,
+              84.92094534100907
+            ]
+          },
+          {
+            "note": 81,
+            "parent_harmonic": 27,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 1710.0,
+            "nearest_excluded_family_hz": 50.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.04153197785142,
+              -60.07381725314555
+            ],
+            "peak_hz": [
+              1710.0391387939453,
+              1710.0391387939453
+            ],
+            "local_prominence_db": [
+              84.24567857115166,
+              84.09459108568667
+            ]
+          },
+          {
+            "note": 84,
+            "parent_harmonic": 7,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 14724.484171583239,
+            "nearest_excluded_family_hz": 73.45251474971701,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.04983892925975,
+              -60.08319591084379
+            ],
+            "peak_hz": [
+              14724.505233764648,
+              14724.505233764648
+            ],
+            "local_prominence_db": [
+              79.69652569567691,
+              80.34511059729594
+            ]
+          },
+          {
+            "note": 84,
+            "parent_harmonic": 8,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 13677.981910380844,
+            "nearest_excluded_family_hz": 73.45251474971519,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.04960438698268,
+              -60.08315965169789
+            ],
+            "peak_hz": [
+              13677.957916259766,
+              13677.957916259766
+            ],
+            "local_prominence_db": [
+              79.51938971700412,
+              80.04843393375896
+            ]
+          },
+          {
+            "note": 84,
+            "parent_harmonic": 22,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 973.0497464526779,
+            "nearest_excluded_family_hz": 73.45251474971155,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.049206405265025,
+              -60.083114738593444
+            ],
+            "peak_hz": [
+              973.0316162109375,
+              973.0316162109375
+            ],
+            "local_prominence_db": [
+              79.87293464506703,
+              79.59332605272377
+            ]
+          },
+          {
+            "note": 84,
+            "parent_harmonic": 23,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 2019.5520076550747,
+            "nearest_excluded_family_hz": 73.45251474971428,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.04864841803911,
+              -60.081078535372335
+            ],
+            "peak_hz": [
+              2019.5789337158203,
+              2019.5789337158203
+            ],
+            "local_prominence_db": [
+              78.866008160513,
+              78.538068953098
+            ]
+          },
+          {
+            "note": 86,
+            "parent_harmonic": 7,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 13827.386498312588,
+            "nearest_excluded_family_hz": 268.5223617229767,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.04967531192616,
+              -60.08326892819901
+            ],
+            "peak_hz": [
+              13827.344512939453,
+              13827.344512939453
+            ],
+            "local_prominence_db": [
+              74.94219831273553,
+              75.48226801354784
+            ]
+          },
+          {
+            "note": 86,
+            "parent_harmonic": 8,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 12652.727426642958,
+            "nearest_excluded_family_hz": 268.5223617229749,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.04970388399929,
+              -60.08328751365909
+            ],
+            "peak_hz": [
+              12652.775573730469,
+              12652.775573730469
+            ],
+            "local_prominence_db": [
+              73.61541377135309,
+              75.6144587051219
+            ]
+          },
+          {
+            "note": 86,
+            "parent_harmonic": 20,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 1443.181433392605,
+            "nearest_excluded_family_hz": 268.52236172297467,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.04968528052232,
+              -60.083293447331016
+            ],
+            "peak_hz": [
+              1443.2292938232422,
+              1443.2292938232422
+            ],
+            "local_prominence_db": [
+              74.031498869177,
+              73.61613357651989
+            ]
+          },
+          {
+            "note": 86,
+            "parent_harmonic": 21,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 2617.840505062235,
+            "nearest_excluded_family_hz": 268.52236172297125,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.049658443076545,
+              -60.083248563085476
+            ],
+            "peak_hz": [
+              2617.7982330322266,
+              2617.7982330322266
+            ],
+            "local_prominence_db": [
+              72.37652532714212,
+              71.46171756422248
+            ]
+          },
+          {
+            "note": 88,
+            "parent_harmonic": 6,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 14138.938634091122,
+            "nearest_excluded_family_hz": 224.4886174260173,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.04705897972389,
+              -60.08088400125174
+            ],
+            "peak_hz": [
+              14138.903045654297,
+              14138.903045654297
+            ],
+            "local_prominence_db": [
+              75.67631377110102,
+              75.69901275979302
+            ]
+          },
+          {
+            "note": 88,
+            "parent_harmonic": 7,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 12820.428406439642,
+            "nearest_excluded_family_hz": 224.4886174260173,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.047192668409764,
+              -60.081004538756105
+            ],
+            "peak_hz": [
+              12820.499038696289,
+              12820.499038696289
+            ],
+            "local_prominence_db": [
+              75.58003923190847,
+              75.67204165028237
+            ]
+          },
+          {
+            "note": 88,
+            "parent_harmonic": 17,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 364.6738700751557,
+            "nearest_excluded_family_hz": 224.48861742601002,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.047098237329465,
+              -60.08088921361511
+            ],
+            "peak_hz": [
+              364.7186279296875,
+              364.7186279296875
+            ],
+            "local_prominence_db": [
+              68.92567978171265,
+              68.92792199068961
+            ]
+          },
+          {
+            "note": 88,
+            "parent_harmonic": 18,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 1683.184097726633,
+            "nearest_excluded_family_hz": 224.4886174260173,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.04715106487516,
+              -60.08095186510974
+            ],
+            "peak_hz": [
+              1683.1226348876953,
+              1683.1226348876953
+            ],
+            "local_prominence_db": [
+              75.55184509650519,
+              75.50634326740165
+            ]
+          },
+          {
+            "note": 91,
+            "parent_harmonic": 5,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 14210.091280365014,
+            "nearest_excluded_family_hz": 98.25558502203967,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.039678474688564,
+              -60.07464000212322
+            ],
+            "peak_hz": [
+              14210.063552856445,
+              14210.063552856445
+            ],
+            "local_prominence_db": [
+              73.99317863758009,
+              79.54062356912313
+            ]
+          },
+          {
+            "note": 91,
+            "parent_harmonic": 6,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 12642.109536438018,
+            "nearest_excluded_family_hz": 98.25558502204149,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.04435880335414,
+              -60.075117759291
+            ],
+            "peak_hz": [
+              12642.177200317383,
+              12642.177200317383
+            ],
+            "local_prominence_db": [
+              69.95807173877614,
+              76.9231894980037
+            ]
+          },
+          {
+            "note": 91,
+            "parent_harmonic": 15,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 1469.7261589049558,
+            "nearest_excluded_family_hz": 98.25558502204126,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.04190145830275,
+              -60.07575934293649
+            ],
+            "peak_hz": [
+              1469.809341430664,
+              1469.809341430664
+            ],
+            "local_prominence_db": [
+              80.26355205076145,
+              80.6912914885453
+            ]
+          },
+          {
+            "note": 91,
+            "parent_harmonic": 16,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 3037.707902831953,
+            "nearest_excluded_family_hz": 98.25558502204103,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.04228344831441,
+              -60.07537283661997
+            ],
+            "peak_hz": [
+              3037.6956939697266,
+              3037.6956939697266
+            ],
+            "local_prominence_db": [
+              79.86964521034443,
+              78.9205692870121
+            ]
+          },
+          {
+            "note": 93,
+            "parent_harmonic": 5,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 13250.0,
+            "nearest_excluded_family_hz": 730.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.03785271900697,
+              -60.071844471548545
+            ],
+            "peak_hz": [
+              13249.98550415039,
+              13249.98550415039
+            ],
+            "local_prominence_db": [
+              78.49266579022535,
+              78.45417295157533
+            ]
+          },
+          {
+            "note": 93,
+            "parent_harmonic": 6,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 11490.0,
+            "nearest_excluded_family_hz": 730.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.037862699808564,
+              -60.071850471634356
+            ],
+            "peak_hz": [
+              11489.982604980469,
+              11489.982604980469
+            ],
+            "local_prominence_db": [
+              78.39777430793974,
+              78.47160785744069
+            ]
+          },
+          {
+            "note": 93,
+            "parent_harmonic": 13,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 830.0,
+            "nearest_excluded_family_hz": 730.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.03790856778869,
+              -60.07189069639806
+            ],
+            "peak_hz": [
+              830.0376892089844,
+              830.0376892089844
+            ],
+            "local_prominence_db": [
+              78.49152609843581,
+              78.47093520939124
+            ]
+          },
+          {
+            "note": 93,
+            "parent_harmonic": 14,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 2590.0,
+            "nearest_excluded_family_hz": 730.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.0379201440787,
+              -60.07190060501604
+            ],
+            "peak_hz": [
+              2590.0405883789062,
+              2590.0405883789062
+            ],
+            "local_prominence_db": [
+              78.48288372397693,
+              78.45336878553736
+            ]
+          }
+        ],
+        "notes_with_repeated_lines": [
+          69,
+          76,
+          81,
+          84,
+          86,
+          88,
+          91,
+          93
+        ]
+      },
+      "injected_lines": 32,
+      "recovered_injected_lines": 32,
+      "interior_peak_count": 274,
+      "max_interior_peak_db": -60.03785271900697,
+      "above_minus75_count": 64,
+      "positive_relative_h1_db_range": [
+        -60.09004084115902,
+        -60.03785271900697
+      ],
+      "positive_min_prominence_db": 68.92567978171265
+    },
+    {
+      "id": "injected-22050-positive-mp3",
+      "wav_sha256": "3e1460d6f8e1db0a24dd21466e1481baed52c3227b553e6dd1142109d27e03b8",
+      "summary": {
+        "tested_line_windows": 510,
+        "passing_line_windows": 64,
+        "repeated_lines": [
+          {
+            "note": 69,
+            "parent_harmonic": 17,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 14570.0,
+            "nearest_excluded_family_hz": 50.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.09043450419505,
+              -60.06597763054208
+            ],
+            "peak_hz": [
+              14569.903564453125,
+              14570.071792602539
+            ],
+            "local_prominence_db": [
+              45.78537411822657,
+              50.61664940721347
+            ]
+          },
+          {
+            "note": 69,
+            "parent_harmonic": 18,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 14130.0,
+            "nearest_excluded_family_hz": 50.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.11515494206036,
+              -60.09549669812269
+            ],
+            "peak_hz": [
+              14129.986953735352,
+              14129.986953735352
+            ],
+            "local_prominence_db": [
+              44.85782862626847,
+              48.37368774608197
+            ]
+          },
+          {
+            "note": 69,
+            "parent_harmonic": 51,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 390.0,
+            "nearest_excluded_family_hz": 50.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.32232544715591,
+              -60.058161235546066
+            ],
+            "peak_hz": [
+              389.61639404296875,
+              389.9528503417969
+            ],
+            "local_prominence_db": [
+              33.231522169949045,
+              30.742093829922847
+            ]
+          },
+          {
+            "note": 69,
+            "parent_harmonic": 52,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 830.0,
+            "nearest_excluded_family_hz": 50.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.30340334275451,
+              -59.99664882915074
+            ],
+            "peak_hz": [
+              830.0376892089844,
+              830.2059173583984
+            ],
+            "local_prominence_db": [
+              29.346169871991698,
+              33.25967810052512
+            ]
+          },
+          {
+            "note": 76,
+            "parent_harmonic": 11,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 14798.193747916863,
+            "nearest_excluded_family_hz": 224.4886174260173,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.06956248326463,
+              -60.02575924872499
+            ],
+            "peak_hz": [
+              14798.189163208008,
+              14798.189163208008
+            ],
+            "local_prominence_db": [
+              46.311881996542496,
+              51.51813854833638
+            ]
+          },
+          {
+            "note": 76,
+            "parent_harmonic": 12,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 14138.938634091122,
+            "nearest_excluded_family_hz": 224.4886174260173,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.07078766978414,
+              -60.074849382629594
+            ],
+            "peak_hz": [
+              14139.071273803711,
+              14138.903045654297
+            ],
+            "local_prominence_db": [
+              48.82220096665488,
+              52.87830813208441
+            ]
+          },
+          {
+            "note": 76,
+            "parent_harmonic": 34,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 364.6738700751557,
+            "nearest_excluded_family_hz": 224.48861742601002,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.02640127784006,
+              -60.07021432864092
+            ],
+            "peak_hz": [
+              364.55039978027344,
+              364.7186279296875
+            ],
+            "local_prominence_db": [
+              34.34999772654097,
+              38.940552493302974
+            ]
+          },
+          {
+            "note": 76,
+            "parent_harmonic": 35,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 1023.9289839008961,
+            "nearest_excluded_family_hz": 224.48861742601002,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.07593952211604,
+              -60.173785499015565
+            ],
+            "peak_hz": [
+              1024.0047454833984,
+              1023.8365173339844
+            ],
+            "local_prominence_db": [
+              36.20898212988233,
+              39.644705957733485
+            ]
+          },
+          {
+            "note": 81,
+            "parent_harmonic": 9,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 14130.0,
+            "nearest_excluded_family_hz": 50.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.09730379670675,
+              -60.087026430425055
+            ],
+            "peak_hz": [
+              14129.986953735352,
+              14130.155181884766
+            ],
+            "local_prominence_db": [
+              51.156559557336124,
+              52.81515777929235
+            ]
+          },
+          {
+            "note": 81,
+            "parent_harmonic": 10,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 13250.0,
+            "nearest_excluded_family_hz": 50.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.05808908800244,
+              -60.08062065353152
+            ],
+            "peak_hz": [
+              13249.98550415039,
+              13249.98550415039
+            ],
+            "local_prominence_db": [
+              52.44443367165295,
+              55.83665211679656
+            ]
+          },
+          {
+            "note": 81,
+            "parent_harmonic": 26,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 830.0,
+            "nearest_excluded_family_hz": 50.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -59.97288637369155,
+              -60.17050821560243
+            ],
+            "peak_hz": [
+              830.0376892089844,
+              829.8694610595703
+            ],
+            "local_prominence_db": [
+              47.656291334442315,
+              49.48356852142818
+            ]
+          },
+          {
+            "note": 81,
+            "parent_harmonic": 27,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 1710.0,
+            "nearest_excluded_family_hz": 50.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -59.971579802160036,
+              -60.03343972571425
+            ],
+            "peak_hz": [
+              1710.3755950927734,
+              1709.8709106445312
+            ],
+            "local_prominence_db": [
+              46.49139772959782,
+              51.066198749771786
+            ]
+          },
+          {
+            "note": 84,
+            "parent_harmonic": 7,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 14724.484171583239,
+            "nearest_excluded_family_hz": 73.45251474971701,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.13749324447843,
+              -60.140680561983245
+            ],
+            "peak_hz": [
+              14724.337005615234,
+              14724.505233764648
+            ],
+            "local_prominence_db": [
+              48.001388105451504,
+              49.21154173072959
+            ]
+          },
+          {
+            "note": 84,
+            "parent_harmonic": 8,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 13677.981910380844,
+            "nearest_excluded_family_hz": 73.45251474971519,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.04757497784037,
+              -60.08864143721634
+            ],
+            "peak_hz": [
+              13678.12614440918,
+              13677.957916259766
+            ],
+            "local_prominence_db": [
+              45.89594178220934,
+              45.875254258073156
+            ]
+          },
+          {
+            "note": 84,
+            "parent_harmonic": 22,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 973.0497464526779,
+            "nearest_excluded_family_hz": 73.45251474971155,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.126831314471126,
+              -60.19442748612141
+            ],
+            "peak_hz": [
+              972.6951599121094,
+              973.1998443603516
+            ],
+            "local_prominence_db": [
+              40.518733891577384,
+              39.16973776627054
+            ]
+          },
+          {
+            "note": 84,
+            "parent_harmonic": 23,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 2019.5520076550747,
+            "nearest_excluded_family_hz": 73.45251474971428,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.10766534635225,
+              -60.051314361886
+            ],
+            "peak_hz": [
+              2019.4107055664062,
+              2019.5789337158203
+            ],
+            "local_prominence_db": [
+              41.362841162482894,
+              39.84171609099044
+            ]
+          },
+          {
+            "note": 86,
+            "parent_harmonic": 7,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 13827.386498312588,
+            "nearest_excluded_family_hz": 268.5223617229767,
+            "eligible": true,
+            "relative_h1_db": [
+              -59.986655833024614,
+              -60.10103774488502
+            ],
+            "peak_hz": [
+              13827.512741088867,
+              13827.344512939453
+            ],
+            "local_prominence_db": [
+              45.897851838360296,
+              48.503039211835954
+            ]
+          },
+          {
+            "note": 86,
+            "parent_harmonic": 8,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 12652.727426642958,
+            "nearest_excluded_family_hz": 268.5223617229749,
+            "eligible": true,
+            "relative_h1_db": [
+              -59.9509838051256,
+              -60.14993536562646
+            ],
+            "peak_hz": [
+              12652.775573730469,
+              12652.775573730469
+            ],
+            "local_prominence_db": [
+              47.17952028941972,
+              49.41904370649047
+            ]
+          },
+          {
+            "note": 86,
+            "parent_harmonic": 20,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 1443.181433392605,
+            "nearest_excluded_family_hz": 268.52236172297467,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.00947155782194,
+              -60.09618646720395
+            ],
+            "peak_hz": [
+              1443.2292938232422,
+              1443.0610656738281
+            ],
+            "local_prominence_db": [
+              38.22528772270489,
+              38.3253164090292
+            ]
+          },
+          {
+            "note": 86,
+            "parent_harmonic": 21,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 2617.840505062235,
+            "nearest_excluded_family_hz": 268.52236172297125,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.11869164428066,
+              -60.05859247110923
+            ],
+            "peak_hz": [
+              2617.7982330322266,
+              2617.7982330322266
+            ],
+            "local_prominence_db": [
+              41.541552322912416,
+              42.331655868099304
+            ]
+          },
+          {
+            "note": 88,
+            "parent_harmonic": 6,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 14138.938634091122,
+            "nearest_excluded_family_hz": 224.4886174260173,
+            "eligible": true,
+            "relative_h1_db": [
+              -59.97233103989365,
+              -60.068729355802915
+            ],
+            "peak_hz": [
+              14138.903045654297,
+              14138.903045654297
+            ],
+            "local_prominence_db": [
+              46.51438862154599,
+              51.562012908234664
+            ]
+          },
+          {
+            "note": 88,
+            "parent_harmonic": 7,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 12820.428406439642,
+            "nearest_excluded_family_hz": 224.4886174260173,
+            "eligible": true,
+            "relative_h1_db": [
+              -59.93075199571848,
+              -60.09620826648821
+            ],
+            "peak_hz": [
+              12820.499038696289,
+              12820.330810546875
+            ],
+            "local_prominence_db": [
+              46.22570587144206,
+              50.10440461807121
+            ]
+          },
+          {
+            "note": 88,
+            "parent_harmonic": 17,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 364.6738700751557,
+            "nearest_excluded_family_hz": 224.48861742601002,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.13728967819999,
+              -60.016216178782635
+            ],
+            "peak_hz": [
+              364.55039978027344,
+              364.7186279296875
+            ],
+            "local_prominence_db": [
+              45.77505576806021,
+              46.37928192564431
+            ]
+          },
+          {
+            "note": 88,
+            "parent_harmonic": 18,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 1683.184097726633,
+            "nearest_excluded_family_hz": 224.4886174260173,
+            "eligible": true,
+            "relative_h1_db": [
+              -59.891879914741864,
+              -60.107195417860424
+            ],
+            "peak_hz": [
+              1683.2908630371094,
+              1683.1226348876953
+            ],
+            "local_prominence_db": [
+              38.36050855039867,
+              41.16740807994708
+            ]
+          },
+          {
+            "note": 91,
+            "parent_harmonic": 5,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 14210.091280365014,
+            "nearest_excluded_family_hz": 98.25558502203967,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.032610806653395,
+              -60.077915485613616
+            ],
+            "peak_hz": [
+              14210.063552856445,
+              14210.063552856445
+            ],
+            "local_prominence_db": [
+              44.611241124806746,
+              48.181559985936026
+            ]
+          },
+          {
+            "note": 91,
+            "parent_harmonic": 6,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 12642.109536438018,
+            "nearest_excluded_family_hz": 98.25558502204149,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.06529556161058,
+              -60.01271399943816
+            ],
+            "peak_hz": [
+              12642.177200317383,
+              12642.008972167969
+            ],
+            "local_prominence_db": [
+              45.23900644379103,
+              46.155747524719295
+            ]
+          },
+          {
+            "note": 91,
+            "parent_harmonic": 15,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 1469.7261589049558,
+            "nearest_excluded_family_hz": 98.25558502204126,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.1190880395727,
+              -60.11599084509105
+            ],
+            "peak_hz": [
+              1469.809341430664,
+              1469.809341430664
+            ],
+            "local_prominence_db": [
+              41.43948211787781,
+              40.31415632695896
+            ]
+          },
+          {
+            "note": 91,
+            "parent_harmonic": 16,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 3037.707902831953,
+            "nearest_excluded_family_hz": 98.25558502204103,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.01823563652317,
+              -60.06605643902165
+            ],
+            "peak_hz": [
+              3037.6956939697266,
+              3037.6956939697266
+            ],
+            "local_prominence_db": [
+              45.93975424121964,
+              44.2507450692764
+            ]
+          },
+          {
+            "note": 93,
+            "parent_harmonic": 5,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 13250.0,
+            "nearest_excluded_family_hz": 730.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.03886936272424,
+              -60.090739130618395
+            ],
+            "peak_hz": [
+              13249.98550415039,
+              13249.98550415039
+            ],
+            "local_prominence_db": [
+              53.15250023699197,
+              54.44029731715368
+            ]
+          },
+          {
+            "note": 93,
+            "parent_harmonic": 6,
+            "branch": "22050-minus-hf0",
+            "expected_hz": 11490.0,
+            "nearest_excluded_family_hz": 730.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.08318592742117,
+              -60.021217003746905
+            ],
+            "peak_hz": [
+              11489.982604980469,
+              11489.982604980469
+            ],
+            "local_prominence_db": [
+              55.251136858225536,
+              56.7700649324534
+            ]
+          },
+          {
+            "note": 93,
+            "parent_harmonic": 13,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 830.0,
+            "nearest_excluded_family_hz": 730.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.02344806046356,
+              -60.020924768168584
+            ],
+            "peak_hz": [
+              830.0376892089844,
+              830.0376892089844
+            ],
+            "local_prominence_db": [
+              53.34428277556155,
+              53.90669713866827
+            ]
+          },
+          {
+            "note": 93,
+            "parent_harmonic": 14,
+            "branch": "hf0-minus-22050",
+            "expected_hz": 2590.0,
+            "nearest_excluded_family_hz": 730.0,
+            "eligible": true,
+            "relative_h1_db": [
+              -60.045936947088634,
+              -60.08894645885242
+            ],
+            "peak_hz": [
+              2590.0405883789062,
+              2590.0405883789062
+            ],
+            "local_prominence_db": [
+              49.94511988322414,
+              53.05326232682934
+            ]
+          }
+        ],
+        "notes_with_repeated_lines": [
+          69,
+          76,
+          81,
+          84,
+          86,
+          88,
+          91,
+          93
+        ]
+      },
+      "injected_lines": 32,
+      "recovered_injected_lines": 32,
+      "interior_peak_count": 221,
+      "max_interior_peak_db": -59.891879914741864,
+      "above_minus75_count": 64,
+      "positive_relative_h1_db_range": [
+        -60.32232544715591,
+        -59.891879914741864
+      ],
+      "positive_min_prominence_db": 29.346169871991698
+    }
+  ],
+  "interpretation": "No independently detectable22.05kHz fold/image family at the inherited threshold in these notes/windows. This does not exclude a properly bandlimited half-rate internal block or identify the rates of other DSP blocks.",
+  "runtime": {
+    "python": "3.11.0",
+    "numpy": "1.26.4",
+    "scipy": "1.14.1",
+    "ffmpeg": "ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers"
+  }
+}

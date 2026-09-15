@@ -90,6 +90,12 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   fit much of that waveform shape, but miss important alias notches even
   when their median alias level agrees. Those mathematical fits are not
   full-engine renders and do not justify a production oscillator change.
+  [Slope/time controls](source-audits/deepsonic-high-note-invariance-2026-09-15.md)
+  identify an early, nearly invariant Q0 high-note region followed by a
+  moving response. Q50 differs strongly there, ruling out an unconditional
+  cutoff-only bypass. A [22.05 kHz image check](source-audits/deepsonic-half-rate-images-2026-09-15.md)
+  finds no independent image family at the tested threshold; it does not
+  exclude properly bandlimited internal blocks.
 
 ## Next work
 
