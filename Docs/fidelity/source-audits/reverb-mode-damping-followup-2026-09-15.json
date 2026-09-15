@@ -1,0 +1,747 @@
+{
+  "status": "exploratory_confounded_comparison_not_equivalence",
+  "source_results_sha256": "89530db6fb074388cae595a8d878f4da3f5cf539e1b6ae5fd598ba027c7000ce",
+  "protocol": {
+    "status": "exploratory_articulation_followup",
+    "primary_hypothesis": "gain-0.5",
+    "secondary_sensitivity": "gain-0.25",
+    "baseline": "gain-1",
+    "models": {
+      "gain-1": {
+        "directory": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/builds/gain-1",
+        "renderer_sha256": "0e69118d0dab0928793ef3b59208fddf43b7bd56d982f2c053d3c0ad9f15b646",
+        "manifest_sha256": "3c443ff9c4a33cf456bde625c91bcb3d8a575e3151ee601b40be1307fe51e27f"
+      },
+      "gain-0.5": {
+        "directory": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/builds/gain-0.5",
+        "renderer_sha256": "f75f864dffa98eca24025836bf9d04705ad7fd68717ddef982092f4865828758",
+        "manifest_sha256": "61188f5a0b0c06cce822ec71616f9ad59b709b5aa3a85836f796c35f553b98af"
+      },
+      "gain-0.25": {
+        "directory": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/builds/gain-0.25",
+        "renderer_sha256": "3d4edd95e8a645dcf410db4d1b151abd0bda747b58f1990e018442a6866fc567",
+        "manifest_sha256": "0fe85ee7c4449b07bf6befe12d9d43245e0b245e5c1a045f605de49afe3e1273"
+      }
+    },
+    "cases": [
+      {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Docs/fidelity/reconstructions/reverb-validation/201-vs-jp8000-held-opening.json",
+        "frozen_path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-mode-damping-followup/run-02/201-vs-jp8000-held-opening-frozen-reconstruction.json",
+        "sha256": "6b8cb5ac8e4efaf6371cc4b3316a812d4fbcd790521eb0ac97300718a08d28e8",
+        "midi_sha256": "668e9f8ca445f4f47c9399371e84ab99d9d855c6904f861edb5985a29ef08610",
+        "sysex_sha256": "70e44e7665a3e6b46faabf733588fda615dcf2161a85dea693e70c319a3f1501",
+        "case": {
+          "schema_version": 1,
+          "id": "201-vs-jp8000-held-opening",
+          "title": "201vsJP8000 \u2014 two opening octave notes (held gates)",
+          "reference_id": "pad-06",
+          "midi_status": "reconstructed_not_original",
+          "source_start_seconds": 0.0,
+          "duration_seconds": 0.71,
+          "calibration_end_seconds": 0.4,
+          "method": "Original-only stereo spectra and 5ms RMS/40ms and93ms spectrograms. Initial130.8Hz family at~.320s, then new65.4/196.2Hz family at~.425s support played C3/MIDI48 and C2/MIDI36 under unchanged zero-coarse, zero-octave original preset. Stop at.710s before a new233Hz family near.735s. Note-offs are explicit censoring/articulation assumptions, not recovered gates. No renderer or candidate score was used.",
+          "selection_status": "post_result_keyboard_mode_vs_damping_confound_investigation_not_blind_validation",
+          "uncertainties": [
+            "Original performance MIDI, velocity/controllers, global transpose/tuning, recording chain and exact recorded patch revision are unavailable; official MP3/bank association is by name.",
+            "After C2 starts, its even harmonics overlap the earlier C3 family. The earlier C3 note may still be held or already releasing; the source does not uniquely distinguish these cases.",
+            "Both Super Saws, AMP release61, delay/reverb and active filter LFO34 leave key-up uncertain. Held-through-crop is a censored input hypothesis, not evidence of held keys; the first-C3 early-release variant is an alternative, not a confidence bound.",
+            "Second-note release is not recovered. It remains censored at the crop in both variants. No matched post-off tail or independent reverb decay is claimed.",
+            "Onsets have operational source brackets, not certified MIDI bounds; MP3 pre-echo, the direct onset and filtered band onset can differ. A later fixed production-prefix lag may absorb one global delay only.",
+            "Velocity100 is nominal. Active Upper cutoff velocity0, AMP velocity+8; lower is inactive. Both variants preserve velocity and all exact stored controls.",
+            "This is an explicit post-result confound investigation. Report both gate assumptions with the same comparison policy; do not select a favorable reconstruction from DSP errors.",
+            "The crop is deliberately short and dominated by held/overlapping sound. A later result cannot independently establish a reverb damping model or whole-instrument equivalence."
+          ],
+          "notes": [
+            {
+              "on": 0.32,
+              "off": 0.71,
+              "note": 48,
+              "velocity": 100,
+              "pitch_confidence": "high",
+              "onset_confidence": "medium-high",
+              "on_uncertainty_seconds": [
+                0.315,
+                0.325
+              ],
+              "off_status": "censored_at_crop_not_recovered",
+              "evidence": "130.8Hz fundamental plus approximate261.6/392.4/523.2Hz multiples before the lower octave enters; no stored transposition."
+            },
+            {
+              "on": 0.425,
+              "off": 0.71,
+              "note": 36,
+              "velocity": 100,
+              "pitch_confidence": "high",
+              "onset_confidence": "medium",
+              "on_uncertainty_seconds": [
+                0.405,
+                0.435
+              ],
+              "off_status": "censored_at_crop_not_recovered",
+              "evidence": "New65.4Hz family and its odd196.2Hz multiple appear around.425s; persists to selected crop with unknown gate/release."
+            }
+          ],
+          "benchmark_protocol": {
+            "calibration_seconds": [
+              0.0,
+              0.4
+            ],
+            "later_evaluation_seconds": [
+              0.4,
+              0.71
+            ],
+            "calibration_end_seconds": 0.4,
+            "training_note": 48,
+            "later_note": 36,
+            "maximum_proposed_common_alignment_seconds": 0.05,
+            "minimum_common_later_support_seconds": 0.26,
+            "comparison_policy": "One lag and gain from before/production prefix only, frozen for all models; same samples for all models; retain gate sensitivity without selecting its best error.",
+            "gate_hypotheses": {
+              "held_opening": "Both notes censored at.710s crop.",
+              "c3_release_opening": "First C3 note-off.390s is an explicit sensitivity suggested by early upper-harmonic diminution; first C3 release remains inseparable from filter/phase/overlap. C2 still censored."
+            },
+            "final_tail_status": "No source-matched tail after recovered final key-up.",
+            "all_preceding_events_retained": true,
+            "source_only_frozen_before_rendering": true
+          },
+          "active_velocity_sensitivity": {
+            "upper": {
+              "cutoff": 0,
+              "amp": 8
+            }
+          },
+          "velocity_sensitivity_review": {
+            "uniform_velocity_cases_omitted": true,
+            "current_model_formula": "g(v)=1-(8/63)*(1-v/127); post-filter common voice amplitude",
+            "uniform_80_and_120_vs_100_db": [
+              -0.180375377706313,
+              0.176705692785186
+            ],
+            "full_velocity_1_to_127_span_db": 1.169614843385989,
+            "reason": "SINGLE Upper with cutoff velocity0 and overdrive off; uniform velocity changes largely reduce to global amplitude absorbed by a per-case production-prefix gain. No layer rebalance. Relative note velocity remains unknown and can affect small later-level differences; this formula is the current model, not a measured hardware velocity law."
+          },
+          "unmodified_sysex_sha256": "70e44e7665a3e6b46faabf733588fda615dcf2161a85dea693e70c319a3f1501",
+          "original_mp3_sha256": "0681718b242a89b23d350237e3f2aad2085e877ee5818256a004eca921d49e2c"
+        }
+      },
+      {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Docs/fidelity/reconstructions/reverb-validation/201-vs-jp8000-gate-sensitivity/201-vs-jp8000-c3-release-opening.json",
+        "frozen_path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-mode-damping-followup/run-02/201-vs-jp8000-c3-release-opening-frozen-reconstruction.json",
+        "sha256": "3dcb24707f47b05ead8e0116f6a9f780cf732a64e643445616a1c5c58a52ad9e",
+        "midi_sha256": "7395134a3c6264e7599f77447fce12ad3dce308df1cfddd535638b6f1d789270",
+        "sysex_sha256": "70e44e7665a3e6b46faabf733588fda615dcf2161a85dea693e70c319a3f1501",
+        "case": {
+          "schema_version": 1,
+          "id": "201-vs-jp8000-c3-release-opening",
+          "title": "201vsJP8000 \u2014 two opening octave notes (C3 release sensitivity)",
+          "reference_id": "pad-06",
+          "midi_status": "reconstructed_not_original",
+          "source_start_seconds": 0.0,
+          "duration_seconds": 0.71,
+          "calibration_end_seconds": 0.4,
+          "method": "Original-only stereo spectra and 5ms RMS/40ms and93ms spectrograms. Initial130.8Hz family at~.320s, then new65.4/196.2Hz family at~.425s support played C3/MIDI48 and C2/MIDI36 under unchanged zero-coarse, zero-octave original preset. Stop at.710s before a new233Hz family near.735s. Note-offs are explicit censoring/articulation assumptions, not recovered gates. No renderer or candidate score was used.",
+          "selection_status": "post_result_keyboard_mode_vs_damping_confound_investigation_not_blind_validation",
+          "uncertainties": [
+            "Original performance MIDI, velocity/controllers, global transpose/tuning, recording chain and exact recorded patch revision are unavailable; official MP3/bank association is by name.",
+            "After C2 starts, its even harmonics overlap the earlier C3 family. The earlier C3 note may still be held or already releasing; the source does not uniquely distinguish these cases.",
+            "Both Super Saws, AMP release61, delay/reverb and active filter LFO34 leave key-up uncertain. Held-through-crop is a censored input hypothesis, not evidence of held keys; the first-C3 early-release variant is an alternative, not a confidence bound.",
+            "Second-note release is not recovered. It remains censored at the crop in both variants. No matched post-off tail or independent reverb decay is claimed.",
+            "Onsets have operational source brackets, not certified MIDI bounds; MP3 pre-echo, the direct onset and filtered band onset can differ. A later fixed production-prefix lag may absorb one global delay only.",
+            "Velocity100 is nominal. Active Upper cutoff velocity0, AMP velocity+8; lower is inactive. Both variants preserve velocity and all exact stored controls.",
+            "This is an explicit post-result confound investigation. Report both gate assumptions with the same comparison policy; do not select a favorable reconstruction from DSP errors.",
+            "The crop is deliberately short and dominated by held/overlapping sound. A later result cannot independently establish a reverb damping model or whole-instrument equivalence."
+          ],
+          "notes": [
+            {
+              "on": 0.32,
+              "off": 0.39,
+              "note": 48,
+              "velocity": 100,
+              "pitch_confidence": "high",
+              "onset_confidence": "medium-high",
+              "on_uncertainty_seconds": [
+                0.315,
+                0.325
+              ],
+              "off_status": "early_release_sensitivity_not_recovered",
+              "evidence": "130.8Hz fundamental plus approximate261.6/392.4/523.2Hz multiples before the lower octave enters; no stored transposition."
+            },
+            {
+              "on": 0.425,
+              "off": 0.71,
+              "note": 36,
+              "velocity": 100,
+              "pitch_confidence": "high",
+              "onset_confidence": "medium",
+              "on_uncertainty_seconds": [
+                0.405,
+                0.435
+              ],
+              "off_status": "censored_at_crop_not_recovered",
+              "evidence": "New65.4Hz family and its odd196.2Hz multiple appear around.425s; persists to selected crop with unknown gate/release."
+            }
+          ],
+          "benchmark_protocol": {
+            "calibration_seconds": [
+              0.0,
+              0.4
+            ],
+            "later_evaluation_seconds": [
+              0.4,
+              0.71
+            ],
+            "calibration_end_seconds": 0.4,
+            "training_note": 48,
+            "later_note": 36,
+            "maximum_proposed_common_alignment_seconds": 0.05,
+            "minimum_common_later_support_seconds": 0.26,
+            "comparison_policy": "One lag and gain from before/production prefix only, frozen for all models; same samples for all models; retain gate sensitivity without selecting its best error.",
+            "gate_hypotheses": {
+              "held_opening": "Both notes censored at.710s crop.",
+              "c3_release_opening": "First C3 note-off.390s is an explicit sensitivity suggested by early upper-harmonic diminution; first C3 release remains inseparable from filter/phase/overlap. C2 still censored."
+            },
+            "final_tail_status": "No source-matched tail after recovered final key-up.",
+            "all_preceding_events_retained": true,
+            "source_only_frozen_before_rendering": true
+          },
+          "active_velocity_sensitivity": {
+            "upper": {
+              "cutoff": 0,
+              "amp": 8
+            }
+          },
+          "velocity_sensitivity_review": {
+            "uniform_velocity_cases_omitted": true,
+            "current_model_formula": "g(v)=1-(8/63)*(1-v/127); post-filter common voice amplitude",
+            "uniform_80_and_120_vs_100_db": [
+              -0.180375377706313,
+              0.176705692785186
+            ],
+            "full_velocity_1_to_127_span_db": 1.169614843385989,
+            "reason": "SINGLE Upper with cutoff velocity0 and overdrive off; uniform velocity changes largely reduce to global amplitude absorbed by a per-case production-prefix gain. No layer rebalance. Relative note velocity remains unknown and can affect small later-level differences; this formula is the current model, not a measured hardware velocity law."
+          },
+          "unmodified_sysex_sha256": "70e44e7665a3e6b46faabf733588fda615dcf2161a85dea693e70c319a3f1501",
+          "original_mp3_sha256": "0681718b242a89b23d350237e3f2aad2085e877ee5818256a004eca921d49e2c"
+        }
+      }
+    ],
+    "model_result_sha256": "ff09418c895d188c0df2323ec45cb6616fd7e3d40184b6205acaea5c04b92d51",
+    "catalog_sha256": "32e356db740bd827792b6d98800aa7f923b34ceb3b7a164dd2cfcb5220119736",
+    "transformation": "Primary: one production-only prefix lag bounded50ms and gain, frozen across models. Candidate-prefix RMS gains are a separately reported sensitivity. Same evaluation supports for all models.",
+    "scope": "Exploratory follow-up after earlier candidate outcomes. New inputs are fixed before their own scores; this is not independent confirmation or a replacement for the earlier cases. Original performance MIDI, gates, velocity and recorded patch revision remain unauthenticated.",
+    "tools": {
+      "evaluate_reverb_validation_cases.py": "0f4515ea77f51e2136052e1ad533a055be728f23d4c1cb3bb25e619e3485636a",
+      "compare_hardware.py": "98c1fad577e2cc13b5c20dff04d06a1414ae0332fe48e2696b690db03d87be86",
+      "assess_hardware_equivalence.py": "09d43cb55f7b90fe4c06fc7f79b803d809735f2e4c2ee36db6002d17d595f642",
+      "render_midi.py": "ffb8899e5a4b3588d459e5de3e710c74a002dfc04e45d7691a03102e9b5093e3",
+      "extract_reference_patch.py": "461407495e9f5bfc99767a0146a750708c5cdb2fd34c0d029aaf5e5f5a80703b"
+    }
+  },
+  "tool_sha256": "af54b497cea6aa14e987452a5a6bc363cf568ed6523e37e2aa7d78b602abe4df",
+  "assessment_tool_sha256": "09d43cb55f7b90fe4c06fc7f79b803d809735f2e4c2ee36db6002d17d595f642",
+  "independent_metric_max_error": 6.359357485052897e-13,
+  "independent_numeric_checks": 288,
+  "reference_mask_scope": "Post-score diagnostic: hardware-only activity, candidate-only energy still counted by primary unmasked SC.",
+  "cases": [
+    {
+      "id": "201-vs-jp8000-held-opening",
+      "calibration": {
+        "candidate_lag_samples": 132,
+        "candidate_lag_seconds": 0.002993197278911565,
+        "candidate_gain": 4.416030659078345,
+        "candidate_gain_db": 12.900641597965985,
+        "calibration_frames": 17640,
+        "max_lag_seconds": 0.05,
+        "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+        "alignment_correlation": 0.9917185126102587,
+        "alignment_identifiable": true,
+        "alignment_at_search_boundary": false,
+        "gain_method": "one scalar RMS gain over calibration interval after alignment",
+        "allowed_transforms": [
+          "one global integer delay",
+          "one positive scalar gain"
+        ]
+      },
+      "evaluation_samples": [
+        17640,
+        31179
+      ],
+      "models": {
+        "gain-1": {
+          "primary": {
+            "spectral_convergence_mean": 0.8453391239387315,
+            "log_spectral_error_db_mean": 13.566600099264159,
+            "envelope_error_db_p95_max": 6.52615929561033,
+            "stereo_side_fraction_error": 0.0018420351228661085,
+            "stereo_balance_error_db": 1.5455816839430094
+          },
+          "candidate_prefix_gain_sensitivity": {
+            "spectral_convergence_mean": 0.8453391239387315,
+            "log_spectral_error_db_mean": 13.566600099264159,
+            "envelope_error_db_p95_max": 6.52615929561033,
+            "stereo_side_fraction_error": 0.0018420351228661085,
+            "stereo_balance_error_db": 1.5455816839430094
+          },
+          "reference_only_masks": {
+            "spectra": [
+              {
+                "window": 512,
+                "bins": 12690,
+                "mean_db": 10.525317554893629,
+                "p95_db": 22.593845544572982
+              },
+              {
+                "window": 2048,
+                "bins": 10284,
+                "mean_db": 9.997936914132756,
+                "p95_db": 21.500045234050233
+              },
+              {
+                "window": 8192,
+                "bins": 4673,
+                "mean_db": 9.2627840242173,
+                "p95_db": 20.135134800871924
+              }
+            ],
+            "envelopes": [
+              {
+                "window": 441,
+                "bins": 60,
+                "mean_db": 3.1977269742978094,
+                "p95_db": 6.52615929561033
+              },
+              {
+                "window": 2205,
+                "bins": 52,
+                "mean_db": 2.6303834531487778,
+                "p95_db": 4.992066448132702
+              }
+            ],
+            "summary": {
+              "log_spectral_error_db_mean": 9.928679497747895,
+              "envelope_error_db_p95_max": 6.52615929561033
+            }
+          }
+        },
+        "gain-0.5": {
+          "primary": {
+            "spectral_convergence_mean": 0.8374805047138801,
+            "log_spectral_error_db_mean": 13.512830615313108,
+            "envelope_error_db_p95_max": 5.932091578836966,
+            "stereo_side_fraction_error": 0.008538564291880407,
+            "stereo_balance_error_db": 1.4287596440361023
+          },
+          "candidate_prefix_gain_sensitivity": {
+            "spectral_convergence_mean": 0.8374805047138801,
+            "log_spectral_error_db_mean": 13.512830615313108,
+            "envelope_error_db_p95_max": 5.932091578836966,
+            "stereo_side_fraction_error": 0.008538564291880407,
+            "stereo_balance_error_db": 1.4287596440361023
+          },
+          "reference_only_masks": {
+            "spectra": [
+              {
+                "window": 512,
+                "bins": 12690,
+                "mean_db": 10.458071388430161,
+                "p95_db": 22.5183095279806
+              },
+              {
+                "window": 2048,
+                "bins": 10284,
+                "mean_db": 9.940611851979742,
+                "p95_db": 21.313771209911458
+              },
+              {
+                "window": 8192,
+                "bins": 4673,
+                "mean_db": 9.338453310392179,
+                "p95_db": 20.393700064449366
+              }
+            ],
+            "envelopes": [
+              {
+                "window": 441,
+                "bins": 60,
+                "mean_db": 3.1171749491404834,
+                "p95_db": 5.932091578836966
+              },
+              {
+                "window": 2205,
+                "bins": 52,
+                "mean_db": 2.5762215691486015,
+                "p95_db": 4.826277759479833
+              }
+            ],
+            "summary": {
+              "log_spectral_error_db_mean": 9.91237885026736,
+              "envelope_error_db_p95_max": 5.932091578836966
+            }
+          }
+        },
+        "gain-0.25": {
+          "primary": {
+            "spectral_convergence_mean": 0.8350294683463537,
+            "log_spectral_error_db_mean": 13.511052469508321,
+            "envelope_error_db_p95_max": 5.686360939184381,
+            "stereo_side_fraction_error": 0.010242040652166334,
+            "stereo_balance_error_db": 1.3671318123410372
+          },
+          "candidate_prefix_gain_sensitivity": {
+            "spectral_convergence_mean": 0.8350294683463537,
+            "log_spectral_error_db_mean": 13.511052469508321,
+            "envelope_error_db_p95_max": 5.686360939184381,
+            "stereo_side_fraction_error": 0.010242040652166334,
+            "stereo_balance_error_db": 1.3671318123410372
+          },
+          "reference_only_masks": {
+            "spectra": [
+              {
+                "window": 512,
+                "bins": 12690,
+                "mean_db": 10.438050770740906,
+                "p95_db": 22.509102785756674
+              },
+              {
+                "window": 2048,
+                "bins": 10284,
+                "mean_db": 9.921961155339782,
+                "p95_db": 21.31903591464597
+              },
+              {
+                "window": 8192,
+                "bins": 4673,
+                "mean_db": 9.426150998559745,
+                "p95_db": 20.50289951536416
+              }
+            ],
+            "envelopes": [
+              {
+                "window": 441,
+                "bins": 60,
+                "mean_db": 3.079818339236321,
+                "p95_db": 5.686360939184381
+              },
+              {
+                "window": 2205,
+                "bins": 52,
+                "mean_db": 2.5506459809371105,
+                "p95_db": 4.747165474512618
+              }
+            ],
+            "summary": {
+              "log_spectral_error_db_mean": 9.928720974880145,
+              "envelope_error_db_p95_max": 5.686360939184381
+            }
+          }
+        }
+      },
+      "verified_renders": [
+        {
+          "model": "gain-1",
+          "frames": 119511,
+          "peak": 0.22445017099380493,
+          "wav_sha256": "f80fe6ecd77e6262354c99d69a4997e2ca0cbef18435662f9af3de43c6e995ac",
+          "receipt_sha256": "2efe2af04917604a8a980351d348bce823fbd46648bf107cd853d020301fb28e",
+          "finite": true,
+          "active_voices_at_end": 0,
+          "ignored_events": 0,
+          "degraded_replay": false
+        },
+        {
+          "model": "gain-0.5",
+          "frames": 119511,
+          "peak": 0.21508155763149261,
+          "wav_sha256": "49f2397cee92f6a40e4861039f44b5940745dd4060a01141ac8221c00812d2bb",
+          "receipt_sha256": "c5a5343e463fa0db5089accaa173ead12119029489f38fae015874f827e3446a",
+          "finite": true,
+          "active_voices_at_end": 0,
+          "ignored_events": 0,
+          "degraded_replay": false
+        },
+        {
+          "model": "gain-0.25",
+          "frames": 119511,
+          "peak": 0.21448200941085815,
+          "wav_sha256": "ad6fbb54ca995689bed5760d01bb9a606e08d3b72a5365a2876e7ffc8db09c65",
+          "receipt_sha256": "66305d9341cfe6796151248909e49f05b2772967365271eedf10f8b7a44b40fd",
+          "finite": true,
+          "active_voices_at_end": 0,
+          "ignored_events": 0,
+          "degraded_replay": false
+        }
+      ]
+    },
+    {
+      "id": "201-vs-jp8000-c3-release-opening",
+      "calibration": {
+        "candidate_lag_samples": 132,
+        "candidate_lag_seconds": 0.002993197278911565,
+        "candidate_gain": 4.443260860590137,
+        "candidate_gain_db": 12.954036222004824,
+        "calibration_frames": 17640,
+        "max_lag_seconds": 0.05,
+        "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+        "alignment_correlation": 0.9917185126102925,
+        "alignment_identifiable": true,
+        "alignment_at_search_boundary": false,
+        "gain_method": "one scalar RMS gain over calibration interval after alignment",
+        "allowed_transforms": [
+          "one global integer delay",
+          "one positive scalar gain"
+        ]
+      },
+      "evaluation_samples": [
+        17640,
+        31179
+      ],
+      "models": {
+        "gain-1": {
+          "primary": {
+            "spectral_convergence_mean": 0.6712321831300283,
+            "log_spectral_error_db_mean": 10.811016896428052,
+            "envelope_error_db_p95_max": 8.293033097362235,
+            "stereo_side_fraction_error": 4.8461629457135363e-05,
+            "stereo_balance_error_db": 1.4566613680276044
+          },
+          "candidate_prefix_gain_sensitivity": {
+            "spectral_convergence_mean": 0.6712321831300283,
+            "log_spectral_error_db_mean": 10.811016896428052,
+            "envelope_error_db_p95_max": 8.293033097362235,
+            "stereo_side_fraction_error": 4.8461629457135363e-05,
+            "stereo_balance_error_db": 1.4566613680276044
+          },
+          "reference_only_masks": {
+            "spectra": [
+              {
+                "window": 512,
+                "bins": 12690,
+                "mean_db": 8.129055401674385,
+                "p95_db": 19.270982535474257
+              },
+              {
+                "window": 2048,
+                "bins": 10284,
+                "mean_db": 7.901604832873891,
+                "p95_db": 18.17028614258675
+              },
+              {
+                "window": 8192,
+                "bins": 4673,
+                "mean_db": 7.517648628543777,
+                "p95_db": 16.965534296603327
+              }
+            ],
+            "envelopes": [
+              {
+                "window": 441,
+                "bins": 60,
+                "mean_db": 2.5560040456155035,
+                "p95_db": 8.293033097362235
+              },
+              {
+                "window": 2205,
+                "bins": 52,
+                "mean_db": 1.7664638276905575,
+                "p95_db": 3.2990903934259084
+              }
+            ],
+            "summary": {
+              "log_spectral_error_db_mean": 7.849436287697351,
+              "envelope_error_db_p95_max": 8.293033097362235
+            }
+          }
+        },
+        "gain-0.5": {
+          "primary": {
+            "spectral_convergence_mean": 0.6666172427675692,
+            "log_spectral_error_db_mean": 10.733222972861064,
+            "envelope_error_db_p95_max": 8.293033097362235,
+            "stereo_side_fraction_error": 0.008777706294819892,
+            "stereo_balance_error_db": 1.3971220709361014
+          },
+          "candidate_prefix_gain_sensitivity": {
+            "spectral_convergence_mean": 0.6666172427675692,
+            "log_spectral_error_db_mean": 10.733222972861064,
+            "envelope_error_db_p95_max": 8.293033097362235,
+            "stereo_side_fraction_error": 0.008777706294819892,
+            "stereo_balance_error_db": 1.3971220709361014
+          },
+          "reference_only_masks": {
+            "spectra": [
+              {
+                "window": 512,
+                "bins": 12690,
+                "mean_db": 8.052569504114244,
+                "p95_db": 19.132654865684668
+              },
+              {
+                "window": 2048,
+                "bins": 10284,
+                "mean_db": 7.8170665592338855,
+                "p95_db": 18.096960624486414
+              },
+              {
+                "window": 8192,
+                "bins": 4673,
+                "mean_db": 7.604599586220888,
+                "p95_db": 17.39809131995643
+              }
+            ],
+            "envelopes": [
+              {
+                "window": 441,
+                "bins": 60,
+                "mean_db": 2.59535384089656,
+                "p95_db": 8.293033097362235
+              },
+              {
+                "window": 2205,
+                "bins": 52,
+                "mean_db": 1.817362200127651,
+                "p95_db": 3.455717488561836
+              }
+            ],
+            "summary": {
+              "log_spectral_error_db_mean": 7.824745216523006,
+              "envelope_error_db_p95_max": 8.293033097362235
+            }
+          }
+        },
+        "gain-0.25": {
+          "primary": {
+            "spectral_convergence_mean": 0.6648932069846989,
+            "log_spectral_error_db_mean": 10.720962325256139,
+            "envelope_error_db_p95_max": 8.293033097362235,
+            "stereo_side_fraction_error": 0.010956873692077611,
+            "stereo_balance_error_db": 1.3650315774813135
+          },
+          "candidate_prefix_gain_sensitivity": {
+            "spectral_convergence_mean": 0.6648932069846989,
+            "log_spectral_error_db_mean": 10.720962325256139,
+            "envelope_error_db_p95_max": 8.293033097362235,
+            "stereo_side_fraction_error": 0.010956873692077611,
+            "stereo_balance_error_db": 1.3650315774813135
+          },
+          "reference_only_masks": {
+            "spectra": [
+              {
+                "window": 512,
+                "bins": 12690,
+                "mean_db": 8.018988242817546,
+                "p95_db": 19.016326844022906
+              },
+              {
+                "window": 2048,
+                "bins": 10284,
+                "mean_db": 7.777153756379421,
+                "p95_db": 18.067571810636146
+              },
+              {
+                "window": 8192,
+                "bins": 4673,
+                "mean_db": 7.718936046546586,
+                "p95_db": 17.88807711116933
+              }
+            ],
+            "envelopes": [
+              {
+                "window": 441,
+                "bins": 60,
+                "mean_db": 2.608436427158653,
+                "p95_db": 8.293033097362235
+              },
+              {
+                "window": 2205,
+                "bins": 52,
+                "mean_db": 1.833310655402081,
+                "p95_db": 3.5089879618080233
+              }
+            ],
+            "summary": {
+              "log_spectral_error_db_mean": 7.838359348581183,
+              "envelope_error_db_p95_max": 8.293033097362235
+            }
+          }
+        }
+      },
+      "verified_renders": [
+        {
+          "model": "gain-1",
+          "frames": 119511,
+          "peak": 0.1294330507516861,
+          "wav_sha256": "d5f071795959892b07f96448bbbfbef50ac51f013d73fb9120b2307fd8dda1a8",
+          "receipt_sha256": "7490f64a89cf6e2b6797f8b83a192d5c4cefbbb7aaeaab6434f271cbfb4a17a0",
+          "finite": true,
+          "active_voices_at_end": 0,
+          "ignored_events": 0,
+          "degraded_replay": false
+        },
+        {
+          "model": "gain-0.5",
+          "frames": 119511,
+          "peak": 0.12111333012580872,
+          "wav_sha256": "4749c38d4c9dfcc44af916196e16624f5bf6e4d66995b7b53bc7236f2cd909ec",
+          "receipt_sha256": "0f58fd0c6afd55fa40f54d4772bea0b98269c4a4c4b13c90ba619038f185b3a2",
+          "finite": true,
+          "active_voices_at_end": 0,
+          "ignored_events": 0,
+          "degraded_replay": false
+        },
+        {
+          "model": "gain-0.25",
+          "frames": 119511,
+          "peak": 0.11695346981287003,
+          "wav_sha256": "cb9443ac5f707b38b0ef87d9a97e2368fdc5e1d8e5bddbb535726f6a5f3fde88",
+          "receipt_sha256": "46a50604ccf7fd9ff7df70ac0d8d9e9c467a907e69424191039d26c9b09e14c9",
+          "finite": true,
+          "active_voices_at_end": 0,
+          "ignored_events": 0,
+          "degraded_replay": false
+        }
+      ]
+    }
+  ],
+  "historical_run": {
+    "results_sha256": "18e2e8220f6ee8911394931c1e3418c6b701afc605be180ded3207cdfaebb4ff",
+    "status": "release_scenario_alignment_superseded"
+  },
+  "unchanged_audio_checks": [
+    {
+      "case": "201-vs-jp8000-held-opening",
+      "model": "gain-1",
+      "sha256": "f80fe6ecd77e6262354c99d69a4997e2ca0cbef18435662f9af3de43c6e995ac",
+      "byte_identical": true
+    },
+    {
+      "case": "201-vs-jp8000-held-opening",
+      "model": "gain-0.5",
+      "sha256": "49f2397cee92f6a40e4861039f44b5940745dd4060a01141ac8221c00812d2bb",
+      "byte_identical": true
+    },
+    {
+      "case": "201-vs-jp8000-held-opening",
+      "model": "gain-0.25",
+      "sha256": "ad6fbb54ca995689bed5760d01bb9a606e08d3b72a5365a2876e7ffc8db09c65",
+      "byte_identical": true
+    },
+    {
+      "case": "201-vs-jp8000-c3-release-opening",
+      "model": "gain-1",
+      "sha256": "d5f071795959892b07f96448bbbfbef50ac51f013d73fb9120b2307fd8dda1a8",
+      "byte_identical": true
+    },
+    {
+      "case": "201-vs-jp8000-c3-release-opening",
+      "model": "gain-0.5",
+      "sha256": "4749c38d4c9dfcc44af916196e16624f5bf6e4d66995b7b53bc7236f2cd909ec",
+      "byte_identical": true
+    },
+    {
+      "case": "201-vs-jp8000-c3-release-opening",
+      "model": "gain-0.25",
+      "sha256": "cb9443ac5f707b38b0ef87d9a97e2368fdc5e1d8e5bddbb535726f6a5f3fde88",
+      "byte_identical": true
+    }
+  ]
+}
