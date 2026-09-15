@@ -1,0 +1,2388 @@
+{
+  "schema_version": 1,
+  "status": "not_established",
+  "protocol": {
+    "schema_version": 1,
+    "midi_status": "original_performance",
+    "patch_status": "documented_recipe_reconstruction",
+    "onset_detector": "First absolute sample difference above0.001 times local peak, search1.49\u20131.56s;0.003 sensitivity probe",
+    "onset_audit": {
+      "12": [
+        {
+          "threshold_relative_to_peak": 0.001,
+          "hardware_onset_sample": 67636,
+          "candidate_onset_sample": 66261
+        },
+        {
+          "threshold_relative_to_peak": 0.003,
+          "hardware_onset_sample": 67637,
+          "candidate_onset_sample": 66269
+        }
+      ],
+      "24": [
+        {
+          "threshold_relative_to_peak": 0.001,
+          "hardware_onset_sample": 67716,
+          "candidate_onset_sample": 66278
+        },
+        {
+          "threshold_relative_to_peak": 0.003,
+          "hardware_onset_sample": 67727,
+          "candidate_onset_sample": 66283
+        }
+      ]
+    },
+    "shared_candidate_lag_samples": {
+      "12": -1375,
+      "24": -1438
+    },
+    "lag_policy": "Selected once from the training-note onset of the preliminary candidate; same lag for baseline/candidate and both recipe variants. No validation event changed.",
+    "gain_policy": "One RMS gain per entire recording, fitted only on hardware1.5\u20131.9375057s against candidate[t+sharedlag]; frozen on all other events",
+    "training_selection": {
+      "depth": 16,
+      "decay_raw": 53,
+      "decay_seconds": 0.5519663623335737,
+      "rms_octaves": 0.041013569038575524
+    },
+    "trajectory_age_correction": "Subtract observed capture alignment and known93-sample renderer latency before mapping the existing linear envelope",
+    "training_note": {
+      "note": 36,
+      "on": 1.5,
+      "off": 1.9375056689342403,
+      "velocity": 127
+    },
+    "isolated_validation_notes": [
+      {
+        "note": 24,
+        "on": 0.0,
+        "off": 0.43750566893424037,
+        "velocity": 127
+      },
+      {
+        "note": 24,
+        "on": 0.75,
+        "off": 1.1875056689342403,
+        "velocity": 127
+      },
+      {
+        "note": 29,
+        "on": 2.0,
+        "off": 2.4375056689342403,
+        "velocity": 127
+      },
+      {
+        "note": 24,
+        "on": 4.75,
+        "off": 5.18750566893424,
+        "velocity": 127
+      },
+      {
+        "note": 31,
+        "on": 6.0,
+        "off": 6.43750566893424,
+        "velocity": 127
+      },
+      {
+        "note": 57,
+        "on": 17.25,
+        "off": 17.68750566893424,
+        "velocity": 127
+      },
+      {
+        "note": 91,
+        "on": 18.75,
+        "off": 19.18750566893424,
+        "velocity": 127
+      },
+      {
+        "note": 84,
+        "on": 20.25,
+        "off": 20.68750566893424,
+        "velocity": 127
+      }
+    ],
+    "source_midi_sha256": "21ea21b9ba3ba14cc205931134fb7a320b09e67821bd3a3c70f97fa2e8b5d99a",
+    "source_recipe_sha256": "aa8536528eb13b6f04acd20599fe2a3b62c12af5c4cab3f82ee68ad3a6972548",
+    "source_trajectory_sha256": "3fa895236d2d9b8108d15f310b5cbd9b0ebc02ef55f8c8cb89d78092a12f87ed",
+    "scripts_sha256": {
+      "run_dry.py": "00cd732514d3315c6add8530436c81b787368006eb1884a5985edf7afaeb7d7a",
+      "refine_onset.py": "c4cffe52013f5102a17656a14decad4bab5f6bd39a04deea8f3a4518e62cb023"
+    },
+    "interpretation": "End-to-end audio evidence; residual envelope/output errors remain separate from damping. No per-note gain or event fitting, EQ, warp or waveform-phase matching.",
+    "audio_evaluation_segments_seconds": [
+      [
+        0,
+        1.45
+      ],
+      [
+        2.0,
+        "decoded hardware end"
+      ]
+    ],
+    "audio_evaluation_guard": "Start=max(segment start,-lag); end=min(segment end,render length-lag). Measure each segment separately, without concatenation.",
+    "harmonic_measurement": "80 ms windows at offsets 0.10,0.18,0.26,0.34 after the original MIDI timestamps; same shared lag applied to renderer. H2-H8 and H9-H16 measured where original hardware harmonic/H1 exceeds -45 dB. Overlapping observations are diagnostic samples, not independent statistical replicates.",
+    "metadata_audit_correction": "The captured preliminary run_dry.py description lists FF54 as omitted, but authoritative renderer manifests show only FF20=00 omitted. FF54=2000000000 remains recorded metadata. Notes explicitly use channel 1; all note events and timing are preserved.",
+    "original_positive_note_ons": 124,
+    "original_note_offs": 124,
+    "original_velocity_set": [
+      127
+    ],
+    "training_targets": [
+      {
+        "slope": 12,
+        "note": 36,
+        "on": 1.5,
+        "offset": 0.1,
+        "shift": 0,
+        "width": 0.08,
+        "training": true,
+        "cutoff_hz": 412.94829870561017,
+        "fit_h2_h8_rmse_db": 0.05057806950851801,
+        "withheld_h9_h16_error_db": [
+          0.004867759237064284,
+          0.04815227902256414,
+          -0.02317377283705646,
+          -0.014861808452184988,
+          0.017898284951334276,
+          -0.05632503020327384,
+          0.07725702440321847,
+          0.05551851418704956
+        ],
+        "residual_db": [
+          0.0,
+          -0.041719415778101204,
+          -0.06897949615156229,
+          -0.09223591660483743,
+          -0.036108378185216394,
+          -0.031148919680853204,
+          0.014613620143618,
+          0.020327687674266848,
+          0.004867759237064284,
+          0.04815227902256414,
+          -0.02317377283705646,
+          -0.014861808452184988,
+          0.017898284951334276,
+          -0.05632503020327384,
+          0.07725702440321847,
+          0.05551851418704956,
+          -0.032217817339908805,
+          0.08621680450581692,
+          -0.1541517747215373,
+          -0.14723069748982454,
+          0.03955151314600869,
+          -0.17175433683280517,
+          0.1382790096956903,
+          0.04754116038240852,
+          -0.2360169764183837,
+          0.03867358347554628,
+          -0.3429875726756251,
+          -0.3968819894240987,
+          0.2763994764467341,
+          -0.32458544429138314
+        ]
+      },
+      {
+        "slope": 12,
+        "note": 36,
+        "on": 1.5,
+        "offset": 0.18,
+        "shift": 0,
+        "width": 0.08,
+        "training": true,
+        "cutoff_hz": 301.08943627696465,
+        "fit_h2_h8_rmse_db": 0.057284373416804084,
+        "withheld_h9_h16_error_db": [
+          0.023352802979887954,
+          0.0028976269609923833,
+          -0.06704533927425693,
+          -0.1282323217669017,
+          -0.19909964592068619,
+          -0.18711100660576463,
+          -0.15634686934919273
+        ],
+        "residual_db": [
+          0.0,
+          -0.07593304580284421,
+          -0.10228290967616127,
+          -0.06514920956499937,
+          -0.027092776568469645,
+          -0.010401928814337325,
+          0.01974922886511088,
+          0.03558377150632097,
+          0.023352802979887954,
+          0.0028976269609923833,
+          -0.06704533927425693,
+          -0.1282323217669017,
+          -0.19909964592068619,
+          -0.18711100660576463,
+          -0.15634686934919273,
+          -0.06968484309722811,
+          0.01948874928259059,
+          0.17944103173797288,
+          0.16669324312651668,
+          0.09174702450675554,
+          -0.05852319298490727,
+          -0.3173834638916979,
+          -0.43999262078436985,
+          -0.48836727731982776,
+          -0.391424627273004,
+          -0.15201408236374547,
+          0.30363165831162675,
+          0.3975763352838477,
+          -0.015382531654573484,
+          -0.43884787946822
+        ]
+      },
+      {
+        "slope": 12,
+        "note": 36,
+        "on": 1.5,
+        "offset": 0.26,
+        "shift": 0,
+        "width": 0.08,
+        "training": true,
+        "cutoff_hz": 226.79593603017392,
+        "fit_h2_h8_rmse_db": 0.05263472400731638,
+        "withheld_h9_h16_error_db": [
+          0.03402209562073111,
+          0.2503745328421587,
+          0.2387504381825245,
+          0.08449324989493334
+        ],
+        "residual_db": [
+          0.0,
+          -0.07771704526160103,
+          -0.05561283818876617,
+          -0.007739739042112781,
+          -0.03494799706509788,
+          -0.05315096210997616,
+          0.0410993310854888,
+          0.06681860860185651,
+          0.03402209562073111,
+          0.2503745328421587,
+          0.2387504381825245,
+          0.08449324989493334,
+          0.29792222623228426,
+          0.12763806823865664,
+          -0.1911679413136511,
+          0.054418589686637375,
+          -0.055920980770821416,
+          -0.3232278198845755,
+          0.2302437790348435,
+          0.23895266084625888,
+          -0.16377115404874232,
+          0.5589179622025924,
+          0.21151835432412724,
+          -0.4465674193796616,
+          0.12691735289617867,
+          -0.11814911539615736,
+          -0.8104743047537681,
+          0.479409781342504,
+          0.30438668337600205,
+          -0.2855936693588248
+        ]
+      },
+      {
+        "slope": 12,
+        "note": 36,
+        "on": 1.5,
+        "offset": 0.34,
+        "shift": 0,
+        "width": 0.08,
+        "training": true,
+        "cutoff_hz": 174.4833193976918,
+        "fit_h2_h8_rmse_db": 0.07648800423027269,
+        "withheld_h9_h16_error_db": [
+          0.1399508118040309,
+          0.019683193800357657
+        ],
+        "residual_db": [
+          0.0,
+          -0.09470531258813453,
+          -0.1111816668540091,
+          -0.08730687191884812,
+          0.03185776463906009,
+          0.05483054588036396,
+          -0.0069106983069531225,
+          0.0890555483750397,
+          0.1399508118040309,
+          0.019683193800357657,
+          0.04930278522458664,
+          0.19632145670583512,
+          -0.0748735015192672,
+          0.03355771604724467,
+          0.16596351025662415,
+          -0.09241218392210371,
+          -0.009354304144707726,
+          0.22241189048441612,
+          -0.1346911026773654,
+          -0.12725625159690424,
+          0.3494098438117703,
+          -0.16207738720071774,
+          -0.3223566940783371,
+          0.5040206616423788,
+          -0.22103429990981738,
+          -0.28280794818054744,
+          0.4817920474447632,
+          -0.248003056619865,
+          -0.6049313319110325,
+          0.7636510458185768
+        ]
+      },
+      {
+        "slope": 24,
+        "note": 36,
+        "on": 1.5,
+        "offset": 0.1,
+        "shift": 0,
+        "width": 0.08,
+        "training": true,
+        "cutoff_hz": 406.05095924284694,
+        "fit_h2_h8_rmse_db": 0.13873271905404735,
+        "withheld_h9_h16_error_db": [
+          -0.6478838680904566,
+          -0.7483216370505623,
+          -0.3623977510607155,
+          -0.1407595038891536
+        ],
+        "residual_db": [
+          0.0,
+          -0.05380002922470012,
+          -0.06630248946282025,
+          0.0023842193149296587,
+          0.14406493902272177,
+          0.20875997441198457,
+          0.09095231341832832,
+          -0.23414411525673273,
+          -0.6478838680904566,
+          -0.7483216370505623,
+          -0.3623977510607155,
+          -0.1407595038891536,
+          -1.0169532367168586,
+          -1.7501699728910474,
+          -0.9210457574171969,
+          1.2291773195504803,
+          -0.47129499560156063,
+          -3.192594904644956,
+          -2.993502023355127,
+          1.9982136927664982,
+          1.6930544416342954,
+          -5.12494562038399,
+          -6.273839267726487,
+          -1.6927436546856782,
+          6.066216484416515,
+          -6.743137165324335,
+          -9.846476896165704,
+          -7.5086793012925455,
+          -0.9908552804373159,
+          -9.84511827919664
+        ]
+      },
+      {
+        "slope": 24,
+        "note": 36,
+        "on": 1.5,
+        "offset": 0.18,
+        "shift": 0,
+        "width": 0.08,
+        "training": true,
+        "cutoff_hz": 299.8302101655161,
+        "fit_h2_h8_rmse_db": 0.12439157688163761,
+        "withheld_h9_h16_error_db": [
+          0.42516263993459447
+        ],
+        "residual_db": [
+          0.0,
+          -0.09431365950852272,
+          -0.04716233605926651,
+          0.08687983282385026,
+          -0.005884610596105233,
+          -0.21277051952450954,
+          -0.05007354174356671,
+          0.20452899776413958,
+          0.42516263993459447,
+          -0.44676499727378527,
+          -0.5160651634541935,
+          0.3794248306146031,
+          1.3314141050668198,
+          -0.28086343196986263,
+          -2.2101744261868177,
+          0.5078395451186068,
+          1.8542077021875443,
+          1.226859763766683,
+          -4.7110004060487185,
+          0.1906913103126655,
+          1.3943422506273677,
+          3.9673254773449216,
+          -7.747314729510471,
+          -4.041402432632275,
+          2.77934137029046,
+          3.84031995048678,
+          -9.83366942750132,
+          -10.626235808342841,
+          -1.7277559759121033,
+          -5.8151045440871485
+        ]
+      },
+      {
+        "slope": 24,
+        "note": 36,
+        "on": 1.5,
+        "offset": 0.26,
+        "shift": 0,
+        "width": 0.08,
+        "training": true,
+        "cutoff_hz": 225.5005487964345,
+        "fit_h2_h8_rmse_db": 0.1305180107252334,
+        "withheld_h9_h16_error_db": [],
+        "residual_db": [
+          0.0,
+          -0.111472322829262,
+          -0.06520598273476441,
+          -0.11128527406626798,
+          0.036423020149888075,
+          -0.15373130904663412,
+          0.2195163861734244,
+          -0.018410633014919853,
+          0.13182783452535318,
+          0.05384627923554319,
+          -0.20726877618334782,
+          0.6876392310259973,
+          -1.6439356260534055,
+          3.549260238028623,
+          -3.338522309938213,
+          6.805807766746334,
+          -4.29002611442683,
+          7.533714173949647,
+          -8.078398976261163,
+          -0.6119935180436187,
+          -7.920443128413609,
+          -8.28511903426385,
+          -10.381393818718038,
+          -10.613757055909808,
+          -11.627918026736083,
+          -13.219578415370037,
+          -14.13724053604242,
+          -17.328253618079458,
+          -14.774403608331639,
+          -18.256076159016857
+        ]
+      },
+      {
+        "slope": 24,
+        "note": 36,
+        "on": 1.5,
+        "offset": 0.34,
+        "shift": 0,
+        "width": 0.08,
+        "training": true,
+        "cutoff_hz": 174.43263169505917,
+        "fit_h2_h8_rmse_db": 0.10016245776920073,
+        "withheld_h9_h16_error_db": [],
+        "residual_db": [
+          0.0,
+          -0.12330062398154695,
+          -0.15823583323289014,
+          0.0038511453809224605,
+          0.09566611951484205,
+          0.02746141283538961,
+          0.4885855348986823,
+          0.12492063126764918,
+          -0.9332002916288786,
+          0.8347765916659142,
+          0.7628435588965061,
+          -2.874957751997165,
+          -0.3918215904310145,
+          4.753230942534572,
+          -3.8697144561080066,
+          -2.7752285253817135,
+          4.399953052825396,
+          -7.134550242563201,
+          -3.8307671118068924,
+          -4.840818207568091,
+          -11.75709962413005,
+          -13.57475788056363,
+          -8.382667785778253,
+          -14.254046617201702,
+          -18.463768186606217,
+          -20.537832909327562,
+          -11.24806908492512,
+          -19.158256378061722,
+          -22.31000295651768,
+          -25.286194467401415
+        ]
+      }
+    ]
+  },
+  "results": [
+    {
+      "recipe": "onset-corrected-trajectory",
+      "slope": 12,
+      "family": "lfo-only",
+      "lag_samples": -1375,
+      "gain": 4.818101761321995,
+      "gain_db": 13.657519366604332,
+      "mono_adapter_max_channel_difference": 7.275957614183426e-12,
+      "patch_sha256": "25eeed2e391f033894a009d3d6c6f3289d35f1a01f323a8ade63c029e03ba003",
+      "midi_sha256": "21ea21b9ba3ba14cc205931134fb7a320b09e67821bd3a3c70f97fa2e8b5d99a",
+      "renderer_sha256": "1dbd792d577dc31ce6c2e0c19dceec35f406a8aa85cbe4c551eecd49e4656455",
+      "raw_render_sha256": "71b3347ec804fa781ae9dc6737203aa077b85d166052903c90cade65c1b96af4",
+      "hardware_sha256": "3154afa9bd5b509d44dbc8fcb1972cbc2ffeb46d9adb00d107da4c2d05cc8a37",
+      "audio_metrics": {
+        "before_training": {
+          "summary": {
+            "spectral_convergence_mean": 0.4283685140717166,
+            "log_spectral_error_db_mean": 7.329629424837539,
+            "envelope_error_db_p95_max": 31.966875094078993,
+            "stereo_side_fraction_error": null,
+            "stereo_balance_error_db": null
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 485,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.7417671320477576,
+              "log_spectral_error_db_mean": 13.780054942242847,
+              "log_spectral_error_db_p95": 30.052057015226215,
+              "active_time_frequency_channel_bins": 4970
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 119,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.3544705003980183,
+              "log_spectral_error_db_mean": 4.837521158647158,
+              "log_spectral_error_db_p95": 15.424017470794833,
+              "active_time_frequency_channel_bins": 5726
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 27,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.18886790976937404,
+              "log_spectral_error_db_mean": 3.3713121736226146,
+              "log_spectral_error_db_p95": 11.00355197272411,
+              "active_time_frequency_channel_bins": 3755
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 6.966415977924959,
+              "error_db_p95": 31.966875094078993
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 2.2722348334487728,
+              "error_db_p95": 5.693040668321587
+            }
+          ],
+          "stereo": {
+            "reference": null,
+            "candidate": null
+          },
+          "raw_level_difference_db": 0.06102634362560851,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.4179969172226579,
+            "residual_db_relative_to_reference": 3.0335057335186137,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        },
+        "after_training": {
+          "summary": {
+            "spectral_convergence_mean": 0.34230659658229884,
+            "log_spectral_error_db_mean": 5.007946201129104,
+            "envelope_error_db_p95_max": 20.926314344064753,
+            "stereo_side_fraction_error": null,
+            "stereo_balance_error_db": null
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 9657,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.5177058882823727,
+              "log_spectral_error_db_mean": 5.743899679531495,
+              "log_spectral_error_db_p95": 21.289338883058715,
+              "active_time_frequency_channel_bins": 359677
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 2412,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.28165953401697563,
+              "log_spectral_error_db_mean": 4.968737636479331,
+              "log_spectral_error_db_p95": 19.678386689291123,
+              "active_time_frequency_channel_bins": 284306
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 600,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.227554367447548,
+              "log_spectral_error_db_mean": 4.311201287376486,
+              "log_spectral_error_db_p95": 14.284188522757022,
+              "active_time_frequency_channel_bins": 259989
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 4.568780565544037,
+              "error_db_p95": 20.926314344064753
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 2.62624771176819,
+              "error_db_p95": 9.56411315227979
+            }
+          ],
+          "stereo": {
+            "reference": null,
+            "candidate": null
+          },
+          "raw_level_difference_db": -0.2362783477667852,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.3612475508557387,
+            "residual_db_relative_to_reference": 2.678742227716739,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        }
+      },
+      "harmonic_summary": {
+        "training": {
+          "ratio_h2_h8": {
+            "rmse_db": 2.678131042709176,
+            "observations": 28
+          },
+          "ratio_h9_h16": {
+            "rmse_db": 1.3871020956181974,
+            "observations": 21
+          },
+          "absolute_h2_h8": {
+            "rmse_db": 2.0707745970598608,
+            "observations": 28
+          },
+          "absolute_h9_h16": {
+            "rmse_db": 0.7654091206200022,
+            "observations": 21
+          }
+        },
+        "validation": {
+          "ratio_h2_h8": {
+            "rmse_db": 2.689987428269698,
+            "observations": 208
+          },
+          "ratio_h9_h16": {
+            "rmse_db": 1.6468138765982245,
+            "observations": 127
+          },
+          "absolute_h2_h8": {
+            "rmse_db": 2.1513584258216287,
+            "observations": 208
+          },
+          "absolute_h9_h16": {
+            "rmse_db": 0.9753787095367643,
+            "observations": 127
+          }
+        }
+      },
+      "render_receipt": {
+        "path": "build-fidelity/hardware-benchmark/zero-resonance-candidate/dry-end-to-end/onset-calibrated/onset-corrected-trajectory-lp12/lfo-only-raw.render.json",
+        "sha256": "5ebac8f297f25731b7ce9adeeac17ee0bf86bb82f5472687a80ecadf5ee4767f",
+        "degraded_replay": true,
+        "ignored_events": [
+          {
+            "tick": 0,
+            "track": 0,
+            "order": 0,
+            "kind": "meta",
+            "meta_type": 32,
+            "hex": "00",
+            "sample": 0,
+            "reason": "unsupported routing or sequencer-specific meta event",
+            "degrades_replay": true
+          }
+        ],
+        "replay_event_counts": {
+          "note_off": 124,
+          "note_on": 124
+        },
+        "output": {
+          "frames": 1386394,
+          "sample_rate": 44100,
+          "latency_samples": 93,
+          "peak": 0.1752512604,
+          "active_voices_at_end": 0,
+          "master_level": 100
+        }
+      },
+      "raw_audio_validation": {
+        "finite": true,
+        "full_scale_sample_count": 0
+      }
+    },
+    {
+      "recipe": "onset-corrected-trajectory",
+      "slope": 12,
+      "family": "zero-resonance-k1p2",
+      "lag_samples": -1375,
+      "gain": 4.132273940640751,
+      "gain_db": 12.323782089309322,
+      "mono_adapter_max_channel_difference": 9.094947017729282e-13,
+      "patch_sha256": "25eeed2e391f033894a009d3d6c6f3289d35f1a01f323a8ade63c029e03ba003",
+      "midi_sha256": "21ea21b9ba3ba14cc205931134fb7a320b09e67821bd3a3c70f97fa2e8b5d99a",
+      "renderer_sha256": "8c92aa58994a6759a8d594e15884c0d3cbbb14a3ee38f008c1170a625a24cb53",
+      "raw_render_sha256": "e960507e6c9404554980eceae90d51e1253347d22fbe7e661f48730dce7484da",
+      "hardware_sha256": "3154afa9bd5b509d44dbc8fcb1972cbc2ffeb46d9adb00d107da4c2d05cc8a37",
+      "audio_metrics": {
+        "before_training": {
+          "summary": {
+            "spectral_convergence_mean": 0.4052008040177495,
+            "log_spectral_error_db_mean": 7.550532567426359,
+            "envelope_error_db_p95_max": 30.709314692605265,
+            "stereo_side_fraction_error": null,
+            "stereo_balance_error_db": null
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 485,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.7610505764009629,
+              "log_spectral_error_db_mean": 13.90137246772096,
+              "log_spectral_error_db_p95": 30.195025998860963,
+              "active_time_frequency_channel_bins": 4966
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 119,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.3375736120790159,
+              "log_spectral_error_db_mean": 5.008848254053933,
+              "log_spectral_error_db_p95": 16.827150562164913,
+              "active_time_frequency_channel_bins": 5737
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 27,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.11697822357326963,
+              "log_spectral_error_db_mean": 3.741376980504186,
+              "log_spectral_error_db_p95": 14.18716768669305,
+              "active_time_frequency_channel_bins": 3926
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 7.352566629548714,
+              "error_db_p95": 30.709314692605265
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 1.9498553939057588,
+              "error_db_p95": 4.566892986258193
+            }
+          ],
+          "stereo": {
+            "reference": null,
+            "candidate": null
+          },
+          "raw_level_difference_db": -0.0368325473826532,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.4504982733232337,
+            "residual_db_relative_to_reference": 3.2303443230750997,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        },
+        "after_training": {
+          "summary": {
+            "spectral_convergence_mean": 0.28778715846110575,
+            "log_spectral_error_db_mean": 4.675029282684819,
+            "envelope_error_db_p95_max": 20.39178209595189,
+            "stereo_side_fraction_error": null,
+            "stereo_balance_error_db": null
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 9657,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.4980898837301177,
+              "log_spectral_error_db_mean": 5.39487843645975,
+              "log_spectral_error_db_p95": 21.510127311345055,
+              "active_time_frequency_channel_bins": 358948
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 2412,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.2224479127368499,
+              "log_spectral_error_db_mean": 4.616450473788429,
+              "log_spectral_error_db_p95": 19.495418821527622,
+              "active_time_frequency_channel_bins": 286436
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 600,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.14282367891634962,
+              "log_spectral_error_db_mean": 4.013758937806276,
+              "log_spectral_error_db_p95": 14.451547610163521,
+              "active_time_frequency_channel_bins": 267548
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 4.18243356918492,
+              "error_db_p95": 20.39178209595189
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 2.0869650566956426,
+              "error_db_p95": 9.158005658047017
+            }
+          ],
+          "stereo": {
+            "reference": null,
+            "candidate": null
+          },
+          "raw_level_difference_db": -0.2191727107439596,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.356541927568433,
+            "residual_db_relative_to_reference": 2.648664426828222,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        }
+      },
+      "harmonic_summary": {
+        "training": {
+          "ratio_h2_h8": {
+            "rmse_db": 0.3167262396594344,
+            "observations": 28
+          },
+          "ratio_h9_h16": {
+            "rmse_db": 0.397270559957811,
+            "observations": 21
+          },
+          "absolute_h2_h8": {
+            "rmse_db": 0.3191578564295554,
+            "observations": 28
+          },
+          "absolute_h9_h16": {
+            "rmse_db": 0.45709729306937025,
+            "observations": 21
+          }
+        },
+        "validation": {
+          "ratio_h2_h8": {
+            "rmse_db": 1.1844464338944287,
+            "observations": 208
+          },
+          "ratio_h9_h16": {
+            "rmse_db": 0.5519429288693748,
+            "observations": 127
+          },
+          "absolute_h2_h8": {
+            "rmse_db": 1.2311626797548856,
+            "observations": 208
+          },
+          "absolute_h9_h16": {
+            "rmse_db": 0.6093042845416264,
+            "observations": 127
+          }
+        }
+      },
+      "render_receipt": {
+        "path": "build-fidelity/hardware-benchmark/zero-resonance-candidate/dry-end-to-end/onset-calibrated/onset-corrected-trajectory-lp12/zero-resonance-k1p2-raw.render.json",
+        "sha256": "a19da76174eaf077b77c7a69813e339253d15e9ee6628cec509d6e6ad18511d4",
+        "degraded_replay": true,
+        "ignored_events": [
+          {
+            "tick": 0,
+            "track": 0,
+            "order": 0,
+            "kind": "meta",
+            "meta_type": 32,
+            "hex": "00",
+            "sample": 0,
+            "reason": "unsupported routing or sequencer-specific meta event",
+            "degrades_replay": true
+          }
+        ],
+        "replay_event_counts": {
+          "note_off": 124,
+          "note_on": 124
+        },
+        "output": {
+          "frames": 1386394,
+          "sample_rate": 44100,
+          "latency_samples": 93,
+          "peak": 0.217089086771,
+          "active_voices_at_end": 0,
+          "master_level": 100
+        }
+      },
+      "raw_audio_validation": {
+        "finite": true,
+        "full_scale_sample_count": 0
+      }
+    },
+    {
+      "recipe": "onset-corrected-trajectory",
+      "slope": 24,
+      "family": "lfo-only",
+      "lag_samples": -1438,
+      "gain": 4.493428436931125,
+      "gain_db": 13.05155658874991,
+      "mono_adapter_max_channel_difference": 3.637978807091713e-12,
+      "patch_sha256": "c5d12851f4798e8300341a3ccd0b8abe46782f82b3b38cbcc5c4204fd04a173e",
+      "midi_sha256": "21ea21b9ba3ba14cc205931134fb7a320b09e67821bd3a3c70f97fa2e8b5d99a",
+      "renderer_sha256": "1dbd792d577dc31ce6c2e0c19dceec35f406a8aa85cbe4c551eecd49e4656455",
+      "raw_render_sha256": "32a4ae7eb8fc1178c76673054d86cb92092aca794e9081926a079a6e4684d9a0",
+      "hardware_sha256": "92fc303c94e9bde908cbeb72571c06dd5a4a9d8fc59b10cb90378040404eed4f",
+      "audio_metrics": {
+        "before_training": {
+          "summary": {
+            "spectral_convergence_mean": 0.3630211884009502,
+            "log_spectral_error_db_mean": 5.45432034094383,
+            "envelope_error_db_p95_max": 32.01950423205547,
+            "stereo_side_fraction_error": null,
+            "stereo_balance_error_db": null
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 485,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.6225423267585305,
+              "log_spectral_error_db_mean": 8.005812766970664,
+              "log_spectral_error_db_p95": 23.91351128811786,
+              "active_time_frequency_channel_bins": 3388
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 119,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.27258617383581824,
+              "log_spectral_error_db_mean": 4.568976441201571,
+              "log_spectral_error_db_p95": 15.715997578030938,
+              "active_time_frequency_channel_bins": 2924
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 27,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.1939350646085018,
+              "log_spectral_error_db_mean": 3.7881718146592553,
+              "log_spectral_error_db_p95": 12.561496265781377,
+              "active_time_frequency_channel_bins": 2276
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 6.213214724323639,
+              "error_db_p95": 32.01950423205547
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 2.2477011514801117,
+              "error_db_p95": 6.9986165070500395
+            }
+          ],
+          "stereo": {
+            "reference": null,
+            "candidate": null
+          },
+          "raw_level_difference_db": 0.13235511135154535,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.350130124060385,
+            "residual_db_relative_to_reference": 2.6075125467595366,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        },
+        "after_training": {
+          "summary": {
+            "spectral_convergence_mean": 0.3490257077852152,
+            "log_spectral_error_db_mean": 5.688262600364226,
+            "envelope_error_db_p95_max": 19.409256227598647,
+            "stereo_side_fraction_error": null,
+            "stereo_balance_error_db": null
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 9657,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.5167586080684693,
+              "log_spectral_error_db_mean": 6.265070028275403,
+              "log_spectral_error_db_p95": 22.00880551055992,
+              "active_time_frequency_channel_bins": 249103
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 2412,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.28476945021693,
+              "log_spectral_error_db_mean": 5.89140062735632,
+              "log_spectral_error_db_p95": 20.833057005346667,
+              "active_time_frequency_channel_bins": 199094
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 600,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.24554906507024618,
+              "log_spectral_error_db_mean": 4.908317145460956,
+              "log_spectral_error_db_p95": 15.386571462802477,
+              "active_time_frequency_channel_bins": 210710
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 4.149549149930991,
+              "error_db_p95": 19.409256227598647
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 2.2544351033575145,
+              "error_db_p95": 7.780710528975028
+            }
+          ],
+          "stereo": {
+            "reference": null,
+            "candidate": null
+          },
+          "raw_level_difference_db": -0.28074567808989825,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.3837199973655212,
+            "residual_db_relative_to_reference": 2.820964347186605,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        }
+      },
+      "harmonic_summary": {
+        "training": {
+          "ratio_h2_h8": {
+            "rmse_db": 2.609562069853115,
+            "observations": 25
+          },
+          "ratio_h9_h16": {
+            "rmse_db": 1.8517965969742318,
+            "observations": 5
+          },
+          "absolute_h2_h8": {
+            "rmse_db": 2.077479597106648,
+            "observations": 25
+          },
+          "absolute_h9_h16": {
+            "rmse_db": 1.043549185727901,
+            "observations": 5
+          }
+        },
+        "validation": {
+          "ratio_h2_h8": {
+            "rmse_db": 3.0114370596995923,
+            "observations": 189
+          },
+          "ratio_h9_h16": {
+            "rmse_db": 2.5642252020899114,
+            "observations": 30
+          },
+          "absolute_h2_h8": {
+            "rmse_db": 2.5049928076018175,
+            "observations": 189
+          },
+          "absolute_h9_h16": {
+            "rmse_db": 1.5552854762255124,
+            "observations": 30
+          }
+        }
+      },
+      "render_receipt": {
+        "path": "build-fidelity/hardware-benchmark/zero-resonance-candidate/dry-end-to-end/onset-calibrated/onset-corrected-trajectory-lp24/lfo-only-raw.render.json",
+        "sha256": "58aed82015edf47c85dce885fe93819831fae249b5403bd7d6335144333399ec",
+        "degraded_replay": true,
+        "ignored_events": [
+          {
+            "tick": 0,
+            "track": 0,
+            "order": 0,
+            "kind": "meta",
+            "meta_type": 32,
+            "hex": "00",
+            "sample": 0,
+            "reason": "unsupported routing or sequencer-specific meta event",
+            "degrades_replay": true
+          }
+        ],
+        "replay_event_counts": {
+          "note_off": 124,
+          "note_on": 124
+        },
+        "output": {
+          "frames": 1386394,
+          "sample_rate": 44100,
+          "latency_samples": 93,
+          "peak": 0.180072277784,
+          "active_voices_at_end": 0,
+          "master_level": 100
+        }
+      },
+      "raw_audio_validation": {
+        "finite": true,
+        "full_scale_sample_count": 0
+      }
+    },
+    {
+      "recipe": "onset-corrected-trajectory",
+      "slope": 24,
+      "family": "zero-resonance-k1p2",
+      "lag_samples": -1438,
+      "gain": 3.8745214089538056,
+      "gain_db": 11.764361299236379,
+      "mono_adapter_max_channel_difference": 3.637978807091713e-12,
+      "patch_sha256": "c5d12851f4798e8300341a3ccd0b8abe46782f82b3b38cbcc5c4204fd04a173e",
+      "midi_sha256": "21ea21b9ba3ba14cc205931134fb7a320b09e67821bd3a3c70f97fa2e8b5d99a",
+      "renderer_sha256": "8c92aa58994a6759a8d594e15884c0d3cbbb14a3ee38f008c1170a625a24cb53",
+      "raw_render_sha256": "dd505cd6a020417a5b86c52083a8dd6091b3f18edbad7c28a0de431df2356a33",
+      "hardware_sha256": "92fc303c94e9bde908cbeb72571c06dd5a4a9d8fc59b10cb90378040404eed4f",
+      "audio_metrics": {
+        "before_training": {
+          "summary": {
+            "spectral_convergence_mean": 0.32873928948976233,
+            "log_spectral_error_db_mean": 5.1208758399412355,
+            "envelope_error_db_p95_max": 25.095685660400406,
+            "stereo_side_fraction_error": null,
+            "stereo_balance_error_db": null
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 485,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.6165094425732189,
+              "log_spectral_error_db_mean": 7.823165234824434,
+              "log_spectral_error_db_p95": 22.909399324658533,
+              "active_time_frequency_channel_bins": 3408
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 119,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.24258049285299838,
+              "log_spectral_error_db_mean": 4.270684314522442,
+              "log_spectral_error_db_p95": 17.464231814577865,
+              "active_time_frequency_channel_bins": 2951
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 27,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.12712793304306963,
+              "log_spectral_error_db_mean": 3.2687779704768296,
+              "log_spectral_error_db_p95": 11.834664880928099,
+              "active_time_frequency_channel_bins": 2305
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 5.59221802761206,
+              "error_db_p95": 25.095685660400406
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 1.6619115372176276,
+              "error_db_p95": 6.989945902403127
+            }
+          ],
+          "stereo": {
+            "reference": null,
+            "candidate": null
+          },
+          "raw_level_difference_db": 0.030066456854525213,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.3078329602149668,
+            "residual_db_relative_to_reference": 2.3310455664701193,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        },
+        "after_training": {
+          "summary": {
+            "spectral_convergence_mean": 0.2949515687485196,
+            "log_spectral_error_db_mean": 5.10149868519861,
+            "envelope_error_db_p95_max": 18.825726216251795,
+            "stereo_side_fraction_error": null,
+            "stereo_balance_error_db": null
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 9657,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.4944332538789487,
+              "log_spectral_error_db_mean": 5.534257300299863,
+              "log_spectral_error_db_p95": 22.14463480507767,
+              "active_time_frequency_channel_bins": 250513
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 2412,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.22234577631586724,
+              "log_spectral_error_db_mean": 5.243286231614045,
+              "log_spectral_error_db_p95": 20.611956403688545,
+              "active_time_frequency_channel_bins": 202157
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 600,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.1680756760507428,
+              "log_spectral_error_db_mean": 4.5269525236819215,
+              "log_spectral_error_db_p95": 15.334998087794238,
+              "active_time_frequency_channel_bins": 217870
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 3.762475197373389,
+              "error_db_p95": 18.825726216251795
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 1.784266349376365,
+              "error_db_p95": 6.309240103907884
+            }
+          ],
+          "stereo": {
+            "reference": null,
+            "candidate": null
+          },
+          "raw_level_difference_db": -0.2893945701194224,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.3856732927949245,
+            "residual_db_relative_to_reference": 2.8332169307427133,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        }
+      },
+      "harmonic_summary": {
+        "training": {
+          "ratio_h2_h8": {
+            "rmse_db": 0.6982942336989726,
+            "observations": 25
+          },
+          "ratio_h9_h16": {
+            "rmse_db": 1.3104313543398218,
+            "observations": 5
+          },
+          "absolute_h2_h8": {
+            "rmse_db": 0.7258597278221259,
+            "observations": 25
+          },
+          "absolute_h9_h16": {
+            "rmse_db": 1.3832261043291252,
+            "observations": 5
+          }
+        },
+        "validation": {
+          "ratio_h2_h8": {
+            "rmse_db": 1.3125304290568423,
+            "observations": 189
+          },
+          "ratio_h9_h16": {
+            "rmse_db": 0.8325199108996427,
+            "observations": 30
+          },
+          "absolute_h2_h8": {
+            "rmse_db": 1.332352016899161,
+            "observations": 189
+          },
+          "absolute_h9_h16": {
+            "rmse_db": 0.944064041410445,
+            "observations": 30
+          }
+        }
+      },
+      "render_receipt": {
+        "path": "build-fidelity/hardware-benchmark/zero-resonance-candidate/dry-end-to-end/onset-calibrated/onset-corrected-trajectory-lp24/zero-resonance-k1p2-raw.render.json",
+        "sha256": "8091f25fc97017d90b984c93b6f6af61855ebf90f990def469a0779e090a4514",
+        "degraded_replay": true,
+        "ignored_events": [
+          {
+            "tick": 0,
+            "track": 0,
+            "order": 0,
+            "kind": "meta",
+            "meta_type": 32,
+            "hex": "00",
+            "sample": 0,
+            "reason": "unsupported routing or sequencer-specific meta event",
+            "degrades_replay": true
+          }
+        ],
+        "replay_event_counts": {
+          "note_off": 124,
+          "note_on": 124
+        },
+        "output": {
+          "frames": 1386394,
+          "sample_rate": 44100,
+          "latency_samples": 93,
+          "peak": 0.23701299727,
+          "active_voices_at_end": 0,
+          "master_level": 100
+        }
+      },
+      "raw_audio_validation": {
+        "finite": true,
+        "full_scale_sample_count": 0
+      }
+    },
+    {
+      "recipe": "nominal-one-second",
+      "slope": 12,
+      "family": "lfo-only",
+      "lag_samples": -1375,
+      "gain": 4.4783272653145385,
+      "gain_db": 13.022316551840378,
+      "mono_adapter_max_channel_difference": 3.552713678800501e-15,
+      "patch_sha256": "003689a34613cc872fb368892e87e33ee59bf7e472db25fb1f9445d3240d3c34",
+      "midi_sha256": "21ea21b9ba3ba14cc205931134fb7a320b09e67821bd3a3c70f97fa2e8b5d99a",
+      "renderer_sha256": "1dbd792d577dc31ce6c2e0c19dceec35f406a8aa85cbe4c551eecd49e4656455",
+      "raw_render_sha256": "23d409563f547037f2545faf2e2906345b26813de2947035fcc00042d5521d2d",
+      "hardware_sha256": "3154afa9bd5b509d44dbc8fcb1972cbc2ffeb46d9adb00d107da4c2d05cc8a37",
+      "audio_metrics": {
+        "before_training": {
+          "summary": {
+            "spectral_convergence_mean": 0.4184895959999093,
+            "log_spectral_error_db_mean": 8.590198440201931,
+            "envelope_error_db_p95_max": 24.89535941142395,
+            "stereo_side_fraction_error": null,
+            "stereo_balance_error_db": null
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 485,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.7576780652597034,
+              "log_spectral_error_db_mean": 14.465630839093679,
+              "log_spectral_error_db_p95": 30.18720530259959,
+              "active_time_frequency_channel_bins": 5253
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 119,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.34811031998607833,
+              "log_spectral_error_db_mean": 6.316679461634751,
+              "log_spectral_error_db_p95": 17.744645313124348,
+              "active_time_frequency_channel_bins": 6396
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 27,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.14968040275394623,
+              "log_spectral_error_db_mean": 4.988285019877365,
+              "log_spectral_error_db_p95": 14.166898668733733,
+              "active_time_frequency_channel_bins": 4191
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 6.639791229721499,
+              "error_db_p95": 24.89535941142395
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 1.70020999916589,
+              "error_db_p95": 4.660086677425529
+            }
+          ],
+          "stereo": {
+            "reference": null,
+            "candidate": null
+          },
+          "raw_level_difference_db": 0.0036352834940557035,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.4634389223881308,
+            "residual_db_relative_to_reference": 3.307492031490123,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        },
+        "after_training": {
+          "summary": {
+            "spectral_convergence_mean": 0.2955932127360834,
+            "log_spectral_error_db_mean": 5.471875822548281,
+            "envelope_error_db_p95_max": 21.130849188236525,
+            "stereo_side_fraction_error": null,
+            "stereo_balance_error_db": null
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 9657,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.5010587664140396,
+              "log_spectral_error_db_mean": 6.204463817036326,
+              "log_spectral_error_db_p95": 21.45253624756927,
+              "active_time_frequency_channel_bins": 387178
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 2412,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.23005007470723463,
+              "log_spectral_error_db_mean": 5.502656108306064,
+              "log_spectral_error_db_p95": 19.426248209318633,
+              "active_time_frequency_channel_bins": 305582
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 600,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.15567079708697604,
+              "log_spectral_error_db_mean": 4.708507542302453,
+              "log_spectral_error_db_p95": 14.689574203686073,
+              "active_time_frequency_channel_bins": 271030
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 4.15396095695902,
+              "error_db_p95": 21.130849188236525
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 2.0250606716215978,
+              "error_db_p95": 8.808094293918094
+            }
+          ],
+          "stereo": {
+            "reference": null,
+            "candidate": null
+          },
+          "raw_level_difference_db": -0.09533423715869171,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.3709646669532398,
+            "residual_db_relative_to_reference": 2.7405252424719,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        }
+      },
+      "harmonic_summary": {
+        "training": {
+          "ratio_h2_h8": {
+            "rmse_db": 2.861529726165248,
+            "observations": 28
+          },
+          "ratio_h9_h16": {
+            "rmse_db": 3.695593526083361,
+            "observations": 21
+          },
+          "absolute_h2_h8": {
+            "rmse_db": 2.765877388889822,
+            "observations": 28
+          },
+          "absolute_h9_h16": {
+            "rmse_db": 3.877788764414568,
+            "observations": 21
+          }
+        },
+        "validation": {
+          "ratio_h2_h8": {
+            "rmse_db": 2.9398515214408643,
+            "observations": 208
+          },
+          "ratio_h9_h16": {
+            "rmse_db": 3.6294133673246716,
+            "observations": 127
+          },
+          "absolute_h2_h8": {
+            "rmse_db": 2.917146243434088,
+            "observations": 208
+          },
+          "absolute_h9_h16": {
+            "rmse_db": 3.8351861017806543,
+            "observations": 127
+          }
+        }
+      },
+      "render_receipt": {
+        "path": "build-fidelity/hardware-benchmark/zero-resonance-candidate/dry-end-to-end/onset-calibrated/nominal-one-second-lp12/lfo-only-raw.render.json",
+        "sha256": "d5ef5d8acbb1db4e1d1aad2f4b3ce6546ac25affa08593e68707ebca75f4cae5",
+        "degraded_replay": true,
+        "ignored_events": [
+          {
+            "tick": 0,
+            "track": 0,
+            "order": 0,
+            "kind": "meta",
+            "meta_type": 32,
+            "hex": "00",
+            "sample": 0,
+            "reason": "unsupported routing or sequencer-specific meta event",
+            "degrades_replay": true
+          }
+        ],
+        "replay_event_counts": {
+          "note_off": 124,
+          "note_on": 124
+        },
+        "output": {
+          "frames": 1386394,
+          "sample_rate": 44100,
+          "latency_samples": 93,
+          "peak": 0.179017961025,
+          "active_voices_at_end": 0,
+          "master_level": 100
+        }
+      },
+      "raw_audio_validation": {
+        "finite": true,
+        "full_scale_sample_count": 0
+      }
+    },
+    {
+      "recipe": "nominal-one-second",
+      "slope": 12,
+      "family": "zero-resonance-k1p2",
+      "lag_samples": -1375,
+      "gain": 4.0349061922891885,
+      "gain_db": 12.116668844880511,
+      "mono_adapter_max_channel_difference": 1.8189894035458565e-12,
+      "patch_sha256": "003689a34613cc872fb368892e87e33ee59bf7e472db25fb1f9445d3240d3c34",
+      "midi_sha256": "21ea21b9ba3ba14cc205931134fb7a320b09e67821bd3a3c70f97fa2e8b5d99a",
+      "renderer_sha256": "8c92aa58994a6759a8d594e15884c0d3cbbb14a3ee38f008c1170a625a24cb53",
+      "raw_render_sha256": "4c96a93cbeeb04509196cce83319f647cb1c9419fa8a91acdcc124ffd609eadd",
+      "hardware_sha256": "3154afa9bd5b509d44dbc8fcb1972cbc2ffeb46d9adb00d107da4c2d05cc8a37",
+      "audio_metrics": {
+        "before_training": {
+          "summary": {
+            "spectral_convergence_mean": 0.43690485198289036,
+            "log_spectral_error_db_mean": 8.635257440345457,
+            "envelope_error_db_p95_max": 22.787576377535856,
+            "stereo_side_fraction_error": null,
+            "stereo_balance_error_db": null
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 485,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.7822638321609225,
+              "log_spectral_error_db_mean": 14.651561775241229,
+              "log_spectral_error_db_p95": 30.871548432958164,
+              "active_time_frequency_channel_bins": 5231
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 119,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.3665877094674132,
+              "log_spectral_error_db_mean": 6.273961034644401,
+              "log_spectral_error_db_p95": 16.914875437682735,
+              "active_time_frequency_channel_bins": 6297
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 27,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.16186301432033523,
+              "log_spectral_error_db_mean": 4.980249511150742,
+              "log_spectral_error_db_p95": 13.50005547799671,
+              "active_time_frequency_channel_bins": 4166
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 6.913529108484981,
+              "error_db_p95": 22.787576377535856
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 1.707128509214578,
+              "error_db_p95": 4.978979413133107
+            }
+          ],
+          "stereo": {
+            "reference": null,
+            "candidate": null
+          },
+          "raw_level_difference_db": -0.006037086002567674,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.4926454506013547,
+            "residual_db_relative_to_reference": 3.4791332324199704,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        },
+        "after_training": {
+          "summary": {
+            "spectral_convergence_mean": 0.3123086841443934,
+            "log_spectral_error_db_mean": 5.562008292417623,
+            "envelope_error_db_p95_max": 20.89124562191443,
+            "stereo_side_fraction_error": null,
+            "stereo_balance_error_db": null
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 9657,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.512826043329905,
+              "log_spectral_error_db_mean": 6.341535582115156,
+              "log_spectral_error_db_p95": 21.901993075710894,
+              "active_time_frequency_channel_bins": 388878
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 2412,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.24691507279206945,
+              "log_spectral_error_db_mean": 5.604921236606308,
+              "log_spectral_error_db_p95": 19.59401549306518,
+              "active_time_frequency_channel_bins": 310169
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 600,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.17718493631120572,
+              "log_spectral_error_db_mean": 4.739568058531405,
+              "log_spectral_error_db_p95": 15.186397033423018,
+              "active_time_frequency_channel_bins": 282339
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 4.117619919880656,
+              "error_db_p95": 20.89124562191443
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 2.0098664283562764,
+              "error_db_p95": 8.881009517747946
+            }
+          ],
+          "stereo": {
+            "reference": null,
+            "candidate": null
+          },
+          "raw_level_difference_db": -0.032048489400437044,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.379281580171711,
+            "residual_db_relative_to_reference": 2.7930587278871855,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        }
+      },
+      "harmonic_summary": {
+        "training": {
+          "ratio_h2_h8": {
+            "rmse_db": 4.42330084209931,
+            "observations": 28
+          },
+          "ratio_h9_h16": {
+            "rmse_db": 5.1910462371727535,
+            "observations": 21
+          },
+          "absolute_h2_h8": {
+            "rmse_db": 4.245026805940776,
+            "observations": 28
+          },
+          "absolute_h9_h16": {
+            "rmse_db": 5.010745590571519,
+            "observations": 21
+          }
+        },
+        "validation": {
+          "ratio_h2_h8": {
+            "rmse_db": 4.583434261244981,
+            "observations": 208
+          },
+          "ratio_h9_h16": {
+            "rmse_db": 5.039146740967702,
+            "observations": 127
+          },
+          "absolute_h2_h8": {
+            "rmse_db": 4.463468109067808,
+            "observations": 208
+          },
+          "absolute_h9_h16": {
+            "rmse_db": 4.917377772053726,
+            "observations": 127
+          }
+        }
+      },
+      "render_receipt": {
+        "path": "build-fidelity/hardware-benchmark/zero-resonance-candidate/dry-end-to-end/onset-calibrated/nominal-one-second-lp12/zero-resonance-k1p2-raw.render.json",
+        "sha256": "4ccb0ce388a2b2406f53a7c81584fe6f039e32f7c44421aa5ac110559cb26f80",
+        "degraded_replay": true,
+        "ignored_events": [
+          {
+            "tick": 0,
+            "track": 0,
+            "order": 0,
+            "kind": "meta",
+            "meta_type": 32,
+            "hex": "00",
+            "sample": 0,
+            "reason": "unsupported routing or sequencer-specific meta event",
+            "degrades_replay": true
+          }
+        ],
+        "replay_event_counts": {
+          "note_off": 124,
+          "note_on": 124
+        },
+        "output": {
+          "frames": 1386394,
+          "sample_rate": 44100,
+          "latency_samples": 93,
+          "peak": 0.218293473125,
+          "active_voices_at_end": 0,
+          "master_level": 100
+        }
+      },
+      "raw_audio_validation": {
+        "finite": true,
+        "full_scale_sample_count": 0
+      }
+    },
+    {
+      "recipe": "nominal-one-second",
+      "slope": 24,
+      "family": "lfo-only",
+      "lag_samples": -1438,
+      "gain": 4.188448197415387,
+      "gain_db": 12.44106296944555,
+      "mono_adapter_max_channel_difference": 1.4551915228366852e-11,
+      "patch_sha256": "2588432ebd62a0aa41bb7b2827ffccdce68a5fc96fd4e1fde13a31074dc3f1b1",
+      "midi_sha256": "21ea21b9ba3ba14cc205931134fb7a320b09e67821bd3a3c70f97fa2e8b5d99a",
+      "renderer_sha256": "1dbd792d577dc31ce6c2e0c19dceec35f406a8aa85cbe4c551eecd49e4656455",
+      "raw_render_sha256": "099a9d587d7bcafc0338eb50a92363ad12a39bd9c8b6f5b393351fd18523e19b",
+      "hardware_sha256": "92fc303c94e9bde908cbeb72571c06dd5a4a9d8fc59b10cb90378040404eed4f",
+      "audio_metrics": {
+        "before_training": {
+          "summary": {
+            "spectral_convergence_mean": 0.33317573800937433,
+            "log_spectral_error_db_mean": 9.128315338753497,
+            "envelope_error_db_p95_max": 32.57747566550738,
+            "stereo_side_fraction_error": null,
+            "stereo_balance_error_db": null
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 485,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.5911890209991832,
+              "log_spectral_error_db_mean": 8.96287297401487,
+              "log_spectral_error_db_p95": 26.974633455738005,
+              "active_time_frequency_channel_bins": 3583
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 119,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.2430440216087707,
+              "log_spectral_error_db_mean": 9.261459576540416,
+              "log_spectral_error_db_p95": 25.569402013353805,
+              "active_time_frequency_channel_bins": 3673
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 27,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.16529417142016897,
+              "log_spectral_error_db_mean": 9.160613465705204,
+              "log_spectral_error_db_p95": 24.025795403237836,
+              "active_time_frequency_channel_bins": 3015
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 6.13937321033699,
+              "error_db_p95": 32.57747566550738
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 1.7361519981924587,
+              "error_db_p95": 6.206365835121404
+            }
+          ],
+          "stereo": {
+            "reference": null,
+            "candidate": null
+          },
+          "raw_level_difference_db": 0.061986144889245066,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.2254808889909756,
+            "residual_db_relative_to_reference": 1.7661308589593387,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        },
+        "after_training": {
+          "summary": {
+            "spectral_convergence_mean": 0.3013723496635528,
+            "log_spectral_error_db_mean": 6.1866868146941565,
+            "envelope_error_db_p95_max": 19.03439317729656,
+            "stereo_side_fraction_error": null,
+            "stereo_balance_error_db": null
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 9657,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.49669688435749537,
+              "log_spectral_error_db_mean": 6.770982602264972,
+              "log_spectral_error_db_p95": 22.2420682006613,
+              "active_time_frequency_channel_bins": 271415
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 2412,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.22981929875200363,
+              "log_spectral_error_db_mean": 6.527501829832289,
+              "log_spectral_error_db_p95": 20.862090785981174,
+              "active_time_frequency_channel_bins": 215359
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 600,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.1776008658811593,
+              "log_spectral_error_db_mean": 5.26157601198521,
+              "log_spectral_error_db_p95": 16.947071305798637,
+              "active_time_frequency_channel_bins": 219293
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 3.5894999078582983,
+              "error_db_p95": 19.03439317729656
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 1.6143362040257188,
+              "error_db_p95": 5.842677375732709
+            }
+          ],
+          "stereo": {
+            "reference": null,
+            "candidate": null
+          },
+          "raw_level_difference_db": -0.07711498916698548,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.4113701012108313,
+            "residual_db_relative_to_reference": 2.9928182600253894,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        }
+      },
+      "harmonic_summary": {
+        "training": {
+          "ratio_h2_h8": {
+            "rmse_db": 5.334035082342652,
+            "observations": 25
+          },
+          "ratio_h9_h16": {
+            "rmse_db": 3.3468143620171285,
+            "observations": 5
+          },
+          "absolute_h2_h8": {
+            "rmse_db": 5.314113882972457,
+            "observations": 25
+          },
+          "absolute_h9_h16": {
+            "rmse_db": 3.6568693125021308,
+            "observations": 5
+          }
+        },
+        "validation": {
+          "ratio_h2_h8": {
+            "rmse_db": 4.952383180624981,
+            "observations": 189
+          },
+          "ratio_h9_h16": {
+            "rmse_db": 2.767064592339311,
+            "observations": 30
+          },
+          "absolute_h2_h8": {
+            "rmse_db": 4.99418239436897,
+            "observations": 189
+          },
+          "absolute_h9_h16": {
+            "rmse_db": 3.0631603603812856,
+            "observations": 30
+          }
+        }
+      },
+      "render_receipt": {
+        "path": "build-fidelity/hardware-benchmark/zero-resonance-candidate/dry-end-to-end/onset-calibrated/nominal-one-second-lp24/lfo-only-raw.render.json",
+        "sha256": "bb37c70438cc050153ad638316b531e20befd61c286a48a0aab1c7739b7eb7e5",
+        "degraded_replay": true,
+        "ignored_events": [
+          {
+            "tick": 0,
+            "track": 0,
+            "order": 0,
+            "kind": "meta",
+            "meta_type": 32,
+            "hex": "00",
+            "sample": 0,
+            "reason": "unsupported routing or sequencer-specific meta event",
+            "degrades_replay": true
+          }
+        ],
+        "replay_event_counts": {
+          "note_off": 124,
+          "note_on": 124
+        },
+        "output": {
+          "frames": 1386394,
+          "sample_rate": 44100,
+          "latency_samples": 93,
+          "peak": 0.182276800275,
+          "active_voices_at_end": 0,
+          "master_level": 100
+        }
+      },
+      "raw_audio_validation": {
+        "finite": true,
+        "full_scale_sample_count": 0
+      }
+    },
+    {
+      "recipe": "nominal-one-second",
+      "slope": 24,
+      "family": "zero-resonance-k1p2",
+      "lag_samples": -1438,
+      "gain": 3.783710655590122,
+      "gain_db": 11.558358360698906,
+      "mono_adapter_max_channel_difference": 4.547473508864641e-13,
+      "patch_sha256": "2588432ebd62a0aa41bb7b2827ffccdce68a5fc96fd4e1fde13a31074dc3f1b1",
+      "midi_sha256": "21ea21b9ba3ba14cc205931134fb7a320b09e67821bd3a3c70f97fa2e8b5d99a",
+      "renderer_sha256": "8c92aa58994a6759a8d594e15884c0d3cbbb14a3ee38f008c1170a625a24cb53",
+      "raw_render_sha256": "2ffa37dd91af0d85b01c2f472338f04634e37f426f81d1fbeb8096600d33c15d",
+      "hardware_sha256": "92fc303c94e9bde908cbeb72571c06dd5a4a9d8fc59b10cb90378040404eed4f",
+      "audio_metrics": {
+        "before_training": {
+          "summary": {
+            "spectral_convergence_mean": 0.34529697682642685,
+            "log_spectral_error_db_mean": 10.035362658213966,
+            "envelope_error_db_p95_max": 29.435204429157654,
+            "stereo_side_fraction_error": null,
+            "stereo_balance_error_db": null
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 485,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.5815999584958736,
+              "log_spectral_error_db_mean": 9.293428939835113,
+              "log_spectral_error_db_p95": 26.860572712413575,
+              "active_time_frequency_channel_bins": 3629
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 119,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.2578941170866629,
+              "log_spectral_error_db_mean": 10.410774086501574,
+              "log_spectral_error_db_p95": 26.874454741075276,
+              "active_time_frequency_channel_bins": 3787
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 27,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.196396854896744,
+              "log_spectral_error_db_mean": 10.401884948305213,
+              "log_spectral_error_db_p95": 25.514979179108156,
+              "active_time_frequency_channel_bins": 3197
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 5.9564259004135005,
+              "error_db_p95": 29.435204429157654
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 1.6027974822621962,
+              "error_db_p95": 7.1145862687904815
+            }
+          ],
+          "stereo": {
+            "reference": null,
+            "candidate": null
+          },
+          "raw_level_difference_db": 0.046709566713561905,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.188516797026679,
+            "residual_db_relative_to_reference": 1.5001064777745257,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        },
+        "after_training": {
+          "summary": {
+            "spectral_convergence_mean": 0.32853401914147723,
+            "log_spectral_error_db_mean": 6.504982473452212,
+            "envelope_error_db_p95_max": 18.5743678519607,
+            "stereo_side_fraction_error": null,
+            "stereo_balance_error_db": null
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 9657,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.51122413816076,
+              "log_spectral_error_db_mean": 7.176370568484492,
+              "log_spectral_error_db_p95": 22.88750613746647,
+              "active_time_frequency_channel_bins": 277149
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 2412,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.2600364434561204,
+              "log_spectral_error_db_mean": 6.900158715685716,
+              "log_spectral_error_db_p95": 21.171717216658358,
+              "active_time_frequency_channel_bins": 221939
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 600,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.21434147580755125,
+              "log_spectral_error_db_mean": 5.438418136186425,
+              "log_spectral_error_db_p95": 17.80900466771386,
+              "active_time_frequency_channel_bins": 230383
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 3.635147951701039,
+              "error_db_p95": 18.5743678519607
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 1.648695100598305,
+              "error_db_p95": 5.628420734092509
+            }
+          ],
+          "stereo": {
+            "reference": null,
+            "candidate": null
+          },
+          "raw_level_difference_db": -0.02003429535960738,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.419283060048877,
+            "residual_db_relative_to_reference": 3.041380384946732,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        }
+      },
+      "harmonic_summary": {
+        "training": {
+          "ratio_h2_h8": {
+            "rmse_db": 7.572881111873961,
+            "observations": 25
+          },
+          "ratio_h9_h16": {
+            "rmse_db": 6.014910232665102,
+            "observations": 5
+          },
+          "absolute_h2_h8": {
+            "rmse_db": 7.3292896017344225,
+            "observations": 25
+          },
+          "absolute_h9_h16": {
+            "rmse_db": 5.864184039900206,
+            "observations": 5
+          }
+        },
+        "validation": {
+          "ratio_h2_h8": {
+            "rmse_db": 7.13827173318067,
+            "observations": 189
+          },
+          "ratio_h9_h16": {
+            "rmse_db": 5.240839695753513,
+            "observations": 30
+          },
+          "absolute_h2_h8": {
+            "rmse_db": 6.967335128342065,
+            "observations": 189
+          },
+          "absolute_h9_h16": {
+            "rmse_db": 5.165131636776221,
+            "observations": 30
+          }
+        }
+      },
+      "render_receipt": {
+        "path": "build-fidelity/hardware-benchmark/zero-resonance-candidate/dry-end-to-end/onset-calibrated/nominal-one-second-lp24/zero-resonance-k1p2-raw.render.json",
+        "sha256": "d0cf813f9ac1b260fa39cd68e0aebae60053032e95a172a193d80091a7c5bc70",
+        "degraded_replay": true,
+        "ignored_events": [
+          {
+            "tick": 0,
+            "track": 0,
+            "order": 0,
+            "kind": "meta",
+            "meta_type": 32,
+            "hex": "00",
+            "sample": 0,
+            "reason": "unsupported routing or sequencer-specific meta event",
+            "degrades_replay": true
+          }
+        ],
+        "replay_event_counts": {
+          "note_off": 124,
+          "note_on": 124
+        },
+        "output": {
+          "frames": 1386394,
+          "sample_rate": 44100,
+          "latency_samples": 93,
+          "peak": 0.236110985279,
+          "active_voices_at_end": 0,
+          "master_level": 100
+        }
+      },
+      "raw_audio_validation": {
+        "finite": true,
+        "full_scale_sample_count": 0
+      }
+    }
+  ],
+  "date": "2026-09-15",
+  "qualification": "Original author performance MIDI; documented recipe reconstruction, not recording-specific captured SysEx. No established perceptual acceptance margins. Improvement conditional on reconstructing the cutoff trajectory; equivalent output is not established.",
+  "local_full_results": {
+    "path": "build-fidelity/hardware-benchmark/zero-resonance-candidate/dry-end-to-end/onset-calibrated/results.json",
+    "sha256": "499474b3852b75ae3b6d0411d0da565690e49a948888e62625ad19526eae765f"
+  },
+  "source_media": [
+    {
+      "url": "https://www.deepsonic.ch/deep/audio_midi/deepsonic_-_filter_demo_-_comparsion_sequence.mid",
+      "path": "build-fidelity/deepsonic/deepsonic_-_filter_demo_-_comparsion_sequence.mid",
+      "bytes": 925,
+      "sha256": "21ea21b9ba3ba14cc205931134fb7a320b09e67821bd3a3c70f97fa2e8b5d99a"
+    },
+    {
+      "url": "https://www.deepsonic.ch/deep/audio_filter/roland_sh-201_-_filter_demo_-_lpf12_q000.mp3",
+      "path": "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf12_q000.mp3",
+      "bytes": 1203043,
+      "sha256": "28e241247a0efb217eb4cb7154cc3b69713fcebca781639c45b8904b3dc8615b",
+      "audio": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "44100",
+            "channels": 1,
+            "bit_rate": "320000"
+          }
+        ],
+        "format": {
+          "duration": "30.018200"
+        }
+      },
+      "full_decode_ok": true
+    },
+    {
+      "url": "https://www.deepsonic.ch/deep/audio_filter/roland_sh-201_-_filter_demo_-_lpf24_q000.mp3",
+      "path": "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf24_q000.mp3",
+      "bytes": 1203043,
+      "sha256": "ebb6fa4e12136028bbff614633095aa510c31654fcce840af5e3a85b3a469d90",
+      "audio": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "44100",
+            "channels": 1,
+            "bit_rate": "320000"
+          }
+        ],
+        "format": {
+          "duration": "30.018200"
+        }
+      },
+      "full_decode_ok": true
+    }
+  ],
+  "recipes": {
+    "onset-corrected-trajectory-lp12": {
+      "status": "reconstructed_not_recording_specific_sysex",
+      "upper_tone_hex": "000040404040000040404040000000010001002f4a40000035005b500000604040007f7f00000000000011000100400040000000110001004000400240000000",
+      "common_hex": "445259204c503132202020207f4000070800003502020202020000000000000700",
+      "patch_sha256": "25eeed2e391f033894a009d3d6c6f3289d35f1a01f323a8ade63c029e03ba003",
+      "raw_cutoff": 47,
+      "raw_filter_depth": 80,
+      "raw_filter_decay": 53,
+      "local_patch_path": "build-fidelity/hardware-benchmark/zero-resonance-candidate/dry-end-to-end/onset-calibrated/onset-corrected-trajectory-lp12/recipe-reconstruction.syx",
+      "full_patch_note": "Full reconstructed SysEx is generated from the cached Moogie container; the active common/Upper tone bytes are recorded here. This is our reconstruction, not a hardware patch dump."
+    },
+    "onset-corrected-trajectory-lp24": {
+      "status": "reconstructed_not_recording_specific_sysex",
+      "upper_tone_hex": "000040404040000040404040000000010001012f4a40000035005b500000604040007f7f00000000000011000100400040000000110001004000400240000000",
+      "common_hex": "445259204c503234202020207f4000070800003502020202020000000000000700",
+      "patch_sha256": "c5d12851f4798e8300341a3ccd0b8abe46782f82b3b38cbcc5c4204fd04a173e",
+      "raw_cutoff": 47,
+      "raw_filter_depth": 80,
+      "raw_filter_decay": 53,
+      "local_patch_path": "build-fidelity/hardware-benchmark/zero-resonance-candidate/dry-end-to-end/onset-calibrated/onset-corrected-trajectory-lp24/recipe-reconstruction.syx",
+      "full_patch_note": "Full reconstructed SysEx is generated from the cached Moogie container; the active common/Upper tone bytes are recorded here. This is our reconstruction, not a hardware patch dump."
+    },
+    "nominal-one-second-lp12": {
+      "status": "reconstructed_not_recording_specific_sysex",
+      "upper_tone_hex": "000040404040000040404040000000010001002f4a4000003f005b500000604040007f7f00000000000011000100400040000000110001004000400240000000",
+      "common_hex": "445259204c503132202020207f4000070800003502020202020000000000000700",
+      "patch_sha256": "003689a34613cc872fb368892e87e33ee59bf7e472db25fb1f9445d3240d3c34",
+      "raw_cutoff": 47,
+      "raw_filter_depth": 80,
+      "raw_filter_decay": 63,
+      "local_patch_path": "build-fidelity/hardware-benchmark/zero-resonance-candidate/dry-end-to-end/onset-calibrated/nominal-one-second-lp12/recipe-reconstruction.syx",
+      "full_patch_note": "Full reconstructed SysEx is generated from the cached Moogie container; the active common/Upper tone bytes are recorded here. This is our reconstruction, not a hardware patch dump."
+    },
+    "nominal-one-second-lp24": {
+      "status": "reconstructed_not_recording_specific_sysex",
+      "upper_tone_hex": "000040404040000040404040000000010001012f4a4000003f005b500000604040007f7f00000000000011000100400040000000110001004000400240000000",
+      "common_hex": "445259204c503234202020207f4000070800003502020202020000000000000700",
+      "patch_sha256": "2588432ebd62a0aa41bb7b2827ffccdce68a5fc96fd4e1fde13a31074dc3f1b1",
+      "raw_cutoff": 47,
+      "raw_filter_depth": 80,
+      "raw_filter_decay": 63,
+      "local_patch_path": "build-fidelity/hardware-benchmark/zero-resonance-candidate/dry-end-to-end/onset-calibrated/nominal-one-second-lp24/recipe-reconstruction.syx",
+      "full_patch_note": "Full reconstructed SysEx is generated from the cached Moogie container; the active common/Upper tone bytes are recorded here. This is our reconstruction, not a hardware patch dump."
+    }
+  },
+  "reproduction": {
+    "tool": "Tools/reproduce_zero_resonance_benchmark.py",
+    "manifest": "Docs/fidelity/source-audits/zero-resonance-reproduction-2026-09-15.json",
+    "notes": "Reconstructs frozen source from Git history plus pinned LFO diff; private audio decodes use hash-pinned original MP3s. Embedded training trajectory includes only the same eight training targets rather than the original full fit output container."
+  }
+}

@@ -1,0 +1,658 @@
+{
+  "schema_version": 1,
+  "status": "experimental_not_promoted",
+  "acceptance_gate": "not_established",
+  "source_identity": {
+    "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+    "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+    "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+    "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+    "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+    "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+    "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+    "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+    "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+    "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+    "Source/DSP/SeptumEngine.h": "ac43e6facfe76e720e2d8101964e7b1f3becf661464127ad98d567b7626f3596",
+    "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+    "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+    "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+    "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+    "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+    "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9",
+    "Tools/RenderMidi.cpp": "73fc5cd13bf635bbd95dc2a4e65301b06038cd96d2e684de1bb694b3e0066bfb"
+  },
+  "frozen_source_manifest_sha256": "c9cd830fdaa5c11ec3c7349459e2fe81a27fc7c32a1de0652b91515568f89b66",
+  "profile_formula": "b=2-2.04*sqrt(v/127); old=2*(b/2)^1.5 if b>0 else b; k=max(-0.04,old-0.8*max(1-v/40,0)^2)",
+  "policy": {
+    "fraction": 0.25,
+    "max_lag_seconds": 0.05
+  },
+  "control": "Current frozen DSP containing the measured LFO correction; all calibration sections disabled",
+  "candidate": "Same frozen DSP; only the resonance_damping profile table differs",
+  "qualification": "Same published presets, reconstructed MIDI, original hardware references; evaluation prefix withheld only from nuisance fitting, not prior DSP tuning. No validated perceptual margins.",
+  "builder_manifests_sha256": {
+    "lfo-only": "e8d5e45aff535b231fdcefc60082d5a5fd0c492dc3e103501bfdae3e28e5d463",
+    "zero-resonance-k1p2": "3cf7f9d941b04ebdb56fa0f9306772d795083245b0b097931617545effcd4fbe"
+  },
+  "renderer_sha256": {
+    "lfo-only": "1dbd792d577dc31ce6c2e0c19dceec35f406a8aa85cbe4c551eecd49e4656455",
+    "zero-resonance-k1p2": "8c92aa58994a6759a8d594e15884c0d3cbbb14a3ee38f008c1170a625a24cb53"
+  },
+  "cases": [
+    {
+      "id": "air-lead-1",
+      "original_inputs_sha256": {
+        "midi": "8e7e693c3ae0940ebabace9629fc25e07aef73e90c1fe250e6dcda0fefefe228",
+        "sysex": "e7e911d9be986fcc4987c41d79836034ef60ea5f9c70308a7d5f57348f4c091e"
+      },
+      "reference_sha256": "4968acb7c5f4d71eab9d163ea3caad2eb5b082cd249ba757d13f70bc691c5f01",
+      "candidate_raw_pcm_identical_to_control": true,
+      "control_metrics": {
+        "spectral_convergence_mean": 0.9465298941886507,
+        "log_spectral_error_db_mean": 23.960041716947945,
+        "envelope_error_db_p95_max": 4.7240563950935845,
+        "stereo_side_fraction_error": 0.06315106955125734,
+        "stereo_balance_error_db": 1.245719738784219
+      },
+      "candidate_metrics": {
+        "spectral_convergence_mean": 0.9465298941886507,
+        "log_spectral_error_db_mean": 23.960041716947945,
+        "envelope_error_db_p95_max": 4.7240563950935845,
+        "stereo_side_fraction_error": 0.06315106955125734,
+        "stereo_balance_error_db": 1.245719738784219
+      },
+      "candidate_minus_control": {
+        "spectral_convergence_mean": 0.0,
+        "log_spectral_error_db_mean": 0.0,
+        "envelope_error_db_p95_max": 0.0,
+        "stereo_side_fraction_error": 0.0,
+        "stereo_balance_error_db": 0.0
+      },
+      "candidate_with_control_transform": {
+        "spectral_convergence_mean": 0.9465298941886507,
+        "log_spectral_error_db_mean": 23.960041716947945,
+        "envelope_error_db_p95_max": 4.7240563950935845,
+        "stereo_side_fraction_error": 0.06315106955125734,
+        "stereo_balance_error_db": 1.245719738784219
+      },
+      "calibration": {
+        "lfo-only": {
+          "candidate_gain_db": 10.123003704348362,
+          "candidate_lag_samples": -780,
+          "alignment_at_search_boundary": false
+        },
+        "zero-resonance-k1p2": {
+          "candidate_gain_db": 10.123003704348362,
+          "candidate_lag_samples": -780,
+          "alignment_at_search_boundary": false
+        }
+      },
+      "raw_level_difference_db": {
+        "lfo-only": -9.61604521324148,
+        "zero-resonance-k1p2": -9.61604521324148
+      },
+      "reports_sha256": {
+        "lfo-only": "79a9406f05710d7edb13341add7be45c9199c37e9f09910bc8691fad4039b91a",
+        "zero-resonance-k1p2": "7422807f062a266f82c89fa9408064208e2dc0b31c86cc5deac4cfe052d0616e"
+      },
+      "render_sha256": {
+        "lfo-only": "43bca32341c215f6ccfe58291f787a7c286602f8772061e26d59566921c591e3",
+        "zero-resonance-k1p2": "43bca32341c215f6ccfe58291f787a7c286602f8772061e26d59566921c591e3"
+      }
+    },
+    {
+      "id": "brassy-ld-1",
+      "original_inputs_sha256": {
+        "midi": "fd78fd56cfa10d6ac15b71877b448a70ee161306953c64f528388d45c163f052",
+        "sysex": "daba0b97a4b9e2674c4832050bbd0d8e869a3b61e9ce867c7055d21b0f4a6f5a"
+      },
+      "reference_sha256": "dde80fcd0ba68c3be1ed1e8c9e0bc1fac6c49ea462d935967b069931fbbc1a9c",
+      "candidate_raw_pcm_identical_to_control": false,
+      "control_metrics": {
+        "spectral_convergence_mean": 0.6018160886131049,
+        "log_spectral_error_db_mean": 11.939686027407747,
+        "envelope_error_db_p95_max": 12.594412171914145,
+        "stereo_side_fraction_error": 0.005222066695764815,
+        "stereo_balance_error_db": 0.18836383380425342
+      },
+      "candidate_metrics": {
+        "spectral_convergence_mean": 0.60860576445191,
+        "log_spectral_error_db_mean": 12.507283412758577,
+        "envelope_error_db_p95_max": 10.600979663449738,
+        "stereo_side_fraction_error": 0.006006611525840479,
+        "stereo_balance_error_db": 0.2021174162164839
+      },
+      "candidate_minus_control": {
+        "spectral_convergence_mean": 0.006789675838805076,
+        "log_spectral_error_db_mean": 0.5675973853508296,
+        "envelope_error_db_p95_max": -1.993432508464407,
+        "stereo_side_fraction_error": 0.0007845448300756643,
+        "stereo_balance_error_db": 0.013753582412230486
+      },
+      "candidate_with_control_transform": {
+        "spectral_convergence_mean": 0.6243084083651581,
+        "log_spectral_error_db_mean": 12.735109974359057,
+        "envelope_error_db_p95_max": 10.897977412259529,
+        "stereo_side_fraction_error": 0.0060072279244987575,
+        "stereo_balance_error_db": 0.20210933227292893
+      },
+      "calibration": {
+        "lfo-only": {
+          "candidate_gain_db": 13.264645708787315,
+          "candidate_lag_samples": -104,
+          "alignment_at_search_boundary": false
+        },
+        "zero-resonance-k1p2": {
+          "candidate_gain_db": 12.728134572364633,
+          "candidate_lag_samples": -106,
+          "alignment_at_search_boundary": false
+        }
+      },
+      "raw_level_difference_db": {
+        "lfo-only": -14.146329067798614,
+        "zero-resonance-k1p2": -13.322752096139016
+      },
+      "reports_sha256": {
+        "lfo-only": "6c932949129ca637a7baf49f4f0587c2b5585bacd44f718dd996682d3bfd7ca7",
+        "zero-resonance-k1p2": "71da8f2bba3fab1f2e740594222439f2cdb020d294c68c7eb346fbf8c667391b"
+      },
+      "render_sha256": {
+        "lfo-only": "b99c7af7e217b61b66b17ddddf4da39f448f18daeeeba821819a74d75274db83",
+        "zero-resonance-k1p2": "c71bb3a788f0ac64fabb5a81106d5a492494019459aaa62f816219b198ee1230"
+      }
+    },
+    {
+      "id": "club-bass",
+      "original_inputs_sha256": {
+        "midi": "c86bc2a60af8086ae69c30886b50334da0c8799fc52bcc2a7a0495c39f893a3a",
+        "sysex": "1db074dd01883c578cda8eef19aacf28be2b13c4a2b9ab21e829ba915f9a194b"
+      },
+      "reference_sha256": "e5d5a628c59003732a17927b4690984627dd8427caca51c5f527df915424a6cd",
+      "candidate_raw_pcm_identical_to_control": false,
+      "control_metrics": {
+        "spectral_convergence_mean": 0.423991114294534,
+        "log_spectral_error_db_mean": 15.6443345616669,
+        "envelope_error_db_p95_max": 6.959273342000801,
+        "stereo_side_fraction_error": 0.003226818775506131,
+        "stereo_balance_error_db": 0.5139276913547985
+      },
+      "candidate_metrics": {
+        "spectral_convergence_mean": 0.4239623186167099,
+        "log_spectral_error_db_mean": 15.643707269882432,
+        "envelope_error_db_p95_max": 6.969048515886502,
+        "stereo_side_fraction_error": 0.0032270064542488193,
+        "stereo_balance_error_db": 0.5139360189912153
+      },
+      "candidate_minus_control": {
+        "spectral_convergence_mean": -2.879567782410053e-05,
+        "log_spectral_error_db_mean": -0.0006272917844682979,
+        "envelope_error_db_p95_max": 0.009775173885701705,
+        "stereo_side_fraction_error": 1.8767874268837276e-07,
+        "stereo_balance_error_db": 8.327636416782802e-06
+      },
+      "candidate_with_control_transform": {
+        "spectral_convergence_mean": 0.4240706629035178,
+        "log_spectral_error_db_mean": 15.6430890211632,
+        "envelope_error_db_p95_max": 6.9598586907685736,
+        "stereo_side_fraction_error": 0.0032270096204934737,
+        "stereo_balance_error_db": 0.5139359396249347
+      },
+      "calibration": {
+        "lfo-only": {
+          "candidate_gain_db": 5.229237419131648,
+          "candidate_lag_samples": 233,
+          "alignment_at_search_boundary": false
+        },
+        "zero-resonance-k1p2": {
+          "candidate_gain_db": 5.228491957544897,
+          "candidate_lag_samples": 232,
+          "alignment_at_search_boundary": false
+        }
+      },
+      "raw_level_difference_db": {
+        "lfo-only": -5.308961042059779,
+        "zero-resonance-k1p2": -5.3085206653651715
+      },
+      "reports_sha256": {
+        "lfo-only": "cdc63429c1c344f1e8737f11c9b5cc35f9ae8ac367facd3f1032c4a0dc7b426f",
+        "zero-resonance-k1p2": "b21ba7b07e80a42c9eaf96ff8449be7fbcab2a6f6b8d0757b8a1e9a30e29aadc"
+      },
+      "render_sha256": {
+        "lfo-only": "f07ad6b33a6a24dca47281a7c8f6f5bd9dd02b6083e1ca9a9f89da4526a1ecc5",
+        "zero-resonance-k1p2": "d5fab55b6cfccca0cbe60161eb8fdcfbcf24618e2d4d2b7333b7824fde50a61e"
+      }
+    },
+    {
+      "id": "cotton-wool",
+      "original_inputs_sha256": {
+        "midi": "9794993003bca0f1af71f2a39d30e294c6bf862ab1d6aabdbea50d145d0ce69f",
+        "sysex": "e7f23e39445895f2158482037b37a19dfe413e536869c0e6f78352de6e49fbef"
+      },
+      "reference_sha256": "cf85c5a424f99365f5d6fc2517608529f03f1d07ffae34646e2f3d0a16af16ef",
+      "candidate_raw_pcm_identical_to_control": false,
+      "control_metrics": {
+        "spectral_convergence_mean": 0.8128336357089044,
+        "log_spectral_error_db_mean": 11.825515838133228,
+        "envelope_error_db_p95_max": 11.799107845982595,
+        "stereo_side_fraction_error": 0.09489564852562823,
+        "stereo_balance_error_db": 1.239577085287796
+      },
+      "candidate_metrics": {
+        "spectral_convergence_mean": 0.806923957648828,
+        "log_spectral_error_db_mean": 13.737700173013543,
+        "envelope_error_db_p95_max": 11.77713025926044,
+        "stereo_side_fraction_error": 0.09237742448025463,
+        "stereo_balance_error_db": 1.2514978717164376
+      },
+      "candidate_minus_control": {
+        "spectral_convergence_mean": -0.005909678060076473,
+        "log_spectral_error_db_mean": 1.9121843348803154,
+        "envelope_error_db_p95_max": -0.021977586722154996,
+        "stereo_side_fraction_error": -0.002518224045373607,
+        "stereo_balance_error_db": 0.011920786428641472
+      },
+      "candidate_with_control_transform": {
+        "spectral_convergence_mean": 0.8109898199290871,
+        "log_spectral_error_db_mean": 13.772430054524532,
+        "envelope_error_db_p95_max": 11.823121581837478,
+        "stereo_side_fraction_error": 0.09237774910890931,
+        "stereo_balance_error_db": 1.2515198531656038
+      },
+      "calibration": {
+        "lfo-only": {
+          "candidate_gain_db": 11.165809897759228,
+          "candidate_lag_samples": -1342,
+          "alignment_at_search_boundary": false
+        },
+        "zero-resonance-k1p2": {
+          "candidate_gain_db": 11.103347663379544,
+          "candidate_lag_samples": -1346,
+          "alignment_at_search_boundary": false
+        }
+      },
+      "raw_level_difference_db": {
+        "lfo-only": -10.19493488071573,
+        "zero-resonance-k1p2": -10.145927670730291
+      },
+      "reports_sha256": {
+        "lfo-only": "cc47d1f16ceb53b01dffebd8eafe516cd12fc0059da13bcf164344fbc659d89c",
+        "zero-resonance-k1p2": "0f5f8b8161d86e62b0814d608968a831895d57cb7665e3f757e9f8625b217b61"
+      },
+      "render_sha256": {
+        "lfo-only": "4a1c06a9968e04f3c0aa0eb848450dcfd8812c5d5038c647bc452f5cb30fc099",
+        "zero-resonance-k1p2": "54b7512438fb6a743292f314354cf5c37d68ba4f74a39e9474f03f9854e219a5"
+      }
+    },
+    {
+      "id": "dist-bs-1",
+      "original_inputs_sha256": {
+        "midi": "66b5b06caddf07f908df34a9e8aef4bc65cf05872ef7f2b047622b879835e3e5",
+        "sysex": "774bed5b7e3155c4c2efadcffc388c972e7fdd9a9ed82af08cb7333b14980060"
+      },
+      "reference_sha256": "24af96a9b84b9c8660bf6996b58f2def9500333e109177a26eb815bb341fb7ab",
+      "candidate_raw_pcm_identical_to_control": false,
+      "control_metrics": {
+        "spectral_convergence_mean": 0.3266449116786809,
+        "log_spectral_error_db_mean": 10.914327045779435,
+        "envelope_error_db_p95_max": 24.920825540849115,
+        "stereo_side_fraction_error": 0.0005157664717329834,
+        "stereo_balance_error_db": 0.38927461657439827
+      },
+      "candidate_metrics": {
+        "spectral_convergence_mean": 0.3197870081832249,
+        "log_spectral_error_db_mean": 10.419282504747502,
+        "envelope_error_db_p95_max": 24.82573644224862,
+        "stereo_side_fraction_error": 0.0005157666822895566,
+        "stereo_balance_error_db": 0.38927452224036124
+      },
+      "candidate_minus_control": {
+        "spectral_convergence_mean": -0.006857903495456008,
+        "log_spectral_error_db_mean": -0.49504454103193396,
+        "envelope_error_db_p95_max": -0.09508909860049641,
+        "stereo_side_fraction_error": 2.1055657326192467e-10,
+        "stereo_balance_error_db": -9.433403702630017e-08
+      },
+      "candidate_with_control_transform": {
+        "spectral_convergence_mean": 0.3212820470928897,
+        "log_spectral_error_db_mean": 10.37320278155451,
+        "envelope_error_db_p95_max": 24.91659280481428,
+        "stereo_side_fraction_error": 0.0005157664717329834,
+        "stereo_balance_error_db": 0.38927461657439827
+      },
+      "calibration": {
+        "lfo-only": {
+          "candidate_gain_db": 0.7558087506676808,
+          "candidate_lag_samples": 223,
+          "alignment_at_search_boundary": false
+        },
+        "zero-resonance-k1p2": {
+          "candidate_gain_db": 0.6629176877207777,
+          "candidate_lag_samples": 218,
+          "alignment_at_search_boundary": false
+        }
+      },
+      "raw_level_difference_db": {
+        "lfo-only": -1.0035132111744514,
+        "zero-resonance-k1p2": -0.8980067595756753
+      },
+      "reports_sha256": {
+        "lfo-only": "037ea9ad092aea3ac7cd3dda9256a26797331e01ee08c2ce2b7e4ffa8e5bfd67",
+        "zero-resonance-k1p2": "30c5dde072171accd041c41317a99b3283c83e98c77826998e35b4d4465166a7"
+      },
+      "render_sha256": {
+        "lfo-only": "767063f15801729067ccb760792ae4e772e8a4d0e1da84d76d0f92273a6e1be3",
+        "zero-resonance-k1p2": "4a84e37ed9f1f6c39dad22ca952d77f7d433161c8bc8ae436445ca430e478c27"
+      }
+    },
+    {
+      "id": "moogie-1",
+      "original_inputs_sha256": {
+        "midi": "354540c1ac357a80473d0d71e62a20ff2af79e125fcdf82166d20ec12cf71104",
+        "sysex": "33d39a6b1cbf47abd830ecf879e1ef6774b50eb6a4eb4db6997749f4f7cffabc"
+      },
+      "reference_sha256": "b68b102973532d6e904cdceee31aebd89a304c43059d2ebcf2b22e57d83ba377",
+      "candidate_raw_pcm_identical_to_control": false,
+      "control_metrics": {
+        "spectral_convergence_mean": 0.35968239208797853,
+        "log_spectral_error_db_mean": 8.554566480382412,
+        "envelope_error_db_p95_max": 4.2397567493824235,
+        "stereo_side_fraction_error": 0.0002814791299896068,
+        "stereo_balance_error_db": 0.28618986261946744
+      },
+      "candidate_metrics": {
+        "spectral_convergence_mean": 0.35917695780975195,
+        "log_spectral_error_db_mean": 7.828451189395587,
+        "envelope_error_db_p95_max": 4.377639426284156,
+        "stereo_side_fraction_error": 0.0002814947014869485,
+        "stereo_balance_error_db": 0.28619948185405736
+      },
+      "candidate_minus_control": {
+        "spectral_convergence_mean": -0.0005054342782265797,
+        "log_spectral_error_db_mean": -0.7261152909868258,
+        "envelope_error_db_p95_max": 0.13788267690173228,
+        "stereo_side_fraction_error": 1.5571497341711465e-08,
+        "stereo_balance_error_db": 9.619234589919312e-06
+      },
+      "candidate_with_control_transform": {
+        "spectral_convergence_mean": 0.3641820313709445,
+        "log_spectral_error_db_mean": 7.753566548790268,
+        "envelope_error_db_p95_max": 4.323074474458356,
+        "stereo_side_fraction_error": 0.0002814791299896068,
+        "stereo_balance_error_db": 0.28618986261946744
+      },
+      "calibration": {
+        "lfo-only": {
+          "candidate_gain_db": -2.3263518033321122,
+          "candidate_lag_samples": -461,
+          "alignment_at_search_boundary": false
+        },
+        "zero-resonance-k1p2": {
+          "candidate_gain_db": -2.4929007413528845,
+          "candidate_lag_samples": -475,
+          "alignment_at_search_boundary": false
+        }
+      },
+      "raw_level_difference_db": {
+        "lfo-only": 2.505722662552878,
+        "zero-resonance-k1p2": 2.7095873066849983
+      },
+      "reports_sha256": {
+        "lfo-only": "fbc47cea516a98230abf131248a66af8795b65e6554c7dbbccc4ccafa081032d",
+        "zero-resonance-k1p2": "0770d2526a91520c014bc060919b2003093f687ce521c281aea99c83df612b09"
+      },
+      "render_sha256": {
+        "lfo-only": "7ce5ff6bab6880889406e7f3ab08a6233977e542973496c49eaddb022e37b6bc",
+        "zero-resonance-k1p2": "c3ddf4e529e8e697827147758430ec58b6e0e9cc3265f4d1add9081053da0489"
+      }
+    },
+    {
+      "id": "pedal-bs-1",
+      "original_inputs_sha256": {
+        "midi": "c2f510902fce16661641a50c6c53a1a32cbffb1ffaa647d0013a3b9a91315cf9",
+        "sysex": "25b2203eb16206963e36fd2d7fd7b04610f6f6d90036eb2edb670b9d30f1bb5a"
+      },
+      "reference_sha256": "3823b3cc39913a51c9e4aeb6b997a9a80ee371a55cd4aa75abb38251a8ea8faf",
+      "candidate_raw_pcm_identical_to_control": false,
+      "control_metrics": {
+        "spectral_convergence_mean": 0.5346057369203465,
+        "log_spectral_error_db_mean": 16.522546670859466,
+        "envelope_error_db_p95_max": 18.363194987270447,
+        "stereo_side_fraction_error": 0.0003657715312837937,
+        "stereo_balance_error_db": 0.4496736324022852
+      },
+      "candidate_metrics": {
+        "spectral_convergence_mean": 0.5572637991278055,
+        "log_spectral_error_db_mean": 17.93437334553202,
+        "envelope_error_db_p95_max": 18.915559645774188,
+        "stereo_side_fraction_error": 0.00031316058580667014,
+        "stereo_balance_error_db": 0.4540392509404192
+      },
+      "candidate_minus_control": {
+        "spectral_convergence_mean": 0.02265806220745903,
+        "log_spectral_error_db_mean": 1.4118266746725538,
+        "envelope_error_db_p95_max": 0.5523646585037412,
+        "stereo_side_fraction_error": -5.261094547712354e-05,
+        "stereo_balance_error_db": 0.004365618538133997
+      },
+      "candidate_with_control_transform": {
+        "spectral_convergence_mean": 0.5300631756803083,
+        "log_spectral_error_db_mean": 18.17317032688703,
+        "envelope_error_db_p95_max": 18.209655430473155,
+        "stereo_side_fraction_error": 0.0003131944944927734,
+        "stereo_balance_error_db": 0.4540780637166872
+      },
+      "calibration": {
+        "lfo-only": {
+          "candidate_gain_db": 3.3219557313584747,
+          "candidate_lag_samples": 169,
+          "alignment_at_search_boundary": false
+        },
+        "zero-resonance-k1p2": {
+          "candidate_gain_db": 2.591074083776398,
+          "candidate_lag_samples": 178,
+          "alignment_at_search_boundary": false
+        }
+      },
+      "raw_level_difference_db": {
+        "lfo-only": -7.730096042342288,
+        "zero-resonance-k1p2": -7.518653378230159
+      },
+      "reports_sha256": {
+        "lfo-only": "fc3f2d3ced3737ca3a46f811d6f6c4a0f00252435f0015134e2ebda80009b3b9",
+        "zero-resonance-k1p2": "f68e1b046c72b244e2b7358ad29fc2e0edafadcafc56698bdfe6b2cd68fc6ddb"
+      },
+      "render_sha256": {
+        "lfo-only": "bb26c0432da9b4d02a92897ef55c7ee07b3e7ed9c5f0fabb9b973fb09bb60cd8",
+        "zero-resonance-k1p2": "30b80239ddc51ec4c72883974001a6a8d4a8d4b448621297967ae1082a951d27"
+      }
+    },
+    {
+      "id": "so-juno-1",
+      "original_inputs_sha256": {
+        "midi": "0e23e6d891211413e421f5ac03a7c8dccd249d7b7a8c7d4e38855111eaa990d1",
+        "sysex": "f1a7fc59b76392ec5edec8dfe506a8b031ac1d2382b3e8893734afd813b8ad17"
+      },
+      "reference_sha256": "94f78e6c9564bda839597fd6df0210ee5b95518bc98a881419256962769a63e0",
+      "candidate_raw_pcm_identical_to_control": false,
+      "control_metrics": {
+        "spectral_convergence_mean": 0.4208670961519117,
+        "log_spectral_error_db_mean": 11.044880589127368,
+        "envelope_error_db_p95_max": 29.413099728704953,
+        "stereo_side_fraction_error": 0.012992587496768064,
+        "stereo_balance_error_db": 2.588618274134207
+      },
+      "candidate_metrics": {
+        "spectral_convergence_mean": 0.41713716242760185,
+        "log_spectral_error_db_mean": 10.043951642361947,
+        "envelope_error_db_p95_max": 36.34544989761816,
+        "stereo_side_fraction_error": 0.012344655948739541,
+        "stereo_balance_error_db": 2.5517584915767713
+      },
+      "candidate_minus_control": {
+        "spectral_convergence_mean": -0.003729933724309853,
+        "log_spectral_error_db_mean": -1.0009289467654217,
+        "envelope_error_db_p95_max": 6.9323501689132065,
+        "stereo_side_fraction_error": -0.0006479315480285228,
+        "stereo_balance_error_db": -0.03685978255743594
+      },
+      "candidate_with_control_transform": {
+        "spectral_convergence_mean": 0.41462340449624646,
+        "log_spectral_error_db_mean": 10.003187526243783,
+        "envelope_error_db_p95_max": 36.34197655048662,
+        "stereo_side_fraction_error": 0.012345764953063332,
+        "stereo_balance_error_db": 2.551854924946618
+      },
+      "calibration": {
+        "lfo-only": {
+          "candidate_gain_db": 7.683302697529286,
+          "candidate_lag_samples": -332,
+          "alignment_at_search_boundary": false
+        },
+        "zero-resonance-k1p2": {
+          "candidate_gain_db": 7.616610017553156,
+          "candidate_lag_samples": -337,
+          "alignment_at_search_boundary": false
+        }
+      },
+      "raw_level_difference_db": {
+        "lfo-only": -9.051247387355534,
+        "zero-resonance-k1p2": -8.971803463334313
+      },
+      "reports_sha256": {
+        "lfo-only": "a09c71e6daac4b5b1ad09de445b065f65342c0874ade02a12eaf5df3d8a47db6",
+        "zero-resonance-k1p2": "8f992d9f03dc1d37eefa8853d1e11c0f0c4437ef4f74f5831b66b1f7ac67cff7"
+      },
+      "render_sha256": {
+        "lfo-only": "f7904bd0e7ed29a0235af6f5a5a2269620ead6ee9c6e691dc0bbdc7c1102d0f6",
+        "zero-resonance-k1p2": "c3674442673eee179b9003265b1bafede271e77eb47bceb589a74e44db3b008e"
+      }
+    },
+    {
+      "id": "supa-juce-1",
+      "original_inputs_sha256": {
+        "midi": "0df6bc4fa7ae91185c937d8ce770562aaa5ced55650bc5b4066951ba671a9498",
+        "sysex": "9791c9e16ab0a6e4374791b8f47766cfa0ee725da0d4a14ee5d75a319bf6fad8"
+      },
+      "reference_sha256": "94feaa31fa2ee16220a452f76852f3c1e3186d1889b895883b26e2a9fb6041f2",
+      "candidate_raw_pcm_identical_to_control": true,
+      "control_metrics": {
+        "spectral_convergence_mean": 0.5377085898215399,
+        "log_spectral_error_db_mean": 8.591301857755129,
+        "envelope_error_db_p95_max": 10.538252408492983,
+        "stereo_side_fraction_error": 0.05152969346492943,
+        "stereo_balance_error_db": 0.44785156120899877
+      },
+      "candidate_metrics": {
+        "spectral_convergence_mean": 0.5377085898215399,
+        "log_spectral_error_db_mean": 8.591301857755129,
+        "envelope_error_db_p95_max": 10.538252408492983,
+        "stereo_side_fraction_error": 0.05152969346492943,
+        "stereo_balance_error_db": 0.44785156120899877
+      },
+      "candidate_minus_control": {
+        "spectral_convergence_mean": 0.0,
+        "log_spectral_error_db_mean": 0.0,
+        "envelope_error_db_p95_max": 0.0,
+        "stereo_side_fraction_error": 0.0,
+        "stereo_balance_error_db": 0.0
+      },
+      "candidate_with_control_transform": {
+        "spectral_convergence_mean": 0.5377085898215399,
+        "log_spectral_error_db_mean": 8.591301857755129,
+        "envelope_error_db_p95_max": 10.538252408492983,
+        "stereo_side_fraction_error": 0.05152969346492943,
+        "stereo_balance_error_db": 0.44785156120899877
+      },
+      "calibration": {
+        "lfo-only": {
+          "candidate_gain_db": 4.876523942938275,
+          "candidate_lag_samples": 223,
+          "alignment_at_search_boundary": false
+        },
+        "zero-resonance-k1p2": {
+          "candidate_gain_db": 4.876523942938275,
+          "candidate_lag_samples": 223,
+          "alignment_at_search_boundary": false
+        }
+      },
+      "raw_level_difference_db": {
+        "lfo-only": -5.093537942959683,
+        "zero-resonance-k1p2": -5.093537942959683
+      },
+      "reports_sha256": {
+        "lfo-only": "75597f94e456cb7a4604e0a323566088dfb392cd80799af4be05b20952af57ce",
+        "zero-resonance-k1p2": "29310bc0d77c3b2e814ec6cbbc576d8304d211c150162da9716fc877ed70d0b8"
+      },
+      "render_sha256": {
+        "lfo-only": "2b4c5f8cbdf83ecc895b19f7015fd15bd9f126723830375df564f52e5ac79bb1",
+        "zero-resonance-k1p2": "2b4c5f8cbdf83ecc895b19f7015fd15bd9f126723830375df564f52e5ac79bb1"
+      }
+    },
+    {
+      "id": "vangelead",
+      "original_inputs_sha256": {
+        "midi": "9b1a34a3b41d19f57f1882649094b91459dede9cc7628b7bfe4670cfce61f297",
+        "sysex": "ae19b5e27dd1828815a6468fe4d0e3e49c1dea17f931cac02a4c452e204a7624"
+      },
+      "reference_sha256": "f15780a3c1eb785d811b6004f2b5424544822a2a21584541c7c638e11165b91c",
+      "candidate_raw_pcm_identical_to_control": false,
+      "control_metrics": {
+        "spectral_convergence_mean": 0.7109425857503483,
+        "log_spectral_error_db_mean": 12.686956496589772,
+        "envelope_error_db_p95_max": 7.705079760189198,
+        "stereo_side_fraction_error": 0.029266379472385827,
+        "stereo_balance_error_db": 0.2802380469063571
+      },
+      "candidate_metrics": {
+        "spectral_convergence_mean": 0.6927002010832254,
+        "log_spectral_error_db_mean": 11.932116887278548,
+        "envelope_error_db_p95_max": 7.340016348731459,
+        "stereo_side_fraction_error": 0.026295845637474814,
+        "stereo_balance_error_db": 0.21755633288102694
+      },
+      "candidate_minus_control": {
+        "spectral_convergence_mean": -0.018242384667122913,
+        "log_spectral_error_db_mean": -0.7548396093112242,
+        "envelope_error_db_p95_max": -0.36506341145773913,
+        "stereo_side_fraction_error": -0.0029705338349110127,
+        "stereo_balance_error_db": -0.06268171402533018
+      },
+      "candidate_with_control_transform": {
+        "spectral_convergence_mean": 0.7403797513548517,
+        "log_spectral_error_db_mean": 11.606789813648165,
+        "envelope_error_db_p95_max": 7.899707563241232,
+        "stereo_side_fraction_error": 0.026296104964066522,
+        "stereo_balance_error_db": 0.21768665382593366
+      },
+      "calibration": {
+        "lfo-only": {
+          "candidate_gain_db": 7.000713919642879,
+          "candidate_lag_samples": -569,
+          "alignment_at_search_boundary": false
+        },
+        "zero-resonance-k1p2": {
+          "candidate_gain_db": 6.166167643923871,
+          "candidate_lag_samples": -469,
+          "alignment_at_search_boundary": false
+        }
+      },
+      "raw_level_difference_db": {
+        "lfo-only": -6.392013028598127,
+        "zero-resonance-k1p2": -5.722550639575632
+      },
+      "reports_sha256": {
+        "lfo-only": "7aa694c5237a86a5f2fcace68948a8cabc6348a81c07758d984b291c098cab6c",
+        "zero-resonance-k1p2": "6670046e14bb4fae0e6c859af9ed71a0e107adf4012d812575a59794dff65dd6"
+      },
+      "render_sha256": {
+        "lfo-only": "9538c20409ad6c082a4015eb5a6243e2ec947e346069061563cdb6c98c326551",
+        "zero-resonance-k1p2": "8bec9dc8107739049c85a91b1c455f77bee54531082bb16c6cd3bc9693d0a083"
+      }
+    }
+  ],
+  "original_source_head": "82e6ae9468be06e6e6042ee5be51f9875c4a40d8",
+  "original_source_dsp_diff": "diff --git a/Source/DSP/SeptumEngine.h b/Source/DSP/SeptumEngine.h\nindex a414c5e..dd3eac9 100644\n--- a/Source/DSP/SeptumEngine.h\n+++ b/Source/DSP/SeptumEngine.h\n@@ -110,10 +110,17 @@ namespace mapping\n                            * std::pow (std::clamp (value, 0, 127) / 127.0, power);\n     }\n \n-    // [voiced, OQ-10] LFO RATE 0-127 -> Hz, 0.03 to 30 Hz.\n+    // [published hardware measurement, OQ-10] deep!sonic reports endpoint\n+    // periods of 20.59 s and 40.22 ms for the SH-201. Intermediate positions\n+    // retain provisional logarithmic interpolation; no full hardware rate\n+    // table or measurement tolerance was published. Tempo sync is separate.\n+    // Docs/fidelity/source-audits/2026-09-15-new-sources.md\n     [[nodiscard]] inline double lfoRateHz (double value) noexcept\n     {\n-        return 0.03 * std::pow (1000.0, value / 127.0);\n+        constexpr double slowPeriodSeconds = 20.59;\n+        constexpr double fastPeriodSeconds = 0.04022;\n+        return std::pow (slowPeriodSeconds / fastPeriodSeconds, value / 127.0)\n+                   / slowPeriodSeconds;\n     }\n \n     // [settled] Tempo-synced LFO frequency from the documented note table.\n",
+  "profile_type": "superseded quadratic interpolation experiment",
+  "final_linear_followup": "zero-resonance-linear-dist-2026-09-15.json"
+}

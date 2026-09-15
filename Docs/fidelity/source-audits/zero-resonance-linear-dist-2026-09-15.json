@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "profile": "linear bridge k0=1.2 to k40=.5591507918157866; previous curve40+",
+  "quadratic_candidate_superseded": true,
+  "id": "dist-bs-1",
+  "raw_resonance_upper_lower": [
+    31,
+    0
+  ],
+  "control_metrics": {
+    "spectral_convergence_mean": 0.3266449116786809,
+    "log_spectral_error_db_mean": 10.914327045779435,
+    "envelope_error_db_p95_max": 24.920825540849115,
+    "stereo_side_fraction_error": 0.0005157664717329834,
+    "stereo_balance_error_db": 0.38927461657439827
+  },
+  "quadratic_metrics": {
+    "spectral_convergence_mean": 0.3197870081832249,
+    "log_spectral_error_db_mean": 10.419282504747502,
+    "envelope_error_db_p95_max": 24.82573644224862,
+    "stereo_side_fraction_error": 0.0005157666822895566,
+    "stereo_balance_error_db": 0.38927452224036124
+  },
+  "linear_metrics": {
+    "spectral_convergence_mean": 0.3197188175642593,
+    "log_spectral_error_db_mean": 10.415818072506472,
+    "envelope_error_db_p95_max": 24.824199658917486,
+    "stereo_side_fraction_error": 0.0005157666822895566,
+    "stereo_balance_error_db": 0.38927452224036124
+  },
+  "linear_minus_control": {
+    "spectral_convergence_mean": -0.006926094114421633,
+    "log_spectral_error_db_mean": -0.49850897327296373,
+    "envelope_error_db_p95_max": -0.09662588193162946,
+    "stereo_side_fraction_error": 2.1055657326192467e-10,
+    "stereo_balance_error_db": -9.433403702630017e-08
+  },
+  "linear_minus_quadratic": {
+    "spectral_convergence_mean": -6.81906189656245e-05,
+    "log_spectral_error_db_mean": -0.003464432241029769,
+    "envelope_error_db_p95_max": -0.0015367833311330514,
+    "stereo_side_fraction_error": 0.0,
+    "stereo_balance_error_db": 0.0
+  },
+  "linear_calibration": {
+    "separate_prefix": true,
+    "held_out_from_dsp_tuning": null,
+    "qualification": "The time split only separates nuisance fitting; it does not prove that DSP tuning excluded this recording.",
+    "candidate_lag_samples": 218,
+    "candidate_lag_seconds": 0.004943310657596372,
+    "candidate_gain": 1.0792218262944944,
+    "candidate_gain_db": 0.6622143993890048,
+    "calibration_frames": 13892,
+    "max_lag_seconds": 0.05,
+    "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+    "alignment_correlation": 0.904832290071296,
+    "alignment_identifiable": true,
+    "alignment_at_search_boundary": false,
+    "gain_method": "one scalar RMS gain over calibration interval after alignment",
+    "allowed_transforms": [
+      "one global integer delay",
+      "one positive scalar gain"
+    ]
+  },
+  "linear_renderer_sha256": "6ddf73cb57baf1e15b840794d9df4947dff833d0a21e81ff1ad906f266ad37fb",
+  "linear_render_sha256": "5e6c96077a90b2b1d2776a3aa708a91358f5f2bcf48de5bff4a62818328a0a5c",
+  "source_sha256": {
+    "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+    "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+    "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+    "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+    "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+    "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+    "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+    "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+    "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+    "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+    "Source/DSP/SeptumEngine.h": "ac43e6facfe76e720e2d8101964e7b1f3becf661464127ad98d567b7626f3596",
+    "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+    "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+    "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+    "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+    "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+    "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9",
+    "Tools/RenderMidi.cpp": "73fc5cd13bf635bbd95dc2a4e65301b06038cd96d2e684de1bb694b3e0066bfb"
+  },
+  "patch_sha256": "774bed5b7e3155c4c2efadcffc388c972e7fdd9a9ed82af08cb7333b14980060",
+  "midi_sha256": "66b5b06caddf07f908df34a9e8aef4bc65cf05872ef7f2b047622b879835e3e5"
+}

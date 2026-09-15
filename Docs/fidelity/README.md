@@ -1,5 +1,14 @@
 # SH-201 fidelity work
 
+The [2026-09-15 source audit](source-audits/2026-09-15-new-sources.md) adds
+published hardware LFO periods and six dry filter recordings with original
+performance MIDI. The [dry filter calibration](dry-filter-calibration.md)
+corrects the zero-resonance response, with measured improvements across notes
+and both slopes. The recorded patch remains a recipe rather than a SysEx dump.
+The [equivalence assessment](equivalence-assessment.md) measures spectrum,
+envelope and stereo differences and prevents missing evidence from becoming
+an output-equivalence claim. Whole-instrument equivalence remains open.
+
 The [strict search for exact recording inputs](exact-reference-search.md) found no verified public set with both original performance MIDI and the exact preset used for a hardware recording. The estimated comparisons below do not qualify for that stricter requirement.
 
 The [ten-recording hardware A/B set](ten-recording-ab.md) pairs real official Roland recordings with unchanged published presets and explicitly reconstructed MIDI, including six new bass/lead transcriptions and current-engine renders.

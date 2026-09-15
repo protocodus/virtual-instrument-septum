@@ -1,0 +1,631 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-15",
+  "status": "new_source_assets_no_isolated_waveform_calibration",
+  "local_root": "build-fidelity/public-waveforms",
+  "source_pages": [
+    {
+      "filename": "trioda.html",
+      "url": "https://forum-trioda.pl/viewtopic.php?t=39199",
+      "author": "Romekd",
+      "published": "2022-10-15",
+      "bytes": 77597,
+      "sha256": "fc63912aa0ebda0057b8c04cc8328fec164a33bda6f3ce7cdfb5189b45ddad08"
+    },
+    {
+      "filename": "amazona.html",
+      "url": "https://www.amazona.de/test-roland-sh-201/",
+      "author": "Thorsten Walter",
+      "published": "2006-07-24",
+      "bytes": 283228,
+      "sha256": "567d7f320556359b89c4cbd3e25c9221fdfb88b9df218c144194d1cb752a1728"
+    }
+  ],
+  "assets": [
+    {
+      "filename": "1_Distortion-SH-201.mp3",
+      "url": "https://www.amazona.de/wp-content/uploads/2006/07/1_Distortion-SH-201.mp3",
+      "status": "200",
+      "bytes": 250904,
+      "sha256": "163b8adac8828d4d4140c0ab11d276b340cafd03378c618539ee13da53b09443",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "44100",
+            "channels": 2
+          }
+        ],
+        "format": {
+          "duration": "10.454333"
+        }
+      },
+      "full_decode_verified": true,
+      "decode_error": null,
+      "local_subdirectory": "amazona"
+    },
+    {
+      "filename": "3_Pad-SH-201.mp3",
+      "url": "https://www.amazona.de/wp-content/uploads/2006/07/3_Pad-SH-201.mp3",
+      "status": "200",
+      "bytes": 451524,
+      "sha256": "5f7aec2e8487e6135932247f74b6757e6b946dba89f93fbeac87f6dd90e97e99",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "44100",
+            "channels": 2
+          }
+        ],
+        "format": {
+          "duration": "18.813500"
+        }
+      },
+      "full_decode_verified": true,
+      "decode_error": null,
+      "local_subdirectory": "amazona"
+    },
+    {
+      "filename": "4_Sequenz-SH-201.mp3",
+      "url": "https://www.amazona.de/wp-content/uploads/2006/07/4_Sequenz-SH-201.mp3",
+      "status": "200",
+      "bytes": 391338,
+      "sha256": "97bd1a394be8c4b82b922941836546dc6186b3d9f0c90083281bbe44209376e4",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "44100",
+            "channels": 2
+          }
+        ],
+        "format": {
+          "duration": "16.305750"
+        }
+      },
+      "full_decode_verified": true,
+      "decode_error": null,
+      "local_subdirectory": "amazona"
+    },
+    {
+      "filename": "5_SuperSawSeq-SH-201.mp3",
+      "url": "https://www.amazona.de/wp-content/uploads/2006/07/5_SuperSawSeq-SH-201.mp3",
+      "status": "200",
+      "bytes": 256546,
+      "sha256": "3b85b4b9ca9d14256abc992621ccc022eefff036fe59974853e2a4af8e00f8e4",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "44100",
+            "channels": 2
+          }
+        ],
+        "format": {
+          "duration": "10.689417"
+        }
+      },
+      "full_decode_verified": true,
+      "decode_error": null,
+      "local_subdirectory": "amazona"
+    },
+    {
+      "filename": "6_Sync-SH-201.mp3",
+      "url": "https://www.amazona.de/wp-content/uploads/2006/07/6_Sync-SH-201.mp3",
+      "status": "200",
+      "bytes": 163132,
+      "sha256": "8f2f0e967719b18c60bce59312cc021ae6a12efa06b21479ef608d1c31db9fcf",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "44100",
+            "channels": 2
+          }
+        ],
+        "format": {
+          "duration": "6.797167"
+        }
+      },
+      "full_decode_verified": true,
+      "decode_error": null,
+      "local_subdirectory": "amazona"
+    },
+    {
+      "id": 98593,
+      "filename": "98593.jpg",
+      "url": "https://forum-trioda.pl/download/file.php?id=98593&mode=view",
+      "status": "200",
+      "exit": 0,
+      "bytes": 502808,
+      "sha256": "abd910079a6de37264bc74ed089067317d838c85f43c832e6b4af22bbb4edfa9",
+      "signature": "ffd8ffe000104a4649460001",
+      "local_subdirectory": "trioda"
+    },
+    {
+      "id": 98594,
+      "filename": "98594.jpg",
+      "url": "https://forum-trioda.pl/download/file.php?id=98594&mode=view",
+      "status": "200",
+      "exit": 0,
+      "bytes": 287617,
+      "sha256": "92cf71e89e0e60fd41880e0cc4fe269a6baecc2a581dfa475b2eeae6d36cd16a",
+      "signature": "ffd8ffe000104a4649460001",
+      "local_subdirectory": "trioda"
+    },
+    {
+      "id": 98595,
+      "filename": "RigolDS0.png",
+      "url": "https://forum-trioda.pl/download/file.php?id=98595&mode=view",
+      "status": "200",
+      "exit": 0,
+      "bytes": 74197,
+      "sha256": "941f5c25931800ac6fa7b1ecd8d5b1c5e4f6fac76a37082dfc344d9b78420bcf",
+      "signature": "89504e470d0a1a0a0000000d",
+      "local_subdirectory": "trioda"
+    },
+    {
+      "id": 98596,
+      "filename": "RigolDS1.png",
+      "url": "https://forum-trioda.pl/download/file.php?id=98596&mode=view",
+      "status": "200",
+      "exit": 0,
+      "bytes": 80666,
+      "sha256": "822ea833b5e6376b4abd53b5a8f2b05fc435d2b0f3325c503ee4cddd8c2cc620",
+      "signature": "89504e470d0a1a0a0000000d",
+      "local_subdirectory": "trioda"
+    },
+    {
+      "id": 98597,
+      "filename": "RigolDS2.png",
+      "url": "https://forum-trioda.pl/download/file.php?id=98597&mode=view",
+      "status": "200",
+      "exit": 0,
+      "bytes": 79866,
+      "sha256": "f26ba88bb1ce02899d1aef95b8832758915c1a499483a8b4283f270eb2dd3ff9",
+      "signature": "89504e470d0a1a0a0000000d",
+      "local_subdirectory": "trioda"
+    },
+    {
+      "id": 98598,
+      "filename": "RigolDS3.png",
+      "url": "https://forum-trioda.pl/download/file.php?id=98598&mode=view",
+      "status": "200",
+      "exit": 0,
+      "bytes": 80378,
+      "sha256": "5edc1cd5f09a0e59c40f1e62284989f04155e865467d649cc7b03c7972a93b28",
+      "signature": "89504e470d0a1a0a0000000d",
+      "local_subdirectory": "trioda"
+    },
+    {
+      "id": 98599,
+      "filename": "RigolDS4.png",
+      "url": "https://forum-trioda.pl/download/file.php?id=98599&mode=view",
+      "status": "200",
+      "exit": 0,
+      "bytes": 81140,
+      "sha256": "16c4eaea803a8df28d34920250845f0556af23125325c871092b10c409845334",
+      "signature": "89504e470d0a1a0a0000000d",
+      "local_subdirectory": "trioda"
+    },
+    {
+      "id": 98600,
+      "filename": "RigolDS5.png",
+      "url": "https://forum-trioda.pl/download/file.php?id=98600&mode=view",
+      "status": "200",
+      "exit": 0,
+      "bytes": 79970,
+      "sha256": "2fe95a7686089d5c8a927a248f3cb04f6d986b64da7acf6a839832f9ef918bcf",
+      "signature": "89504e470d0a1a0a0000000d",
+      "local_subdirectory": "trioda"
+    },
+    {
+      "id": 98601,
+      "filename": "RigolDS6.png",
+      "url": "https://forum-trioda.pl/download/file.php?id=98601&mode=view",
+      "status": "200",
+      "exit": 0,
+      "bytes": 80034,
+      "sha256": "94d78710846d440aca9a8fb8e108032c124ae7374e314e1ee516b27a933aacda",
+      "signature": "89504e470d0a1a0a0000000d",
+      "local_subdirectory": "trioda"
+    },
+    {
+      "id": 98602,
+      "filename": "RigolDS7.png",
+      "url": "https://forum-trioda.pl/download/file.php?id=98602&mode=view",
+      "status": "200",
+      "exit": 0,
+      "bytes": 80162,
+      "sha256": "fa08cd1ce3588cb4ea2d672a07a06fb2c4d366dacc42bdf61e5392b23ae83324",
+      "signature": "89504e470d0a1a0a0000000d",
+      "local_subdirectory": "trioda"
+    },
+    {
+      "id": 98603,
+      "filename": "RigolDS8.png",
+      "url": "https://forum-trioda.pl/download/file.php?id=98603&mode=view",
+      "status": "200",
+      "exit": 0,
+      "bytes": 80557,
+      "sha256": "adf55c78da58b67b9c6f1685bd35241a1a8a74fc53306c318de6b7b49eaf8485",
+      "signature": "89504e470d0a1a0a0000000d",
+      "local_subdirectory": "trioda"
+    },
+    {
+      "id": 98604,
+      "filename": "RigolDS9.png",
+      "url": "https://forum-trioda.pl/download/file.php?id=98604&mode=view",
+      "status": "200",
+      "exit": 0,
+      "bytes": 100371,
+      "sha256": "53e8335de02d380f89b752e292cf70ed57d74b572a7351a3acaa90e4e89a3b35",
+      "signature": "89504e470d0a1a0a0000000d",
+      "local_subdirectory": "trioda"
+    },
+    {
+      "id": 98605,
+      "filename": "RigolDS10.png",
+      "url": "https://forum-trioda.pl/download/file.php?id=98605&mode=view",
+      "status": "200",
+      "exit": 0,
+      "bytes": 93393,
+      "sha256": "546cbee804542d98cd910b0276e455beb78c8ca32e4019b1015e9717f9afdafe",
+      "signature": "89504e470d0a1a0a0000000d",
+      "local_subdirectory": "trioda"
+    },
+    {
+      "id": 98606,
+      "filename": "RigolDS11.png",
+      "url": "https://forum-trioda.pl/download/file.php?id=98606&mode=view",
+      "status": "200",
+      "exit": 0,
+      "bytes": 112834,
+      "sha256": "f3cae7ea070828a90db05ab7444ccbdc90a135b1358df0d440d7d89c1db6a892",
+      "signature": "89504e470d0a1a0a0000000d",
+      "local_subdirectory": "trioda"
+    },
+    {
+      "id": 98607,
+      "filename": "RigolDS12.png",
+      "url": "https://forum-trioda.pl/download/file.php?id=98607&mode=view",
+      "status": "200",
+      "exit": 0,
+      "bytes": 117099,
+      "sha256": "433e9d8d52314c8ac0f95dbc4af1d73dbfa592a2ff6b0b8bab93a0b54d7abf95",
+      "signature": "89504e470d0a1a0a0000000d",
+      "local_subdirectory": "trioda"
+    },
+    {
+      "id": 98608,
+      "filename": "RigolDS13.png",
+      "url": "https://forum-trioda.pl/download/file.php?id=98608&mode=view",
+      "status": "200",
+      "exit": 0,
+      "bytes": 106886,
+      "sha256": "8ae385afeb4640e3fc1f159cc6867c8a2ab8ce43db0c25247da374ef2725da64",
+      "signature": "89504e470d0a1a0a0000000d",
+      "local_subdirectory": "trioda"
+    },
+    {
+      "id": 98609,
+      "filename": "RigolDS14.png",
+      "url": "https://forum-trioda.pl/download/file.php?id=98609&mode=view",
+      "status": "200",
+      "exit": 0,
+      "bytes": 134690,
+      "sha256": "2bf5b3e9d7f33c591aefbb58c352b5219ea779a337381eec9ae5baeae9073910",
+      "signature": "89504e470d0a1a0a0000000d",
+      "local_subdirectory": "trioda"
+    },
+    {
+      "id": 98610,
+      "filename": "RigolDS15.png",
+      "url": "https://forum-trioda.pl/download/file.php?id=98610&mode=view",
+      "status": "200",
+      "exit": 0,
+      "bytes": 102952,
+      "sha256": "a38831cd4cfc17659f8c92add2936eed5fd850a1250291410ee8354d19e3fc7a",
+      "signature": "89504e470d0a1a0a0000000d",
+      "local_subdirectory": "trioda"
+    },
+    {
+      "id": 98611,
+      "filename": "RigolDS16.png",
+      "url": "https://forum-trioda.pl/download/file.php?id=98611&mode=view",
+      "status": "200",
+      "exit": 0,
+      "bytes": 145129,
+      "sha256": "0e8ccc6995098d28be3324ade9d8c9b29cf80c82fb2e41ae6581b1fbc3b89f1c",
+      "signature": "89504e470d0a1a0a0000000d",
+      "local_subdirectory": "trioda"
+    }
+  ],
+  "limits": [
+    "Amazona audio is author-attributed SH-201 but contains no original MIDI, named patch or exact settings.",
+    "Trioda images show physical hardware and a Rigol MSO5204; no waveform-data export, paired original MIDI or exact patch is supplied.",
+    "The Trioda WAV directory contains a multi-instrument composition and generated test waves; neither is an isolated SH-201 waveform benchmark.",
+    "No original SH-201 audio or photograph is committed; hashes and public URLs identify local research assets."
+  ],
+  "recovery_attempts": [
+    {
+      "source": "MaxSynths original author link",
+      "url": "https://www.maxsynths.com/download/MaxSynths_Rayblaster_Impulses01.zip",
+      "http_status": 200,
+      "result": "Two ASCII bytes OK; not an archive"
+    },
+    {
+      "source": "MaxSynths / Aymat Internet Archive CDX",
+      "http_status": 503,
+      "result": "Temporarily Offline page, no archive absence inferred"
+    },
+    {
+      "source": "MaxSynths / Aymat Internet Archive availability",
+      "http_status": 429,
+      "result": "Rate-limit response, no archive absence inferred"
+    },
+    {
+      "source": "Author-posted Kontakt conversion",
+      "url": "https://www.aymat.org/temp/samples/-keys%20%26%20synth/SH201-multi.rar",
+      "http_status": 404,
+      "result": "HTML response, not an archive"
+    }
+  ],
+  "scope_inspection": {
+    "method": "All 17 original screenshots and enlarged measurement strips visually inspected. OCR used only as a cross-check; values transcribed from visible pixels.",
+    "measurement_status": "Display readings, not calibrated oscillator ground truth. No paired exact patch, MIDI, effects state or independent measurement uncertainty.",
+    "instrument": "Rigol MSO5204",
+    "source_text_observations": [
+      "The author separately describes changed composite shape after each keypress and slow relative-phase movement while both octave keys remain held.",
+      "The held-note observation concerns two notes from the SH-201, not comparison against an external clock or generator.",
+      "December follow-up says roughly a dozen/severalteen seconds of holding to notice movement; it does not specify a full phase-cycle period.",
+      "Keyboard dynamics were reportedly disabled; no raw fixed velocity is supplied."
+    ],
+    "limits": [
+      "Classic oscillator choice, oscillator mixture, fine tuning, master tuning, effects, pitch modulation and per-capture patch settings are unknown.",
+      "The frequency counter on a composite or irregular waveform cannot identify individual oscillator frequencies.",
+      "Separate capture timestamps and trigger levels prevent deriving continuous phase speed from the images.",
+      "Retrigger differences cannot distinguish free-running phase, randomized phase, voice allocation or key timing.",
+      "No dry isolated triangle, saw or square capture is identified, so waveform shape and polarity are not calibration targets."
+    ],
+    "measurements": [
+      {
+        "filename": "RigolDS0.png",
+        "source_asset_id": 98595,
+        "display_timestamp": "2022-02-07 17:54:12",
+        "timebase_ms_per_division": 1,
+        "channel1_volts_per_division": 1.0,
+        "vrms_volts": 0.6792,
+        "vpp_volts": 2.0371,
+        "frequency_counter_hz": 439.43,
+        "vmax_volts": null,
+        "vmin_volts": null,
+        "source_context": "single smooth shape; no isolated-waveform patch established"
+      },
+      {
+        "filename": "RigolDS1.png",
+        "source_asset_id": 98596,
+        "display_timestamp": "2022-02-07 17:55:40",
+        "timebase_ms_per_division": 1,
+        "channel1_volts_per_division": 1.0,
+        "vrms_volts": 1.0651,
+        "vpp_volts": 3.7609,
+        "frequency_counter_hz": 439.66,
+        "vmax_volts": null,
+        "vmin_volts": null,
+        "source_context": "octave composite discussion"
+      },
+      {
+        "filename": "RigolDS2.png",
+        "source_asset_id": 98597,
+        "display_timestamp": "2022-02-07 17:56:12",
+        "timebase_ms_per_division": 1,
+        "channel1_volts_per_division": 1.0,
+        "vrms_volts": 1.0636,
+        "vpp_volts": 3.4083,
+        "frequency_counter_hz": 438.93,
+        "vmax_volts": null,
+        "vmin_volts": null,
+        "source_context": "octave composite discussion"
+      },
+      {
+        "filename": "RigolDS3.png",
+        "source_asset_id": 98598,
+        "display_timestamp": "2022-02-07 17:56:42",
+        "timebase_ms_per_division": 1,
+        "channel1_volts_per_division": 1.0,
+        "vrms_volts": 1.0428,
+        "vpp_volts": 3.7609,
+        "frequency_counter_hz": 439.11,
+        "vmax_volts": null,
+        "vmin_volts": null,
+        "source_context": "octave composite discussion"
+      },
+      {
+        "filename": "RigolDS4.png",
+        "source_asset_id": 98599,
+        "display_timestamp": "2022-02-07 17:57:18",
+        "timebase_ms_per_division": 1,
+        "channel1_volts_per_division": 1.0,
+        "vrms_volts": 1.0295,
+        "vpp_volts": 3.4475,
+        "frequency_counter_hz": 439.35,
+        "vmax_volts": null,
+        "vmin_volts": null,
+        "source_context": "octave composite discussion"
+      },
+      {
+        "filename": "RigolDS5.png",
+        "source_asset_id": 98600,
+        "display_timestamp": "2022-02-07 17:57:47",
+        "timebase_ms_per_division": 1,
+        "channel1_volts_per_division": 1.0,
+        "vrms_volts": 1.0662,
+        "vpp_volts": 3.7609,
+        "frequency_counter_hz": 439.64,
+        "vmax_volts": null,
+        "vmin_volts": null,
+        "source_context": "octave composite discussion"
+      },
+      {
+        "filename": "RigolDS6.png",
+        "source_asset_id": 98601,
+        "display_timestamp": "2022-02-07 17:58:14",
+        "timebase_ms_per_division": 1,
+        "channel1_volts_per_division": 1.0,
+        "vrms_volts": 1.0654,
+        "vpp_volts": 3.3691,
+        "frequency_counter_hz": 439.0,
+        "vmax_volts": null,
+        "vmin_volts": null,
+        "source_context": "octave composite discussion"
+      },
+      {
+        "filename": "RigolDS7.png",
+        "source_asset_id": 98602,
+        "display_timestamp": "2022-02-07 17:58:47",
+        "timebase_ms_per_division": 1,
+        "channel1_volts_per_division": 1.0,
+        "vrms_volts": 1.0418,
+        "vpp_volts": 3.7217,
+        "frequency_counter_hz": 439.08,
+        "vmax_volts": null,
+        "vmin_volts": null,
+        "source_context": "octave composite discussion"
+      },
+      {
+        "filename": "RigolDS8.png",
+        "source_asset_id": 98603,
+        "display_timestamp": "2022-02-07 17:59:23",
+        "timebase_ms_per_division": 1,
+        "channel1_volts_per_division": 1.0,
+        "vrms_volts": 1.0627,
+        "vpp_volts": 3.4083,
+        "frequency_counter_hz": 439.16,
+        "vmax_volts": null,
+        "vmin_volts": null,
+        "source_context": "octave composite discussion"
+      },
+      {
+        "filename": "RigolDS9.png",
+        "source_asset_id": 98604,
+        "display_timestamp": "2022-02-07 18:41:17",
+        "timebase_ms_per_division": 2,
+        "channel1_volts_per_division": 1.0,
+        "vrms_volts": 1.0838,
+        "vpp_volts": 4.1526,
+        "frequency_counter_hz": 395.72,
+        "vmax_volts": 1.5278,
+        "vmin_volts": -2.6248,
+        "source_context": "general waveform discussion"
+      },
+      {
+        "filename": "RigolDS10.png",
+        "source_asset_id": 98605,
+        "display_timestamp": "2022-02-07 18:42:06",
+        "timebase_ms_per_division": 2,
+        "channel1_volts_per_division": 1.0,
+        "vrms_volts": 0.74406,
+        "vpp_volts": 3.7217,
+        "frequency_counter_hz": 131.02,
+        "vmax_volts": 1.6062,
+        "vmin_volts": -2.1155,
+        "source_context": "general waveform discussion"
+      },
+      {
+        "filename": "RigolDS11.png",
+        "source_asset_id": 98606,
+        "display_timestamp": "2022-02-07 18:43:52",
+        "timebase_ms_per_division": 5,
+        "channel1_volts_per_division": 0.5,
+        "vrms_volts": 0.47269,
+        "vpp_volts": 1.7373,
+        "frequency_counter_hz": 138.84,
+        "vmax_volts": 0.61772,
+        "vmin_volts": -1.1196,
+        "source_context": "author uncertain ring-modulation attribution"
+      },
+      {
+        "filename": "RigolDS12.png",
+        "source_asset_id": 98607,
+        "display_timestamp": "2022-02-07 18:45:21",
+        "timebase_ms_per_division": 5,
+        "channel1_volts_per_division": 0.5,
+        "vrms_volts": 0.47279,
+        "vpp_volts": 1.8917,
+        "frequency_counter_hz": 175.04,
+        "vmax_volts": 0.67564,
+        "vmin_volts": -1.2161,
+        "source_context": "author uncertain ring-modulation attribution"
+      },
+      {
+        "filename": "RigolDS13.png",
+        "source_asset_id": 98608,
+        "display_timestamp": "2022-02-07 18:46:29",
+        "timebase_ms_per_division": 10,
+        "channel1_volts_per_division": 0.5,
+        "vrms_volts": 0.22883,
+        "vpp_volts": 1.6987,
+        "frequency_counter_hz": 155.64,
+        "vmax_volts": 0.84937,
+        "vmin_volts": -0.84937,
+        "source_context": "high crest factor discussion"
+      },
+      {
+        "filename": "RigolDS14.png",
+        "source_asset_id": 98609,
+        "display_timestamp": "2022-02-07 18:47:18",
+        "timebase_ms_per_division": 5,
+        "channel1_volts_per_division": 0.5,
+        "vrms_volts": 0.89157,
+        "vpp_volts": 4.1117,
+        "frequency_counter_hz": 155.73,
+        "vmax_volts": 1.8724,
+        "vmin_volts": -2.2392,
+        "source_context": "high crest factor discussion"
+      },
+      {
+        "filename": "RigolDS15.png",
+        "source_asset_id": 98610,
+        "display_timestamp": "2022-02-07 18:48:25",
+        "timebase_ms_per_division": 5,
+        "channel1_volts_per_division": 0.5,
+        "vrms_volts": 0.084777,
+        "vpp_volts": 2.3743,
+        "frequency_counter_hz": 333.97,
+        "vmax_volts": 1.1389,
+        "vmin_volts": -1.2354,
+        "source_context": "high crest factor discussion"
+      },
+      {
+        "filename": "RigolDS16.png",
+        "source_asset_id": 98611,
+        "display_timestamp": "2022-02-07 18:49:15",
+        "timebase_ms_per_division": 5,
+        "channel1_volts_per_division": 0.5,
+        "vrms_volts": 0.26248,
+        "vpp_volts": 3.8608,
+        "frequency_counter_hz": 496.43,
+        "vmax_volts": 2.1427,
+        "vmin_volts": -1.718,
+        "source_context": "high crest factor discussion"
+      }
+    ],
+    "derived_diagnostics": {
+      "ds0_frequency_offset_cents_from_440": -2.2441889545539673,
+      "ds15_max_absolute_peak_over_rms": 14.572348632294137
+    },
+    "promotion": "No DSP correction recommended from this source alone."
+  }
+}

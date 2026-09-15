@@ -1,0 +1,166 @@
+{
+  "acquired": "2026-09-15",
+  "assets": [
+    {
+      "url": "https://www.deepsonic.ch/deep/audio_midi/deepsonic_-_filter_demo_-_comparsion_sequence.mid",
+      "path": "build-fidelity/deepsonic/deepsonic_-_filter_demo_-_comparsion_sequence.mid",
+      "bytes": 925,
+      "sha256": "21ea21b9ba3ba14cc205931134fb7a320b09e67821bd3a3c70f97fa2e8b5d99a"
+    },
+    {
+      "url": "https://www.deepsonic.ch/deep/audio_filter/roland_sh-201_-_filter_demo_-_lpf12_q000.mp3",
+      "path": "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf12_q000.mp3",
+      "bytes": 1203043,
+      "sha256": "28e241247a0efb217eb4cb7154cc3b69713fcebca781639c45b8904b3dc8615b",
+      "audio": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "44100",
+            "channels": 1,
+            "bit_rate": "320000"
+          }
+        ],
+        "format": {
+          "duration": "30.018200"
+        }
+      },
+      "full_decode_ok": true
+    },
+    {
+      "url": "https://www.deepsonic.ch/deep/audio_filter/roland_sh-201_-_filter_demo_-_lpf12_q050.mp3",
+      "path": "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf12_q050.mp3",
+      "bytes": 1203043,
+      "sha256": "eada93d2d7330a573bf5166244d8b9cb6a4d55fb49f0c1d6bd18197b5a9529ca",
+      "audio": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "44100",
+            "channels": 1,
+            "bit_rate": "320000"
+          }
+        ],
+        "format": {
+          "duration": "30.018200"
+        }
+      },
+      "full_decode_ok": true
+    },
+    {
+      "url": "https://www.deepsonic.ch/deep/audio_filter/roland_sh-201_-_filter_demo_-_lpf12_q100.mp3",
+      "path": "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf12_q100.mp3",
+      "bytes": 1203043,
+      "sha256": "57db9bd6449ed94441b39e1885c14491863149a35740f768d81511dcf91086ae",
+      "audio": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "44100",
+            "channels": 1,
+            "bit_rate": "320000"
+          }
+        ],
+        "format": {
+          "duration": "30.018200"
+        }
+      },
+      "full_decode_ok": true
+    },
+    {
+      "url": "https://www.deepsonic.ch/deep/audio_filter/roland_sh-201_-_filter_demo_-_lpf24_q000.mp3",
+      "path": "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf24_q000.mp3",
+      "bytes": 1203043,
+      "sha256": "ebb6fa4e12136028bbff614633095aa510c31654fcce840af5e3a85b3a469d90",
+      "audio": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "44100",
+            "channels": 1,
+            "bit_rate": "320000"
+          }
+        ],
+        "format": {
+          "duration": "30.018200"
+        }
+      },
+      "full_decode_ok": true
+    },
+    {
+      "url": "https://www.deepsonic.ch/deep/audio_filter/roland_sh-201_-_filter_demo_-_lpf24_q050.mp3",
+      "path": "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf24_q050.mp3",
+      "bytes": 1203043,
+      "sha256": "57dabaf9090e306913f05e3fc03fbcff60f01cb04bd05851f73536c5fc54809c",
+      "audio": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "44100",
+            "channels": 1,
+            "bit_rate": "320000"
+          }
+        ],
+        "format": {
+          "duration": "30.018200"
+        }
+      },
+      "full_decode_ok": true
+    },
+    {
+      "url": "https://www.deepsonic.ch/deep/audio_filter/roland_sh-201_-_filter_demo_-_lpf24_q100.mp3",
+      "path": "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf24_q100.mp3",
+      "bytes": 1203043,
+      "sha256": "58de7cd421177e831ba082548c2b6ac1d4188623c55e1ddc629c5586a2a18e0c",
+      "audio": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "44100",
+            "channels": 1,
+            "bit_rate": "320000"
+          }
+        ],
+        "format": {
+          "duration": "30.018200"
+        }
+      },
+      "full_decode_ok": true
+    },
+    {
+      "path": "build-fidelity/deepsonic/envelope-lfo.pdf",
+      "bytes": 555729,
+      "sha256": "e9f0cbe732f09d363f11aa650716831db20dab84998165e40c242a7aec5e283f",
+      "url": "https://www.deepsonic.ch/deep/docs_misc/deepsonic_analytics_-_envelope_lfo_speed.pdf"
+    },
+    {
+      "path": "build-fidelity/deepsonic/envelope-lfo.txt",
+      "bytes": 7919,
+      "sha256": "187b5ae24261f5e65fdac85a3562cdc7bf22b79a4ad74cfb920a1f508e63577b"
+    },
+    {
+      "path": "build-fidelity/deepsonic/envelope_lfo_speed.html",
+      "bytes": 14718,
+      "sha256": "5aec922647d1e3a73e5e729feac8eaad62a88b5ab832089d4f01270adac86701",
+      "url": "https://www.deepsonic.ch/deep/htm/deepsonic_analytics_envelope_lfo_speed.php"
+    },
+    {
+      "path": "build-fidelity/deepsonic/filter_comparison.html",
+      "bytes": 117753,
+      "sha256": "aa8536528eb13b6f04acd20599fe2a3b62c12af5c4cab3f82ee68ad3a6972548",
+      "url": "https://www.deepsonic.ch/deep/htm/deepsonic_analytics_filter_comparison.php"
+    }
+  ]
+}

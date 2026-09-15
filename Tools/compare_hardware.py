@@ -269,7 +269,7 @@ label{font-size:14px}p{max-width:90ch}summary{cursor:pointer}details p{font-size
 <p><strong>Performance MIDI: all estimated. Exact original MIDI files: 0.</strong>
 Every MIDI file below was reconstructed from the recording. None is a captured original performance.</p>
 <p>Official Roland hardware demos compared with Septum playing short audio-derived MIDI reconstructions
-and unmodified published Roland presets. No original performance MIDI was found in the audited sources.
+and unmodified published Roland presets. No original performance MIDI was found for these official excerpts.
 These are exploratory listening benchmarks. Timing, velocity, controllers and the recording chain
 remain possible causes of differences; the charts do not isolate synthesizer error.</p>
 <p>Listening copies match whole-excerpt RMS using scalar gain only. Raw audio and full provenance remain

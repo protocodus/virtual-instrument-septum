@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "claim": "Actual production renderer reproduces frozen candidate audio for these exact MIDI/SysEx inputs; not a hardware equivalence claim",
+  "all_ten_byte_identical": true,
+  "cases": [
+    {
+      "id": "air-lead-1",
+      "production_sha256": "43bca32341c215f6ccfe58291f787a7c286602f8772061e26d59566921c591e3",
+      "expected_candidate_sha256": "43bca32341c215f6ccfe58291f787a7c286602f8772061e26d59566921c591e3",
+      "byte_identical": true,
+      "max_pcm_difference": 0.0,
+      "expected_profile": "quadratic zero-resonance profile; identical active control values",
+      "midi_sha256": "8e7e693c3ae0940ebabace9629fc25e07aef73e90c1fe250e6dcda0fefefe228",
+      "patch_sha256": "e7e911d9be986fcc4987c41d79836034ef60ea5f9c70308a7d5f57348f4c091e",
+      "renderer_sha256": "3e07fa1722719173c091d0f3dfb135526788e8931630e918dbc5b63abdfa8ec0"
+    },
+    {
+      "id": "brassy-ld-1",
+      "production_sha256": "c71bb3a788f0ac64fabb5a81106d5a492494019459aaa62f816219b198ee1230",
+      "expected_candidate_sha256": "c71bb3a788f0ac64fabb5a81106d5a492494019459aaa62f816219b198ee1230",
+      "byte_identical": true,
+      "max_pcm_difference": 0.0,
+      "expected_profile": "quadratic zero-resonance profile; identical active control values",
+      "midi_sha256": "fd78fd56cfa10d6ac15b71877b448a70ee161306953c64f528388d45c163f052",
+      "patch_sha256": "daba0b97a4b9e2674c4832050bbd0d8e869a3b61e9ce867c7055d21b0f4a6f5a",
+      "renderer_sha256": "3e07fa1722719173c091d0f3dfb135526788e8931630e918dbc5b63abdfa8ec0"
+    },
+    {
+      "id": "club-bass",
+      "production_sha256": "d5fab55b6cfccca0cbe60161eb8fdcfbcf24618e2d4d2b7333b7824fde50a61e",
+      "expected_candidate_sha256": "d5fab55b6cfccca0cbe60161eb8fdcfbcf24618e2d4d2b7333b7824fde50a61e",
+      "byte_identical": true,
+      "max_pcm_difference": 0.0,
+      "expected_profile": "quadratic zero-resonance profile; identical active control values",
+      "midi_sha256": "c86bc2a60af8086ae69c30886b50334da0c8799fc52bcc2a7a0495c39f893a3a",
+      "patch_sha256": "1db074dd01883c578cda8eef19aacf28be2b13c4a2b9ab21e829ba915f9a194b",
+      "renderer_sha256": "3e07fa1722719173c091d0f3dfb135526788e8931630e918dbc5b63abdfa8ec0"
+    },
+    {
+      "id": "cotton-wool",
+      "production_sha256": "54b7512438fb6a743292f314354cf5c37d68ba4f74a39e9474f03f9854e219a5",
+      "expected_candidate_sha256": "54b7512438fb6a743292f314354cf5c37d68ba4f74a39e9474f03f9854e219a5",
+      "byte_identical": true,
+      "max_pcm_difference": 0.0,
+      "expected_profile": "quadratic zero-resonance profile; identical active control values",
+      "midi_sha256": "9794993003bca0f1af71f2a39d30e294c6bf862ab1d6aabdbea50d145d0ce69f",
+      "patch_sha256": "e7f23e39445895f2158482037b37a19dfe413e536869c0e6f78352de6e49fbef",
+      "renderer_sha256": "3e07fa1722719173c091d0f3dfb135526788e8931630e918dbc5b63abdfa8ec0"
+    },
+    {
+      "id": "dist-bs-1",
+      "production_sha256": "5e6c96077a90b2b1d2776a3aa708a91358f5f2bcf48de5bff4a62818328a0a5c",
+      "expected_candidate_sha256": "5e6c96077a90b2b1d2776a3aa708a91358f5f2bcf48de5bff4a62818328a0a5c",
+      "byte_identical": true,
+      "max_pcm_difference": 0.0,
+      "expected_profile": "linear bridge",
+      "midi_sha256": "66b5b06caddf07f908df34a9e8aef4bc65cf05872ef7f2b047622b879835e3e5",
+      "patch_sha256": "774bed5b7e3155c4c2efadcffc388c972e7fdd9a9ed82af08cb7333b14980060",
+      "renderer_sha256": "3e07fa1722719173c091d0f3dfb135526788e8931630e918dbc5b63abdfa8ec0"
+    },
+    {
+      "id": "moogie-1",
+      "production_sha256": "c3ddf4e529e8e697827147758430ec58b6e0e9cc3265f4d1add9081053da0489",
+      "expected_candidate_sha256": "c3ddf4e529e8e697827147758430ec58b6e0e9cc3265f4d1add9081053da0489",
+      "byte_identical": true,
+      "max_pcm_difference": 0.0,
+      "expected_profile": "quadratic zero-resonance profile; identical active control values",
+      "midi_sha256": "354540c1ac357a80473d0d71e62a20ff2af79e125fcdf82166d20ec12cf71104",
+      "patch_sha256": "33d39a6b1cbf47abd830ecf879e1ef6774b50eb6a4eb4db6997749f4f7cffabc",
+      "renderer_sha256": "3e07fa1722719173c091d0f3dfb135526788e8931630e918dbc5b63abdfa8ec0"
+    },
+    {
+      "id": "pedal-bs-1",
+      "production_sha256": "30b80239ddc51ec4c72883974001a6a8d4a8d4b448621297967ae1082a951d27",
+      "expected_candidate_sha256": "30b80239ddc51ec4c72883974001a6a8d4a8d4b448621297967ae1082a951d27",
+      "byte_identical": true,
+      "max_pcm_difference": 0.0,
+      "expected_profile": "quadratic zero-resonance profile; identical active control values",
+      "midi_sha256": "c2f510902fce16661641a50c6c53a1a32cbffb1ffaa647d0013a3b9a91315cf9",
+      "patch_sha256": "25b2203eb16206963e36fd2d7fd7b04610f6f6d90036eb2edb670b9d30f1bb5a",
+      "renderer_sha256": "3e07fa1722719173c091d0f3dfb135526788e8931630e918dbc5b63abdfa8ec0"
+    },
+    {
+      "id": "so-juno-1",
+      "production_sha256": "c3674442673eee179b9003265b1bafede271e77eb47bceb589a74e44db3b008e",
+      "expected_candidate_sha256": "c3674442673eee179b9003265b1bafede271e77eb47bceb589a74e44db3b008e",
+      "byte_identical": true,
+      "max_pcm_difference": 0.0,
+      "expected_profile": "quadratic zero-resonance profile; identical active control values",
+      "midi_sha256": "0e23e6d891211413e421f5ac03a7c8dccd249d7b7a8c7d4e38855111eaa990d1",
+      "patch_sha256": "f1a7fc59b76392ec5edec8dfe506a8b031ac1d2382b3e8893734afd813b8ad17",
+      "renderer_sha256": "3e07fa1722719173c091d0f3dfb135526788e8931630e918dbc5b63abdfa8ec0"
+    },
+    {
+      "id": "supa-juce-1",
+      "production_sha256": "2b4c5f8cbdf83ecc895b19f7015fd15bd9f126723830375df564f52e5ac79bb1",
+      "expected_candidate_sha256": "2b4c5f8cbdf83ecc895b19f7015fd15bd9f126723830375df564f52e5ac79bb1",
+      "byte_identical": true,
+      "max_pcm_difference": 0.0,
+      "expected_profile": "quadratic zero-resonance profile; identical active control values",
+      "midi_sha256": "0df6bc4fa7ae91185c937d8ce770562aaa5ced55650bc5b4066951ba671a9498",
+      "patch_sha256": "9791c9e16ab0a6e4374791b8f47766cfa0ee725da0d4a14ee5d75a319bf6fad8",
+      "renderer_sha256": "3e07fa1722719173c091d0f3dfb135526788e8931630e918dbc5b63abdfa8ec0"
+    },
+    {
+      "id": "vangelead",
+      "production_sha256": "8bec9dc8107739049c85a91b1c455f77bee54531082bb16c6cd3bc9693d0a083",
+      "expected_candidate_sha256": "8bec9dc8107739049c85a91b1c455f77bee54531082bb16c6cd3bc9693d0a083",
+      "byte_identical": true,
+      "max_pcm_difference": 0.0,
+      "expected_profile": "quadratic zero-resonance profile; identical active control values",
+      "midi_sha256": "9b1a34a3b41d19f57f1882649094b91459dede9cc7628b7bfe4670cfce61f297",
+      "patch_sha256": "ae19b5e27dd1828815a6468fe4d0e3e49c1dea17f931cac02a4c452e204a7624",
+      "renderer_sha256": "3e07fa1722719173c091d0f3dfb135526788e8931630e918dbc5b63abdfa8ec0"
+    }
+  ]
+}

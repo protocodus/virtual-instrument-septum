@@ -1,0 +1,1003 @@
+{
+  "schema_version": 1,
+  "source_hashes": {
+    "SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+    "ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+    "TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9",
+    "AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+    "SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+    "SeptumEngine.h": "ac43e6facfe76e720e2d8101964e7b1f3becf661464127ad98d567b7626f3596",
+    "MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+    "ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+    "SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+    "DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+    "MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+    "SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+    "AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+    "ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+    "ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+    "SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+    "SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae"
+  },
+  "renderer_source_sha256": "c723619e9d74c5f346177a9b6c164526b8d0d3fccb3fe91044aba06d3d1e7afe",
+  "renderer_sha256": "f0f7ace77d1c152730204c7e9b235ca17eb25e019cf398136d5f9ca6440657af",
+  "parent_estimator_sha256": "a1d2d0f8730de029406869a3cf12b7c781d75da87af949cb0641b1c9b48839f1",
+  "analysis_sha256": "0b243a2328698d22d242c504ae13f7af9c272b17a59123f457902229b11985ac",
+  "render_recipe": {
+    "sample_rate": 44100,
+    "note_numbers": [
+      24,
+      36,
+      29,
+      31,
+      57
+    ],
+    "per_note_on_seconds": [
+      0,
+      2,
+      4,
+      6,
+      8
+    ],
+    "note_duration_seconds": 1,
+    "initial_cutoff_over_fundamental": 7.82306382690934,
+    "linear_control_decay_seconds": 1.0138693907979905,
+    "filter_envelope": {
+      "a": 0,
+      "d": 63,
+      "s_dynamic": 0,
+      "s_static": 127,
+      "depth": 21
+    },
+    "cutoff": 34,
+    "key_follow": 100,
+    "resonance": 0,
+    "oscillator": "saw only",
+    "level": 50,
+    "velocity": 100,
+    "effects": false,
+    "latency_samples": 93
+  },
+  "full_result": {
+    "path": "build-fidelity/hardware-benchmark/filter-estimator-bias/results.json",
+    "sha256": "13961db59b46bfea29564055ef0e8fe391b2786c1ca9078ca7f3de6c9d5c0e41"
+  },
+  "cases": {
+    "production-static": {
+      "known_dampings": [
+        2.0,
+        1.2
+      ],
+      "recovered_dampings": [
+        1.9992861036424563,
+        1.2007839243104987
+      ],
+      "max_harmonic_fit_residual": 2.1470003399801426e-05,
+      "models": {
+        "production": {
+          "lp12_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 0.0006217215577404137,
+            "withheld_upper_harmonic_rmse_db": 0.010861249474355543
+          },
+          "lp12_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 0.0030285105583260584,
+            "withheld_upper_harmonic_rmse_db": 0.05722359497877382
+          },
+          "lp24_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 0.00011861415182384897,
+            "withheld_upper_harmonic_rmse_db": 0.0038894359281368023
+          },
+          "lp24_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 0.0011631325635642555,
+            "withheld_upper_harmonic_rmse_db": 0.020564912138970073
+          }
+        },
+        "k12": {
+          "lp12_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 1.1531929847464824,
+            "withheld_upper_harmonic_rmse_db": 4.138855300217294
+          },
+          "lp12_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 1.1534508124779999,
+            "withheld_upper_harmonic_rmse_db": 4.1236476548832295
+          },
+          "lp24_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 1.3788877153832453,
+            "withheld_upper_harmonic_rmse_db": 4.220835350653114
+          },
+          "lp24_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 1.3801629248307292,
+            "withheld_upper_harmonic_rmse_db": 4.217436082004849
+          }
+        },
+        "recovered": {
+          "lp12_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 0.0003038452603193671,
+            "withheld_upper_harmonic_rmse_db": 0.008331778010198994
+          },
+          "lp12_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 0.002833104448001144,
+            "withheld_upper_harmonic_rmse_db": 0.05574587284763327
+          },
+          "lp24_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 0.0003013500530329514,
+            "withheld_upper_harmonic_rmse_db": 0.00671895091106763
+          },
+          "lp24_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 0.0011858075280695964,
+            "withheld_upper_harmonic_rmse_db": 0.022276527810768068
+          }
+        }
+      },
+      "timing_width_sensitivity": {
+        "production": [
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.0030285105583260584
+          },
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.0011631325635642553
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.0030284832025141537
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.0011641599839202048
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.0030317263274132933
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.0011624416673410873
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 12,
+            "lower_rmse_db": 0.003039435619581583
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 24,
+            "lower_rmse_db": 0.0011650074153743218
+          }
+        ],
+        "k12": [
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 1.1534508124779999
+          },
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 1.3801629248307292
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 1.1534166790497948
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 1.3801517024920658
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 1.1533871845830028
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 1.3801609180459657
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 12,
+            "lower_rmse_db": 1.1534180782762768
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 24,
+            "lower_rmse_db": 1.38014751273786
+          }
+        ],
+        "recovered": [
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.002833104448001144
+          },
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.0011858075280695964
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.0028273958116059638
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.0011888797842799547
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.0028253948580081595
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.001186640248861495
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 12,
+            "lower_rmse_db": 0.0028377002476065428
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 24,
+            "lower_rmse_db": 0.0011907673298820543
+          }
+        ]
+      }
+    },
+    "production-dynamic": {
+      "known_dampings": [
+        2.0,
+        1.2
+      ],
+      "recovered_dampings": [
+        2.004397561183963,
+        1.2239354544618652
+      ],
+      "max_harmonic_fit_residual": 7.071311762094647e-05,
+      "models": {
+        "production": {
+          "lp12_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 0.009617747478485454,
+            "withheld_upper_harmonic_rmse_db": 0.02380059278119075
+          },
+          "lp12_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 0.009272852101221966,
+            "withheld_upper_harmonic_rmse_db": 0.04451852885634276
+          },
+          "lp24_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 0.06605130964944966,
+            "withheld_upper_harmonic_rmse_db": 0.12982651719989236
+          },
+          "lp24_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 0.07247998440136288,
+            "withheld_upper_harmonic_rmse_db": 0.11683252442312098
+          }
+        },
+        "k12": {
+          "lp12_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 1.4311223974122058,
+            "withheld_upper_harmonic_rmse_db": 3.138592601020002
+          },
+          "lp12_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 1.4273978778118983,
+            "withheld_upper_harmonic_rmse_db": 3.1101422340010934
+          },
+          "lp24_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 1.588777793686445,
+            "withheld_upper_harmonic_rmse_db": 2.8967845613866228
+          },
+          "lp24_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 1.571691136761376,
+            "withheld_upper_harmonic_rmse_db": 2.8735770417162305
+          }
+        },
+        "recovered": {
+          "lp12_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 0.007341739252953467,
+            "withheld_upper_harmonic_rmse_db": 0.021285934442152436
+          },
+          "lp12_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 0.009528926233689847,
+            "withheld_upper_harmonic_rmse_db": 0.05052004337145632
+          },
+          "lp24_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 0.024056808612788996,
+            "withheld_upper_harmonic_rmse_db": 0.01005495019870099
+          },
+          "lp24_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 0.06376813118971042,
+            "withheld_upper_harmonic_rmse_db": 0.09763048440818282
+          }
+        }
+      },
+      "timing_width_sensitivity": {
+        "production": [
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.009272852101221966
+          },
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.07247998440136288
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.005414867178133038
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.08498383892136932
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.006979159337865717
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.06092511952396655
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 12,
+            "lower_rmse_db": 0.013127220476581566
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 24,
+            "lower_rmse_db": 0.1389643599131174
+          }
+        ],
+        "k12": [
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 1.427397877811898
+          },
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 1.571691136761376
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 1.4213238676466748
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 1.5722899666523111
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 1.4337902182192122
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 1.5759059658259067
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 12,
+            "lower_rmse_db": 1.4353905084391068
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 24,
+            "lower_rmse_db": 1.5966799603699091
+          }
+        ],
+        "recovered": [
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.009528926233689847
+          },
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.06376813118971042
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.005121586989007538
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.0775301292744838
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.0072790995035194464
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.04160246010937638
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 12,
+            "lower_rmse_db": 0.010146660368161033
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 24,
+            "lower_rmse_db": 0.12665929712825738
+          }
+        ]
+      }
+    },
+    "k12-static": {
+      "known_dampings": [
+        1.2,
+        1.2
+      ],
+      "recovered_dampings": [
+        1.20041478321194,
+        1.199988329751161
+      ],
+      "max_harmonic_fit_residual": 2.023579171529875e-05,
+      "models": {
+        "production": {
+          "lp12_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 0.5150203671752114,
+            "withheld_upper_harmonic_rmse_db": 5.3457550988130365
+          },
+          "lp12_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 0.5132116122770622,
+            "withheld_upper_harmonic_rmse_db": 5.433067816807988
+          },
+          "lp24_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 0.9684905576161277,
+            "withheld_upper_harmonic_rmse_db": 8.005529875391883
+          },
+          "lp24_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 0.9683259933019971,
+            "withheld_upper_harmonic_rmse_db": 8.017447572641606
+          }
+        },
+        "k12": {
+          "lp12_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 0.0009474982324499061,
+            "withheld_upper_harmonic_rmse_db": 0.007382165501065731
+          },
+          "lp12_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 0.006102514116332237,
+            "withheld_upper_harmonic_rmse_db": 0.03663433419138829
+          },
+          "lp24_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 0.0009132304308320782,
+            "withheld_upper_harmonic_rmse_db": 0.003875605607485991
+          },
+          "lp24_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 0.006129080663804312,
+            "withheld_upper_harmonic_rmse_db": 0.019633983636433143
+          }
+        },
+        "recovered": {
+          "lp12_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 0.00020020190858977257,
+            "withheld_upper_harmonic_rmse_db": 0.011504647109845997
+          },
+          "lp12_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 0.0056704523588177146,
+            "withheld_upper_harmonic_rmse_db": 0.03909518552144891
+          },
+          "lp24_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 0.00015414951761170663,
+            "withheld_upper_harmonic_rmse_db": 0.007605357043611949
+          },
+          "lp24_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 0.005710928662404722,
+            "withheld_upper_harmonic_rmse_db": 0.02177096203401555
+          }
+        }
+      },
+      "timing_width_sensitivity": {
+        "production": [
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.5132116122770621
+          },
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.9683259933019971
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.5132431133733767
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.9683347434521955
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.5132464393259706
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.9683279016174842
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 12,
+            "lower_rmse_db": 0.5132288403321377
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 24,
+            "lower_rmse_db": 0.968337628350603
+          }
+        ],
+        "k12": [
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.006102514116332237
+          },
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.006129080663804311
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.006107673797770981
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.006128614775741281
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.006106386784358161
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.006128942245869438
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 12,
+            "lower_rmse_db": 0.006101448423671074
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 24,
+            "lower_rmse_db": 0.006129149030866641
+          }
+        ],
+        "recovered": [
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.005670452358817714
+          },
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.005710928662404722
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.005680671894637433
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.005711616680543006
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.005678890236192455
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.005710972365883019
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 12,
+            "lower_rmse_db": 0.005670961817724971
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 24,
+            "lower_rmse_db": 0.005712585690982659
+          }
+        ]
+      }
+    },
+    "k12-dynamic": {
+      "known_dampings": [
+        1.2,
+        1.2
+      ],
+      "recovered_dampings": [
+        1.2129086291493019,
+        1.2239051966058625
+      ],
+      "max_harmonic_fit_residual": 0.00019526698950159466,
+      "models": {
+        "production": {
+          "lp12_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 1.2165448706434359,
+            "withheld_upper_harmonic_rmse_db": 4.1807226598989
+          },
+          "lp12_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 1.2253107595944195,
+            "withheld_upper_harmonic_rmse_db": 4.2157649264260995
+          },
+          "lp24_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 1.3955563311965142,
+            "withheld_upper_harmonic_rmse_db": 3.5896142131554187
+          },
+          "lp24_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 1.4180991389277502,
+            "withheld_upper_harmonic_rmse_db": 3.676611931860295
+          }
+        },
+        "k12": {
+          "lp12_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 0.036796621592476125,
+            "withheld_upper_harmonic_rmse_db": 0.08438738589143033
+          },
+          "lp12_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 0.034858650292411635,
+            "withheld_upper_harmonic_rmse_db": 0.06873140682014323
+          },
+          "lp24_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 0.12329856802860982,
+            "withheld_upper_harmonic_rmse_db": 0.2207612004737007
+          },
+          "lp24_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 0.11305158262168258,
+            "withheld_upper_harmonic_rmse_db": 0.22984998069058482
+          }
+        },
+        "recovered": {
+          "lp12_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 0.01309049003347709,
+            "withheld_upper_harmonic_rmse_db": 0.07863973527198212
+          },
+          "lp12_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 0.02261754352713118,
+            "withheld_upper_harmonic_rmse_db": 0.08936235148119714
+          },
+          "lp24_training": {
+            "windows": 4,
+            "lower_harmonic_rmse_db": 0.07262493665945971,
+            "withheld_upper_harmonic_rmse_db": 0.01774561855966531
+          },
+          "lp24_validation": {
+            "windows": 16,
+            "lower_harmonic_rmse_db": 0.08586641711091367,
+            "withheld_upper_harmonic_rmse_db": 0.1816337989718987
+          }
+        }
+      },
+      "timing_width_sensitivity": {
+        "production": [
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 1.2253107595944197
+          },
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 1.41809913892775
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 1.2013087325416434
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 1.4061467347394665
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 1.2479266728734983
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 1.4236954772523565
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 12,
+            "lower_rmse_db": 1.206696719169634
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 24,
+            "lower_rmse_db": 1.3890685912087546
+          }
+        ],
+        "k12": [
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.034858650292411635
+          },
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.11305158262168258
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.03398637758113965
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.13789358393668233
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.032799578716941
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.13045427454079353
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 12,
+            "lower_rmse_db": 0.053774484780135745
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 24,
+            "lower_rmse_db": 0.21920619865175062
+          }
+        ],
+        "recovered": [
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.02261754352713118
+          },
+          {
+            "shift": 0,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.08586641711091367
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.017071986616243404
+          },
+          {
+            "shift": -0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.11181009396677108
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 12,
+            "lower_rmse_db": 0.01966588662415117
+          },
+          {
+            "shift": 0.01,
+            "width": 0.08,
+            "slope": 24,
+            "lower_rmse_db": 0.10329822669383931
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 12,
+            "lower_rmse_db": 0.02637745363787996
+          },
+          {
+            "shift": 0,
+            "width": 0.1,
+            "slope": 24,
+            "lower_rmse_db": 0.18468888250011073
+          }
+        ]
+      }
+    }
+  },
+  "wav_sha256": {
+    "k12-static-lp24.wav": "ebb0d749984a628591e5968df1abd70097bd48877ca8bdeb2b542bb8c03c1945",
+    "production-static-lp24.wav": "ecb4f6869cf55cc4a5b45d915c429592bc2e622f26338df6073d4121eeb28eeb",
+    "production-dynamic-lp12.wav": "607589710ba6c4dcd2a36f38f06382b36bf333ee343d9f42919f056cbc967ae5",
+    "k12-dynamic-lp24.wav": "f55ad25bfd31e4937faa3a3a9fd67f6789808c53fc189eda23c0178b3b85b045",
+    "k12-dynamic-lp12.wav": "450c7c6064349f28a28ed72379361c01f71e0f5bcfc7f3c62fcee62896d21258",
+    "production-static-lp12.wav": "89228c44ddb7b52fc9837c373d7e46a3da278f664fa6b37d9f39deb88ea1d75e",
+    "k12-static-lp12.wav": "37337b87d17cce491baa83fe87642ae2161ea4c89266fa85514f083f89fc59ec",
+    "production-dynamic-lp24.wav": "a9d9e9c99acbbf348f871d5718b01307648bb61fe1b862b15001873e71a23874"
+  },
+  "renderer_source": "#include \"DSP/SeptumEngine.h\"\n#include <cmath>\n#include <cstdint>\n#include <fstream>\n#include <iomanip>\n#include <iostream>\n#include <vector>\n\nvoid word(std::ostream& stream, uint32_t x, int count = 4)\n{ for (int i=0; i<count; ++i) stream.put(char((x >> (i*8)) & 255)); }\nvoid wav(const std::string& path, const std::vector<float>& y)\n{\n    std::ofstream out(path, std::ios::binary);\n    out.write(\"RIFF\",4); word(out,36+uint32_t(y.size()*4)); out.write(\"WAVEfmt \",8);\n    word(out,16); word(out,3,2); word(out,1,2); word(out,44100); word(out,44100*4);\n    word(out,4,2); word(out,32,2); out.write(\"data\",4); word(out,uint32_t(y.size()*4));\n    out.write(reinterpret_cast<const char*>(y.data()),std::streamsize(y.size()*4));\n}\nint main(int argc,char**argv)\n{\n    if(argc!=2) return 2;\n    constexpr int rate=44100;\n    std::cout<<std::setprecision(15)<<\"decay_seconds=\"<<septum::mapping::filterDecaySeconds(63)\n             <<\" initial_cutoff_over_fundamental=\"<<septum::mapping::cutoffHz(34)*16/261.6255653005986<<\"\\n\";\n    for(bool candidate:{false,true}) for(bool moving:{false,true}) for(int slope:{12,24})\n    {\n        septum::Engine engine;\n        if(candidate)\n        {\n            auto calibration=septum::Engine::defaultTimbreCalibration();\n            calibration.filterEnabled=true;\n            calibration.secondStageIndependent=true;\n            calibration.resonanceDamping.fill(1.2);\n            calibration.secondStageDamping.fill(1.2);\n            if(!engine.setTimbreCalibration(calibration)) return 3;\n        }\n        engine.prepare(rate,256);\n        septum::Patch patch;\n        auto& tone=patch.upper;\n        tone.osc1.wave=septum::Waveform::Saw;\n        tone.balance=-63;\n        tone.filterType=septum::FilterType::Lpf;\n        tone.filterSlope=slope==12?septum::FilterSlope::Db12:septum::FilterSlope::Db24;\n        tone.cutoff=34;\n        tone.keyFollow=100;\n        tone.resonance=tone.cutoffVelocitySens=0;\n        tone.filterEnvAttack=0; tone.filterEnvDecay=63;\n        tone.filterEnvSustain=moving?0:127; tone.filterEnvDepth=21;\n        tone.filterEnvRelease=0;\n        tone.level=50; tone.levelVelocitySens=0;\n        tone.ampEnvAttack=0; tone.ampEnvDecay=0; tone.ampEnvSustain=127; tone.ampEnvRelease=0;\n        tone.lfo1.depth1=tone.lfo1.depth2=tone.lfo2.depth1=tone.lfo2.depth2=0;\n        patch.delayOn=patch.reverbOn=false;\n        engine.setPatch(patch); engine.reset();\n        const int notes[]={24,36,29,31,57};\n        std::vector<float> left(10*rate),right(left.size());\n        for(int n=0;n<5;++n)\n        {\n            engine.noteOnDirect(notes[n],100);\n            engine.process(left.data()+n*2*rate,right.data()+n*2*rate,rate);\n            engine.noteOffDirect(notes[n]);\n            engine.process(left.data()+(n*2+1)*rate,right.data()+(n*2+1)*rate,rate);\n        }\n        const std::string name=std::string(candidate?\"k12\":\"production\")+\"-\"+(moving?\"dynamic\":\"static\")+\"-lp\"+std::to_string(slope);\n        wav(std::string(argv[1])+\"/\"+name+\".wav\",left);\n        std::cout<<name<<\" latency=\"<<engine.latencySamples()<<\"\\n\";\n    }\n}\n",
+  "analysis_source": "import sys,json,hashlib\nfrom pathlib import Path\nimport numpy as np\nfrom scipy.io import wavfile\nfrom scipy.optimize import least_squares\n\nROOT=Path(__file__).resolve().parents[3]\nsys.path.insert(0,str(ROOT/'Tools'))\nimport analyze_deepsonic_filter as target\n\nFOLDER=Path(__file__).resolve().parent\nNOTES=(24,36,29,31,57)\nOFFSETS=(.08,.16,.24,.32)\n\ndef sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()\n\ndef run(label,moving):\n    rows=[]\n    for slope in (12,24):\n        sr,y=wavfile.read(FOLDER/f'{label}-{moving}-lp{slope}.wav')\n        assert sr==44100 and np.isfinite(y).all()\n        for index,note in enumerate(NOTES):\n            on=index*2\n            f0=440*2**((note-69)/12)\n            for offset in OFFSETS:\n                for shift,width in ((0,.08),(-.01,.08),(.01,.08),(0,.10)):\n                    center=on+offset+shift+93/sr\n                    row=target.measure(y,sr,center,width,f0)\n                    rows.append(dict(slope=slope,note=note,on=on,offset=offset,shift=shift,width=width,\n                                     fundamental_hz=f0,training=note==36,**row))\n    fit_rows=[r for r in rows if r['training'] and r['shift']==0 and r['width']==.08]\n    def residual(p):\n        ks=np.exp(p[:2])\n        return np.concatenate([target.errors(row,np.exp(cutoff),ks[:row['slope']//12])[target.mask(row)]\n            for row,cutoff in zip(fit_rows,p[2:])])\n    fitted=least_squares(residual,np.log([1.7,1.2]+[r['fundamental_hz']*5 for r in fit_rows]),\n        bounds=(np.log([.3,.3]+[r['fundamental_hz']*.5 for r in fit_rows]),\n                np.log([3.,3.]+[r['fundamental_hz']*20 for r in fit_rows])),\n        xtol=1e-12,ftol=1e-12,gtol=1e-12)\n    ks=np.exp(fitted.x[:2]).tolist()\n    models={name:target.model_summary(rows,k) for name,k in\n        [('production',[2.,1.2]),('k12',[1.2,1.2]),('recovered',ks)]}\n    result=dict(known_dampings=[2.,1.2] if label=='production' else [1.2,1.2],\n        recovered_dampings=ks,models=models,observations=rows,\n        max_harmonic_fit_residual=max(r['fit_residual_power'] for r in rows))\n    print(label,moving,ks,'maxresidual',result['max_harmonic_fit_residual'],flush=True)\n    for name,model in models.items(): print(name,model['summary'],flush=True)\n    return result\n\nresult=dict(schema_version=1,source_hashes={p.name:sha(p) for p in (FOLDER/'DSP').glob('*') if p.is_file()},\n            renderer_source_sha256=sha(FOLDER/'render.cpp'),renderer_sha256=sha(FOLDER/'render'),\n            parent_estimator_sha256=sha(ROOT/'Tools/analyze_deepsonic_filter.py'),\n            analysis_sha256=sha(__file__),cases={})\nfor label in ('production','k12'):\n    for moving in ('static','dynamic'):result['cases'][label+'-'+moving]=run(label,moving)\n(FOLDER/'results.json').write_text(json.dumps(result,indent=2)+'\\n')\n"
+}

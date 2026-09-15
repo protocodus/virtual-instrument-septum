@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-15",
+  "status": "reproduced",
+  "command": [
+    "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+    "-B",
+    "Tools/reproduce_zero_resonance_benchmark.py",
+    "--output",
+    "build-fidelity/hardware-benchmark/zero-resonance-reproduction-check",
+    "--sources",
+    "build-fidelity/hardware-benchmark/sources",
+    "--deepsonic-sources",
+    "build-fidelity/deepsonic"
+  ],
+  "tool_sha256": "06727782c7e1f67cbecb878ebebce161ee7159d31d68b8b3477cb6da11a7b05a",
+  "bundle_sha256": "a184f66e864397077ea7f0a17cb0bdb74cc387b72d757eb8a367f8848a9ddb61",
+  "decoder": {
+    "decoder": "/opt/homebrew/bin/ffmpeg",
+    "decoder_sha256": "00d01197255300c02122c783dd0126a9e7f47d6c6a19faafae2e6610efd071d3",
+    "decoder_version": "ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers",
+    "files": [
+      {
+        "source_sha256": "28e241247a0efb217eb4cb7154cc3b69713fcebca781639c45b8904b3dc8615b",
+        "decoded_sha256": "3154afa9bd5b509d44dbc8fcb1972cbc2ffeb46d9adb00d107da4c2d05cc8a37",
+        "command": [
+          "/opt/homebrew/bin/ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-i",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/zero-resonance-reproduction-check/source-cache/deepsonic/roland_sh-201_-_filter_demo_-_lpf12_q000.mp3",
+          "-c:a",
+          "pcm_f32le",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/zero-resonance-reproduction-check/source-cache/deepsonic/roland_sh-201_-_filter_demo_-_lpf12_q000.wav"
+        ]
+      },
+      {
+        "source_sha256": "ebb6fa4e12136028bbff614633095aa510c31654fcce840af5e3a85b3a469d90",
+        "decoded_sha256": "92fc303c94e9bde908cbeb72571c06dd5a4a9d8fc59b10cb90378040404eed4f",
+        "command": [
+          "/opt/homebrew/bin/ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-i",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/zero-resonance-reproduction-check/source-cache/deepsonic/roland_sh-201_-_filter_demo_-_lpf24_q000.mp3",
+          "-c:a",
+          "pcm_f32le",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/zero-resonance-reproduction-check/source-cache/deepsonic/roland_sh-201_-_filter_demo_-_lpf24_q000.wav"
+        ]
+      }
+    ]
+  },
+  "identical_artifact_count": 40,
+  "identical_artifacts": [
+    {
+      "relative_path": "run-01/lfo-only/build/SeptumRenderMidi",
+      "sha256": "1dbd792d577dc31ce6c2e0c19dceec35f406a8aa85cbe4c551eecd49e4656455",
+      "identical": true
+    },
+    {
+      "relative_path": "run-01/zero-resonance-k1p2/build/SeptumRenderMidi",
+      "sha256": "8c92aa58994a6759a8d594e15884c0d3cbbb14a3ee38f008c1170a625a24cb53",
+      "identical": true
+    },
+    {
+      "relative_path": "linear-final/build/SeptumRenderMidi",
+      "sha256": "6ddf73cb57baf1e15b840794d9df4947dff833d0a21e81ff1ad906f266ad37fb",
+      "identical": true
+    },
+    {
+      "relative_path": "run-01/lfo-only/comparisons/supa-juce-1/septum-raw.wav",
+      "sha256": "2b4c5f8cbdf83ecc895b19f7015fd15bd9f126723830375df564f52e5ac79bb1",
+      "identical": true
+    },
+    {
+      "relative_path": "run-01/lfo-only/comparisons/brassy-ld-1/septum-raw.wav",
+      "sha256": "b99c7af7e217b61b66b17ddddf4da39f448f18daeeeba821819a74d75274db83",
+      "identical": true
+    },
+    {
+      "relative_path": "run-01/lfo-only/comparisons/pedal-bs-1/septum-raw.wav",
+      "sha256": "bb26c0432da9b4d02a92897ef55c7ee07b3e7ed9c5f0fabb9b973fb09bb60cd8",
+      "identical": true
+    },
+    {
+      "relative_path": "run-01/lfo-only/comparisons/cotton-wool/septum-raw.wav",
+      "sha256": "4a1c06a9968e04f3c0aa0eb848450dcfd8812c5d5038c647bc452f5cb30fc099",
+      "identical": true
+    },
+    {
+      "relative_path": "run-01/lfo-only/comparisons/moogie-1/septum-raw.wav",
+      "sha256": "7ce5ff6bab6880889406e7f3ab08a6233977e542973496c49eaddb022e37b6bc",
+      "identical": true
+    },
+    {
+      "relative_path": "run-01/lfo-only/comparisons/so-juno-1/septum-raw.wav",
+      "sha256": "f7904bd0e7ed29a0235af6f5a5a2269620ead6ee9c6e691dc0bbdc7c1102d0f6",
+      "identical": true
+    },
+    {
+      "relative_path": "run-01/lfo-only/comparisons/air-lead-1/septum-raw.wav",
+      "sha256": "43bca32341c215f6ccfe58291f787a7c286602f8772061e26d59566921c591e3",
+      "identical": true
+    },
+    {
+      "relative_path": "run-01/lfo-only/comparisons/vangelead/septum-raw.wav",
+      "sha256": "9538c20409ad6c082a4015eb5a6243e2ec947e346069061563cdb6c98c326551",
+      "identical": true
+    },
+    {
+      "relative_path": "run-01/lfo-only/comparisons/club-bass/septum-raw.wav",
+      "sha256": "f07ad6b33a6a24dca47281a7c8f6f5bd9dd02b6083e1ca9a9f89da4526a1ecc5",
+      "identical": true
+    },
+    {
+      "relative_path": "run-01/lfo-only/comparisons/dist-bs-1/septum-raw.wav",
+      "sha256": "767063f15801729067ccb760792ae4e772e8a4d0e1da84d76d0f92273a6e1be3",
+      "identical": true
+    },
+    {
+      "relative_path": "run-01/zero-resonance-k1p2/comparisons/supa-juce-1/septum-raw.wav",
+      "sha256": "2b4c5f8cbdf83ecc895b19f7015fd15bd9f126723830375df564f52e5ac79bb1",
+      "identical": true
+    },
+    {
+      "relative_path": "run-01/zero-resonance-k1p2/comparisons/brassy-ld-1/septum-raw.wav",
+      "sha256": "c71bb3a788f0ac64fabb5a81106d5a492494019459aaa62f816219b198ee1230",
+      "identical": true
+    },
+    {
+      "relative_path": "run-01/zero-resonance-k1p2/comparisons/pedal-bs-1/septum-raw.wav",
+      "sha256": "30b80239ddc51ec4c72883974001a6a8d4a8d4b448621297967ae1082a951d27",
+      "identical": true
+    },
+    {
+      "relative_path": "run-01/zero-resonance-k1p2/comparisons/cotton-wool/septum-raw.wav",
+      "sha256": "54b7512438fb6a743292f314354cf5c37d68ba4f74a39e9474f03f9854e219a5",
+      "identical": true
+    },
+    {
+      "relative_path": "run-01/zero-resonance-k1p2/comparisons/moogie-1/septum-raw.wav",
+      "sha256": "c3ddf4e529e8e697827147758430ec58b6e0e9cc3265f4d1add9081053da0489",
+      "identical": true
+    },
+    {
+      "relative_path": "run-01/zero-resonance-k1p2/comparisons/so-juno-1/septum-raw.wav",
+      "sha256": "c3674442673eee179b9003265b1bafede271e77eb47bceb589a74e44db3b008e",
+      "identical": true
+    },
+    {
+      "relative_path": "run-01/zero-resonance-k1p2/comparisons/air-lead-1/septum-raw.wav",
+      "sha256": "43bca32341c215f6ccfe58291f787a7c286602f8772061e26d59566921c591e3",
+      "identical": true
+    },
+    {
+      "relative_path": "run-01/zero-resonance-k1p2/comparisons/vangelead/septum-raw.wav",
+      "sha256": "8bec9dc8107739049c85a91b1c455f77bee54531082bb16c6cd3bc9693d0a083",
+      "identical": true
+    },
+    {
+      "relative_path": "run-01/zero-resonance-k1p2/comparisons/club-bass/septum-raw.wav",
+      "sha256": "d5fab55b6cfccca0cbe60161eb8fdcfbcf24618e2d4d2b7333b7824fde50a61e",
+      "identical": true
+    },
+    {
+      "relative_path": "run-01/zero-resonance-k1p2/comparisons/dist-bs-1/septum-raw.wav",
+      "sha256": "4a84e37ed9f1f6c39dad22ca952d77f7d433161c8bc8ae436445ca430e478c27",
+      "identical": true
+    },
+    {
+      "relative_path": "linear-final/comparisons/dist-bs-1/septum-raw.wav",
+      "sha256": "5e6c96077a90b2b1d2776a3aa708a91358f5f2bcf48de5bff4a62818328a0a5c",
+      "identical": true
+    },
+    {
+      "relative_path": "dry-end-to-end/run-01/nominal-one-second-lp24/zero-resonance-k1p2-raw.wav",
+      "sha256": "2ffa37dd91af0d85b01c2f472338f04634e37f426f81d1fbeb8096600d33c15d",
+      "identical": true
+    },
+    {
+      "relative_path": "dry-end-to-end/run-01/nominal-one-second-lp24/lfo-only-raw.wav",
+      "sha256": "099a9d587d7bcafc0338eb50a92363ad12a39bd9c8b6f5b393351fd18523e19b",
+      "identical": true
+    },
+    {
+      "relative_path": "dry-end-to-end/run-01/nominal-one-second-lp12/zero-resonance-k1p2-raw.wav",
+      "sha256": "4c96a93cbeeb04509196cce83319f647cb1c9419fa8a91acdcc124ffd609eadd",
+      "identical": true
+    },
+    {
+      "relative_path": "dry-end-to-end/run-01/nominal-one-second-lp12/lfo-only-raw.wav",
+      "sha256": "23d409563f547037f2545faf2e2906345b26813de2947035fcc00042d5521d2d",
+      "identical": true
+    },
+    {
+      "relative_path": "dry-end-to-end/run-01/trajectory-reconstruction-lp12/zero-resonance-k1p2-raw.wav",
+      "sha256": "b5d2e02f80b8c318771f50714cbb668aecb11f07d3a168394a0f1d1f2c7e69ed",
+      "identical": true
+    },
+    {
+      "relative_path": "dry-end-to-end/run-01/trajectory-reconstruction-lp12/lfo-only-raw.wav",
+      "sha256": "0d13110a848fcd8608ed817e1848eedca4936d698bac71ec294b6d11dc94ae51",
+      "identical": true
+    },
+    {
+      "relative_path": "dry-end-to-end/run-01/trajectory-reconstruction-lp24/zero-resonance-k1p2-raw.wav",
+      "sha256": "b008a04e840b4202974e45f3daffdb3f87ec014bb33a6260e00b5d37fd787f36",
+      "identical": true
+    },
+    {
+      "relative_path": "dry-end-to-end/run-01/trajectory-reconstruction-lp24/lfo-only-raw.wav",
+      "sha256": "763a6f5dda245c53f73c0476edfdfb51c43e30800901b47167b326c094a6938e",
+      "identical": true
+    },
+    {
+      "relative_path": "dry-end-to-end/onset-calibrated/nominal-one-second-lp24/zero-resonance-k1p2-raw.wav",
+      "sha256": "2ffa37dd91af0d85b01c2f472338f04634e37f426f81d1fbeb8096600d33c15d",
+      "identical": true
+    },
+    {
+      "relative_path": "dry-end-to-end/onset-calibrated/nominal-one-second-lp24/lfo-only-raw.wav",
+      "sha256": "099a9d587d7bcafc0338eb50a92363ad12a39bd9c8b6f5b393351fd18523e19b",
+      "identical": true
+    },
+    {
+      "relative_path": "dry-end-to-end/onset-calibrated/nominal-one-second-lp12/zero-resonance-k1p2-raw.wav",
+      "sha256": "4c96a93cbeeb04509196cce83319f647cb1c9419fa8a91acdcc124ffd609eadd",
+      "identical": true
+    },
+    {
+      "relative_path": "dry-end-to-end/onset-calibrated/nominal-one-second-lp12/lfo-only-raw.wav",
+      "sha256": "23d409563f547037f2545faf2e2906345b26813de2947035fcc00042d5521d2d",
+      "identical": true
+    },
+    {
+      "relative_path": "dry-end-to-end/onset-calibrated/onset-corrected-trajectory-lp24/zero-resonance-k1p2-raw.wav",
+      "sha256": "dd505cd6a020417a5b86c52083a8dd6091b3f18edbad7c28a0de431df2356a33",
+      "identical": true
+    },
+    {
+      "relative_path": "dry-end-to-end/onset-calibrated/onset-corrected-trajectory-lp24/lfo-only-raw.wav",
+      "sha256": "32a4ae7eb8fc1178c76673054d86cb92092aca794e9081926a079a6e4684d9a0",
+      "identical": true
+    },
+    {
+      "relative_path": "dry-end-to-end/onset-calibrated/onset-corrected-trajectory-lp12/zero-resonance-k1p2-raw.wav",
+      "sha256": "e960507e6c9404554980eceae90d51e1253347d22fbe7e661f48730dce7484da",
+      "identical": true
+    },
+    {
+      "relative_path": "dry-end-to-end/onset-calibrated/onset-corrected-trajectory-lp12/lfo-only-raw.wav",
+      "sha256": "71b3347ec804fa781ae9dc6737203aa077b85d166052903c90cade65c1b96af4",
+      "identical": true
+    }
+  ],
+  "all_ten_official_metrics_identical": true,
+  "all_eight_final_dry_results_identical": true,
+  "training_selection_identical": true,
+  "limitation": "Same compiler and decoder environment; identical regenerated experimental outputs do not establish hardware equivalence. Historical full-trajectory container replaced by exactly the same eight training targets; container hash differs."
+}
