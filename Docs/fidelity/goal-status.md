@@ -13,7 +13,10 @@ is required to continue the present investigations.
   1.534→0.201 dB respectively. The low-resonance bridge is provisional.
 - [LFO endpoints](source-audits/2026-09-15-new-sources.md): free-running periods
   now follow the owner's published 20.59 s and 40.22 ms measurements. The
-  interior rate table remains unmeasured.
+  interior rate table remains unmeasured. An independent creator video's
+  [sample-and-hold cadence](source-audits/public-lfo-clock-2026-09-15.md) is
+  approximately 40.215 ms, corroborating the fast endpoint without selecting
+  a new value. The camera does not authenticate the raw rate or sync state.
 - [Audio agreement assessment](equivalence-assessment.md): measure spectral,
   envelope and stereo residuals, freeze gain/alignment before evaluation,
   retain hashes and distinguish original from reconstructed inputs.
@@ -72,6 +75,13 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   layer cannot be separated reliably; SequenceBs's opening disagrees with
   its stored static state; The Choir combines unidentified notes, Super Saw,
   noise and effects. No global cutoff law is inferred from those recordings.
+- [Classic-Saw alias lines](source-audits/deepsonic-saw-aliases-2026-09-15.md)
+  establish a 44.1 kHz folding signature across eight pitches and both dry
+  filter slopes. Synthetic codec controls rule out that MP3 round-trip as
+  the cause in those controls. Production places aliases at the same
+  frequencies but substantially underestimates many recorded levels. The
+  high-note main-harmonic shape also differs; the responsible source or
+  capture stage has not been identified.
 
 ## Next work
 

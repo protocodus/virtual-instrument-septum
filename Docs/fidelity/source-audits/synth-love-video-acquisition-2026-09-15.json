@@ -1,0 +1,488 @@
+{
+  "schema_version": 1,
+  "acquired_date": "2026-09-15",
+  "status": "public_performance_audio_and_bounded_video_available_patch_not_identified",
+  "primary_videos": [
+    {
+      "id": "zeIHMnVxaQE",
+      "title": "Roland sh201 patch creation part 1 (no talking)",
+      "duration": 719,
+      "upload_date": "20161002",
+      "uploader": "something something",
+      "uploader_id": "@909techno",
+      "channel_id": "UCmVcKfVsgQJuYQRTRx9bqHA",
+      "channel_url": "https://www.youtube.com/channel/UCmVcKfVsgQJuYQRTRx9bqHA",
+      "chapters": null,
+      "url": "https://www.youtube.com/watch?v=zeIHMnVxaQE",
+      "captions_available": false,
+      "audio_format": {
+        "format_id": "251",
+        "ext": "webm",
+        "acodec": "opus",
+        "asr": 48000,
+        "audio_channels": 2,
+        "abr": 138.558,
+        "filesize": 12450157
+      }
+    },
+    {
+      "id": "OB3J7AQBla0",
+      "title": "Roland SH-201 Patch Creation Part 2 (no talking)",
+      "duration": 605,
+      "upload_date": "20161007",
+      "uploader": "something something",
+      "uploader_id": "@909techno",
+      "channel_id": "UCmVcKfVsgQJuYQRTRx9bqHA",
+      "channel_url": "https://www.youtube.com/channel/UCmVcKfVsgQJuYQRTRx9bqHA",
+      "chapters": [
+        {
+          "start_time": 0,
+          "title": "max lfo speeds",
+          "end_time": 50
+        },
+        {
+          "start_time": 50,
+          "title": "Drum tests",
+          "end_time": 235
+        },
+        {
+          "start_time": 235,
+          "title": "fm'ish chimes and bells",
+          "end_time": 291
+        },
+        {
+          "start_time": 291,
+          "title": "portamento tests",
+          "end_time": 455
+        },
+        {
+          "start_time": 455,
+          "title": "reverb examples",
+          "end_time": 540
+        },
+        {
+          "start_time": 540,
+          "title": "supersaw tests",
+          "end_time": 605
+        }
+      ],
+      "url": "https://www.youtube.com/watch?v=OB3J7AQBla0",
+      "captions_available": false,
+      "audio_format": {
+        "format_id": "251",
+        "ext": "webm",
+        "acodec": "opus",
+        "asr": 48000,
+        "audio_channels": 2,
+        "abr": 136.363,
+        "filesize": 10312197
+      }
+    }
+  ],
+  "discovery_url": "https://www.matrixsynth.com/2016/10/roland-sh201-patch-creation-part1.html",
+  "acquisition": {
+    "tool": "yt-dlp",
+    "version": "2026.8.19",
+    "installation": "isolated --target build-fidelity/research-tools/yt-dlp from PyPI",
+    "authentication": "No cookies, credentials, login, CAPTCHA handling or bypass used for metadata/media acquisition. Browser independently verified public page and chapter descriptions.",
+    "media_purpose": "Scientific audio/parameter/knob inspection; not acquisition for app display.",
+    "audio": "Full original offered format251 Opus streams retained without re-encoding; decoded excerpt first50s from part2 using ffmpeg pcm_f32le.",
+    "video": "Format137 H264 1080p sections: part1 0\u201340s, part2 0\u201350s and291\u2013320s. ffmpeg remux via yt-dlp section downloader; nominal cuts retain codec/container timing limitations.",
+    "ffmpeg_version": "ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers"
+  },
+  "assets": [
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/OB3J7AQBla0.0-50.audio.wav",
+      "bytes": 19200092,
+      "sha256": "8e2babd5e54375b8b6454dd4271c5a9c95b16e29e634e4219069c5eb19727131",
+      "kind": "decoded_excerpt"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/OB3J7AQBla0.0-50.f137.mp4",
+      "bytes": 16267049,
+      "sha256": "b9d6b2da38d5cb63c4d83c0002645ce2eafc37c2b8932af1894c7d0c01f9f4b2",
+      "kind": "public_stream_acquisition"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/OB3J7AQBla0.291-320.f137.mp4",
+      "bytes": 10410736,
+      "sha256": "999c6233e007413847ac340a2c8840cafdd82b7f71d45ba09b61cd3c7d6a3277",
+      "kind": "public_stream_acquisition"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/OB3J7AQBla0.f251.webm",
+      "bytes": 10312197,
+      "sha256": "6ed77a823dde937f4bf87bf9cf803a7293dd21a97056f36694704355b8b15f4c",
+      "kind": "public_stream_acquisition"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/OB3J7AQBla0.info.json",
+      "bytes": 48774,
+      "sha256": "84d3c9710d12b7f86a29d0df5c43f34b8874fd0fe7e60099ac84a2a0d05ea819",
+      "kind": "metadata"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/frames/part1-000.png",
+      "bytes": 8713,
+      "sha256": "b9ca2b7eb36ae6746574276e5f67b34eb0fc1adeb35ac3be95f27fe2a527da06",
+      "kind": "derived_frame"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/frames/part1-010.png",
+      "bytes": 1677044,
+      "sha256": "47d7ea1e91672835d8d7953a5c910c730012ccfb5d95ca7fab5be6f011ac818a",
+      "kind": "derived_frame"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/frames/part1-020.png",
+      "bytes": 1658678,
+      "sha256": "32b03966944ca1cd85483c4f13691807071025f9a608c634b11dcdfa1878b8aa",
+      "kind": "derived_frame"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/frames/part1-039.png",
+      "bytes": 1648091,
+      "sha256": "f99ab4c5468e961a4ef6cd025b64815a6d421e03e8989d91c58c4c9265182232",
+      "kind": "derived_frame"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/frames/part2-000.png",
+      "bytes": 1816439,
+      "sha256": "ae5f7cbf5326d82f4d12af8f69eaeffb7fe775334fd449f40de3bf21f284c9ac",
+      "kind": "derived_frame"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/frames/part2-005.png",
+      "bytes": 1542357,
+      "sha256": "3ae31ae1362d45b2e63f726c193d29cd731bb12b962854b49eb6cb515637bed7",
+      "kind": "derived_frame"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/frames/part2-010.png",
+      "bytes": 1659356,
+      "sha256": "8902d75c9e9ab9102ace31121910657e7ff9afa0eb7d74254a370658f6b5b4f5",
+      "kind": "derived_frame"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/frames/part2-020.png",
+      "bytes": 1397247,
+      "sha256": "f102237bf3dc1fa4e1e9e5f3051b7ff8b2867c3c64db77301b3df2d340db7e60",
+      "kind": "derived_frame"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/frames/part2-030.png",
+      "bytes": 1633100,
+      "sha256": "28f9ca2ab8443ca344e41da6c70a19162d84b76053918f07fd09bf6c76dabf1a",
+      "kind": "derived_frame"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/frames/part2-040.png",
+      "bytes": 1437434,
+      "sha256": "10eaa14bfaa03e5ffd4adc3339ed5ad1c6969f078f81017ca8f724042558ac96",
+      "kind": "derived_frame"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/frames/part2-049.png",
+      "bytes": 1245044,
+      "sha256": "a9f8f93a71137f4bb89378db53ec68b7675cc1a1621bdd3e3eae18abcd133450",
+      "kind": "derived_frame"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/frames/part2-291.png",
+      "bytes": 1522004,
+      "sha256": "1244236789dd760572109e77a3230e6c0b39a0068c21a3ad62992ac77a12b64a",
+      "kind": "derived_frame"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/frames/part2-296.png",
+      "bytes": 1623072,
+      "sha256": "2952e1ddbe333c7303b7b5fc6567e7dd91c1d4988dd7c5668879f0de71e0ce43",
+      "kind": "derived_frame"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/frames/part2-306.png",
+      "bytes": 1365005,
+      "sha256": "8f9bc098c219a5a4a2aef4038ecb6ed951dca7b522577108993302f3b9799883",
+      "kind": "derived_frame"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/frames/part2-319.png",
+      "bytes": 1344563,
+      "sha256": "119288f516977421e2e4451a388a22176ce86da0e1ae4299752f12c6283af724",
+      "kind": "derived_frame"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/lfo-periodicity/exploratory-envelopes.npz",
+      "bytes": 2000838,
+      "sha256": "72b16f38bee815d93e1a78ce3f25dbcd8e6277ae5a9b8187ad5551fe64109173",
+      "kind": "public_stream_acquisition"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/lfo-periodicity/overview.png",
+      "bytes": 543514,
+      "sha256": "a818b785e47f1a94d5a6a4faaa82251eb0c777d9d364944b2d5c5a4be67f9f0d",
+      "kind": "derived_frame"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/part1-acquisition.log",
+      "bytes": 385,
+      "sha256": "f079f24a0e6bac21fb41dd98affc9148edcd834f8655cb6e7d6490b77f805e48",
+      "kind": "acquisition_log"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/part1-audio.log",
+      "bytes": 1992,
+      "sha256": "d73b1f9cedb5760baf2aee987904bc83157772aa9a6895fa975a89ef88fe56b1",
+      "kind": "acquisition_log"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/part1-video.log",
+      "bytes": 7409,
+      "sha256": "3880374d53a1965b1991f38a6735f05f29445311228d14a805a34a0b04136803",
+      "kind": "acquisition_log"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/part2-acquisition.log",
+      "bytes": 385,
+      "sha256": "547d1adf4f2c8d3098107e7d5d9bb0fddb2610a8f4bfe75805ca722a0b0a9aaf",
+      "kind": "acquisition_log"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/part2-audio.log",
+      "bytes": 1234,
+      "sha256": "7ecf1106919e0b009a95b5e5bee2c2fb6bd4cad34443079f501fb97d4ce5c9cb",
+      "kind": "acquisition_log"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/part2-video.log",
+      "bytes": 14724,
+      "sha256": "b8527a9f518c852435b4db6a437f30a123f76272c71cc9d59f576cedb82d838e",
+      "kind": "acquisition_log"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/zeIHMnVxaQE.0-40.f137.mp4",
+      "bytes": 12828356,
+      "sha256": "042bac9e7277d3aac7de02d5e58ddbd50e64b1e49d8d6b3409d6570f2c76f20b",
+      "kind": "public_stream_acquisition"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/zeIHMnVxaQE.f251.webm",
+      "bytes": 12450157,
+      "sha256": "6445367e5d2034e2dc2f69fd43a4237e5b865a99f902f1819d19fd5c3ec17a5d",
+      "kind": "public_stream_acquisition"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/zeIHMnVxaQE.info.json",
+      "bytes": 50523,
+      "sha256": "d1586f0f5e3603f0b6ba33979b57219ba89c5f050a57bc0f87a8cc768bd2b429",
+      "kind": "metadata"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/frames/part2-004.png",
+      "bytes": 1588992,
+      "sha256": "580b4129229385086e41b6732734a975c606888ebae426617fa06131d5524ffd",
+      "kind": "derived_frame"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/SH-201_OM.pdf",
+      "bytes": 4249153,
+      "sha256": "b4a2968d429c7f3e907a6243723d5e803ae2e0014e8e9107c85bd966deea8e79",
+      "kind": "official_panel_reference"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/SH-201_OM.txt",
+      "bytes": 345368,
+      "sha256": "91ced72e95fd5bd34cd14b19f0d85b4e7c94f13677539d98f0b402be8f889362",
+      "kind": "derived_official_text"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/manual-page40.png",
+      "bytes": 234084,
+      "sha256": "10dcc20dbe769265c368a9ac575a5a7ce43f11a83d2df01d98475dd33dc85944",
+      "kind": "derived_official_diagram"
+    }
+  ],
+  "media_probe": [
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/OB3J7AQBla0.0-50.audio.wav",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "pcm_f32le",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2,
+            "r_frame_rate": "0/0",
+            "time_base": "1/48000",
+            "duration": "50.000000"
+          }
+        ],
+        "format": {
+          "duration": "50.000000",
+          "size": "19200092"
+        }
+      }
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/OB3J7AQBla0.0-50.f137.mp4",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "r_frame_rate": "30000/1001",
+            "time_base": "1/30000",
+            "start_time": "0.000000",
+            "duration": "50.050000"
+          }
+        ],
+        "format": {
+          "start_time": "0.000000",
+          "duration": "50.050000",
+          "size": "16267049"
+        }
+      }
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/OB3J7AQBla0.291-320.f137.mp4",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "r_frame_rate": "30000/1001",
+            "time_base": "1/30000",
+            "start_time": "0.000000",
+            "duration": "29.053000"
+          }
+        ],
+        "format": {
+          "start_time": "0.000000",
+          "duration": "29.053000",
+          "size": "10410736"
+        }
+      }
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/OB3J7AQBla0.f251.webm",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "opus",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2,
+            "r_frame_rate": "0/0",
+            "time_base": "1/1000",
+            "start_time": "0.000000"
+          }
+        ],
+        "format": {
+          "start_time": "0.000000",
+          "duration": "604.981000",
+          "size": "10312197"
+        }
+      }
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/zeIHMnVxaQE.0-40.f137.mp4",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "r_frame_rate": "30000/1001",
+            "time_base": "1/30000",
+            "start_time": "0.000000",
+            "duration": "40.040000"
+          }
+        ],
+        "format": {
+          "start_time": "0.000000",
+          "duration": "40.040000",
+          "size": "12828356"
+        }
+      }
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/zeIHMnVxaQE.f251.webm",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "opus",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2,
+            "r_frame_rate": "0/0",
+            "time_base": "1/1000",
+            "start_time": "0.000000"
+          }
+        ],
+        "format": {
+          "start_time": "0.000000",
+          "duration": "718.841000",
+          "size": "12450157"
+        }
+      }
+    }
+  ],
+  "visual_inspection": {
+    "part1_seconds": [
+      0,
+      10,
+      20,
+      39
+    ],
+    "part2_seconds": [
+      0,
+      4,
+      5,
+      10,
+      20,
+      30,
+      40,
+      49,
+      291,
+      296,
+      306,
+      319
+    ],
+    "observations": [
+      "Part1 starts black; later sampled opening frames show the SH-201 panel and keyboard, with several illuminated bank/number indicators. No complete initial patch recipe is displayed.",
+      "Part2 first50s shows a changing patch: DESTINATION1 knob orientation differs at0/5/10s, LFO shape indicator position differs by20s, an oscillator-section knob is manipulated at30s, FILTER ENV sliders at49s. RATE looks unchanged across sparse samples, which is not proof it never moves or that both LFOs have a known raw rate.",
+      "Part2 portamento chapter291\u2013320s contains bank/number button operations, keys, filter cutoff manipulation at306s and FILTER ENV manipulation at319s. The chapter is not one fixed patch.",
+      "Front panel is oblique and oscillator/left-side labels are soft. Hands sometimes hide pressed keys and controls. No raw parameter values, precise complete note performance, single-oscillator isolation, effects-off state or exact preset identity recovered.",
+      "Independent mapping against official Owner Manual p40: at4s selected SHAPE LED is second from the clockwise end (S&H); at20s it is at the clockwise end (random). LFO1 button appears selected at4s. Confidence moderate-high for shape position, moderate for LFO selection; raw rate and routing remain unverified."
+    ],
+    "inference_policy": "Chapter names state the author intent. Physical knob appearance alone does not establish loaded values; no MIDI/raw patch or calibrated knob geometry inferred."
+  },
+  "benchmark_status": {
+    "max_lfo": "Potential independent endpoint periodicity diagnostic; benchmark agent separately analyzing first50s with local segments and confound checks.",
+    "portamento": "Potential shape/relative-time audio diagnostic after identifying note transitions; no raw time mapping established.",
+    "isolated_dry_oscillator": "Not established in inspected sections.",
+    "hardware_equivalence": "Not established; unknown patch, unknown original capture path and lossy platform encoding."
+  },
+  "official_panel_reference": {
+    "url": "https://cdn.roland.com/assets/media/pdf/SH-201_OM.pdf",
+    "page": 40,
+    "use": "Disambiguate seven SHAPE LED locations; manual explicitly defines S&H as one value change per cycle. This existing manual is a visual helper, not newly discovered DSP evidence."
+  }
+}
