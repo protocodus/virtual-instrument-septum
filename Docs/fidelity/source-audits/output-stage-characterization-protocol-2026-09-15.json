@@ -1,0 +1,781 @@
+{
+  "status": "same_frozen_policy_reporting_revision_after_initial_statistics",
+  "tool": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Tools/characterize_output_stage_references.py",
+    "sha256": "6dad4b78ca71e5152824606cd825fe6c836850177ed53df527bbb66e5e3d7e7a"
+  },
+  "integration": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/results.json",
+    "sha256": "a96632cc2912a941ed2201835a035ecae9b4754d2627d5b3dd3e970278720ca3"
+  },
+  "factory_measurement": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/results.json",
+    "sha256": "db2703598678513b3c0a26618d62605f199d722477d51f5c51bfd3908bbf8505"
+  },
+  "dry_measurement": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Docs/fidelity/source-audits/saw-w4-engine-dry-comparison-2026-09-15.json",
+    "sha256": "fe2d32c249d415d67e40534355f23e80ff59c043073afd8425a6b8a8b0eba3dd"
+  },
+  "original_mask_measurement": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/original-mask-01/results.json",
+    "sha256": "232cfa31fe7da169a89d10a476f81f49380c42a67399c4c49b727f0617b7072b"
+  },
+  "cases": [
+    {
+      "id": "lp12",
+      "cohort": "dry",
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf12_q000.mp3",
+        "sha256": "28e241247a0efb217eb4cb7154cc3b69713fcebca781639c45b8904b3dc8615b"
+      },
+      "reference": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine-assessment/candidate-01/hardware-lp12.wav",
+        "sha256": "3154afa9bd5b509d44dbc8fcb1972cbc2ffeb46d9adb00d107da4c2d05cc8a37"
+      },
+      "production": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/dry/lp12/production.wav",
+        "sha256": "0c8a41584d700f6e7545f78d64c80eb349bc595fcbbe604e56d03f215c189b47"
+      },
+      "native_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/dry/lp12/production.render.json",
+        "sha256": "89509f269f4f5621caa8a9affab96861aa9ba6d3bf78cd7b30af593fa0cc8bed"
+      },
+      "native_candidate_byte_identity": true,
+      "reference_segments": [
+        [
+          1406,
+          63945
+        ],
+        [
+          88200,
+          826875
+        ],
+        [
+          848925,
+          1324800
+        ]
+      ],
+      "candidate_segments": [
+        [
+          0,
+          62539
+        ],
+        [
+          86794,
+          825469
+        ],
+        [
+          847519,
+          1323394
+        ]
+      ],
+      "lag_samples": -1406,
+      "fixed_gain": 4.137125725839024,
+      "channel_policy": "mean mono, matching prior dry assessment",
+      "inherited_spectral_controls": {
+        "512": {
+          "bins": 332140
+        },
+        "1024": {
+          "bins": 279369
+        },
+        "2048": {
+          "bins": 266864
+        },
+        "8192": {
+          "bins": 237003
+        }
+      },
+      "context": "Original MIDI, reconstructed dry physical recipe; exclude note36 calibration and entire fitted note91 interval"
+    },
+    {
+      "id": "lp24",
+      "cohort": "dry",
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf24_q000.mp3",
+        "sha256": "ebb6fa4e12136028bbff614633095aa510c31654fcce840af5e3a85b3a469d90"
+      },
+      "reference": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine-assessment/candidate-01/hardware-lp24.wav",
+        "sha256": "92fc303c94e9bde908cbeb72571c06dd5a4a9d8fc59b10cb90378040404eed4f"
+      },
+      "production": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/dry/lp24/production.wav",
+        "sha256": "f29886147ad73e91c6a48203ef2da13a73626d44640192a95aca117fbc0ef5a2"
+      },
+      "native_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/dry/lp24/production.render.json",
+        "sha256": "498109d857a258fb03c61fcc791f9ec193be8491eea8907d0fb7daea2e00c267"
+      },
+      "native_candidate_byte_identity": true,
+      "reference_segments": [
+        [
+          1406,
+          63945
+        ],
+        [
+          88200,
+          826875
+        ],
+        [
+          848925,
+          1324800
+        ]
+      ],
+      "candidate_segments": [
+        [
+          0,
+          62539
+        ],
+        [
+          86794,
+          825469
+        ],
+        [
+          847519,
+          1323394
+        ]
+      ],
+      "lag_samples": -1406,
+      "fixed_gain": 3.870462967942607,
+      "channel_policy": "mean mono, matching prior dry assessment",
+      "inherited_spectral_controls": {
+        "512": {
+          "bins": 234027
+        },
+        "1024": {
+          "bins": 189445
+        },
+        "2048": {
+          "bins": 184146
+        },
+        "8192": {
+          "bins": 187504
+        }
+      },
+      "context": "Original MIDI, reconstructed dry physical recipe; exclude note36 calibration and entire fitted note91 interval"
+    },
+    {
+      "id": "air-lead-1",
+      "cohort": "official",
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/air-lead-1/comparison.json",
+        "sha256": "011f6d7bd55a3b04d208095d5eb952b1b4dbfb566e8a12f71558d4cba813f23d"
+      },
+      "reference": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/cases/air-lead-1/hardware-excerpt-raw.wav",
+        "sha256": "4968acb7c5f4d71eab9d163ea3caad2eb5b082cd249ba757d13f70bc691c5f01"
+      },
+      "production": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/air-lead-1/production.wav",
+        "sha256": "e9f06f653f8779ccfbb3bc109f1faa2ecd63728c62e3cd15d1817c832124635d"
+      },
+      "native_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/air-lead-1/production.render.json",
+        "sha256": "fb55aad778020e5d366eaa7e5bb7fb8e7fff14a08126e87fe7b71de58fd49582"
+      },
+      "native_candidate_byte_identity": true,
+      "reference_segments": [
+        [
+          38816,
+          152145
+        ]
+      ],
+      "candidate_segments": [
+        [
+          38036,
+          151365
+        ]
+      ],
+      "lag_samples": -780,
+      "fixed_gain": 3.9397896737180327,
+      "channel_policy": "stereo channels retained",
+      "inherited_spectral_controls": {
+        "512": {
+          "bins": 61586,
+          "mask_sha256": "10b97db050704654e6e3292977b4307530eaae07f1fcaca4202929529718db78"
+        },
+        "1024": {
+          "bins": 51034,
+          "mask_sha256": "6aad1df31ded34175bc8bf15ace4b6d2401b2d5cc52dae11b5215e274632f43a"
+        },
+        "2048": {
+          "bins": 38248,
+          "mask_sha256": "e92baab74458d149c5f8d8603e063887c86d9db38c523e2d97fcd3d1c84b2c08"
+        },
+        "8192": {
+          "bins": 26577,
+          "mask_sha256": "860f134f36145f67f4b3e0cc421062e82f574640a82e7f06ac67d618ea69233a"
+        }
+      },
+      "context": "Published same-name patch; original performance, recorded patch revision and capture processing remain unverified"
+    },
+    {
+      "id": "brassy-ld-1",
+      "cohort": "official",
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/brassy-ld-1/comparison.json",
+        "sha256": "935cece2f7de5a8921498907dd5fc75b8d62d2d446f5f499978e0812f7716ed6"
+      },
+      "reference": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/cases/brassy-ld-1/hardware-excerpt-raw.wav",
+        "sha256": "dde80fcd0ba68c3be1ed1e8c9e0bc1fac6c49ea462d935967b069931fbbc1a9c"
+      },
+      "production": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/brassy-ld-1/production.wav",
+        "sha256": "609eeaab8b216ff124d744676de97922c3ae485c4087e4bca25cac63fcfa058b"
+      },
+      "native_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/brassy-ld-1/production.render.json",
+        "sha256": "7600f244df1660d8543c6358e78b45abb5bad31e9c1665ede035539173044d15"
+      },
+      "native_candidate_byte_identity": true,
+      "reference_segments": [
+        [
+          33512,
+          133623
+        ]
+      ],
+      "candidate_segments": [
+        [
+          33406,
+          133517
+        ]
+      ],
+      "lag_samples": -106,
+      "fixed_gain": 4.352831535632635,
+      "channel_policy": "stereo channels retained",
+      "inherited_spectral_controls": {
+        "512": {
+          "bins": 59658,
+          "mask_sha256": "cff178fc2ebb7f1f6736a49513e732f3de721f86fa729fc6ecb9484ff069a89d"
+        },
+        "1024": {
+          "bins": 41080,
+          "mask_sha256": "cfa351414fff2b490b07a11596bac15ba117192e54bd63301eb4c1c6e707021a"
+        },
+        "2048": {
+          "bins": 25207,
+          "mask_sha256": "f208027440fa36e9d4839344655be8162f2a49f8041aaa05195a156998179bda"
+        },
+        "8192": {
+          "bins": 17529,
+          "mask_sha256": "9cf86dede3f074d243fa0cb16469cf955c39269a15b5d2f021d8bb6a9c93c01a"
+        }
+      },
+      "context": "Published same-name patch; original performance, recorded patch revision and capture processing remain unverified"
+    },
+    {
+      "id": "club-bass",
+      "cohort": "official",
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/club-bass/comparison.json",
+        "sha256": "606bbbd5d09fff8f1ef255da79cba3eb93f291681fbff6622cb35ab22331b035"
+      },
+      "reference": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/cases/club-bass/hardware-excerpt-raw.wav",
+        "sha256": "e5d5a628c59003732a17927b4690984627dd8427caca51c5f527df915424a6cd"
+      },
+      "production": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/club-bass/production.wav",
+        "sha256": "7450ab25f2a776ca21725f7afee23fdcb218c8eee64b53f7a44daa3202670ddd"
+      },
+      "native_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/club-bass/production.render.json",
+        "sha256": "9de2986a5e2bb85a34f8364d6db5581cd12e5d98fa67825f1d653cd5fb715dbe"
+      },
+      "native_candidate_byte_identity": true,
+      "reference_segments": [
+        [
+          35831,
+          143093
+        ]
+      ],
+      "candidate_segments": [
+        [
+          36063,
+          143325
+        ]
+      ],
+      "lag_samples": 232,
+      "fixed_gain": 1.828628717461392,
+      "channel_policy": "stereo channels retained",
+      "inherited_spectral_controls": {
+        "512": {
+          "bins": 12553,
+          "mask_sha256": "85b4b8fa947e25311378182de6e995d94ac03c98b85dcda0632430342b9e0506"
+        },
+        "1024": {
+          "bins": 11875,
+          "mask_sha256": "d50e968cf67d177c726f3696cb541c160d48b97feccbecb0b3496ebcb27f2fbb"
+        },
+        "2048": {
+          "bins": 10323,
+          "mask_sha256": "b7ff21f8f29fadfec00dce2bd693fcc637ca3fbdd3d12776979d70f445ba1ba9"
+        },
+        "8192": {
+          "bins": 7070,
+          "mask_sha256": "e7fccf2f301f7c776a20ddfbfd4ecca7fa46af0fff01e20c8b9c40757051744c"
+        }
+      },
+      "context": "Published same-name patch; original performance, recorded patch revision and capture processing remain unverified"
+    },
+    {
+      "id": "cotton-wool",
+      "cohort": "official",
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/cotton-wool/comparison.json",
+        "sha256": "0b6c7b03f97b82c5c2a096bf37094902c3412e3118c4865c053fa9af7d71e646"
+      },
+      "reference": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/cases/cotton-wool/hardware-excerpt-raw.wav",
+        "sha256": "cf85c5a424f99365f5d6fc2517608529f03f1d07ffae34646e2f3d0a16af16ef"
+      },
+      "production": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/cotton-wool/production.wav",
+        "sha256": "3367e7a2077a96902cb4404d5051b3f6f8f5a1d3cdde915b9739984b8ca4f13c"
+      },
+      "native_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/cotton-wool/production.render.json",
+        "sha256": "033aa3e52fb3276250dbed62695173f8d1a5cb0ac3e5659e4b0db62e2fd4f2d2"
+      },
+      "native_candidate_byte_identity": true,
+      "reference_segments": [
+        [
+          56471,
+          220500
+        ]
+      ],
+      "candidate_segments": [
+        [
+          55125,
+          219154
+        ]
+      ],
+      "lag_samples": -1346,
+      "fixed_gain": 3.8509083328464366,
+      "channel_policy": "stereo channels retained",
+      "inherited_spectral_controls": {
+        "512": {
+          "bins": 108397,
+          "mask_sha256": "64d41c42148caddccb7bcbe915485cd94142a87f0cb74d7bb0d9fe2a6577d0a6"
+        },
+        "1024": {
+          "bins": 97663,
+          "mask_sha256": "a675d503bd8f702220b3d3c5123e230bab2412afe961b810960f9f266a035bea"
+        },
+        "2048": {
+          "bins": 88887,
+          "mask_sha256": "fadbcd9586be483724b13ec82691015ae461c06678952a375462adc53aba955c"
+        },
+        "8192": {
+          "bins": 67524,
+          "mask_sha256": "b3d97af72c8f6e2c605737e702f49083d83846cc13481b3794baa891acca0ae4"
+        }
+      },
+      "context": "Published same-name patch; original performance, recorded patch revision and capture processing remain unverified"
+    },
+    {
+      "id": "dist-bs-1",
+      "cohort": "official",
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/dist-bs-1/comparison.json",
+        "sha256": "dc557be610291ddb1a10fe70e8a0f612a6693ca66c406166f619982bd656a744"
+      },
+      "reference": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/cases/dist-bs-1/hardware-excerpt-raw.wav",
+        "sha256": "24af96a9b84b9c8660bf6996b58f2def9500333e109177a26eb815bb341fb7ab"
+      },
+      "production": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/dist-bs-1/production.wav",
+        "sha256": "cb5b23e469dc32875fc5c85d93237db6a6cd2c7adb7df1c764eaae3bc0cd926d"
+      },
+      "native_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/dist-bs-1/production.render.json",
+        "sha256": "60d69c34583de1c3cc770af618a6f657e26134cf84ee3ba54f38c8cae186a0ad"
+      },
+      "native_candidate_byte_identity": true,
+      "reference_segments": [
+        [
+          13892,
+          55348
+        ]
+      ],
+      "candidate_segments": [
+        [
+          14110,
+          55566
+        ]
+      ],
+      "lag_samples": 218,
+      "fixed_gain": 1.0792218262944944,
+      "channel_policy": "stereo channels retained",
+      "inherited_spectral_controls": {
+        "512": {
+          "bins": 10962,
+          "mask_sha256": "e0269fb839fed8e2a42992cdf9a99fdae942b2069afc0852f43997cca566d434"
+        },
+        "1024": {
+          "bins": 14271,
+          "mask_sha256": "2195539d7fdeb0a51a51969c27ea9625a077b4ae76b6300f8b639f09bb4ed409"
+        },
+        "2048": {
+          "bins": 15589,
+          "mask_sha256": "314a9c64997efc275b32c198c0285da3d7020d3a645e9ef2c4b148424f5df546"
+        },
+        "8192": {
+          "bins": 9838,
+          "mask_sha256": "23019c0c89856346bbb2248dbc6530635ed61e6e40bbcd78b50f50c7e96374a3"
+        }
+      },
+      "context": "Published same-name patch; original performance, recorded patch revision and capture processing remain unverified"
+    },
+    {
+      "id": "moogie-1",
+      "cohort": "official",
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/moogie-1/comparison.json",
+        "sha256": "3a6a822da0d3c8d2b47a3a603810e9a2d28701dbc4417df6d902a39d7ae43754"
+      },
+      "reference": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/cases/moogie-1/hardware-excerpt-raw.wav",
+        "sha256": "b68b102973532d6e904cdceee31aebd89a304c43059d2ebcf2b22e57d83ba377"
+      },
+      "production": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/moogie-1/production.wav",
+        "sha256": "c3ddf4e529e8e697827147758430ec58b6e0e9cc3265f4d1add9081053da0489"
+      },
+      "native_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/moogie-1/production.render.json",
+        "sha256": "e65134bef4c3e2edc28cde5df35f560f0373f14d58dcedbd4272e51b46120ef9"
+      },
+      "native_candidate_byte_identity": true,
+      "reference_segments": [
+        [
+          41267,
+          163170
+        ]
+      ],
+      "candidate_segments": [
+        [
+          40792,
+          162695
+        ]
+      ],
+      "lag_samples": -475,
+      "fixed_gain": 0.7505073726787631,
+      "channel_policy": "stereo channels retained",
+      "inherited_spectral_controls": {
+        "512": {
+          "bins": 28877,
+          "mask_sha256": "7586ca19c73afc787ce2b18d19c1d550d21eaafd2bdd1609a303dec1670dd68d"
+        },
+        "1024": {
+          "bins": 29976,
+          "mask_sha256": "57cf6b1fe7db0eb42bd7735e79319ed9c2cab9cc664281f2ead3d825091f91b3"
+        },
+        "2048": {
+          "bins": 28926,
+          "mask_sha256": "37f15173df551e462389bbd8c4384286539d8c297b598bf19be592e5cb3accbb"
+        },
+        "8192": {
+          "bins": 23693,
+          "mask_sha256": "a46d9b7350069fc4d3aca8c8bd16d61def20de9fef5f0a2bea246138a2b0940c"
+        }
+      },
+      "context": "Published same-name patch; original performance, recorded patch revision and capture processing remain unverified"
+    },
+    {
+      "id": "pedal-bs-1",
+      "cohort": "official",
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/pedal-bs-1/comparison.json",
+        "sha256": "6cb8fd43d49cdfb1b3ec4d60c00c444091b42673fb9492de1746affaa1516c26"
+      },
+      "reference": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/cases/pedal-bs-1/hardware-excerpt-raw.wav",
+        "sha256": "3823b3cc39913a51c9e4aeb6b997a9a80ee371a55cd4aa75abb38251a8ea8faf"
+      },
+      "production": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/pedal-bs-1/production.wav",
+        "sha256": "30b80239ddc51ec4c72883974001a6a8d4a8d4b448621297967ae1082a951d27"
+      },
+      "native_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/pedal-bs-1/production.render.json",
+        "sha256": "3c0f12b8a7e1989707338662333790f69035ad164e2bbde8d93ccaa91ebcba12"
+      },
+      "native_candidate_byte_identity": true,
+      "reference_segments": [
+        [
+          17089,
+          68177
+        ]
+      ],
+      "candidate_segments": [
+        [
+          17267,
+          68355
+        ]
+      ],
+      "lag_samples": 178,
+      "fixed_gain": 1.347577354388231,
+      "channel_policy": "stereo channels retained",
+      "inherited_spectral_controls": {
+        "512": {
+          "bins": 4146,
+          "mask_sha256": "a8f9dd7e8297fc009e4b30923e58b3cf70967e0901739b9bcbde3e4d4341420f"
+        },
+        "1024": {
+          "bins": 2229,
+          "mask_sha256": "76b28471d7228419f0ff611b944a4ba9e4b9713e32f0040b016c384b2bbd87ee"
+        },
+        "2048": {
+          "bins": 1716,
+          "mask_sha256": "c4334fd64e839e69229ad9cc49cd90b3143fd645467624406169c5f860423e3b"
+        },
+        "8192": {
+          "bins": 1083,
+          "mask_sha256": "f88b029fcff9b00f2a6e2894b34ba58cf1042b1988226a06cfde20d69fb9162e"
+        }
+      },
+      "context": "Published same-name patch; original performance, recorded patch revision and capture processing remain unverified"
+    },
+    {
+      "id": "so-juno-1",
+      "cohort": "official",
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/so-juno-1/comparison.json",
+        "sha256": "d4bf032f33881bf965dfe6568ded086d665b809ee40af247c1b445acffe13cf0"
+      },
+      "reference": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/cases/so-juno-1/hardware-excerpt-raw.wav",
+        "sha256": "94f78e6c9564bda839597fd6df0210ee5b95518bc98a881419256962769a63e0"
+      },
+      "production": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/so-juno-1/production.wav",
+        "sha256": "bb90d1989e2cbfbd24a67427606b688b722671543468d5c8cd646eceaa3086db"
+      },
+      "native_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/so-juno-1/production.render.json",
+        "sha256": "89fdfefb1e4ac4f1234a6daec64a43d58723303067ed968d03bd2c0e503903fe"
+      },
+      "native_candidate_byte_identity": true,
+      "reference_segments": [
+        [
+          17426,
+          68355
+        ]
+      ],
+      "candidate_segments": [
+        [
+          17089,
+          68018
+        ]
+      ],
+      "lag_samples": -337,
+      "fixed_gain": 2.4034245935971854,
+      "channel_policy": "stereo channels retained",
+      "inherited_spectral_controls": {
+        "512": {
+          "bins": 35133,
+          "mask_sha256": "5904328db9c42a13009d496986c81c3b1fd67a50c7da0bde1ed34cd035139447"
+        },
+        "1024": {
+          "bins": 37643,
+          "mask_sha256": "66a7a7f9d1ab2dfd074e8b3edb28ec5da01906336bb5d07615730ec0cca70d7f"
+        },
+        "2048": {
+          "bins": 35000,
+          "mask_sha256": "faa4ac04e8d7a491287d7201d5f7b4472e5e888a2c0c7d0a9f9beda61ae42d05"
+        },
+        "8192": {
+          "bins": 22158,
+          "mask_sha256": "392d1c4aa6062ef11c8eb272f4bc9b4c3c6f940a182990942e12fdb48d55abd2"
+        }
+      },
+      "context": "Published same-name patch; original performance, recorded patch revision and capture processing remain unverified"
+    },
+    {
+      "id": "supa-juce-1",
+      "cohort": "official",
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/supa-juce-1/comparison.json",
+        "sha256": "6104f138526954d2c681a07c469c83809a63d0002168cc6d7d150939599ce430"
+      },
+      "reference": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/cases/supa-juce-1/hardware-excerpt-raw.wav",
+        "sha256": "94feaa31fa2ee16220a452f76852f3c1e3186d1889b895883b26e2a9fb6041f2"
+      },
+      "production": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/supa-juce-1/production.wav",
+        "sha256": "12785edfdedf0de105b6a370df7a52f58f2ce2341dfe280d7f3c58ffb9e93f33"
+      },
+      "native_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/supa-juce-1/production.render.json",
+        "sha256": "1b48807643e33a42eacf0cc4c032d4657121982fda1d7aabcb555055412ce875"
+      },
+      "native_candidate_byte_identity": true,
+      "reference_segments": [
+        [
+          19845,
+          79157
+        ]
+      ],
+      "candidate_segments": [
+        [
+          20068,
+          79380
+        ]
+      ],
+      "lag_samples": 223,
+      "fixed_gain": 1.84043280046605,
+      "channel_policy": "stereo channels retained",
+      "inherited_spectral_controls": {
+        "512": {
+          "bins": 91658,
+          "mask_sha256": "fc2d394c75c2ef4c6b30979141246fcc614b88f7ddf9e7fc083c61586b0a794f"
+        },
+        "1024": {
+          "bins": 78306,
+          "mask_sha256": "c180b66dfeff2df02514ba970fc9a717a97058a090d77a24848670953a9c9b68"
+        },
+        "2048": {
+          "bins": 65178,
+          "mask_sha256": "fd3312b3347cd367c8ef443977c1ff21f9ca945efa833d448af461dc191636e4"
+        },
+        "8192": {
+          "bins": 49169,
+          "mask_sha256": "d24fa0973b16f401ed84fbcb0288c3ac9c2f699d5334edbbc6aa110014916c86"
+        }
+      },
+      "context": "Published same-name patch; original performance, recorded patch revision and capture processing remain unverified"
+    },
+    {
+      "id": "vangelead",
+      "cohort": "official",
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/vangelead/comparison.json",
+        "sha256": "d52f429bcfb12cb1f65904852d652be9b59514361fdcf2ccb7fd97eab6f22291"
+      },
+      "reference": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/cases/vangelead/hardware-excerpt-raw.wav",
+        "sha256": "f15780a3c1eb785d811b6004f2b5424544822a2a21584541c7c638e11165b91c"
+      },
+      "production": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/vangelead/production.wav",
+        "sha256": "55850fa0cc589ac7c87ca43e818427838c1df85a52bc5fff32713b386755ceb8"
+      },
+      "native_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/vangelead/production.render.json",
+        "sha256": "4697d51ed729b535c4415ace5bb6cbeac75a9765e3947532b28cd646f66faafc"
+      },
+      "native_candidate_byte_identity": true,
+      "reference_segments": [
+        [
+          57248,
+          227115
+        ]
+      ],
+      "candidate_segments": [
+        [
+          56779,
+          226646
+        ]
+      ],
+      "lag_samples": -469,
+      "fixed_gain": 2.0338006518638494,
+      "channel_policy": "stereo channels retained",
+      "inherited_spectral_controls": {
+        "512": {
+          "bins": 255261,
+          "mask_sha256": "204eec31b50472b49172e4bb378ba9a20ac50863e7d4c94c0e5b19578e6d1504"
+        },
+        "1024": {
+          "bins": 182009,
+          "mask_sha256": "2b8055297a9ee0c150ddb6a8df8680b3308aa3296ae88a8956e77096213e6aea"
+        },
+        "2048": {
+          "bins": 129127,
+          "mask_sha256": "d17a17cc28ae98756f48e9be0e8f5f314c5f62034444f594a59e774a32469115"
+        },
+        "8192": {
+          "bins": 61785,
+          "mask_sha256": "55b7a88a241877927b68e966958628b558609ebb88d7249ef621726f6f541722"
+        }
+      },
+      "context": "Published same-name patch; original performance, recorded patch revision and capture processing remain unverified"
+    }
+  ],
+  "expected_case_count": 12,
+  "sample_policy": "Exact existing evaluated samples, lag and fixed gain; no joins inside STFT/RMS/loudness frames. K filters process complete source/candidate streams to preserve earlier filter state.",
+  "primary": "Saved production-prefix scalar for official cases; saved note36 scalar for dry. No new fit.",
+  "loudness_sensitivity": "One scalar per case from all evaluated original-selected K-weighted400ms blocks, hop100ms, absolute-70 and relative-10 gates derived only from original. Post-hoc descriptive sensitivity; not a training gain, candidate fit, or independently gated LUFS compliance test.",
+  "weighting": {
+    "sos": [
+      [
+        1.5308412300498355,
+        -2.6509799951536985,
+        1.1690790799210682,
+        1.0,
+        -1.6636551132560204,
+        0.7125954280732254
+      ],
+      [
+        1.0,
+        -2.0,
+        1.0,
+        1.0,
+        -1.9891696736297957,
+        0.9891990357870394
+      ]
+    ],
+    "offset_db": -0.691,
+    "channel_power_weights": "unity per retained channel; no downmix for stereo",
+    "design_urls": [
+      "https://github.com/csteinmetz1/pyloudnorm/blob/master/pyloudnorm/iirfilter.py",
+      "https://github.com/csteinmetz1/pyloudnorm/blob/master/pyloudnorm/meter.py"
+    ]
+  },
+  "dynamics": "Sample peak/RMS/crest, absolute-sample percentiles and fourth moment.10/50ms RMS hop220samples; original-active threshold-60dB, magnitude floor-80dB. Original RMS quartiles fix low/high groups; no response curve fitted.",
+  "transients": "Original-only50ms RMS rises over approximately50ms, >=3dB, current original level within30dB of peak, peaks separated>=150ms. Landmark is smoothed source rise, not known MIDI onset. Pair pre[-100,-50]ms, attack[0,50]ms and body[50,150]ms entirely within same evaluated interval. Retain all qualifying/rejected rises.",
+  "bands": {
+    "edges_hz": [
+      [
+        20,
+        120
+      ],
+      [
+        120,
+        500
+      ],
+      [
+        500,
+        2000
+      ],
+      [
+        2000,
+        6000
+      ],
+      [
+        6000,
+        16000
+      ]
+    ],
+    "windows_samples": [
+      2048,
+      8192
+    ],
+    "hop": "N/4",
+    "window": "periodic Hann",
+    "mask": "Original magnitude >=peak*-60dB threshold shared across models, same inherited counts/masks. Unmasked band powers also retained to expose candidate-only artifacts.",
+    "power": "One-sided STFT magnitude squared with DC/Nyquist weights1 and other bins2, Hann noise-bandwidth normalization; time/channel mean. Fixed-band ratios are diagnostic, not estimated output transfer."
+  },
+  "interpretation": "No memoryless compression/saturation/output-EQ curve fitted, no waveform transfer inferred from unfitted phase or unmatched performances, and no shipping change follows from these descriptive metrics.",
+  "reporting_revision": {
+    "prior_protocol": {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-characterization/prepared-02/protocol.json",
+      "sha256": "7c0f281117be9bff3a0775092721075bb6acb288f707ac30543e03f09bac01cb"
+    },
+    "reason": "Zero-original-power/zero-active-bin band ratios are now null with explicit insufficient support; original band power fraction additionally reported. All valid metrics, masks, thresholds, inputs and supports unchanged."
+  }
+}

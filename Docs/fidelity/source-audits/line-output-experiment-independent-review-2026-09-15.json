@@ -1,0 +1,350 @@
+{
+  "date": "2026-09-15",
+  "status": "No implementation blocker found in frozen isolated LINE trial",
+  "scope": "Independent algebra, copied-source placement, compiled bypass/reset/stereo controls, retained coefficient/nodal checks and12 baseline WAV hashes; no candidate hardware-score review",
+  "builder": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Tools/build_line_output_experiment.py",
+    "sha256": "1322c618c5710d6c3ccdc4f0b1f76039ae1e933d60e83a99005aaaa4643922cd"
+  },
+  "build_manifest": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-engine/run-01/build/manifest.json",
+    "sha256": "3529fcf742701f75c63867eec17c6e916d9a1b0ef0d5d3e039fa647516d0229d"
+  },
+  "protocol": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-engine/run-01/protocol-before-build.json",
+    "sha256": "8cdc40ccc78595f42b2c34f162533e1d2c736ffcbce1a53adf5f822b6ca35c74"
+  },
+  "reviewed_copied_sources": [
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-engine/run-01/build/source/Source/DSP/AnalogOutput.h",
+      "sha256": "ad5fd0b1e6415c7bae62da37b15f111b524005e448ecd78432b82d392217d19a"
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-engine/run-01/build/source/Source/DSP/LineOutputExperiment.h",
+      "sha256": "62ebc29ac77e4dbda20deea92045115fdb1761dcb6c3ab877aad870c2bc86bda"
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-engine/run-01/build/source/Source/DSP/SeptumEngine.cpp",
+      "sha256": "e371d22052c4732cdefe249326acdc5bf9239a6aad2a4a09db313664ba095d5b"
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-engine/run-01/build/source/Source/DSP/SeptumEngine.h",
+      "sha256": "b1b7cfd308c42d3b768b098624c26e417d00c4e0387ff5c2331ca1bb93d0d99e"
+    }
+  ],
+  "compiled_probe": {
+    "source": {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-independent-review/check.cpp",
+      "sha256": "a58bdd8791b2f2fcb13d2d8bda3c780c7006e9f5d34d2d250a8c2c199ba6bdd0"
+    },
+    "source_text": "#include <array>\n#include <cmath>\n#include <cstdlib>\n#include <cstdint>\n#include <iomanip>\n#include <iostream>\n#include \"OriginalAnalogOutput.h\"\n#include \"AnalogOutput.h\"\n\nint main() {\n    constexpr int count=20000;\n    int mismatch=0, resetMismatch=0, independenceMismatch=0, zeroRight=0;\n    double bypassMax=0, resetMax=0;\n    const auto input=[](int n) {return n==0 ? 1.0 : .4*std::sin(n*.137)+.2*std::cos(n*.0093);};\n    unsetenv(\"SEPTUM_LINE_FRACTION\");\n    original_septum::AnalogOutput original;\n    septum::AnalogOutput disabled;\n    original.prepare(44100); disabled.prepare(44100);\n    for(int n=0;n<count;++n) {\n        double a=original.processSample(input(n)), b=disabled.processSample(input(n));\n        mismatch+=(a!=b); bypassMax=std::max(bypassMax,std::abs(a-b));\n    }\n    for(const char* fraction:{\"0.1\",\"0.5\",\"1\"}) {\n        setenv(\"SEPTUM_LINE_FRACTION\",fraction,1);\n        septum::AnalogOutput used,fresh,single;\n        std::array<septum::AnalogOutput,2> stereo;\n        used.prepare(44100); fresh.prepare(44100); single.prepare(44100);\n        for(auto& p:stereo) p.prepare(44100);\n        for(int n=0;n<count;++n) used.processSample(input(n));\n        used.reset();\n        for(int n=0;n<count;++n) {\n            double a=used.processSample(input(n)),b=fresh.processSample(input(n));\n            resetMismatch+=(a!=b);resetMax=std::max(resetMax,std::abs(a-b));\n            double l=stereo[0].processSample(input(n)), rr=stereo[1].processSample(0.0);\n            independenceMismatch+=(l!=single.processSample(input(n))); zeroRight+=(rr!=0.0);\n        }\n    }\n    septum::analog_output_detail::Oversampling8 oversampler;\n    int innerCalls=0;\n    for(int n=0;n<100;++n) oversampler.process(input(n),[&](double x){++innerCalls;return x;});\n    std::cout<<std::setprecision(17)<<\"{\\\"bypass_samples\\\":\"<<count<<\",\\\"bypass_mismatches\\\":\"<<mismatch\n        <<\",\\\"bypass_max_abs\\\":\"<<bypassMax<<\",\\\"reset_samples\\\":\"<<3*count<<\",\\\"reset_mismatches\\\":\"<<resetMismatch\n        <<\",\\\"reset_max_abs\\\":\"<<resetMax<<\",\\\"stereo_samples\\\":\"<<3*count<<\",\\\"stereo_left_mismatches\\\":\"<<independenceMismatch\n        <<\",\\\"stereo_right_nonzero\\\":\"<<zeroRight<<\",\\\"circuit_calls_per_100_host_samples\\\":\"<<innerCalls<<\"}\\n\";\n    return mismatch||resetMismatch||independenceMismatch||zeroRight||innerCalls!=800;\n}\n",
+    "binary": {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-independent-review/check",
+      "sha256": "c70bc05d94eb5b044ec56727fcfde2b2eef79b387d682cc59e26d4541f8eb2a2"
+    },
+    "results": {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-independent-review/check-results.json",
+      "sha256": "dd9b86c02a064815c054ae13f81cafe28d471cc763684f5329969ec41d6a4a6b"
+    },
+    "measures": {
+      "bypass_samples": 20000,
+      "bypass_mismatches": 0,
+      "bypass_max_abs": 0,
+      "reset_samples": 60000,
+      "reset_mismatches": 0,
+      "reset_max_abs": 0,
+      "stereo_samples": 60000,
+      "stereo_left_mismatches": 0,
+      "stereo_right_nonzero": 0,
+      "circuit_calls_per_100_host_samples": 800
+    },
+    "original_header": {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-independent-review/OriginalAnalogOutput.h",
+      "sha256": "7bdd0acf953704a5692216d755dddff4b19e0c3fedd17393e0a189a92c564145"
+    },
+    "original_generation": "gitshow4b9f1bfc609910154066708d2cf03e119c7d7b71:Source/DSP/AnalogOutput.h; replace namespace septum with namespace original_septum in isolated copy",
+    "command": "c++ -std=c++20 -O2 -fno-fast-math -Ibuild-fidelity/line-output-engine/run-01/build/source/Source/DSP build-fidelity/line-output-independent-review/check.cpp -o build-fidelity/line-output-independent-review/check"
+  },
+  "independent_physical_nodal_check": {
+    "rows": [
+      {
+        "fraction": 0.1,
+        "frequency_hz": 20,
+        "coefficient_vs_independent_prewarped_nodal_abs": 7.423122194889716e-14
+      },
+      {
+        "fraction": 0.1,
+        "frequency_hz": 50,
+        "coefficient_vs_independent_prewarped_nodal_abs": 1.3238216665227435e-14
+      },
+      {
+        "fraction": 0.1,
+        "frequency_hz": 100,
+        "coefficient_vs_independent_prewarped_nodal_abs": 3.850952103041193e-15
+      },
+      {
+        "fraction": 0.1,
+        "frequency_hz": 1000,
+        "coefficient_vs_independent_prewarped_nodal_abs": 1.0199306677005637e-14
+      },
+      {
+        "fraction": 0.1,
+        "frequency_hz": 5000,
+        "coefficient_vs_independent_prewarped_nodal_abs": 4.2480540932182583e-16
+      },
+      {
+        "fraction": 0.1,
+        "frequency_hz": 10000,
+        "coefficient_vs_independent_prewarped_nodal_abs": 5.593023969348752e-16
+      },
+      {
+        "fraction": 0.1,
+        "frequency_hz": 20000,
+        "coefficient_vs_independent_prewarped_nodal_abs": 5.013320832966251e-16
+      },
+      {
+        "fraction": 0.5,
+        "frequency_hz": 20,
+        "coefficient_vs_independent_prewarped_nodal_abs": 1.1656094343038028e-14
+      },
+      {
+        "fraction": 0.5,
+        "frequency_hz": 50,
+        "coefficient_vs_independent_prewarped_nodal_abs": 2.5228596837578412e-14
+      },
+      {
+        "fraction": 0.5,
+        "frequency_hz": 100,
+        "coefficient_vs_independent_prewarped_nodal_abs": 2.6957524229349646e-14
+      },
+      {
+        "fraction": 0.5,
+        "frequency_hz": 1000,
+        "coefficient_vs_independent_prewarped_nodal_abs": 5.607283265063784e-15
+      },
+      {
+        "fraction": 0.5,
+        "frequency_hz": 5000,
+        "coefficient_vs_independent_prewarped_nodal_abs": 1.6779071908046259e-15
+      },
+      {
+        "fraction": 0.5,
+        "frequency_hz": 10000,
+        "coefficient_vs_independent_prewarped_nodal_abs": 2.7336071744532853e-16
+      },
+      {
+        "fraction": 0.5,
+        "frequency_hz": 20000,
+        "coefficient_vs_independent_prewarped_nodal_abs": 3.469446951953614e-16
+      },
+      {
+        "fraction": 1,
+        "frequency_hz": 20,
+        "coefficient_vs_independent_prewarped_nodal_abs": 3.023126300321049e-13
+      },
+      {
+        "fraction": 1,
+        "frequency_hz": 50,
+        "coefficient_vs_independent_prewarped_nodal_abs": 1.7132705678269806e-13
+      },
+      {
+        "fraction": 1,
+        "frequency_hz": 100,
+        "coefficient_vs_independent_prewarped_nodal_abs": 9.13592295669379e-14
+      },
+      {
+        "fraction": 1,
+        "frequency_hz": 1000,
+        "coefficient_vs_independent_prewarped_nodal_abs": 3.2831089168016538e-15
+      },
+      {
+        "fraction": 1,
+        "frequency_hz": 5000,
+        "coefficient_vs_independent_prewarped_nodal_abs": 3.7643499428696714e-16
+      },
+      {
+        "fraction": 1,
+        "frequency_hz": 10000,
+        "coefficient_vs_independent_prewarped_nodal_abs": 5.559024164717082e-16
+      },
+      {
+        "fraction": 1,
+        "frequency_hz": 20000,
+        "coefficient_vs_independent_prewarped_nodal_abs": 6.134939766467765e-16
+      }
+    ],
+    "maximum_absolute_error": 3.023126300321049e-13,
+    "method": "Solve physical2x2 complex-node matrices separately for Ci->Rtop->(G+Cw) and Co->(Gb parallel Rs->GL+Ctip), using s=j*16Fs*tan(pi*f/(8Fs)); remove only static resistance/idealampgain; compare actual emitted C++ coefficients"
+  },
+  "retained_implementation_controls": {
+    "pin": {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-engine/run-01/controls.json",
+      "sha256": "089036b369589a261002d3e42867fa29e67b25ec1feabec32796d3d360a34d23"
+    },
+    "count": 21,
+    "maximum_magnitude_error_db": 0.00033051509865466904,
+    "maximum_phase_error_degrees": 0.048314101122169155,
+    "maximum_processor_vs_coefficients_abs": 2.3506617663586724e-10
+  },
+  "baseline_full_wav_checks": [
+    {
+      "id": "lp12",
+      "wav": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-engine/run-01/baseline/dry/lp12/candidate.wav",
+        "sha256": "0c8a41584d700f6e7545f78d64c80eb349bc595fcbbe604e56d03f215c189b47"
+      },
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/dry/lp12/production.wav",
+        "sha256": "0c8a41584d700f6e7545f78d64c80eb349bc595fcbbe604e56d03f215c189b47"
+      },
+      "exact": true
+    },
+    {
+      "id": "lp24",
+      "wav": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-engine/run-01/baseline/dry/lp24/candidate.wav",
+        "sha256": "f29886147ad73e91c6a48203ef2da13a73626d44640192a95aca117fbc0ef5a2"
+      },
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/dry/lp24/production.wav",
+        "sha256": "f29886147ad73e91c6a48203ef2da13a73626d44640192a95aca117fbc0ef5a2"
+      },
+      "exact": true
+    },
+    {
+      "id": "air-lead-1",
+      "wav": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-engine/run-01/baseline/official/air-lead-1/candidate.wav",
+        "sha256": "e9f06f653f8779ccfbb3bc109f1faa2ecd63728c62e3cd15d1817c832124635d"
+      },
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/air-lead-1/production.wav",
+        "sha256": "e9f06f653f8779ccfbb3bc109f1faa2ecd63728c62e3cd15d1817c832124635d"
+      },
+      "exact": true
+    },
+    {
+      "id": "brassy-ld-1",
+      "wav": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-engine/run-01/baseline/official/brassy-ld-1/candidate.wav",
+        "sha256": "609eeaab8b216ff124d744676de97922c3ae485c4087e4bca25cac63fcfa058b"
+      },
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/brassy-ld-1/production.wav",
+        "sha256": "609eeaab8b216ff124d744676de97922c3ae485c4087e4bca25cac63fcfa058b"
+      },
+      "exact": true
+    },
+    {
+      "id": "club-bass",
+      "wav": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-engine/run-01/baseline/official/club-bass/candidate.wav",
+        "sha256": "7450ab25f2a776ca21725f7afee23fdcb218c8eee64b53f7a44daa3202670ddd"
+      },
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/club-bass/production.wav",
+        "sha256": "7450ab25f2a776ca21725f7afee23fdcb218c8eee64b53f7a44daa3202670ddd"
+      },
+      "exact": true
+    },
+    {
+      "id": "cotton-wool",
+      "wav": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-engine/run-01/baseline/official/cotton-wool/candidate.wav",
+        "sha256": "3367e7a2077a96902cb4404d5051b3f6f8f5a1d3cdde915b9739984b8ca4f13c"
+      },
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/cotton-wool/production.wav",
+        "sha256": "3367e7a2077a96902cb4404d5051b3f6f8f5a1d3cdde915b9739984b8ca4f13c"
+      },
+      "exact": true
+    },
+    {
+      "id": "dist-bs-1",
+      "wav": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-engine/run-01/baseline/official/dist-bs-1/candidate.wav",
+        "sha256": "cb5b23e469dc32875fc5c85d93237db6a6cd2c7adb7df1c764eaae3bc0cd926d"
+      },
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/dist-bs-1/production.wav",
+        "sha256": "cb5b23e469dc32875fc5c85d93237db6a6cd2c7adb7df1c764eaae3bc0cd926d"
+      },
+      "exact": true
+    },
+    {
+      "id": "moogie-1",
+      "wav": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-engine/run-01/baseline/official/moogie-1/candidate.wav",
+        "sha256": "c3ddf4e529e8e697827147758430ec58b6e0e9cc3265f4d1add9081053da0489"
+      },
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/moogie-1/production.wav",
+        "sha256": "c3ddf4e529e8e697827147758430ec58b6e0e9cc3265f4d1add9081053da0489"
+      },
+      "exact": true
+    },
+    {
+      "id": "pedal-bs-1",
+      "wav": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-engine/run-01/baseline/official/pedal-bs-1/candidate.wav",
+        "sha256": "30b80239ddc51ec4c72883974001a6a8d4a8d4b448621297967ae1082a951d27"
+      },
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/pedal-bs-1/production.wav",
+        "sha256": "30b80239ddc51ec4c72883974001a6a8d4a8d4b448621297967ae1082a951d27"
+      },
+      "exact": true
+    },
+    {
+      "id": "so-juno-1",
+      "wav": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-engine/run-01/baseline/official/so-juno-1/candidate.wav",
+        "sha256": "bb90d1989e2cbfbd24a67427606b688b722671543468d5c8cd646eceaa3086db"
+      },
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/so-juno-1/production.wav",
+        "sha256": "bb90d1989e2cbfbd24a67427606b688b722671543468d5c8cd646eceaa3086db"
+      },
+      "exact": true
+    },
+    {
+      "id": "supa-juce-1",
+      "wav": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-engine/run-01/baseline/official/supa-juce-1/candidate.wav",
+        "sha256": "12785edfdedf0de105b6a370df7a52f58f2ce2341dfe280d7f3c58ffb9e93f33"
+      },
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/supa-juce-1/production.wav",
+        "sha256": "12785edfdedf0de105b6a370df7a52f58f2ce2341dfe280d7f3c58ffb9e93f33"
+      },
+      "exact": true
+    },
+    {
+      "id": "vangelead",
+      "wav": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/line-output-engine/run-01/baseline/official/vangelead/candidate.wav",
+        "sha256": "55850fa0cc589ac7c87ca43e818427838c1df85a52bc5fff32713b386755ceb8"
+      },
+      "original": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/run-02/official/vangelead/production.wav",
+        "sha256": "55850fa0cc589ac7c87ca43e818427838c1df85a52bc5fff32713b386755ceb8"
+      },
+      "exact": true
+    }
+  ],
+  "placement_review": [
+    "Added LINE process executes after original SK y and all original SK state updates, inside the existing8x circuit lambda",
+    "The ratefactor16Fs equals2*internal8Fs; no new oversampler or transport change",
+    "AnalogOutput::reset clears both line sections; prepare clears state; disabled branch returns x before touching line state",
+    "Engine retains array<AnalogOutput,2> and per-channel indexing; no shared line state",
+    "Electrical fraction1 removes Rtop and second-order denominator term; first-order bilinear treatment avoids a removablez=-1 pole",
+    "Gain normalization removes only fixed resistive pot/load/idealIC20gain2, preserving all dynamic poles; not a whole output-voltage emulation"
+  ],
+  "model_limits": [
+    "Both lineplugs inserted; no L-only summing",
+    "Mute off; ferrites treated as wires; idealopamp input/output and constantnominal10kpot/10kload",
+    "No finite-bandwidth/nonlinearopamp orDACdigitalfilter included",
+    "Existing C216/SK approximation unchanged",
+    "This is a faithful numerical realization of the stated conditional omittednetwork, not evidence of matched hardware output"
+  ]
+}

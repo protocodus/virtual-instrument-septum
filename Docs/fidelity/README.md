@@ -15,6 +15,23 @@ now quantify how strongly short-window metrics can vary without a parameter
 change other than waveform origin. Their distances cannot be subtracted from
 hardware errors or used as a perceptual acceptance margin.
 
+The [output-stage source audit](source-audits/output-stage-primary-sources-2026-09-15.md)
+checks the user's report that the original sounds more lively and powerful.
+The [existing limiter is inactive](source-audits/output-path-code-audit-2026-09-15.md)
+in all twelve current benchmark renders. A
+[level/dynamics characterization](source-audits/output-stage-reference-characterization-2026-09-15.md)
+finds preset-dependent differences in transient contrast and harmonic body,
+without identifying a common missing gain, compressor or tone tilt.
+The [omitted line circuitry](source-audits/output-stage-circuit-calculation-2026-09-15.md)
+has very small calculated magnitude effects; its phase effects remain a
+separate full-engine experiment. Component data does not establish an audible
+normal-line saturation curve to install as a hardware correction.
+The [frozen full-engine line trial](source-audits/line-output-engine-trial-2026-09-15.md)
+passes exact disabled controls but leaves the priority-preset mismatches in
+place, so no output-stage variant is promoted. The AK4552 source audit also
+confirms de-emphasis is off and bounds its internal DAC response; no exact
+additional DAC filter is recoverable from the public documentation.
+
 The [new public reverb checks](source-audits/reverb-new-preset-validation-2026-09-15.md)
 support halving the current wet return as a provisional correction. Five
 independent neutral-damping recordings improve; Club Bass and Ambient SQR
@@ -133,8 +150,11 @@ filter. The right channel repeats the same topology.
 The model normalises the nominal gain to preserve existing patch headroom. It
 uses an ideal op-amp and treats the first coupling stage independently; solving
 the complete loaded input node changes the 20 Hz–20 kHz magnitude by less than
-0.0002 dB. The remaining master-volume/load network, line/headphone stages,
-op-amp bandwidth and nonlinearities are still open.
+0.0002 dB. The remaining master-volume/load network and line stage now have an
+[independently verified circuit calculation](source-audits/output-stage-circuit-calculation-2026-09-15.md),
+including bounded amplifier-bandwidth sensitivities. They remain outside the
+production model. Headphones, L/MONO routing and nonlinearities require their
+own operating/load assumptions; they are not interchangeable line-output models.
 
 The circuit is evaluated at 8× using bilinear discretisation, with half-band
 interpolation and decimation. Its 74-sample transport delay is reported to the

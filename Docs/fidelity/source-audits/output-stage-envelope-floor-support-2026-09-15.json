@@ -1,0 +1,180 @@
+{
+  "source": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-characterization/run-03/results.json",
+    "sha256": "761b5d4004e7ba62fdefd57af28badbe154f1acd9a7f65ea0c8177a24479bad7"
+  },
+  "method": "For each saved envelope: floor=max(original_rms_db)-80; count original_active && production_rms_db<=floor+1e-10. Tolerance only accommodates log floating-point rounding.",
+  "qualification": "K-matched envelope JSON adds scalar dB to existing floored logs.83selected dry frames reach that original-fixed floor, so this field is a floored-log sensitivity rather than remeasurement using the same absolute floor after amplitude scaling. No official selected frame reaches it. Primary envelope, crest/RMS and band metrics are unaffected.",
+  "cases": [
+    {
+      "id": "lp12",
+      "window_samples": 441,
+      "floor_dbfs": -87.72666274487032,
+      "selected_original_frames": 5358,
+      "selected_production_frames_at_floor": 32
+    },
+    {
+      "id": "lp12",
+      "window_samples": 2205,
+      "floor_dbfs": -90.17916505792996,
+      "selected_original_frames": 5616,
+      "selected_production_frames_at_floor": 8
+    },
+    {
+      "id": "lp24",
+      "window_samples": 441,
+      "floor_dbfs": -88.46446237007517,
+      "selected_original_frames": 5338,
+      "selected_production_frames_at_floor": 33
+    },
+    {
+      "id": "lp24",
+      "window_samples": 2205,
+      "floor_dbfs": -90.43705159740114,
+      "selected_original_frames": 5615,
+      "selected_production_frames_at_floor": 10
+    },
+    {
+      "id": "air-lead-1",
+      "window_samples": 441,
+      "floor_dbfs": -88.47311820108318,
+      "selected_original_frames": 514,
+      "selected_production_frames_at_floor": 0
+    },
+    {
+      "id": "air-lead-1",
+      "window_samples": 2205,
+      "floor_dbfs": -88.70048463044,
+      "selected_original_frames": 506,
+      "selected_production_frames_at_floor": 0
+    },
+    {
+      "id": "brassy-ld-1",
+      "window_samples": 441,
+      "floor_dbfs": -84.37519396348537,
+      "selected_original_frames": 454,
+      "selected_production_frames_at_floor": 0
+    },
+    {
+      "id": "brassy-ld-1",
+      "window_samples": 2205,
+      "floor_dbfs": -84.93657462188804,
+      "selected_original_frames": 446,
+      "selected_production_frames_at_floor": 0
+    },
+    {
+      "id": "club-bass",
+      "window_samples": 441,
+      "floor_dbfs": -87.19825381600197,
+      "selected_original_frames": 486,
+      "selected_production_frames_at_floor": 0
+    },
+    {
+      "id": "club-bass",
+      "window_samples": 2205,
+      "floor_dbfs": -89.35351731112371,
+      "selected_original_frames": 478,
+      "selected_production_frames_at_floor": 0
+    },
+    {
+      "id": "cotton-wool",
+      "window_samples": 441,
+      "floor_dbfs": -89.55652082181561,
+      "selected_original_frames": 744,
+      "selected_production_frames_at_floor": 0
+    },
+    {
+      "id": "cotton-wool",
+      "window_samples": 2205,
+      "floor_dbfs": -91.40309596527268,
+      "selected_original_frames": 736,
+      "selected_production_frames_at_floor": 0
+    },
+    {
+      "id": "dist-bs-1",
+      "window_samples": 441,
+      "floor_dbfs": -85.98637141361891,
+      "selected_original_frames": 187,
+      "selected_production_frames_at_floor": 0
+    },
+    {
+      "id": "dist-bs-1",
+      "window_samples": 2205,
+      "floor_dbfs": -87.81544110435337,
+      "selected_original_frames": 179,
+      "selected_production_frames_at_floor": 0
+    },
+    {
+      "id": "moogie-1",
+      "window_samples": 441,
+      "floor_dbfs": -86.73446256665287,
+      "selected_original_frames": 553,
+      "selected_production_frames_at_floor": 0
+    },
+    {
+      "id": "moogie-1",
+      "window_samples": 2205,
+      "floor_dbfs": -89.20284220644955,
+      "selected_original_frames": 545,
+      "selected_production_frames_at_floor": 0
+    },
+    {
+      "id": "pedal-bs-1",
+      "window_samples": 441,
+      "floor_dbfs": -88.23921784288913,
+      "selected_original_frames": 231,
+      "selected_production_frames_at_floor": 0
+    },
+    {
+      "id": "pedal-bs-1",
+      "window_samples": 2205,
+      "floor_dbfs": -90.28702607670677,
+      "selected_original_frames": 223,
+      "selected_production_frames_at_floor": 0
+    },
+    {
+      "id": "so-juno-1",
+      "window_samples": 441,
+      "floor_dbfs": -87.66715866727554,
+      "selected_original_frames": 230,
+      "selected_production_frames_at_floor": 0
+    },
+    {
+      "id": "so-juno-1",
+      "window_samples": 2205,
+      "floor_dbfs": -88.68851475013162,
+      "selected_original_frames": 222,
+      "selected_production_frames_at_floor": 0
+    },
+    {
+      "id": "supa-juce-1",
+      "window_samples": 441,
+      "floor_dbfs": -87.8085713318489,
+      "selected_original_frames": 268,
+      "selected_production_frames_at_floor": 0
+    },
+    {
+      "id": "supa-juce-1",
+      "window_samples": 2205,
+      "floor_dbfs": -88.12890015822131,
+      "selected_original_frames": 260,
+      "selected_production_frames_at_floor": 0
+    },
+    {
+      "id": "vangelead",
+      "window_samples": 441,
+      "floor_dbfs": -89.31911752463152,
+      "selected_original_frames": 771,
+      "selected_production_frames_at_floor": 0
+    },
+    {
+      "id": "vangelead",
+      "window_samples": 2205,
+      "floor_dbfs": -89.48217091814955,
+      "selected_original_frames": 763,
+      "selected_production_frames_at_floor": 0
+    }
+  ],
+  "total_floor_frames": 83,
+  "reproduction": "Read the pinned source JSON; iterate cases then envelopes; derive floor and count using the formula in method. No audio render or fit is needed."
+}

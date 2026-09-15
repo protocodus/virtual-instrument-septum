@@ -54,6 +54,26 @@ metrics. Their preset bytes and reconstructed performances are preserved.
 
 ## Evidence retained without a default change
 
+- [Output-stage source and headroom investigation](source-audits/output-stage-primary-sources-2026-09-15.md)
+  follows the user's report that hardware sounds more lively and powerful.
+  The present analog model is linear and the
+  [safety limiter never engages](source-audits/output-path-code-audit-2026-09-15.md)
+  in the twelve complete benchmark takes. Original service/component documents
+  distinguish the clean line path from the higher-gain phones path and L/MONO
+  summing; they do not identify an audible normal-line saturation curve.
+  [Loaded circuit calculations](source-audits/output-stage-circuit-calculation-2026-09-15.md)
+  bound the declared small-signal magnitude changes below 0.046 dB. Phase
+  changes were tested in a [frozen copied-engine trial](source-audits/line-output-engine-trial-2026-09-15.md):
+  disabled controls are byte-identical, while the three declared line-network
+  fractions leave the four priority-preset mismatches in place. No fraction or
+  nonlinear preamp is promoted. The AK4552 wiring audit confirms de-emphasis is
+  off and documents the bounded internal DAC filter response; its exact
+  coefficients are unavailable.
+  [Original-recording measurements](source-audits/output-stage-reference-characterization-2026-09-15.md)
+  show Moogie/Dist crest deficits of 4.19/3.81 dB with upper-bass/midrange body
+  deficits despite sufficient sub-bass. Cotton and Vange differ again, and
+  Air/Brassy provide opposite crest counterexamples. Extra common compression
+  or simple gain does not follow from these preset-dependent observations.
 - [Envelope curvature](source-audits/deepsonic-envelope-shape-2026-09-15.md)
   appears in dry harmonic estimates and maximum-resonance traces. Two curved
   models remain indistinguishable over the available short notes. Neither
@@ -273,7 +293,14 @@ reliability and does not change the instrument's DSP.
 
 ## Next work
 
-The user's latest listening comparison identifies these concrete targets:
+The user has prioritized the output stage as a possible source of the
+hardware's greater liveliness and power. The source, code and recording audits
+above distinguish circuit evidence from a generic saturation effect. The frozen
+full-engine line-circuit control now shows that its phase response
+does not identify a production setting; preserve the existing matched gains and
+the original preset bytes while returning to the preset-specific targets.
+
+The preceding listening comparison also identifies these concrete targets:
 
 | Preset | Reported difference to correct |
 |---|---|

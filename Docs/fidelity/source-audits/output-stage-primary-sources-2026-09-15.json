@@ -1,0 +1,459 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-15",
+  "scope": "Primary output circuit and component feasibility; no production changes or candidate fitting",
+  "sources": [
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/service.pdf",
+      "sha256": "b66d0e976d69860d542620ff2248e6c95f77157a6f1cb2037ff07fe0e582b76b",
+      "bytes": 8238606,
+      "title": "Roland SH-201/SH-201C Service Notes 17058418E0, May 2006",
+      "url": "https://www.synthxl.com/wp-content/uploads/2020/01/Roland-SH-201-Service-Manual.pdf",
+      "provenance": "manufacturer document via third-party mirror; reused hash-pinned prior cache",
+      "visually_inspected_pdf_pages": [
+        2,
+        13,
+        18,
+        22,
+        30,
+        37
+      ]
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/ak4552.pdf",
+      "sha256": "79a2c76d56749492b311a5dbccc06b69a5db72328f8803da81cbb4e8ee86bbe2",
+      "bytes": 122904,
+      "title": "AKM AK4552 MS0055-E-01, February 2001",
+      "url": "https://www.micro-semiconductor.com/datasheet/61-AK4552VT.pdf",
+      "provenance": "manufacturer document via third-party mirror; reused hash-pinned prior cache",
+      "visually_inspected_pdf_pages": [
+        4,
+        5
+      ]
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/m5218.pdf",
+      "sha256": "8bfe2712038584b8089e919ba146afa8467da28298fd2ea34e2bcbf04e4c4656",
+      "bytes": 292838,
+      "title": "Mitsubishi M5218AL/P/FP, printed2-467..2-471",
+      "url": "https://datasheet4u.com/pdf/721082/M5218P.pdf",
+      "provenance": "original manufacturer scan retrieved from third-party mirror",
+      "visually_inspected_pdf_pages": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/kia4559.pdf",
+      "sha256": "eef94aef1ebc362a4070e0e17162d7f870fe5b028a1ecf18050458e40277215b",
+      "bytes": 146606,
+      "title": "KEC KIA4559P/S/F, May27 1994",
+      "url": "https://datasheet4u.com/pdf/936427/KIA4559P.pdf",
+      "provenance": "original manufacturer scan retrieved from third-party mirror",
+      "visually_inspected_pdf_pages": [
+        3,
+        4
+      ]
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/panasonic-evj.pdf",
+      "sha256": "191c6deb4249ef69b5cbf59d8a524338fa061c514737a37d12aa6007eadbadf9",
+      "bytes": 169757,
+      "title": "Panasonic Rotary Potentiometers EVJC/EVJY, Oct/Dec2005",
+      "url": "https://www.allelcoelec.jp/datasheets.50/evj-c51f02b54.pdf",
+      "provenance": "original manufacturer family sheet; same dated document also linked by exact-part Mouser page",
+      "visually_inspected_pdf_pages": [
+        1,
+        2
+      ]
+    }
+  ],
+  "rendered_evidence": [
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/ak4552-04.png",
+      "sha256": "0a5a1c45914dec707d8eedf26db1945aa7ed1d3cc909129e053ce383ac30c020",
+      "bytes": 272092
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/ak4552-05.png",
+      "sha256": "d860c4950bea10cb9b8335eb191f6afdce0eb4ad8d10e08bd2c5721325b63a32",
+      "bytes": 258646
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/codec-wiring.png",
+      "sha256": "0619f1923f3492ff3bd539f2558bfafef787ab13c85c7780f6bb287168fe33b6",
+      "bytes": 219334
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/jacks.png",
+      "sha256": "7ab0d85d00044b61495eda41b1becab6dd023666fab762603239d6141c51501f",
+      "bytes": 174174
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/kia-3.png",
+      "sha256": "13b382bf8b47b5052595be49c6bf5ebe80bd47e4413585729a2c37e1e88fa536",
+      "bytes": 65257
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/kia-4.png",
+      "sha256": "24566b6c9de0d867ab751d7f32ad3411f47b6653c3cc47b4bde364ee90559896",
+      "bytes": 111066
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/line.png",
+      "sha256": "b2211329d0e0f207836cc89c24f6d66c9aa401855bf247c7edb7d798f3c7763f",
+      "bytes": 114994
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/m5218-2.png",
+      "sha256": "2b251b2ff12816e5e37fd397c0ac4ba92fe8998ba3b72dd822ed3a1085922150",
+      "bytes": 121078
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/m5218-3.png",
+      "sha256": "80169ff00be52252a22af5d4885fb9571c2e65cb51b4bd9bf5ca686f3dc24555",
+      "bytes": 108262
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/main-output.png",
+      "sha256": "a9f1992bbe7389298be582507896cf53ccad2e65d73424c695db67a77cd9f792",
+      "bytes": 1257949
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/master-pot.png",
+      "sha256": "e93c6ea335e73fa20c4853b8bb61991f85dba3466a156eacb20f510b1262f078",
+      "bytes": 42188
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/noise-test.png",
+      "sha256": "2f7134da2d140b0586da8048f7e9c846f55e4427571c5641e04b7e192aaff6be",
+      "bytes": 912026
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/panasonic-1.png",
+      "sha256": "45947e6a855442ae145b1cc3eb54ebf2c5da14b0f6bccf8cd8a5358d511ed4ca",
+      "bytes": 277166
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/panasonic-2.png",
+      "sha256": "20a85831a2a681e120af6968b2b804dfd7903137e36269f4e0f6bcdd9dd6425a",
+      "bytes": 266651
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/panel-connector.png",
+      "sha256": "17ce531f5acd19bf9c446f2f3e7917b03a7abde3a8f9d0cc96e493d111e8245b",
+      "bytes": 36328
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/panel-l.png",
+      "sha256": "db8ee7f756d260326a0e625383c526e1cc1f40ebf838c86eba120e5a2baa992d",
+      "bytes": 638678
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/phones.png",
+      "sha256": "16eb7f017d1b0a6b91889ac61a7e849c918063f28cdc1113af2917d0e7d6cf10",
+      "bytes": 112487
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/power.png",
+      "sha256": "987b9b716af5cb72c6c56d692764be4a382ca2fd7584f34c680782e86fcbb240",
+      "bytes": 271745
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/service-test.png",
+      "sha256": "2e5a6eafe1e37a9503215f1386517d255beaf5e6a6aba2c4bae38bced23d0379",
+      "bytes": 803048
+    }
+  ],
+  "source_document_guard": {
+    "service_matches_prior_b66d": true,
+    "akm_matches_prior_79a2": true
+  },
+  "potentiometer": {
+    "service_part": "EVJY15F02B14",
+    "panel_reference": "VR2A/B",
+    "nominal_per_gang_ohms": 10000,
+    "numeric_resistance_primary_schematic": false,
+    "numeric_resistance_corroboration": "Exact-part authorized distributor listing; related Panasonic manufacturer family PDF supplies tolerance/tracking but omits full code-to-value table",
+    "exact_part_listing": "https://lv.mouser.com/en/ProductDetail/Panasonic-Industry/EVJ-Y15F02B14?qs=WwqriLBepZulX6QrHnqNpg%3D%3D",
+    "manufacturer_sheet_linked_by_listing": "https://www.mouser.com/catalog/specsheets/panasonic_02222018_EVJC,EVJY.pdf",
+    "rotation_law_authenticated": false,
+    "resistance_tolerance_percent": 20,
+    "gang_tracking_limit_db": 3,
+    "tracking_range_db": [
+      -40,
+      0
+    ]
+  },
+  "observed_components": {
+    "dac": "IC22 AK4552VT",
+    "dac_va_rail_volts": 3.3,
+    "dac_va_feed": "R1720ohms; alternate IC21 andR294 NIU",
+    "dac_vd_feed": "R1712.2ohms",
+    "output_opamps": [
+      "IC25A/B",
+      "IC20A/B",
+      "IC16A/B"
+    ],
+    "opamp_primary_marking": "M5218AFP",
+    "opamp_alternative_marking": "KIA4559F",
+    "opamp_supply_volts": [
+      -8,
+      8
+    ],
+    "post_sk_coupling_farads": 2.2e-05,
+    "line_input_shunt_ohms": 10000,
+    "line_gain_ideal": 2,
+    "line_feedback_ohms": [
+      22000,
+      22000
+    ],
+    "line_output_coupling_farads": 2.2e-05,
+    "line_output_shunt_ohms": 100000,
+    "line_series_ohms": [
+      680,
+      330
+    ],
+    "line_tip_shunt_farads": 4.7e-10,
+    "wiper_shunt_farads": 1e-10,
+    "phone_input_series_ohms": 4700,
+    "phone_input_shunt_ohms": 100000,
+    "phone_gain_ideal": 3.2,
+    "phone_feedback_ohms": [
+      10000,
+      22000
+    ],
+    "phone_output_coupling_farads": 0.0001,
+    "phone_output_shunt_ohms": 100000,
+    "phone_output_series_ohms": [
+      47,
+      47
+    ],
+    "phone_tip_shunt_farads": 4.7e-10,
+    "ferrite_600_marking": "Not interpreted as600ohm audio/DC resistance; exact ferrite complex impedance unmeasured",
+    "mute_device_marking": "2SC4213A withKTC2875 alternative",
+    "mute_model": "No distortion/leakage law inferred"
+  },
+  "jack_topology": {
+    "left_tip": "JK5pin2 afterL43",
+    "right_tip": "JK6pin2 afterL44",
+    "right_normal": "JK6pin4 connected tolefttip",
+    "right_unplugged": "Left/right seriesresistor outputs tied forL/MONO",
+    "independent_stereo_assumption": "Both linejacks inserted",
+    "benchmark_jack_state_known": false
+  },
+  "derived_ideal_arithmetic": {
+    "assumptions": [
+      "Nominal3.3V DACVA",
+      "DAC0.583*VA typical fullscaleVpp",
+      "Idealopamps",
+      "Nominal10k potgang",
+      "Lowfrequency ignoring all reactiveparts forvoltagegain",
+      "Fullpot fornodepeaks",
+      "Outputload ignored fordriverpeaks",
+      "Mutedshunts off",
+      "No fittedcoefficients orhardwarelevelcalibration"
+    ],
+    "wiper_resistive_load_ohms": 9128.160418483,
+    "half_resistance_wiper_ratio": 0.3925023430178069,
+    "half_resistance_loading_vs_unloaded_db": -2.1025550150736803,
+    "full_pot_resistance_after_c178_ohms": 4772.105742935279,
+    "c178_isolated_corner_at_full_pot_hz": 1.5159587789511955,
+    "dac_fullscale_vpp": 1.9238999999999997,
+    "ic25_fullscale_peak_v": 2.4048749999999997,
+    "ic20_fullscale_peak_v": 4.809749999999999,
+    "ic16_fullscale_peak_v": 7.350143266475643,
+    "line_20khz_sine_slope_v_per_us": 0.6044110106241403,
+    "phones_20khz_sine_slope_v_per_us": 0.9236462435516947,
+    "line_to_rail_peak_margin_v": 3.1902500000000007,
+    "phones_to_rail_peak_margin_v": 0.6498567335243566,
+    "margin_is_clipping_threshold": false
+  },
+  "component_conditions": {
+    "m5218": {
+      "typ_slew_v_per_us": 3,
+      "typ_gbw_hz": 7000000.0,
+      "electrical_table_supply_volts": [
+        -15,
+        15
+      ],
+      "slew_load_ohms": 2000,
+      "typ_output_peak_volts_at_10k": 14,
+      "typ_output_peak_volts_at_2k": 13,
+      "headline_typ_thd_percent": 0.0015,
+      "sh201_distortion_law_established": false
+    },
+    "kia4559": {
+      "typ_slew_v_per_us": 2,
+      "typ_unity_cross_hz": 5000000.0,
+      "electrical_table_supply_volts": [
+        -15,
+        15
+      ],
+      "slew_load_ohms": 2000,
+      "typ_output_peak_volts_at_10k": 14,
+      "typ_output_peak_volts_at_2k": 13,
+      "typ_source_sink_ma": 40,
+      "sh201_distortion_law_established": false
+    },
+    "ak4552": {
+      "spec_supply_volts": 3,
+      "spec_rate_hz": 44100,
+      "spec_signal_hz": 1000,
+      "typ_dac_signal_to_noise_plus_distortion_db_at_0db": 88,
+      "typ_dac_a_weighted_snr_db": 100,
+      "converter_filter_distinct_from_external_sk": true
+    }
+  },
+  "service_checks": {
+    "line_sines_hz": [
+      220,
+      440
+    ],
+    "line_vpp": 5,
+    "phones_sines_hz": [
+      110,
+      220
+    ],
+    "phones_vpp": 12,
+    "both_controls": "MASTER VOLUME andEXT IN INPUT VOLUME MAX",
+    "digital_test_amplitudes_known": false,
+    "test_loads_known": false,
+    "loopthrough_1k_20k": "2Vpp analoginput gives6Vpp /3.8Vpp; not isolatedsynthoutputcurve",
+    "noise_limit": "DINAudio filtered residualnoise\u2264\u221272dB; no spectraldensity/shape"
+  },
+  "feasibility": {
+    "supported": "Compute omittedloadedlinear linepath anditsphysicalgains; distinguishbothjackstereo/L-onlysum/phones",
+    "not_supported": "A generic audible output saturation/noise orcompression model fromthesecomponenttablevalues",
+    "known_open": [
+      "Referencepotsetting",
+      "Referencejackstate",
+      "Actualfittedopampvariant",
+      "CaptureADCgain/headroom",
+      "ExactDACdigitalwordscaletosynthcore",
+      "Loaded\u00b18V nonlineartransfer/recovery",
+      "Supplyripple/modulation",
+      "RFbeadimpedance",
+      "Capturemastering"
+    ]
+  },
+  "retrieval_limits": [
+    "Official manufacturer domain searches didnotrecover currentAK4552/M5218/KIA4559 PDFs; allsemiconductorvalues useoriginalbrandedPDFmirrors, notdistributor prose",
+    "Webopeningservice/AKM mirrorfailedsafeURL; locallycachedoriginalshashes verified",
+    "OldKIA /pdf-down/K/I/A/KIA4559P-KEC.pdf returned404; newindexed /pdf/936427/KIA4559P.pdf retrievedsuccessfully",
+    "MouserfamilyPDF visiblethroughweb butlocaldownloadfailed; sameoriginaldatedfamilyPDF retrievedfromallelco mirror",
+    "Noauth/login/contact/payment"
+  ],
+  "related_code_audit": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Docs/fidelity/source-audits/output-path-code-audit-2026-09-15.json",
+    "sha256": "5d69154365ed7fc4c816cd80993c788dc52f574816d58ce57cf1c08f2a390023",
+    "bytes": 15013
+  },
+  "dac_mode_followup": {
+    "scope": "Bounded follow-up requested after main circuit audit; no new filter or source change",
+    "observed_dem0_pin6": "A+3.3V, logic1",
+    "observed_dem1_pin7": "Analog ground, logic0",
+    "wiring_caution": "DEM0 and DEM1 conductors cross without a junction dot",
+    "service_pdf_page": 30,
+    "akm_mode_table_pdf_page": 10,
+    "akm_mode_table_number": 3,
+    "deduced_mode": "De-emphasis OFF; do not apply50/15us curve",
+    "codec_block_diagram_pdf_page": 1,
+    "codec_blocks": [
+      "8x interpolator",
+      "Delta-sigma modulator",
+      "On-chip LPF using switched-capacitor-filter techniques"
+    ],
+    "dac_filter_specs_pdf_page": 5,
+    "spec_condition": {
+      "sample_rate_hz": 44100,
+      "dem0": 1,
+      "dem1": 0
+    },
+    "digital_filter": {
+      "passband_end_hz": 20000,
+      "passband_bound_db": 0.1,
+      "passband_ripple_db": 0.06,
+      "nyquist_frequency_hz": 22050,
+      "nyquist_gain_db": -6,
+      "stopband_start_hz": 24100,
+      "stopband_minimum_attenuation_db": 43,
+      "group_delay_sample_periods": 15.4,
+      "group_delay_distortion_microseconds": 0
+    },
+    "digital_plus_on_chip_analog": {
+      "passband_end_hz": 20000,
+      "magnitude_bound_db": 0.5
+    },
+    "delay_note7": "From loading24-bit DAC input registers to analog output",
+    "conditional_delay_seconds_at44100": 0.00034920634920634924,
+    "exact_coefficients_supplied": false,
+    "separate_analog_phase_curve_supplied": false,
+    "response_plot_supplied": false,
+    "scf_poles_supplied": false,
+    "serial_interface": {
+      "pdf_pages": [
+        1,
+        10,
+        13
+      ],
+      "bits": 24,
+      "format": "MSB first two-complement; DAC word LSB-justified",
+      "not_evidence_for": "Bit width or arithmetic of all WSP synthesis internals"
+    },
+    "clock_policy": {
+      "datasheet_modes_pdf_pages": [
+        8,
+        9
+      ],
+      "service_page30_clock_labels": [
+        "MCK",
+        "LRCK",
+        "BCK"
+      ],
+      "frequencies_printed_on_output_page": false,
+      "reference44100_basis": "Prior documented USB stream; retained as conditional codec comparison, not proof of all synthesis clocks",
+      "special_decimation_mode_selected_from_schematic": false
+    },
+    "interpretation": [
+      "De-emphasis off is directly established by pin wiring plus Table3",
+      "The built-in DAC filter is omitted by the current external-IC25 model",
+      "The table constrains magnitude and delay but does not uniquely identify a realizable coefficient set",
+      "Do not silently add15.4 samples to plugin numerical-conversion latency or retune frozen benchmark lag",
+      "Under normal-rate specification theDAC alone cannot explain a many-decibel sub20k notch"
+    ],
+    "rendered_followup_evidence": [
+      {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/dem-wiring.png",
+        "sha256": "89c6783f3f3f317be4e2623d1a5de13a8d05d174c1b5f09ba0ad9d0ea6576bac",
+        "bytes": 65129
+      },
+      {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/ak4552-block.png",
+        "sha256": "594c2aa81ee65a0a6cf3bf5c6871f51143ca125182d16b9a3f16bba27798e7dd",
+        "bytes": 236780
+      },
+      {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/ak4552-mode-08.png",
+        "sha256": "fc0356b39fd4b72b45e90534560b999553eae3fb41a3e3c654fe3681705b6938",
+        "bytes": 316967
+      },
+      {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/ak4552-mode-09.png",
+        "sha256": "55a82a5caf4093c41d127fa27513e91c091548a3f1932d439b97089f18d1dc12",
+        "bytes": 98824
+      },
+      {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/ak4552-mode-10.png",
+        "sha256": "1ba0598a3f49822ddf0406c8c51b74a91dc8e1a489c2644138b94578f2505a01",
+        "bytes": 153784
+      },
+      {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/ak4552-output.png",
+        "sha256": "f0579a73fdde87455b9b1678e95e32e12bc131e6dc4c9c6df7636c4206b9168c",
+        "bytes": 229166
+      }
+    ]
+  }
+}

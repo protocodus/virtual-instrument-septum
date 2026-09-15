@@ -1,0 +1,1679 @@
+{
+  "status": "passed",
+  "scope": "Independent node KCL and explicit opamp feedback; no audio or parameter fitting",
+  "reviewer": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Tools/review_output_stage_math.py",
+    "sha256": "3efab0a532c7513bb3dc0fa76a6703bbe81ffaed53a4f750140be245c6ceadbe"
+  },
+  "reviewed_tool": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Tools/analyze_output_stage_circuit.py",
+    "sha256": "b858a9df586dea4c1e19933b812bddb284f54814f6adf049f82f2d09944bd33c"
+  },
+  "reviewed_result": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-investigation/circuit-01/results.json",
+    "sha256": "deb0ac2380349be7f268c2d647060558f4e52dd22238c14ccc5476b55bb2c6f0"
+  },
+  "reviewed_protocol": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-investigation/circuit-01/protocol-before-calculation.json",
+    "sha256": "8b49cb4b52baccbbf2edca879563c63030141576d9ffe632608f3b5b85e51f5d"
+  },
+  "frequencies": {
+    "first": 20,
+    "last": 20000,
+    "count": 801,
+    "spacing": "geometric"
+  },
+  "scenarios": 144,
+  "independent_network_solves": 230688,
+  "maximum_complex_difference": 2.3317597531710006e-15,
+  "maximum_reported_magnitude_or_phase_difference": 3.019806626980426e-14,
+  "records": [
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.6654646361166326e-15
+      ],
+      "maximum_report_field_difference": 1.0658141036401503e-14
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.560807747199368e-15
+      ],
+      "maximum_report_field_difference": 1.0658141036401503e-14
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.554917140300622e-15
+      ],
+      "maximum_report_field_difference": 9.325873406851315e-15
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.3324889691073414e-15
+      ],
+      "maximum_report_field_difference": 8.881784197001252e-15
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.4433082123339571e-15
+      ],
+      "maximum_report_field_difference": 1.9290125052862095e-15
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.6654341450334193e-15
+      ],
+      "maximum_report_field_difference": 1.932481952238163e-15
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 10000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.332322967886782e-15
+      ],
+      "maximum_report_field_difference": 8.881784197001252e-15
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 10000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.5544090352263008e-15
+      ],
+      "maximum_report_field_difference": 1.3322676295501878e-14
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 10000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.5543781201416326e-15
+      ],
+      "maximum_report_field_difference": 1.2434497875801753e-14
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.4433743722118045e-15
+      ],
+      "maximum_report_field_difference": 6.217248937900877e-15
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.776528831701692e-15
+      ],
+      "maximum_report_field_difference": 5.793976409762536e-15
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.5544042558306912e-15
+      ],
+      "maximum_report_field_difference": 7.993605777301127e-15
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.5647474998540478e-15
+      ],
+      "maximum_report_field_difference": 5.797445856714489e-15
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.8874939362488346e-15
+      ],
+      "maximum_report_field_difference": 9.669348655094723e-15
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.999605750527424e-15
+      ],
+      "maximum_report_field_difference": 5.797445856714489e-15
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 20000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.2212896800075104e-15
+      ],
+      "maximum_report_field_difference": 1.1546319456101628e-14
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 20000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.4438902883526792e-15
+      ],
+      "maximum_report_field_difference": 1.5987211554602254e-14
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 20000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.665367062685278e-15
+      ],
+      "maximum_report_field_difference": 1.3322676295501878e-14
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.665385358139112e-15
+      ],
+      "maximum_report_field_difference": 3.864963904476326e-15
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.333030869954269e-15
+      ],
+      "maximum_report_field_difference": 2.6645352591003757e-15
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.357774392261693e-15
+      ],
+      "maximum_report_field_difference": 1.865174681370263e-14
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.6653345589958843e-15
+      ],
+      "maximum_report_field_difference": 2.9073965457371287e-15
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.784146017590271e-15
+      ],
+      "maximum_report_field_difference": 2.9073965457371287e-15
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.448535652107611e-15
+      ],
+      "maximum_report_field_difference": 1.4210854715202004e-14
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 50000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.4432931246718195e-15
+      ],
+      "maximum_report_field_difference": 1.1546319456101628e-14
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 50000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.5545300276885686e-15
+      ],
+      "maximum_report_field_difference": 1.4654943925052066e-14
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 50000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.6943551349561353e-15
+      ],
+      "maximum_report_field_difference": 4.440892098500626e-15
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.6653381509410551e-15
+      ],
+      "maximum_report_field_difference": 3.8719027983802334e-15
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.6963041208680424e-15
+      ],
+      "maximum_report_field_difference": 8.881784197001252e-15
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.443333977053897e-15
+      ],
+      "maximum_report_field_difference": 1.5987211554602254e-14
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.5664082319591334e-15
+      ],
+      "maximum_report_field_difference": 3.878841692284141e-15
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.5881580536640971e-15
+      ],
+      "maximum_report_field_difference": 4.836409051023338e-15
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.998888573012154e-15
+      ],
+      "maximum_report_field_difference": 8.881784197001252e-15
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 100000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.3324042771911934e-15
+      ],
+      "maximum_report_field_difference": 7.993605777301127e-15
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 100000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.6665050639151995e-15
+      ],
+      "maximum_report_field_difference": 1.5987211554602254e-14
+    },
+    {
+      "amplifier": "ideal",
+      "pot_ohms": 100000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.884223316973178e-16,
+        1.4453994570927084e-15
+      ],
+      "maximum_report_field_difference": 7.993605777301127e-15
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.5543741876503828e-15
+      ],
+      "maximum_report_field_difference": 1.5987211554602254e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.6672452506443823e-15
+      ],
+      "maximum_report_field_difference": 1.7763568394002505e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.5555663053617267e-15
+      ],
+      "maximum_report_field_difference": 3.019806626980426e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.2228410187227362e-15
+      ],
+      "maximum_report_field_difference": 8.881784197001252e-15
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.6654438570686587e-15
+      ],
+      "maximum_report_field_difference": 6.217248937900877e-15
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.8874588609271572e-15
+      ],
+      "maximum_report_field_difference": 1.2434497875801753e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.3329179921125024e-15
+      ],
+      "maximum_report_field_difference": 1.1546319456101628e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.7779959389621277e-15
+      ],
+      "maximum_report_field_difference": 1.7763568394002505e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.6653757022301903e-15
+      ],
+      "maximum_report_field_difference": 1.1546319456101628e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.5543531335280066e-15
+      ],
+      "maximum_report_field_difference": 1.7763568394002505e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.999605750527424e-15
+      ],
+      "maximum_report_field_difference": 8.881784197001252e-15
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.6654341450334193e-15
+      ],
+      "maximum_report_field_difference": 8.881784197001252e-15
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.6736404963781187e-15
+      ],
+      "maximum_report_field_difference": 1.5987211554602254e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.8874756015029024e-15
+      ],
+      "maximum_report_field_difference": 1.3322676295501878e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.8873918971393412e-15
+      ],
+      "maximum_report_field_difference": 1.3508291707431397e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.2214867846108463e-15
+      ],
+      "maximum_report_field_difference": 1.4210854715202004e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.6665709719178737e-15
+      ],
+      "maximum_report_field_difference": 9.769962616701378e-15
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.6656395679181904e-15
+      ],
+      "maximum_report_field_difference": 1.509903313490213e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.777454255113597e-15
+      ],
+      "maximum_report_field_difference": 2.220446049250313e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.673813997840157e-15
+      ],
+      "maximum_report_field_difference": 1.509903313490213e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.668583973270389e-15
+      ],
+      "maximum_report_field_difference": 1.509903313490213e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.3323311555066912e-15
+      ],
+      "maximum_report_field_difference": 1.7763568394002505e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.5577932719640712e-15
+      ],
+      "maximum_report_field_difference": 1.2559397966072083e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.4545219296763381e-15
+      ],
+      "maximum_report_field_difference": 1.9539925233402755e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.3394761424494087e-15
+      ],
+      "maximum_report_field_difference": 1.1546319456101628e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.7769742191324346e-15
+      ],
+      "maximum_report_field_difference": 8.881784197001252e-16
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.5651513121182556e-15
+      ],
+      "maximum_report_field_difference": 8.881784197001252e-15
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.665407718976409e-15
+      ],
+      "maximum_report_field_difference": 1.5987211554602254e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.665470113159474e-15
+      ],
+      "maximum_report_field_difference": 8.881784197001252e-15
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.6655956284939425e-15
+      ],
+      "maximum_report_field_difference": 2.4868995751603507e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.6683711485121662e-15
+      ],
+      "maximum_report_field_difference": 1.2434497875801753e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.777454255113597e-15
+      ],
+      "maximum_report_field_difference": 8.881784197001252e-15
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.7829041963075672e-15
+      ],
+      "maximum_report_field_difference": 1.5987211554602254e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.4434048632919354e-15
+      ],
+      "maximum_report_field_difference": 1.2434497875801753e-14
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.8875467472934327e-15
+      ],
+      "maximum_report_field_difference": 4.440892098500626e-15
+    },
+    {
+      "amplifier": "one_pole_3MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.886119947416683e-16,
+        1.5547390804703061e-15
+      ],
+      "maximum_report_field_difference": 7.105427357601002e-15
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.6711069443220835e-15
+      ],
+      "maximum_report_field_difference": 7.105427357601002e-15
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.898076052801724e-15
+      ],
+      "maximum_report_field_difference": 6.217248937900877e-15
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.6819626914145305e-15
+      ],
+      "maximum_report_field_difference": 1.9307472287621863e-15
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.4433050848639135e-15
+      ],
+      "maximum_report_field_difference": 2.896988204881268e-15
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.443573725305356e-15
+      ],
+      "maximum_report_field_difference": 2.895253481405291e-15
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        2.3317597531710006e-15
+      ],
+      "maximum_report_field_difference": 4.440892098500626e-15
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.5543209467896878e-15
+      ],
+      "maximum_report_field_difference": 1.1546319456101628e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.7772239894833365e-15
+      ],
+      "maximum_report_field_difference": 2.042810365310288e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.665407718976409e-15
+      ],
+      "maximum_report_field_difference": 1.687538997430238e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.443556787877425e-15
+      ],
+      "maximum_report_field_difference": 9.662409761190816e-16
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.8887187722125772e-15
+      ],
+      "maximum_report_field_difference": 2.0262437561147095e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.5867476851400899e-15
+      ],
+      "maximum_report_field_difference": 1.6405279912312665e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        2.227212004505268e-15
+      ],
+      "maximum_report_field_difference": 2.2202725769027154e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        2.1171246443165348e-15
+      ],
+      "maximum_report_field_difference": 2.3174170915574166e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.894711961311747e-15
+      ],
+      "maximum_report_field_difference": 1.6417422976644502e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.5582722720639764e-15
+      ],
+      "maximum_report_field_difference": 1.2434497875801753e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.6653499105147668e-15
+      ],
+      "maximum_report_field_difference": 1.7763568394002505e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.4433018067142106e-15
+      ],
+      "maximum_report_field_difference": 3.552713678800501e-15
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.332290499243473e-15
+      ],
+      "maximum_report_field_difference": 1.2548989625216223e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.665385358139112e-15
+      ],
+      "maximum_report_field_difference": 1.3515230601335304e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.6671227363333067e-15
+      ],
+      "maximum_report_field_difference": 1.2552459072168176e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.7829041963075672e-15
+      ],
+      "maximum_report_field_difference": 1.546332506485726e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.6653618676432303e-15
+      ],
+      "maximum_report_field_difference": 1.1601830607332886e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.5543318371141009e-15
+      ],
+      "maximum_report_field_difference": 9.669348655094723e-15
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.4499465946348184e-15
+      ],
+      "maximum_report_field_difference": 1.4210854715202004e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        2.0078238367923027e-15
+      ],
+      "maximum_report_field_difference": 4.440892098500626e-15
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.5543648857564807e-15
+      ],
+      "maximum_report_field_difference": 1.0658141036401503e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.5569276079042292e-15
+      ],
+      "maximum_report_field_difference": 1.1594891713428979e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.5860534145871445e-15
+      ],
+      "maximum_report_field_difference": 1.44953493652622e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.7771190055447445e-15
+      ],
+      "maximum_report_field_difference": 1.0630385460785874e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.900395703982448e-15
+      ],
+      "maximum_report_field_difference": 1.452310494087783e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        2.0032143250599133e-15
+      ],
+      "maximum_report_field_difference": 1.6459056340067946e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        2.114127337234247e-15
+      ],
+      "maximum_report_field_difference": 1.2580214647783805e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.4432915507565325e-15
+      ],
+      "maximum_report_field_difference": 1.2434497875801753e-14
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.8874501449324596e-15
+      ],
+      "maximum_report_field_difference": 4.827735433643454e-15
+    },
+    {
+      "amplifier": "one_pole_5MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.883478101367855e-16,
+        1.7763581628887375e-15
+      ],
+      "maximum_report_field_difference": 9.769962616701378e-15
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.3329179921125024e-15
+      ],
+      "maximum_report_field_difference": 1.2434497875801753e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.7764415406755882e-15
+      ],
+      "maximum_report_field_difference": 1.2434497875801753e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.6656958984559162e-15
+      ],
+      "maximum_report_field_difference": 1.7763568394002505e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.5555663053617267e-15
+      ],
+      "maximum_report_field_difference": 7.993605777301127e-15
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.5544293626181473e-15
+      ],
+      "maximum_report_field_difference": 9.769962616701378e-15
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.6658991298631905e-15
+      ],
+      "maximum_report_field_difference": 1.3322676295501878e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.5543147906975476e-15
+      ],
+      "maximum_report_field_difference": 4.440892098500626e-15
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.7764110486817194e-15
+      ],
+      "maximum_report_field_difference": 1.3322676295501878e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 10000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.9986591139591037e-15
+      ],
+      "maximum_report_field_difference": 1.2434497875801753e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.444357059649813e-15
+      ],
+      "maximum_report_field_difference": 1.1546319456101628e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.998950246318965e-15
+      ],
+      "maximum_report_field_difference": 1.3322676295501878e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.665664974059296e-15
+      ],
+      "maximum_report_field_difference": 6.217248937900877e-15
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.8876979979207144e-15
+      ],
+      "maximum_report_field_difference": 1.3322676295501878e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        2.1095100532214538e-15
+      ],
+      "maximum_report_field_difference": 1.3520434771763234e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.776804863330159e-15
+      ],
+      "maximum_report_field_difference": 1.509903313490213e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.7763600190796793e-15
+      ],
+      "maximum_report_field_difference": 7.105427357601002e-15
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.666147490140628e-15
+      ],
+      "maximum_report_field_difference": 1.1546319456101628e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 20000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.560807747199368e-15
+      ],
+      "maximum_report_field_difference": 1.5987211554602254e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.5543124764846139e-15
+      ],
+      "maximum_report_field_difference": 1.3322676295501878e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.554560032361923e-15
+      ],
+      "maximum_report_field_difference": 9.769962616701378e-15
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.4442278791221033e-15
+      ],
+      "maximum_report_field_difference": 1.2434497875801753e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.3324042771911934e-15
+      ],
+      "maximum_report_field_difference": 7.993605777301127e-15
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.6659930595578416e-15
+      ],
+      "maximum_report_field_difference": 6.772360450213455e-15
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.4442278791221033e-15
+      ],
+      "maximum_report_field_difference": 1.2434497875801753e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.3322746881393826e-15
+      ],
+      "maximum_report_field_difference": 7.993605777301127e-15
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.6665050639151995e-15
+      ],
+      "maximum_report_field_difference": 1.1546319456101628e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 50000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        2.109617931298229e-15
+      ],
+      "maximum_report_field_difference": 1.2434497875801753e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.5547390804703061e-15
+      ],
+      "maximum_report_field_difference": 1.2434497875801753e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.7764415406755882e-15
+      ],
+      "maximum_report_field_difference": 1.5987211554602254e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.1,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.6660698541909704e-15
+      ],
+      "maximum_report_field_difference": 1.2434497875801753e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.5552422404312028e-15
+      ],
+      "maximum_report_field_difference": 1.4210854715202004e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.902067138807519e-15
+      ],
+      "maximum_report_field_difference": 1.4210854715202004e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 0.5,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.683201214377142e-15
+      ],
+      "maximum_report_field_difference": 1.0658141036401503e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 10000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.6657717744151097e-15
+      ],
+      "maximum_report_field_difference": 6.217248937900877e-15
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 20000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.5549664902315766e-15
+      ],
+      "maximum_report_field_difference": 1.865174681370263e-14
+    },
+    {
+      "amplifier": "one_pole_7MHz",
+      "pot_ohms": 100000,
+      "wiper_fraction": 1.0,
+      "load_ohms": 100000,
+      "maximum_complex_errors": [
+        8.881784197001252e-16,
+        1.4447945207835812e-15
+      ],
+      "maximum_report_field_difference": 2.220446049250313e-14
+    }
+  ],
+  "limitations": [
+    "Both line jacks inserted; otherwise switched R normal joins output drivers.",
+    "Mute transistors off; RF ferrites treated as zero impedance in the audio band.",
+    "One-pole finite opamps are sensitivities, not a verified macro-model or guaranteed bounds at \u00b18 V.",
+    "No saturation, slew-rate limiting, output impedance, dielectric or loading nonlinearities inferred."
+  ],
+  "visual_review_sources": [
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/main-output.png",
+      "sha256": "a9f1992bbe7389298be582507896cf53ccad2e65d73424c695db67a77cd9f792"
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/panel-connector.png",
+      "sha256": "17ce531f5acd19bf9c446f2f3e7917b03a7abde3a8f9d0cc96e493d111e8245b"
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/master-pot.png",
+      "sha256": "e93c6ea335e73fa20c4853b8bb61991f85dba3466a156eacb20f510b1262f078"
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/line.png",
+      "sha256": "b2211329d0e0f207836cc89c24f6d66c9aa401855bf247c7edb7d798f3c7763f"
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/phones.png",
+      "sha256": "16eb7f017d1b0a6b91889ac61a7e849c918063f28cdc1113af2917d0e7d6cf10"
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/jacks.png",
+      "sha256": "7ab0d85d00044b61495eda41b1becab6dd023666fab762603239d6141c51501f"
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/m5218-2.png",
+      "sha256": "2b251b2ff12816e5e37fd397c0ac4ba92fe8998ba3b72dd822ed3a1085922150"
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/m5218-3.png",
+      "sha256": "80169ff00be52252a22af5d4885fb9571c2e65cb51b4bd9bf5ca686f3dc24555"
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/ak4552-04.png",
+      "sha256": "0a5a1c45914dec707d8eedf26db1945aa7ed1d3cc909129e053ce383ac30c020"
+    }
+  ],
+  "primary_documents": [
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/service.pdf",
+      "sha256": "b66d0e976d69860d542620ff2248e6c95f77157a6f1cb2037ff07fe0e582b76b"
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/m5218.pdf",
+      "sha256": "8bfe2712038584b8089e919ba146afa8467da28298fd2ea34e2bcbf04e4c4656"
+    },
+    {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/output-stage-primary-audit/sources/ak4552.pdf",
+      "sha256": "79a2c76d56749492b311a5dbccc06b69a5db72328f8803da81cbb4e8ee86bbe2"
+    }
+  ],
+  "review_notes": [
+    "C343 is on CN7 pin9 through L70, a volume-pot wiper return; C344 is pin10/L69. No A/B pot-subsection label is needed for the equal channel equations.",
+    "Source-research independent high-resolution jack trace confirms the R normal contact joins output drivers when no R plug is inserted.",
+    "DAC/supply/slew arithmetic in the companion report is conditional full-scale-sine scale estimation, not a nonlinear hardware model."
+  ]
+}
