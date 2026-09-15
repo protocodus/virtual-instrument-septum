@@ -24,6 +24,11 @@ The exact Roland return coefficient, decay law and damping topology are open.
 The [synchronized seven-preset player](http://127.0.0.1:58513/) compares original
 recordings, the previous return and the corrected return, with
 [verified audio provenance](source-audits/reverb-listening-player-2026-09-15.md).
+The [additional SINGLE/damped reference](source-audits/reverb-mode-damping-followup-2026-09-15.md)
+has small spectral gains and worse stereo spread; it does not resolve the
+tail mismatch. A [numerical alignment fix](source-audits/alignment-silence-regression-2026-09-15.md)
+corrects one near-silent timing fit while preserving the lag/gain of the
+other 170 historical comparisons checked.
 
 The [synchronized dry listening comparison](source-audits/dry-listening-player-2026-09-15.md)
 presents original-MIDI hardware, current DSP and the retained envelope

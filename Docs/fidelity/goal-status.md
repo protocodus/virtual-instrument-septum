@@ -1,6 +1,6 @@
 # SH-201 replication goal: current evidence
 
-Status: **active; matching hardware output is not established**. Updated
+Status: **matching hardware output is not established**. Updated
 2026-09-15. Work uses public recordings as requested. No physical-unit capture
 is required to continue the present investigations.
 
@@ -94,6 +94,10 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   improve Air Lead but fail to improve the other nine presets consistently;
   the Moogie harmonic checks also regress. All ten unchanged-taper controls
   reproduce production byte-for-byte. Neither replacement is promoted.
+  The [creator-published RCS Acid set](source-audits/rcs-acid-patch06-feasibility-2026-09-15.md)
+  adds nine schema-checked presets and numbered demo passages. Patch 06's
+  active filter LFO prevents a static cutoff anchor, while its short passage
+  and changing note mixtures do not establish an interior LFO rate.
 - [Classic-Saw alias lines](source-audits/deepsonic-saw-aliases-2026-09-15.md)
   establish a 44.1 kHz folding signature across eight pitches and both dry
   filter slopes. Synthetic codec controls rule out that MP3 round-trip as
@@ -150,7 +154,11 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   preserve both envelope regressions, including on common later supports.
   Half-cycle pairs are exact polarity inversions, so the four tested phases
   represent only two distinct magnitude responses. Independent layer and
-  oscillator phases remain separate uncertainties.
+  oscillator phases remain separate uncertainties. A subsequent
+  [4 × 4 Upper/Lower grid](source-audits/dual-layer-phase-sensitivity-2026-09-15.md)
+  retains the regressions in all 16 layer states, with eight distinct
+  magnitude responses after polarity symmetry. Individual oscillator
+  phases within each layer remain untested.
   [Club's low-band tail](source-audits/club-reverb-decay-2026-09-15.md)
   grows quieter relative to hardware by 2.31–2.42 dB in stereo and
   4.41–4.58 dB in side between fixed early and later supports. Constant
@@ -163,6 +171,28 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   other way. [Brassy's final tail](source-audits/brassy-reverb-tail-feasibility-2026-09-15.md)
   contains delay steps and lacks clean later support. No global time
   multiplier follows from these recordings.
+  [201vsJP8000](source-audits/reverb-mode-damping-followup-2026-09-15.md)
+  adds a SINGLE preset with −10 dB HF damping under two frozen gate
+  hypotheses. Half return slightly improves spectra but worsens stereo
+  side-fraction error; its short, mostly direct-sound opening has no isolated
+  tail and does not identify a mode or damping correction.
+  [Stereo-transfer controls](source-audits/reverb-stereo-transfer-feasibility-2026-09-15.md)
+  show that high coherence and phase invariance do not guarantee an accurate
+  reverb estimate from short musical windows. Cotton's limited common
+  spectral support and the other presets' modulated delays prevent a
+  dependable parameter anchor under the tested protocol.
+
+## Benchmark numerical correction
+
+The new 201 release hypothesis exposed an
+[alignment error near silence](source-audits/alignment-silence-regression-2026-09-15.md).
+The scorer now centers candidate envelopes and rejects negligible-variance
+windows before normalizing correlation. All 14 assessment tests pass,
+including late attacks across four delays and three gain scales. An audit
+of 171 historical fitted transformations changes only that new case;
+the other 170 retain exact lag and gain. The corrected 201 run preserves
+all six original rendered WAVs byte-for-byte. This fixes measurement
+reliability and does not change the instrument's DSP.
 
 ## Next work
 

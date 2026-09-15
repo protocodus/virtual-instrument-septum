@@ -14,6 +14,15 @@ dump, and a published named preset is different from an authenticated recorded
 revision. A small metric is insufficient to settle those uncertainties or to
 establish superiority over other instruments.
 
+The [near-silence alignment correction](source-audits/alignment-silence-regression-2026-09-15.md)
+centers the candidate RMS envelope and requires each search window to have
+variance above 1e−12 times the candidate's complete prefix energy. This
+gain-invariant numerical guard prevents FFT round-off divided by almost-zero
+variance from selecting a false perfect match. It is not an audibility or
+acceptance threshold. Of 171 historical fits replayed, only the newly added
+201vsJP8000 early-release scenario changes; the others preserve exact lag
+and gain, including the baseline below.
+
 The subsequent [four-phase dry control](source-audits/dry-phase-sensitivity-2026-09-15.md)
 measures a material limitation of these metrics: at MIDI 24, changing only
 saw phase produces 512-sample spectral distances around 0.76, falling to
