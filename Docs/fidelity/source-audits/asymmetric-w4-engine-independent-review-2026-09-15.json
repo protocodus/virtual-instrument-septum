@@ -1,0 +1,567 @@
+{
+  "date": "2026-09-15",
+  "scope": "Independent W4 source math, compiled scalar, clock, affine backend and planted phase-recovery artifact review. No hardware optimizer or production edits.",
+  "status": "prerequisites_passed_no_blocker",
+  "inputs": [
+    {
+      "path": "Docs/fidelity/source-audits/asymmetric-w4-engine-test-proposal-2026-09-15.md",
+      "sha256": "b429fade7126f6ae727b96f277f10a70eaf1a1aa7ec0eab6e2035ac052eb27b5"
+    },
+    {
+      "path": "Tools/fit_high_note_saw_wrap_kernels.py",
+      "sha256": "3c23fdfe123836eacf40970fd8e76c357061ebaadc24c73ef72316cbcea459c9"
+    },
+    {
+      "path": "Tools/fit_high_note_saw_asymmetric_kernels.py",
+      "sha256": "cd553961bdbfee2b47cd515327fbe74bcb87ed25a64303afbeba0ddaf3830687"
+    },
+    {
+      "path": "Tools/build_saw_w4_experiment.py",
+      "sha256": "76352d79e7834ed3522a24a0426750787744213a43ab5b5409540583fe440b80"
+    },
+    {
+      "path": "Tools/fit_saw_w4_engine.py",
+      "sha256": "34a6645a83efc230b08786d8ceac41d76f051ef8d8366773ea46a73adae0a667"
+    },
+    {
+      "path": "build-fidelity/saw-w4-engine/build-03/manifest.json",
+      "sha256": "b2fcaae46b02388799655688e32211259c09ca500aa2783114e3ec59773e3360"
+    },
+    {
+      "path": "build-fidelity/saw-w4-engine/controls-01/control-proof.json",
+      "sha256": "82e9970dd3a765e4e1f7f410b402757f1a17248d0fa4d3090bb1adfe5d2f878b"
+    },
+    {
+      "path": "build-fidelity/saw-w4-engine/phase-controls-01/controls.json",
+      "sha256": "33eec2bac602e7a1ccc05d181da90986478c27620a3a16fc4ee56cba7584e168"
+    },
+    {
+      "path": "build-fidelity/saw-w4-engine/nested-full-engine-01/results.json",
+      "sha256": "270a1239bf68b89a245089453b0a3d362844c9a39945b2dd5805a25088edd99d"
+    }
+  ],
+  "checks": {
+    "math": {
+      "status": "passed",
+      "helper_sha256": "3c23fdfe123836eacf40970fd8e76c357061ebaadc24c73ef72316cbcea459c9",
+      "script_sha256": "0a958b17b2d8ebe5a1ad3548bca24a4903b894b22331010936f16ade63e74093",
+      "knots": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.5,
+        0.5,
+        1.0,
+        1.0,
+        1.5,
+        1.5,
+        2.0,
+        2.0,
+        2.5,
+        2.5,
+        3.0,
+        3.0,
+        3.5,
+        3.5,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "basis_count": 16,
+      "integrals": [
+        0.125,
+        0.125,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "exact_polyblep_coefficients": [
+        "1",
+        "2/3",
+        "5/12",
+        "1/12",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "nesting_error": 3.3306690738754696e-16,
+      "integral_error": 0.0,
+      "rows": [
+        {
+          "increment": 0.00390625,
+          "limited_vs_general_periodic_sum_error": 0.0,
+          "polyblep_nesting_error": 1.1102230246251565e-16,
+          "normalized_continuous_mean": -3.209238430557093e-17,
+          "wrap_jump_error": 2.595161863183648e-10
+        },
+        {
+          "increment": 0.039,
+          "limited_vs_general_periodic_sum_error": 0.0,
+          "polyblep_nesting_error": 2.220446049250313e-16,
+          "normalized_continuous_mean": -3.469446951953614e-17,
+          "wrap_jump_error": 6.198663804468652e-11
+        },
+        {
+          "increment": 0.1,
+          "limited_vs_general_periodic_sum_error": 0.0,
+          "polyblep_nesting_error": 1.1102230246251565e-16,
+          "normalized_continuous_mean": -6.245004513516506e-17,
+          "wrap_jump_error": 4.8574699818004774e-11
+        },
+        {
+          "increment": 0.125,
+          "limited_vs_general_periodic_sum_error": 0.0,
+          "polyblep_nesting_error": 0.0,
+          "normalized_continuous_mean": -6.938893903907228e-17,
+          "wrap_jump_error": 4.685984933416876e-11
+        },
+        {
+          "increment": 0.15,
+          "limited_vs_general_periodic_sum_error": 0.0,
+          "polyblep_nesting_error": 3.3306690738754696e-16,
+          "normalized_continuous_mean": 1.3877787807814457e-17,
+          "wrap_jump_error": 4.5716763708014696e-11
+        },
+        {
+          "increment": 0.25,
+          "limited_vs_general_periodic_sum_error": 0.0,
+          "polyblep_nesting_error": 1.1102230246251565e-16,
+          "normalized_continuous_mean": -1.3877787807814457e-17,
+          "wrap_jump_error": 4.3430148366496724e-11
+        },
+        {
+          "increment": 0.45,
+          "limited_vs_general_periodic_sum_error": 0.0,
+          "polyblep_nesting_error": 3.3306690738754696e-16,
+          "normalized_continuous_mean": 0.0,
+          "wrap_jump_error": 4.884981308350689e-15
+        }
+      ],
+      "qualification": "Continuous-phase integration, not finite sampled-window mean. No source continuity is imposed at natural wrap; general asymmetric jump is checked as a consequence."
+    },
+    "compiled_source": {
+      "status": "passed",
+      "script_sha256": "7db6e8421b8d2b3d79184affa967511bd372f496dd912b53597f42abd7bf46c7",
+      "build_manifest_sha256": "b2fcaae46b02388799655688e32211259c09ca500aa2783114e3ec59773e3360",
+      "builder_sha256": "0e6288f459e1658fa5cf744550afdbc815f254c331418faa7f970a531ddaff2e",
+      "cpp_header_sha256": "885189b70b764e1081610d27e79b7d626854fde1178af67ca0b8c18b73aad3e0",
+      "probe_sha256": "8538ece4c23201a292dc1d07d3f24a3f55bbacb3c03307dea3ebc7843cf2bbed",
+      "frozen_hash_checks": 26,
+      "rows": [
+        {
+          "configuration": "basis0",
+          "comparisons": 1632,
+          "max_absolute_error": 0.0
+        },
+        {
+          "configuration": "basis1",
+          "comparisons": 1632,
+          "max_absolute_error": 0.0
+        },
+        {
+          "configuration": "basis2",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis3",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis4",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis5",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis6",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis7",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis8",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis9",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis10",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis11",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis12",
+          "comparisons": 1632,
+          "max_absolute_error": 2.220446049250313e-16
+        },
+        {
+          "configuration": "basis13",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis14",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis15",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis16",
+          "comparisons": 1632,
+          "max_absolute_error": 0.0
+        },
+        {
+          "configuration": "basis17",
+          "comparisons": 1632,
+          "max_absolute_error": 0.0
+        },
+        {
+          "configuration": "basis18",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis19",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis20",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis21",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis22",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis23",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis24",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis25",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis26",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis27",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis28",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis29",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis30",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "basis31",
+          "comparisons": 1632,
+          "max_absolute_error": 1.1102230246251565e-16
+        },
+        {
+          "configuration": "polyblep",
+          "comparisons": 1632,
+          "max_absolute_error": 2.220446049250313e-16
+        },
+        {
+          "configuration": "asymmetric",
+          "comparisons": 1632,
+          "max_absolute_error": 2.220446049250313e-16
+        }
+      ],
+      "total_comparisons": 55488,
+      "max_absolute_error": 2.220446049250313e-16,
+      "baselines": [
+        {
+          "slope": 12,
+          "wav_sha256": "e960507e6c9404554980eceae90d51e1253347d22fbe7e661f48730dce7484da",
+          "exact_identity": true
+        },
+        {
+          "slope": 24,
+          "wav_sha256": "dd505cd6a020417a5b86c52083a8dd6091b3f18edbad7c28a0de431df2356a33",
+          "exact_identity": true
+        }
+      ],
+      "qualification": "Independent SciPy BSpline coefficients/integrals and exhaustive periodic reference against compiled De Boor implementation. Tests basis columns, exact/adjacent support/interior boundaries, overlapping supports, note91 phase, other-note identity and corrected=false naive ramp. Not a hardware model fit."
+    },
+    "actual_classic_wave_clock": {
+      "status": "passed",
+      "actual_renderClassicWave_calls": 5184,
+      "paired_clock_checks": 2592,
+      "exact_untargeted_sample_checks": 2376,
+      "phase_offset": 0.217,
+      "maximum_clock_difference": 0
+    },
+    "backend": {
+      "status": "passed",
+      "script_sha256": "d3f2c4dc703134ffcd5c757e6b7beeaa4e4aed81dd92743e8f7cc9a5609d2e7c",
+      "control_proof_sha256": "82e9970dd3a765e4e1f7f410b402757f1a17248d0fa4d3090bb1adfe5d2f878b",
+      "frozen_file_checks": 21,
+      "rows": [
+        {
+          "phase": 0.0,
+          "offset_peak": 0.0,
+          "linearity_relative_rms": 5.731748284645187e-08,
+          "linearity_max_absolute": 1.1782202991028612e-08,
+          "coefficient_plus_dc_rank": 33,
+          "coefficient_plus_dc_condition": 8966.684823884438
+        },
+        {
+          "phase": 0.321,
+          "offset_peak": 0.0,
+          "linearity_relative_rms": 5.890003573779889e-08,
+          "linearity_max_absolute": 1.3325836337174657e-08,
+          "coefficient_plus_dc_rank": 33,
+          "coefficient_plus_dc_condition": 8865.723601861175
+        }
+      ],
+      "midi_note91_events": [
+        {
+          "sample": 826875,
+          "kind": "midi",
+          "value": "905b7f"
+        },
+        {
+          "sample": 846169,
+          "kind": "midi",
+          "value": "905b00"
+        }
+      ],
+      "original_events": 248,
+      "ignored_event": "sole FF20 routing meta; raw MIDI hash pinned",
+      "qualification": "Recomputed actual cached columns against independently full-rendered vectors at known0/.321 phases. No optimizer, no hardware recording, no production edit. These small planted vectors do not establish linearity for arbitrary later large fitted vectors."
+    },
+    "planted_phase_recovery": {
+      "status": "passed",
+      "script_sha256": "9836dcb1f19c33568aa9e8f33881ae10399c2f33ad5953739cfabbad5008d712",
+      "control_receipt_sha256": "33eec2bac602e7a1ccc05d181da90986478c27620a3a16fc4ee56cba7584e168",
+      "fitter_sha256": "34a6645a83efc230b08786d8ceac41d76f051ef8d8366773ea46a73adae0a667",
+      "builder_sha256": "76352d79e7834ed3522a24a0426750787744213a43ab5b5409540583fe440b80",
+      "operator_matrices_rechecked": 328,
+      "file_hash_checks": 350,
+      "all_coarse_phases_present": true,
+      "best_is_minimum_valid_visited": true,
+      "selected_phase": 0.32099998930958223,
+      "planted_phase": 0.321,
+      "phase_error": -1.0690417773240313e-08,
+      "training_power_error": 3.2012206949398958e-15,
+      "saved_prediction_reconstruction_max_error": 5.551115123125783e-17,
+      "canonical_transfers": [
+        {
+          "slope": 12,
+          "support": "full_performance",
+          "samples": [
+            0,
+            1386394
+          ],
+          "relative_error_power": 2.5982513626161394e-15
+        },
+        {
+          "slope": 12,
+          "support": "note91+0.1",
+          "samples": [
+            828115,
+            831643
+          ],
+          "relative_error_power": 2.1162901310520353e-14
+        },
+        {
+          "slope": 12,
+          "support": "note91+0.16",
+          "samples": [
+            830761,
+            834289
+          ],
+          "relative_error_power": 1.8762351299329373e-14
+        },
+        {
+          "slope": 12,
+          "support": "note93+0.1",
+          "samples": [
+            806065,
+            809593
+          ],
+          "relative_error_power": 2.561834093776624e-14
+        },
+        {
+          "slope": 12,
+          "support": "note88+0.1",
+          "samples": [
+            872215,
+            875743
+          ],
+          "relative_error_power": 1.6317006251971614e-14
+        },
+        {
+          "slope": 12,
+          "support": "note86+0.1",
+          "samples": [
+            850165,
+            853693
+          ],
+          "relative_error_power": 1.3395212936890978e-14
+        },
+        {
+          "slope": 24,
+          "support": "full_performance",
+          "samples": [
+            0,
+            1386394
+          ],
+          "relative_error_power": 2.511799482554445e-15
+        },
+        {
+          "slope": 24,
+          "support": "note91+0.1",
+          "samples": [
+            828115,
+            831643
+          ],
+          "relative_error_power": 2.0112400567082913e-14
+        },
+        {
+          "slope": 24,
+          "support": "note91+0.16",
+          "samples": [
+            830761,
+            834289
+          ],
+          "relative_error_power": 1.7563176344459108e-14
+        },
+        {
+          "slope": 24,
+          "support": "note93+0.1",
+          "samples": [
+            806065,
+            809593
+          ],
+          "relative_error_power": 2.4726201817061813e-14
+        },
+        {
+          "slope": 24,
+          "support": "note88+0.1",
+          "samples": [
+            872215,
+            875743
+          ],
+          "relative_error_power": 1.5680478897250995e-14
+        },
+        {
+          "slope": 24,
+          "support": "note86+0.1",
+          "samples": [
+            850165,
+            853693
+          ],
+          "relative_error_power": 1.2377257455350122e-14
+        }
+      ],
+      "nested_full_engine_receipt_sha256": "270a1239bf68b89a245089453b0a3d362844c9a39945b2dd5805a25088edd99d",
+      "nested_both_slopes_byte_identity": true,
+      "qualification": "Recomputed persisted outputs and identities only; no optimizer or hardware recording opened. Passed planted control establishes this tested recovery/transfer, not unique identification for all targets."
+    }
+  },
+  "reproducible_checker_sources": {
+    "check_math.py": {
+      "sha256": "0a958b17b2d8ebe5a1ad3548bca24a4903b894b22331010936f16ade63e74093",
+      "text": "from pathlib import Path\nimport hashlib,json,sys\nimport numpy as np\nROOT=Path(__file__).resolve().parents[2]\nsys.path.insert(0,str(ROOT/'Tools'))\nimport fit_high_note_saw_wrap_kernels as helper\nk,basis=helper.spline(4.)\nI=np.array([(k[j+4]-k[j])/4 for j in range(16)])\nb=np.r_[1.,2/3,5/12,1/12,np.zeros(12)]\ngrid=np.linspace(0,4,4001)\nnest_error=float(np.max(abs(basis(grid)@b-np.maximum(1-grid,0)**2)))\nintegral_error=float(np.max(abs(basis.integrate(0,4)-I)))\nassert nest_error<1e-12 and integral_error<1e-12\n\ndef source(p,inc,neg,pos,limited=False):\n p=np.asarray(p);v=2*p-1\n for i,x in np.ndenumerate(p):\n  ks=range(-1,3)if limited else range(int(np.floor(x-4*inc))-1,int(np.ceil(x+4*inc))+2)\n  for wrap in ks:\n   d=(x-wrap)/inc\n   if -4<d<0:v[i]+=basis(-d)@neg\n   elif 0<=d<4:v[i]+=basis(d)@pos\n return v-inc*(I@(neg+pos))\n\ndef polyblep(p,inc):\n p=np.asarray(p);v=2*p-1\n first=p<inc;last=p>1-inc\n x=p[first]/inc;v[first]-=2*x-x*x-1\n x=(p[last]-1)/inc;v[last]-=x*x+2*x+1\n return v\n\nrng=np.random.default_rng(4715257);n=.2*rng.normal(size=16);p=.3*rng.normal(size=16)\ng,w=np.polynomial.legendre.leggauss(4)\nrows=[]\nfor inc in (1/256,.039,.1,.125,.15,.25,.45):\n phases=np.r_[np.linspace(0,1,4096,endpoint=False),.999999999,1e-10]\n limited_error=float(np.max(abs(source(phases,inc,n,p,True)-source(phases,inc,n,p,False))))\n nested=float(np.max(abs(source(phases,inc,-b,b,True)-polyblep(phases,inc))))\n # Split at every possible source polynomial knot, then exact-degree Gaussian\n # quadrature integrates each cubic interval without sampling wrap jumps.\n cuts={0.,1.}\n for wrap in range(-2,4):\n  for t in np.unique(k):\n   for sign in (-1,1):\n    x=wrap+sign*t*inc\n    if 0<x<1:cuts.add(x)\n cuts=sorted(cuts);mean=0.\n for lo,hi in zip(cuts,cuts[1:]):\n  xx=(hi-lo)*g/2+(hi+lo)/2\n  mean+=(hi-lo)/2*np.dot(w,source(xx,inc,n,p,True))\n before=source(np.array([1-1e-11]),inc,n,p,True)[0]\n after=source(np.array([1e-11]),inc,n,p,True)[0]\n # Other overlapping wraps are continuous at phase0; only this wrap jumps.\n jump=-2+p[0]-n[0]\n jump_error=abs(after-before-jump)\n assert limited_error==0 and nested<1e-12 and abs(mean)<1e-12 and jump_error<1e-7\n rows.append(dict(increment=inc,limited_vs_general_periodic_sum_error=limited_error,polyblep_nesting_error=nested,normalized_continuous_mean=float(mean),wrap_jump_error=float(jump_error)))\nresult=dict(status='passed',helper_sha256=hashlib.sha256(Path(helper.__file__).read_bytes()).hexdigest(),script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),knots=k.tolist(),basis_count=16,integrals=I.tolist(),exact_polyblep_coefficients=['1','2/3','5/12','1/12']+['0']*12,nesting_error=nest_error,integral_error=integral_error,rows=rows,\n qualification='Continuous-phase integration, not finite sampled-window mean. No source continuity is imposed at natural wrap; general asymmetric jump is checked as a consequence.')\n(Path(__file__).parent/'math-checks.json').write_text(json.dumps(result,indent=2)+'\\n')\nprint(json.dumps({k:v for k,v in result.items()if k not in ['knots','integrals','exact_polyblep_coefficients']},indent=2))\n"
+    },
+    "check_cpp_source.py": {
+      "sha256": "7db6e8421b8d2b3d79184affa967511bd372f496dd912b53597f42abd7bf46c7",
+      "text": "\"\"\"Independent SciPy-basis comparison to the frozen actual C++ W4Probe.\"\"\"\nfrom pathlib import Path\nimport hashlib,json,os,subprocess,sys\nimport numpy as np\nfrom scipy.interpolate import BSpline\nROOT=Path(__file__).resolve().parents[2]\nOUT=Path(__file__).parent\nBUILD=ROOT/'build-fidelity/saw-w4-engine/build-03'\nsha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()\nmanifest=json.loads((BUILD/'manifest.json').read_text())\nchecks=[]\nfor name,h in manifest['source_frozen_sha256'].items():\n assert sha(BUILD/'source'/name)==h;checks.append(name)\nfor name,row in manifest['binaries'].items():\n assert sha(row['path'])==row['sha256'];checks.append(name)\nassert sha(BUILD/'builder.py')==manifest['builder']['sha256']\nk=np.array([0.]*4+[x for j in range(1,8) for x in [j/2,j/2]]+[4.]*4)\nbasis=BSpline(k,np.eye(18)[:,:16],3,extrapolate=False)\nI=basis.integrate(0,4)\nrng=np.random.default_rng(815909)\nconfigurations=[]\nfor j in range(32):\n c=np.eye(32)[j];configurations.append((f'basis{j}',0.,0.,c[:16],c[16:]))\nn=np.r_[1.,2/3,5/12,1/12,np.zeros(12)]\nconfigurations += [('polyblep',1.,0.,-n,n),('asymmetric',1.,.217,.15*rng.normal(size=16),.2*rng.normal(size=16))]\ninc_values=[1/256,.039,.1,.125,.15,.25,.45]\npoints=[]\nfor inc in inc_values:\n positions=set(rng.random(32).tolist()+[0.,np.nextafter(1.,0.)])\n for knot in np.unique(k):\n  for sign in [-1,1]:\n   p=(sign*knot*inc)%1\n   for q in [np.nextafter(p,-np.inf),p,np.nextafter(p,np.inf)]:\n    if 0<=q<1 and (q==0 or q>=1e-300): positions.add(float(q))\n for p in sorted(positions):\n  for note,corrected in [(91,1),(60,1),(91,0)]:points.append((p,inc,note,corrected))\ntext=''.join(f'{p:.17g} {inc:.17g} {note} {corrected}\\n' for p,inc,note,corrected in points)\nrows=[]\nfor name,ramp,phase,neg,pos in configurations:\n native=OUT/(name+'.native.txt')\n native.write_text(' '.join(map(str,[1,ramp,phase,*neg,*pos]))+'\\n')\n result=subprocess.run([str(BUILD/'W4Probe')],input=text,text=True,capture_output=True,check=True,env=dict(os.environ,SEPTUM_W4_CONFIG=str(native)))\n actual=np.fromstring(result.stdout,sep='\\n');expect=[]\n for p,inc,note,corrected in points:\n  if not corrected:expect.append(2*p-1);continue\n  q=(p+phase)%1 if note==91 and phase!=0 else p\n  y=ramp*(2*q-1)-inc*(I@(neg+pos))\n  for wrap in range(-3,5):\n   d=(q-wrap)/inc\n   if -4<d<0:y+=basis(-d)@neg\n   elif 0<=d<4:y+=basis(d)@pos\n  expect.append(y)\n delta=np.abs(actual-np.array(expect));err=float(delta.max())\n assert err<2e-12,(name,err,points[int(delta.argmax())])\n rows.append(dict(configuration=name,comparisons=len(points),max_absolute_error=err))\n# Recompute disabled-native baseline identities from actual files, not receipt booleans.\nbase=json.loads((ROOT/'build-fidelity/saw-w4-engine/integration-gates-01/baseline-gates.json').read_text())\nbaselines=[]\nfor slope,row in base.items():\n h=sha(row['wav']['path']);assert h==row['expected_sha256']==row['wav']['sha256']\n baselines.append(dict(slope=int(slope),wav_sha256=h,exact_identity=True))\nreceipt=dict(status='passed',script_sha256=sha(__file__),build_manifest_sha256=sha(BUILD/'manifest.json'),builder_sha256=sha(BUILD/'builder.py'),cpp_header_sha256=sha(BUILD/'source/W4Experiment.h'),probe_sha256=sha(BUILD/'W4Probe'),frozen_hash_checks=len(checks)+1,rows=rows,total_comparisons=sum(r['comparisons']for r in rows),max_absolute_error=max(r['max_absolute_error']for r in rows),baselines=baselines,qualification='Independent SciPy BSpline coefficients/integrals and exhaustive periodic reference against compiled De Boor implementation. Tests basis columns, exact/adjacent support/interior boundaries, overlapping supports, note91 phase, other-note identity and corrected=false naive ramp. Not a hardware model fit.')\n(OUT/'cpp-source-checks.json').write_text(json.dumps(receipt,indent=2)+'\\n')\nprint(json.dumps({k:v for k,v in receipt.items()if k!='rows'},indent=2))\n"
+    },
+    "check_backend_controls.py": {
+      "sha256": "d3f2c4dc703134ffcd5c757e6b7beeaa4e4aed81dd92743e8f7cc9a5609d2e7c",
+      "text": "\"\"\"Recompute frozen backend linearity controls; does not render or optimize.\"\"\"\nfrom pathlib import Path\nimport hashlib,json\nimport numpy as np\nfrom scipy.io import wavfile\nROOT=Path(__file__).resolve().parents[2];OUT=Path(__file__).parent\nCONTROL=ROOT/'build-fidelity/saw-w4-engine/controls-01/control-proof.json'\nsha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()\nproof=json.loads(CONTROL.read_text());protocol=json.loads(Path(proof['protocol']['path']).read_text())\nchecks=[]\ndef walk(x):\n if isinstance(x,dict):\n  if 'path'in x and 'sha256'in x:\n   assert sha(x['path'])==x['sha256'],x['path'];checks.append(x['path'])\n  for v in x.values():walk(v)\n elif isinstance(x,list):\n  for v in x:walk(v)\nwalk(proof);walk(protocol)\nc=np.array(protocol['planted_coefficients']);rows=[]\nfor row in proof['backend_controls']:\n raw=np.fromfile(row['request']['file']['path'],dtype='<f4').reshape(3528,34).astype(float)\n rate,wav=wavfile.read(row['independent_truth']['path']);assert rate==44100 and wav.dtype==np.float32\n truth=wav[828115:831643,0].astype(float)\n offset=raw[:,0];ramp=raw[:,1];basis=raw[:,2:]-offset[:,None]\n pred=ramp+basis@c\n delta=truth-pred\n computed=dict(phase=row['phase'],offset_peak=float(abs(offset).max()),linearity_relative_rms=float(np.sqrt(np.mean(delta**2)/np.mean(truth**2))),linearity_max_absolute=float(abs(delta).max()))\n design=np.column_stack((basis,np.ones(3528)))\n s=np.linalg.svd(design,compute_uv=False)\n computed.update(coefficient_plus_dc_rank=int(np.linalg.matrix_rank(design)),coefficient_plus_dc_condition=float(s[0]/s[-1]))\n for key in computed:\n  assert np.isclose(computed[key],row[key],rtol=1e-8,atol=1e-14),(key,computed[key],row[key])\n for stats in [row['request']['stats'],row['independent_render']['stats'],proof['backend_ready']['prewarm_stats']]:\n  assert stats['filter_limit_calls']==stats['output_limit_calls']==0\n assert row['independent_render']['latency_samples']==93\n rows.append(computed)\n# The original MIDI contains only one note91 onset; snapshot-phase isolation is valid.\nimport sys\nsys.path.insert(0,str(ROOT/'Tools'))\nfrom render_midi import parse_smf,replay_events\nparsed=parse_smf(Path(protocol['midi']['path']).read_bytes())\nevents,ignored=replay_events(parsed,channel=1,allow_unsupported=True,tempo_policy='preserve-patch')\nselected=[r for r in events if r['kind']=='midi'and bytes.fromhex(r['value'])[1]==91]\nassert [r['sample']for r in selected]==[826875,846169]\nassert len(events)==248 and len(ignored)==1 and ignored[0]['meta_type']==32\nresult=dict(status='passed',script_sha256=sha(__file__),control_proof_sha256=sha(CONTROL),frozen_file_checks=len(checks),rows=rows,midi_note91_events=selected,original_events=248,ignored_event='sole FF20 routing meta; raw MIDI hash pinned',qualification='Recomputed actual cached columns against independently full-rendered vectors at known0/.321 phases. No optimizer, no hardware recording, no production edit. These small planted vectors do not establish linearity for arbitrary later large fitted vectors.')\n(OUT/'backend-checks.json').write_text(json.dumps(result,indent=2)+'\\n');print(json.dumps(result,indent=2))\n"
+    },
+    "check_clock.cpp": {
+      "sha256": "3b096aa1bb8bf9138160cb3e0c4263a4b21cead08e75413ba31f5dff4f30a55c",
+      "text": "#include \"Source/DSP/SeptumEngine.cpp\"\n#include <iostream>\n#include <iomanip>\n#include <stdexcept>\nint main() {\n  int cases=0, untouched=0; double maxClock=0;\n  const std::array<septum::Waveform,6> waves{septum::Waveform::Saw,septum::Waveform::Square,septum::Waveform::PulseSquare,septum::Waveform::Triangle,septum::Waveform::Sine,septum::Waveform::Noise};\n  saw_w4::Config candidate; candidate.enabled=true;candidate.phase=.217;\n  for(int i=0;i<16;++i){candidate.negative[i]=.13*std::sin(i+.37);candidate.positive[i]=.09*std::cos(i+.61);}candidate.integrate();\n  for(auto wave:waves)for(double inc:{1./256,.039,.125,.15,.25,.45})for(double start:{0.,.01,.49,.5,.875,.99})for(double offset:{0.,.1,.75})for(bool corrected:{false,true})for(int note:{60,91}){\n    double p=start,q=start;std::uint32_t rn=1234567,rc=rn;septum::NoiseSource nn{},nc{};nn.prepare(44100);nc.prepare(44100);\n    saw_w4::config={};auto original=septum::renderClassicWave(wave,p,inc,.37,rn,nn,corrected,offset,note);\n    saw_w4::config=candidate;auto trial=septum::renderClassicWave(wave,q,inc,.37,rc,nc,corrected,offset,note);\n    double expected=start+inc;bool wrap=expected>=1.;if(wrap)expected-=1.;\n    double expectedOffset=wrap?expected/std::max(1e-9,inc):0.;\n    if(p!=q||q!=expected||original.wrapped!=trial.wrapped||trial.wrapped!=wrap||original.wrapOffset!=trial.wrapOffset||trial.wrapOffset!=expectedOffset||rn!=rc)throw std::runtime_error(\"Clock or RNG changed\");\n    if(wave!=septum::Waveform::Saw||!corrected){if(original.value!=trial.value)throw std::runtime_error(\"Untargeted sample changed\");++untouched;}\n    ++cases;\n  }\n  std::cout<<\"{\\\"status\\\":\\\"passed\\\",\\\"actual_renderClassicWave_calls\\\":\"<<2*cases<<\",\\\"paired_clock_checks\\\":\"<<cases<<\",\\\"exact_untargeted_sample_checks\\\":\"<<untouched<<\",\\\"phase_offset\\\":0.217,\\\"maximum_clock_difference\\\":\"<<maxClock<<\"}\\n\";\n}\n"
+    },
+    "check_phase_controls.py": {
+      "sha256": "9836dcb1f19c33568aa9e8f33881ae10399c2f33ad5953739cfabbad5008d712",
+      "text": "\"\"\"Verify source-free fitted-control artifacts without rerunning a phase search.\"\"\"\nfrom pathlib import Path\nimport hashlib,json\nimport numpy as np\nfrom scipy.io import wavfile\nROOT=Path(__file__).resolve().parents[2];OUT=Path(__file__).parent;RUN=ROOT/'build-fidelity/saw-w4-engine/phase-controls-01'\nsha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()\nc=json.loads((RUN/'controls.json').read_text());search=json.loads((RUN/'recovery/search.json').read_text());cache=json.loads(Path(c['operator_cache_receipt']).read_text());planted=json.loads((RUN/'planted-source.json').read_text());checks=[]\ndef chk(p,h):\n assert sha(p)==h,p;checks.append(str(p))\nchk(ROOT/'Tools/fit_saw_w4_engine.py',c['identity']['tool_sha256']);chk(ROOT/'Tools/build_saw_w4_experiment.py',c['identity']['builder_sha256']);chk(ROOT/'build-fidelity/saw-w4-engine/build-03/manifest.json',c['identity']['build_manifest_sha256']);chk(c['operator_cache_receipt'],c['operator_cache_receipt_sha256']);chk(c['training_reference'],c['training_reference_sha256'])\nfor r in cache['records']:\n p=Path(cache['directory'])/r['file'];chk(p,r['sha256'])\n with np.load(p)as d:\n  chkbytes=lambda a,h:hashlib.sha256(np.asarray(a,dtype='<f8').tobytes()).hexdigest()==h\n  assert chkbytes(d['matrix'],r['matrix_float64_sha256'])and chkbytes(d['offset'],r['offset_float64_sha256'])\n assert r['engine_stats']['filter_limit_calls']==r['engine_stats']['output_limit_calls']==0\nbest=c['training_best'];assert best==search['best'];valid=[r for r in search['scores']if r['valid']]\nassert best['relative_error_power']==min(r['relative_error_power']for r in valid)\nassert set(np.arange(256)/256)<=set(r['phase_cycles']for r in search['scores'])\nassert len(search['coarse_seed_indices'])<=16\nm=best['operator_record'];raw=np.load(Path(cache['directory'])/m['file']);matrix=raw['matrix'];offset=raw['offset'];gain=search['fixed_gain'];coeff=np.array(best['source_coefficients'])\npred=gain*matrix[:,0]+gain*(matrix[:,1:]-offset[:,None])@coeff+best['output_dc']\nrate,x=wavfile.read(c['training_reference']);assert rate==44100 and x.dtype==np.float32\ntarget=gain*x[828115:831643,0].astype(float)+planted['output_dc']\nassert hashlib.sha256(target.astype('<f8').tobytes()).hexdigest()==search['target_float64_sha256']\nerror=float(np.mean((target-pred)**2)/np.var(target));assert np.isclose(error,best['relative_error_power'],rtol=1e-7,atol=1e-25)\nsaved=np.load(RUN/'recovery/best-prediction.npy');maxpred=float(abs(saved-pred).max());assert maxpred<1e-14\nchk(RUN/'recovery/best-prediction.npy',search['prediction_sha256'])\ntransfers=[]\nfor group in c['canonical_transfers']:\n chk(group['reference'],group['reference_sha256']);chk(group['candidate'],group['candidate_sha256'])\n aa=wavfile.read(group['reference'])[1].astype(float);bb=wavfile.read(group['candidate'])[1].astype(float);assert aa.shape==bb.shape\n for f in [group['reference'],group['candidate']]:\n  folder=Path(f).parent;cfg=json.loads((folder/'coefficients.json').read_text());assert cfg['ramp']==1 and cfg['phase_cycles_training_note91']==0\n  chk(folder/'patch.syx',c['identity'][f\"lp{group['slope']}_patch_sha256\"]);chk(folder/'performance.mid',c['identity']['midi_sha256'])\n  st=json.loads((folder/'state-stats.json').read_text());assert st['filter_limit_calls']==st['output_limit_calls']==0\n for row in group['rows']:\n  a,b=row['samples'];err=float(np.mean((aa[a:b]-bb[a:b])**2)/np.mean(aa[a:b]**2));assert err==row['relative_error_power']and err<1e-8\n  transfers.append(dict(slope=group['slope'],support=row['support'],samples=[a,b],relative_error_power=err))\n# Recheck full-performance nested polyBLEP identity from bytes.\nnpath=ROOT/'build-fidelity/saw-w4-engine/nested-full-engine-01/results.json';nested=json.loads(npath.read_text())\nfor row in nested['rows']:\n for key in ['baseline','nested']:chk(row[key]['path'],row[key]['sha256'])\n assert row['baseline']['sha256']==row['nested']['sha256']\nresult=dict(status='passed',script_sha256=sha(__file__),control_receipt_sha256=sha(RUN/'controls.json'),fitter_sha256=c['identity']['tool_sha256'],builder_sha256=c['identity']['builder_sha256'],operator_matrices_rechecked=len(cache['records']),file_hash_checks=len(checks),all_coarse_phases_present=True,best_is_minimum_valid_visited=True,selected_phase=best['phase_cycles'],planted_phase=planted['phase_cycles'],phase_error=best['phase_cycles']-planted['phase_cycles'],training_power_error=error,saved_prediction_reconstruction_max_error=maxpred,canonical_transfers=transfers,nested_full_engine_receipt_sha256=sha(npath),nested_both_slopes_byte_identity=True,qualification='Recomputed persisted outputs and identities only; no optimizer or hardware recording opened. Passed planted control establishes this tested recovery/transfer, not unique identification for all targets.')\n(OUT/'phase-control-checks.json').write_text(json.dumps(result,indent=2)+'\\n');print(json.dumps({k:v for k,v in result.items()if k!='canonical_transfers'},indent=2))\n"
+    }
+  },
+  "review": {
+    "affine_operator": "F(ramp)+sum c_j*(F(basis_j)-F(zero)). Every column includes its own complete fixed MIDI prehistory, canonical prior phase, and matching snapshot before note91. Fixed unit-ramp coefficient1.",
+    "phase_search": "256 fixed coarse phases, at most16 lowest strict cyclic minima including global coarse minimum, bounded refinements; every valid visited minimum retained. Sampled objective can jump at allowed natural wraps; no global optimum claim.",
+    "normalization": "Continuous phase analytic mean only; not a finite sampled-window or commensurate-period DC guarantee.",
+    "wrap_constraint": "No cross-wrap continuity added. Jump=-2+p0-n0; one-sided sample-time slope change=6*(p1-p0+n1-n0). Internal half-sample joins are C1, endpoints +/-4 have zero value and derivative.",
+    "identifiability": "Fixed ramp removes one amplitude ambiguity; finite filtered window can still poorly distinguish coefficient/phase/DC directions or oscillator versus capture response. Held-out actual audio can establish useful improvement without unique architecture proof.",
+    "required_later_check": "Unrestricted fitted coefficients can activate nonlinear knees even when basis columns and planted vectors do not. Independently render the fitted vector at fitted phase, compare to affine prediction after fixed gain/DC, and inspect state/output counters before reporting actual-engine training loss. This does not prevent canonical actual-audio validation."
+  }
+}

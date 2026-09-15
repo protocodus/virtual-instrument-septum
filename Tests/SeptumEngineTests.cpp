@@ -2443,8 +2443,7 @@ void testExternalMonitorHandover()
                 "step " + std::to_string (worst) + ")");
 }
 
-// The contract says the classic waveforms are polyBLEP/polyBLAMP band-limited
-// at the host rate; deliberate aliasing belongs to SUPER SAW and SYNC. TRI's
+// The triangle uses polyBLAMP correction at the host rate. TRI's
 // polyBLAMP coefficient was twice its correct value, which measures the same
 // as no correction at all, so this check compares the shipping triangle
 // against the same oscillator with its correction switched off — by rendering

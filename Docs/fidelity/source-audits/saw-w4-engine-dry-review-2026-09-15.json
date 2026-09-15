@@ -1,0 +1,128 @@
+{
+  "status": "pass_no_actionable_findings",
+  "scope": "Independent source/provenance, frozen-array algebra, training-exclusion and original-only mask review. No new fitting, phase search, audio rendering or production edit.",
+  "assessor": {
+    "path": "Tools/assess_saw_w4_engine.py",
+    "sha256": "72fe13d7412913b99b4f96c9d19ce987a3d39c8e04827ad9853bde9d26371350"
+  },
+  "render_tool": {
+    "path": "Tools/render_saw_w4_candidate.py",
+    "sha256": "eba0c9e78047d7afb8839d1d270c62035ce92d61797f3e32399a59fe19329655"
+  },
+  "results": {
+    "path": "build-fidelity/saw-w4-engine-assessment/candidate-01/results.json",
+    "sha256": "12fb72414ca237f3e3000b3cdf682657ebea474e0031016b8eb6864f29206dc6"
+  },
+  "baseline_control_protocol": {
+    "path": "build-fidelity/saw-w4-engine-assessment/baseline-control-01/protocol.json",
+    "sha256": "f3c4341fee46f8e43ebe71e4937d23bc1748f44adcface88db54e6811be97f90"
+  },
+  "candidate_selection": {
+    "path": "build-fidelity/saw-w4-engine/hardware-fit-01/candidate.json",
+    "sha256": "3ef847bad8c0cc9990fd01b40a0bd9a8ba09374153a166c1f6b910dea82b6e91"
+  },
+  "candidate_render_manifest": {
+    "path": "build-fidelity/saw-w4-engine/candidate-dry-01/manifest.json",
+    "sha256": "073dfe90b11cf37c27cfaee241124e6ca2d5b2cad55de9ee0216700a240ddba0"
+  },
+  "training_prediction_audit": {
+    "path": "build-fidelity/saw-w4-engine/candidate-dry-01/training-prediction-audit.json",
+    "sha256": "59f5c42a905e21feb3152f5b232da8b9f866dedee46fb24047441ccbd630cf58"
+  },
+  "verification_script": {
+    "path": "build-fidelity/saw-w4-engine-assessment/independent-review/check.py",
+    "sha256": "b3a14a6bb87072cfc4c6d1351be6240fd568ab9d78f75a724ccd39d2b0feede4"
+  },
+  "verification_receipt": {
+    "path": "build-fidelity/saw-w4-engine-assessment/independent-review/checks.json",
+    "sha256": "f48fba8ad8ad6ada865f30a54b8a33cf6e1cb229af158d2f2c1c0992e7705037"
+  },
+  "verification_summary": {
+    "status": "pass_no_actionable_findings",
+    "script_sha256": "b3a14a6bb87072cfc4c6d1351be6240fd568ab9d78f75a724ccd39d2b0feede4",
+    "assessor_results_sha256": "12fb72414ca237f3e3000b3cdf682657ebea474e0031016b8eb6864f29206dc6",
+    "assessor_sha256": "72fe13d7412913b99b4f96c9d19ce987a3d39c8e04827ad9853bde9d26371350",
+    "pinned_files_verified": 94,
+    "original_harmonic_mask_flags_verified": 2660,
+    "aggregate_required_bins_verified": 3028,
+    "stft_rms_frames_with_verified_support": 411678,
+    "numeric_values_recomputed": 19843,
+    "maximum_absolute_difference": 1.6653345369377348e-16,
+    "training_prediction_audit_sha256": "59f5c42a905e21feb3152f5b232da8b9f866dedee46fb24047441ccbd630cf58",
+    "candidate_selection_sha256": "3ef847bad8c0cc9990fd01b40a0bd9a8ba09374153a166c1f6b910dea82b6e91",
+    "scope": "No new fit, phase search or render; source/provenance review and recomputation of frozen algebra/support only."
+  },
+  "timing_and_exclusion": {
+    "lag_samples": -1406,
+    "additional_latency_shift": false,
+    "gain_policy": "Exact prior note36-only scalars4.137125725839024/3.870462967942607 are shared by baseline/candidate primary metrics. Candidate note36 scalar is labeled sensitivity.",
+    "gain_hardware_support_half_open": [
+      66150,
+      85444
+    ],
+    "gain_engine_support_half_open": [
+      64744,
+      84038
+    ],
+    "exclusion_hardware_half_open": [
+      826875,
+      848925
+    ],
+    "finding": "Every primary full/isolated/chord segment excludes18.75\u201319.25s. STFT and RMS restart independently per segment; saved first/last frame support stays inside. The old two note91 windows remain only in explicitly exploratory rows.",
+    "controls": "Excluded100-amplitude corruption is invisible at zero and\u22121406 lags; retained corruption is detected. Reviewed saved controls and implementation rather than generating another waveform.",
+    "coverage_count_qualification": "411678 is the sum of saved frame counts over all inspected model/gain/support pools, not411678 independent observations."
+  },
+  "harmonic_and_alias_masks": {
+    "original_flags_verified": 2660,
+    "required_aggregate_bins_verified": 3028,
+    "finding": "Original residual/condition/H1 and harmonic-ratio thresholds determine eligibility. Chord SNR proxy is likewise original-only. Candidate invalid-fit and weak flags do not remove required bins. A missing candidate observation prevents a complete-mask summary and leaves only an explicitly incomplete diagnostic.",
+    "spectra": "Primary log errors use hardware-only activity. Pair-union sensitivity is separate. Hardware reference peaks, activity counts and frame coverage match across models and gain variants.",
+    "aliases": "Original LP12 fixed9/9/8/11/13 line IDs are retained in both slopes. Per-line and aggregate arithmetic reproduce. Unresolved candidate local maxima are explicitly proxies.",
+    "scope_limit": "No new independent spectral amplitude estimation was performed; reviewed the frozen estimator implementations and recalculated stored ratio/denominator arithmetic."
+  },
+  "candidate_inference": {
+    "source_revision": "545b3d37d9cc1f80bf39bc5d0bf49c0cced1d9f6",
+    "finding": "Pinned selected32-vector equals both canonical coefficient JSONs and native tokens[1,1,0,*coeff]. Ramp remains1, phase0. The fitted outputDC and nuisance phase occur only in the independent training audit. Renderer, source manifest, generated source and output receipts remain pinned.",
+    "forward_check": "Reconstructed the saved best prediction directly from its frozen matrix, affine offset,32 coefficients, fixed gain and outputDC. Recomputed actual full-engine training prediction error from PCM; all values agree within1.67e\u221216.",
+    "limiting": "No filter-state or output-limiter calls in the canonical LP12/LP24 or fitted-phase complete renders.",
+    "interpretation": "This confirms that the selected source vector was rendered and scored as intended. It does not validate a particular Roland mechanism or establish a global audible improvement."
+  },
+  "observed_primary_tradeoffs": [
+    {
+      "slope": 12,
+      "spectral_convergence_legacy_mean": {
+        "production": 0.29354993117902145,
+        "w4": 0.29323867175851376
+      },
+      "rms10ms_p95_db": {
+        "production": 24.67838332075149,
+        "w4": 24.77980803420834
+      },
+      "rms50ms_p95_db": {
+        "production": 7.410227934074598,
+        "w4": 7.420080161466749
+      }
+    },
+    {
+      "slope": 24,
+      "spectral_convergence_legacy_mean": {
+        "production": 0.29963890959344325,
+        "w4": 0.2994455910762948
+      },
+      "rms10ms_p95_db": {
+        "production": 23.590321899348478,
+        "w4": 23.60973869077147
+      },
+      "rms50ms_p95_db": {
+        "production": 7.368296600541736,
+        "w4": 7.3870581293539095
+      }
+    }
+  ],
+  "limits": [
+    "Whole-sequence spectral changes are small and coexist with RMS regressions; this receipt does not promote the vector.",
+    "Initial phase, capture path and reconstructed raw recipe remain uncertain.",
+    "Factory-preset scoring, listening assessment and any shipping decision are outside this dry review.",
+    "No optimizer/global-optimum claim or unchanged-output proof for non-Saw factory presets is implied."
+  ]
+}

@@ -1,0 +1,439 @@
+{
+  "status": "focused_source_controls_passed_no_code_blocker",
+  "date": "2026-09-15",
+  "scope": "Independent source/rate mathematical and final code review; no new hardware fit, source edits or commits by reviewer. CMake test target and Tests/ClassicSawFidelityTests.cpp added by reviewer.",
+  "files": [
+    {
+      "path": "Source/DSP/ClassicSaw.h",
+      "sha256": "9e94ee0530970a8cb7848f1d675cc833b363220d6813057fc682ce8c2f73102b"
+    },
+    {
+      "path": "Source/DSP/SeptumEngine.cpp",
+      "sha256": "e371d22052c4732cdefe249326acdc5bf9239a6aad2a4a09db313664ba095d5b"
+    },
+    {
+      "path": "Tests/ClassicSawFidelityTests.cpp",
+      "sha256": "e8a5047b658f56c582d227c0ec52229d2a56127f770781b7074d2a398d9376af"
+    },
+    {
+      "path": "CMakeLists.txt",
+      "sha256": "b85f0b36d59e6592772568beafd6de7652b52814c391b3b25d0be492ff85b344"
+    },
+    {
+      "path": "build-fidelity/saw-w4-production-independent-review/generate_test.py",
+      "sha256": "e02d201a2bf2c1d64a937a8eb028c3695238be4f7c3906769bc4d5416158ef4b"
+    },
+    {
+      "path": "build-fidelity/saw-w4-production-independent-review/scipy-oracle.json",
+      "sha256": "107bb1d63f8487609d28d5f0e4bc73b767eb78f072873cfdd9df70db1fcdddf4"
+    },
+    {
+      "path": "build-fidelity/saw-w4-production-independent-review/ClassicSawFidelityTests",
+      "sha256": "4ac400a4a74051da88898a8a70308de4cdb510efd16c0957d9d83687706e1d1e"
+    },
+    {
+      "path": "build-fidelity/saw-w4-production-source-review/prototype-checks.json",
+      "sha256": "e2d3d23e02f3b803e508599eba976bdad19edd18602ccb9f1023e6b5eea30286"
+    },
+    {
+      "path": "build-fidelity/saw-w4-production-source-review/exact-double-failure.json",
+      "sha256": "99d1cd81c8f57059eadf14728d42fcc2008d91afcf752dfb0e04b8e965b1b00f"
+    },
+    {
+      "path": "build-fidelity/saw-w4-production-source-review/check_prototype.cpp",
+      "sha256": "42da0c89639afd49d831434811e74ca11b689d4a5da464dadc6e366d690487a0"
+    }
+  ],
+  "test": {
+    "target": "SeptumClassicSawFidelityTests",
+    "ctest": "Septum.ClassicSawFidelity",
+    "checks": 8364,
+    "failures": 0,
+    "scalar_fixtures": 42,
+    "source_selection_sha256": "3ef847bad8c0cc9990fd01b40a0bd9a8ba09374153a166c1f6b910dea82b6e91",
+    "maximum_scalar_absolute_error": 2.16e-15,
+    "maximum_phase_domain_harmonic_error_db": 7.82e-14,
+    "maximum_continuous_phase_mean": 5.21e-16,
+    "tested_host_rates": [
+      8000,
+      11025,
+      44100,
+      48000,
+      96000,
+      192000,
+      384000,
+      768000
+    ],
+    "native_increments": [
+      1e-08,
+      0.001,
+      0.125,
+      0.45
+    ],
+    "maximum_periodic_copies_exercised": 63,
+    "harmonic_check": "H2-H8 from4096 uniformly spaced waveform phases at1760Hz with referenceIncrement=(1760/rate)*(rate/44100), rates44100/48000/96000. Oracle is independent SciPy BSpline. This checks physical kernel duration; not sampled-host alias spectra or hardware validation.",
+    "mean_check": "Piecewise four-point Gaussian integration split at every periodized half-sample spline knot; not a finite sampled-window mean.",
+    "standalone_command": "c++ -std=c++20 -O2 -fno-fast-math -ISource Tests/ClassicSawFidelityTests.cpp -o build-fidelity/saw-w4-production-independent-review/ClassicSawFidelityTests",
+    "diagnostic_timing": {
+      "calls": 100000,
+      "reference_increment": 0.45,
+      "seconds": 0.002388,
+      "qualification": "One scalar batch, not real-time/plugin capacity evidence"
+    }
+  },
+  "prototype_receipt_review": {
+    "status": "passed",
+    "compared_prototype_samples": 140014,
+    "double_differences": 979,
+    "float_differences": 0,
+    "max_abs_error": 3.552713678800501e-15,
+    "mean_integral": -0.16938190278735618,
+    "sweep_peak": 1.5762966570431596,
+    "timings": [
+      {
+        "rate": 8000,
+        "native_inc": 0.055,
+        "calls": 250000,
+        "seconds": 0.004318334,
+        "nanoseconds_per_call": 17.273336,
+        "checksum": -35.47184031073652
+      },
+      {
+        "rate": 8000,
+        "native_inc": 0.45,
+        "calls": 250000,
+        "seconds": 0.002138625,
+        "nanoseconds_per_call": 8.5545,
+        "checksum": 173.35657200133082
+      },
+      {
+        "rate": 44100,
+        "native_inc": 0.009977324263038548,
+        "calls": 250000,
+        "seconds": 0.000929125,
+        "nanoseconds_per_call": 3.7165,
+        "checksum": 13.55284938568914
+      },
+      {
+        "rate": 44100,
+        "native_inc": 0.45,
+        "calls": 250000,
+        "seconds": 0.007717875,
+        "nanoseconds_per_call": 30.8715,
+        "checksum": 218.03764323860574
+      },
+      {
+        "rate": 48000,
+        "native_inc": 0.009166666666666667,
+        "calls": 250000,
+        "seconds": 0.000945292,
+        "nanoseconds_per_call": 3.781168,
+        "checksum": 33.92423278306347
+      },
+      {
+        "rate": 48000,
+        "native_inc": 0.45,
+        "calls": 250000,
+        "seconds": 0.009270875,
+        "nanoseconds_per_call": 37.0835,
+        "checksum": 216.8864533304457
+      },
+      {
+        "rate": 96000,
+        "native_inc": 0.004583333333333333,
+        "calls": 250000,
+        "seconds": 0.000914042,
+        "nanoseconds_per_call": 3.656168,
+        "checksum": 17.390496671012638
+      },
+      {
+        "rate": 96000,
+        "native_inc": 0.45,
+        "calls": 250000,
+        "seconds": 0.017116458,
+        "nanoseconds_per_call": 68.465832,
+        "checksum": 213.03597653715653
+      },
+      {
+        "rate": 192000,
+        "native_inc": 0.0022916666666666667,
+        "calls": 250000,
+        "seconds": 0.001079417,
+        "nanoseconds_per_call": 4.317668,
+        "checksum": 8.929580456150962
+      },
+      {
+        "rate": 192000,
+        "native_inc": 0.45,
+        "calls": 250000,
+        "seconds": 0.027112208,
+        "nanoseconds_per_call": 108.448832,
+        "checksum": 214.05110196962048
+      },
+      {
+        "rate": 768000,
+        "native_inc": 0.0005729166666666667,
+        "calls": 250000,
+        "seconds": 0.000901416,
+        "nanoseconds_per_call": 3.605664,
+        "checksum": -9.794220876079706
+      },
+      {
+        "rate": 768000,
+        "native_inc": 0.45,
+        "calls": 250000,
+        "seconds": 0.15048725,
+        "nanoseconds_per_call": 601.949,
+        "checksum": 214.03318887310022
+      }
+    ]
+  },
+  "retained_failed_gate": {
+    "path": "build-fidelity/saw-w4-production-source-review/exact-double-failure.json",
+    "sha256": "99d1cd81c8f57059eadf14728d42fcc2008d91afcf752dfb0e04b8e965b1b00f",
+    "qualification": "Exact-double identity failed on a3.47e-18 difference. Retained followup covers140014 samples, max3.55e-15 and zero float-cast differences; no production adjustment to force double identity."
+  },
+  "code_review": {
+    "coefficients": "All32 production literals are the frozen selected coefficients, verified by independent oracle/prototype checks. Mean is evaluated from their paired knot integrals once.",
+    "rate": "Kernel coordinate and mean use nativeIncrement*(sampleRate/44100). At44100 the factor is exactly1. The engine native phase clock is unchanged. Non44100 hardware output remains unmeasured.",
+    "bounds": "Finite position and increment guards precede integer conversion; positive referenceIncrement is capped at.45*(768000/44100), bounding periodic sum at63 terms. No allocation in source evaluator.",
+    "clock": "Phase advance, natural wrap flag, fractional wrapOffset and existing phaseOffset precede the new value calculation unchanged.",
+    "sync": "Final guard routes only OSC1 under MixModType::Sync to the existing naive-reset/polyBLEP Saw. OSC2 and ordinary Mix/Ring Saw continue W4. The flag is used only in the Saw branch; other waveforms are untouched.",
+    "sync_regression_context": "The reset sample itself was preserved, but the first integration changed later samples because the wider W4 support ignores forced-reset history. An existing full-engine naive-sync waveform test caught this; the test was not relaxed. Final guarded code retains legacy synced OSC1 until there is evidence for its reset-history correction.",
+    "test_limits": "Header source checks and phase-domain harmonic checks do not independently test full engine host-rate spectra. Complete raw12-case reproduction and the unchanged Sync regression test belong to root full-suite/replay receipts.",
+    "conclusion": "No actionable blocker in the final guarded source. Retain public-reference uncertainty and evaluate later changes against actual rendered audio."
+  },
+  "oracle": {
+    "selection_sha256": "3ef847bad8c0cc9990fd01b40a0bd9a8ba09374153a166c1f6b910dea82b6e91",
+    "fixtures": [
+      [
+        0.0,
+        0.009977324263038548,
+        0.6978376566488318
+      ],
+      [
+        1e-09,
+        0.009977324263038548,
+        0.697837636078208
+      ],
+      [
+        0.0123,
+        0.009977324263038548,
+        -1.403862082389
+      ],
+      [
+        0.125,
+        0.009977324263038548,
+        -0.7483100218316001
+      ],
+      [
+        0.374,
+        0.009977324263038548,
+        -0.25031002183160006
+      ],
+      [
+        0.731,
+        0.009977324263038548,
+        0.4636899781683999
+      ],
+      [
+        0.999999999,
+        0.009977324263038548,
+        0.48401076863646264
+      ],
+      [
+        0.0,
+        0.039909297052154194,
+        0.7029075911540316
+      ],
+      [
+        1e-09,
+        0.039909297052154194,
+        0.7029075875113762
+      ],
+      [
+        0.0123,
+        0.039909297052154194,
+        0.5691648540960285
+      ],
+      [
+        0.125,
+        0.039909297052154194,
+        -0.8355082521370426
+      ],
+      [
+        0.374,
+        0.039909297052154194,
+        -0.2452400873264003
+      ],
+      [
+        0.731,
+        0.039909297052154194,
+        0.4687599126735997
+      ],
+      [
+        0.999999999,
+        0.039909297052154194,
+        0.48908068133041294
+      ],
+      [
+        0.0,
+        0.125,
+        0.7173204163288515
+      ],
+      [
+        1e-09,
+        0.125,
+        0.7173204165272964
+      ],
+      [
+        0.0123,
+        0.125,
+        0.7157034304516697
+      ],
+      [
+        0.125,
+        0.125,
+        -0.8872696774354447
+      ],
+      [
+        0.374,
+        0.125,
+        -0.27005651276757575
+      ],
+      [
+        0.731,
+        0.125,
+        0.6957279813976291
+      ],
+      [
+        0.999999999,
+        0.125,
+        0.5034935015560628
+      ],
+      [
+        0.0,
+        0.25,
+        0.738493154177271
+      ],
+      [
+        1e-09,
+        0.25,
+        0.7384931552764933
+      ],
+      [
+        0.0123,
+        0.25,
+        0.7506179460079887
+      ],
+      [
+        0.125,
+        0.25,
+        0.46907832884943756
+      ],
+      [
+        0.374,
+        0.25,
+        -0.4126981148157556
+      ],
+      [
+        0.731,
+        0.25,
+        -0.4954696834918161
+      ],
+      [
+        0.999999999,
+        0.25,
+        0.5246662382438503
+      ],
+      [
+        0.0,
+        0.45,
+        1.4228448713223862
+      ],
+      [
+        1e-09,
+        0.45,
+        1.422844873252202
+      ],
+      [
+        0.0123,
+        0.45,
+        1.4450438701708896
+      ],
+      [
+        0.125,
+        0.45,
+        1.488253382385907
+      ],
+      [
+        0.374,
+        0.45,
+        -0.35447062974751614
+      ],
+      [
+        0.731,
+        0.45,
+        -0.9656393630036079
+      ],
+      [
+        0.999999999,
+        0.45,
+        1.2090179544428807
+      ],
+      [
+        0.0,
+        7.836734693877551,
+        0.10501181944482263
+      ],
+      [
+        1e-09,
+        7.836734693877551,
+        0.10501181921120996
+      ],
+      [
+        0.0123,
+        7.836734693877551,
+        0.10214884744498676
+      ],
+      [
+        0.125,
+        7.836734693877551,
+        0.07678313710889491
+      ],
+      [
+        0.374,
+        7.836734693877551,
+        0.02606241837840865
+      ],
+      [
+        0.731,
+        7.836734693877551,
+        -0.04589043857013075
+      ],
+      [
+        0.999999999,
+        7.836734693877551,
+        -0.10881509540733061
+      ]
+    ],
+    "phase_domain_harmonic_ratios_db": [
+      -7.2195956449055,
+      -12.830375366566722,
+      -18.419595990269343,
+      -24.785982495678105,
+      -36.905786956390486,
+      -29.73838040487354,
+      -20.776626929798695
+    ],
+    "generator_sha256": "e02d201a2bf2c1d64a937a8eb028c3695238be4f7c3906769bc4d5416158ef4b"
+  },
+  "generator_source": "from pathlib import Path\nimport hashlib,json\nimport numpy as np\nfrom scipy.interpolate import BSpline\nroot=Path.cwd();p=root/'build-fidelity/saw-w4-engine/hardware-fit-01/candidate.json'\nassert hashlib.sha256(p.read_bytes()).hexdigest()=='3ef847bad8c0cc9990fd01b40a0bd9a8ba09374153a166c1f6b910dea82b6e91'\nc=np.array(json.loads(p.read_text())['candidate_coefficients']);knots=[0.]*4+[x for j in range(1,8)for x in[j/2,j/2]]+[4.]*4\nb=BSpline(knots,np.eye(18)[:,:16],3,extrapolate=False);integral=b.integrate(0,4)@(c[:16]+c[16:])\ndef oracle(phase,inc):\n y=2*phase-1-inc*integral\n for wrap in range(-33,35):\n  t=(phase-wrap)/inc\n  if -4<t<0:y+=b(-t)@c[:16]\n  elif 0<=t<4:y+=b(t)@c[16:]\n return y\nfixtures=[]\nfor inc in [440/44100,1760/44100,.125,.25,.45,.45*768000/44100]:\n for phase in[0.,1e-9,.0123,.125,.374,.731,1-1e-9]:fixtures.append([phase,inc,float(oracle(phase,inc))])\nphases=(np.arange(4096)+.321)/4096\nvalues=np.array([oracle(p,1760/44100)for p in phases]);amps=np.array([abs(np.mean(values*np.exp(-2j*np.pi*h*phases)))for h in range(1,9)])\nratios=20*np.log10(amps[1:]/amps[0]);out=root/'Tests/ClassicSawFidelityTests.cpp'\nhead='''// Independent SciPy BSpline/integration oracle for the frozen W4 source.\n// Selection SHA256: 3ef847bad8c0cc9990fd01b40a0bd9a8ba09374153a166c1f6b910dea82b6e91\n// These are implementation/rate guards, not new hardware measurements.\n#include \"DSP/ClassicSaw.h\"\n#include <algorithm>\n#include <array>\n#include <chrono>\n#include <cmath>\n#include <complex>\n#include <cstdio>\n#include <limits>\n#include <set>\n\nnamespace\n{\nstruct Fixture { double phase, referenceIncrement, expected; };\nconstexpr std::array<Fixture,42> fixtures {{\n'''\nhead+=''.join('    { '+', '.join(format(x,'.17g')for x in row)+' },\\n'for row in fixtures)+'}};\\n'\nhead+='constexpr std::array<double,7> expectedRatiosDb { '+', '.join(format(x,'.17g')for x in ratios)+' };\\n'\nbody=r'''\nint checks=0,failures=0;\nvoid require (bool ok,const char* what)\n{\n    ++checks;\n    if (!ok) { ++failures; std::fprintf(stderr,\"FAIL: %s\\n\",what); }\n}\n\ndouble continuousMean (double inc)\n{\n    // Split at every periodic polynomial boundary, then integrate each cubic\n    // segment with an independent four-point Gaussian quadrature. Do not\n    // confuse this continuous-phase mean with a sampled-window DC value.\n    std::set<double> edges { 0.0,1.0 };\n    for (int wrap=-33;wrap<=34;++wrap)\n        for (int half=0;half<=8;++half)\n            for (int sign : {-1,1})\n            {\n                const double phase=wrap+sign*half*.5*inc;\n                if (phase>0 && phase<1) edges.insert(phase);\n            }\n    constexpr std::array<double,4> x {\n        -.8611363115940525752,-.3399810435848562648,\n         .3399810435848562648, .8611363115940525752 };\n    constexpr std::array<double,4> w {\n        .3478548451374538574,.6521451548625461426,\n        .6521451548625461426,.3478548451374538574 };\n    double sum=0,lo=0;\n    for (auto it=std::next(edges.begin());it!=edges.end();++it)\n    {\n        const double hi=*it;\n        for (std::size_t j=0;j<x.size();++j)\n            sum+=(hi-lo)*.5*w[j]*septum::classic_saw::sample((hi+lo)*.5+(hi-lo)*.5*x[j],inc);\n        lo=hi;\n    }\n    return sum;\n}\n}\n\nint main()\n{\n    using septum::classic_saw::sample;\n    double scalarWorst=0,harmonicWorst=0,meanWorst=0;\n    for (const auto& f:fixtures)\n    {\n        const double error=std::abs(sample(f.phase,f.referenceIncrement)-f.expected);\n        scalarWorst=std::max(scalarWorst,error);\n        require(error<2e-12,\"frozen SciPy source fixture\");\n    }\n    // Compare phase-domain H2..H8 against the independent frozen SciPy source.\n    // This tests physical support duration. It intentionally does not assert\n    // that discrete sampling at different rates produces identical aliases.\n    constexpr double pi=3.14159265358979323846;\n    for (const double rate:{44100.0,48000.0,96000.0})\n    {\n        const double nativeIncrement=1760.0/rate;\n        const double referenceIncrement=nativeIncrement*(rate/44100.0);\n        std::array<std::complex<double>,8> harmonic {};\n        for(int i=0;i<4096;++i)\n        {\n            const double phase=(i+.321)/4096;\n            const double y=sample(phase,referenceIncrement);\n            for (int h=1;h<=8;++h)\n                harmonic[h-1]+=y*std::polar(1.0,-2*pi*h*phase);\n        }\n        for(int h=2;h<=8;++h)\n        {\n            const double ratio=20*std::log10(std::abs(harmonic[h-1])/std::abs(harmonic[0]));\n            const double error=std::abs(ratio-expectedRatiosDb[h-2]);\n            harmonicWorst=std::max(harmonicWorst,error);\n            require(error<1e-9,\"physical-duration harmonic shape at44.1/48/96k\");\n        }\n    }\n    int maxCopies=0;\n    for(const double rate:{8000.0,11025.0,44100.0,48000.0,96000.0,192000.0,384000.0,768000.0})\n        for(const double nativeIncrement:{1e-8,.001,.125,.45})\n        {\n            const double inc=nativeIncrement*(rate/44100.0);\n            for(int i=0;i<129;++i)\n            {\n                const double phase=i/129.0;\n                const auto value=sample(phase,inc);\n                require(std::isfinite(value)&&std::abs(value)<10,\"legalrate/increment finite bounded source\");\n                const int copies=static_cast<int>(std::floor(phase+4*inc)-std::ceil(phase-4*inc)+1);\n                maxCopies=std::max(maxCopies,copies);\n                require(copies<=63,\"legalperiodic support bounded by63 copies\");\n            }\n            const double mean=std::abs(continuousMean(inc));\n            meanWorst=std::max(meanWorst,mean);\n            require(mean<2e-12,\"continuous-phase zero mean includingoverlap\");\n        }\n    require(maxCopies==63,\"maximumlegalperiodic overlap exercised\");\n    for(double phase:{0.,.37,.999999})\n    {\n        require(sample(phase,1e100)==sample(phase,septum::classic_saw::maxReferenceIncrement),\"oversizeincrement clamps before integer bounds\");\n        require(sample(phase,0)==2*phase-1,\"zero increment fallback\");\n        require(sample(phase,std::numeric_limits<double>::infinity())==2*phase-1,\"nonfiniteincrement fallback\");\n    }\n    require(sample(std::numeric_limits<double>::quiet_NaN(),.1)==0,\"nonfinitephase fallback\");\n    require(sample(-.1,.1)==0&&sample(1.,.1)==0,\"outofrangephase fallback\");\n    // A measured elapsed time is diagnostic, never a machine-dependent pass\n    // threshold. Phase varies each call to prevent constant folding.\n    const auto start=std::chrono::steady_clock::now();\n    double sum=0;\n    for(int i=0;i<100000;++i) sum+=sample((i%4096)/4096.0,.45);\n    const double seconds=std::chrono::duration<double>(std::chrono::steady_clock::now()-start).count();\n    require(std::isfinite(sum),\"CPUprobe finite\");\n    std::printf(\"ClassicSaw: %d checks, %d failures; scalar %.3g, harmonic %.3g dB, mean %.3g; maxcopies%d; 100k highpitch calls %.6fs\\n\",checks,failures,scalarWorst,harmonicWorst,meanWorst,maxCopies,seconds);\n    return failures==0?0:1;\n}\n'''\nout.write_text(head+body)\n(root/'build-fidelity/saw-w4-production-independent-review/scipy-oracle.json').write_text(json.dumps({'selection_sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'fixtures':fixtures,'phase_domain_harmonic_ratios_db':ratios.tolist(),'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()},indent=2)+'\\n')\n",
+  "separate_complete_replay": {
+    "path": "build-fidelity/saw-w4-production-integration/run-02/results.json",
+    "sha256": "a96632cc2912a941ed2201835a035ecae9b4754d2627d5b3dd3e970278720ca3",
+    "cases": 12,
+    "all_full_wav_byte_identical": true,
+    "scope": "Reviewed final run-02 receipt after Sync fallback; replay and full artifact verification owned by benchmark_audit, not rerun here."
+  }
+}

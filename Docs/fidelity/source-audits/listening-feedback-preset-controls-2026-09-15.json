@@ -1,0 +1,696 @@
+{
+  "status": "read_only_exact_preset_feedback_context_no_fit_or_edits",
+  "tool": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Tools/inspect_listening_feedback_presets.py",
+    "sha256": "e9ec36965d31677ce7281a454d0594c35daac5eedff59c880d74801a0caa24d5"
+  },
+  "inputs": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Docs/fidelity/source-audits/saw-w4-official-inputs-2026-09-15.json",
+    "sha256": "9bf636d72ff15b00135258f5924798af9c2ecd81556534d485a0a0e4a700402e"
+  },
+  "prior_native_decode_inventory": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Docs/fidelity/source-audits/static-filter-reference-inventory-2026-09-15.json",
+    "sha256": "7e5ec6a0d06c5679ec7cce6876c60276b252c62f8a9794706a9addfff2c88735"
+  },
+  "decoding": "Validate all22 Roland DT1 packets, checksum, addresses and seven-bit payload. Re-decode filter/AMP/level/drive/sends from raw tone offsets; compare with prior native decode. Signed fields subtract64, key-follow then multiplies10.",
+  "field_offsets": {
+    "lowFreq": {
+      "hex_offset": "0x10",
+      "signed_bias": 0
+    },
+    "filterType": {
+      "hex_offset": "0x11",
+      "signed_bias": 0
+    },
+    "filterSlope": {
+      "hex_offset": "0x12",
+      "signed_bias": 0
+    },
+    "cutoff": {
+      "hex_offset": "0x13",
+      "signed_bias": 0
+    },
+    "keyFollow": {
+      "hex_offset": "0x14",
+      "signed_bias": 64
+    },
+    "cutoffVelocitySens": {
+      "hex_offset": "0x15",
+      "signed_bias": 64
+    },
+    "resonance": {
+      "hex_offset": "0x16",
+      "signed_bias": 0
+    },
+    "filterEnvAttack": {
+      "hex_offset": "0x17",
+      "signed_bias": 0
+    },
+    "filterEnvDecay": {
+      "hex_offset": "0x18",
+      "signed_bias": 0
+    },
+    "filterEnvSustain": {
+      "hex_offset": "0x19",
+      "signed_bias": 0
+    },
+    "filterEnvRelease": {
+      "hex_offset": "0x1a",
+      "signed_bias": 0
+    },
+    "filterEnvDepth": {
+      "hex_offset": "0x1b",
+      "signed_bias": 64
+    },
+    "overdrive": {
+      "hex_offset": "0x1c",
+      "signed_bias": 0
+    },
+    "drive": {
+      "hex_offset": "0x1d",
+      "signed_bias": 0
+    },
+    "level": {
+      "hex_offset": "0x1e",
+      "signed_bias": 0
+    },
+    "levelVelocitySens": {
+      "hex_offset": "0x1f",
+      "signed_bias": 64
+    },
+    "pan": {
+      "hex_offset": "0x20",
+      "signed_bias": 64
+    },
+    "ampEnvAttack": {
+      "hex_offset": "0x21",
+      "signed_bias": 0
+    },
+    "ampEnvDecay": {
+      "hex_offset": "0x22",
+      "signed_bias": 0
+    },
+    "ampEnvSustain": {
+      "hex_offset": "0x23",
+      "signed_bias": 0
+    },
+    "ampEnvRelease": {
+      "hex_offset": "0x24",
+      "signed_bias": 0
+    },
+    "delayDepth": {
+      "hex_offset": "0x25",
+      "signed_bias": 0
+    },
+    "reverbDepth": {
+      "hex_offset": "0x26",
+      "signed_bias": 0
+    }
+  },
+  "scope": "Same published presets; exact recorded patch revisions and original performance remain unverified. Listening feedback is directional context, not parameter measurement.",
+  "cases": [
+    {
+      "id": "vangelead",
+      "name": "Vangelead",
+      "patch": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-return-integration/run-01/renders/legacy/vangelead/original-patch.syx",
+        "sha256": "ae19b5e27dd1828815a6468fe4d0e3e49c1dea17f931cac02a4c452e204a7624"
+      },
+      "active_parts": [
+        "upper",
+        "lower"
+      ],
+      "keyboard_mode": "dual",
+      "patch_level": 115,
+      "tone_balance": 0,
+      "delay_on": true,
+      "reverb_on": false,
+      "reconstructed_velocities": [
+        100
+      ],
+      "tones": {
+        "upper": {
+          "lowFreq": 0,
+          "filterType": 1,
+          "filterSlope": 0,
+          "cutoff": 58,
+          "keyFollow": 80,
+          "cutoffVelocitySens": 0,
+          "resonance": 0,
+          "filterEnvAttack": 36,
+          "filterEnvDecay": 33,
+          "filterEnvSustain": 72,
+          "filterEnvRelease": 92,
+          "filterEnvDepth": 17,
+          "overdrive": 0,
+          "drive": 100,
+          "level": 127,
+          "levelVelocitySens": 8,
+          "pan": 0,
+          "ampEnvAttack": 10,
+          "ampEnvDecay": 0,
+          "ampEnvSustain": 127,
+          "ampEnvRelease": 64,
+          "delayDepth": 56,
+          "reverbDepth": 20,
+          "raw_block_hex": "0000404140400000403d40400000003f0001003a4840002421485c5100647f48400a007f403814005c0011000002400240005c00110000024002400240001402",
+          "active": true,
+          "oscillators": {
+            "osc1": {
+              "wave": 0,
+              "pitchWide": 0,
+              "coarse": 0,
+              "fine": 1,
+              "pulseWidth": 64,
+              "pitchEnvDepth": 0,
+              "decoded_by_current_codec": true,
+              "wave_name": "Saw",
+              "signed_coarse_raw": 0,
+              "coarse_units": "physical semitones, current SysEx codec",
+              "net_coarse_and_tone_octave_semitones": 0,
+              "mixed_in": true
+            },
+            "osc2": {
+              "wave": 0,
+              "pitchWide": 0,
+              "coarse": 0,
+              "fine": -3,
+              "pulseWidth": 64,
+              "pitchEnvDepth": 0,
+              "decoded_by_current_codec": true,
+              "wave_name": "Saw",
+              "signed_coarse_raw": 0,
+              "coarse_units": "physical semitones, current SysEx codec",
+              "net_coarse_and_tone_octave_semitones": 0,
+              "mixed_in": true
+            }
+          },
+          "balance": -1,
+          "filter_lfo_depths": [
+            0,
+            0
+          ]
+        },
+        "lower": {
+          "lowFreq": 0,
+          "filterType": 1,
+          "filterSlope": 0,
+          "cutoff": 101,
+          "keyFollow": 0,
+          "cutoffVelocitySens": 0,
+          "resonance": 0,
+          "filterEnvAttack": 0,
+          "filterEnvDecay": 0,
+          "filterEnvSustain": 0,
+          "filterEnvRelease": 0,
+          "filterEnvDepth": 0,
+          "overdrive": 0,
+          "drive": 100,
+          "level": 59,
+          "levelVelocitySens": 8,
+          "pan": 0,
+          "ampEnvAttack": 76,
+          "ampEnvDecay": 127,
+          "ampEnvSustain": 100,
+          "ampEnvRelease": 76,
+          "delayDepth": 100,
+          "reverbDepth": 112,
+          "raw_block_hex": "0700404040400700404040400000000100010065404000000000004000643b48404c7f644c6470005c0011000002400240005c00110000024002400240001400",
+          "active": true,
+          "oscillators": {
+            "osc1": {
+              "wave": 7,
+              "pitchWide": 0,
+              "coarse": 0,
+              "fine": 0,
+              "pulseWidth": 64,
+              "pitchEnvDepth": 0,
+              "decoded_by_current_codec": true,
+              "wave_name": "SuperSaw",
+              "signed_coarse_raw": 0,
+              "coarse_units": "physical semitones, current SysEx codec",
+              "net_coarse_and_tone_octave_semitones": 0,
+              "mixed_in": true
+            },
+            "osc2": {
+              "wave": 7,
+              "pitchWide": 0,
+              "coarse": 0,
+              "fine": 0,
+              "pulseWidth": 64,
+              "pitchEnvDepth": 0,
+              "decoded_by_current_codec": true,
+              "wave_name": "SuperSaw",
+              "signed_coarse_raw": 0,
+              "coarse_units": "physical semitones, current SysEx codec",
+              "net_coarse_and_tone_octave_semitones": 0,
+              "mixed_in": false
+            }
+          },
+          "balance": -63,
+          "filter_lfo_depths": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "moogie-1",
+      "name": "Moogie 1",
+      "patch": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-return-integration/run-01/renders/legacy/moogie-1/original-patch.syx",
+        "sha256": "33d39a6b1cbf47abd830ecf879e1ef6774b50eb6a4eb4db6997749f4f7cffabc"
+      },
+      "active_parts": [
+        "upper",
+        "lower"
+      ],
+      "keyboard_mode": "dual",
+      "patch_level": 100,
+      "tone_balance": 0,
+      "delay_on": false,
+      "reverb_on": false,
+      "reconstructed_velocities": [
+        100
+      ],
+      "tones": {
+        "upper": {
+          "lowFreq": 1,
+          "filterType": 1,
+          "filterSlope": 1,
+          "cutoff": 30,
+          "keyFollow": 0,
+          "cutoffVelocitySens": 0,
+          "resonance": 0,
+          "filterEnvAttack": 0,
+          "filterEnvDecay": 49,
+          "filterEnvSustain": 0,
+          "filterEnvRelease": 0,
+          "filterEnvDepth": 22,
+          "overdrive": 0,
+          "drive": 100,
+          "level": 127,
+          "levelVelocitySens": 8,
+          "pan": 0,
+          "ampEnvAttack": 0,
+          "ampEnvDecay": 0,
+          "ampEnvSustain": 127,
+          "ampEnvRelease": 3,
+          "delayDepth": 20,
+          "reverbDepth": 20,
+          "raw_block_hex": "02001c40394004001c404040000000400101011e404000003100005600647f484000007f031414005c0011000002400240005c00110000024002400240001402",
+          "active": true,
+          "oscillators": {
+            "osc1": {
+              "wave": 2,
+              "pitchWide": 0,
+              "coarse": -12,
+              "fine": 0,
+              "pulseWidth": 57,
+              "pitchEnvDepth": 0,
+              "decoded_by_current_codec": true,
+              "wave_name": "Pulse",
+              "signed_coarse_raw": -36,
+              "coarse_units": "physical semitones, current SysEx codec",
+              "net_coarse_and_tone_octave_semitones": -12,
+              "mixed_in": true
+            },
+            "osc2": {
+              "wave": 4,
+              "pitchWide": 0,
+              "coarse": -12,
+              "fine": 0,
+              "pulseWidth": 64,
+              "pitchEnvDepth": 0,
+              "decoded_by_current_codec": true,
+              "wave_name": "Sine",
+              "signed_coarse_raw": -36,
+              "coarse_units": "physical semitones, current SysEx codec",
+              "net_coarse_and_tone_octave_semitones": -12,
+              "mixed_in": true
+            }
+          },
+          "balance": 0,
+          "filter_lfo_depths": [
+            0,
+            0
+          ]
+        },
+        "lower": {
+          "lowFreq": 0,
+          "filterType": 1,
+          "filterSlope": 1,
+          "cutoff": 47,
+          "keyFollow": 0,
+          "cutoffVelocitySens": 0,
+          "resonance": 0,
+          "filterEnvAttack": 0,
+          "filterEnvDecay": 37,
+          "filterEnvSustain": 0,
+          "filterEnvRelease": 127,
+          "filterEnvDepth": 15,
+          "overdrive": 0,
+          "drive": 100,
+          "level": 127,
+          "levelVelocitySens": 8,
+          "pan": 0,
+          "ampEnvAttack": 0,
+          "ampEnvDecay": 69,
+          "ampEnvSustain": 127,
+          "ampEnvRelease": 3,
+          "delayDepth": 44,
+          "reverbDepth": 24,
+          "raw_block_hex": "01001c406a4003001c400040000000400001012f4040000025007f4f00647f484000457f032c18005c0011000002400240005c00110000024002400240001402",
+          "active": true,
+          "oscillators": {
+            "osc1": {
+              "wave": 1,
+              "pitchWide": 0,
+              "coarse": -12,
+              "fine": 0,
+              "pulseWidth": 106,
+              "pitchEnvDepth": 0,
+              "decoded_by_current_codec": true,
+              "wave_name": "Square",
+              "signed_coarse_raw": -36,
+              "coarse_units": "physical semitones, current SysEx codec",
+              "net_coarse_and_tone_octave_semitones": -12,
+              "mixed_in": true
+            },
+            "osc2": {
+              "wave": 3,
+              "pitchWide": 0,
+              "coarse": -12,
+              "fine": 0,
+              "pulseWidth": 0,
+              "pitchEnvDepth": 0,
+              "decoded_by_current_codec": true,
+              "wave_name": "Triangle",
+              "signed_coarse_raw": -36,
+              "coarse_units": "physical semitones, current SysEx codec",
+              "net_coarse_and_tone_octave_semitones": -12,
+              "mixed_in": true
+            }
+          },
+          "balance": 0,
+          "filter_lfo_depths": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "dist-bs-1",
+      "name": "Dist Bs 1",
+      "patch": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-return-integration/run-01/renders/legacy/dist-bs-1/original-patch.syx",
+        "sha256": "774bed5b7e3155c4c2efadcffc388c972e7fdd9a9ed82af08cb7333b14980060"
+      },
+      "active_parts": [
+        "upper",
+        "lower"
+      ],
+      "keyboard_mode": "dual",
+      "patch_level": 110,
+      "tone_balance": 0,
+      "delay_on": false,
+      "reverb_on": false,
+      "reconstructed_velocities": [
+        100
+      ],
+      "tones": {
+        "upper": {
+          "lowFreq": 1,
+          "filterType": 1,
+          "filterSlope": 1,
+          "cutoff": 36,
+          "keyFollow": 0,
+          "cutoffVelocitySens": 0,
+          "resonance": 31,
+          "filterEnvAttack": 0,
+          "filterEnvDecay": 64,
+          "filterEnvSustain": 0,
+          "filterEnvRelease": 0,
+          "filterEnvDepth": 22,
+          "overdrive": 1,
+          "drive": 100,
+          "level": 127,
+          "levelVelocitySens": 8,
+          "pan": 0,
+          "ampEnvAttack": 0,
+          "ampEnvDecay": 0,
+          "ampEnvSustain": 127,
+          "ampEnvRelease": 0,
+          "delayDepth": 20,
+          "reverbDepth": 20,
+          "raw_block_hex": "00001c40394004001c404040000000400101012440401f004000005601647f484000007f001414005c0011000002400240005c00110000024002400240001402",
+          "active": true,
+          "oscillators": {
+            "osc1": {
+              "wave": 0,
+              "pitchWide": 0,
+              "coarse": -12,
+              "fine": 0,
+              "pulseWidth": 57,
+              "pitchEnvDepth": 0,
+              "decoded_by_current_codec": true,
+              "wave_name": "Saw",
+              "signed_coarse_raw": -36,
+              "coarse_units": "physical semitones, current SysEx codec",
+              "net_coarse_and_tone_octave_semitones": -12,
+              "mixed_in": true
+            },
+            "osc2": {
+              "wave": 4,
+              "pitchWide": 0,
+              "coarse": -12,
+              "fine": 0,
+              "pulseWidth": 64,
+              "pitchEnvDepth": 0,
+              "decoded_by_current_codec": true,
+              "wave_name": "Sine",
+              "signed_coarse_raw": -36,
+              "coarse_units": "physical semitones, current SysEx codec",
+              "net_coarse_and_tone_octave_semitones": -12,
+              "mixed_in": true
+            }
+          },
+          "balance": 0,
+          "filter_lfo_depths": [
+            0,
+            0
+          ]
+        },
+        "lower": {
+          "lowFreq": 1,
+          "filterType": 1,
+          "filterSlope": 1,
+          "cutoff": 57,
+          "keyFollow": 0,
+          "cutoffVelocitySens": 0,
+          "resonance": 0,
+          "filterEnvAttack": 0,
+          "filterEnvDecay": 37,
+          "filterEnvSustain": 0,
+          "filterEnvRelease": 127,
+          "filterEnvDepth": 15,
+          "overdrive": 0,
+          "drive": 100,
+          "level": 127,
+          "levelVelocitySens": 8,
+          "pan": 0,
+          "ampEnvAttack": 0,
+          "ampEnvDecay": 69,
+          "ampEnvSustain": 127,
+          "ampEnvRelease": 0,
+          "delayDepth": 20,
+          "reverbDepth": 20,
+          "raw_block_hex": "02001c403c4003001c40004000000040010101394040000025007f4f00647f484000457f001414005c0011000002400240005c00110000024002400240001402",
+          "active": true,
+          "oscillators": {
+            "osc1": {
+              "wave": 2,
+              "pitchWide": 0,
+              "coarse": -12,
+              "fine": 0,
+              "pulseWidth": 60,
+              "pitchEnvDepth": 0,
+              "decoded_by_current_codec": true,
+              "wave_name": "Pulse",
+              "signed_coarse_raw": -36,
+              "coarse_units": "physical semitones, current SysEx codec",
+              "net_coarse_and_tone_octave_semitones": -12,
+              "mixed_in": true
+            },
+            "osc2": {
+              "wave": 3,
+              "pitchWide": 0,
+              "coarse": -12,
+              "fine": 0,
+              "pulseWidth": 0,
+              "pitchEnvDepth": 0,
+              "decoded_by_current_codec": true,
+              "wave_name": "Triangle",
+              "signed_coarse_raw": -36,
+              "coarse_units": "physical semitones, current SysEx codec",
+              "net_coarse_and_tone_octave_semitones": -12,
+              "mixed_in": true
+            }
+          },
+          "balance": 0,
+          "filter_lfo_depths": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "cotton-wool",
+      "name": "Cotton Wool",
+      "patch": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-return-integration/run-01/renders/legacy/cotton-wool/original-patch.syx",
+        "sha256": "e7f23e39445895f2158482037b37a19dfe413e536869c0e6f78352de6e49fbef"
+      },
+      "active_parts": [
+        "upper"
+      ],
+      "keyboard_mode": "single",
+      "patch_level": 127,
+      "tone_balance": 0,
+      "delay_on": true,
+      "reverb_on": true,
+      "reconstructed_velocities": [
+        100
+      ],
+      "tones": {
+        "upper": {
+          "lowFreq": 0,
+          "filterType": 1,
+          "filterSlope": 1,
+          "cutoff": 0,
+          "keyFollow": 60,
+          "cutoffVelocitySens": 18,
+          "resonance": 0,
+          "filterEnvAttack": 10,
+          "filterEnvDecay": 58,
+          "filterEnvSustain": 87,
+          "filterEnvRelease": 105,
+          "filterEnvDepth": 39,
+          "overdrive": 0,
+          "drive": 50,
+          "level": 70,
+          "levelVelocitySens": 0,
+          "pan": 0,
+          "ampEnvAttack": 0,
+          "ampEnvDecay": 0,
+          "ampEnvSustain": 127,
+          "ampEnvRelease": 39,
+          "delayDepth": 0,
+          "reverbDepth": 35,
+          "raw_block_hex": "07004040294004001c39404000000040000101004652000a3a576967003246404000007f270023005c0011000002400240005c00110000024002400240001400",
+          "active": true,
+          "oscillators": {
+            "osc1": {
+              "wave": 7,
+              "pitchWide": 0,
+              "coarse": 0,
+              "fine": 0,
+              "pulseWidth": 41,
+              "pitchEnvDepth": 0,
+              "decoded_by_current_codec": true,
+              "wave_name": "SuperSaw",
+              "signed_coarse_raw": 0,
+              "coarse_units": "physical semitones, current SysEx codec",
+              "net_coarse_and_tone_octave_semitones": 0,
+              "mixed_in": true
+            },
+            "osc2": {
+              "wave": 4,
+              "pitchWide": 0,
+              "coarse": -12,
+              "fine": -7,
+              "pulseWidth": 64,
+              "pitchEnvDepth": 0,
+              "decoded_by_current_codec": true,
+              "wave_name": "Sine",
+              "signed_coarse_raw": -36,
+              "coarse_units": "physical semitones, current SysEx codec",
+              "net_coarse_and_tone_octave_semitones": -12,
+              "mixed_in": true
+            }
+          },
+          "balance": 0,
+          "filter_lfo_depths": [
+            0,
+            0
+          ]
+        },
+        "lower": {
+          "lowFreq": 0,
+          "filterType": 1,
+          "filterSlope": 0,
+          "cutoff": 127,
+          "keyFollow": 0,
+          "cutoffVelocitySens": 0,
+          "resonance": 0,
+          "filterEnvAttack": 0,
+          "filterEnvDecay": 0,
+          "filterEnvSustain": 127,
+          "filterEnvRelease": 0,
+          "filterEnvDepth": 0,
+          "overdrive": 0,
+          "drive": 100,
+          "level": 127,
+          "levelVelocitySens": 8,
+          "pan": 0,
+          "ampEnvAttack": 0,
+          "ampEnvDecay": 0,
+          "ampEnvSustain": 127,
+          "ampEnvRelease": 0,
+          "delayDepth": 20,
+          "reverbDepth": 20,
+          "raw_block_hex": "000040404040010040404040000000010001007f40400000007f004000647f484000007f001414005c0011000002400240005c00110000024002400240001400",
+          "active": false,
+          "oscillators": {
+            "osc1": {
+              "wave": 0,
+              "pitchWide": 0,
+              "coarse": 0,
+              "fine": 0,
+              "pulseWidth": 64,
+              "pitchEnvDepth": 0,
+              "decoded_by_current_codec": true,
+              "wave_name": "Saw",
+              "signed_coarse_raw": 0,
+              "coarse_units": "physical semitones, current SysEx codec",
+              "net_coarse_and_tone_octave_semitones": 0,
+              "mixed_in": true
+            },
+            "osc2": {
+              "wave": 1,
+              "pitchWide": 0,
+              "coarse": 0,
+              "fine": 0,
+              "pulseWidth": 64,
+              "pitchEnvDepth": 0,
+              "decoded_by_current_codec": true,
+              "wave_name": "Square",
+              "signed_coarse_raw": 0,
+              "coarse_units": "physical semitones, current SysEx codec",
+              "net_coarse_and_tone_octave_semitones": 0,
+              "mixed_in": false
+            }
+          },
+          "balance": -63,
+          "filter_lfo_depths": [
+            0,
+            0
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -6,6 +6,14 @@ is required to continue the present investigations.
 
 ## Implemented DSP and validation
 
+- [Classic Saw wrap response](source-audits/saw-w4-engine-comparison-2026-09-15.md):
+  one frozen asymmetric correction learned through the complete engine improves
+  alias proxy RMS across all 32 original note/offset/slope windows. Excluding
+  the trained note, LP12 error falls 23.690→7.911 dB and LP24 27.309→11.435 dB.
+  Air Lead and the unfitted high note 84 also improve spectrally. Some LP24
+  harmonics and original-only quiet-bin preset errors regress; all results
+  remain visible. The correction is provisional, with fixed 44.1 kHz support
+  duration at other host rates and unchanged canonical phase clocks.
 - [Zero-resonance filter response](dry-filter-calibration.md): dry public
   LP12/LP24 recordings with original performance MIDI support reducing the
   first section's damping from 2.0 to 1.2. Across note occurrences excluded
@@ -32,12 +40,13 @@ is required to continue the present investigations.
   current-model improvement, not an identified Roland coefficient; damping
   calibration must revisit the level.
 
-All 34 configured DSP/tool CTests pass in the latest
-[return integration run](source-audits/reverb-return-integration-2026-09-15.md).
-Its 22 fresh renders reproduce the selected half-return candidate byte-for-byte;
-five unaffected presets also match the earlier baseline.
-Universal arm64/x86_64 AU, VST3 and standalone Release builds also succeed,
-with [current artifact hashes and local signature checks](source-audits/reverb-level-universal-build-2026-09-15.json).
+All 35 configured DSP/tool CTests pass after the Saw integration, including
+the existing hard-sync regression and independent source/rate checks.
+The [complete production replay](source-audits/saw-w4-production-integration-2026-09-15.md)
+reproduces all twelve frozen candidate WAVs byte-for-byte; five unaffected
+presets also match the earlier baseline. Universal arm64/x86_64 AU, VST3 and
+standalone Release builds succeed, with
+[current build logs, artifact hashes and local signature checks](source-audits/saw-w4-production-build-2026-09-15.json).
 These implementation tests establish the intended model behavior, not
 hardware-output equality. The ten official preset recordings still have
 substantial residuals; the new damping change produces mixed full-demo
@@ -157,7 +166,9 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   so a global level correction cannot fix the shape. Both excessive and
   deficient folded components remain. Raw waveform error is reported
   separately because canonical engine phase was not fitted. This completes
-  the baseline prerequisite, without selecting or shipping W4 coefficients.
+  the baseline prerequisite. The subsequent
+  [complete-engine W4 comparison](source-audits/saw-w4-engine-comparison-2026-09-15.md)
+  selects one frozen source vector, now provisionally adopted as described above.
   Its [independent review](source-audits/production-high-note-baseline-independent-review-2026-09-15.json)
   verifies all ten sample windows, 100 retained alias rows and 344 numerical
   values without discrepancy.
@@ -262,14 +273,28 @@ reliability and does not change the instrument's DSP.
 
 ## Next work
 
-1. Test a proposed W4 source correction through the complete engine, using
-   the verified shipping baseline and first validating the composed path
-   with known synthetic inputs. The earlier oscillator-only reference is
-   not shipping output. Preserve
-   filter/output controls and the entire original-MIDI and preset comparison;
-   report useful partial improvements and regressions without requiring a
-   unique architecture identification. Expanding failed source-only grids
-   alone is not new evidence.
+The user's latest listening comparison identifies these concrete targets:
+
+| Preset | Reported difference to correct |
+|---|---|
+| Vangelead | Increase attack time |
+| Moogie 1 | Reduce brightness and increase filter resonance |
+| Dist Bs 1 | Reduce brightness, increase filter resonance and restore bass weight |
+| Cotton Wool | Increase filter resonance; likely shorten filter-envelope decay |
+
+The [exact control audit](source-audits/listening-feedback-preset-controls-2026-09-15.md)
+preserves each active tone's filter, envelope, drive and velocity settings.
+These are listener observations, not newly measured parameter laws. Preserve
+the original preset bytes while investigating shared DSP behavior. Moogie 1
+and Cotton Wool have no active classic Saw and are exact unchanged controls
+in the W4 comparison, so their discrepancies require separate work.
+
+1. Investigate the remaining LP24/time-dependent response and quiet alias
+   notches after the complete-engine W4 correction. Keep the frozen source,
+   original-MIDI and ten-preset comparisons as the new reference, including
+   their regressions. A source fitted through the current downstream model
+   may absorb downstream or capture-path error; preserve that uncertainty
+   when changing the filter or output path.
 2. Examine creator recordings for independent oscillator measurements,
    retaining uncertain panel state and unmeasured raw settings explicitly.
 3. Investigate the remaining reverb response/state and original excitation
@@ -282,6 +307,9 @@ reliability and does not change the instrument's DSP.
    Matching a fitted spectral feature cannot establish complete output
    agreement or a market-wide superiority claim.
 
+The [current synchronized Saw player](http://127.0.0.1:8766/run-04/index.html)
+provides all twelve hardware/baseline/W4 comparisons with
+[verified audio and transport](source-audits/saw-w4-listening-player-2026-09-15.md).
 The [dry replay and complete reproduction](source-audits/zero-resonance-reproduction-2026-09-15.md)
 preserve all models, including failed sensitivity controls. The local
 [ten-preset listening page](http://127.0.0.1:58511/) is available while this

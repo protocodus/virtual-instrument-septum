@@ -1,0 +1,779 @@
+{
+  "status": "prerequisite_controls_passed_no_hardware_fit",
+  "claim": "A bounded classic Saw W4 family can be propagated through the unchanged current downstream engine using exact state copies. No DSP source was edited, hardware coefficients fitted, candidate selected or equivalence claimed by this infrastructure task.",
+  "source_revision": "545b3d37d9cc1f80bf39bc5d0bf49c0cced1d9f6",
+  "builder": {
+    "path": "Tools/build_saw_w4_experiment.py",
+    "sha256": "76352d79e7834ed3522a24a0426750787744213a43ab5b5409540583fe440b80"
+  },
+  "proposal": {
+    "path": "Docs/fidelity/source-audits/asymmetric-w4-engine-test-proposal-2026-09-15.md",
+    "sha256": "b429fade7126f6ae727b96f277f10a70eaf1a1aa7ec0eab6e2035ac052eb27b5"
+  },
+  "retained_full_engine_baseline": {
+    "path": "Docs/fidelity/source-audits/production-high-note-saw-2026-09-15.json",
+    "sha256": "b9e9b36981c6960cf49c6d4abbf6e536e4575b426207186cc54315064bb33afd"
+  },
+  "build_manifest": {
+    "path": "build-fidelity/saw-w4-engine/build-03/manifest.json",
+    "sha256": "b2fcaae46b02388799655688e32211259c09ca500aa2783114e3ec59773e3360"
+  },
+  "build_manifest_contents": {
+    "experimental": true,
+    "revision": "545b3d37d9cc1f80bf39bc5d0bf49c0cced1d9f6",
+    "source_original_sha256": {
+      "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+      "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+      "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+      "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+      "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+      "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+      "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+      "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+      "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+      "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+      "Source/DSP/SeptumEngine.h": "b1b7cfd308c42d3b768b098624c26e417d00c4e0387ff5c2331ca1bb93d0d99e",
+      "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+      "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+      "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+      "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+      "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+      "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9",
+      "Tools/RenderMidi.cpp": "73fc5cd13bf635bbd95dc2a4e65301b06038cd96d2e684de1bb694b3e0066bfb",
+      "Tools/render_midi.py": "ffb8899e5a4b3588d459e5de3e710c74a002dfc04e45d7691a03102e9b5093e3"
+    },
+    "source_frozen_sha256": {
+      "W4Experiment.h": "885189b70b764e1081610d27e79b7d626854fde1178af67ca0b8c18b73aad3e0",
+      "W4Probe.cpp": "3af7d4b759e7263ff33914b4bdc4ac08d0adf8be65d5872431835474f0496b15",
+      "W4Backend.cpp": "6681eeb768c04b185bbbb83f94c6255bd72006de0a26d006236bc1a657eeef17",
+      "Tools/RenderMidi.cpp": "0c2197444890b4726f0cdb9698997a464f8bb1261fe0bec8acb5c3e9811e44fa",
+      "Tools/render_midi.py": "ffb8899e5a4b3588d459e5de3e710c74a002dfc04e45d7691a03102e9b5093e3",
+      "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+      "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+      "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9",
+      "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+      "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+      "Source/DSP/SeptumEngine.h": "14e617db8b42b2f57afbfb60180e63b292d00dac9a41fd8dd8da379f1d00e44f",
+      "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+      "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+      "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+      "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+      "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+      "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+      "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+      "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+      "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+      "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+      "Source/DSP/SeptumEngine.cpp": "71b5c68de0c71586892708fa1ba95456036b8f19cfa8ce8af0fcebfcec1f6986"
+    },
+    "builder": {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Tools/build_saw_w4_experiment.py",
+      "sha256": "0e6288f459e1658fa5cf744550afdbc815f254c331418faa7f970a531ddaff2e"
+    },
+    "binaries": {
+      "SeptumRenderMidi": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/SeptumRenderMidi",
+        "sha256": "02d34018659b04d5b559c5a1d94022951e68c6815de5026fb913849483a95569"
+      },
+      "W4Backend": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/W4Backend",
+        "sha256": "c382cc813684fb54efc38bb2a73d523dc3d39f1916731fba561ad75a7ef28e4c"
+      },
+      "W4Probe": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/W4Probe",
+        "sha256": "8538ece4c23201a292dc1d07d3f24a3f55bbacb3c03307dea3ebc7843cf2bbed"
+      }
+    },
+    "compiler_version": "Apple clang version 21.0.0 (clang-2100.1.1.101)\nTarget: arm64-apple-darwin25.5.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+    "commands": [
+      {
+        "command": [
+          "/usr/bin/c++",
+          "-std=c++20",
+          "-O2",
+          "-fno-fast-math",
+          "-ISource",
+          "-I.",
+          "Tools/RenderMidi.cpp",
+          "Source/DSP/ReferenceRateEngine.cpp",
+          "Source/DSP/SeptumEngine.cpp",
+          "Source/DSP/SeptumPresets.cpp",
+          "Source/DSP/SeptumSysEx.cpp",
+          "-o",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/SeptumRenderMidi"
+        ],
+        "seconds": 5.433162958128378,
+        "returncode": 0
+      },
+      {
+        "command": [
+          "/usr/bin/c++",
+          "-std=c++20",
+          "-O2",
+          "-fno-fast-math",
+          "-ISource",
+          "-I.",
+          "W4Backend.cpp",
+          "Source/DSP/ReferenceRateEngine.cpp",
+          "Source/DSP/SeptumEngine.cpp",
+          "Source/DSP/SeptumPresets.cpp",
+          "Source/DSP/SeptumSysEx.cpp",
+          "-o",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/W4Backend"
+        ],
+        "seconds": 5.6961143331136554,
+        "returncode": 0
+      },
+      {
+        "command": [
+          "/usr/bin/c++",
+          "-std=c++20",
+          "-O2",
+          "-fno-fast-math",
+          "-ISource",
+          "-I.",
+          "W4Probe.cpp",
+          "-o",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/W4Probe"
+        ],
+        "seconds": 0.7361843339167535,
+        "returncode": 0
+      }
+    ],
+    "protocol": {
+      "width_samples": 4,
+      "degree": 3,
+      "continuity_at_interior_knots": "C1",
+      "knots": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.5,
+        0.5,
+        1.0,
+        1.0,
+        1.5,
+        1.5,
+        2.0,
+        2.0,
+        2.5,
+        2.5,
+        3.0,
+        3.0,
+        3.5,
+        3.5,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "columns": [
+        "unit_ramp",
+        "negative_0",
+        "negative_1",
+        "negative_2",
+        "negative_3",
+        "negative_4",
+        "negative_5",
+        "negative_6",
+        "negative_7",
+        "negative_8",
+        "negative_9",
+        "negative_10",
+        "negative_11",
+        "negative_12",
+        "negative_13",
+        "negative_14",
+        "negative_15",
+        "positive_0",
+        "positive_1",
+        "positive_2",
+        "positive_3",
+        "positive_4",
+        "positive_5",
+        "positive_6",
+        "positive_7",
+        "positive_8",
+        "positive_9",
+        "positive_10",
+        "positive_11",
+        "positive_12",
+        "positive_13",
+        "positive_14",
+        "positive_15"
+      ],
+      "source_mean": "inc * sum_j((negative[j]+positive[j])*(knots[j+4]-knots[j])/4)",
+      "phase": "waveform-only offset on corrected Saw note91; other notes and canonical clock unchanged; final candidate0",
+      "capture_samples": [
+        828115,
+        831643
+      ],
+      "state_snapshot_sample": 826875,
+      "backend_storage": "little-endian float32 row-major3528x34: zero,ramp,negative16,positive16",
+      "unchanged": "All non-Saw waveforms; corrected=false naive reset; wrap bookkeeping; complete downstream path",
+      "gates": {
+        "baseline_sha256": {
+          "12": "e960507e6c9404554980eceae90d51e1253347d22fbe7e661f48730dce7484da",
+          "24": "dd505cd6a020417a5b86c52083a8dd6091b3f18edbad7c28a0de431df2356a33"
+        },
+        "linearity_relative_rms": 1e-06,
+        "linearity_max_absolute": 2e-06,
+        "source_scalar_absolute": 2e-12,
+        "source_nesting_absolute": 2e-12,
+        "matrix_condition_limit": 1000000.0
+      }
+    }
+  },
+  "scope_of_post_build_builder_change": "The frozen build03 builder predates the added Python integration_controls function/controls CLI. HEADER, BACKEND and PROBE strings were independently compared via AST and are byte-identical. Current Python API and controls hash is separately pinned.",
+  "source_definition": {
+    "ramp_gain": 1,
+    "basis": "degree3 C1 cubic B-spline, half-sample doubled interior knots,16 retained coefficients per side, endpoint value/slope zero at4 samples",
+    "column_order": [
+      "unit_ramp",
+      "negative_0",
+      "negative_1",
+      "negative_2",
+      "negative_3",
+      "negative_4",
+      "negative_5",
+      "negative_6",
+      "negative_7",
+      "negative_8",
+      "negative_9",
+      "negative_10",
+      "negative_11",
+      "negative_12",
+      "negative_13",
+      "negative_14",
+      "negative_15",
+      "positive_0",
+      "positive_1",
+      "positive_2",
+      "positive_3",
+      "positive_4",
+      "positive_5",
+      "positive_6",
+      "positive_7",
+      "positive_8",
+      "positive_9",
+      "positive_10",
+      "positive_11",
+      "positive_12",
+      "positive_13",
+      "positive_14",
+      "positive_15"
+    ],
+    "periodic_correction": "sum over integers k with abs((position-k)/increment)<4; evaluate independent negative/positive magnitude curves",
+    "analytic_mean_subtraction": "increment * sum_j ((negative_j+positive_j)*(knots[j+4]-knots[j])/4)",
+    "mean_scope": "Continuous-phase mean only. Finite sampled or rational-frequency window DC is not normalized away.",
+    "natural_wrap_constraints": "No forced continuity or slope at natural wrap; residual jump is free. Endpoint value and slope at +/-4 remain zero.",
+    "nested_polyblep": {
+      "negative": [
+        -1,
+        -0.6666666666666666,
+        -0.4166666666666667,
+        -0.08333333333333333,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "positive": [
+        1,
+        0.6666666666666666,
+        0.4166666666666667,
+        0.08333333333333333,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "integration": {
+    "location": "Only corrected=true classic Saw branch in copied renderClassicWave after original phase increment/wrap bookkeeping; source remains before original mixer/shelf/filter/drive-bypass/AMP/master/AnalogOutput.",
+    "unchanged": "Shipping Source unchanged; corrected=false returns original naive ramp; all other waveforms and canonical phase clock unchanged; no new latency.",
+    "nuisance_phase": "Additive waveform position offset only for corrected Saw voices with MIDI note91. Original performance has exactly one note91 onset826875 and off846169. Canonical full comparisons require phase0.",
+    "state_copy": "Replace only four output/part meter atomics with a copyable atomic wrapper in copied source; same load/store and meter values. Engine vectors copy deeply; filter, envelope, scheduling, oscillator and analog-output histories are retained.",
+    "prewarm": "Zero-source, unit-ramp and32 basis engines independently process every original MIDI event before sample826875. Snapshot before the note91 event; clone per phase; process original256-sample/event-boundary chunks, cropping output afterwards.",
+    "capture_engine_half_open": [
+      828115,
+      831643
+    ],
+    "hardware_corresponding_half_open": [
+      829521,
+      833049
+    ],
+    "lag_samples": -1406,
+    "clock": "Fixed93-sample renderer delay is already incorporated in -1406. No second latency compensation.",
+    "backend_file": "3528x34 little-endian float32 row-major [zero,ramp,negative16,positive16]; Python returns float64 matrix3528x33 and separate offset."
+  },
+  "baseline_controls": {
+    "12": {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/source/Tools/render_midi.py",
+        "--renderer",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/SeptumRenderMidi",
+        "--midi",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/integration-gates-01/baseline-lp12/performance.mid",
+        "--syx",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/integration-gates-01/baseline-lp12/patch.syx",
+        "--output",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/integration-gates-01/baseline-lp12/candidate.wav",
+        "--tempo-policy",
+        "preserve-patch",
+        "--allow-unsupported"
+      ],
+      "wall_seconds": 1.258238583104685,
+      "returncode": 0,
+      "source_manifest": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/manifest.json",
+        "sha256": "b2fcaae46b02388799655688e32211259c09ca500aa2783114e3ec59773e3360"
+      },
+      "coefficients": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/integration-gates-01/baseline-lp12/coefficients.json",
+        "sha256": "d723b2e612c16d356ca51b369c6f9fe242d520f02ce4dd7e929e0230b610fc75"
+      },
+      "native_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/integration-gates-01/baseline-lp12/coefficients.native.txt",
+        "sha256": "cc7e07e1f9a3929922ea4f8d68c9a554096b3b7dcceaf3a7f510f151fe0099c0"
+      },
+      "wav": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/integration-gates-01/baseline-lp12/candidate.wav",
+        "sha256": "e960507e6c9404554980eceae90d51e1253347d22fbe7e661f48730dce7484da"
+      },
+      "render_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/integration-gates-01/baseline-lp12/candidate.render.json",
+        "sha256": "523173b1c6838bfa720f33483e6108e7ad1dfb4bfb37853e04afa8186a2cfa40"
+      },
+      "stats": {
+        "source_peak": 0,
+        "filter_state_peak": 1.3522292672672949,
+        "output_limiter_input_peak": 0.21708909026645382,
+        "filter_limit_calls": 0,
+        "output_limit_calls": 0,
+        "corrected_saw_calls": 3272030,
+        "hard_sync_reset_saw_calls": 0
+      },
+      "latency_samples": 93,
+      "peak": 0.217089086771,
+      "active_voices_at_end": 0,
+      "expected_sha256": "e960507e6c9404554980eceae90d51e1253347d22fbe7e661f48730dce7484da",
+      "byte_identical": true
+    },
+    "24": {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/source/Tools/render_midi.py",
+        "--renderer",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/SeptumRenderMidi",
+        "--midi",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/integration-gates-01/baseline-lp24/performance.mid",
+        "--syx",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/integration-gates-01/baseline-lp24/patch.syx",
+        "--output",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/integration-gates-01/baseline-lp24/candidate.wav",
+        "--tempo-policy",
+        "preserve-patch",
+        "--allow-unsupported"
+      ],
+      "wall_seconds": 1.2601066250354052,
+      "returncode": 0,
+      "source_manifest": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/manifest.json",
+        "sha256": "b2fcaae46b02388799655688e32211259c09ca500aa2783114e3ec59773e3360"
+      },
+      "coefficients": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/integration-gates-01/baseline-lp24/coefficients.json",
+        "sha256": "d723b2e612c16d356ca51b369c6f9fe242d520f02ce4dd7e929e0230b610fc75"
+      },
+      "native_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/integration-gates-01/baseline-lp24/coefficients.native.txt",
+        "sha256": "cc7e07e1f9a3929922ea4f8d68c9a554096b3b7dcceaf3a7f510f151fe0099c0"
+      },
+      "wav": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/integration-gates-01/baseline-lp24/candidate.wav",
+        "sha256": "dd505cd6a020417a5b86c52083a8dd6091b3f18edbad7c28a0de431df2356a33"
+      },
+      "render_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/integration-gates-01/baseline-lp24/candidate.render.json",
+        "sha256": "1abba016fb47b4eedce7492a875777c7646f057b6884ece7b2410d1360ad5ae7"
+      },
+      "stats": {
+        "source_peak": 0,
+        "filter_state_peak": 1.3522292672672949,
+        "output_limiter_input_peak": 0.23701299620872993,
+        "filter_limit_calls": 0,
+        "output_limit_calls": 0,
+        "corrected_saw_calls": 3272030,
+        "hard_sync_reset_saw_calls": 0
+      },
+      "latency_samples": 93,
+      "peak": 0.23701299727,
+      "active_voices_at_end": 0,
+      "expected_sha256": "dd505cd6a020417a5b86c52083a8dd6091b3f18edbad7c28a0de431df2356a33",
+      "byte_identical": true
+    }
+  },
+  "full_engine_nested_polyblep": {
+    "status": "pass",
+    "rows": [
+      {
+        "slope": 12,
+        "baseline": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/envelope-hypothesis/dry-v2/audio/production/lp12/candidate.wav",
+          "sha256": "e960507e6c9404554980eceae90d51e1253347d22fbe7e661f48730dce7484da"
+        },
+        "nested": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/nested-full-engine-01/lp12/candidate.wav",
+          "sha256": "e960507e6c9404554980eceae90d51e1253347d22fbe7e661f48730dce7484da"
+        },
+        "byte_identical": true,
+        "max_absolute": 0.0,
+        "relative_rms": 0.0,
+        "stats": {
+          "source_peak": 0.9985168618747131,
+          "filter_state_peak": 1.3522292672672949,
+          "output_limiter_input_peak": 0.21708909026645382,
+          "filter_limit_calls": 0,
+          "output_limit_calls": 0,
+          "corrected_saw_calls": 3272030,
+          "hard_sync_reset_saw_calls": 0
+        }
+      },
+      {
+        "slope": 24,
+        "baseline": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/envelope-hypothesis/dry-v2/audio/production/lp24/candidate.wav",
+          "sha256": "dd505cd6a020417a5b86c52083a8dd6091b3f18edbad7c28a0de431df2356a33"
+        },
+        "nested": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/nested-full-engine-01/lp24/candidate.wav",
+          "sha256": "dd505cd6a020417a5b86c52083a8dd6091b3f18edbad7c28a0de431df2356a33"
+        },
+        "byte_identical": true,
+        "max_absolute": 0.0,
+        "relative_rms": 0.0,
+        "stats": {
+          "source_peak": 0.9985168618747131,
+          "filter_state_peak": 1.3522292672672949,
+          "output_limiter_input_peak": 0.23701299620872993,
+          "filter_limit_calls": 0,
+          "output_limit_calls": 0,
+          "corrected_saw_calls": 3272030,
+          "hard_sync_reset_saw_calls": 0
+        }
+      }
+    ]
+  },
+  "source_and_composition_controls": {
+    "status": "pass",
+    "protocol": {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/controls-01/protocol-before-controls.json",
+      "sha256": "77a5a198e35acc23453807c7b53cdbd0d015a73d900ca0222895f252514145aa"
+    },
+    "source_controls": [
+      {
+        "id": "nested",
+        "points": 2138,
+        "max_scalar_absolute_error": 2.220446049250313e-16,
+        "native_polyblep_max_absolute_error": 2.220446049250313e-16,
+        "continuous_phase_means": [
+          -1.3877787807814457e-17,
+          8.023096076392733e-18,
+          -5.637851296924623e-18,
+          -2.168404344971009e-18,
+          -1.5504091066542713e-17
+        ]
+      },
+      {
+        "id": "asymmetric",
+        "points": 2138,
+        "max_scalar_absolute_error": 2.220446049250313e-16,
+        "native_polyblep_max_absolute_error": null,
+        "continuous_phase_means": [
+          -4.85722573273506e-17,
+          3.946495907847236e-17,
+          5.355958732078392e-17,
+          -1.1709383462843448e-17,
+          6.288372600415926e-18
+        ]
+      }
+    ],
+    "backend_controls": [
+      {
+        "phase": 0.0,
+        "independent_truth": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/controls-01/planted-phase-0.000/candidate.wav",
+          "sha256": "bda32b38f224369097058e4a5d2673acb28612a8733529156db1ebe8eb934559"
+        },
+        "offset_peak": 0.0,
+        "linearity_relative_rms": 5.731748284129366e-08,
+        "linearity_max_absolute": 1.1782202977150824e-08,
+        "coefficient_plus_dc_rank": 33,
+        "coefficient_plus_dc_columns": 33,
+        "coefficient_plus_dc_condition": 8966.684823884438,
+        "request": {
+          "status": "ok",
+          "phase": 0,
+          "rows": 3528,
+          "columns": 34,
+          "stats": {
+            "source_peak": 0.9999413161056911,
+            "filter_state_peak": 1.5842690464769764,
+            "output_limiter_input_peak": 0.08571127611907534,
+            "filter_limit_calls": 0,
+            "output_limit_calls": 0,
+            "corrected_saw_calls": 330752,
+            "hard_sync_reset_saw_calls": 0
+          },
+          "wall_seconds": 0.07414708309806883,
+          "file": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/controls-01/backend/phase-00000.f32",
+            "sha256": "ad63ff2c6eb1405244eb68e6c7bafac16233241d8095df2e8db44c27a6daba8f"
+          }
+        },
+        "independent_render": {
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/source/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/SeptumRenderMidi",
+            "--midi",
+            "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/controls-01/planted-phase-0.000/performance.mid",
+            "--syx",
+            "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/controls-01/planted-phase-0.000/patch.syx",
+            "--output",
+            "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/controls-01/planted-phase-0.000/candidate.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--allow-unsupported"
+          ],
+          "wall_seconds": 0.7489795410074294,
+          "returncode": 0,
+          "source_manifest": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/manifest.json",
+            "sha256": "b2fcaae46b02388799655688e32211259c09ca500aa2783114e3ec59773e3360"
+          },
+          "coefficients": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/controls-01/planted-phase-0.000/coefficients.json",
+            "sha256": "1cccd3313a914a44787c4d405156e4bd1ceaaa4f3b03397596126895ecf5ccd8"
+          },
+          "native_config": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/controls-01/planted-phase-0.000/coefficients.native.txt",
+            "sha256": "83872c73464bb53533a1925342ccd303b573d39bc3d0bb5fcda7e81a96596407"
+          },
+          "wav": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/controls-01/planted-phase-0.000/candidate.wav",
+            "sha256": "bda32b38f224369097058e4a5d2673acb28612a8733529156db1ebe8eb934559"
+          },
+          "render_receipt": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/controls-01/planted-phase-0.000/candidate.render.json",
+            "sha256": "3d79f3e5dccbb527b28a5ddeaec884241fa762761846d64faf427bbefff685e2"
+          },
+          "stats": {
+            "source_peak": 1.040760642104113,
+            "filter_state_peak": 1.3790659345621161,
+            "output_limiter_input_peak": 0.21661513745368272,
+            "filter_limit_calls": 0,
+            "output_limit_calls": 0,
+            "corrected_saw_calls": 3272030,
+            "hard_sync_reset_saw_calls": 0
+          },
+          "latency_samples": 93,
+          "peak": 0.216615140438,
+          "active_voices_at_end": 0
+        }
+      },
+      {
+        "phase": 0.321,
+        "independent_truth": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/controls-01/planted-phase-0.321/candidate.wav",
+          "sha256": "5874c4b58f5cd7dcbeab7423e23ebdadaf879149edab8905a802db5ac59111f3"
+        },
+        "offset_peak": 0.0,
+        "linearity_relative_rms": 5.89000357331218e-08,
+        "linearity_max_absolute": 1.3325836351052445e-08,
+        "coefficient_plus_dc_rank": 33,
+        "coefficient_plus_dc_columns": 33,
+        "coefficient_plus_dc_condition": 8865.723601861175,
+        "request": {
+          "status": "ok",
+          "phase": 0.321,
+          "rows": 3528,
+          "columns": 34,
+          "stats": {
+            "source_peak": 0.998679010484159,
+            "filter_state_peak": 1.58269984623225,
+            "output_limiter_input_peak": 0.08557064363373725,
+            "filter_limit_calls": 0,
+            "output_limit_calls": 0,
+            "corrected_saw_calls": 330752,
+            "hard_sync_reset_saw_calls": 0
+          },
+          "wall_seconds": 0.09508654195815325,
+          "file": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/controls-01/backend/phase-00001.f32",
+            "sha256": "93b876d5f242f8dc8b6e82f20cb6448f75050a5d0bd0c9cd707e0a3f0cef5ecb"
+          }
+        },
+        "independent_render": {
+          "command": [
+            "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+            "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/source/Tools/render_midi.py",
+            "--renderer",
+            "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/SeptumRenderMidi",
+            "--midi",
+            "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/controls-01/planted-phase-0.321/performance.mid",
+            "--syx",
+            "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/controls-01/planted-phase-0.321/patch.syx",
+            "--output",
+            "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/controls-01/planted-phase-0.321/candidate.wav",
+            "--tempo-policy",
+            "preserve-patch",
+            "--allow-unsupported"
+          ],
+          "wall_seconds": 0.7613427499309182,
+          "returncode": 0,
+          "source_manifest": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/manifest.json",
+            "sha256": "b2fcaae46b02388799655688e32211259c09ca500aa2783114e3ec59773e3360"
+          },
+          "coefficients": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/controls-01/planted-phase-0.321/coefficients.json",
+            "sha256": "9f68ea36a900ef375d2bc5ccc91bc9740bac3d6dcb804e12944e12cc6d4c7ea2"
+          },
+          "native_config": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/controls-01/planted-phase-0.321/coefficients.native.txt",
+            "sha256": "e03b12beecfa175a436dc25bcac5ddf37b610b790fcbee22e630c0cfaf728a96"
+          },
+          "wav": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/controls-01/planted-phase-0.321/candidate.wav",
+            "sha256": "5874c4b58f5cd7dcbeab7423e23ebdadaf879149edab8905a802db5ac59111f3"
+          },
+          "render_receipt": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/controls-01/planted-phase-0.321/candidate.render.json",
+            "sha256": "7e5978c50b6c90e45cebb4403664059b68df95017f5ee06c41c0cdeab2c820fe"
+          },
+          "stats": {
+            "source_peak": 1.040760642104113,
+            "filter_state_peak": 1.3790659345621161,
+            "output_limiter_input_peak": 0.21661513745518596,
+            "filter_limit_calls": 0,
+            "output_limit_calls": 0,
+            "corrected_saw_calls": 3272030,
+            "hard_sync_reset_saw_calls": 0
+          },
+          "latency_samples": 93,
+          "peak": 0.216615140438,
+          "active_voices_at_end": 0
+        }
+      }
+    ],
+    "backend_ready": {
+      "status": "ready",
+      "columns": 34,
+      "rows": 3528,
+      "prewarm_stats": {
+        "source_peak": 0.9999994337458715,
+        "filter_state_peak": 1.5910721994465358,
+        "output_limiter_input_peak": 0.08527440234933545,
+        "filter_limit_calls": 0,
+        "output_limit_calls": 0,
+        "corrected_saw_calls": 43204276,
+        "hard_sync_reset_saw_calls": 0
+      },
+      "wall_seconds": 12.149951583938673
+    },
+    "build": {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/manifest.json",
+      "sha256": "b2fcaae46b02388799655688e32211259c09ca500aa2783114e3ec59773e3360"
+    },
+    "tool": {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Tools/build_saw_w4_experiment.py",
+      "sha256": "76352d79e7834ed3522a24a0426750787744213a43ab5b5409540583fe440b80"
+    },
+    "hardware_read": false
+  },
+  "independent_review_artifacts": {
+    "math-checks.json": {
+      "path": "build-fidelity/saw-w4-independent-review/math-checks.json",
+      "sha256": "4f2138b75afc1a9290d148e25186beaad1f82a055e9ff4bb55afc7e00fa4c4b2"
+    },
+    "cpp-source-checks.json": {
+      "path": "build-fidelity/saw-w4-independent-review/cpp-source-checks.json",
+      "sha256": "c39b0b235778faddf8f1e3e277dc1f50ff1d51d52a61d90689a310255a989a39"
+    },
+    "backend-checks.json": {
+      "path": "build-fidelity/saw-w4-independent-review/backend-checks.json",
+      "sha256": "6eba4c5fcf4e443bd686ca93ed88f4ced4ee47056780e59e99848297c8a78d29"
+    },
+    "clock-checks.json": {
+      "path": "build-fidelity/saw-w4-independent-review/clock-checks.json",
+      "sha256": "4fb3b9f37af95f66ad7594bc4e311d51abb483d2c7981ac87055aab133bd55af"
+    }
+  },
+  "runtime": {
+    "full_baseline_lp12_seconds": 1.258238583104685,
+    "full_baseline_lp24_seconds": 1.2601066250354052,
+    "backend_prewarm_seconds": 12.149951583938673,
+    "two_phase_request_seconds": [
+      0.07414708309806883,
+      0.09508654195815325
+    ]
+  },
+  "retained_failures": [
+    {
+      "run": "build-01",
+      "stage": "before compilation",
+      "reason": "Exact source integration-string guard rejected multiline OSC1 call; fixed the matching string, no generated model or measurement existed.",
+      "log": {
+        "path": "build-fidelity/saw-w4-engine-build-01.log",
+        "sha256": "4c09a67a416167d5e97b79949cbc2105b8af42a85354096b415bf27cba90d87f"
+      }
+    },
+    {
+      "run": "build-02",
+      "stage": "compilation",
+      "reason": "Copyable meter wrapper lacked conversion to the existing meter-decay lambda atomic reference; added conversion to its underlying identical atomic storage.",
+      "log": {
+        "path": "build-fidelity/saw-w4-engine/build-02/SeptumRenderMidi.build.log",
+        "sha256": "43ef1b82c21af1c1703d9e9fbf8de518c38891c8ecda98f0729bd84c1bc1ce58"
+      }
+    }
+  ],
+  "reproduction": [
+    "python3 Tools/build_saw_w4_experiment.py build --output NEW_BUILD_DIR",
+    "python3 Tools/build_saw_w4_experiment.py controls --build NEW_BUILD_DIR --patch PINNED_LP12_PATCH --midi PINNED_ORIGINAL_MIDI --output NEW_CONTROL_DIR",
+    "Use render_source with coefficients=None for fresh native baseline; use exact nested vector for full polyBLEP parity. render_source saves original input copies, coefficients JSON/native tokens, render receipt, state statistics and experiment-render receipt."
+  ],
+  "limits": [
+    "Control proof applies to the stated dry Q0 recipe and observed bounded source vectors. New fitted coefficients require their own limiter/finite/full-render checks.",
+    "Rank/condition proof is for phases0/.321; root phase fitting must retain its fixed guard at every tried phase.",
+    "The copy backend is only an optimization of the exact current engine; its passing controls are not hardware evidence.",
+    "No downstream EQ, FIR, filter, envelope, reverb or oscillator clock fit is provided.",
+    "Initial phase, capture transfer and original raw patch remain uncertain. The later root fitter/scorer must preserve training exclusions and report regressions."
+  ],
+  "independent_durable_review": {
+    "path": "Docs/fidelity/source-audits/asymmetric-w4-engine-independent-review-2026-09-15.json",
+    "sha256": "2ea621a07b1d0c659cf8e841016085d9d980736c89be803d01848c22ebe37fec"
+  }
+}

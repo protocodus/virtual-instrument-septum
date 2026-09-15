@@ -1,0 +1,697 @@
+{
+  "status": "prepared_before_production_replay",
+  "tool": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Tools/verify_saw_w4_production_integration.py",
+    "sha256": "8bed664455c24e224eccb40482dbe6e6b72d7497088d6d8c39519d20b9527431"
+  },
+  "selection": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/hardware-fit-01/candidate.json",
+    "sha256": "3ef847bad8c0cc9990fd01b40a0bd9a8ba09374153a166c1f6b910dea82b6e91"
+  },
+  "official_run": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/results.json",
+    "sha256": "db2703598678513b3c0a26618d62605f199d722477d51f5c51bfd3908bbf8505"
+  },
+  "dry_manifest": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/candidate-dry-01/manifest.json",
+    "sha256": "073dfe90b11cf37c27cfaee241124e6ca2d5b2cad55de9ee0216700a240ddba0"
+  },
+  "cases": [
+    {
+      "cohort": "dry",
+      "id": "lp12",
+      "candidate": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/candidate-dry-01/lp12/candidate.wav",
+        "sha256": "0c8a41584d700f6e7545f78d64c80eb349bc595fcbbe604e56d03f215c189b47"
+      },
+      "candidate_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/candidate-dry-01/lp12/candidate.render.json",
+        "sha256": "0358f684ab5de3f0c68d2688d62e5b1b05f3464c4c85be357fd4d12580f62e8c"
+      },
+      "candidate_experiment": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/candidate-dry-01/lp12/experiment-render.json",
+        "sha256": "d157ab2f459c996687931b1fd7e387ed38a8ff5d96987ba069538734a4661992"
+      },
+      "source_manifest": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/manifest.json",
+        "sha256": "b2fcaae46b02388799655688e32211259c09ca500aa2783114e3ec59773e3360"
+      },
+      "coefficient_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/candidate-dry-01/lp12/coefficients.json",
+        "sha256": "7f54756c7748ff9d360f073e54402d58147f0d915808701cf7c2314aaa84e1aa"
+      },
+      "native_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/candidate-dry-01/lp12/coefficients.native.txt",
+        "sha256": "8dbf6bfb96dc2cb0f3a3d04b8f3b026bc5a62bd7e5ab3baa66912de37572f312"
+      },
+      "inputs": {
+        "sysex": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/candidate-dry-01/lp12/patch.syx",
+          "sha256": "25eeed2e391f033894a009d3d6c6f3289d35f1a01f323a8ade63c029e03ba003"
+        },
+        "midi": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/candidate-dry-01/lp12/performance.mid",
+          "sha256": "21ea21b9ba3ba14cc205931134fb7a320b09e67821bd3a3c70f97fa2e8b5d99a"
+        }
+      },
+      "preserved_settings": {
+        "sample_rate": 44100,
+        "tail_seconds": 2.0,
+        "master_level": 100,
+        "midi_channel": 1,
+        "tempo_policy": "preserve-patch",
+        "tempo_to_patch_mapping": "none; stored patch tempo is preserved",
+        "tempo_clock_mapping": "fractional BPM from SMF microseconds/quarter, 5\u2013300; timestamps retain rational SMF timing",
+        "note_semantics": "arpeggio-off patch required",
+        "automatic_note_offs_at_end": false,
+        "unsupported_policy": "omit with audit",
+        "program_bank_policy": "reject"
+      },
+      "exact_byte_control": false,
+      "pre_w4_baseline": null
+    },
+    {
+      "cohort": "dry",
+      "id": "lp24",
+      "candidate": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/candidate-dry-01/lp24/candidate.wav",
+        "sha256": "f29886147ad73e91c6a48203ef2da13a73626d44640192a95aca117fbc0ef5a2"
+      },
+      "candidate_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/candidate-dry-01/lp24/candidate.render.json",
+        "sha256": "3a0550d4dee2e514f1898b0c479f08a1e40201af415e6bbc2014065323f72e33"
+      },
+      "candidate_experiment": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/candidate-dry-01/lp24/experiment-render.json",
+        "sha256": "4bca679211c04afb0e22a81fe1684f97a790ae6412e1c602687d621c5d9c2690"
+      },
+      "source_manifest": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/manifest.json",
+        "sha256": "b2fcaae46b02388799655688e32211259c09ca500aa2783114e3ec59773e3360"
+      },
+      "coefficient_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/candidate-dry-01/lp24/coefficients.json",
+        "sha256": "7f54756c7748ff9d360f073e54402d58147f0d915808701cf7c2314aaa84e1aa"
+      },
+      "native_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/candidate-dry-01/lp24/coefficients.native.txt",
+        "sha256": "8dbf6bfb96dc2cb0f3a3d04b8f3b026bc5a62bd7e5ab3baa66912de37572f312"
+      },
+      "inputs": {
+        "sysex": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/candidate-dry-01/lp24/patch.syx",
+          "sha256": "c5d12851f4798e8300341a3ccd0b8abe46782f82b3b38cbcc5c4204fd04a173e"
+        },
+        "midi": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/candidate-dry-01/lp24/performance.mid",
+          "sha256": "21ea21b9ba3ba14cc205931134fb7a320b09e67821bd3a3c70f97fa2e8b5d99a"
+        }
+      },
+      "preserved_settings": {
+        "sample_rate": 44100,
+        "tail_seconds": 2.0,
+        "master_level": 100,
+        "midi_channel": 1,
+        "tempo_policy": "preserve-patch",
+        "tempo_to_patch_mapping": "none; stored patch tempo is preserved",
+        "tempo_clock_mapping": "fractional BPM from SMF microseconds/quarter, 5\u2013300; timestamps retain rational SMF timing",
+        "note_semantics": "arpeggio-off patch required",
+        "automatic_note_offs_at_end": false,
+        "unsupported_policy": "omit with audit",
+        "program_bank_policy": "reject"
+      },
+      "exact_byte_control": false,
+      "pre_w4_baseline": null
+    },
+    {
+      "cohort": "official",
+      "id": "air-lead-1",
+      "candidate": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/air-lead-1/w4/candidate.wav",
+        "sha256": "e9f06f653f8779ccfbb3bc109f1faa2ecd63728c62e3cd15d1817c832124635d"
+      },
+      "candidate_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/air-lead-1/w4/candidate.render.json",
+        "sha256": "9956ddff9a3bda199b6c37c1027f603c0e84345480b9ad2961de86e99b6d142e"
+      },
+      "candidate_experiment": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/air-lead-1/w4/experiment-render.json",
+        "sha256": "a6e94fabe49a60dbaf41c9a41b721cf19f8afd2d0182ef806b507c3306a3d8e3"
+      },
+      "source_manifest": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/manifest.json",
+        "sha256": "b2fcaae46b02388799655688e32211259c09ca500aa2783114e3ec59773e3360"
+      },
+      "coefficient_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/air-lead-1/w4/coefficients.json",
+        "sha256": "7f54756c7748ff9d360f073e54402d58147f0d915808701cf7c2314aaa84e1aa"
+      },
+      "native_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/air-lead-1/w4/coefficients.native.txt",
+        "sha256": "8dbf6bfb96dc2cb0f3a3d04b8f3b026bc5a62bd7e5ab3baa66912de37572f312"
+      },
+      "inputs": {
+        "sysex": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/air-lead-1/w4/patch.syx",
+          "sha256": "e7e911d9be986fcc4987c41d79836034ef60ea5f9c70308a7d5f57348f4c091e"
+        },
+        "midi": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/air-lead-1/w4/performance.mid",
+          "sha256": "8e7e693c3ae0940ebabace9629fc25e07aef73e90c1fe250e6dcda0fefefe228"
+        }
+      },
+      "preserved_settings": {
+        "sample_rate": 44100,
+        "tail_seconds": 2.0,
+        "master_level": 100,
+        "midi_channel": 1,
+        "tempo_policy": "preserve-patch",
+        "tempo_to_patch_mapping": "none; stored patch tempo is preserved",
+        "tempo_clock_mapping": "fractional BPM from SMF microseconds/quarter, 5\u2013300; timestamps retain rational SMF timing",
+        "note_semantics": "arpeggio-off patch required",
+        "automatic_note_offs_at_end": false,
+        "unsupported_policy": "reject",
+        "program_bank_policy": "reject"
+      },
+      "exact_byte_control": false,
+      "pre_w4_baseline": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-return-integration/run-01/renders/legacy/air-lead-1/shipping.wav",
+        "sha256": "6fdb95b1fcf979ab80db802cca4bfc16d08fb97298beb54a985ee4fc5db1b479"
+      }
+    },
+    {
+      "cohort": "official",
+      "id": "brassy-ld-1",
+      "candidate": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/brassy-ld-1/w4/candidate.wav",
+        "sha256": "609eeaab8b216ff124d744676de97922c3ae485c4087e4bca25cac63fcfa058b"
+      },
+      "candidate_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/brassy-ld-1/w4/candidate.render.json",
+        "sha256": "3c469acdafab5f5abe39aad8b029d8bda982fa194745319f675e1a5e03cdd632"
+      },
+      "candidate_experiment": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/brassy-ld-1/w4/experiment-render.json",
+        "sha256": "a796653dec0e1be5c2acc0f5e6be6fefc9f60f4fa24cec2d3fd3f985cb005b77"
+      },
+      "source_manifest": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/manifest.json",
+        "sha256": "b2fcaae46b02388799655688e32211259c09ca500aa2783114e3ec59773e3360"
+      },
+      "coefficient_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/brassy-ld-1/w4/coefficients.json",
+        "sha256": "7f54756c7748ff9d360f073e54402d58147f0d915808701cf7c2314aaa84e1aa"
+      },
+      "native_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/brassy-ld-1/w4/coefficients.native.txt",
+        "sha256": "8dbf6bfb96dc2cb0f3a3d04b8f3b026bc5a62bd7e5ab3baa66912de37572f312"
+      },
+      "inputs": {
+        "sysex": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/brassy-ld-1/w4/patch.syx",
+          "sha256": "daba0b97a4b9e2674c4832050bbd0d8e869a3b61e9ce867c7055d21b0f4a6f5a"
+        },
+        "midi": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/brassy-ld-1/w4/performance.mid",
+          "sha256": "fd78fd56cfa10d6ac15b71877b448a70ee161306953c64f528388d45c163f052"
+        }
+      },
+      "preserved_settings": {
+        "sample_rate": 44100,
+        "tail_seconds": 2.0,
+        "master_level": 100,
+        "midi_channel": 1,
+        "tempo_policy": "preserve-patch",
+        "tempo_to_patch_mapping": "none; stored patch tempo is preserved",
+        "tempo_clock_mapping": "fractional BPM from SMF microseconds/quarter, 5\u2013300; timestamps retain rational SMF timing",
+        "note_semantics": "arpeggio-off patch required",
+        "automatic_note_offs_at_end": false,
+        "unsupported_policy": "reject",
+        "program_bank_policy": "reject"
+      },
+      "exact_byte_control": false,
+      "pre_w4_baseline": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-return-integration/run-01/renders/legacy/brassy-ld-1/shipping.wav",
+        "sha256": "3f74529c678e7ab6cbbd55e08a48744f5315639cd1d352e4d1ff58952c3e0a7d"
+      }
+    },
+    {
+      "cohort": "official",
+      "id": "club-bass",
+      "candidate": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/club-bass/w4/candidate.wav",
+        "sha256": "7450ab25f2a776ca21725f7afee23fdcb218c8eee64b53f7a44daa3202670ddd"
+      },
+      "candidate_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/club-bass/w4/candidate.render.json",
+        "sha256": "846866a872115d2f53f0dacd55a2a815546fbfc9d134fe0a867b15ae200e2b30"
+      },
+      "candidate_experiment": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/club-bass/w4/experiment-render.json",
+        "sha256": "205a7464c38293949b35bdf9bddd141ecbe592ca7296cd9e469bf7ebb0e9a855"
+      },
+      "source_manifest": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/manifest.json",
+        "sha256": "b2fcaae46b02388799655688e32211259c09ca500aa2783114e3ec59773e3360"
+      },
+      "coefficient_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/club-bass/w4/coefficients.json",
+        "sha256": "7f54756c7748ff9d360f073e54402d58147f0d915808701cf7c2314aaa84e1aa"
+      },
+      "native_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/club-bass/w4/coefficients.native.txt",
+        "sha256": "8dbf6bfb96dc2cb0f3a3d04b8f3b026bc5a62bd7e5ab3baa66912de37572f312"
+      },
+      "inputs": {
+        "sysex": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/club-bass/w4/patch.syx",
+          "sha256": "1db074dd01883c578cda8eef19aacf28be2b13c4a2b9ab21e829ba915f9a194b"
+        },
+        "midi": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/club-bass/w4/performance.mid",
+          "sha256": "c86bc2a60af8086ae69c30886b50334da0c8799fc52bcc2a7a0495c39f893a3a"
+        }
+      },
+      "preserved_settings": {
+        "sample_rate": 44100,
+        "tail_seconds": 2.0,
+        "master_level": 100,
+        "midi_channel": 1,
+        "tempo_policy": "preserve-patch",
+        "tempo_to_patch_mapping": "none; stored patch tempo is preserved",
+        "tempo_clock_mapping": "fractional BPM from SMF microseconds/quarter, 5\u2013300; timestamps retain rational SMF timing",
+        "note_semantics": "arpeggio-off patch required",
+        "automatic_note_offs_at_end": false,
+        "unsupported_policy": "reject",
+        "program_bank_policy": "reject"
+      },
+      "exact_byte_control": true,
+      "pre_w4_baseline": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-return-integration/run-01/renders/legacy/club-bass/shipping.wav",
+        "sha256": "7450ab25f2a776ca21725f7afee23fdcb218c8eee64b53f7a44daa3202670ddd"
+      }
+    },
+    {
+      "cohort": "official",
+      "id": "cotton-wool",
+      "candidate": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/cotton-wool/w4/candidate.wav",
+        "sha256": "3367e7a2077a96902cb4404d5051b3f6f8f5a1d3cdde915b9739984b8ca4f13c"
+      },
+      "candidate_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/cotton-wool/w4/candidate.render.json",
+        "sha256": "6c2c75955476c1b40cb5120683e828b0b8498d08a77d7cc4aaa39396b49c9de1"
+      },
+      "candidate_experiment": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/cotton-wool/w4/experiment-render.json",
+        "sha256": "98c1ff6c50a52b842c6b0310229e1b3d58480ea20b9e35e2dd21019ce7a2a998"
+      },
+      "source_manifest": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/manifest.json",
+        "sha256": "b2fcaae46b02388799655688e32211259c09ca500aa2783114e3ec59773e3360"
+      },
+      "coefficient_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/cotton-wool/w4/coefficients.json",
+        "sha256": "7f54756c7748ff9d360f073e54402d58147f0d915808701cf7c2314aaa84e1aa"
+      },
+      "native_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/cotton-wool/w4/coefficients.native.txt",
+        "sha256": "8dbf6bfb96dc2cb0f3a3d04b8f3b026bc5a62bd7e5ab3baa66912de37572f312"
+      },
+      "inputs": {
+        "sysex": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/cotton-wool/w4/patch.syx",
+          "sha256": "e7f23e39445895f2158482037b37a19dfe413e536869c0e6f78352de6e49fbef"
+        },
+        "midi": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/cotton-wool/w4/performance.mid",
+          "sha256": "9794993003bca0f1af71f2a39d30e294c6bf862ab1d6aabdbea50d145d0ce69f"
+        }
+      },
+      "preserved_settings": {
+        "sample_rate": 44100,
+        "tail_seconds": 2.0,
+        "master_level": 100,
+        "midi_channel": 1,
+        "tempo_policy": "preserve-patch",
+        "tempo_to_patch_mapping": "none; stored patch tempo is preserved",
+        "tempo_clock_mapping": "fractional BPM from SMF microseconds/quarter, 5\u2013300; timestamps retain rational SMF timing",
+        "note_semantics": "arpeggio-off patch required",
+        "automatic_note_offs_at_end": false,
+        "unsupported_policy": "reject",
+        "program_bank_policy": "reject"
+      },
+      "exact_byte_control": true,
+      "pre_w4_baseline": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-return-integration/run-01/renders/legacy/cotton-wool/shipping.wav",
+        "sha256": "3367e7a2077a96902cb4404d5051b3f6f8f5a1d3cdde915b9739984b8ca4f13c"
+      }
+    },
+    {
+      "cohort": "official",
+      "id": "dist-bs-1",
+      "candidate": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/dist-bs-1/w4/candidate.wav",
+        "sha256": "cb5b23e469dc32875fc5c85d93237db6a6cd2c7adb7df1c764eaae3bc0cd926d"
+      },
+      "candidate_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/dist-bs-1/w4/candidate.render.json",
+        "sha256": "38ca2cbb25c7ae4429b7d19814b99673f74d0d216439762660a8382ead9b7cc8"
+      },
+      "candidate_experiment": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/dist-bs-1/w4/experiment-render.json",
+        "sha256": "ed34cda9b65bcb398e5dc41e85d72fb248d0e8a98ee167ab6de5a6a7aa9b170f"
+      },
+      "source_manifest": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/manifest.json",
+        "sha256": "b2fcaae46b02388799655688e32211259c09ca500aa2783114e3ec59773e3360"
+      },
+      "coefficient_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/dist-bs-1/w4/coefficients.json",
+        "sha256": "7f54756c7748ff9d360f073e54402d58147f0d915808701cf7c2314aaa84e1aa"
+      },
+      "native_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/dist-bs-1/w4/coefficients.native.txt",
+        "sha256": "8dbf6bfb96dc2cb0f3a3d04b8f3b026bc5a62bd7e5ab3baa66912de37572f312"
+      },
+      "inputs": {
+        "sysex": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/dist-bs-1/w4/patch.syx",
+          "sha256": "774bed5b7e3155c4c2efadcffc388c972e7fdd9a9ed82af08cb7333b14980060"
+        },
+        "midi": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/dist-bs-1/w4/performance.mid",
+          "sha256": "66b5b06caddf07f908df34a9e8aef4bc65cf05872ef7f2b047622b879835e3e5"
+        }
+      },
+      "preserved_settings": {
+        "sample_rate": 44100,
+        "tail_seconds": 2.0,
+        "master_level": 100,
+        "midi_channel": 1,
+        "tempo_policy": "preserve-patch",
+        "tempo_to_patch_mapping": "none; stored patch tempo is preserved",
+        "tempo_clock_mapping": "fractional BPM from SMF microseconds/quarter, 5\u2013300; timestamps retain rational SMF timing",
+        "note_semantics": "arpeggio-off patch required",
+        "automatic_note_offs_at_end": false,
+        "unsupported_policy": "reject",
+        "program_bank_policy": "reject"
+      },
+      "exact_byte_control": false,
+      "pre_w4_baseline": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-return-integration/run-01/renders/legacy/dist-bs-1/shipping.wav",
+        "sha256": "5e6c96077a90b2b1d2776a3aa708a91358f5f2bcf48de5bff4a62818328a0a5c"
+      }
+    },
+    {
+      "cohort": "official",
+      "id": "moogie-1",
+      "candidate": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/moogie-1/w4/candidate.wav",
+        "sha256": "c3ddf4e529e8e697827147758430ec58b6e0e9cc3265f4d1add9081053da0489"
+      },
+      "candidate_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/moogie-1/w4/candidate.render.json",
+        "sha256": "4b90d524dd8610a4db9088f62b9cbeaae9596aaa76bebe54b79abc1bb696b2e6"
+      },
+      "candidate_experiment": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/moogie-1/w4/experiment-render.json",
+        "sha256": "13f9548d7bbf1310201cb21e97bbcab21769c48049ba5513c31b805067963d56"
+      },
+      "source_manifest": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/manifest.json",
+        "sha256": "b2fcaae46b02388799655688e32211259c09ca500aa2783114e3ec59773e3360"
+      },
+      "coefficient_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/moogie-1/w4/coefficients.json",
+        "sha256": "7f54756c7748ff9d360f073e54402d58147f0d915808701cf7c2314aaa84e1aa"
+      },
+      "native_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/moogie-1/w4/coefficients.native.txt",
+        "sha256": "8dbf6bfb96dc2cb0f3a3d04b8f3b026bc5a62bd7e5ab3baa66912de37572f312"
+      },
+      "inputs": {
+        "sysex": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/moogie-1/w4/patch.syx",
+          "sha256": "33d39a6b1cbf47abd830ecf879e1ef6774b50eb6a4eb4db6997749f4f7cffabc"
+        },
+        "midi": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/moogie-1/w4/performance.mid",
+          "sha256": "354540c1ac357a80473d0d71e62a20ff2af79e125fcdf82166d20ec12cf71104"
+        }
+      },
+      "preserved_settings": {
+        "sample_rate": 44100,
+        "tail_seconds": 2.0,
+        "master_level": 100,
+        "midi_channel": 1,
+        "tempo_policy": "preserve-patch",
+        "tempo_to_patch_mapping": "none; stored patch tempo is preserved",
+        "tempo_clock_mapping": "fractional BPM from SMF microseconds/quarter, 5\u2013300; timestamps retain rational SMF timing",
+        "note_semantics": "arpeggio-off patch required",
+        "automatic_note_offs_at_end": false,
+        "unsupported_policy": "reject",
+        "program_bank_policy": "reject"
+      },
+      "exact_byte_control": true,
+      "pre_w4_baseline": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-return-integration/run-01/renders/legacy/moogie-1/shipping.wav",
+        "sha256": "c3ddf4e529e8e697827147758430ec58b6e0e9cc3265f4d1add9081053da0489"
+      }
+    },
+    {
+      "cohort": "official",
+      "id": "pedal-bs-1",
+      "candidate": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/pedal-bs-1/w4/candidate.wav",
+        "sha256": "30b80239ddc51ec4c72883974001a6a8d4a8d4b448621297967ae1082a951d27"
+      },
+      "candidate_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/pedal-bs-1/w4/candidate.render.json",
+        "sha256": "849988f7fadb49ee96e07d0498da62efc6196c07cdcae3ac8a2efee008543e20"
+      },
+      "candidate_experiment": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/pedal-bs-1/w4/experiment-render.json",
+        "sha256": "82b73205870568bea5b579e39383e3faf1607d0aadcc3dffe88e0f5ca5d78da4"
+      },
+      "source_manifest": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/manifest.json",
+        "sha256": "b2fcaae46b02388799655688e32211259c09ca500aa2783114e3ec59773e3360"
+      },
+      "coefficient_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/pedal-bs-1/w4/coefficients.json",
+        "sha256": "7f54756c7748ff9d360f073e54402d58147f0d915808701cf7c2314aaa84e1aa"
+      },
+      "native_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/pedal-bs-1/w4/coefficients.native.txt",
+        "sha256": "8dbf6bfb96dc2cb0f3a3d04b8f3b026bc5a62bd7e5ab3baa66912de37572f312"
+      },
+      "inputs": {
+        "sysex": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/pedal-bs-1/w4/patch.syx",
+          "sha256": "25b2203eb16206963e36fd2d7fd7b04610f6f6d90036eb2edb670b9d30f1bb5a"
+        },
+        "midi": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/pedal-bs-1/w4/performance.mid",
+          "sha256": "c2f510902fce16661641a50c6c53a1a32cbffb1ffaa647d0013a3b9a91315cf9"
+        }
+      },
+      "preserved_settings": {
+        "sample_rate": 44100,
+        "tail_seconds": 2.0,
+        "master_level": 100,
+        "midi_channel": 1,
+        "tempo_policy": "preserve-patch",
+        "tempo_to_patch_mapping": "none; stored patch tempo is preserved",
+        "tempo_clock_mapping": "fractional BPM from SMF microseconds/quarter, 5\u2013300; timestamps retain rational SMF timing",
+        "note_semantics": "arpeggio-off patch required",
+        "automatic_note_offs_at_end": false,
+        "unsupported_policy": "reject",
+        "program_bank_policy": "reject"
+      },
+      "exact_byte_control": true,
+      "pre_w4_baseline": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-return-integration/run-01/renders/legacy/pedal-bs-1/shipping.wav",
+        "sha256": "30b80239ddc51ec4c72883974001a6a8d4a8d4b448621297967ae1082a951d27"
+      }
+    },
+    {
+      "cohort": "official",
+      "id": "so-juno-1",
+      "candidate": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/so-juno-1/w4/candidate.wav",
+        "sha256": "bb90d1989e2cbfbd24a67427606b688b722671543468d5c8cd646eceaa3086db"
+      },
+      "candidate_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/so-juno-1/w4/candidate.render.json",
+        "sha256": "d76e286a4b094588af5fb6f049aa432262549a422669c02a79dcd420d864aa71"
+      },
+      "candidate_experiment": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/so-juno-1/w4/experiment-render.json",
+        "sha256": "746fe67462ead808529c3f81bf3ea5a5e429913fc0b125996d046935a79fda60"
+      },
+      "source_manifest": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/manifest.json",
+        "sha256": "b2fcaae46b02388799655688e32211259c09ca500aa2783114e3ec59773e3360"
+      },
+      "coefficient_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/so-juno-1/w4/coefficients.json",
+        "sha256": "7f54756c7748ff9d360f073e54402d58147f0d915808701cf7c2314aaa84e1aa"
+      },
+      "native_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/so-juno-1/w4/coefficients.native.txt",
+        "sha256": "8dbf6bfb96dc2cb0f3a3d04b8f3b026bc5a62bd7e5ab3baa66912de37572f312"
+      },
+      "inputs": {
+        "sysex": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/so-juno-1/w4/patch.syx",
+          "sha256": "f1a7fc59b76392ec5edec8dfe506a8b031ac1d2382b3e8893734afd813b8ad17"
+        },
+        "midi": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/so-juno-1/w4/performance.mid",
+          "sha256": "0e23e6d891211413e421f5ac03a7c8dccd249d7b7a8c7d4e38855111eaa990d1"
+        }
+      },
+      "preserved_settings": {
+        "sample_rate": 44100,
+        "tail_seconds": 2.0,
+        "master_level": 100,
+        "midi_channel": 1,
+        "tempo_policy": "preserve-patch",
+        "tempo_to_patch_mapping": "none; stored patch tempo is preserved",
+        "tempo_clock_mapping": "fractional BPM from SMF microseconds/quarter, 5\u2013300; timestamps retain rational SMF timing",
+        "note_semantics": "arpeggio-off patch required",
+        "automatic_note_offs_at_end": false,
+        "unsupported_policy": "reject",
+        "program_bank_policy": "reject"
+      },
+      "exact_byte_control": false,
+      "pre_w4_baseline": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-return-integration/run-01/renders/legacy/so-juno-1/shipping.wav",
+        "sha256": "c3674442673eee179b9003265b1bafede271e77eb47bceb589a74e44db3b008e"
+      }
+    },
+    {
+      "cohort": "official",
+      "id": "supa-juce-1",
+      "candidate": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/supa-juce-1/w4/candidate.wav",
+        "sha256": "12785edfdedf0de105b6a370df7a52f58f2ce2341dfe280d7f3c58ffb9e93f33"
+      },
+      "candidate_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/supa-juce-1/w4/candidate.render.json",
+        "sha256": "3ad0045ea5382f6c076ffa11e8f902b21a45cdfef1049c2a6295d3c0e7187287"
+      },
+      "candidate_experiment": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/supa-juce-1/w4/experiment-render.json",
+        "sha256": "83449187862d9e8998100253e225380b71b0a1bfebb3de06f469e89bd83a7e33"
+      },
+      "source_manifest": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/manifest.json",
+        "sha256": "b2fcaae46b02388799655688e32211259c09ca500aa2783114e3ec59773e3360"
+      },
+      "coefficient_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/supa-juce-1/w4/coefficients.json",
+        "sha256": "7f54756c7748ff9d360f073e54402d58147f0d915808701cf7c2314aaa84e1aa"
+      },
+      "native_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/supa-juce-1/w4/coefficients.native.txt",
+        "sha256": "8dbf6bfb96dc2cb0f3a3d04b8f3b026bc5a62bd7e5ab3baa66912de37572f312"
+      },
+      "inputs": {
+        "sysex": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/supa-juce-1/w4/patch.syx",
+          "sha256": "9791c9e16ab0a6e4374791b8f47766cfa0ee725da0d4a14ee5d75a319bf6fad8"
+        },
+        "midi": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/supa-juce-1/w4/performance.mid",
+          "sha256": "0df6bc4fa7ae91185c937d8ce770562aaa5ced55650bc5b4066951ba671a9498"
+        }
+      },
+      "preserved_settings": {
+        "sample_rate": 44100,
+        "tail_seconds": 2.0,
+        "master_level": 100,
+        "midi_channel": 1,
+        "tempo_policy": "preserve-patch",
+        "tempo_to_patch_mapping": "none; stored patch tempo is preserved",
+        "tempo_clock_mapping": "fractional BPM from SMF microseconds/quarter, 5\u2013300; timestamps retain rational SMF timing",
+        "note_semantics": "arpeggio-off patch required",
+        "automatic_note_offs_at_end": false,
+        "unsupported_policy": "reject",
+        "program_bank_policy": "reject"
+      },
+      "exact_byte_control": true,
+      "pre_w4_baseline": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-return-integration/run-01/renders/legacy/supa-juce-1/shipping.wav",
+        "sha256": "12785edfdedf0de105b6a370df7a52f58f2ce2341dfe280d7f3c58ffb9e93f33"
+      }
+    },
+    {
+      "cohort": "official",
+      "id": "vangelead",
+      "candidate": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/vangelead/w4/candidate.wav",
+        "sha256": "55850fa0cc589ac7c87ca43e818427838c1df85a52bc5fff32713b386755ceb8"
+      },
+      "candidate_receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/vangelead/w4/candidate.render.json",
+        "sha256": "d9aeaa4cdd4f1ce72da1ca157d0b1c6f485948a3266e7b0008abf3d9caff2702"
+      },
+      "candidate_experiment": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/vangelead/w4/experiment-render.json",
+        "sha256": "852d300209142be40edb24a202203ec5f3f28c05f0c4e7417eb35fbc2c18bb5b"
+      },
+      "source_manifest": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/build-03/manifest.json",
+        "sha256": "b2fcaae46b02388799655688e32211259c09ca500aa2783114e3ec59773e3360"
+      },
+      "coefficient_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/vangelead/w4/coefficients.json",
+        "sha256": "7f54756c7748ff9d360f073e54402d58147f0d915808701cf7c2314aaa84e1aa"
+      },
+      "native_config": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/vangelead/w4/coefficients.native.txt",
+        "sha256": "8dbf6bfb96dc2cb0f3a3d04b8f3b026bc5a62bd7e5ab3baa66912de37572f312"
+      },
+      "inputs": {
+        "sysex": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/vangelead/w4/patch.syx",
+          "sha256": "ae19b5e27dd1828815a6468fe4d0e3e49c1dea17f931cac02a4c452e204a7624"
+        },
+        "midi": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/vangelead/w4/performance.mid",
+          "sha256": "9b1a34a3b41d19f57f1882649094b91459dede9cc7628b7bfe4670cfce61f297"
+        }
+      },
+      "preserved_settings": {
+        "sample_rate": 44100,
+        "tail_seconds": 2.0,
+        "master_level": 100,
+        "midi_channel": 1,
+        "tempo_policy": "preserve-patch",
+        "tempo_to_patch_mapping": "none; stored patch tempo is preserved",
+        "tempo_clock_mapping": "fractional BPM from SMF microseconds/quarter, 5\u2013300; timestamps retain rational SMF timing",
+        "note_semantics": "arpeggio-off patch required",
+        "automatic_note_offs_at_end": false,
+        "unsupported_policy": "reject",
+        "program_bank_policy": "reject"
+      },
+      "exact_byte_control": false,
+      "pre_w4_baseline": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-return-integration/run-01/renders/legacy/vangelead/shipping.wav",
+        "sha256": "8bec9dc8107739049c85a91b1c455f77bee54531082bb16c6cd3bc9693d0a083"
+      }
+    }
+  ],
+  "comparison": "All unmodified raw float32 stereo frames including the complete tail; unity gain, zero alignment offset, no crop",
+  "arithmetic_limits": {
+    "max_absolute": 1.1920928955078125e-07,
+    "rms_full_scale": 1e-08,
+    "relative_rms": 1e-06
+  },
+  "numerical_acceptance": "WAV/PCM identity preferred. Otherwise all three tight numerical bounds must pass; exact five non-Saw controls may not use tolerance.",
+  "difference_policy": "Retain every failed comparison and full/tail diagnostics; no post-result tolerance adjustment",
+  "midi_policy": "Exact input bytes and full receipt settings/events. Dry file retains its sole FF20 channel-prefix metadata omission; all 124 note-ons/offs remain.",
+  "hardware_equivalence": "not_established"
+}

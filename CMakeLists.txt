@@ -52,6 +52,7 @@ set(SEPTUM_DSP_SOURCES
 set(SEPTUM_DSP_HEADERS
     Source/DSP/AnalogInput.h
     Source/DSP/AnalogOutput.h
+    Source/DSP/ClassicSaw.h
     Source/DSP/DelayInterpolation.h
     Source/DSP/ReverbDamping.h
     Source/DSP/MidiTempoClock.h
@@ -283,6 +284,11 @@ if(BUILD_TESTING)
     target_link_libraries(SeptumDryFilterFidelityTests PRIVATE SeptumDSP)
     add_test(NAME Septum.DryFilterFidelity COMMAND SeptumDryFilterFidelityTests)
     set_tests_properties(Septum.DryFilterFidelity PROPERTIES TIMEOUT 120)
+
+    add_executable(SeptumClassicSawFidelityTests Tests/ClassicSawFidelityTests.cpp)
+    target_link_libraries(SeptumClassicSawFidelityTests PRIVATE SeptumDSP)
+    add_test(NAME Septum.ClassicSawFidelity COMMAND SeptumClassicSawFidelityTests)
+    set_tests_properties(Septum.ClassicSawFidelity PROPERTIES TIMEOUT 60)
 
     add_executable(SeptumHardwarePerformanceFidelityTests Tests/HardwarePerformanceFidelityTests.cpp)
     target_link_libraries(SeptumHardwarePerformanceFidelityTests PRIVATE SeptumDSP)

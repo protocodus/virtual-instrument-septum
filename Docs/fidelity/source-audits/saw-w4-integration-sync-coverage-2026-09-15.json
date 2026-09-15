@@ -1,0 +1,253 @@
+{
+  "status": "all12frozen_cases_have_only_active_Mix_tones",
+  "inventory": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-integration/prepared-01/input-inventory.json",
+    "sha256": "d9f15916e5fb82b72a899ff546cca26516e190f4e013e3b3885beb853af3f6b7"
+  },
+  "decode": "Raw DT1 tone block1 Upper/block2 Lower, tone offset0x0e; Mix0 Sync1 Ring2 from SeptumPatch.h. Active tones from exact source render receipt keyboard_mode/single_part.",
+  "enum_header": {
+    "path": "Source/DSP/SeptumPatch.h",
+    "sha256": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc"
+  },
+  "cases": [
+    {
+      "cohort": "dry",
+      "id": "lp12",
+      "sysex": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/candidate-dry-01/lp12/patch.syx",
+        "sha256": "25eeed2e391f033894a009d3d6c6f3289d35f1a01f323a8ade63c029e03ba003"
+      },
+      "active_tones": [
+        {
+          "part": "upper",
+          "mix_type_raw": 0,
+          "osc1_wave_raw": 0,
+          "osc2_wave_raw": 0,
+          "oscillator_balance_signed": -63
+        }
+      ]
+    },
+    {
+      "cohort": "dry",
+      "id": "lp24",
+      "sysex": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-engine/candidate-dry-01/lp24/patch.syx",
+        "sha256": "c5d12851f4798e8300341a3ccd0b8abe46782f82b3b38cbcc5c4204fd04a173e"
+      },
+      "active_tones": [
+        {
+          "part": "upper",
+          "mix_type_raw": 0,
+          "osc1_wave_raw": 0,
+          "osc2_wave_raw": 0,
+          "oscillator_balance_signed": -63
+        }
+      ]
+    },
+    {
+      "cohort": "official",
+      "id": "air-lead-1",
+      "sysex": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/air-lead-1/w4/patch.syx",
+        "sha256": "e7e911d9be986fcc4987c41d79836034ef60ea5f9c70308a7d5f57348f4c091e"
+      },
+      "active_tones": [
+        {
+          "part": "upper",
+          "mix_type_raw": 0,
+          "osc1_wave_raw": 3,
+          "osc2_wave_raw": 0,
+          "oscillator_balance_signed": 0
+        }
+      ]
+    },
+    {
+      "cohort": "official",
+      "id": "brassy-ld-1",
+      "sysex": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/brassy-ld-1/w4/patch.syx",
+        "sha256": "daba0b97a4b9e2674c4832050bbd0d8e869a3b61e9ce867c7055d21b0f4a6f5a"
+      },
+      "active_tones": [
+        {
+          "part": "upper",
+          "mix_type_raw": 0,
+          "osc1_wave_raw": 0,
+          "osc2_wave_raw": 0,
+          "oscillator_balance_signed": 0
+        }
+      ]
+    },
+    {
+      "cohort": "official",
+      "id": "club-bass",
+      "sysex": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/club-bass/w4/patch.syx",
+        "sha256": "1db074dd01883c578cda8eef19aacf28be2b13c4a2b9ab21e829ba915f9a194b"
+      },
+      "active_tones": [
+        {
+          "part": "upper",
+          "mix_type_raw": 0,
+          "osc1_wave_raw": 3,
+          "osc2_wave_raw": 4,
+          "oscillator_balance_signed": 6
+        },
+        {
+          "part": "lower",
+          "mix_type_raw": 0,
+          "osc1_wave_raw": 3,
+          "osc2_wave_raw": 4,
+          "oscillator_balance_signed": 0
+        }
+      ]
+    },
+    {
+      "cohort": "official",
+      "id": "cotton-wool",
+      "sysex": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/cotton-wool/w4/patch.syx",
+        "sha256": "e7f23e39445895f2158482037b37a19dfe413e536869c0e6f78352de6e49fbef"
+      },
+      "active_tones": [
+        {
+          "part": "upper",
+          "mix_type_raw": 0,
+          "osc1_wave_raw": 7,
+          "osc2_wave_raw": 4,
+          "oscillator_balance_signed": 0
+        }
+      ]
+    },
+    {
+      "cohort": "official",
+      "id": "dist-bs-1",
+      "sysex": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/dist-bs-1/w4/patch.syx",
+        "sha256": "774bed5b7e3155c4c2efadcffc388c972e7fdd9a9ed82af08cb7333b14980060"
+      },
+      "active_tones": [
+        {
+          "part": "upper",
+          "mix_type_raw": 0,
+          "osc1_wave_raw": 0,
+          "osc2_wave_raw": 4,
+          "oscillator_balance_signed": 0
+        },
+        {
+          "part": "lower",
+          "mix_type_raw": 0,
+          "osc1_wave_raw": 2,
+          "osc2_wave_raw": 3,
+          "oscillator_balance_signed": 0
+        }
+      ]
+    },
+    {
+      "cohort": "official",
+      "id": "moogie-1",
+      "sysex": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/moogie-1/w4/patch.syx",
+        "sha256": "33d39a6b1cbf47abd830ecf879e1ef6774b50eb6a4eb4db6997749f4f7cffabc"
+      },
+      "active_tones": [
+        {
+          "part": "upper",
+          "mix_type_raw": 0,
+          "osc1_wave_raw": 2,
+          "osc2_wave_raw": 4,
+          "oscillator_balance_signed": 0
+        },
+        {
+          "part": "lower",
+          "mix_type_raw": 0,
+          "osc1_wave_raw": 1,
+          "osc2_wave_raw": 3,
+          "oscillator_balance_signed": 0
+        }
+      ]
+    },
+    {
+      "cohort": "official",
+      "id": "pedal-bs-1",
+      "sysex": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/pedal-bs-1/w4/patch.syx",
+        "sha256": "25b2203eb16206963e36fd2d7fd7b04610f6f6d90036eb2edb670b9d30f1bb5a"
+      },
+      "active_tones": [
+        {
+          "part": "upper",
+          "mix_type_raw": 0,
+          "osc1_wave_raw": 7,
+          "osc2_wave_raw": 4,
+          "oscillator_balance_signed": 0
+        }
+      ]
+    },
+    {
+      "cohort": "official",
+      "id": "so-juno-1",
+      "sysex": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/so-juno-1/w4/patch.syx",
+        "sha256": "f1a7fc59b76392ec5edec8dfe506a8b031ac1d2382b3e8893734afd813b8ad17"
+      },
+      "active_tones": [
+        {
+          "part": "upper",
+          "mix_type_raw": 0,
+          "osc1_wave_raw": 0,
+          "osc2_wave_raw": 1,
+          "oscillator_balance_signed": -8
+        },
+        {
+          "part": "lower",
+          "mix_type_raw": 0,
+          "osc1_wave_raw": 4,
+          "osc2_wave_raw": 4,
+          "oscillator_balance_signed": -63
+        }
+      ]
+    },
+    {
+      "cohort": "official",
+      "id": "supa-juce-1",
+      "sysex": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/supa-juce-1/w4/patch.syx",
+        "sha256": "9791c9e16ab0a6e4374791b8f47766cfa0ee725da0d4a14ee5d75a319bf6fad8"
+      },
+      "active_tones": [
+        {
+          "part": "upper",
+          "mix_type_raw": 0,
+          "osc1_wave_raw": 1,
+          "osc2_wave_raw": 1,
+          "oscillator_balance_signed": -26
+        }
+      ]
+    },
+    {
+      "cohort": "official",
+      "id": "vangelead",
+      "sysex": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-official-comparison/run-01/cases/vangelead/w4/patch.syx",
+        "sha256": "ae19b5e27dd1828815a6468fe4d0e3e49c1dea17f931cac02a4c452e204a7624"
+      },
+      "active_tones": [
+        {
+          "part": "upper",
+          "mix_type_raw": 0,
+          "osc1_wave_raw": 0,
+          "osc2_wave_raw": 0,
+          "oscillator_balance_signed": -1
+        },
+        {
+          "part": "lower",
+          "mix_type_raw": 0,
+          "osc1_wave_raw": 7,
+          "osc2_wave_raw": 7,
+          "oscillator_balance_signed": -63
+        }
+      ]
+    }
+  ]
+}

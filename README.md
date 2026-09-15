@@ -249,9 +249,19 @@ and added back scaled 0…1.15, values past unity held bounded by the clip. The
 half-period delay reinforces even harmonics — the octave-up emphasis of guitar
 feedback. Delay ratio and gain law are *voiced*.
 
-**The rest** — SAW, SQU, PW-SQU, TRI, SINE and NOISE are band-limited; the
-triangle's own coefficient was the one that shipped un-band-limited until it
-was fixed. **INTERVAL** is *settled* against OSC 1 rather than against zero
+**Classic SAW** — a provisional asymmetric wrap correction is fitted through
+the complete engine to a public SH-201 recording. It substantially improves
+the measured alias pattern across eight pitches and both filter slopes;
+some LP24 harmonics and quiet preset spectra regress. The correction spans
+four 44.1 kHz samples on each side of the wrap, preserving its duration at
+other host rates. Those other rates' folding patterns remain unvalidated.
+OSC1 under hard sync retains its previous Saw correction pending separate
+calibration of the forced-reset response.
+See the [full comparison and counterexamples](Docs/fidelity/source-audits/saw-w4-engine-comparison-2026-09-15.md).
+
+**The rest** — SQU and PW-SQU use polyBLEP, TRI uses polyBLAMP, and SINE and
+NOISE retain their existing generators. The triangle's correction coefficient
+was fixed independently. **INTERVAL** is *settled* against OSC 1 rather than against zero
 (OM p. 30): −OCT drops OSC 2 an octave below OSC 1, 5th raises it seven
 semitones above, and both together put OSC 2 at OSC 1's pitch.
 

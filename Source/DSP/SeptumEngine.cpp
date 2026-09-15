@@ -1,4 +1,5 @@
 #include "SeptumEngine.h"
+#include "ClassicSaw.h"
 #include "DelayInterpolation.h"
 #include "ReverbDamping.h"
 
@@ -2068,7 +2069,7 @@ namespace
         double wrapOffset;  // samples since the wrap, 0..1 of a sample
     };
 
-    // One classic-waveform oscillator sample with polyBLEP/BLAMP correction.
+    // One classic-waveform oscillator sample with its waveform correction.
     //
     // `corrected` is false on the sample a hard sync forced the phase on. The
     // residuals describe the discontinuity a *free-running* oscillator makes
@@ -2079,7 +2080,9 @@ namespace
     inline OscOutput renderClassicWave (Waveform wave, double& phase, double inc,
                                         double duty, std::uint32_t& noiseRng,
                                         NoiseSource& noise,
-                                        bool corrected = true, double phaseOffset = 0.0) noexcept
+                                        bool corrected = true, double phaseOffset = 0.0,
+                                        double sawReferenceRateScale = 1.0,
+                                        bool useMeasuredSaw = true) noexcept
     {
         phase += inc;
         bool wrapped = false;
@@ -2101,7 +2104,12 @@ namespace
             {
                 double value = 2.0 * position - 1.0;
                 if (corrected)
-                    value -= polyBlep (position, inc);
+                {
+                    if (useMeasuredSaw)
+                        value = classic_saw::sample (position, inc * sawReferenceRateScale);
+                    else
+                        value -= polyBlep (position, inc);
+                }
                 return { value, wrapped, wrapOffset };
             }
             case Waveform::Square:
@@ -2161,6 +2169,7 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
     };
     const double phaseOffset1 = classicParameter (wave1, timbre_.phaseCycles, 0.0);
     const double phaseOffset2 = classicParameter (wave2, timbre_.phaseCycles, 0.0);
+    const double sawReferenceRateScale = sampleRate_ / classic_saw::referenceRate;
     const double classicGain1 = classicParameter (wave1, timbre_.waveGain, 1.0);
     const double classicGain2 = classicParameter (wave2, timbre_.waveGain, 1.0);
 
@@ -2311,7 +2320,8 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
                 const auto out = renderClassicWave (wave2, voice.osc2.phase,
                                                     voice.inc2, voice.duty2,
                                                     voice.noiseRng,
-                                                    voice.osc2.noise, true, phaseOffset2);
+                                                    voice.osc2.noise, true, phaseOffset2,
+                                                    sawReferenceRateScale);
                 sample2 = out.value;
                 osc2Wrapped = out.wrapped;
                 osc2WrapOffset = out.wrapOffset;
@@ -2377,11 +2387,17 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
                 break;
             default:
             {
+                // The measured Saw kernel describes a free-running wrap.
+                // Its wider support after a forced reset fails the existing
+                // naive-sync waveform identity. Keep the previous Saw path
+                // for the synced OSC1 until reset history is measured too.
                 const auto out = renderClassicWave (wave1, voice.osc1.phase,
                                                     voice.inc1, voice.duty1,
                                                     voice.noiseRng,
                                                     voice.osc1.noise,
-                                                    ! osc1SyncReset, phaseOffset1);
+                                                    ! osc1SyncReset, phaseOffset1,
+                                                    sawReferenceRateScale,
+                                                    tone.mixType != MixModType::Sync);
                 sample1 = out.value;
                 break;
             }

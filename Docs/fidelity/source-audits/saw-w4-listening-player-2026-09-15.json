@@ -1,0 +1,86 @@
+{
+  "status": "synchronized_listening_artifact_verified",
+  "date": "2026-09-15",
+  "local_url": "http://127.0.0.1:8766/run-04/index.html",
+  "files": [
+    {
+      "path": "Tools/build_saw_w4_listening.py",
+      "sha256": "67ada2a797f9147972903c8e7d4f8a8399a65f1cdfbbae76ec9af40eb4503951"
+    },
+    {
+      "path": "Tools/saw_w4_listening.html",
+      "sha256": "6037ab64e42082eed2eabe0a8f6959870a0991a2c46935d5daaaa2d4ccd5f3cd"
+    },
+    {
+      "path": "build-fidelity/saw-w4-listening/run-04/index.html",
+      "sha256": "53a7e2403114c36dfdd62567a5dc22f6f3093c7e2fe3b33b9ca3ea708eb3a3b4"
+    },
+    {
+      "path": "build-fidelity/saw-w4-listening/run-04/manifest.json",
+      "sha256": "808aef790167ab13347239723a344913bd7e437907f5c819df005f4533a7fda2"
+    },
+    {
+      "path": "build-fidelity/saw-w4-listening/run-04/build-receipt.json",
+      "sha256": "9a33ec4ddfcd464b7ec3a9dbc0eb1dc3473d9cc134070db034f98afab947383b"
+    },
+    {
+      "path": "build-fidelity/saw-w4-listening/run-04/browser-check.js",
+      "sha256": "47f627dcdc15e5eb532bf9027331189cf72c95191e38852b058780779935fa9b"
+    },
+    {
+      "path": "build-fidelity/saw-w4-listening/run-04/browser-checks.json",
+      "sha256": "edddfbe8f4f0cb7493261f8deabeb3308190c95de2014753b20b72b6bcc10db2"
+    },
+    {
+      "path": "build-fidelity/saw-w4-listening/run-04/player-desktop.png",
+      "sha256": "9cb0eb8a1dd1fb6f004d46f13f349e70d52f3693775a05d9c088b27ba8e0ead2"
+    },
+    {
+      "path": "build-fidelity/saw-w4-listening/run-04/player-mobile.png",
+      "sha256": "a6072c5da1d64de1ba726deae1b1fbd1fe5ca4a4f1698b61860a582ab94401a2"
+    }
+  ],
+  "cases": 12,
+  "tracks": 36,
+  "fixed_dry_lag_samples": -1406,
+  "fixed_dry_shared_gains": {
+    "12": 4.137125725839024,
+    "24": 3.870462967942607
+  },
+  "dry_common_peak_only_attenuation_db": -0.10101294385582041,
+  "official": "All ten frozen cases retained; copied benchmark listening files preserve exact saved primary fixed production gain, lag, common attenuation, source excerpt offset and stereo. No candidate-prefix gain sensitivity used.",
+  "source_clock": "Original recording clock, including Dist Bs1 offset1.94s. Dry first1406 unpaired hardware samples omitted. Source-training18.75\u201319.25s and gain-calibration intervals visibly marked.",
+  "identity_controls": [
+    "club-bass",
+    "cotton-wool",
+    "moogie-1",
+    "pedal-bs-1",
+    "supa-juce-1"
+  ],
+  "file_hash_checks": 36,
+  "browser": {
+    "exact_decoded_sample_hashes": 36,
+    "decoded_rate": 44100,
+    "three_synchronized_nodes_in_each_case": true,
+    "source_switch_keeps_start_and_offset": true,
+    "training_seek_source_seconds": 18.75,
+    "dry_slope_preserves_source_clock": true,
+    "distinct_preset_resets_source_clock": true,
+    "end_stops": true,
+    "page_errors": [],
+    "mobile": {
+      "width": 390,
+      "scrollWidth": 375
+    }
+  },
+  "original_player_templates_unchanged": [
+    "Tools/dry_benchmark_player.html",
+    "Tools/reverb_benchmark_player.html"
+  ],
+  "reproduction": [
+    "python3 Tools/build_saw_w4_listening.py --official-results build-fidelity/saw-w4-official-comparison/run-01/results.json --output build-fidelity/saw-w4-listening/reproduction",
+    "python3 -m http.server 8766 --bind 127.0.0.1 --directory build-fidelity/saw-w4-listening"
+  ],
+  "browser_check_source": "async(page)=>{const p=page.context().pages().find(p=>p.url().includes('/run-02/index.html'))||await page.context().newPage();await p.bringToFront();await p.goto('http://127.0.0.1:8766/run-04/index.html');await p.setViewportSize({width:1200,height:900});const errors=[];p.on('pageerror',e=>errors.push(String(e)));const cases=await p.locator('#comparison option').evaluateAll(es=>es.map(e=>e.value));const records=[];const state=()=>p.evaluate(()=>window.listeningState());for(const id of cases){await p.locator('#comparison').selectOption(id);await p.locator('#play').click();await p.waitForFunction(()=>window.listeningState().running&&!window.listeningState().busy,{},{timeout:5000});const s=await state();if(s.nodes.length!==3||new Set(s.nodes.map(n=>n.scheduledStart)).size!==1||new Set(s.nodes.map(n=>n.offset)).size!==1)throw Error('Unsynchronized start');records.push({step:'loaded_'+id,state:s});await p.locator('#play').click();}const decoded=await p.evaluate(async()=>{const out=[];for(const g of manifest.groups){for(const track of g.tracks){const b=buffers[g.id][track.id];const x=new Float32Array(b.length*b.numberOfChannels);for(let ch=0;ch<b.numberOfChannels;ch++){const source=b.getChannelData(ch);for(let i=0;i<b.length;i++)x[i*b.numberOfChannels+ch]=source[i]}const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',x.buffer)),v=>v.toString(16).padStart(2,'0')).join('');out.push({case:g.id,id:track.id,sampleRate:b.sampleRate,frames:b.length,channels:b.numberOfChannels,sha256:hash,exact:hash===track.float32_sample_sha256});}}return out});if(decoded.length!==36||decoded.some(r=>!r.exact||r.sampleRate!==44100))throw Error('Browser decode differs from exports');await p.locator('#comparison').selectOption('lp12');await p.getByRole('button',{name:'Fitted note',exact:true}).click();await p.waitForTimeout(30);records.push({step:'training_seek',state:await state(),label:await p.locator('#passage').textContent()});await p.locator('#comparison').selectOption('lp24');records.push({step:'slope_preserved_clock',state:await state()});await p.locator('#play').click();await p.waitForFunction(()=>window.listeningState().running&&!window.listeningState().busy,{},{timeout:5000});await p.waitForTimeout(80);records.push({step:'before_switch',state:await state()});await p.locator('[data-source=\"w4\"]').click();await p.waitForTimeout(50);records.push({step:'after_switch',state:await state()});await p.locator('#play').click();records.push({step:'pause',state:await state()});await p.locator('#comparison').selectOption('dist-bs-1');records.push({step:'original_dist_clock',state:await state()});await p.locator('#comparison').selectOption('club-bass');await p.evaluate(()=>{const s=document.querySelector('#seek');s.value=Number(s.max)-.06;s.dispatchEvent(new Event('input',{bubbles:true}))});await p.locator('#play').click();await p.waitForTimeout(300);records.push({step:'end_stop',state:await state(),label:await p.locator('#passage').textContent()});if((await state()).running)throw Error('End did not stop');await p.locator('#comparison').selectOption('lp12');await p.getByRole('button',{name:'Beginning',exact:true}).click();await p.locator('[data-source=\"hardware\"]').click();await p.screenshot({path:'build-fidelity/saw-w4-listening/run-04/player-desktop.png',fullPage:true});await p.setViewportSize({width:390,height:844});const mobile=await p.evaluate(()=>({width:innerWidth,scrollWidth:document.documentElement.scrollWidth}));if(mobile.scrollWidth>mobile.width)throw Error('Mobile horizontal overflow');await p.screenshot({path:'build-fidelity/saw-w4-listening/run-04/player-mobile.png',fullPage:true});await p.setViewportSize({width:1200,height:900});return{status:'passed',cases:cases.length,decoded,records,mobile,page_errors:errors};}\n",
+  "qualification": "Listening evaluation only; original raw dry patch and official performance MIDI remain reconstructed/unknown as labeled. Baseline denotes frozen pre-W4 production. No production DSP changes or commits in this subtask."
+}

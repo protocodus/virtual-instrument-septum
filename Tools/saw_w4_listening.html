@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SH-201 · W4 listening comparison</title><link rel="icon" href="data:,">
+<style>
+:root{color-scheme:light;font-family:system-ui,-apple-system,sans-serif;background:#f5f4ef;color:#202e32}*{box-sizing:border-box}body{max-width:1000px;margin:48px auto;padding:0 28px}h1{font-size:clamp(28px,5vw,44px);letter-spacing:-1.6px;line-height:1.12;margin:12px 0 20px}p{line-height:1.65;max-width:820px}.eyebrow{color:#51706a;font-size:12px;font-weight:650;letter-spacing:2px;text-transform:uppercase}.panel{background:#fff;border:1px solid #d5dfd9;border-radius:18px;padding:28px;margin:28px 0;box-shadow:0 10px 32px #183d3010}.row{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:18px 0}.spread{justify-content:space-between}.spread>div{min-width:0;max-width:100%}select{max-width:100%}button,select{font:inherit;color:inherit;border:1px solid #bacac2;background:#fff;border-radius:9px;padding:11px 16px;cursor:pointer}button:hover{border-color:#14574c}button[aria-pressed=true],#play{background:#14574c;color:white;border-color:#14574c}button:disabled{cursor:wait;opacity:.55}button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #b87b3c;outline-offset:3px}.sources{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0}.sources button{text-align:left;min-height:80px}.sources strong{display:block;font-size:16px}.sources small{display:block;margin-top:7px;opacity:.78;font-size:12px}.note{font-size:14px;color:#586960}.time{font-variant-numeric:tabular-nums;font-family:ui-monospace,monospace;font-size:16px}.transport{margin-top:26px}.transport #play{min-width:92px}.timeline{position:relative;padding:0;margin:10px 0}.timeline input{display:block;width:100%;margin:0;accent-color:#14574c;height:26px}.bands{position:relative;height:9px;margin:0 2px;background:#edf1ed;border-radius:3px;overflow:hidden}.band{position:absolute;top:0;height:9px}.gain{background:#a3bbae}.training{background:#d39b58}.legend{font-size:12px;color:#5c695f;display:flex;gap:18px;margin-top:10px}.swatch{display:inline-block;width:9px;height:9px;margin-right:6px;border-radius:2px}.status{min-height:24px;font-size:14px;margin:14px 0 0}.passage{min-height:22px;font-size:13px;color:#796036}.segment{padding:8px 11px;font-size:13px}details{border-top:1px solid #d5dfd9;padding-top:20px;line-height:1.6;margin:24px 0}summary{cursor:pointer;font-weight:650}details p{font-size:14px}a{color:#14574c}footer{font-size:12px;color:#6b776f;line-height:1.6;margin:32px 0 46px}kbd{font:inherit;border:1px solid #d5dfd9;border-radius:3px;padding:1px 5px}@media(max-width:650px){body{padding:0 16px;margin-top:28px}.panel{padding:18px}.sources{grid-template-columns:1fr;gap:8px}.sources button{min-height:60px}.sources small{margin-top:4px}.row{gap:8px}.time{font-size:14px}}
+</style>
+<header><div class="eyebrow">Septum · original hardware references</div><h1>Same passage.<br>Three sources.</h1>
+<p>Compare the original SH-201 recording, the Septum baseline, and the W4 saw experiment. Switching keeps the same playback position and the same frozen level adjustment for both engine outputs.</p></header>
+<main class="panel">
+ <div class="row spread"><div><label for="comparison">Comparison </label><select id="comparison"></select></div><span class="note" id="context"></span></div>
+ <div class="sources" role="group" aria-label="Audio source">
+  <button data-source="hardware" aria-pressed="true"><strong>Original SH-201</strong><small>Owner's public recording</small></button>
+  <button data-source="production" aria-pressed="false"><strong>Septum baseline</strong><small>Frozen pre-W4 production DSP</small></button>
+  <button data-source="w4" aria-pressed="false"><strong>W4 saw experiment</strong><small>Experimental · same preset recipe</small></button>
+ </div>
+ <p id="status" class="status" aria-live="polite">Ready. Press Play to load the aligned recordings.</p>
+ <div class="row spread transport"><button id="play">Play</button><span id="time" class="time">0:00.032</span></div>
+ <label for="seek" class="note">Position in the original recording</label>
+ <div class="timeline"><input id="seek" type="range" min="0" max="30" value="0" step="0.001" aria-label="Position in the original recording"><div class="bands" aria-hidden="true"><div id="gain-band" class="band gain"></div><div id="training-band" class="band training"></div></div></div>
+ <div class="legend"><span><i class="swatch gain"></i>Level calibration</span><span id="training-legend"><i class="swatch training"></i>Coefficient-training note</span></div>
+ <p class="passage" id="passage"></p>
+ <div class="row" id="jumps" role="group" aria-label="Jump to passage"></div>
+ <p class="note" id="support"></p>
+</main>
+<details><summary>Timing, levels, and limits</summary>
+ <p id="source-note"></p>
+ <p id="timing-note"></p><p>No phase, timing, EQ, or loudness adjustment is fitted by this player. The W4 coefficients are frozen from one dry note. A closer sound here would be evidence of improvement; these excerpts do not establish whole-instrument equivalence.</p>
+ <p id="attenuation"></p>
+ <p id="training-note"></p><p>Source switching adds a 12 ms fade only at the moment of switching.</p>
+ <p><a href="https://www.deepsonic.ch/deep/htm/deepsonic_analytics_filter_comparison.php">Original recipe and public recordings</a> · <a href="manifest.json">Hashes and exact audio transforms</a></p>
+</details>
+<footer>Local listening evaluation · W4 remains experimental · <kbd>Space</kbd> plays or pauses when focus is outside a control.</footer>
+<script>
+
+'use strict';
+const manifest=__MANIFEST__;
+const ids=['hardware','production','w4'];
+const names={hardware:'Original SH-201',production:'Septum baseline',w4:'W4 saw experiment · experimental'};
+const play=document.querySelector('#play'),seek=document.querySelector('#seek'),status=document.querySelector('#status'),choice=document.querySelector('#comparison');
+let ctx=null,buffers={},nodes=[],selected='hardware',running=false,position=0,started=0,duration=0,busy=false;
+let activeGroup=manifest.groups[0];
+for(const [kind,label]of [['dry','Dry · original MIDI'],['official','Named presets · reconstructed MIDI']]){const group=document.createElement('optgroup');group.label=label;for(const g of manifest.groups.filter(g=>g.kind===kind)){const option=document.createElement('option');option.value=g.id;option.textContent=g.title+(g.byte_identity_control?' · identity control':'');group.append(option)}if(group.children.length)choice.append(group)}
+choice.value=activeGroup.id;
+function group(){return activeGroup}
+function elapsed(){return running?Math.min(duration,position+Math.max(0,ctx.currentTime-started)):position}
+function sourceTime(){return group().source_start_seconds+elapsed()}
+function format(t){const ms=Math.round(t*1000);return Math.floor(ms/60000)+':'+String(Math.floor(ms/1000)%60).padStart(2,'0')+'.'+String(ms%1000).padStart(3,'0')}
+function stop(){if(running)position=elapsed();running=false;for(const n of nodes){try{n.source.stop()}catch{}}nodes=[];play.textContent='Play'}
+function updateGroup(){const g=group();duration=g.frames/g.sample_rate;seek.min=g.source_start_seconds;seek.max=g.source_end_seconds;
+ document.querySelector('#context').textContent=g.context;
+ const omitted=g.hardware_start_sample/g.sample_rate;
+ document.querySelector('#support').textContent='Shared listening support: '+format(g.source_start_seconds)+'–'+format(g.source_end_seconds)+' on the original recording clock.'+(omitted>0?' The unpaired first '+(omitted*1000).toFixed(3)+' ms of this excerpt is omitted.':'');
+ for(const [id,range]of [['gain-band',g.gain_interval_seconds],['training-band',g.coefficient_interval_seconds]]){const el=document.getElementById(id);el.hidden=!range;if(range){el.style.left=100*(range[0]-g.source_start_seconds)/duration+'%';el.style.width=100*(range[1]-range[0])/duration+'%'}}
+ document.querySelector('#training-legend').hidden=!g.coefficient_interval_seconds;
+ const jumps=document.querySelector('#jumps');jumps.replaceChildren();for(const item of g.jumps){const b=document.createElement('button');b.className='segment';b.dataset.time=item.time;b.textContent=item.label;b.onclick=()=>jump(item.time);jumps.append(b)}
+ document.querySelector('#source-note').textContent=g.kind==='dry'?'The two dry slopes use the complete original 124-note MIDI sequence and a documented single-saw preset reconstruction. The original raw patch dump and capture-chain details are unavailable.':'This named-preset excerpt uses the original published SysEx unchanged and an audio-derived MIDI reconstruction. Original velocities, articulation, controllers, capture chain, and the exact recorded patch revision remain uncertain.'+(g.byte_identity_control?' This preset has no active classic Saw: the W4 and production renders, and their listening exports, are byte-identical.':'');
+ document.querySelector('#timing-note').textContent='Both engine tracks use the saved '+g.lag_samples+'-sample alignment and canonical oscillator phase. Their shared gain comes from '+(g.kind==='dry'?'the fixed note 36 calibration.':'the production-only prefix calibration.');
+ document.querySelector('#attenuation').textContent=g.attenuation_policy+': '+g.common_attenuation_db.toFixed(3)+' dB. Relative levels are preserved.';
+ document.querySelector('#training-note').textContent=g.coefficient_interval_seconds?'The W4 source was fitted on 18.75–19.25 s, marked for context. Level calibration is 1.50–1.937506 s. Other passages lie beyond those intervals.':'The marked prefix supplied the fixed playback gain and alignment. The “Later check” button jumps to the separate evaluation interval. No W4 source coefficients were fitted to this preset.';
+}
+async function load(){
+ if(!ctx)ctx=new AudioContext({sampleRate:44100});await ctx.resume();const g=group();
+ if(!buffers[g.id]){status.textContent='Loading three aligned recordings…';buffers[g.id]={};
+  try{await Promise.all(g.tracks.map(async t=>{const response=await fetch(t.file);if(!response.ok)throw Error('Audio download failed');const decoded=await ctx.decodeAudioData(await response.arrayBuffer());if(Math.abs(decoded.duration-duration)>1/ctx.sampleRate)throw Error('Decoded duration changed');buffers[g.id][t.id]=decoded}))}
+  catch(e){delete buffers[g.id];throw e}
+ }
+}
+async function start(){if(busy||running)return;busy=true;play.disabled=true;choice.disabled=true;
+ try{await load();if(position>=duration)position=0;const when=ctx.currentTime+.04;
+  nodes=ids.map(id=>{const source=ctx.createBufferSource(),gain=ctx.createGain();source.buffer=buffers[group().id][id];gain.gain.value=id===selected?1:0;source.connect(gain).connect(ctx.destination);source.start(when,position);return{id,source,gain,scheduledStart:when,offset:position}});
+  started=when;running=true;play.textContent='Pause';status.textContent=names[selected];
+ }catch(e){stop();status.textContent='Could not load audio: '+e.message}
+ finally{busy=false;play.disabled=false;choice.disabled=false}
+}
+play.onclick=()=>running?stop():start();
+document.querySelectorAll('[data-source]').forEach(button=>button.onclick=()=>{selected=button.dataset.source;document.querySelectorAll('[data-source]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+ if(ctx){const t=ctx.currentTime;nodes.forEach(n=>{if(n.gain.gain.cancelAndHoldAtTime)n.gain.gain.cancelAndHoldAtTime(t);else{const current=n.gain.gain.value;n.gain.gain.cancelScheduledValues(t);n.gain.gain.setValueAtTime(current,t)}n.gain.gain.linearRampToValueAtTime(n.id===selected?1:0,t+.012)})}status.textContent=names[selected]});
+function jump(value){if(busy)return;const wasRunning=running;stop();position=Math.max(0,Math.min(duration,value-group().source_start_seconds));seek.value=group().source_start_seconds+position;if(wasRunning)start()}
+seek.oninput=()=>jump(Number(seek.value));
+choice.onchange=()=>{const old=group(),clock=sourceTime(),wasRunning=running;stop();activeGroup=manifest.groups.find(g=>g.id===choice.value);updateGroup();position=old.kind==='dry'&&group().kind==='dry'?Math.max(0,Math.min(duration,clock-group().source_start_seconds)):0;status.textContent=names[selected];if(wasRunning)start()};
+document.addEventListener('keydown',e=>{if(e.code==='Space'&&!['INPUT','SELECT','BUTTON','SUMMARY'].includes(document.activeElement.tagName)){e.preventDefault();running?stop():start()}});
+updateGroup();
+function tick(){const clock=sourceTime();seek.value=clock;document.querySelector('#time').textContent=format(clock)+' / '+format(group().source_end_seconds);const [ga,gb]=group().gain_interval_seconds,training=group().coefficient_interval_seconds;
+ document.querySelector('#passage').textContent=training&&clock>=training[0]&&clock<training[1]?'Coefficient-training note · context, not an independent check':clock>=ga&&clock<gb?'Level/alignment calibration passage':group().byte_identity_control?'Identity control · production and W4 are byte-identical':'Outside the marked calibration intervals';
+ if(running&&elapsed()>=duration){stop();position=duration;status.textContent='End of shared listening support.'}requestAnimationFrame(tick)}tick();
+// Read-only transport diagnostics for reproducible local browser checks.
+window.listeningState=()=>({case:group().id,selected,running,busy,sourceTime:sourceTime(),relativePosition:elapsed(),sourceStart:group().source_start_seconds,duration,contextSampleRate:ctx?.sampleRate??null,contextState:ctx?.state??null,nodes:nodes.map(n=>({id:n.id,scheduledStart:n.scheduledStart,offset:n.offset,gain:n.gain.gain.value,duration:n.source.buffer.duration}))});
+</script></html>

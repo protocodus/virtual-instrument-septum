@@ -1,0 +1,189 @@
+{
+  "status": "local_build_and_all_35_tests_passed",
+  "source_sha256": {
+    "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+    "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+    "Source/DSP/ClassicSaw.h": "9e94ee0530970a8cb7848f1d675cc833b363220d6813057fc682ce8c2f73102b",
+    "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+    "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+    "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+    "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+    "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+    "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+    "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+    "Source/DSP/SeptumEngine.cpp": "e371d22052c4732cdefe249326acdc5bf9239a6aad2a4a09db313664ba095d5b",
+    "Source/DSP/SeptumEngine.h": "b1b7cfd308c42d3b768b098624c26e417d00c4e0387ff5c2331ca1bb93d0d99e",
+    "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+    "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+    "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+    "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+    "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+    "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9",
+    "CMakeLists.txt": "b85f0b36d59e6592772568beafd6de7652b52814c391b3b25d0be492ff85b344",
+    "Tests/ClassicSawFidelityTests.cpp": "e8a5047b658f56c582d227c0ec52229d2a56127f770781b7074d2a398d9376af",
+    "Tests/SeptumEngineTests.cpp": "f48cff240cbaed325f964c1007abe51d0a8d137de7d9790052dacb9593a5b046"
+  },
+  "validation": {
+    "dsp-build": {
+      "receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-build/run-02/dsp-build.json",
+        "sha256": "60f1aa6852f4dca6d767b5ea0972dab3967dc535a09218884788d41a602ce149"
+      },
+      "result": {
+        "command": [
+          "cmake",
+          "--build",
+          "build-fidelity",
+          "--parallel",
+          "4"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 7.620535583002493,
+        "log_sha256": "ed6f08498551cf3ad5109745db647e3b452dbf2e306d7f44755944ad06fe75dc"
+      },
+      "log": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-build/run-02/dsp-build.log",
+        "sha256": "ed6f08498551cf3ad5109745db647e3b452dbf2e306d7f44755944ad06fe75dc"
+      }
+    },
+    "plugin-build": {
+      "receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-build/run-02/plugin-build.json",
+        "sha256": "f8f9709b3e6ab1cbc39b899ec638fd4d39fd1dc217a56b0c23b0d9c1cf88ee74"
+      },
+      "result": {
+        "command": [
+          "cmake",
+          "--build",
+          "build-plugin-fidelity",
+          "--parallel",
+          "3",
+          "--target",
+          "Septum_VST3",
+          "Septum_AU",
+          "Septum_Standalone"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 184.09955116710626,
+        "log_sha256": "a9808ba96396c83dbaac71ee2ab937adc1b326a04bbb4fe533759db67843d065"
+      },
+      "log": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-build/run-02/plugin-build.log",
+        "sha256": "a9808ba96396c83dbaac71ee2ab937adc1b326a04bbb4fe533759db67843d065"
+      }
+    },
+    "ctest": {
+      "receipt": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-build/run-02/ctest.json",
+        "sha256": "f5131f558b3baa2f0a2c7a096e47989044646f4b9c87213bb0cd7a45b7a79ed3"
+      },
+      "result": {
+        "command": [
+          "ctest",
+          "--test-dir",
+          "build-fidelity",
+          "--output-on-failure",
+          "--parallel",
+          "4"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 45.91099008289166,
+        "log_sha256": "443d05e770f30a3299f3367d06378fb749673f88ede57a426c6bd97b93f64c60"
+      },
+      "log": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-build/run-02/ctest.log",
+        "sha256": "443d05e770f30a3299f3367d06378fb749673f88ede57a426c6bd97b93f64c60"
+      },
+      "log_text": "Test project /Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity\n      Start 33: Septum.Engine\n      Start 30: Septum.TimbreCandidate\n      Start 26: Septum.Packaging\n      Start 32: Septum.ReferenceRateEngine\n 1/35 Test #32: Septum.ReferenceRateEngine ...........   Passed    8.40 sec\n      Start 21: Septum.ControlSmoothing\n 2/35 Test #21: Septum.ControlSmoothing ..............   Passed    6.59 sec\n      Start 17: Septum.LfoRateFidelity\n 3/35 Test #33: Septum.Engine ........................   Passed   17.95 sec\n      Start 16: Septum.HardwareVoiceFidelity\n 4/35 Test #16: Septum.HardwareVoiceFidelity .........   Passed    8.50 sec\n      Start 27: Septum.RenderToolRobustness\n 5/35 Test #27: Septum.RenderToolRobustness ..........   Passed    2.05 sec\n      Start  7: Septum.ReverbGeometry\n 6/35 Test  #7: Septum.ReverbGeometry ................   Passed    2.57 sec\n      Start 18: Septum.DryFilterFidelity\n 7/35 Test #26: Septum.Packaging .....................   Passed   31.36 sec\n      Start 22: Septum.EffectsQuality\n 8/35 Test #17: Septum.LfoRateFidelity ...............   Passed   16.88 sec\n      Start 25: Septum.DryFilterAnalysis\n 9/35 Test #22: Septum.EffectsQuality ................   Passed    3.10 sec\n      Start  3: Septum.TimbreCalibration\n10/35 Test #18: Septum.DryFilterFidelity .............   Passed    4.51 sec\n      Start 20: Septum.HardwarePerformanceFidelity\n11/35 Test  #3: Septum.TimbreCalibration .............   Passed    2.41 sec\n      Start  1: Septum.EngineRobustness\n12/35 Test #25: Septum.DryFilterAnalysis .............   Passed    5.63 sec\n      Start 28: Septum.TimbreCapture\n13/35 Test #30: Septum.TimbreCandidate ...............   Passed   37.81 sec\n      Start 15: Septum.PortamentoContinuity\n14/35 Test #20: Septum.HardwarePerformanceFidelity ...   Passed    2.34 sec\n      Start 24: Septum.HardwareEquivalence\n15/35 Test #28: Septum.TimbreCapture .................   Passed    0.60 sec\n      Start 12: Septum.MidiPortamento\n16/35 Test  #1: Septum.EngineRobustness ..............   Passed    1.43 sec\n      Start 29: Septum.MidiRender\n17/35 Test #29: Septum.MidiRender ....................   Passed    0.60 sec\n      Start  4: Septum.EffectSendSmoothing\n18/35 Test #24: Septum.HardwareEquivalence ...........   Passed    1.40 sec\n      Start  5: Septum.PatchRemain\n19/35 Test #15: Septum.PortamentoContinuity ..........   Passed    1.70 sec\n      Start  6: Septum.DirectMidiTranspose\n20/35 Test #12: Septum.MidiPortamento ................   Passed    1.68 sec\n      Start  2: Septum.ProtocolRobustness\n21/35 Test  #4: Septum.EffectSendSmoothing ...........   Passed    0.95 sec\n      Start 23: Septum.AnalogOutput\n22/35 Test  #5: Septum.PatchRemain ...................   Passed    1.13 sec\n      Start 11: Septum.TempoClock\n23/35 Test  #6: Septum.DirectMidiTranspose ...........   Passed    1.56 sec\n      Start 34: Septum.FidelityTool\n24/35 Test  #2: Septum.ProtocolRobustness ............   Passed    1.63 sec\n      Start 13: Septum.ReverbDamping\n25/35 Test #23: Septum.AnalogOutput ..................   Passed    2.15 sec\n      Start 14: Septum.FeedbackSync\n26/35 Test #11: Septum.TempoClock ....................   Passed    1.95 sec\n      Start  8: Septum.RemoteKeyboard\n27/35 Test #34: Septum.FidelityTool ..................   Passed    1.75 sec\n      Start  9: Septum.AmpEnvelopeLatency\n28/35 Test #13: Septum.ReverbDamping .................   Passed    2.03 sec\n      Start 10: Septum.SplitPolyphony\n29/35 Test #14: Septum.FeedbackSync ..................   Passed    1.94 sec\n      Start 35: Septum.RenderDemos\n30/35 Test #35: Septum.RenderDemos ...................   Passed    0.03 sec\n      Start 31: Septum.ReferencePatchExtraction\n31/35 Test #31: Septum.ReferencePatchExtraction ......   Passed    0.06 sec\n      Start 19: Septum.ClassicSawFidelity\n32/35 Test  #8: Septum.RemoteKeyboard ................   Passed    2.05 sec\n33/35 Test  #9: Septum.AmpEnvelopeLatency ............   Passed    2.02 sec\n34/35 Test #10: Septum.SplitPolyphony ................   Passed    1.91 sec\n35/35 Test #19: Septum.ClassicSawFidelity ............   Passed    1.80 sec\n\n100% tests passed, 0 tests failed out of 35\n\nTotal Test time (real) =  45.86 sec\n"
+    }
+  },
+  "artifacts": [
+    {
+      "format": "VST3",
+      "binary": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-plugin-fidelity/Septum_artefacts/Release/VST3/Septum.vst3/Contents/MacOS/Septum",
+        "sha256": "90a02e9e7f26755db0ee58a0b97fafa9af8d25d83ccbad07e02473645a4d59ca"
+      },
+      "architectures": "x86_64 arm64",
+      "signature_verification": {
+        "exit_code": 0,
+        "output": ""
+      }
+    },
+    {
+      "format": "AU",
+      "binary": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-plugin-fidelity/Septum_artefacts/Release/AU/Septum.component/Contents/MacOS/Septum",
+        "sha256": "c9c221b7c1034033557759271c723c48e4c1a7f915f76e4587d90796f38506b7"
+      },
+      "architectures": "x86_64 arm64",
+      "signature_verification": {
+        "exit_code": 0,
+        "output": ""
+      },
+      "before_local_ad_hoc_signing": {
+        "binary": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-plugin-fidelity/Septum_artefacts/Release/AU/Septum.component/Contents/MacOS/Septum",
+          "sha256": "89d602f3a1bda3ec98602774c677f004af62cc02bc63a4b2229af6de986585f5"
+        },
+        "verification": {
+          "exit_code": 1,
+          "output": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-plugin-fidelity/Septum_artefacts/Release/AU/Septum.component: code object is not signed at all\n"
+        }
+      },
+      "local_ad_hoc_signing": {
+        "command": [
+          "codesign",
+          "--force",
+          "--sign",
+          "-",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-plugin-fidelity/Septum_artefacts/Release/AU/Septum.component"
+        ],
+        "exit_code": 0,
+        "output": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-plugin-fidelity/Septum_artefacts/Release/AU/Septum.component: replacing existing signature\n"
+      }
+    },
+    {
+      "format": "Standalone",
+      "binary": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-plugin-fidelity/Septum_artefacts/Release/Standalone/Septum.app/Contents/MacOS/Septum",
+        "sha256": "8614184a4ff333f2cbab2c3d6906a12482f03410c396a4346701d11a198cae80"
+      },
+      "architectures": "x86_64 arm64",
+      "signature_verification": {
+        "exit_code": 0,
+        "output": ""
+      },
+      "before_local_ad_hoc_signing": {
+        "binary": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-plugin-fidelity/Septum_artefacts/Release/Standalone/Septum.app/Contents/MacOS/Septum",
+          "sha256": "b78142986c1e1cd22e615fbca470fb0efeb46ef712ec63a91b661ed2f09a2f45"
+        },
+        "verification": {
+          "exit_code": 1,
+          "output": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-plugin-fidelity/Septum_artefacts/Release/Standalone/Septum.app: code object is not signed at all\n"
+        }
+      },
+      "local_ad_hoc_signing": {
+        "command": [
+          "codesign",
+          "--force",
+          "--sign",
+          "-",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-plugin-fidelity/Septum_artefacts/Release/Standalone/Septum.app"
+        ],
+        "exit_code": 0,
+        "output": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-plugin-fidelity/Septum_artefacts/Release/Standalone/Septum.app: replacing existing signature\n"
+      }
+    }
+  ],
+  "retained_first_test_failure": {
+    "log": {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/saw-w4-production-build/run-01/ctest.log",
+      "sha256": "8412523a9a87e1b0fdd858fa9ea3681e6be5077ab0310160c73031afadc1594d"
+    },
+    "text": "Test project /Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity\n      Start 32: Septum.Engine\n      Start 29: Septum.TimbreCandidate\n      Start 25: Septum.Packaging\n      Start 31: Septum.ReferenceRateEngine\n 1/34 Test #31: Septum.ReferenceRateEngine ...........   Passed    7.96 sec\n      Start 20: Septum.ControlSmoothing\n 2/34 Test #20: Septum.ControlSmoothing ..............   Passed    6.92 sec\n      Start 17: Septum.LfoRateFidelity\n 3/34 Test #32: Septum.Engine ........................***Failed   20.07 sec\nFAIL: sync reset matches a naive ramp through the output circuit (relative RMS error 0.066549)\n1 of 4601 checks failed.\n\n      Start 26: Septum.RenderToolRobustness\n 4/34 Test #26: Septum.RenderToolRobustness ..........   Passed    2.71 sec\n      Start 16: Septum.HardwareVoiceFidelity\n 5/34 Test #16: Septum.HardwareVoiceFidelity .........   Passed    7.67 sec\n      Start  7: Septum.ReverbGeometry\n 6/34 Test #25: Septum.Packaging .....................   Passed   32.77 sec\n      Start 21: Septum.EffectsQuality\n 7/34 Test  #7: Septum.ReverbGeometry ................   Passed    2.86 sec\n      Start  3: Septum.TimbreCalibration\n 8/34 Test #17: Septum.LfoRateFidelity ...............   Passed   18.62 sec\n      Start 18: Septum.DryFilterFidelity\n 9/34 Test #21: Septum.EffectsQuality ................   Passed    2.29 sec\n      Start 24: Septum.DryFilterAnalysis\n10/34 Test  #3: Septum.TimbreCalibration .............   Passed    1.89 sec\n      Start 19: Septum.HardwarePerformanceFidelity\n11/34 Test #19: Septum.HardwarePerformanceFidelity ...   Passed    3.08 sec\n      Start  1: Septum.EngineRobustness\n12/34 Test #18: Septum.DryFilterFidelity .............   Passed    4.91 sec\n      Start 27: Septum.TimbreCapture\n13/34 Test #27: Septum.TimbreCapture .................   Passed    0.61 sec\n      Start 15: Septum.PortamentoContinuity\n14/34 Test #24: Septum.DryFilterAnalysis .............   Passed    4.17 sec\n      Start 28: Septum.MidiRender\n15/34 Test  #1: Septum.EngineRobustness ..............   Passed    1.43 sec\n      Start 23: Septum.HardwareEquivalence\n16/34 Test #28: Septum.MidiRender ....................   Passed    0.71 sec\n      Start 12: Septum.MidiPortamento\n17/34 Test #15: Septum.PortamentoContinuity ..........   Passed    2.02 sec\n      Start  4: Septum.EffectSendSmoothing\n18/34 Test #12: Septum.MidiPortamento ................   Passed    1.66 sec\n      Start  5: Septum.PatchRemain\n19/34 Test #23: Septum.HardwareEquivalence ...........   Passed    2.18 sec\n      Start  6: Septum.DirectMidiTranspose\n20/34 Test  #4: Septum.EffectSendSmoothing ...........   Passed    1.02 sec\n      Start 22: Septum.AnalogOutput\n21/34 Test  #5: Septum.PatchRemain ...................   Passed    0.97 sec\n      Start  2: Septum.ProtocolRobustness\n22/34 Test  #6: Septum.DirectMidiTranspose ...........   Passed    1.31 sec\n      Start 11: Septum.TempoClock\n23/34 Test #22: Septum.AnalogOutput ..................   Passed    1.60 sec\n      Start 33: Septum.FidelityTool\n24/34 Test #29: Septum.TimbreCandidate ...............   Passed   43.78 sec\n      Start 13: Septum.ReverbDamping\n25/34 Test  #2: Septum.ProtocolRobustness ............   Passed    1.74 sec\n      Start 14: Septum.FeedbackSync\n26/34 Test #11: Septum.TempoClock ....................   Passed    1.60 sec\n      Start  8: Septum.RemoteKeyboard\n27/34 Test #33: Septum.FidelityTool ..................   Passed    1.99 sec\n      Start  9: Septum.AmpEnvelopeLatency\n28/34 Test #13: Septum.ReverbDamping .................   Passed    2.46 sec\n      Start 10: Septum.SplitPolyphony\n29/34 Test #14: Septum.FeedbackSync ..................   Passed    2.41 sec\n      Start 34: Septum.RenderDemos\n30/34 Test #34: Septum.RenderDemos ...................   Passed    0.03 sec\n      Start 30: Septum.ReferencePatchExtraction\n31/34 Test #30: Septum.ReferencePatchExtraction ......   Passed    0.06 sec\n32/34 Test  #8: Septum.RemoteKeyboard ................   Passed    2.35 sec\n33/34 Test  #9: Septum.AmpEnvelopeLatency ............   Passed    1.93 sec\n34/34 Test #10: Septum.SplitPolyphony ................   Passed    1.86 sec\n\n97% tests passed, 1 tests failed out of 34\n\nTotal Test time (real) =  48.11 sec\n\nThe following tests FAILED:\n\t 32 - Septum.Engine (Failed)\nErrors while running CTest\n"
+  },
+  "hardware_equivalence": "not_established",
+  "signature_scope": "Local ad hoc bundle integrity checks only; no Developer ID or notarization claim."
+}

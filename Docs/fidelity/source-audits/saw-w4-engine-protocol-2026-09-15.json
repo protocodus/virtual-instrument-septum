@@ -1,0 +1,208 @@
+{
+  "status": "frozen_before_candidate_scoring",
+  "source_revision": "545b3d37d9cc1f80bf39bc5d0bf49c0cced1d9f6",
+  "shipping_source_sha256": {
+    "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+    "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+    "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+    "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+    "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+    "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+    "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+    "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+    "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+    "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+    "Source/DSP/SeptumEngine.h": "b1b7cfd308c42d3b768b098624c26e417d00c4e0387ff5c2331ca1bb93d0d99e",
+    "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+    "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+    "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+    "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+    "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+    "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9",
+    "Tools/RenderMidi.cpp": "73fc5cd13bf635bbd95dc2a4e65301b06038cd96d2e684de1bb694b3e0066bfb"
+  },
+  "original_midi": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/deepsonic/deepsonic_-_filter_demo_-_comparsion_sequence.mid",
+    "sha256": "21ea21b9ba3ba14cc205931134fb7a320b09e67821bd3a3c70f97fa2e8b5d99a"
+  },
+  "recipe_source": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Docs/fidelity/source-audits/dry-end-to-end-2026-09-15.json",
+    "sha256": "dc0c98f0c140ea291b27d7542fbb48703983d8e97cf0162cbd567739f9cfce46"
+  },
+  "prior_highnote": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Docs/fidelity/source-audits/deepsonic-saw-asymmetric-kernels-2026-09-15.json",
+    "sha256": "da96ab806d7637845e3308914632a6cc472f29e1c5355c176c95c52858e53803"
+  },
+  "lag_samples": -1406,
+  "lag_formula": "round(93+nominal_filter_attack1ms*44100-.035*44100)",
+  "fixed_primary_gains": {
+    "12": 4.137125725839024,
+    "24": 3.870462967942607
+  },
+  "gain_calibration_reference_samples": [
+    66150,
+    85444
+  ],
+  "gain_calibration_candidate_samples": [
+    64744,
+    84038
+  ],
+  "gain_policy": "Original note36 scalars primary shared baseline/candidate; each complete candidate note36 RMS gain is separately labeled sensitivity only",
+  "exclusion_reference_samples": [
+    826875,
+    848925
+  ],
+  "exclusion_seconds": [
+    18.75,
+    19.25
+  ],
+  "exclusion_policy": "Remove coefficient-training note from every primary aggregate; restart STFT/RMS inside each support; never concatenate audio across a gap",
+  "whole_primary": [
+    "before-calibration[0,1.45)",
+    "post-calibration[2,18.75)+[19.25,common-end)",
+    "union_of_those_three"
+  ],
+  "isolated_notes": [
+    {
+      "note": 24,
+      "on": 0.0,
+      "off": 0.43750566893424037,
+      "velocity": 127
+    },
+    {
+      "note": 24,
+      "on": 0.75,
+      "off": 1.1875056689342403,
+      "velocity": 127
+    },
+    {
+      "note": 29,
+      "on": 2.0,
+      "off": 2.4375056689342403,
+      "velocity": 127
+    },
+    {
+      "note": 24,
+      "on": 4.75,
+      "off": 5.18750566893424,
+      "velocity": 127
+    },
+    {
+      "note": 31,
+      "on": 6.0,
+      "off": 6.43750566893424,
+      "velocity": 127
+    },
+    {
+      "note": 57,
+      "on": 17.25,
+      "off": 17.68750566893424,
+      "velocity": 127
+    },
+    {
+      "note": 84,
+      "on": 20.25,
+      "off": 20.68750566893424,
+      "velocity": 127
+    }
+  ],
+  "chords": [
+    {
+      "on": 22.0,
+      "off": 22.68750566893424,
+      "notes": [
+        60,
+        64,
+        67
+      ],
+      "target": 64
+    },
+    {
+      "on": 22.75,
+      "off": 23.43750566893424,
+      "notes": [
+        48,
+        52,
+        55
+      ],
+      "target": 52
+    },
+    {
+      "on": 24.0,
+      "off": 24.68750566893424,
+      "notes": [
+        60,
+        65,
+        69
+      ],
+      "target": 69
+    },
+    {
+      "on": 24.75,
+      "off": 25.43750566893424,
+      "notes": [
+        48,
+        53,
+        57
+      ],
+      "target": 57
+    },
+    {
+      "on": 26.75,
+      "off": 27.43750566893424,
+      "notes": [
+        50,
+        55,
+        59
+      ],
+      "target": 59
+    },
+    {
+      "on": 28.0,
+      "off": 28.68750566893424,
+      "notes": [
+        60,
+        64,
+        67
+      ],
+      "target": 64
+    },
+    {
+      "on": 28.75,
+      "off": 29.43750566893424,
+      "notes": [
+        48,
+        52,
+        55
+      ],
+      "target": 52
+    }
+  ],
+  "stft_windows": [
+    512,
+    1024,
+    2048,
+    8192
+  ],
+  "rms_windows": [
+    441,
+    2205
+  ],
+  "rms_hop": 220,
+  "spectral_log_policy": "Hardware-only activity mask primary at-60dB of aggregate hardware peak; floor-80dB. Pair-union activity sensitivity retains candidate-only artifacts. Counts saved.",
+  "harmonic_policy": "Existing80ms independent quadrature/linear-ramp estimator, up to30harmonics below8kHz. Original residual<=1%, condition<=100 and H2-H16>-45dBc determine masks. Chords additionally>=20dB SNRproxy. Candidate failure/weak flags never remove original bins.",
+  "harmonic_offsets": [
+    0.1,
+    0.18,
+    0.26,
+    0.34
+  ],
+  "chord_offsets": [
+    0.46,
+    0.54,
+    0.62
+  ],
+  "five_highnote_policy": "Unchanged W4 fivewindows+originalLP12aliasIDs remain exploratory; overlapping91diagnostic not primary. No waveform phase/frequency/gain optimization.",
+  "source_status": "original124-noteMIDI plus physical recipe reconstruction; capture and originalrawpatch uncertainty retained",
+  "equivalence_status": "not_established"
+}
