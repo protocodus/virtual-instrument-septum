@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-15",
+  "reviewer": "source_research",
+  "status": "passed; no consequential blocker",
+  "scope": "Bounded frozen result/provenance review. No optimizer rerun, new candidate, parameter choice, production/tool edits, staging or commit.",
+  "reviewed": [
+    {
+      "path": "Tools/fit_high_note_sinc_models.py",
+      "sha256": "47d13c6a4a5b229a02f481f54bdb41b380e92abc11c6ba683f4064d6ded04e09"
+    },
+    {
+      "path": "Tools/summarize_high_note_sinc_models.py",
+      "sha256": "d3941794982a62e1a3f24400cf161296d4b0d1d65395f31434b79b27c8c6b888"
+    },
+    {
+      "path": "build-fidelity/high-note-shape/sinc-v3/results.json",
+      "sha256": "4770eb1db3765d09c74153265f5d1e4a47ec7b32495ae8a8ae42b9a1c6f0f477"
+    },
+    {
+      "path": "Docs/fidelity/source-audits/high-note-sinc-models-2026-09-15.json",
+      "sha256": "1383896fb3e25523123b390ac0d8214112947aa7deea18fd29604531bec834cf"
+    },
+    {
+      "path": "Docs/fidelity/source-audits/high-note-sinc-models-2026-09-15.md",
+      "sha256": "8845970bf56e3d643eba3a7c1fad37c7b1b189c55f1a79b0e32f705e37c186f1"
+    },
+    {
+      "path": "Docs/fidelity/source-audits/high-note-sinc-models-2026-09-15.png",
+      "sha256": "e4ce72d9a1f986961dcf1448f64addad23623f47fe413ca4804d9869fceb0bd1"
+    },
+    {
+      "path": "Docs/fidelity/source-audits/windowed-sinc-math-independent-review-2026-09-15.json",
+      "sha256": "2cac61f94829a18eaa0b3037de3032cf9997c30fb39f79544b1d551f8b9a64ac"
+    }
+  ],
+  "reproduction_script": {
+    "path": "build-fidelity/high-note-shape/sinc-independent-review/verify_results.py",
+    "sha256": "93088e381508868f02174d32a851f304ad967d8ec0325933dd535f81dc9288bc"
+  },
+  "raw_verification": {
+    "path": "build-fidelity/high-note-shape/sinc-independent-review/result-checks.json",
+    "sha256": "c336bf23ee5832778e7148a1f5f028241b38dd5dd7a27f57cb559699c4b211f5"
+  },
+  "reproduce": [
+    "python3",
+    "build-fidelity/high-note-shape/sinc-independent-review/verify_results.py"
+  ],
+  "verification": {
+    "hash_checks": 14,
+    "numeric_fields_compared": 21802,
+    "maximum_numeric_absolute_difference": 4.263256414560601e-14,
+    "model_count": 24,
+    "prediction_count": 120,
+    "hardware_mask_lengths": [
+      9,
+      9,
+      8,
+      11,
+      13
+    ],
+    "passages_with_no_candidate_line_passing_original_threshold": 23
+  },
+  "summary_verified": {
+    "models": 24,
+    "selected_model": null,
+    "maximum_planted_cross_pitch_power_error": 4.99272442107858e-13,
+    "minimum_training_alias_rms_db": 22.855690814756432,
+    "minimum_across_models_of_worst_other_pitch_alias_rms_db": 33.950263057227765
+  },
+  "minimum_across_models_of_worst_other_pitch_joint_alias_rms_db": 33.97378521606086,
+  "findings": [
+    "Original MP3 and MIDI, decoded native-rate mono WAV, five exact3528sample windows, pinned dependencies and math-reviewed fitter identities match. Both source reference dictionaries and their joint sensitivities reproduce from original windows.",
+    "All24models match the frozen factorial list and retain five passages each. All120float64 predictions hash-identically reconstruct using the one saved13tap vector and each saved phase. No candidate bin is removed from the common9/9/8/11/13 hardware mask.",
+    "All24training matrices independently recompute rank14 and reported condition values (maximum39.8381). Training alone learns signed taps/gain. Later passages retain these taps and fit phase/DC only.",
+    "Recomputed waveform error, H2-H8/H1 errors, original detector lines and flags, simultaneous first/second-fold line errors and flags, and every numeric summary row.21,802 compared fields differ by at most4.2633e-14.",
+    "Durable summary embeds the exact complete run and retains both failed source-free controls and prior independent math receipt. No candidate is selected.",
+    "The six illustrative ramp table rows, training power/harmonic ranges, and original/joint alias extrema agree with the report. The figure retains all24rows and explicitly marks23passages whose candidate has no line passing the original complete detector threshold.",
+    "The report distinguishes mathematical waveforms plus an unknown13tap source/filter/capture response from actual-engine or isolated-oscillator measurements. Its negative conclusion is confined to the declared family, fitting objective and bounded phase search."
+  ],
+  "interpretation_limits": [
+    "Below-threshold residual-bin levels are not precise attenuation measurements; other cells may also mix resolved and unresolved bins. Large aggregate dB errors retain those flags rather than becoming calibrated per-line claims.",
+    "Small total waveform residual power does not establish weak-harmonic or alias agreement. No whole-instrument equivalence follows.",
+    "The hardware check pitches were previously explored and the same-note windows overlap20ms. Unknown capture transfer, MP3 encoding and effective high-note filtering remain confounds.",
+    "Raw-direct and forced-base definitions differ by the declared algebraic term, but separately fitted output taps/phase can compensate differently. Final score differences do not directly measure that mechanism in hardware.",
+    "The bounded search passes independent planted controls but is not a proof of the global optimum for every hardware passage. This review reconstructs saved solutions rather than rerunning optimization."
+  ],
+  "actionable_blockers": []
+}

@@ -1,0 +1,379 @@
+{
+  "schema_version": 1,
+  "status": "proposal_only_no_hardware_fits_or_controls_run",
+  "model_count": 24,
+  "prediction_count": 120,
+  "models": [
+    {
+      "id": "sampled_ramp-constant_half-continuous-normalized_direct",
+      "table_size": 32,
+      "content": "sampled_ramp",
+      "cutoff": "constant_half",
+      "lookup": "continuous",
+      "weight_mode": "normalized_direct"
+    },
+    {
+      "id": "sampled_ramp-constant_half-continuous-unnormalized_direct",
+      "table_size": 32,
+      "content": "sampled_ramp",
+      "cutoff": "constant_half",
+      "lookup": "continuous",
+      "weight_mode": "unnormalized_direct"
+    },
+    {
+      "id": "sampled_ramp-constant_half-continuous-unnormalized_forced_base",
+      "table_size": 32,
+      "content": "sampled_ramp",
+      "cutoff": "constant_half",
+      "lookup": "continuous",
+      "weight_mode": "unnormalized_forced_base"
+    },
+    {
+      "id": "sampled_ramp-constant_half-floor_64-normalized_direct",
+      "table_size": 32,
+      "content": "sampled_ramp",
+      "cutoff": "constant_half",
+      "lookup": "floor_64",
+      "weight_mode": "normalized_direct"
+    },
+    {
+      "id": "sampled_ramp-constant_half-floor_64-unnormalized_direct",
+      "table_size": 32,
+      "content": "sampled_ramp",
+      "cutoff": "constant_half",
+      "lookup": "floor_64",
+      "weight_mode": "unnormalized_direct"
+    },
+    {
+      "id": "sampled_ramp-constant_half-floor_64-unnormalized_forced_base",
+      "table_size": 32,
+      "content": "sampled_ramp",
+      "cutoff": "constant_half",
+      "lookup": "floor_64",
+      "weight_mode": "unnormalized_forced_base"
+    },
+    {
+      "id": "sampled_ramp-pitch_bank-continuous-normalized_direct",
+      "table_size": 32,
+      "content": "sampled_ramp",
+      "cutoff": "pitch_bank",
+      "lookup": "continuous",
+      "weight_mode": "normalized_direct"
+    },
+    {
+      "id": "sampled_ramp-pitch_bank-continuous-unnormalized_direct",
+      "table_size": 32,
+      "content": "sampled_ramp",
+      "cutoff": "pitch_bank",
+      "lookup": "continuous",
+      "weight_mode": "unnormalized_direct"
+    },
+    {
+      "id": "sampled_ramp-pitch_bank-continuous-unnormalized_forced_base",
+      "table_size": 32,
+      "content": "sampled_ramp",
+      "cutoff": "pitch_bank",
+      "lookup": "continuous",
+      "weight_mode": "unnormalized_forced_base"
+    },
+    {
+      "id": "sampled_ramp-pitch_bank-floor_64-normalized_direct",
+      "table_size": 32,
+      "content": "sampled_ramp",
+      "cutoff": "pitch_bank",
+      "lookup": "floor_64",
+      "weight_mode": "normalized_direct"
+    },
+    {
+      "id": "sampled_ramp-pitch_bank-floor_64-unnormalized_direct",
+      "table_size": 32,
+      "content": "sampled_ramp",
+      "cutoff": "pitch_bank",
+      "lookup": "floor_64",
+      "weight_mode": "unnormalized_direct"
+    },
+    {
+      "id": "sampled_ramp-pitch_bank-floor_64-unnormalized_forced_base",
+      "table_size": 32,
+      "content": "sampled_ramp",
+      "cutoff": "pitch_bank",
+      "lookup": "floor_64",
+      "weight_mode": "unnormalized_forced_base"
+    },
+    {
+      "id": "finite_fourier_h1_15-constant_half-continuous-normalized_direct",
+      "table_size": 32,
+      "content": "finite_fourier_h1_15",
+      "cutoff": "constant_half",
+      "lookup": "continuous",
+      "weight_mode": "normalized_direct"
+    },
+    {
+      "id": "finite_fourier_h1_15-constant_half-continuous-unnormalized_direct",
+      "table_size": 32,
+      "content": "finite_fourier_h1_15",
+      "cutoff": "constant_half",
+      "lookup": "continuous",
+      "weight_mode": "unnormalized_direct"
+    },
+    {
+      "id": "finite_fourier_h1_15-constant_half-continuous-unnormalized_forced_base",
+      "table_size": 32,
+      "content": "finite_fourier_h1_15",
+      "cutoff": "constant_half",
+      "lookup": "continuous",
+      "weight_mode": "unnormalized_forced_base"
+    },
+    {
+      "id": "finite_fourier_h1_15-constant_half-floor_64-normalized_direct",
+      "table_size": 32,
+      "content": "finite_fourier_h1_15",
+      "cutoff": "constant_half",
+      "lookup": "floor_64",
+      "weight_mode": "normalized_direct"
+    },
+    {
+      "id": "finite_fourier_h1_15-constant_half-floor_64-unnormalized_direct",
+      "table_size": 32,
+      "content": "finite_fourier_h1_15",
+      "cutoff": "constant_half",
+      "lookup": "floor_64",
+      "weight_mode": "unnormalized_direct"
+    },
+    {
+      "id": "finite_fourier_h1_15-constant_half-floor_64-unnormalized_forced_base",
+      "table_size": 32,
+      "content": "finite_fourier_h1_15",
+      "cutoff": "constant_half",
+      "lookup": "floor_64",
+      "weight_mode": "unnormalized_forced_base"
+    },
+    {
+      "id": "finite_fourier_h1_15-pitch_bank-continuous-normalized_direct",
+      "table_size": 32,
+      "content": "finite_fourier_h1_15",
+      "cutoff": "pitch_bank",
+      "lookup": "continuous",
+      "weight_mode": "normalized_direct"
+    },
+    {
+      "id": "finite_fourier_h1_15-pitch_bank-continuous-unnormalized_direct",
+      "table_size": 32,
+      "content": "finite_fourier_h1_15",
+      "cutoff": "pitch_bank",
+      "lookup": "continuous",
+      "weight_mode": "unnormalized_direct"
+    },
+    {
+      "id": "finite_fourier_h1_15-pitch_bank-continuous-unnormalized_forced_base",
+      "table_size": 32,
+      "content": "finite_fourier_h1_15",
+      "cutoff": "pitch_bank",
+      "lookup": "continuous",
+      "weight_mode": "unnormalized_forced_base"
+    },
+    {
+      "id": "finite_fourier_h1_15-pitch_bank-floor_64-normalized_direct",
+      "table_size": 32,
+      "content": "finite_fourier_h1_15",
+      "cutoff": "pitch_bank",
+      "lookup": "floor_64",
+      "weight_mode": "normalized_direct"
+    },
+    {
+      "id": "finite_fourier_h1_15-pitch_bank-floor_64-unnormalized_direct",
+      "table_size": 32,
+      "content": "finite_fourier_h1_15",
+      "cutoff": "pitch_bank",
+      "lookup": "floor_64",
+      "weight_mode": "unnormalized_direct"
+    },
+    {
+      "id": "finite_fourier_h1_15-pitch_bank-floor_64-unnormalized_forced_base",
+      "table_size": 32,
+      "content": "finite_fourier_h1_15",
+      "cutoff": "pitch_bank",
+      "lookup": "floor_64",
+      "weight_mode": "unnormalized_forced_base"
+    }
+  ],
+  "source_rate_hz": 44100,
+  "nominal_root_pitch_hz": 1378.125,
+  "table_size_qualification": "Scope reuse of existing N32, not inferred memory size or authenticated root pitch.",
+  "kernel": {
+    "source_offsets": [
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "window": "Hann: .5*(1+cos(pi*t/4)) for abs(t)<4, zero otherwise",
+    "formula": "a_j=2*q*sinc(2*q*(j-u_lookup))*W(j-u_lookup), with sinc(x)=sin(pi*x)/(pi*x)",
+    "normalized": "w=a/sum(a); y=sum(w*Y)",
+    "unnormalized_direct": "y=sum(a*Y)",
+    "unnormalized_forced_base": "y=Y0+sum(k=1..7,(Yk-Y(k-1))*sum(j=k..7,a_j))",
+    "exact_approximation_difference": "forced-base minus raw-direct = Y0*(1-sum(a))",
+    "lookup_policies": [
+      "continuous u",
+      "floor(64*u)/64"
+    ],
+    "phase_increment": "f0/Fs in float64, never quantized",
+    "cutoff_policies": {
+      "constant_half": ".5",
+      "pitch_bank": ".5 if rho<=1; 1/3 if1<rho<=1.5; .25 if1.5<rho<=2; reject rho>2"
+    },
+    "unsupported_choices": [
+      "N32 periodic waveform",
+      "two synthetic source table contents",
+      "specific continuous Hann window",
+      "64 left-bin lookup with no coefficient quantization",
+      "unity-base raw branch implementation",
+      "no authenticated SH-201 link"
+    ]
+  },
+  "fitting": {
+    "passages": [
+      {
+        "note": 91,
+        "midi_onset_seconds": 18.75,
+        "offset_seconds": 0.1,
+        "role": "training",
+        "nominal_f0_hz": 1567.981743926997,
+        "source_samples_per_output_sample": 1.137764530740678,
+        "bank_q_cycles_per_source_sample": 0.3333333333333333,
+        "bank_cutoff_before_folding_hz": 16725.138601887968
+      },
+      {
+        "note": 91,
+        "midi_onset_seconds": 18.75,
+        "offset_seconds": 0.16,
+        "role": "later_same_note",
+        "nominal_f0_hz": 1567.981743926997,
+        "source_samples_per_output_sample": 1.137764530740678,
+        "bank_q_cycles_per_source_sample": 0.3333333333333333,
+        "bank_cutoff_before_folding_hz": 16725.138601887968
+      },
+      {
+        "note": 93,
+        "midi_onset_seconds": 18.25,
+        "offset_seconds": 0.1,
+        "role": "other_pitch",
+        "nominal_f0_hz": 1760.0,
+        "source_samples_per_output_sample": 1.2770975056689342,
+        "bank_q_cycles_per_source_sample": 0.3333333333333333,
+        "bank_cutoff_before_folding_hz": 18773.333333333332
+      },
+      {
+        "note": 88,
+        "midi_onset_seconds": 19.75,
+        "offset_seconds": 0.1,
+        "role": "other_pitch",
+        "nominal_f0_hz": 1318.5102276514797,
+        "source_samples_per_output_sample": 0.956742115302661,
+        "bank_q_cycles_per_source_sample": 0.5,
+        "bank_cutoff_before_folding_hz": 21096.163642423675
+      },
+      {
+        "note": 86,
+        "midi_onset_seconds": 19.25,
+        "offset_seconds": 0.1,
+        "role": "other_pitch",
+        "nominal_f0_hz": 1174.6590716696303,
+        "source_samples_per_output_sample": 0.8523603241140174,
+        "bank_q_cycles_per_source_sample": 0.5,
+        "bank_cutoff_before_folding_hz": 18794.545146714085
+      }
+    ],
+    "window_samples": 3528,
+    "window_width_seconds": 0.08,
+    "fir_offsets_samples": [
+      -6,
+      -5,
+      -4,
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "training": "Only91+100ms: phase/DC and13 signed taps including gain. No alias-specific weights. No taper-based new fit objective.",
+    "checking": "All taps/gain frozen; only phase/DC for each check. No rate/cutoff/table/window choices fitted.",
+    "phase_search": "For everyrow:256uniformphasegrid; identifystrictcycliclocalminima; addglobalminimumfallback; sortuniqueindicesby(trainingloss,index), retainfirst16. Refineeachseed withthree65pointlocalgrids across+-previous spacing, dividing spacingby32 eachpass. Chooseminimumloss overallevaluatedtrainingphases. No smooth optimizer.",
+    "phase_limit": "Bounded multi-basin search, not globaloptimalityproof; independent plantedfloor64 truths also checked with4096coarse+same16basinrule. Keep1e\u22126crosspitchgate; stop onpersistentfailure.",
+    "rank_guard": "rank14 and condition<1e6; report rejected models without changing family",
+    "metrics": [
+      "centered residual waveform power",
+      "H2..H8/H1 magnitude errors",
+      "original fixed hardware-mask alias bins and per-line flags",
+      "joint first+second fold estimator sensitivity on same mask"
+    ],
+    "controls_before_hardware": [
+      "direct convolution vs cumulative differences on arbitrary periodic arrays",
+      "forced-base identity and sum-normalization controls",
+      "circular wrap differences and normalized constant reproduction",
+      "Direct continuous endpoint continuity, analytic forced-base source-knot jumps, finite lookup bin edges, high-precision pitch trajectory",
+      "independent planted waveform recovery across notes and phase-search sensitivity",
+      "identical historical inputs and13tap control reconstruction"
+    ]
+  },
+  "source_receipts": {
+    "Docs/fidelity/source-audits/deepsonic-acquisition-2026-09-15.json": "078a3f5e1306401da4316151c0d14851130b7dd741ffa3c2fd8a0eac3af6e127",
+    "Docs/fidelity/source-audits/high-note-wavetable-models-2026-09-15.json": "ece050911bbf24b3d6239924cb1d644199b155cabb0d5928faa8997d1e76419c"
+  },
+  "dependency_sha256": {
+    "Tools/fit_high_note_wavetable_models.py": "a8a3988d227c9340e3682fa31abf75157ec016976091e7748fc1f6b14bc7ccf8",
+    "Tools/fit_high_note_saw_models.py": "8b3407dec63e40e7eab9e0c3182048a6bcd86b914c5df76c643706357adbf163",
+    "Tools/analyze_deepsonic_saw_aliases.py": "99e07f49b6804d605df6376dacd957add4d7bbda49d9b1b7136d3885824dc1c0"
+  },
+  "patent_primary_url": "https://patents.google.com/patent/US4715257A/en",
+  "patent_pdf_sha256": "ef733e3073f597b7dd00d7908baf04d543468aa68c3b4a4b9519750d2b8e95f4",
+  "limits": [
+    "All check pitches previously inspected, not blind data",
+    "Same-note windows overlap20ms",
+    "Unknown capture and effective high-note filter response",
+    "No hardware coefficient or firmware identification",
+    "No model selected on check outcomes; no Source change"
+  ],
+  "runtime_budget": "24models/120passages; target<=15minutes numerical run once controls pass; no adaptive grid expansion",
+  "historical_comparators": [
+    "naive_control",
+    "polyblep_control",
+    "sampled_ramp-n32-linear",
+    "sampled_ramp-n32-cubic_lagrange"
+  ],
+  "historical_comparator_policy": "Reuse frozen prior13tap coefficients/gain/phase as reference results, no24factorial model selected against them.",
+  "pre_hardware_control_amendments": [
+    {
+      "previous_proposal_sha256": "02521896bb5b98f39a6ae34bfc2f6143bedc266b05d461e362f5080984824ac0",
+      "failed_run_receipt_sha256": "c4dfacfae7efc9252a722746976572421067c6be4cb69b92dde34178f3950933",
+      "hardware_loaded": false,
+      "models_changed": false,
+      "reason": "Forced-base raw approximation can jump at a source knot; the original continuity guard incorrectly applied to it.",
+      "correction": "Direct continuous interpolation remains subject to continuity guard. Forced-base right-minus-left jump at new integerk is (1\u2212sum(a_at0))*(T[k\u22123]\u2212T[k\u22124]); check this identity instead. Floor64 lookup discontinuity is separately retained, not assumed continuous."
+    },
+    {
+      "previous_proposal_sha256": "e316031a4ca51d4a6eb433616023a77f9efe18fd83b896817d88c12eab8a2ec4",
+      "failed_run_receipt_sha256": "b3eaa6deae50013cd2dc81e05a6daa76aad9f70dae32cf0392cd11ebbc829812",
+      "hardware_loaded": false,
+      "models_changed": false,
+      "reason": "Full planted waveforms used the fitted design helper; sparse scalar checks were insufficient to claim independent full synthesis. The same run also failed the Fourier floor64 phase-transfer gate before hardware.",
+      "correction": "Generate all extended source samples through independent scalar_value; convolve with known taps via np.convolve(valid). Preserve failed phase-transfer guard; no relaxation, no hardware run under failing search."
+    },
+    {
+      "previous_proposal_sha256": "7ff00883a46c450cb6e895f2407b5c09a1bd9bf3827df15ebfcc6b7e045391c2",
+      "hardware_loaded": false,
+      "models_changed": false,
+      "reason": "One-coarse-basin search failed the source-free Fourier floor64 transfer gate.",
+      "correction": "At each256or4096coarse grid, retain up to16strict cyclic local minima sorted by training loss, includingglobalminimum fallback; refineeach usingthree65pointlocalgrids; choose lowesttrainingloss only. Gate remains1e\u22126; stop if failure persists. Add exact/left/right all64fractional-bin scalar comparisons and20frozenhistoricalpredictionhashchecks."
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-15",
+  "reviewer": "source_research",
+  "status": "passed; no unresolved consequential blocker to declared bounded experiment",
+  "scope": "Independent core formulas, source-free controls, fixed historical outputs and code-only phase/provenance-policy review. No hardware audio read, candidate score assessment, optimizer rerun, production/source-tool edits, staging or commit.",
+  "artifacts": [
+    {
+      "path": "Tools/fit_high_note_sinc_models.py",
+      "sha256": "47d13c6a4a5b229a02f481f54bdb41b380e92abc11c6ba683f4064d6ded04e09"
+    },
+    {
+      "path": "Docs/fidelity/source-audits/windowed-sinc-interpolation-proposal-2026-09-15.json",
+      "sha256": "e0095a8eab6f0c22ba987e781c1df7600ffa088b34ba82f065aa9432a5df1d26"
+    },
+    {
+      "path": "build-fidelity/high-note-shape/sinc-v3/protocol-before-controls.json",
+      "sha256": "d9983b82013be262671a58ee0559371ac4ec490fae9c7efe3f36c1368ba2c186"
+    },
+    {
+      "path": "build-fidelity/high-note-shape/sinc-v3/controls.json",
+      "sha256": "b2261e63a8db80dad166bb2699f54e207762450c89be997a12829ef83374f30c"
+    }
+  ],
+  "review_scripts_and_results": [
+    {
+      "path": "build-fidelity/high-note-shape/sinc-independent-review/check_math.py",
+      "sha256": "3cf2189ca0b8305d764c432f4c91bc40b115f62464e2bad93716c0063a656e07"
+    },
+    {
+      "path": "build-fidelity/high-note-shape/sinc-independent-review/math-checks-before-search-amendment.json",
+      "sha256": "801865127431e402e25fcc8718bdcfe1fd33aacaff6edaf9be286f7a3a32d52b"
+    },
+    {
+      "path": "build-fidelity/high-note-shape/sinc-independent-review/math-checks.json",
+      "sha256": "6f669d02a28f99a17b38072e90a5d8a6e9ad1017864c3f3b672a837e2cd617f3"
+    },
+    {
+      "path": "build-fidelity/high-note-shape/sinc-independent-review/verify_controls.py",
+      "sha256": "d63eecb65060950a11839ea499d954c263a9b3240178008d45cd0c74d1ea6a7b"
+    },
+    {
+      "path": "build-fidelity/high-note-shape/sinc-independent-review/planted-checks.json",
+      "sha256": "44c91a74b12d004c40300020656aad1e3e7bb8cddd87fa1fcc50e5e534922ef3"
+    },
+    {
+      "path": "build-fidelity/high-note-shape/sinc-independent-review/historical-checks.json",
+      "sha256": "9e4d725d31f83d4c7500ec6f8006d0ed376a4db086b3ea7f0a75fb02a0ee5b17"
+    },
+    {
+      "path": "build-fidelity/high-note-shape/sinc-independent-review/reviewed-fit-high-note-sinc-models.py",
+      "sha256": "47d13c6a4a5b229a02f481f54bdb41b380e92abc11c6ba683f4064d6ded04e09"
+    }
+  ],
+  "tested_tool_sha256": "47d13c6a4a5b229a02f481f54bdb41b380e92abc11c6ba683f4064d6ded04e09",
+  "tested_protocol_sha256": "e0095a8eab6f0c22ba987e781c1df7600ffa088b34ba82f065aa9432a5df1d26",
+  "metrics": {
+    "models": 24,
+    "scalar_sample_checks": 3456,
+    "independent_fir_full_window_checks": 24,
+    "exact_floor_bin_checks": 2304,
+    "scalar_maximum_error": 1.3877787807814457e-15,
+    "independent_fir_maximum_error": 3.885780586188048e-16,
+    "exact_bin_maximum_error": 0.0
+  },
+  "planted_metrics": {
+    "training_models": 12,
+    "held_note_predictions": 36,
+    "dense_training_predictions": 6,
+    "maximum_reported_error_power_discrepancy": 4.923390365512656e-20,
+    "maximum_training_error_power": 7.266777168598698e-19,
+    "maximum_other_note_error_power": 4.992724421073453e-13
+  },
+  "historical_predictions_verified": 20,
+  "formula_review": [
+    "Eight source offsets -3..4 and integer modulo32 implement circular source lookup. Normalized and raw-direct branches use the same unnormalized sampled Hann-sinc weights.",
+    "Forced-base branch equals raw-direct+(1-sum(weights))*leftmostSourceValue. It applies tail-cumulative coefficients only to seven adjacent differences; the circular wrap difference is preserved.",
+    "At a continuous source knot k, compact Hann endpoints vanish. The forced-base jump is (1-sum(weights_at0))*(T[(k-3)%32]-T[(k-4)%32]); direct branches stay continuous. This special formula is not asserted for finite64 lookup, whose own bin jump must also be included.",
+    "Only fractional kernel lookup is floored to64 bins; nominal f0/Fs phase trajectory remains float64. Exact-bin, interior-bin and source-wrap cases were independently checked.",
+    "rho=32*f0/44100 uses declared .5,1/3,.25 cutoff bands at rho1 and1.5. The q.25 branch is checked synthetically at note96; original hardware passages do not exercise it. No fixed output10kHz notch or SH source-rate inference follows.",
+    "The reversed sliding-window matrix equals source indices(sample-offset) with offsets-6..6. Independent full scalar synthesis and a non-palindromic13tap valid convolution verify the column direction and slice alignment for all24 definitions."
+  ],
+  "control_review": [
+    "The original forced-base continuity assertion was invalid; the retained first failure precedes hardware and the corrected analytic jump is appropriate.",
+    "The initial design@knownTaps synthetic truth shared the fitter path. It was replaced by full scalar_value synthesis plus np.convolve(valid), without changing24model definitions. Independent review reference uses separate scalar sums and math.fsum.",
+    "A one-basin finite-grid phase-transfer failure was retained. The revised predeclared search evaluates256coarse phases, refines up to16strict cyclic local minima including a global-minimum fallback with3x65grids, and retains the lowest sampled objective. The4096coarse sensitivity uses the same bounded refinement rule.",
+    "All12banked planted training cases and36cross-pitch phase/DC-only recoveries meet1e-6 relative waveform-power error;6dense-training comparisons also pass. This review reproduced every frozen recovery without rerunning either optimizer.",
+    "20historical predictions from four prior equal13tap comparators reconstruct byte-exactly. They retain earlier coefficients, gain and phases; no historical comparator is refitted.",
+    "Five protocol-pinned source-receipt/helper hashes and current tool/proposal hashes match the frozen pre-control receipt. Code places all numerical control gates and historical reconstruction checks before reading/decoding original hardware audio."
+  ],
+  "fitting_policy_code_review": [
+    "Only training solves13signed taps plusDC at each phase; their combined gain remains frozen for other passages. Check passages optimize phase only after centering both waveforms, which is equivalent to a DC nuisance.",
+    "Source MP3/MIDI hashes, exact five decoded window hashes and original hardware-only detector/reference equality are guarded before hardware fits. New first/second-fold sensitivity retains the same original selected bins.",
+    "No candidate alias metric enters waveform fitting, phase search or source mask selection. All24rows, invalid rank/condition rows and unresolved candidate-line flags are retained; selected_model remains None."
+  ],
+  "limitations": [
+    "No new hardware result is reviewed or endorsed here. This is an experiment-validity gate, not evidence of an SH-201 output match.",
+    "The phase search is reproducible and passes declared planted controls; neither that nor16basins proves a global optimum on every moving hardware waveform.",
+    "Only12banked synthetic cases are fitted; direct scalar/FIR/bin checks coverall24definitions. Banked cross-pitch controls exercise all3cutoff branches.",
+    "Normalized versus forced-base comparisons alone couple normalization with base substitution; raw-direct versus forced-base rows isolate the latter because their raw weights are identical.",
+    "DC centering, same-note overlap, prior exposure to check pitches and an unknown shared source/capture FIR remain explicit limits. Patent authorship does not establish SH-201 implementation."
+  ],
+  "actionable_blockers": []
+}

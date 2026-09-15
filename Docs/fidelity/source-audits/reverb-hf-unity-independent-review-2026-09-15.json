@@ -1,0 +1,25 @@
+{
+  "status": "Independent review passed with no consequential blockers",
+  "reviewer": "root",
+  "date": "2026-09-15",
+  "receipt_sha256": "5d7bdf7aa68159e7fbbad95d72a17c582543af730af25395a0a2b5de5edb347f",
+  "tool_sha256": "8c9ce6a0327517faaf484fc5ca487839839d494d7a34ffe2a9a0b5a9ab404016",
+  "build_and_production_source_hashes_checked": 41,
+  "summary_fields_independently_recomputed": 1080,
+  "summary_maximum_absolute_error": 0.0,
+  "checks": [
+    "Reviewed sole HF gain-argument intervention; shelf coefficient/state update and other network/output parameters retained",
+    "All six raw identities checked, all three original modes independently match prior decomposition full raw files",
+    "Neutral Cotton raw and exported WAV identities verified",
+    "All six outputs stay below the limiter knee",
+    "All 1080 summary fields independently recomputed exactly from retained window arrays",
+    "Compact durable result equals parsed retained run object",
+    "Report and figure reviewed with all regressions and weak-source-band guards retained"
+  ],
+  "qualifications": [
+    "Ablation changes phase and attenuation; it is not a monotonic bound on intermediate gains",
+    "Existing original patch/performance/capture uncertainty and Ambient boundary alignment remain",
+    "No new production coefficient is justified by this endpoint"
+  ],
+  "production_dsp_changed": false
+}

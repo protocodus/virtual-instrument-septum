@@ -1,0 +1,195 @@
+{
+  "status": "pass_no_actionable_findings",
+  "scope": "Independent read-only review of the existing full-engine high-note Saw baseline. No new audio rendering, optimizer, coefficient fit, spectral amplitude refit, DSP edits, staging or commit.",
+  "date": "2026-09-15",
+  "reviewed_revision": "a9fb98b303dd60413c452d93892f9c6898b8bd7f",
+  "reviewed_artifacts_sha256": {
+    "Tools/assess_production_high_note_saw.py": "3e75a920f0c0a7174e4ae39eeefec4171c25b7ab66714e034abdcb42ee31071a",
+    "Docs/fidelity/source-audits/production-high-note-saw-2026-09-15.json": "b9e9b36981c6960cf49c6d4abbf6e536e4575b426207186cc54315064bb33afd",
+    "Docs/fidelity/source-audits/production-high-note-saw-2026-09-15.md": "f67cf846fc2c79d240ecd97b393be99a33f47ad389ac5165d7ea82805070359c",
+    "Docs/fidelity/plots/production-high-note-saw.png": "0acd758364fd145d473a3640b075c9c01f9648fca1a429a08050ac60bdf9a140"
+  },
+  "verification": {
+    "script": "build-fidelity/production-high-note-saw/independent-review/check.py",
+    "script_sha256": "7f565b67cdaeb9bc6f944cf5f949847c3230811db6f86beb4603a70ee10beac5",
+    "scratch_receipt": "build-fidelity/production-high-note-saw/independent-review/checks.json",
+    "scratch_receipt_sha256": "d39ed23bae8a945de880d5cd7db5688dadc366d0a596fd595b319b1d20424313",
+    "pinned_file_count": 50,
+    "window_count": 10,
+    "original_mask_line_rows": 100,
+    "elementary_numeric_values_recomputed": 344,
+    "maximum_absolute_difference": 0.0,
+    "method": "Verified source/renderer/media/recipe/helper/result hashes, all ten raw sample extractions, saved fixed gains, direct waveform statistics, and elementary arithmetic over stored harmonic/alias measurements. Read estimator implementation; did not refit amplitudes or re-run optimizers.",
+    "plot_visually_reviewed": true
+  },
+  "provenance_review": {
+    "original_dsp_revision": "b0f6c03cba701ccb2dd9dcf1d8ad26c3eba578d5",
+    "renderer_sha256": "0e69118d0dab0928793ef3b59208fddf43b7bd56d982f2c053d3c0ad9f15b646",
+    "current_engine_header_sha256": "b1b7cfd308c42d3b768b098624c26e417d00c4e0387ff5c2331ca1bb93d0d99e",
+    "current_engine_cpp_sha256": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+    "full_source_diff_sha256": "237d797b4061dcd847ed586278843b5dd10ef16eefb22f70ea73c4ffac554ca4",
+    "finding": "All retained DSP files match the original shipping checkpoint exactly. The copied renderer installs an empty default TimbreCalibration profile; its only renderer changes are that installation and an Engine type alias. Current Source/DSP plus RenderMidi differ only by reverbWetReturn 0.8 to 0.4 and comments.",
+    "dry_applicability": "Renderer sets the patch then resets. Engine reset clears delay/FDN state and initializes reverbWetGain to zero for the disabled-reverb fixture. Note-only MIDI cannot enable effects. The current return constant is inactive here. This establishes dry-source applicability, not fresh current-binary PCM identity.",
+    "performance": "Original and copied MIDI hashes agree; receipt retains all 124 note-on/off pairs, stored tempo policy, master level100, no synthetic final note-offs, sole omitted FF20 metadata, finite output and zero final active voices. Reviewed original-gate validation in the frozen tool.",
+    "original_midi_sha256": "21ea21b9ba3ba14cc205931134fb7a320b09e67821bd3a3c70f97fa2e8b5d99a",
+    "original_mp3_sha256": {
+      "12": "28e241247a0efb217eb4cb7154cc3b69713fcebca781639c45b8904b3dc8615b",
+      "24": "ebb6fa4e12136028bbff614633095aa510c31654fcce840af5e3a85b3a469d90"
+    },
+    "retained_float32_stereo_wav_sha256": {
+      "12": "e960507e6c9404554980eceae90d51e1253347d22fbe7e661f48730dce7484da",
+      "24": "dd505cd6a020417a5b86c52083a8dd6091b3f18edbad7c28a0de431df2356a33"
+    }
+  },
+  "measurement_review": {
+    "clock": "hardware[a:b] compared with gain * engine[a-1406:b-1406,0]. round(93 + 44.1 - .035*44100) = -1406; no further renderer-latency shift. The sub-sample convention rounds -1406.4 by +0.4 sample.",
+    "gains": {
+      "12": 4.137125725839024,
+      "24": 3.870462967942607
+    },
+    "gain_support_hardware_half_open": [
+      66150,
+      85444
+    ],
+    "gain_support_engine_half_open": [
+      64744,
+      84038
+    ],
+    "gain_policy": "Copied note36-only phase-zero calibration; no high-note refit and no listening-player attenuation.",
+    "channel": "Original mono versus raw renderer left float32 converted to float64 before the frozen gain. Full-file L/R maximum differences are 9.094947017729282e-13 and 3.637978807091713e-12 for LP12/LP24. No stereo averaging or per-window normalization.",
+    "support": "Five fixed3528-sample windows per slope: 91+.10, 91+.16, 93+.10, 88+.10, 86+.10. Every sample hash and -1406 offset verified. The two note91 windows overlap882samples; none is blind validation.",
+    "harmonics": "Fixed nominal MIDI frequencies and previously audited quadrature/quadratic-ramp estimator. H2-H8/H1 magnitude ratios measure shape; they are kept separate from unaligned raw fixed-phase error power.",
+    "alias_masks": "Unchanged original-LP12 line IDs9/9/8/11/13 across both slopes. LP24 hardware validity is retained independently and all50 inherited LP24 IDs pass. All100 engine observations remain even when they fail the original threshold. Complete-mask statistics are explicitly search-maximum proxies, not certified resolved-alias errors.",
+    "alias_threshold": "Interior local maximum within +/-6Hz, at least12dB local prominence and -75dBc, away from harmonics by more than37.5Hz. All saved validity flags and signed/aggregate arithmetic verified.",
+    "fixed_phase_residual": "Recomputed ten raw and mean-removed relative power residuals from exact PCM with frozen gains. These values cannot rank against phase/DC/gain-fitted oscillator-only residuals and do not directly represent audible mismatch."
+  },
+  "window_checks": [
+    {
+      "slope": 12,
+      "note": 91,
+      "offset_seconds": 0.1,
+      "samples": [
+        828115,
+        831643
+      ],
+      "harmonic_rms_db": 11.29607546045386,
+      "mask_lines": 9,
+      "engine_resolved_lines": 8
+    },
+    {
+      "slope": 12,
+      "note": 91,
+      "offset_seconds": 0.16,
+      "samples": [
+        830761,
+        834289
+      ],
+      "harmonic_rms_db": 8.535648959280994,
+      "mask_lines": 9,
+      "engine_resolved_lines": 8
+    },
+    {
+      "slope": 12,
+      "note": 93,
+      "offset_seconds": 0.1,
+      "samples": [
+        806065,
+        809593
+      ],
+      "harmonic_rms_db": 10.292090517905892,
+      "mask_lines": 8,
+      "engine_resolved_lines": 7
+    },
+    {
+      "slope": 12,
+      "note": 88,
+      "offset_seconds": 0.1,
+      "samples": [
+        872215,
+        875743
+      ],
+      "harmonic_rms_db": 6.770394296174185,
+      "mask_lines": 11,
+      "engine_resolved_lines": 9
+    },
+    {
+      "slope": 12,
+      "note": 86,
+      "offset_seconds": 0.1,
+      "samples": [
+        850165,
+        853693
+      ],
+      "harmonic_rms_db": 4.525820767084285,
+      "mask_lines": 13,
+      "engine_resolved_lines": 10
+    },
+    {
+      "slope": 24,
+      "note": 91,
+      "offset_seconds": 0.1,
+      "samples": [
+        828115,
+        831643
+      ],
+      "harmonic_rms_db": 9.326958314602086,
+      "mask_lines": 9,
+      "engine_resolved_lines": 8
+    },
+    {
+      "slope": 24,
+      "note": 91,
+      "offset_seconds": 0.16,
+      "samples": [
+        830761,
+        834289
+      ],
+      "harmonic_rms_db": 4.793908129000066,
+      "mask_lines": 9,
+      "engine_resolved_lines": 8
+    },
+    {
+      "slope": 24,
+      "note": 93,
+      "offset_seconds": 0.1,
+      "samples": [
+        806065,
+        809593
+      ],
+      "harmonic_rms_db": 9.784174970653908,
+      "mask_lines": 8,
+      "engine_resolved_lines": 7
+    },
+    {
+      "slope": 24,
+      "note": 88,
+      "offset_seconds": 0.1,
+      "samples": [
+        872215,
+        875743
+      ],
+      "harmonic_rms_db": 4.832695984994224,
+      "mask_lines": 11,
+      "engine_resolved_lines": 9
+    },
+    {
+      "slope": 24,
+      "note": 86,
+      "offset_seconds": 0.1,
+      "samples": [
+        850165,
+        853693
+      ],
+      "harmonic_rms_db": 2.944733226152896,
+      "mask_lines": 13,
+      "engine_resolved_lines": 8
+    }
+  ],
+  "interpretation": "Report and figure correctly document a substantial full-engine harmonic mismatch with both alias excesses and deficits. The minimum retained-engine baseline is established; this does not justify a particular W4 implementation, identify the oscillator/capture path, prove an internal44.1kHz rate, or establish whole-instrument equivalence.",
+  "limitations": [
+    "Reconstructed physical recipe rather than authenticated original SysEx.",
+    "Unknown capture transfer, initial phase and finite-window dynamics remain.",
+    "No current-binary rerender, new spectral remeasurement, new optimizer or broad regression run was performed in this review.",
+    "Historical original-audio masks and estimator dependencies were verified; this review does not independently re-identify every folded spectral component."
+  ]
+}

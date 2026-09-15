@@ -4,7 +4,7 @@ Status: **matching hardware output is not established**. Updated
 2026-09-15. Work uses public recordings as requested. No physical-unit capture
 is required to continue the present investigations.
 
-## Implemented in this checkpoint
+## Implemented DSP and validation
 
 - [Zero-resonance filter response](dry-filter-calibration.md): dry public
   LP12/LP24 recordings with original performance MIDI support reducing the
@@ -139,6 +139,28 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   and pitch-selected cutoff banks. Its difference coding is algebraically
   equivalent to convolution with the same weights. It supplies a bounded
   new hypothesis, but no SH-201 implementation link or recovered coefficients.
+  The subsequent [24 fixed sinc models](source-audits/high-note-sinc-models-2026-09-15.md)
+  pass independent kernel and phase-search controls, but every model still
+  has at least 33.95 dB alias-bin RMS error on another pitch. Quiet unresolved
+  bins remain flagged, and a joint detector retains the failures. These are
+  effective waveform-plus-FIR fits, not a comparison against shipping audio.
+  An [actual-engine W4 trial proposal](source-audits/asymmetric-w4-engine-test-proposal-2026-09-15.md)
+  addresses that distinction: measure the full production baseline and
+  learn any source correction through the existing downstream path, so its
+  filtering is counted once. A useful partial improvement need not identify
+  Roland's architecture or solve every notch before it can be tested.
+  The [complete-engine baseline](source-audits/production-high-note-saw-2026-09-15.md)
+  now verifies the existing dry renders and measures all five original windows
+  with unchanged timing, gains and hardware-only alias masks. H2–H8 ratio
+  error is 4.53–11.30 dB for LP12 and 2.94–9.78 dB for LP24; one LP12
+  harmonic is 21.97 dB too strong. Fundamental level is within 0.39 dB,
+  so a global level correction cannot fix the shape. Both excessive and
+  deficient folded components remain. Raw waveform error is reported
+  separately because canonical engine phase was not fitted. This completes
+  the baseline prerequisite, without selecting or shipping W4 coefficients.
+  Its [independent review](source-audits/production-high-note-baseline-independent-review-2026-09-15.json)
+  verifies all ten sample windows, 100 retained alias rows and 344 numerical
+  values without discrepancy.
   [Slope/time controls](source-audits/deepsonic-high-note-invariance-2026-09-15.md)
   identify an early, nearly invariant Q0 high-note region followed by a
   moving response. Q50 differs strongly there, ruling out an unconditional
@@ -219,6 +241,12 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   Cotton's controlled extension still is not its original final performance.
   The decomposition identifies current model contributions, not hardware
   damping coefficients or a global time curve.
+  A [fixed-input HF shelf removal](source-audits/reverb-hf-unity-ablation-2026-09-15.md)
+  preserves original replay bytes and neutral Cotton exactly, but improves
+  Club's later whole-Side level by only 0.50 dB, leaving a 6.85 dB deficit.
+  Several Mid bands regress and Ambient's Side excess remains. The endpoint
+  changes phase as well as loss; it neither corrects the main discrepancy nor
+  identifies an intermediate hardware gain.
 
 ## Benchmark numerical correction
 
@@ -234,16 +262,20 @@ reliability and does not change the instrument's DSP.
 
 ## Next work
 
-1. Distinguish the remaining high-register oscillator/filter mechanisms in
-   the original-MIDI dry recordings. The tested short FIR, wrap-kernel and
-   periodic-table families fail joint reproduction; expanding those grids
-   alone is not new evidence. Keep both main harmonics and aliases visible.
+1. Test a proposed W4 source correction through the complete engine, using
+   the verified shipping baseline and first validating the composed path
+   with known synthetic inputs. The earlier oscillator-only reference is
+   not shipping output. Preserve
+   filter/output controls and the entire original-MIDI and preset comparison;
+   report useful partial improvements and regressions without requiring a
+   unique architecture identification. Expanding failed source-only grids
+   alone is not new evidence.
 2. Examine creator recordings for independent oscillator measurements,
    retaining uncertain panel state and unmeasured raw settings explicitly.
-3. Use the verified model buses to isolate the current HF feedback shelf's
-   contribution to Club and Ambient, keeping time, return level and inputs
-   fixed. Removing a shelf changes phase as well as attenuation; it cannot
-   uniquely identify hardware damping. Cotton's opening reconstruction does
+3. Investigate the remaining reverb response/state and original excitation
+   uncertainty. Verified input halts and the HF-unity endpoint leave Club's
+   later Side deficit; they do not identify a replacement network or time law.
+   Cotton's opening reconstruction does
    not authenticate its final recorded excitation; preserve that limitation
    and the original Club/Ambient/Class A counterexamples.
 4. Keep independent validation passages and input uncertainty visible.
