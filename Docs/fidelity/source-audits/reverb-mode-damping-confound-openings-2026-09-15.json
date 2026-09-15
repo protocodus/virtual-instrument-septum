@@ -1,0 +1,2220 @@
+{
+  "schema_version": 1,
+  "status": "201vsJP8000 conditional two-pitch input with explicit gate ambiguity; Soundtrack not transcribed.",
+  "selection": "Explicit post-result confound investigation: SINGLE+HF-damped201vsJP8000 versus DUAL+neutral Soundtrack. No candidate audio or scores used for these source choices.",
+  "tool_sha256": "fa5177ff62e8e0487b9d6c2f68694ad7315d9282206271c8b3432f3939fa43af",
+  "catalog_sha256": "32e356db740bd827792b6d98800aa7f923b34ceb3b7a164dd2cfcb5220119736",
+  "inventory_sha256": "d7eab711362549a286e95981d8ed77213ae176e9bbb648c3a03b1f760baad51b",
+  "helpers": {
+    "compare_hardware.py": "98c1fad577e2cc13b5c20dff04d06a1414ae0332fe48e2696b690db03d87be86",
+    "extract_reference_patch.py": "461407495e9f5bfc99767a0146a750708c5cdb2fd34c0d029aaf5e5f5a80703b",
+    "render_midi.py": "ffb8899e5a4b3588d459e5de3e710c74a002dfc04e45d7691a03102e9b5093e3",
+    "assess_hardware_equivalence.py": "b6ca63fa02ff11f3154cf34c1233cfe460fd4447be403fe4c0695646ccb74631"
+  },
+  "decoder": {
+    "path": "/opt/homebrew/bin/ffmpeg",
+    "sha256": "00d01197255300c02122c783dd0126a9e7f47d6c6a19faafae2e6610efd071d3",
+    "version": "ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers"
+  },
+  "bank": {
+    "id": "pad",
+    "category": "PAD",
+    "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_pad.html",
+    "url": "https://www.rolandus.com/go/sh-201_patches/shl/SH-201_Patch_PAD.zip",
+    "local_filename": "SH-201_Patch_PAD.zip",
+    "sha256": "d00b19491c2cec27ee640147e0dfb6d1b8a47bcb70831a93a819a70d21a2a222",
+    "size_bytes": 44345,
+    "archive_member": "SH-201_Patch_PAD/100_PAD.shl",
+    "bank_sha256": "78a518f63fe6ce2c15042a8f6258b4b6d6d3519727c7b0befc1f99d097c8a3ea",
+    "patch_count": 100,
+    "parameter_blocks_per_patch": 22,
+    "contains_original_performance_midi": false
+  },
+  "velocity_mapping_source_sha256": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+  "cases": {
+    "pad-06": {
+      "reference": {
+        "id": "pad-06",
+        "title": "201vsJP8000",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_pad.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/PAD/TOP8_SH-201vsJP-8000.mp3",
+        "local_filename": "TOP8_SH-201vsJP-8000.mp3",
+        "sha256": "0681718b242a89b23d350237e3f2aad2085e877ee5818256a004eca921d49e2c",
+        "size_bytes": 1005389,
+        "bank_id": "pad",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 6,
+        "patch_name": "201vsJP8000",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+      },
+      "source_mp3_path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/sources/TOP8_SH-201vsJP-8000.mp3",
+      "decoded_sha256": "6afa661ac53703ff8a46795b4758ab6bee1041850ae8a9fe2b2a56ed9fbcbca5",
+      "decode_command": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/sources/TOP8_SH-201vsJP-8000.mp3",
+        "-ar",
+        "44100",
+        "-ac",
+        "2",
+        "-c:a",
+        "pcm_f32le",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/reverb-confound-openings/run-02/pad-06/hardware-full.wav"
+      ],
+      "sysex_sha256": "70e44e7665a3e6b46faabf733588fda615dcf2161a85dea693e70c319a3f1501",
+      "active_parts": [
+        "upper"
+      ],
+      "decoded": {
+        "keyboardMode": 0,
+        "keyboardPart": 0,
+        "splitPoint": 53,
+        "patchLevel": 90,
+        "toneBalance": 0,
+        "tempo": 120,
+        "delayOn": 1,
+        "reverbOn": 1,
+        "modulationAssign": 0,
+        "modulationDestination": 2,
+        "pitchBendDestination": 2,
+        "arpeggioOn": 0,
+        "delayTime": 66,
+        "delayFeedback": 28,
+        "delayModulationDepth": 3,
+        "reverbPreDelay": 125,
+        "upper": {
+          "pitchEnvAttack": 0,
+          "pitchEnvDecay": 0,
+          "mixType": 0,
+          "balance": 0,
+          "lowFreq": 0,
+          "filterType": 1,
+          "filterSlope": 0,
+          "cutoff": 85,
+          "keyFollow": 0,
+          "cutoffVelocitySens": 0,
+          "resonance": 10,
+          "filterEnvAttack": 0,
+          "filterEnvDecay": 41,
+          "filterEnvSustain": 18,
+          "filterEnvRelease": 61,
+          "filterEnvDepth": 3,
+          "overdrive": 0,
+          "drive": 100,
+          "level": 127,
+          "levelVelocitySens": 8,
+          "pan": 0,
+          "ampEnvAttack": 0,
+          "ampEnvDecay": 0,
+          "ampEnvSustain": 127,
+          "ampEnvRelease": 61,
+          "delayDepth": 40,
+          "reverbDepth": 40,
+          "bendRange": 2,
+          "octaveShift": 0,
+          "portamento": 0,
+          "portamentoTime": 20,
+          "mono": 0,
+          "osc1": {
+            "wave": 7,
+            "pitchWide": 0,
+            "coarse": 0,
+            "fine": 0,
+            "pulseWidth": 101,
+            "pitchEnvDepth": 0,
+            "decoded_by_current_codec": true,
+            "wave_name": "SuperSaw",
+            "signed_coarse_raw": 0,
+            "coarse_units": "physical semitones, current SysEx codec",
+            "net_coarse_and_tone_octave_semitones": 0,
+            "mixed_in": true
+          },
+          "osc2": {
+            "wave": 7,
+            "pitchWide": 0,
+            "coarse": 0,
+            "fine": 0,
+            "pulseWidth": 86,
+            "pitchEnvDepth": 0,
+            "decoded_by_current_codec": true,
+            "wave_name": "SuperSaw",
+            "signed_coarse_raw": 0,
+            "coarse_units": "physical semitones, current SysEx codec",
+            "net_coarse_and_tone_octave_semitones": 0,
+            "mixed_in": true
+          },
+          "lfo1": {
+            "shape": 1,
+            "rate": 0,
+            "tempoSync": 0,
+            "tempoSyncNote": 17,
+            "fadeTime": 0,
+            "keyTrigger": 0,
+            "destination1": 0,
+            "depth1": -2,
+            "destination2": 2,
+            "depth2": 0,
+            "decoded_by_current_codec": true
+          },
+          "lfo2": {
+            "shape": 0,
+            "rate": 14,
+            "tempoSync": 0,
+            "tempoSyncNote": 17,
+            "fadeTime": 0,
+            "keyTrigger": 0,
+            "destination1": 2,
+            "depth1": 34,
+            "destination2": 2,
+            "depth2": 0,
+            "decoded_by_current_codec": true
+          },
+          "active_by_keyboard_mode": true,
+          "filter_lfo_depths": [
+            0,
+            34
+          ],
+          "zero_filter_envelope_lfo_and_velocity": false,
+          "active_effect_sends": {
+            "delay": 40,
+            "reverb": 40
+          }
+        },
+        "lower": {
+          "pitchEnvAttack": 0,
+          "pitchEnvDecay": 0,
+          "mixType": 0,
+          "balance": 0,
+          "lowFreq": 0,
+          "filterType": 1,
+          "filterSlope": 0,
+          "cutoff": 91,
+          "keyFollow": 0,
+          "cutoffVelocitySens": 0,
+          "resonance": 31,
+          "filterEnvAttack": 0,
+          "filterEnvDecay": 0,
+          "filterEnvSustain": 127,
+          "filterEnvRelease": 0,
+          "filterEnvDepth": 0,
+          "overdrive": 0,
+          "drive": 100,
+          "level": 127,
+          "levelVelocitySens": 8,
+          "pan": 0,
+          "ampEnvAttack": 0,
+          "ampEnvDecay": 0,
+          "ampEnvSustain": 127,
+          "ampEnvRelease": 0,
+          "delayDepth": 40,
+          "reverbDepth": 40,
+          "bendRange": 2,
+          "octaveShift": 0,
+          "portamento": 0,
+          "portamentoTime": 20,
+          "mono": 1,
+          "osc1": {
+            "wave": 0,
+            "pitchWide": 0,
+            "coarse": 0,
+            "fine": 0,
+            "pulseWidth": 86,
+            "pitchEnvDepth": 0,
+            "decoded_by_current_codec": true,
+            "wave_name": "Saw",
+            "signed_coarse_raw": 0,
+            "coarse_units": "physical semitones, current SysEx codec",
+            "net_coarse_and_tone_octave_semitones": 0,
+            "mixed_in": true
+          },
+          "osc2": {
+            "wave": 0,
+            "pitchWide": 0,
+            "coarse": 4,
+            "fine": 9,
+            "pulseWidth": 96,
+            "pitchEnvDepth": 0,
+            "decoded_by_current_codec": true,
+            "wave_name": "Saw",
+            "signed_coarse_raw": 11,
+            "coarse_units": "physical semitones, current SysEx codec",
+            "net_coarse_and_tone_octave_semitones": 4,
+            "mixed_in": true
+          },
+          "lfo1": {
+            "shape": 1,
+            "rate": 12,
+            "tempoSync": 0,
+            "tempoSyncNote": 17,
+            "fadeTime": 0,
+            "keyTrigger": 0,
+            "destination1": 2,
+            "depth1": 36,
+            "destination2": 2,
+            "depth2": 0,
+            "decoded_by_current_codec": true
+          },
+          "lfo2": {
+            "shape": 0,
+            "rate": 92,
+            "tempoSync": 0,
+            "tempoSyncNote": 17,
+            "fadeTime": 0,
+            "keyTrigger": 0,
+            "destination1": 2,
+            "depth1": 0,
+            "destination2": 2,
+            "depth2": 0,
+            "decoded_by_current_codec": true
+          },
+          "active_by_keyboard_mode": false,
+          "filter_lfo_depths": [
+            36,
+            0
+          ],
+          "zero_filter_envelope_lfo_and_velocity": false,
+          "active_effect_sends": {
+            "delay": 40,
+            "reverb": 40
+          }
+        }
+      },
+      "raw_common": [
+        50,
+        48,
+        49,
+        118,
+        115,
+        74,
+        80,
+        56,
+        48,
+        48,
+        48,
+        32,
+        90,
+        64,
+        0,
+        7,
+        8,
+        0,
+        0,
+        53,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        7,
+        1
+      ],
+      "raw_upper": [
+        7,
+        0,
+        64,
+        64,
+        101,
+        64,
+        7,
+        0,
+        64,
+        64,
+        86,
+        64,
+        0,
+        0,
+        0,
+        64,
+        0,
+        1,
+        0,
+        85,
+        64,
+        64,
+        10,
+        0,
+        41,
+        18,
+        61,
+        67,
+        0,
+        100,
+        127,
+        72,
+        64,
+        0,
+        0,
+        127,
+        61,
+        40,
+        40,
+        1,
+        0,
+        0,
+        17,
+        0,
+        0,
+        0,
+        62,
+        2,
+        64,
+        0,
+        14,
+        0,
+        17,
+        0,
+        0,
+        2,
+        98,
+        2,
+        64,
+        2,
+        64,
+        0,
+        20,
+        0
+      ],
+      "raw_lower": [
+        0,
+        0,
+        64,
+        64,
+        86,
+        64,
+        0,
+        0,
+        75,
+        73,
+        96,
+        64,
+        0,
+        0,
+        0,
+        64,
+        0,
+        1,
+        0,
+        91,
+        64,
+        64,
+        31,
+        0,
+        0,
+        127,
+        0,
+        64,
+        0,
+        100,
+        127,
+        72,
+        64,
+        0,
+        0,
+        127,
+        0,
+        40,
+        40,
+        1,
+        12,
+        0,
+        17,
+        0,
+        0,
+        2,
+        100,
+        2,
+        64,
+        0,
+        92,
+        0,
+        17,
+        0,
+        0,
+        2,
+        64,
+        2,
+        64,
+        2,
+        64,
+        0,
+        20,
+        1
+      ],
+      "raw_delay": [
+        66,
+        63,
+        17,
+        2,
+        3
+      ],
+      "raw_reverb": [
+        80,
+        125,
+        7,
+        20,
+        127,
+        127,
+        19,
+        36,
+        0,
+        26
+      ],
+      "reverb_summary": {
+        "time_raw": 80,
+        "predelay_raw": 125,
+        "size_raw": 7,
+        "high_cut_raw": 20,
+        "lf_gain_db": 0,
+        "hf_gain_db": -10
+      },
+      "spectral_windows": [
+        {
+          "seconds": [
+            0.315,
+            0.405
+          ],
+          "samples": [
+            13892,
+            17860
+          ],
+          "width_seconds": 0.08997732426303855,
+          "method": "Stereo power averaged before peak extraction; Hann/zero-padding aids visualization but does not supply independent sub-Hz resolution or unique note identities.",
+          "peaks": [
+            {
+              "hz": 132.56378173828125,
+              "relative_to_window_peak_db": 0.0
+            },
+            {
+              "hz": 257.0526123046875,
+              "relative_to_window_peak_db": -12.553097360769328
+            },
+            {
+              "hz": 521.5072631835938,
+              "relative_to_window_peak_db": -13.421324826073281
+            },
+            {
+              "hz": 789.9993896484375,
+              "relative_to_window_peak_db": -16.315178438880874
+            },
+            {
+              "hz": 662.8189086914062,
+              "relative_to_window_peak_db": -19.227198571811922
+            },
+            {
+              "hz": 376.8310546875,
+              "relative_to_window_peak_db": -26.945533707750357
+            },
+            {
+              "hz": 107.32955932617188,
+              "relative_to_window_peak_db": -31.11492011584955
+            },
+            {
+              "hz": 159.14382934570312,
+              "relative_to_window_peak_db": -32.26810048503174
+            },
+            {
+              "hz": 753.9985656738281,
+              "relative_to_window_peak_db": -34.13707946968921
+            },
+            {
+              "hz": 409.130859375,
+              "relative_to_window_peak_db": -34.48290815068928
+            },
+            {
+              "hz": 495.263671875,
+              "relative_to_window_peak_db": -34.7350919781197
+            },
+            {
+              "hz": 94.88067626953125,
+              "relative_to_window_peak_db": -39.646768655132206
+            },
+            {
+              "hz": 170.58334350585938,
+              "relative_to_window_peak_db": -40.68494529077491
+            },
+            {
+              "hz": 229.46319580078125,
+              "relative_to_window_peak_db": -44.356635253874046
+            },
+            {
+              "hz": 194.47174072265625,
+              "relative_to_window_peak_db": -46.43648576122043
+            },
+            {
+              "hz": 72.33810424804688,
+              "relative_to_window_peak_db": -47.787036806938225
+            },
+            {
+              "hz": 84.11407470703125,
+              "relative_to_window_peak_db": -48.306748654856136
+            },
+            {
+              "hz": 294.3992614746094,
+              "relative_to_window_peak_db": -48.332993947706186
+            },
+            {
+              "hz": 217.35076904296875,
+              "relative_to_window_peak_db": -48.880502132981654
+            },
+            {
+              "hz": 566.5924072265625,
+              "relative_to_window_peak_db": -48.89791845426412
+            },
+            {
+              "hz": 181.6864013671875,
+              "relative_to_window_peak_db": -48.948407726738125
+            },
+            {
+              "hz": 204.22897338867188,
+              "relative_to_window_peak_db": -48.98452121355017
+            },
+            {
+              "hz": 51.477813720703125,
+              "relative_to_window_peak_db": -49.03912249427979
+            },
+            {
+              "hz": 452.197265625,
+              "relative_to_window_peak_db": -51.33888645533436
+            }
+          ]
+        },
+        {
+          "seconds": [
+            0.415,
+            0.565
+          ],
+          "samples": [
+            18302,
+            24916
+          ],
+          "width_seconds": 0.14997732426303856,
+          "method": "Stereo power averaged before peak extraction; Hann/zero-padding aids visualization but does not supply independent sub-Hz resolution or unique note identities.",
+          "peaks": [
+            {
+              "hz": 65.27252197265625,
+              "relative_to_window_peak_db": 0.0
+            },
+            {
+              "hz": 134.24606323242188,
+              "relative_to_window_peak_db": -9.855414377084742
+            },
+            {
+              "hz": 193.46237182617188,
+              "relative_to_window_peak_db": -12.555547634502062
+            },
+            {
+              "hz": 264.45465087890625,
+              "relative_to_window_peak_db": -12.885616082034083
+            },
+            {
+              "hz": 399.3736267089844,
+              "relative_to_window_peak_db": -14.923525327013998
+            },
+            {
+              "hz": 121.46072387695312,
+              "relative_to_window_peak_db": -15.141567192291046
+            },
+            {
+              "hz": 386.2518310546875,
+              "relative_to_window_peak_db": -15.48152624062235
+            },
+            {
+              "hz": 328.7178039550781,
+              "relative_to_window_peak_db": -16.854671803353245
+            },
+            {
+              "hz": 650.7064819335938,
+              "relative_to_window_peak_db": -18.287335443481012
+            },
+            {
+              "hz": 772.503662109375,
+              "relative_to_window_peak_db": -18.303369818360075
+            },
+            {
+              "hz": 515.7875061035156,
+              "relative_to_window_peak_db": -18.48076807966161
+            },
+            {
+              "hz": 789.6629333496094,
+              "relative_to_window_peak_db": -21.659795717141304
+            },
+            {
+              "hz": 458.25347900390625,
+              "relative_to_window_peak_db": -22.13208576345022
+            },
+            {
+              "hz": 672.2396850585938,
+              "relative_to_window_peak_db": -22.629372529456244
+            },
+            {
+              "hz": 536.6477966308594,
+              "relative_to_window_peak_db": -23.042020071932512
+            },
+            {
+              "hz": 583.4152221679688,
+              "relative_to_window_peak_db": -24.782670279407952
+            },
+            {
+              "hz": 809.5138549804688,
+              "relative_to_window_peak_db": -26.527782629916544
+            },
+            {
+              "hz": 374.4758605957031,
+              "relative_to_window_peak_db": -26.678310958857004
+            },
+            {
+              "hz": 110.357666015625,
+              "relative_to_window_peak_db": -27.63394616326989
+            },
+            {
+              "hz": 151.40533447265625,
+              "relative_to_window_peak_db": -27.85436644141146
+            },
+            {
+              "hz": 729.7737121582031,
+              "relative_to_window_peak_db": -28.686704630241643
+            },
+            {
+              "hz": 312.90435791015625,
+              "relative_to_window_peak_db": -29.17000089705157
+            },
+            {
+              "hz": 158.807373046875,
+              "relative_to_window_peak_db": -30.140634108464532
+            },
+            {
+              "hz": 600.5744934082031,
+              "relative_to_window_peak_db": -30.144456951573613
+            }
+          ]
+        },
+        {
+          "seconds": [
+            0.575,
+            0.725
+          ],
+          "samples": [
+            25357,
+            31972
+          ],
+          "width_seconds": 0.15,
+          "method": "Stereo power averaged before peak extraction; Hann/zero-padding aids visualization but does not supply independent sub-Hz resolution or unique note identities.",
+          "peaks": [
+            {
+              "hz": 130.20858764648438,
+              "relative_to_window_peak_db": 0.0
+            },
+            {
+              "hz": 263.78173828125,
+              "relative_to_window_peak_db": -5.611412158344562
+            },
+            {
+              "hz": 63.92669677734375,
+              "relative_to_window_peak_db": -5.814503193963954
+            },
+            {
+              "hz": 399.03717041015625,
+              "relative_to_window_peak_db": -12.131552157523807
+            },
+            {
+              "hz": 520.8343505859375,
+              "relative_to_window_peak_db": -13.350394794750727
+            },
+            {
+              "hz": 200.86441040039062,
+              "relative_to_window_peak_db": -14.492015874075308
+            },
+            {
+              "hz": 652.3887634277344,
+              "relative_to_window_peak_db": -14.615383829528685
+            },
+            {
+              "hz": 533.2832336425781,
+              "relative_to_window_peak_db": -17.5968090830418
+            },
+            {
+              "hz": 383.5601806640625,
+              "relative_to_window_peak_db": -19.647074627127324
+            },
+            {
+              "hz": 330.0636291503906,
+              "relative_to_window_peak_db": -20.822390608294125
+            },
+            {
+              "hz": 674.9313354492188,
+              "relative_to_window_peak_db": -22.467927540842602
+            },
+            {
+              "hz": 505.0209045410156,
+              "relative_to_window_peak_db": -22.879516905704488
+            },
+            {
+              "hz": 592.4995422363281,
+              "relative_to_window_peak_db": -23.006978476128896
+            },
+            {
+              "hz": 49.459075927734375,
+              "relative_to_window_peak_db": -24.2047331808632
+            },
+            {
+              "hz": 792.0181274414062,
+              "relative_to_window_peak_db": -25.138382997920942
+            },
+            {
+              "hz": 452.87017822265625,
+              "relative_to_window_peak_db": -25.41868410794322
+            },
+            {
+              "hz": 723.0445861816406,
+              "relative_to_window_peak_db": -25.52432515681456
+            },
+            {
+              "hz": 835.4209899902344,
+              "relative_to_window_peak_db": -25.77810426142756
+            },
+            {
+              "hz": 704.2030334472656,
+              "relative_to_window_peak_db": -26.733015651855922
+            },
+            {
+              "hz": 103.6285400390625,
+              "relative_to_window_peak_db": -27.167943745072964
+            },
+            {
+              "hz": 464.3096923828125,
+              "relative_to_window_peak_db": -27.223350052717628
+            },
+            {
+              "hz": 439.7483825683594,
+              "relative_to_window_peak_db": -27.691790495262705
+            },
+            {
+              "hz": 756.353759765625,
+              "relative_to_window_peak_db": -28.690100675712877
+            },
+            {
+              "hz": 777.2140502929688,
+              "relative_to_window_peak_db": -30.120512518799373
+            }
+          ]
+        },
+        {
+          "seconds": [
+            0.725,
+            0.875
+          ],
+          "samples": [
+            31972,
+            38588
+          ],
+          "width_seconds": 0.15002267573696146,
+          "method": "Stereo power averaged before peak extraction; Hann/zero-padding aids visualization but does not supply independent sub-Hz resolution or unique note identities.",
+          "peaks": [
+            {
+              "hz": 237.53814697265625,
+              "relative_to_window_peak_db": 0.0
+            },
+            {
+              "hz": 65.9454345703125,
+              "relative_to_window_peak_db": -1.336463536223215
+            },
+            {
+              "hz": 460.94512939453125,
+              "relative_to_window_peak_db": -6.430506841921378
+            },
+            {
+              "hz": 128.52630615234375,
+              "relative_to_window_peak_db": -8.997042871437266
+            },
+            {
+              "hz": 265.1275634765625,
+              "relative_to_window_peak_db": -9.905515757506508
+            },
+            {
+              "hz": 714.6331787109375,
+              "relative_to_window_peak_db": -13.540391831592444
+            },
+            {
+              "hz": 189.7613525390625,
+              "relative_to_window_peak_db": -15.38226015844931
+            },
+            {
+              "hz": 395.672607421875,
+              "relative_to_window_peak_db": -16.002945262291203
+            },
+            {
+              "hz": 686.370849609375,
+              "relative_to_window_peak_db": -17.170682939643978
+            },
+            {
+              "hz": 322.6615905761719,
+              "relative_to_window_peak_db": -18.447490473951454
+            },
+            {
+              "hz": 331.4094543457031,
+              "relative_to_window_peak_db": -18.552256244633636
+            },
+            {
+              "hz": 700.8384704589844,
+              "relative_to_window_peak_db": -19.080456666405993
+            },
+            {
+              "hz": 521.8437194824219,
+              "relative_to_window_peak_db": -19.423617755711447
+            },
+            {
+              "hz": 662.4824523925781,
+              "relative_to_window_peak_db": -20.05096961243533
+            },
+            {
+              "hz": 381.2049865722656,
+              "relative_to_window_peak_db": -20.205384764333502
+            },
+            {
+              "hz": 208.6029052734375,
+              "relative_to_window_peak_db": -22.470233583426218
+            },
+            {
+              "hz": 769.1390991210938,
+              "relative_to_window_peak_db": -22.89227769431819
+            },
+            {
+              "hz": 598.5557556152344,
+              "relative_to_window_peak_db": -24.050337300276503
+            },
+            {
+              "hz": 792.0181274414062,
+              "relative_to_window_peak_db": -24.78593198703418
+            },
+            {
+              "hz": 845.8511352539062,
+              "relative_to_window_peak_db": -27.44549533339643
+            },
+            {
+              "hz": 834.0751647949219,
+              "relative_to_window_peak_db": -28.730948670688086
+            },
+            {
+              "hz": 738.8580322265625,
+              "relative_to_window_peak_db": -30.64003576685046
+            },
+            {
+              "hz": 289.0159606933594,
+              "relative_to_window_peak_db": -31.499175100597206
+            },
+            {
+              "hz": 633.2107543945312,
+              "relative_to_window_peak_db": -31.933982537504846
+            }
+          ]
+        }
+      ],
+      "first_second_5ms_rms": {
+        "width_samples": 220,
+        "centers_seconds": [
+          0.002494331065759637,
+          0.007482993197278911,
+          0.012471655328798186,
+          0.01746031746031746,
+          0.022448979591836733,
+          0.02743764172335601,
+          0.032426303854875285,
+          0.03741496598639456,
+          0.04240362811791383,
+          0.04739229024943311,
+          0.05238095238095238,
+          0.057369614512471655,
+          0.06235827664399093,
+          0.0673469387755102,
+          0.07233560090702948,
+          0.07732426303854875,
+          0.08231292517006802,
+          0.0873015873015873,
+          0.09229024943310657,
+          0.09727891156462586,
+          0.10226757369614513,
+          0.1072562358276644,
+          0.11224489795918367,
+          0.11723356009070295,
+          0.12222222222222222,
+          0.1272108843537415,
+          0.13219954648526078,
+          0.13718820861678005,
+          0.14217687074829932,
+          0.1471655328798186,
+          0.15215419501133787,
+          0.15714285714285714,
+          0.1621315192743764,
+          0.16712018140589568,
+          0.17210884353741496,
+          0.17709750566893423,
+          0.1820861678004535,
+          0.1870748299319728,
+          0.19206349206349208,
+          0.19705215419501135,
+          0.20204081632653062,
+          0.2070294784580499,
+          0.21201814058956917,
+          0.21700680272108844,
+          0.2219954648526077,
+          0.22698412698412698,
+          0.23197278911564626,
+          0.23696145124716553,
+          0.2419501133786848,
+          0.24693877551020407,
+          0.2519274376417234,
+          0.25691609977324265,
+          0.2619047619047619,
+          0.2668934240362812,
+          0.27188208616780046,
+          0.27687074829931974,
+          0.281859410430839,
+          0.2868480725623583,
+          0.29183673469387755,
+          0.2968253968253968,
+          0.3018140589569161,
+          0.30680272108843537,
+          0.31179138321995464,
+          0.3167800453514739,
+          0.3217687074829932,
+          0.32675736961451246,
+          0.33174603174603173,
+          0.336734693877551,
+          0.3417233560090703,
+          0.34671201814058955,
+          0.3517006802721088,
+          0.3566893424036281,
+          0.36167800453514737,
+          0.36666666666666664,
+          0.37165532879818597,
+          0.37664399092970524,
+          0.3816326530612245,
+          0.3866213151927438,
+          0.39160997732426306,
+          0.39659863945578233,
+          0.4015873015873016,
+          0.4065759637188209,
+          0.41156462585034015,
+          0.4165532879818594,
+          0.4215419501133787,
+          0.42653061224489797,
+          0.43151927437641724,
+          0.4365079365079365,
+          0.4414965986394558,
+          0.44648526077097506,
+          0.45147392290249433,
+          0.4564625850340136,
+          0.4614512471655329,
+          0.46643990929705215,
+          0.4714285714285714,
+          0.4764172335600907,
+          0.48140589569160996,
+          0.48639455782312924,
+          0.4913832199546485,
+          0.4963718820861678,
+          0.501360544217687,
+          0.5063492063492063,
+          0.5113378684807256,
+          0.5163265306122449,
+          0.5213151927437641,
+          0.5263038548752834,
+          0.5312925170068027,
+          0.536281179138322,
+          0.5412698412698412,
+          0.5462585034013605,
+          0.5512471655328798,
+          0.556235827664399,
+          0.5612244897959183,
+          0.5662131519274376,
+          0.5712018140589569,
+          0.5761904761904761,
+          0.5811791383219954,
+          0.5861678004535147,
+          0.591156462585034,
+          0.5961451247165533,
+          0.6011337868480726,
+          0.6061224489795919,
+          0.6111111111111112,
+          0.6160997732426304,
+          0.6210884353741497,
+          0.626077097505669,
+          0.6310657596371883,
+          0.6360544217687075,
+          0.6410430839002268,
+          0.6460317460317461,
+          0.6510204081632653,
+          0.6560090702947846,
+          0.6609977324263039,
+          0.6659863945578232,
+          0.6709750566893424,
+          0.6759637188208617,
+          0.680952380952381,
+          0.6859410430839002,
+          0.6909297052154195,
+          0.6959183673469388,
+          0.7009070294784581,
+          0.7058956916099773,
+          0.7108843537414966,
+          0.7158730158730159,
+          0.7208616780045352,
+          0.7258503401360544,
+          0.7308390022675737,
+          0.735827664399093,
+          0.7408163265306122,
+          0.7458049886621315,
+          0.7507936507936508,
+          0.7557823129251701,
+          0.7607709750566893,
+          0.7657596371882086,
+          0.7707482993197279,
+          0.7757369614512472,
+          0.7807256235827664,
+          0.7857142857142857,
+          0.790702947845805,
+          0.7956916099773242,
+          0.8006802721088435,
+          0.8056689342403628,
+          0.8106575963718821,
+          0.8156462585034013,
+          0.8206349206349206,
+          0.8256235827664399,
+          0.8306122448979592,
+          0.8356009070294784,
+          0.8405895691609977,
+          0.845578231292517,
+          0.8505668934240362,
+          0.8555555555555555,
+          0.8605442176870748,
+          0.8655328798185941,
+          0.8705215419501133,
+          0.8755102040816326,
+          0.8804988662131519,
+          0.8854875283446711,
+          0.8904761904761904,
+          0.8954648526077098,
+          0.9004535147392291,
+          0.9054421768707483,
+          0.9104308390022676,
+          0.9154195011337869,
+          0.9204081632653062,
+          0.9253968253968254,
+          0.9303854875283447,
+          0.935374149659864,
+          0.9403628117913833,
+          0.9453514739229025,
+          0.9503401360544218,
+          0.9553287981859411,
+          0.9603174603174603,
+          0.9653061224489796,
+          0.9702947845804989,
+          0.9752834467120182,
+          0.9802721088435374,
+          0.9852607709750567,
+          0.990249433106576,
+          0.9952380952380953
+        ],
+        "rms_dbfs": [
+          -149.2998133180672,
+          -117.24574582667911,
+          -108.34716724728449,
+          -104.64782459061024,
+          -96.55296399609107,
+          -81.86580424430116,
+          -79.69320155341823,
+          -79.80665791107198,
+          -79.80263315561467,
+          -79.60205500344314,
+          -79.08671848026775,
+          -79.21331798689712,
+          -79.5466162696744,
+          -77.95570989183094,
+          -78.99703262858266,
+          -79.35983994809526,
+          -79.49408852369132,
+          -77.67709346481551,
+          -78.21279320362133,
+          -78.8506075051352,
+          -79.72615215324304,
+          -78.88377338525726,
+          -78.25864387894096,
+          -79.394428240487,
+          -78.55729573171212,
+          -78.5540044398497,
+          -79.03132704104456,
+          -79.36796540855507,
+          -79.15456071597391,
+          -78.29468917382749,
+          -78.324554591939,
+          -79.35203121968851,
+          -79.73748311231762,
+          -79.76558159505798,
+          -79.95416399820685,
+          -80.32796991628187,
+          -80.40424190383227,
+          -79.09490227746448,
+          -79.33580777356865,
+          -78.96351400880091,
+          -79.48986770723265,
+          -78.86397378534326,
+          -79.41722856598705,
+          -79.12821277108074,
+          -79.28425475365883,
+          -79.17604306053047,
+          -79.56326430958482,
+          -79.82433228516763,
+          -81.30499143546024,
+          -80.45293168730998,
+          -79.85957472701085,
+          -80.65560688975623,
+          -80.64627234209388,
+          -79.70101404414976,
+          -79.32701592016352,
+          -80.24210554349048,
+          -80.71412526325922,
+          -80.32183801095107,
+          -79.60080495078739,
+          -80.42401003200814,
+          -80.8137172598787,
+          -80.40838600383587,
+          -76.65576989384824,
+          -74.55454291604718,
+          -18.411794518436672,
+          -18.268950781655775,
+          -18.668822070929505,
+          -17.473294344606458,
+          -17.93671825921825,
+          -17.9130622034717,
+          -17.286409886118594,
+          -16.65118966791364,
+          -17.293845177379858,
+          -17.85886487090686,
+          -16.67684635280143,
+          -16.597194267276635,
+          -18.13245312758589,
+          -16.06131553917264,
+          -16.91637562376564,
+          -17.22226565996965,
+          -15.774028221020176,
+          -17.540799844395046,
+          -16.805992707392015,
+          -17.211611808723482,
+          -16.942364915263244,
+          -17.54364052756662,
+          -16.377133253053547,
+          -16.164458380360365,
+          -19.4992412000647,
+          -15.652872356691379,
+          -15.787700355151317,
+          -20.026491687658627,
+          -15.201478637561907,
+          -17.22877160528895,
+          -20.07753516200474,
+          -15.08440948696576,
+          -18.505996955663534,
+          -18.418173857791214,
+          -14.99581895787562,
+          -20.686443020188882,
+          -15.524266427814403,
+          -14.578617470055256,
+          -20.38094374531881,
+          -14.468960042613265,
+          -14.418302564323817,
+          -20.9340670710338,
+          -15.553720803781827,
+          -13.484840438027913,
+          -13.708294202523323,
+          -18.018737795136875,
+          -12.612063499372326,
+          -13.97183088348972,
+          -18.043514102133344,
+          -12.222014821949381,
+          -14.447967454592987,
+          -15.554397661251564,
+          -12.351083130154803,
+          -13.476723540814975,
+          -14.288976163987384,
+          -11.945618095073698,
+          -12.702057361021035,
+          -15.802445636915067,
+          -11.404637008786791,
+          -12.83898608440702,
+          -17.1305868809194,
+          -12.848635800464436,
+          -13.408616338334024,
+          -16.61955945576104,
+          -16.48677072061707,
+          -14.761503712855564,
+          -14.970959760863277,
+          -19.67427408926848,
+          -15.78259940850954,
+          -16.951656696250154,
+          -19.128725056646342,
+          -16.951147543929455,
+          -19.75462449476771,
+          -19.114701276696103,
+          -17.829581586685748,
+          -22.663807346999075,
+          -19.157345706901477,
+          -18.617436986633354,
+          -22.860236614523522,
+          -17.612313586106023,
+          -19.09211053318487,
+          -22.734720773713732,
+          -16.479914579135333,
+          -20.94330432430629,
+          -19.457457546902884,
+          -16.410569987166348,
+          -14.043489181965212,
+          -13.02434047093971,
+          -13.199791226909156,
+          -15.36555693267309,
+          -15.230447350027372,
+          -13.344487562209594,
+          -16.326508906885625,
+          -12.909978082532259,
+          -14.535550889077026,
+          -14.686903556950135,
+          -17.581759256671873,
+          -15.483915839204325,
+          -17.959564904757933,
+          -18.399018185174516,
+          -17.060076616626795,
+          -18.17148830824729,
+          -18.89978817955529,
+          -16.773965392729103,
+          -15.682525754239665,
+          -20.9166471653103,
+          -16.70593051134339,
+          -17.32363287160455,
+          -16.563882058713205,
+          -20.783209229530048,
+          -15.45855802944341,
+          -18.74831539357167,
+          -17.712521229308358,
+          -19.885328518588544,
+          -18.77432171031103,
+          -20.262785352550644,
+          -20.88034404280294,
+          -19.37236570097998,
+          -21.12028243017976,
+          -21.571884585788567,
+          -21.242802583421444,
+          -21.576751133626352,
+          -19.20363924873572,
+          -17.893957156187486,
+          -18.604867780927197,
+          -19.41025168257175,
+          -20.597847102234695,
+          -18.973168502359368,
+          -17.661349929118124,
+          -18.862433024667638,
+          -18.39633900335497,
+          -16.99665017120749,
+          -18.997203305198575,
+          -20.435035696205,
+          -18.544461238920732,
+          -18.233838573574644
+        ]
+      },
+      "feasibility": "Conditional short two-pitch benchmark; gate ambiguity remains and must not be selected from model scores.",
+      "next_unmodeled_pitch_family": {
+        "approximate_onset_bracket_seconds": [
+          0.725,
+          0.75
+        ],
+        "frequency_hz": 233.1,
+        "note_hypothesis": 58,
+        "excluded_from_crop": true
+      }
+    },
+    "pad-02": {
+      "reference": {
+        "id": "pad-02",
+        "title": "Soundtrack",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_pad.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/PAD/TOP8_Soundtrack.mp3",
+        "local_filename": "TOP8_Soundtrack.mp3",
+        "sha256": "b0352755c05b15b1c52248800330baeb4674df6cae2d8726ad9d9fbb699d21ae",
+        "size_bytes": 964474,
+        "bank_id": "pad",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 2,
+        "patch_name": "Soundtrack",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+      },
+      "source_mp3_path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/sources/TOP8_Soundtrack.mp3",
+      "decoded_sha256": "f69d33293d4ee62297b9376bc80e145828f4b9107adf755dad63f3f4e5d234f4",
+      "decode_command": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/sources/TOP8_Soundtrack.mp3",
+        "-ar",
+        "44100",
+        "-ac",
+        "2",
+        "-c:a",
+        "pcm_f32le",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/reverb-confound-openings/run-02/pad-02/hardware-full.wav"
+      ],
+      "sysex_sha256": "dc8844cda1f6ed4ee913945ecba9b485ff199a1c9e8a8b0b847d17112f075cbf",
+      "active_parts": [
+        "upper",
+        "lower"
+      ],
+      "decoded": {
+        "keyboardMode": 1,
+        "keyboardPart": 1,
+        "splitPoint": 53,
+        "patchLevel": 115,
+        "toneBalance": 0,
+        "tempo": 120,
+        "delayOn": 1,
+        "reverbOn": 1,
+        "modulationAssign": 0,
+        "modulationDestination": 2,
+        "pitchBendDestination": 2,
+        "arpeggioOn": 0,
+        "delayTime": 80,
+        "delayFeedback": 20,
+        "delayModulationDepth": 10,
+        "reverbPreDelay": 125,
+        "upper": {
+          "pitchEnvAttack": 0,
+          "pitchEnvDecay": 24,
+          "mixType": 0,
+          "balance": 63,
+          "lowFreq": 2,
+          "filterType": 1,
+          "filterSlope": 1,
+          "cutoff": 100,
+          "keyFollow": 0,
+          "cutoffVelocitySens": 0,
+          "resonance": 22,
+          "filterEnvAttack": 101,
+          "filterEnvDecay": 127,
+          "filterEnvSustain": 75,
+          "filterEnvRelease": 79,
+          "filterEnvDepth": -13,
+          "overdrive": 0,
+          "drive": 100,
+          "level": 92,
+          "levelVelocitySens": 8,
+          "pan": 0,
+          "ampEnvAttack": 52,
+          "ampEnvDecay": 74,
+          "ampEnvSustain": 112,
+          "ampEnvRelease": 79,
+          "delayDepth": 75,
+          "reverbDepth": 45,
+          "bendRange": 2,
+          "octaveShift": 0,
+          "portamento": 0,
+          "portamentoTime": 30,
+          "mono": 0,
+          "osc1": {
+            "wave": 7,
+            "pitchWide": 0,
+            "coarse": -7,
+            "fine": 0,
+            "pulseWidth": 64,
+            "pitchEnvDepth": 0,
+            "decoded_by_current_codec": true,
+            "wave_name": "SuperSaw",
+            "signed_coarse_raw": -22,
+            "coarse_units": "physical semitones, current SysEx codec",
+            "net_coarse_and_tone_octave_semitones": -7,
+            "mixed_in": false
+          },
+          "osc2": {
+            "wave": 7,
+            "pitchWide": 0,
+            "coarse": 8,
+            "fine": 0,
+            "pulseWidth": 60,
+            "pitchEnvDepth": -19,
+            "decoded_by_current_codec": true,
+            "wave_name": "SuperSaw",
+            "signed_coarse_raw": 23,
+            "coarse_units": "physical semitones, current SysEx codec",
+            "net_coarse_and_tone_octave_semitones": 8,
+            "mixed_in": true
+          },
+          "lfo1": {
+            "shape": 1,
+            "rate": 34,
+            "tempoSync": 0,
+            "tempoSyncNote": 17,
+            "fadeTime": 0,
+            "keyTrigger": 0,
+            "destination1": 2,
+            "depth1": 16,
+            "destination2": 2,
+            "depth2": 0,
+            "decoded_by_current_codec": true
+          },
+          "lfo2": {
+            "shape": 6,
+            "rate": 68,
+            "tempoSync": 0,
+            "tempoSyncNote": 17,
+            "fadeTime": 0,
+            "keyTrigger": 0,
+            "destination1": 2,
+            "depth1": 0,
+            "destination2": 0,
+            "depth2": 0,
+            "decoded_by_current_codec": true
+          },
+          "active_by_keyboard_mode": true,
+          "filter_lfo_depths": [
+            16,
+            0
+          ],
+          "zero_filter_envelope_lfo_and_velocity": false,
+          "active_effect_sends": {
+            "delay": 75,
+            "reverb": 45
+          }
+        },
+        "lower": {
+          "pitchEnvAttack": 0,
+          "pitchEnvDecay": 0,
+          "mixType": 0,
+          "balance": 0,
+          "lowFreq": 0,
+          "filterType": 1,
+          "filterSlope": 0,
+          "cutoff": 74,
+          "keyFollow": 0,
+          "cutoffVelocitySens": 0,
+          "resonance": 0,
+          "filterEnvAttack": 0,
+          "filterEnvDecay": 0,
+          "filterEnvSustain": 127,
+          "filterEnvRelease": 127,
+          "filterEnvDepth": 2,
+          "overdrive": 0,
+          "drive": 100,
+          "level": 89,
+          "levelVelocitySens": 8,
+          "pan": 0,
+          "ampEnvAttack": 48,
+          "ampEnvDecay": 127,
+          "ampEnvSustain": 100,
+          "ampEnvRelease": 79,
+          "delayDepth": 75,
+          "reverbDepth": 45,
+          "bendRange": 2,
+          "octaveShift": 0,
+          "portamento": 0,
+          "portamentoTime": 20,
+          "mono": 0,
+          "osc1": {
+            "wave": 7,
+            "pitchWide": 0,
+            "coarse": 0,
+            "fine": 0,
+            "pulseWidth": 64,
+            "pitchEnvDepth": 0,
+            "decoded_by_current_codec": true,
+            "wave_name": "SuperSaw",
+            "signed_coarse_raw": 0,
+            "coarse_units": "physical semitones, current SysEx codec",
+            "net_coarse_and_tone_octave_semitones": 0,
+            "mixed_in": true
+          },
+          "osc2": {
+            "wave": 7,
+            "pitchWide": 0,
+            "coarse": 0,
+            "fine": 0,
+            "pulseWidth": 64,
+            "pitchEnvDepth": 0,
+            "decoded_by_current_codec": true,
+            "wave_name": "SuperSaw",
+            "signed_coarse_raw": 0,
+            "coarse_units": "physical semitones, current SysEx codec",
+            "net_coarse_and_tone_octave_semitones": 0,
+            "mixed_in": true
+          },
+          "lfo1": {
+            "shape": 0,
+            "rate": 92,
+            "tempoSync": 0,
+            "tempoSyncNote": 17,
+            "fadeTime": 0,
+            "keyTrigger": 0,
+            "destination1": 2,
+            "depth1": 0,
+            "destination2": 2,
+            "depth2": 0,
+            "decoded_by_current_codec": true
+          },
+          "lfo2": {
+            "shape": 0,
+            "rate": 92,
+            "tempoSync": 0,
+            "tempoSyncNote": 17,
+            "fadeTime": 0,
+            "keyTrigger": 0,
+            "destination1": 2,
+            "depth1": 0,
+            "destination2": 2,
+            "depth2": 0,
+            "decoded_by_current_codec": true
+          },
+          "active_by_keyboard_mode": true,
+          "filter_lfo_depths": [
+            0,
+            0
+          ],
+          "zero_filter_envelope_lfo_and_velocity": false,
+          "active_effect_sends": {
+            "delay": 75,
+            "reverb": 45
+          }
+        }
+      },
+      "raw_common": [
+        83,
+        111,
+        117,
+        110,
+        100,
+        116,
+        114,
+        97,
+        99,
+        107,
+        32,
+        32,
+        115,
+        64,
+        0,
+        7,
+        8,
+        1,
+        1,
+        53,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        7,
+        0
+      ],
+      "raw_upper": [
+        7,
+        0,
+        42,
+        64,
+        64,
+        64,
+        7,
+        0,
+        87,
+        64,
+        60,
+        45,
+        0,
+        24,
+        0,
+        127,
+        2,
+        1,
+        1,
+        100,
+        64,
+        64,
+        22,
+        101,
+        127,
+        75,
+        79,
+        51,
+        0,
+        100,
+        92,
+        72,
+        64,
+        52,
+        74,
+        112,
+        79,
+        75,
+        45,
+        1,
+        34,
+        0,
+        17,
+        0,
+        0,
+        2,
+        80,
+        2,
+        64,
+        6,
+        68,
+        0,
+        17,
+        0,
+        0,
+        2,
+        64,
+        0,
+        64,
+        2,
+        64,
+        0,
+        30,
+        0
+      ],
+      "raw_lower": [
+        7,
+        0,
+        64,
+        64,
+        64,
+        64,
+        7,
+        0,
+        64,
+        64,
+        64,
+        64,
+        0,
+        0,
+        0,
+        64,
+        0,
+        1,
+        0,
+        74,
+        64,
+        64,
+        0,
+        0,
+        0,
+        127,
+        127,
+        66,
+        0,
+        100,
+        89,
+        72,
+        64,
+        48,
+        127,
+        100,
+        79,
+        75,
+        45,
+        0,
+        92,
+        0,
+        17,
+        0,
+        0,
+        2,
+        64,
+        2,
+        64,
+        0,
+        92,
+        0,
+        17,
+        0,
+        0,
+        2,
+        64,
+        2,
+        64,
+        2,
+        64,
+        0,
+        20,
+        0
+      ],
+      "raw_delay": [
+        80,
+        59,
+        17,
+        5,
+        10
+      ],
+      "raw_reverb": [
+        77,
+        125,
+        7,
+        12,
+        127,
+        127,
+        19,
+        36,
+        0,
+        36
+      ],
+      "reverb_summary": {
+        "time_raw": 77,
+        "predelay_raw": 125,
+        "size_raw": 7,
+        "high_cut_raw": 12,
+        "lf_gain_db": 0,
+        "hf_gain_db": 0
+      },
+      "spectral_windows": [
+        {
+          "seconds": [
+            0.2,
+            0.6
+          ],
+          "samples": [
+            8820,
+            26460
+          ],
+          "width_seconds": 0.4,
+          "method": "Stereo power averaged before peak extraction; Hann/zero-padding aids visualization but does not supply independent sub-Hz resolution or unique note identities.",
+          "peaks": [
+            {
+              "hz": 394.6632385253906,
+              "relative_to_window_peak_db": 0.0
+            },
+            {
+              "hz": 231.14547729492188,
+              "relative_to_window_peak_db": -1.767573498300278
+            },
+            {
+              "hz": 295.7450866699219,
+              "relative_to_window_peak_db": -2.0225315546373617
+            },
+            {
+              "hz": 312.5679016113281,
+              "relative_to_window_peak_db": -4.867905968370543
+            },
+            {
+              "hz": 130.88150024414062,
+              "relative_to_window_peak_db": -5.240992510144579
+            },
+            {
+              "hz": 197.49984741210938,
+              "relative_to_window_peak_db": -8.753140744850327
+            },
+            {
+              "hz": 622.1076965332031,
+              "relative_to_window_peak_db": -11.0485208884486
+            },
+            {
+              "hz": 589.1349792480469,
+              "relative_to_window_peak_db": -12.935030185520628
+            },
+            {
+              "hz": 471.038818359375,
+              "relative_to_window_peak_db": -12.978802449675328
+            },
+            {
+              "hz": 783.270263671875,
+              "relative_to_window_peak_db": -13.834822293098782
+            },
+            {
+              "hz": 789.9993896484375,
+              "relative_to_window_peak_db": -14.319372584156561
+            },
+            {
+              "hz": 774.8588562011719,
+              "relative_to_window_peak_db": -14.455111895299018
+            },
+            {
+              "hz": 703.1936645507812,
+              "relative_to_window_peak_db": -14.728831762719697
+            },
+            {
+              "hz": 63.92669677734375,
+              "relative_to_window_peak_db": -14.799631094624603
+            },
+            {
+              "hz": 465.9919738769531,
+              "relative_to_window_peak_db": -14.93904585755778
+            },
+            {
+              "hz": 348.9051818847656,
+              "relative_to_window_peak_db": -15.150712803340545
+            },
+            {
+              "hz": 583.0787658691406,
+              "relative_to_window_peak_db": -15.231531723965094
+            },
+            {
+              "hz": 627.154541015625,
+              "relative_to_window_peak_db": -16.02563225876026
+            },
+            {
+              "hz": 594.5182800292969,
+              "relative_to_window_peak_db": -16.283616267368586
+            },
+            {
+              "hz": 260.0807189941406,
+              "relative_to_window_peak_db": -16.37782263081704
+            },
+            {
+              "hz": 436.72027587890625,
+              "relative_to_window_peak_db": -16.63728042652091
+            },
+            {
+              "hz": 328.0448913574219,
+              "relative_to_window_peak_db": -16.84507627049996
+            },
+            {
+              "hz": 695.7916259765625,
+              "relative_to_window_peak_db": -17.095050359764727
+            },
+            {
+              "hz": 460.272216796875,
+              "relative_to_window_peak_db": -19.119867272651256
+            }
+          ]
+        },
+        {
+          "seconds": [
+            0.65,
+            1.25
+          ],
+          "samples": [
+            28665,
+            55125
+          ],
+          "width_seconds": 0.6,
+          "method": "Stereo power averaged before peak extraction; Hann/zero-padding aids visualization but does not supply independent sub-Hz resolution or unique note identities.",
+          "peaks": [
+            {
+              "hz": 310.5491638183594,
+              "relative_to_window_peak_db": 0.0
+            },
+            {
+              "hz": 394.6632385253906,
+              "relative_to_window_peak_db": -0.6055968723366744
+            },
+            {
+              "hz": 65.27252197265625,
+              "relative_to_window_peak_db": -1.833867108813507
+            },
+            {
+              "hz": 296.75445556640625,
+              "relative_to_window_peak_db": -2.270773896610503
+            },
+            {
+              "hz": 465.9919738769531,
+              "relative_to_window_peak_db": -3.3361974025913756
+            },
+            {
+              "hz": 231.14547729492188,
+              "relative_to_window_peak_db": -3.668456165177533
+            },
+            {
+              "hz": 388.6070251464844,
+              "relative_to_window_peak_db": -4.298539169031915
+            },
+            {
+              "hz": 290.3617858886719,
+              "relative_to_window_peak_db": -4.491683490161219
+            },
+            {
+              "hz": 583.7516784667969,
+              "relative_to_window_peak_db": -5.068777202551806
+            },
+            {
+              "hz": 588.4620666503906,
+              "relative_to_window_peak_db": -6.576875028831669
+            },
+            {
+              "hz": 440.0848388671875,
+              "relative_to_window_peak_db": -7.425133005624891
+            },
+            {
+              "hz": 197.49984741210938,
+              "relative_to_window_peak_db": -7.91075899060805
+            },
+            {
+              "hz": 306.84814453125,
+              "relative_to_window_peak_db": -8.825969006075795
+            },
+            {
+              "hz": 131.890869140625,
+              "relative_to_window_peak_db": -9.045754515915721
+            },
+            {
+              "hz": 349.5780944824219,
+              "relative_to_window_peak_db": -9.266800948036556
+            },
+            {
+              "hz": 624.7993469238281,
+              "relative_to_window_peak_db": -9.51875552051447
+            },
+            {
+              "hz": 593.8453674316406,
+              "relative_to_window_peak_db": -9.652994946167336
+            },
+            {
+              "hz": 234.51004028320312,
+              "relative_to_window_peak_db": -10.083791203646449
+            },
+            {
+              "hz": 436.04736328125,
+              "relative_to_window_peak_db": -11.006817388007573
+            },
+            {
+              "hz": 788.9900207519531,
+              "relative_to_window_peak_db": -11.06792494445332
+            },
+            {
+              "hz": 471.3752746582031,
+              "relative_to_window_peak_db": -11.077863763917591
+            },
+            {
+              "hz": 782.9338073730469,
+              "relative_to_window_peak_db": -11.662668381601407
+            },
+            {
+              "hz": 775.1953125,
+              "relative_to_window_peak_db": -11.873678994139468
+            },
+            {
+              "hz": 618.7431335449219,
+              "relative_to_window_peak_db": -12.03897716958689
+            }
+          ]
+        },
+        {
+          "seconds": [
+            1.25,
+            1.45
+          ],
+          "samples": [
+            55125,
+            63945
+          ],
+          "width_seconds": 0.2,
+          "method": "Stereo power averaged before peak extraction; Hann/zero-padding aids visualization but does not supply independent sub-Hz resolution or unique note identities.",
+          "peaks": [
+            {
+              "hz": 292.0440673828125,
+              "relative_to_window_peak_db": 0.0
+            },
+            {
+              "hz": 389.61639404296875,
+              "relative_to_window_peak_db": -0.9995554153685211
+            },
+            {
+              "hz": 231.48193359375,
+              "relative_to_window_peak_db": -1.2035309039501696
+            },
+            {
+              "hz": 397.69134521484375,
+              "relative_to_window_peak_db": -3.022951882003304
+            },
+            {
+              "hz": 308.86688232421875,
+              "relative_to_window_peak_db": -3.5927427187227314
+            },
+            {
+              "hz": 785.6254577636719,
+              "relative_to_window_peak_db": -5.076305735696463
+            },
+            {
+              "hz": 471.038818359375,
+              "relative_to_window_peak_db": -6.312328602076435
+            },
+            {
+              "hz": 583.0787658691406,
+              "relative_to_window_peak_db": -6.603775134773494
+            },
+            {
+              "hz": 65.60897827148438,
+              "relative_to_window_peak_db": -8.439469369939395
+            },
+            {
+              "hz": 699.8291015625,
+              "relative_to_window_peak_db": -8.542696366375932
+            },
+            {
+              "hz": 592.8359985351562,
+              "relative_to_window_peak_db": -10.369233531897548
+            },
+            {
+              "hz": 438.06610107421875,
+              "relative_to_window_peak_db": -12.0525199309213
+            },
+            {
+              "hz": 195.81756591796875,
+              "relative_to_window_peak_db": -12.335310829925524
+            },
+            {
+              "hz": 627.8274536132812,
+              "relative_to_window_peak_db": -13.24312031303773
+            },
+            {
+              "hz": 328.7178039550781,
+              "relative_to_window_peak_db": -14.960403677171223
+            },
+            {
+              "hz": 618.4066772460938,
+              "relative_to_window_peak_db": -15.09139097525285
+            },
+            {
+              "hz": 97.23587036132812,
+              "relative_to_window_peak_db": -15.61174420646459
+            },
+            {
+              "hz": 453.2066345214844,
+              "relative_to_window_peak_db": -16.25448765918617
+            },
+            {
+              "hz": 347.89581298828125,
+              "relative_to_window_peak_db": -16.90553801964604
+            },
+            {
+              "hz": 133.90960693359375,
+              "relative_to_window_peak_db": -17.641671082190882
+            },
+            {
+              "hz": 258.3984375,
+              "relative_to_window_peak_db": -19.4690309424974
+            },
+            {
+              "hz": 528.9093017578125,
+              "relative_to_window_peak_db": -22.421233282663056
+            },
+            {
+              "hz": 492.9084777832031,
+              "relative_to_window_peak_db": -23.210074853099314
+            },
+            {
+              "hz": 125.1617431640625,
+              "relative_to_window_peak_db": -27.253156485129836
+            }
+          ]
+        }
+      ],
+      "feasibility": "No defensible short note/gate reconstruction frozen.",
+      "failure_reasons": [
+        "Opening combines several sustained line families around65/98/131/196/233/294/311/392Hz, with overlapping harmonics and SuperSaw side components. They do not uniquely determine played-key count/octaves.",
+        "Upper uses only oscillator2 SuperSaw at decoded+8semitones plus pitch-envelope depth\u221219 and decay24. Lower uses two untransposed SuperSaws. This layered transposition/pitch motion obscures attribution of additional families.",
+        "Slow AMP attacks52/48 and releases79/79, filter envelopes and Upper cutoff LFO16 blur individual note-on/key-up and continue excitation through subsequent chord changes.",
+        "No simple isolated opening plateau with a uniquely attributable gate supports the requested independent later-note check. Retain source spectra instead of inventing a MIDI chord.",
+        "Neutral LF/HF damping is verified, but HIGH CUT index12=2500Hz introduces an additional spectral difference; this is not a clean mode-only counterpart even if MIDI were known."
+      ]
+    }
+  },
+  "frozen_inputs": [
+    {
+      "id": "201-vs-jp8000-held-opening",
+      "json_sha256": "6b8cb5ac8e4efaf6371cc4b3316a812d4fbcd790521eb0ac97300718a08d28e8",
+      "midi_sha256": "668e9f8ca445f4f47c9399371e84ab99d9d855c6904f861edb5985a29ef08610",
+      "parsed_note_events": [
+        {
+          "sample": 14112,
+          "bytes": [
+            144,
+            48,
+            100
+          ]
+        },
+        {
+          "sample": 18743,
+          "bytes": [
+            144,
+            36,
+            100
+          ]
+        },
+        {
+          "sample": 31311,
+          "bytes": [
+            128,
+            36,
+            0
+          ]
+        },
+        {
+          "sample": 31311,
+          "bytes": [
+            128,
+            48,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "id": "201-vs-jp8000-c3-release-opening",
+      "json_sha256": "3dcb24707f47b05ead8e0116f6a9f780cf732a64e643445616a1c5c58a52ad9e",
+      "midi_sha256": "7395134a3c6264e7599f77447fce12ad3dce308df1cfddd535638b6f1d789270",
+      "parsed_note_events": [
+        {
+          "sample": 14112,
+          "bytes": [
+            144,
+            48,
+            100
+          ]
+        },
+        {
+          "sample": 17199,
+          "bytes": [
+            128,
+            48,
+            0
+          ]
+        },
+        {
+          "sample": 18743,
+          "bytes": [
+            144,
+            36,
+            100
+          ]
+        },
+        {
+          "sample": 31311,
+          "bytes": [
+            128,
+            36,
+            0
+          ]
+        }
+      ]
+    }
+  ]
+}

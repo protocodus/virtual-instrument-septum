@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "id": "201-vs-jp8000-c3-release-opening",
+  "title": "201vsJP8000 \u2014 two opening octave notes (C3 release sensitivity)",
+  "reference_id": "pad-06",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 0.0,
+  "duration_seconds": 0.71,
+  "calibration_end_seconds": 0.4,
+  "method": "Original-only stereo spectra and 5ms RMS/40ms and93ms spectrograms. Initial130.8Hz family at~.320s, then new65.4/196.2Hz family at~.425s support played C3/MIDI48 and C2/MIDI36 under unchanged zero-coarse, zero-octave original preset. Stop at.710s before a new233Hz family near.735s. Note-offs are explicit censoring/articulation assumptions, not recovered gates. No renderer or candidate score was used.",
+  "selection_status": "post_result_keyboard_mode_vs_damping_confound_investigation_not_blind_validation",
+  "uncertainties": [
+    "Original performance MIDI, velocity/controllers, global transpose/tuning, recording chain and exact recorded patch revision are unavailable; official MP3/bank association is by name.",
+    "After C2 starts, its even harmonics overlap the earlier C3 family. The earlier C3 note may still be held or already releasing; the source does not uniquely distinguish these cases.",
+    "Both Super Saws, AMP release61, delay/reverb and active filter LFO34 leave key-up uncertain. Held-through-crop is a censored input hypothesis, not evidence of held keys; the first-C3 early-release variant is an alternative, not a confidence bound.",
+    "Second-note release is not recovered. It remains censored at the crop in both variants. No matched post-off tail or independent reverb decay is claimed.",
+    "Onsets have operational source brackets, not certified MIDI bounds; MP3 pre-echo, the direct onset and filtered band onset can differ. A later fixed production-prefix lag may absorb one global delay only.",
+    "Velocity100 is nominal. Active Upper cutoff velocity0, AMP velocity+8; lower is inactive. Both variants preserve velocity and all exact stored controls.",
+    "This is an explicit post-result confound investigation. Report both gate assumptions with the same comparison policy; do not select a favorable reconstruction from DSP errors.",
+    "The crop is deliberately short and dominated by held/overlapping sound. A later result cannot independently establish a reverb damping model or whole-instrument equivalence."
+  ],
+  "notes": [
+    {
+      "on": 0.32,
+      "off": 0.39,
+      "note": 48,
+      "velocity": 100,
+      "pitch_confidence": "high",
+      "onset_confidence": "medium-high",
+      "on_uncertainty_seconds": [
+        0.315,
+        0.325
+      ],
+      "off_status": "early_release_sensitivity_not_recovered",
+      "evidence": "130.8Hz fundamental plus approximate261.6/392.4/523.2Hz multiples before the lower octave enters; no stored transposition."
+    },
+    {
+      "on": 0.425,
+      "off": 0.71,
+      "note": 36,
+      "velocity": 100,
+      "pitch_confidence": "high",
+      "onset_confidence": "medium",
+      "on_uncertainty_seconds": [
+        0.405,
+        0.435
+      ],
+      "off_status": "censored_at_crop_not_recovered",
+      "evidence": "New65.4Hz family and its odd196.2Hz multiple appear around.425s; persists to selected crop with unknown gate/release."
+    }
+  ],
+  "benchmark_protocol": {
+    "calibration_seconds": [
+      0.0,
+      0.4
+    ],
+    "later_evaluation_seconds": [
+      0.4,
+      0.71
+    ],
+    "calibration_end_seconds": 0.4,
+    "training_note": 48,
+    "later_note": 36,
+    "maximum_proposed_common_alignment_seconds": 0.05,
+    "minimum_common_later_support_seconds": 0.26,
+    "comparison_policy": "One lag and gain from before/production prefix only, frozen for all models; same samples for all models; retain gate sensitivity without selecting its best error.",
+    "gate_hypotheses": {
+      "held_opening": "Both notes censored at.710s crop.",
+      "c3_release_opening": "First C3 note-off.390s is an explicit sensitivity suggested by early upper-harmonic diminution; first C3 release remains inseparable from filter/phase/overlap. C2 still censored."
+    },
+    "final_tail_status": "No source-matched tail after recovered final key-up.",
+    "all_preceding_events_retained": true,
+    "source_only_frozen_before_rendering": true
+  },
+  "active_velocity_sensitivity": {
+    "upper": {
+      "cutoff": 0,
+      "amp": 8
+    }
+  },
+  "velocity_sensitivity_review": {
+    "uniform_velocity_cases_omitted": true,
+    "current_model_formula": "g(v)=1-(8/63)*(1-v/127); post-filter common voice amplitude",
+    "uniform_80_and_120_vs_100_db": [
+      -0.180375377706313,
+      0.176705692785186
+    ],
+    "full_velocity_1_to_127_span_db": 1.169614843385989,
+    "reason": "SINGLE Upper with cutoff velocity0 and overdrive off; uniform velocity changes largely reduce to global amplitude absorbed by a per-case production-prefix gain. No layer rebalance. Relative note velocity remains unknown and can affect small later-level differences; this formula is the current model, not a measured hardware velocity law."
+  },
+  "unmodified_sysex_sha256": "70e44e7665a3e6b46faabf733588fda615dcf2161a85dea693e70c319a3f1501",
+  "original_mp3_sha256": "0681718b242a89b23d350237e3f2aad2085e877ee5818256a004eca921d49e2c"
+}
