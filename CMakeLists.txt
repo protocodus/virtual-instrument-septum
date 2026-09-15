@@ -296,6 +296,17 @@ if(BUILD_TESTING)
 
     find_package(Python3 COMPONENTS Interpreter QUIET)
     if(Python3_Interpreter_FOUND)
+        # Hardware analysis is optional; keep the stdlib-only render tools usable
+        # on machines without the separately documented analysis dependencies.
+        execute_process(COMMAND "${Python3_EXECUTABLE}" -c "import numpy, scipy"
+                        RESULT_VARIABLE SEPTUM_AUDIO_ANALYSIS_IMPORT_RESULT
+                        OUTPUT_QUIET ERROR_QUIET TIMEOUT 15)
+        if(SEPTUM_AUDIO_ANALYSIS_IMPORT_RESULT EQUAL 0)
+            add_test(NAME Septum.HardwareEquivalence
+                     COMMAND "${Python3_EXECUTABLE}" -B
+                             "${CMAKE_CURRENT_SOURCE_DIR}/Tests/HardwareEquivalenceTests.py")
+            set_tests_properties(Septum.HardwareEquivalence PROPERTIES TIMEOUT 120)
+        endif()
         add_test(NAME Septum.Packaging
                  COMMAND "${Python3_EXECUTABLE}" -B
                          "${CMAKE_CURRENT_SOURCE_DIR}/Tests/PackagingTests.py")

@@ -1,0 +1,537 @@
+{
+  "schema_version": 1,
+  "source_revision": "d343d04",
+  "policy": {
+    "calibration_fraction": 0.25,
+    "max_lag_seconds": 0.05,
+    "evaluation": "remaining samples after calibration with delay guard",
+    "nuisance_fit": "one positive gain and one bounded integer delay from prefix only",
+    "held_out_from_dsp_tuning": false,
+    "reason": "These public demos informed previous DSP calibration. The time split holds evaluation samples out of nuisance fitting only."
+  },
+  "status": "not_established",
+  "qualification": "Published named presets; original performed MIDI and recording-specific patch revision unverified. Measured mismatch is audio-pair mismatch, not isolated DSP error. No justified perceptual bounds are available.",
+  "tool_sha256": "b6ca63fa02ff11f3154cf34c1233cfe460fd4447be403fe4c0695646ccb74631",
+  "cases": [
+    {
+      "id": "air-lead-1",
+      "audio": {
+        "sample_rate": 44100,
+        "channels": 2,
+        "source_comparison_frames": 152145,
+        "evaluation_reference_start_sample": 38883,
+        "evaluation_reference_end_sample": 152145,
+        "evaluation_candidate_start_sample_after_alignment": 38036,
+        "evaluation_frames": 113262
+      },
+      "calibration": {
+        "separate_prefix": true,
+        "held_out_from_dsp_tuning": null,
+        "qualification": "The time split only separates nuisance fitting; it does not prove that DSP tuning excluded this recording.",
+        "candidate_lag_samples": -847,
+        "candidate_lag_seconds": -0.019206349206349206,
+        "candidate_gain": 3.1540895011695445,
+        "candidate_gain_db": 9.977480256158008,
+        "calibration_frames": 38036,
+        "max_lag_seconds": 0.05,
+        "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+        "alignment_correlation": 0.6442170750677177,
+        "alignment_identifiable": true,
+        "alignment_at_search_boundary": false,
+        "gain_method": "one scalar RMS gain over calibration interval after alignment",
+        "allowed_transforms": [
+          "one global integer delay",
+          "one positive scalar gain"
+        ]
+      },
+      "metrics": {
+        "spectral_convergence_mean": 0.9467694270595842,
+        "log_spectral_error_db_mean": 23.925075865524388,
+        "envelope_error_db_p95_max": 4.6798466153239575,
+        "stereo_side_fraction_error": 0.06905640259189354,
+        "stereo_balance_error_db": 1.2817267583342427
+      },
+      "raw_metrics": {
+        "spectral_convergence_mean": 0.8491672953846829,
+        "log_spectral_error_db_mean": 19.767121031470854,
+        "envelope_error_db_p95_max": 12.456061985152989,
+        "stereo_side_fraction_error": 0.06874496639433812,
+        "stereo_balance_error_db": 1.2768975603443782
+      },
+      "raw_level_difference_db": -9.57531578545681,
+      "reference_sha256": "4968acb7c5f4d71eab9d163ea3caad2eb5b082cd249ba757d13f70bc691c5f01",
+      "candidate_sha256": "0abc37d1ddd8f09b8173a9158d0588e786e15107d68981c6d0b19ff3adc4d44a",
+      "comparison_manifest_sha256": "91e9b18cfd757cfa49a1a88a72dc1e7a8c84392d1ff055c57f7271d1b350c58c",
+      "report_sha256": "06a8e5fadcf341e7c0a2dbb4960ff02940be755076f59099fa7a7083d425d9bc",
+      "acceptance_gate": "not_established"
+    },
+    {
+      "id": "brassy-ld-1",
+      "audio": {
+        "sample_rate": 44100,
+        "channels": 2,
+        "source_comparison_frames": 133623,
+        "evaluation_reference_start_sample": 33510,
+        "evaluation_reference_end_sample": 133623,
+        "evaluation_candidate_start_sample_after_alignment": 33406,
+        "evaluation_frames": 100113
+      },
+      "calibration": {
+        "separate_prefix": true,
+        "held_out_from_dsp_tuning": null,
+        "qualification": "The time split only separates nuisance fitting; it does not prove that DSP tuning excluded this recording.",
+        "candidate_lag_samples": -104,
+        "candidate_lag_seconds": -0.00235827664399093,
+        "candidate_gain": 4.604467192242933,
+        "candidate_gain_db": 13.263587657622383,
+        "calibration_frames": 33406,
+        "max_lag_seconds": 0.05,
+        "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+        "alignment_correlation": 0.7447864286055088,
+        "alignment_identifiable": true,
+        "alignment_at_search_boundary": false,
+        "gain_method": "one scalar RMS gain over calibration interval after alignment",
+        "allowed_transforms": [
+          "one global integer delay",
+          "one positive scalar gain"
+        ]
+      },
+      "metrics": {
+        "spectral_convergence_mean": 0.6002983650770005,
+        "log_spectral_error_db_mean": 11.93230938224289,
+        "envelope_error_db_p95_max": 12.565602763486302,
+        "stereo_side_fraction_error": 0.005173459389047681,
+        "stereo_balance_error_db": 0.18753031377810422
+      },
+      "raw_metrics": {
+        "spectral_convergence_mean": 0.850549984364274,
+        "log_spectral_error_db_mean": 15.269816227920636,
+        "envelope_error_db_p95_max": 23.818152587810037,
+        "stereo_side_fraction_error": 0.00520297429991827,
+        "stereo_balance_error_db": 0.18761469644590603
+      },
+      "raw_level_difference_db": -14.132353646855723,
+      "reference_sha256": "dde80fcd0ba68c3be1ed1e8c9e0bc1fac6c49ea462d935967b069931fbbc1a9c",
+      "candidate_sha256": "69a86c5b8a19e42f0c0d5204e1c9840a4fd75f33ea317151bfa7e3f692d1f68c",
+      "comparison_manifest_sha256": "e305ebcce87bd90b1db4de4cae5231044762301e32a2b6e9e9368653e3f9d8e5",
+      "report_sha256": "4ec899cbecce7557deac0a93e667f309efd5ff8cd78caa913a86c56510e57ba2",
+      "acceptance_gate": "not_established"
+    },
+    {
+      "id": "club-bass",
+      "audio": {
+        "sample_rate": 44100,
+        "channels": 2,
+        "source_comparison_frames": 143325,
+        "evaluation_reference_start_sample": 35831,
+        "evaluation_reference_end_sample": 143092,
+        "evaluation_candidate_start_sample_after_alignment": 36064,
+        "evaluation_frames": 107261
+      },
+      "calibration": {
+        "separate_prefix": true,
+        "held_out_from_dsp_tuning": null,
+        "qualification": "The time split only separates nuisance fitting; it does not prove that DSP tuning excluded this recording.",
+        "candidate_lag_samples": 233,
+        "candidate_lag_seconds": 0.00528344671201814,
+        "candidate_gain": 1.8258137384222173,
+        "candidate_gain_db": 5.229129412471347,
+        "calibration_frames": 35831,
+        "max_lag_seconds": 0.05,
+        "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+        "alignment_correlation": 0.9730644230585856,
+        "alignment_identifiable": true,
+        "alignment_at_search_boundary": false,
+        "gain_method": "one scalar RMS gain over calibration interval after alignment",
+        "allowed_transforms": [
+          "one global integer delay",
+          "one positive scalar gain"
+        ]
+      },
+      "metrics": {
+        "spectral_convergence_mean": 0.423795339856928,
+        "log_spectral_error_db_mean": 15.56773374290691,
+        "envelope_error_db_p95_max": 6.995936134228152,
+        "stereo_side_fraction_error": 0.0032427041840733186,
+        "stereo_balance_error_db": 0.5143119129717343
+      },
+      "raw_metrics": {
+        "spectral_convergence_mean": 0.570772465660375,
+        "log_spectral_error_db_mean": 13.578865946201796,
+        "envelope_error_db_p95_max": 9.835798251036536,
+        "stereo_side_fraction_error": 0.0032396433523408943,
+        "stereo_balance_error_db": 0.5143539737190695
+      },
+      "raw_level_difference_db": -5.309041697306792,
+      "reference_sha256": "e5d5a628c59003732a17927b4690984627dd8427caca51c5f527df915424a6cd",
+      "candidate_sha256": "4ed8f841ea6d047eececcf18cf3edc9e6f581789f5bb866a1ec5c7d4e3bbed89",
+      "comparison_manifest_sha256": "66a61028ce675e196cc0191c625052ed05d85c11901b4d3718b00692a84dde6d",
+      "report_sha256": "e22864ad91c2f9abfeab7028fc821f3d2b59597d651e56503b9d3975703b6b09",
+      "acceptance_gate": "not_established"
+    },
+    {
+      "id": "cotton-wool",
+      "audio": {
+        "sample_rate": 44100,
+        "channels": 2,
+        "source_comparison_frames": 220500,
+        "evaluation_reference_start_sample": 56467,
+        "evaluation_reference_end_sample": 220500,
+        "evaluation_candidate_start_sample_after_alignment": 55125,
+        "evaluation_frames": 164033
+      },
+      "calibration": {
+        "separate_prefix": true,
+        "held_out_from_dsp_tuning": null,
+        "qualification": "The time split only separates nuisance fitting; it does not prove that DSP tuning excluded this recording.",
+        "candidate_lag_samples": -1342,
+        "candidate_lag_seconds": -0.030430839002267573,
+        "candidate_gain": 3.6165168666072605,
+        "candidate_gain_db": 11.165809897759228,
+        "calibration_frames": 55125,
+        "max_lag_seconds": 0.05,
+        "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+        "alignment_correlation": 0.6465185524776097,
+        "alignment_identifiable": true,
+        "alignment_at_search_boundary": false,
+        "gain_method": "one scalar RMS gain over calibration interval after alignment",
+        "allowed_transforms": [
+          "one global integer delay",
+          "one positive scalar gain"
+        ]
+      },
+      "metrics": {
+        "spectral_convergence_mean": 0.8128336357089044,
+        "log_spectral_error_db_mean": 11.825515838133228,
+        "envelope_error_db_p95_max": 11.799107845982595,
+        "stereo_side_fraction_error": 0.09489564852562823,
+        "stereo_balance_error_db": 1.239577085287796
+      },
+      "raw_metrics": {
+        "spectral_convergence_mean": 0.8079691784198001,
+        "log_spectral_error_db_mean": 12.471629163106691,
+        "envelope_error_db_p95_max": 16.11184429128388,
+        "stereo_side_fraction_error": 0.09505775330580012,
+        "stereo_balance_error_db": 1.2405264336122976
+      },
+      "raw_level_difference_db": -10.19493488071573,
+      "reference_sha256": "cf85c5a424f99365f5d6fc2517608529f03f1d07ffae34646e2f3d0a16af16ef",
+      "candidate_sha256": "4a1c06a9968e04f3c0aa0eb848450dcfd8812c5d5038c647bc452f5cb30fc099",
+      "comparison_manifest_sha256": "2df89f61e2e8a88d6712f7751eba24341f9ebe7be3cded697cbf1093b864474b",
+      "report_sha256": "e6e75e6cf0f184a19f846cc74056d5d80ee113c2cf81e66a9a586a97fd47483c",
+      "acceptance_gate": "not_established"
+    },
+    {
+      "id": "dist-bs-1",
+      "audio": {
+        "sample_rate": 44100,
+        "channels": 2,
+        "source_comparison_frames": 55566,
+        "evaluation_reference_start_sample": 13892,
+        "evaluation_reference_end_sample": 55343,
+        "evaluation_candidate_start_sample_after_alignment": 14115,
+        "evaluation_frames": 41451
+      },
+      "calibration": {
+        "separate_prefix": true,
+        "held_out_from_dsp_tuning": null,
+        "qualification": "The time split only separates nuisance fitting; it does not prove that DSP tuning excluded this recording.",
+        "candidate_lag_samples": 223,
+        "candidate_lag_seconds": 0.0050566893424036285,
+        "candidate_gain": 1.0909138048819627,
+        "candidate_gain_db": 0.7558087506676808,
+        "calibration_frames": 13892,
+        "max_lag_seconds": 0.05,
+        "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+        "alignment_correlation": 0.8959680577570396,
+        "alignment_identifiable": true,
+        "alignment_at_search_boundary": false,
+        "gain_method": "one scalar RMS gain over calibration interval after alignment",
+        "allowed_transforms": [
+          "one global integer delay",
+          "one positive scalar gain"
+        ]
+      },
+      "metrics": {
+        "spectral_convergence_mean": 0.3266449116786809,
+        "log_spectral_error_db_mean": 10.914327045779435,
+        "envelope_error_db_p95_max": 24.920825540849115,
+        "stereo_side_fraction_error": 0.0005157664717329834,
+        "stereo_balance_error_db": 0.38927461657439827
+      },
+      "raw_metrics": {
+        "spectral_convergence_mean": 0.44375466728946794,
+        "log_spectral_error_db_mean": 10.94192157549408,
+        "envelope_error_db_p95_max": 23.273707254410954,
+        "stereo_side_fraction_error": 0.0005157664717329834,
+        "stereo_balance_error_db": 0.38927461657439827
+      },
+      "raw_level_difference_db": -1.0035132111744514,
+      "reference_sha256": "24af96a9b84b9c8660bf6996b58f2def9500333e109177a26eb815bb341fb7ab",
+      "candidate_sha256": "767063f15801729067ccb760792ae4e772e8a4d0e1da84d76d0f92273a6e1be3",
+      "comparison_manifest_sha256": "b355df9de48ae84e43273c6c84764f70b0099db6cd29f6f9c02309ec343119b7",
+      "report_sha256": "74ee7ecab1ef92ae1b28a6d8f930d22b3c9dcad71bbb2375a119376649d9d43b",
+      "acceptance_gate": "not_established"
+    },
+    {
+      "id": "moogie-1",
+      "audio": {
+        "sample_rate": 44100,
+        "channels": 2,
+        "source_comparison_frames": 163170,
+        "evaluation_reference_start_sample": 41253,
+        "evaluation_reference_end_sample": 163170,
+        "evaluation_candidate_start_sample_after_alignment": 40792,
+        "evaluation_frames": 121917
+      },
+      "calibration": {
+        "separate_prefix": true,
+        "held_out_from_dsp_tuning": null,
+        "qualification": "The time split only separates nuisance fitting; it does not prove that DSP tuning excluded this recording.",
+        "candidate_lag_samples": -461,
+        "candidate_lag_seconds": -0.010453514739229026,
+        "candidate_gain": 0.7650369473207095,
+        "candidate_gain_db": -2.3263518033321122,
+        "calibration_frames": 40792,
+        "max_lag_seconds": 0.05,
+        "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+        "alignment_correlation": 0.7475084769209602,
+        "alignment_identifiable": true,
+        "alignment_at_search_boundary": false,
+        "gain_method": "one scalar RMS gain over calibration interval after alignment",
+        "allowed_transforms": [
+          "one global integer delay",
+          "one positive scalar gain"
+        ]
+      },
+      "metrics": {
+        "spectral_convergence_mean": 0.35968239208797853,
+        "log_spectral_error_db_mean": 8.554566480382412,
+        "envelope_error_db_p95_max": 4.2397567493824235,
+        "stereo_side_fraction_error": 0.0002814791299896068,
+        "stereo_balance_error_db": 0.28618986261946744
+      },
+      "raw_metrics": {
+        "spectral_convergence_mean": 0.5063876632792658,
+        "log_spectral_error_db_mean": 7.084863159337446,
+        "envelope_error_db_p95_max": 5.741323001683729,
+        "stereo_side_fraction_error": 0.0002814791299896068,
+        "stereo_balance_error_db": 0.28618986261946744
+      },
+      "raw_level_difference_db": 2.505722662552878,
+      "reference_sha256": "b68b102973532d6e904cdceee31aebd89a304c43059d2ebcf2b22e57d83ba377",
+      "candidate_sha256": "7ce5ff6bab6880889406e7f3ab08a6233977e542973496c49eaddb022e37b6bc",
+      "comparison_manifest_sha256": "952d5f8956fa17a7ec1fad2dc62be604f18714bd426b2edaff9b2c9fb655afd7",
+      "report_sha256": "937c8e04331e5baadd8753edf5427069b7a9d232da333b0867349c002aa192db",
+      "acceptance_gate": "not_established"
+    },
+    {
+      "id": "pedal-bs-1",
+      "audio": {
+        "sample_rate": 44100,
+        "channels": 2,
+        "source_comparison_frames": 68355,
+        "evaluation_reference_start_sample": 17089,
+        "evaluation_reference_end_sample": 68186,
+        "evaluation_candidate_start_sample_after_alignment": 17258,
+        "evaluation_frames": 51097
+      },
+      "calibration": {
+        "separate_prefix": true,
+        "held_out_from_dsp_tuning": null,
+        "qualification": "The time split only separates nuisance fitting; it does not prove that DSP tuning excluded this recording.",
+        "candidate_lag_samples": 169,
+        "candidate_lag_seconds": 0.003832199546485261,
+        "candidate_gain": 1.4658778636358085,
+        "candidate_gain_db": 3.3219557313584747,
+        "calibration_frames": 17089,
+        "max_lag_seconds": 0.05,
+        "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+        "alignment_correlation": 0.831936311357815,
+        "alignment_identifiable": true,
+        "alignment_at_search_boundary": false,
+        "gain_method": "one scalar RMS gain over calibration interval after alignment",
+        "allowed_transforms": [
+          "one global integer delay",
+          "one positive scalar gain"
+        ]
+      },
+      "metrics": {
+        "spectral_convergence_mean": 0.5346057369203465,
+        "log_spectral_error_db_mean": 16.522546670859466,
+        "envelope_error_db_p95_max": 18.363194987270447,
+        "stereo_side_fraction_error": 0.0003657715312837937,
+        "stereo_balance_error_db": 0.4496736324022852
+      },
+      "raw_metrics": {
+        "spectral_convergence_mean": 0.6712999315287583,
+        "log_spectral_error_db_mean": 16.065691982989645,
+        "envelope_error_db_p95_max": 21.111822686846743,
+        "stereo_side_fraction_error": 0.00036555719749645595,
+        "stereo_balance_error_db": 0.4497380708037385
+      },
+      "raw_level_difference_db": -7.730096042342288,
+      "reference_sha256": "3823b3cc39913a51c9e4aeb6b997a9a80ee371a55cd4aa75abb38251a8ea8faf",
+      "candidate_sha256": "bb26c0432da9b4d02a92897ef55c7ee07b3e7ed9c5f0fabb9b973fb09bb60cd8",
+      "comparison_manifest_sha256": "c9feaf3426a1f695b99545e7cb53a253830515030ebb83f2413c201e30326ae8",
+      "report_sha256": "5f3e43ba21b90030be130529562a564f76633f0985d427263024d3092c299aae",
+      "acceptance_gate": "not_established"
+    },
+    {
+      "id": "so-juno-1",
+      "audio": {
+        "sample_rate": 44100,
+        "channels": 2,
+        "source_comparison_frames": 68355,
+        "evaluation_reference_start_sample": 17421,
+        "evaluation_reference_end_sample": 68355,
+        "evaluation_candidate_start_sample_after_alignment": 17089,
+        "evaluation_frames": 50934
+      },
+      "calibration": {
+        "separate_prefix": true,
+        "held_out_from_dsp_tuning": null,
+        "qualification": "The time split only separates nuisance fitting; it does not prove that DSP tuning excluded this recording.",
+        "candidate_lag_samples": -332,
+        "candidate_lag_seconds": -0.007528344671201814,
+        "candidate_gain": 2.421949786850424,
+        "candidate_gain_db": 7.683302697529286,
+        "calibration_frames": 17089,
+        "max_lag_seconds": 0.05,
+        "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+        "alignment_correlation": 0.9055290103551801,
+        "alignment_identifiable": true,
+        "alignment_at_search_boundary": false,
+        "gain_method": "one scalar RMS gain over calibration interval after alignment",
+        "allowed_transforms": [
+          "one global integer delay",
+          "one positive scalar gain"
+        ]
+      },
+      "metrics": {
+        "spectral_convergence_mean": 0.4208670961519117,
+        "log_spectral_error_db_mean": 11.044880589127368,
+        "envelope_error_db_p95_max": 29.413099728704953,
+        "stereo_side_fraction_error": 0.012992587496768064,
+        "stereo_balance_error_db": 2.588618274134207
+      },
+      "raw_metrics": {
+        "spectral_convergence_mean": 0.6901480749079246,
+        "log_spectral_error_db_mean": 16.187277922691873,
+        "envelope_error_db_p95_max": 36.486891476310376,
+        "stereo_side_fraction_error": 0.01292359522851947,
+        "stereo_balance_error_db": 2.5881195623873343
+      },
+      "raw_level_difference_db": -9.051247387355534,
+      "reference_sha256": "94f78e6c9564bda839597fd6df0210ee5b95518bc98a881419256962769a63e0",
+      "candidate_sha256": "f7904bd0e7ed29a0235af6f5a5a2269620ead6ee9c6e691dc0bbdc7c1102d0f6",
+      "comparison_manifest_sha256": "abd5cfaa06efa6fa73a56346a7d7946db026a218a1986c2cb7c2db3b2888c0e4",
+      "report_sha256": "08a634abae19196f01d8ed1fbf19973824f9ba039a5e611bf4ecb7beec8355af",
+      "acceptance_gate": "not_established"
+    },
+    {
+      "id": "supa-juce-1",
+      "audio": {
+        "sample_rate": 44100,
+        "channels": 2,
+        "source_comparison_frames": 79380,
+        "evaluation_reference_start_sample": 19845,
+        "evaluation_reference_end_sample": 79157,
+        "evaluation_candidate_start_sample_after_alignment": 20068,
+        "evaluation_frames": 59312
+      },
+      "calibration": {
+        "separate_prefix": true,
+        "held_out_from_dsp_tuning": null,
+        "qualification": "The time split only separates nuisance fitting; it does not prove that DSP tuning excluded this recording.",
+        "candidate_lag_samples": 223,
+        "candidate_lag_seconds": 0.0050566893424036285,
+        "candidate_gain": 1.7531787465575264,
+        "candidate_gain_db": 4.876523942938275,
+        "calibration_frames": 19845,
+        "max_lag_seconds": 0.05,
+        "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+        "alignment_correlation": 0.9001657156874552,
+        "alignment_identifiable": true,
+        "alignment_at_search_boundary": false,
+        "gain_method": "one scalar RMS gain over calibration interval after alignment",
+        "allowed_transforms": [
+          "one global integer delay",
+          "one positive scalar gain"
+        ]
+      },
+      "metrics": {
+        "spectral_convergence_mean": 0.5377085898215399,
+        "log_spectral_error_db_mean": 8.591301857755129,
+        "envelope_error_db_p95_max": 10.538252408492983,
+        "stereo_side_fraction_error": 0.05152969346492943,
+        "stereo_balance_error_db": 0.44785156120899877
+      },
+      "raw_metrics": {
+        "spectral_convergence_mean": 0.6019905045554655,
+        "log_spectral_error_db_mean": 8.408231563422376,
+        "envelope_error_db_p95_max": 7.2601384443486605,
+        "stereo_side_fraction_error": 0.0512335074080872,
+        "stereo_balance_error_db": 0.44761756567841543
+      },
+      "raw_level_difference_db": -5.093537942959683,
+      "reference_sha256": "94feaa31fa2ee16220a452f76852f3c1e3186d1889b895883b26e2a9fb6041f2",
+      "candidate_sha256": "2b4c5f8cbdf83ecc895b19f7015fd15bd9f126723830375df564f52e5ac79bb1",
+      "comparison_manifest_sha256": "fa832b613bfec35413d9b3cf1643c2d96f69f7f87435ddb1197bccd082908b0a",
+      "report_sha256": "93ebad6a3023701fb3d873e35784051189844ff16a5e78005bbec5b98387ec69",
+      "acceptance_gate": "not_established"
+    },
+    {
+      "id": "vangelead",
+      "audio": {
+        "sample_rate": 44100,
+        "channels": 2,
+        "source_comparison_frames": 227115,
+        "evaluation_reference_start_sample": 57348,
+        "evaluation_reference_end_sample": 227115,
+        "evaluation_candidate_start_sample_after_alignment": 56779,
+        "evaluation_frames": 169767
+      },
+      "calibration": {
+        "separate_prefix": true,
+        "held_out_from_dsp_tuning": null,
+        "qualification": "The time split only separates nuisance fitting; it does not prove that DSP tuning excluded this recording.",
+        "candidate_lag_samples": -569,
+        "candidate_lag_seconds": -0.01290249433106576,
+        "candidate_gain": 2.238905153418558,
+        "candidate_gain_db": 7.000713919642879,
+        "calibration_frames": 56779,
+        "max_lag_seconds": 0.05,
+        "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+        "alignment_correlation": 0.7721467010440585,
+        "alignment_identifiable": true,
+        "alignment_at_search_boundary": false,
+        "gain_method": "one scalar RMS gain over calibration interval after alignment",
+        "allowed_transforms": [
+          "one global integer delay",
+          "one positive scalar gain"
+        ]
+      },
+      "metrics": {
+        "spectral_convergence_mean": 0.7109425857503483,
+        "log_spectral_error_db_mean": 12.686956496589772,
+        "envelope_error_db_p95_max": 7.705079760189198,
+        "stereo_side_fraction_error": 0.029266379472385827,
+        "stereo_balance_error_db": 0.2802380469063571
+      },
+      "raw_metrics": {
+        "spectral_convergence_mean": 0.704536798906497,
+        "log_spectral_error_db_mean": 17.11301360196259,
+        "envelope_error_db_p95_max": 13.027158142052993,
+        "stereo_side_fraction_error": 0.029732245050317588,
+        "stereo_balance_error_db": 0.26819387276020823
+      },
+      "raw_level_difference_db": -6.392013028598127,
+      "reference_sha256": "f15780a3c1eb785d811b6004f2b5424544822a2a21584541c7c638e11165b91c",
+      "candidate_sha256": "9538c20409ad6c082a4015eb5a6243e2ec947e346069061563cdb6c98c326551",
+      "comparison_manifest_sha256": "0ac17d486ec011b8bcdcbd4d5f5b71eb323b8d905e3a27775db2b8de57d95b54",
+      "report_sha256": "8a681a12d069c52ff97a64d4c8e526d26d81d4d1f300bbaf5e83fd23b9e178ad",
+      "acceptance_gate": "not_established"
+    }
+  ]
+}
