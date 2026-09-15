@@ -1,0 +1,1910 @@
+{
+  "status": "exploratory_articulation_followup_not_recovered_MIDI",
+  "frozen_input_commit": "8265b54",
+  "run_results_sha256": "10df12b364295b0d85e1050ec3e2891ea82e54f541ed049775b43adf51ce3755",
+  "earlier_results_sha256": "aa7e3e4cc09c298d86cf6e0d5e27e6345b4d46248c3b2882cc158088418797e2",
+  "protocol": {
+    "status": "exploratory_articulation_followup",
+    "primary_hypothesis": "gain-0.5",
+    "secondary_sensitivity": "gain-0.25",
+    "baseline": "gain-1",
+    "models": {
+      "gain-1": {
+        "directory": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/builds/gain-1",
+        "renderer_sha256": "0e69118d0dab0928793ef3b59208fddf43b7bd56d982f2c053d3c0ad9f15b646",
+        "manifest_sha256": "3c443ff9c4a33cf456bde625c91bcb3d8a575e3151ee601b40be1307fe51e27f"
+      },
+      "gain-0.5": {
+        "directory": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/builds/gain-0.5",
+        "renderer_sha256": "f75f864dffa98eca24025836bf9d04705ad7fd68717ddef982092f4865828758",
+        "manifest_sha256": "61188f5a0b0c06cce822ec71616f9ad59b709b5aa3a85836f796c35f553b98af"
+      },
+      "gain-0.25": {
+        "directory": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/builds/gain-0.25",
+        "renderer_sha256": "3d4edd95e8a645dcf410db4d1b151abd0bda747b58f1990e018442a6866fc567",
+        "manifest_sha256": "0fe85ee7c4449b07bf6befe12d9d43245e0b245e5c1a045f605de49afe3e1273"
+      }
+    },
+    "cases": [
+      {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Docs/fidelity/reconstructions/reverb-validation/ambient-sqr-first-held-until-next.json",
+        "frozen_path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-articulation-followup/run-01/ambient-sqr-first-held-until-next-frozen-reconstruction.json",
+        "sha256": "ab8a8d0b23e97566f5b5dcd50bc65c5d7ce83201534e78036a56ff55114ad91c",
+        "midi_sha256": "cf3dce955b1b20e65407e4adb0485125b61222e2aa21b66e90af00292fcc901a",
+        "sysex_sha256": "1e420e8a04502d790a1018f4547167377bdfd4470e21bb6602853d09218aff07",
+        "case": {
+          "schema_version": 1,
+          "id": "ambient-sqr-first-held-until-next",
+          "title": "Ambient SQR \u2014 exploratory first note held until next onset",
+          "reference_id": "lead-07",
+          "midi_status": "reconstructed_not_original",
+          "source_start_seconds": 0,
+          "duration_seconds": 0.775,
+          "calibration_end_seconds": 0.405,
+          "method": "Exploratory source-only articulation follow-up after earlier reverb candidate outcomes were known. Original MP3 measurements in fixed first-note windows show persistent narrow harmonic families through0.40s, changing harmonic balance and increasing stereo side energy. These cannot identify a key release or separate beating from releasing/wet tone. Extend only first D5 key-up to the already frozen next onset0.418s; retain all other canonical event times, velocity100, original complete patch, crop and calibration. No candidate audio or new candidate scores were used for this source analysis.",
+          "uncertainties": [
+            "Original MIDI, velocity, controllers, global transpose/tuning, output latency/capture chain and exact recorded patch revision are unavailable. The MP3 and bank are associated by Roland name/category.",
+            "Velocity 100 is nominal. Upper AMP velocity sensitivity is 0, Lower is 8; both cutoff velocity sensitivities are 0. Velocity can alter the layer and wet/dry balance, so a common scalar gain does not remove its uncertainty.",
+            "Upper has two Squares, drive 30, Solo Legato and portamento 20; Lower has two Sines, slower AMP attack 76 and Solo without portamento. Old-note energy may be release, delay or reverb; it does not prove held-key overlap.",
+            "Onset ranges are operational source-clock reconstruction uncertainties, not certified MIDI time bounds. A later production-only prefix alignment may absorb one common latency; do not tune later notes to candidate errors.",
+            "Key-up estimates near envelope maxima are provisional: the amplitude/filter envelopes, two layers, drive, interference and wet tails prevent uniquely recovering key release. Off-time ranges are sensitivity settings, not confidence intervals or observed gates.",
+            "The 0.775-second crop excludes the next obvious new pitch group near 0.79 s. The third note's gate is still estimated; later hardware decay is not covered by this short reconstruction.",
+            "All three original notes and preceding silence are retained from source time 0 for effect history. Exact published SysEx must remain unchanged. This is a conditional generalization case, not an output-equivalence benchmark.",
+            "This exploratory first-key-up extends beyond the original0.160\u20130.240s operational bracket because that bracket was not a recovered MIDI bound. Strong late narrow harmonics can be held/releasing oscillators or coherent effects; the source does not select among them. The new gate is frozen before its own render, after earlier model outcomes were known."
+          ],
+          "notes": [
+            {
+              "on": 0.085,
+              "off": 0.418,
+              "note": 74,
+              "velocity": 100,
+              "on_uncertainty_seconds": [
+                0.075,
+                0.095
+              ]
+            },
+            {
+              "on": 0.418,
+              "off": 0.53,
+              "note": 76,
+              "velocity": 100,
+              "on_uncertainty_seconds": [
+                0.408,
+                0.428
+              ],
+              "off_sensitivity_seconds": [
+                0.49,
+                0.57
+              ]
+            },
+            {
+              "on": 0.618,
+              "off": 0.73,
+              "note": 77,
+              "velocity": 100,
+              "on_uncertainty_seconds": [
+                0.608,
+                0.628
+              ],
+              "off_sensitivity_seconds": [
+                0.7,
+                0.76
+              ]
+            }
+          ],
+          "validation_plan": {
+            "calibration_seconds": [
+              0,
+              0.405
+            ],
+            "later_evaluation_seconds": [
+              0.405,
+              0.775
+            ],
+            "training_note": 74,
+            "later_notes": [
+              76,
+              77
+            ],
+            "frozen_before_candidate_render_or_score_inspection": false,
+            "comparison_policy": "Exploratory single first-gate extension after known earlier outcomes. Retain all earlier nine scenarios and this one; compare equal frozen inputs across DSP models without selecting the best reconstruction. Keep source_start0, calibration_end0.405, duration0.775; first held gate crosses calibration boundary by design.",
+            "velocity_sensitivity_suggestion": [
+              80,
+              100,
+              120
+            ],
+            "gate_sensitivity_suggestion": "This single additional0.418s first-note key-up; later key-ups0.530/0.730s unchanged. No additional fitted offsets or best-case selection.",
+            "exploratory_variant_frozen_before_its_own_render_or_score": true
+          },
+          "active_velocity_sensitivity": {
+            "upper": {
+              "cutoff": 0,
+              "amp": 0
+            },
+            "lower": {
+              "cutoff": 0,
+              "amp": 8
+            }
+          },
+          "unmodified_sysex_sha256": "1e420e8a04502d790a1018f4547167377bdfd4470e21bb6602853d09218aff07",
+          "original_mp3_sha256": "d113bb3d65c34bb6827d29561e29dd9c9d4a6236143d5528685643f84a86e565",
+          "reconstruction_parent_sha256": "d9529fe92b8178dd1acc556feb54863b18e8dd1b30e724f28736765f4eeee532",
+          "sensitivity": {
+            "status": "exploratory_after_known_candidate_outcomes_not_prospective_independent_validation",
+            "changed_event": "Only note74 key-up:0.200\u21920.418s; same-time note-off is emitted before note76 note-on. This is a contiguous-gate sensitivity, not a held-key overlap/legato claim.",
+            "original_operational_off_bracket_seconds": [
+              0.16,
+              0.24
+            ],
+            "chosen_off_seconds": 0.418,
+            "rationale": "Use the already frozen second onset as a bounded alternative; spectral persistence cannot prove this gate. Do not replace canonical cases or select the best-performing reconstruction."
+          }
+        }
+      }
+    ],
+    "model_result_sha256": "ff09418c895d188c0df2323ec45cb6616fd7e3d40184b6205acaea5c04b92d51",
+    "catalog_sha256": "32e356db740bd827792b6d98800aa7f923b34ceb3b7a164dd2cfcb5220119736",
+    "transformation": "Primary: one production-only prefix lag bounded50ms and gain, frozen across models. Candidate-prefix RMS gains are a separately reported sensitivity. Same evaluation supports for all models.",
+    "scope": "Exploratory follow-up after earlier candidate outcomes. New inputs are fixed before their own scores; this is not independent confirmation or a replacement for the earlier cases. Original performance MIDI, gates, velocity and recorded patch revision remain unauthenticated.",
+    "tools": {
+      "evaluate_reverb_validation_cases.py": "0f4515ea77f51e2136052e1ad533a055be728f23d4c1cb3bb25e619e3485636a",
+      "compare_hardware.py": "98c1fad577e2cc13b5c20dff04d06a1414ae0332fe48e2696b690db03d87be86",
+      "assess_hardware_equivalence.py": "b6ca63fa02ff11f3154cf34c1233cfe460fd4447be403fe4c0695646ccb74631",
+      "render_midi.py": "ffb8899e5a4b3588d459e5de3e710c74a002dfc04e45d7691a03102e9b5093e3",
+      "extract_reference_patch.py": "461407495e9f5bfc99767a0146a750708c5cdb2fd34c0d029aaf5e5f5a80703b"
+    }
+  },
+  "earlier_nominal": {
+    "id": "ambient-sqr-nominal-v100",
+    "reconstruction_sha256": "7d7c39e2176b19f90af171e0408b311b545bbc6534f5230b86ca515e0e660a8b",
+    "comparison_sha256": "bf19964ad90299bc84a2d720bdb12b17a2e9ff090aec2e78fd6a55c3f70261d6",
+    "comparison": {
+      "schema_version": 1,
+      "case": {
+        "schema_version": 1,
+        "id": "ambient-sqr-nominal-v100",
+        "title": "Ambient SQR \u2014 nominal gates, velocity 100",
+        "reference_id": "lead-07",
+        "midi_status": "reconstructed_not_original",
+        "source_start_seconds": 0,
+        "duration_seconds": 0.775,
+        "calibration_end_seconds": 0.405,
+        "method": "Source-only original MP3 inspection: native stereo spectra, fundamental and odd-harmonic families in three fixed plateaus, short RMS history and time-frequency transitions. Dominant families near 587, 659, 698 Hz support played MIDI 74, 76, 77 under the unchanged published preset's zero coarse/octave and zero pitch-envelope/LFO depths. Nominal key-ups follow envelope roll-off near the observed level maxima, with broad operational uncertainty; they are not recovered release events. No engine or candidate scores were used. This is an operational gate/velocity sensitivity derived from the frozen source-only reconstruction; no new note transcription or candidate-based fit.",
+        "uncertainties": [
+          "Original MIDI, velocity, controllers, global transpose/tuning, output latency/capture chain and exact recorded patch revision are unavailable. The MP3 and bank are associated by Roland name/category.",
+          "Velocity 100 is nominal. Upper AMP velocity sensitivity is 0, Lower is 8; both cutoff velocity sensitivities are 0. Velocity can alter the layer and wet/dry balance, so a common scalar gain does not remove its uncertainty.",
+          "Upper has two Squares, drive 30, Solo Legato and portamento 20; Lower has two Sines, slower AMP attack 76 and Solo without portamento. Old-note energy may be release, delay or reverb; it does not prove held-key overlap.",
+          "Onset ranges are operational source-clock reconstruction uncertainties, not certified MIDI time bounds. A later production-only prefix alignment may absorb one common latency; do not tune later notes to candidate errors.",
+          "Key-up estimates near envelope maxima are provisional: the amplitude/filter envelopes, two layers, drive, interference and wet tails prevent uniquely recovering key release. Off-time ranges are sensitivity settings, not confidence intervals or observed gates.",
+          "The 0.775-second crop excludes the next obvious new pitch group near 0.79 s. The third note's gate is still estimated; later hardware decay is not covered by this short reconstruction.",
+          "All three original notes and preceding silence are retained from source time 0 for effect history. Exact published SysEx must remain unchanged. This is a conditional generalization case, not an output-equivalence benchmark."
+        ],
+        "notes": [
+          {
+            "on": 0.085,
+            "off": 0.2,
+            "note": 74,
+            "velocity": 100,
+            "on_uncertainty_seconds": [
+              0.075,
+              0.095
+            ],
+            "off_sensitivity_seconds": [
+              0.16,
+              0.24
+            ]
+          },
+          {
+            "on": 0.418,
+            "off": 0.53,
+            "note": 76,
+            "velocity": 100,
+            "on_uncertainty_seconds": [
+              0.408,
+              0.428
+            ],
+            "off_sensitivity_seconds": [
+              0.49,
+              0.57
+            ]
+          },
+          {
+            "on": 0.618,
+            "off": 0.73,
+            "note": 77,
+            "velocity": 100,
+            "on_uncertainty_seconds": [
+              0.608,
+              0.628
+            ],
+            "off_sensitivity_seconds": [
+              0.7,
+              0.76
+            ]
+          }
+        ],
+        "validation_plan": {
+          "calibration_seconds": [
+            0,
+            0.405
+          ],
+          "later_evaluation_seconds": [
+            0.405,
+            0.775
+          ],
+          "training_note": 74,
+          "later_notes": [
+            76,
+            77
+          ],
+          "frozen_before_candidate_render_or_score_inspection": true,
+          "comparison_policy": "One production-only prefix lag and gain; freeze for the later E5/F5 region. Any velocity/gate sensitivity must be predeclared, reported in full and applied equally to all DSP candidates without selecting its best error. Keep original SysEx unchanged.",
+          "velocity_sensitivity_suggestion": [
+            80,
+            100,
+            120
+          ],
+          "gate_sensitivity_suggestion": "Nominal key-ups; then all early endpoints; then all late endpoints from each note's off_sensitivity_seconds. These bracket plausible articulation without recovering it."
+        },
+        "active_velocity_sensitivity": {
+          "upper": {
+            "cutoff": 0,
+            "amp": 0
+          },
+          "lower": {
+            "cutoff": 0,
+            "amp": 8
+          }
+        },
+        "unmodified_sysex_sha256": "1e420e8a04502d790a1018f4547167377bdfd4470e21bb6602853d09218aff07",
+        "original_mp3_sha256": "d113bb3d65c34bb6827d29561e29dd9c9d4a6236143d5528685643f84a86e565",
+        "reconstruction_parent_sha256": "d9529fe92b8178dd1acc556feb54863b18e8dd1b30e724f28736765f4eeee532",
+        "sensitivity": {
+          "gate": "nominal",
+          "velocity": 100,
+          "policy": "All nine predeclared combinations; same inputs to every frozen DSP candidate. No scenario selection by model error."
+        }
+      },
+      "qualification": "same published preset; reconstructed MIDI, not verified original MIDI",
+      "reference": {
+        "id": "lead-07",
+        "title": "Ambient SQR",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_AmbientSQR.mp3",
+        "local_filename": "TOP8_AmbientSQR.mp3",
+        "sha256": "d113bb3d65c34bb6827d29561e29dd9c9d4a6236143d5528685643f84a86e565",
+        "size_bytes": 468139,
+        "bank_id": "lead",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 7,
+        "patch_name": "Ambient SQR",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+      },
+      "bank": {
+        "id": "lead",
+        "category": "LEAD",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/shl/SH-201_Patch_LEAD.zip",
+        "local_filename": "SH-201_Patch_LEAD.zip",
+        "sha256": "102c47ee393c09115779172b8cbbb2c2f2563e0b4fdb2f57e0c8fca2a23c3b29",
+        "size_bytes": 42223,
+        "archive_member": "SH-201_Patch_LEAD/100_LEAD.shl",
+        "bank_sha256": "d6649236cd89c1652480f9ae194bc20f0a3e33e147cb16828216871fba35b26c",
+        "patch_count": 100,
+        "parameter_blocks_per_patch": 22,
+        "contains_original_performance_midi": false
+      },
+      "archive_member": "SH-201_Patch_LEAD/100_LEAD.shl",
+      "parameter_modifications": [],
+      "raw_excerpt_statistics": {
+        "hardware": {
+          "peak": 0.5932819843292236,
+          "peak_dbfs": -4.534776785996537,
+          "rms_dbfs": -12.205198722783475,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 652.2625393444068,
+          "identical_stereo_channels": false,
+          "side_to_mid_db": -24.615331096034282
+        },
+        "septum": {
+          "peak": 0.1209014430642128,
+          "peak_dbfs": -18.35137030849433,
+          "rms_dbfs": -29.39616102856244,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 707.5893514490032,
+          "identical_stereo_channels": false,
+          "side_to_mid_db": -6.858181399591517
+        }
+      },
+      "listening_transform": {
+        "method": "whole-excerpt RMS matching; no EQ, compression or time warp",
+        "target_rms_dbfs": -20,
+        "hardware_gain": 0.4076241781000876,
+        "septum_gain": 2.9499051455589833,
+        "common_peak_attenuation": 1.0,
+        "ab_only_edge_fade_seconds": 0.005011337868480726,
+        "ab_gap_seconds": 0.5
+      },
+      "alignment": "transcribed event times on decoded hardware timeline; no post-render alignment",
+      "hardware_start_sample": 0,
+      "comparison_frames": 34178,
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "build-fidelity/hardware-benchmark/sources/TOP8_AmbientSQR.mp3",
+        "-ar",
+        "44100",
+        "-ac",
+        "2",
+        "-c:a",
+        "pcm_f32le",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-new-preset-validation/run-01/baseline-corpus/ambient-sqr-nominal-v100/hardware-decoded-full.wav"
+      ],
+      "retained_engine_latency_samples": 93,
+      "catalog_sha256": "32e356db740bd827792b6d98800aa7f923b34ceb3b7a164dd2cfcb5220119736",
+      "comparison_limits": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Original MIDI, velocity, controllers, global transpose/tuning, output latency/capture chain and exact recorded patch revision are unavailable. The MP3 and bank are associated by Roland name/category.",
+        "Velocity 100 is nominal. Upper AMP velocity sensitivity is 0, Lower is 8; both cutoff velocity sensitivities are 0. Velocity can alter the layer and wet/dry balance, so a common scalar gain does not remove its uncertainty.",
+        "Upper has two Squares, drive 30, Solo Legato and portamento 20; Lower has two Sines, slower AMP attack 76 and Solo without portamento. Old-note energy may be release, delay or reverb; it does not prove held-key overlap.",
+        "Onset ranges are operational source-clock reconstruction uncertainties, not certified MIDI time bounds. A later production-only prefix alignment may absorb one common latency; do not tune later notes to candidate errors.",
+        "Key-up estimates near envelope maxima are provisional: the amplitude/filter envelopes, two layers, drive, interference and wet tails prevent uniquely recovering key release. Off-time ranges are sensitivity settings, not confidence intervals or observed gates.",
+        "The 0.775-second crop excludes the next obvious new pitch group near 0.79 s. The third note's gate is still estimated; later hardware decay is not covered by this short reconstruction.",
+        "All three original notes and preceding silence are retained from source time 0 for effect history. Exact published SysEx must remain unchanged. This is a conditional generalization case, not an output-equivalence benchmark."
+      ],
+      "reconstruction_file_sha256": "7d7c39e2176b19f90af171e0408b311b545bbc6534f5230b86ca515e0e660a8b",
+      "runtime": {
+        "python": "3.11.0",
+        "numpy": "1.26.4",
+        "scipy": "1.14.1",
+        "matplotlib": "3.9.2",
+        "ffmpeg": "ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers"
+      },
+      "source_code_sha256": {
+        "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+        "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+        "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+        "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+        "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+        "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+        "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+        "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+        "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+        "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+        "Source/DSP/SeptumEngine.h": "f1c2f678f1b3c7b4df650df5d3c4f9c376cd64c8a5655a440fca0212a6868119",
+        "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+        "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+        "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+        "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+        "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+        "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9"
+      },
+      "tool_sha256": {
+        "compare_hardware.py": "98c1fad577e2cc13b5c20dff04d06a1414ae0332fe48e2696b690db03d87be86",
+        "render_midi.py": "ffb8899e5a4b3588d459e5de3e710c74a002dfc04e45d7691a03102e9b5093e3",
+        "RenderMidi.cpp": "73fc5cd13bf635bbd95dc2a4e65301b06038cd96d2e684de1bb694b3e0066bfb",
+        "extract_reference_patch.py": "461407495e9f5bfc99767a0146a750708c5cdb2fd34c0d029aaf5e5f5a80703b"
+      },
+      "files": {
+        "hardware-then-septum.wav": "9c4ec85022f131099c0e347567cd6de52f5b441abd300367bc527d2edb661af7",
+        "hardware-listen.wav": "4840459adef021b74fa32bba16b2fbab58206167268d90a25fe8b263f5a16502",
+        "septum-listen.wav": "3f958e0207f719b5c15e02a52b687d6a0b881e0239aac959ee5a3a26afcf1bea",
+        "reconstructed-performance.mid": "be11bd3402c53dccc505dc573409747578eca8a0ff946cf8976076f87c40fea0",
+        "septum-raw.render.json": "82fea08477610504bd27d7d74a9045f86ed538f8c49c3b4173ebba762c203f12",
+        "comparison.png": "f1031794c38f8f54884668fcec24b518dce2d5458ab12cc6819f0c0b6ed2f8c2",
+        "original-patch.syx": "1e420e8a04502d790a1018f4547167377bdfd4470e21bb6602853d09218aff07",
+        "plot-data.json": "bb935a81521164639b67c278f8070f2299d3335528b3071c308408a0746bcaf2",
+        "septum-raw.wav": "fc82ce6997aea815a8a47d00210b7632b2c632b8d7db7dae3c7994df02aa2f9a",
+        "hardware-excerpt-raw.wav": "3c4733491dca0ff12fd5e5ac12a363f6dc92c4703e09bdeca3d8a274470ce29e",
+        "hardware-decoded-full.wav": "ccde7bbc4aceb5b8653a9cdad60a77c40fd6a472bd6c1ea75667c9fc4dcb4fc7"
+      }
+    },
+    "calibration": {
+      "candidate_lag_samples": -2205,
+      "candidate_lag_seconds": -0.05,
+      "candidate_gain": 7.46790500635611,
+      "candidate_gain_db": 17.4639756995265,
+      "calibration_frames": 17860,
+      "max_lag_seconds": 0.05,
+      "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+      "alignment_correlation": 0.8261247520355984,
+      "alignment_identifiable": true,
+      "alignment_at_search_boundary": true,
+      "gain_method": "one scalar RMS gain over calibration interval after alignment",
+      "allowed_transforms": [
+        "one global integer delay",
+        "one positive scalar gain"
+      ]
+    },
+    "calibration_reference_samples": [
+      2205,
+      17860
+    ],
+    "calibration_candidate_samples": [
+      0,
+      15655
+    ],
+    "evaluation_samples": [
+      20065,
+      34178
+    ],
+    "models": {
+      "gain-1": {
+        "wav_sha256": "fc82ce6997aea815a8a47d00210b7632b2c632b8d7db7dae3c7994df02aa2f9a",
+        "receipt_sha256": "82fea08477610504bd27d7d74a9045f86ed538f8c49c3b4173ebba762c203f12",
+        "command": null,
+        "fitted_prefix_gain": 7.46790500635611,
+        "peak": 0.1209014430642128,
+        "finite": true,
+        "samples_at_or_above_full_scale": 0,
+        "active_voices_at_end": 0,
+        "measurements": {
+          "summary": {
+            "spectral_convergence_mean": 0.5430310353974379,
+            "log_spectral_error_db_mean": 14.904798826973183,
+            "envelope_error_db_p95_max": 6.266417183755224,
+            "stereo_side_fraction_error": 0.19469455657285292,
+            "stereo_balance_error_db": 0.18855426096838973
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 107,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.4987140784961828,
+              "log_spectral_error_db_mean": 10.635798393472719,
+              "log_spectral_error_db_p95": 25.601911984244577,
+              "active_time_frequency_channel_bins": 14588
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 24,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.6316567728985151,
+              "log_spectral_error_db_mean": 14.77165603137695,
+              "log_spectral_error_db_p95": 29.980338708295147,
+              "active_time_frequency_channel_bins": 6534
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 3,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.49872225479761584,
+              "log_spectral_error_db_mean": 19.306942056069882,
+              "log_spectral_error_db_p95": 30.845525120941495,
+              "active_time_frequency_channel_bins": 2396
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 2.5249835438034784,
+              "error_db_p95": 6.266417183755224
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 1.4924003477098555,
+              "error_db_p95": 3.8446369445295336
+            }
+          ],
+          "stereo": {
+            "reference": {
+              "side_fraction": 0.002603536074587651,
+              "side_to_mid_db": -25.833042245423364,
+              "balance_db": 0.20676139617564782,
+              "uncentered_channel_correlation": 0.9950747878843292
+            },
+            "candidate": {
+              "side_fraction": 0.19729809264744058,
+              "side_to_mid_db": -6.0943140814408645,
+              "balance_db": 0.39531565714403755,
+              "uncentered_channel_correlation": 0.6060309330991247
+            }
+          },
+          "raw_level_difference_db": -0.11761171548166935,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.6240471234975742,
+            "residual_db_relative_to_reference": 4.211972532315539,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        },
+        "candidate_prefix_gain_sensitivity": {
+          "summary": {
+            "spectral_convergence_mean": 0.5430310353974379,
+            "log_spectral_error_db_mean": 14.904798826973183,
+            "envelope_error_db_p95_max": 6.266417183755224,
+            "stereo_side_fraction_error": 0.19469455657285292,
+            "stereo_balance_error_db": 0.18855426096838973
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 107,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.4987140784961828,
+              "log_spectral_error_db_mean": 10.635798393472719,
+              "log_spectral_error_db_p95": 25.601911984244577,
+              "active_time_frequency_channel_bins": 14588
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 24,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.6316567728985151,
+              "log_spectral_error_db_mean": 14.77165603137695,
+              "log_spectral_error_db_p95": 29.980338708295147,
+              "active_time_frequency_channel_bins": 6534
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 3,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.49872225479761584,
+              "log_spectral_error_db_mean": 19.306942056069882,
+              "log_spectral_error_db_p95": 30.845525120941495,
+              "active_time_frequency_channel_bins": 2396
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 2.5249835438034784,
+              "error_db_p95": 6.266417183755224
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 1.4924003477098555,
+              "error_db_p95": 3.8446369445295336
+            }
+          ],
+          "stereo": {
+            "reference": {
+              "side_fraction": 0.002603536074587651,
+              "side_to_mid_db": -25.833042245423364,
+              "balance_db": 0.20676139617564782,
+              "uncentered_channel_correlation": 0.9950747878843292
+            },
+            "candidate": {
+              "side_fraction": 0.19729809264744058,
+              "side_to_mid_db": -6.0943140814408645,
+              "balance_db": 0.39531565714403755,
+              "uncentered_channel_correlation": 0.6060309330991247
+            }
+          },
+          "raw_level_difference_db": -0.11761171548166935,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.6240471234975742,
+            "residual_db_relative_to_reference": 4.211972532315539,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        },
+        "predeclared_diagnostics": {}
+      },
+      "gain-0.5": {
+        "wav_sha256": "3c2e7de05f61f81f065154dd6592ef55972250adb74e74ee6ba6dac9aa54fad0",
+        "receipt_sha256": "90d615fd0b7d4dac4009023db63df6748627a77f3bab0cdfc301acaae7616de3",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Tools/render_midi.py",
+          "--renderer",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/builds/gain-0.5/SeptumRenderMidi",
+          "--midi",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-new-preset-validation/run-01/baseline-corpus/ambient-sqr-nominal-v100/reconstructed-performance.mid",
+          "--syx",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-new-preset-validation/run-01/baseline-corpus/ambient-sqr-nominal-v100/original-patch.syx",
+          "--output",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-new-preset-validation/run-01/cases/ambient-sqr-nominal-v100/gain-0.5.wav",
+          "--tail",
+          "2",
+          "--tempo-policy",
+          "preserve-patch",
+          "--master-level",
+          "100"
+        ],
+        "fitted_prefix_gain": 7.660456502638611,
+        "peak": 0.10886049270629883,
+        "finite": true,
+        "samples_at_or_above_full_scale": 0,
+        "active_voices_at_end": 0,
+        "measurements": {
+          "summary": {
+            "spectral_convergence_mean": 0.5070233261940665,
+            "log_spectral_error_db_mean": 15.196932174449742,
+            "envelope_error_db_p95_max": 9.84029598294752,
+            "stereo_side_fraction_error": 0.07395283841163178,
+            "stereo_balance_error_db": 0.03701883439501433
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 107,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.5181856115315072,
+              "log_spectral_error_db_mean": 11.896096588370852,
+              "log_spectral_error_db_p95": 27.614234571223548,
+              "active_time_frequency_channel_bins": 14231
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 24,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.5210810197599919,
+              "log_spectral_error_db_mean": 14.654244565387819,
+              "log_spectral_error_db_p95": 30.423456941801483,
+              "active_time_frequency_channel_bins": 5886
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 3,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.48180334729070057,
+              "log_spectral_error_db_mean": 19.040455369590553,
+              "log_spectral_error_db_p95": 30.682714863312395,
+              "active_time_frequency_channel_bins": 2267
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 4.637639877706596,
+              "error_db_p95": 9.84029598294752
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 3.453231202743872,
+              "error_db_p95": 7.627236623778382
+            }
+          ],
+          "stereo": {
+            "reference": {
+              "side_fraction": 0.002603536074587651,
+              "side_to_mid_db": -25.833042245423364,
+              "balance_db": 0.20676139617564782,
+              "uncentered_channel_correlation": 0.9950747878843292
+            },
+            "candidate": {
+              "side_fraction": 0.07655637448621942,
+              "side_to_mid_db": -10.81429029547408,
+              "balance_db": 0.1697425617806335,
+              "uncentered_channel_correlation": 0.8470489704984052
+            }
+          },
+          "raw_level_difference_db": -1.413713713459222,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.5616839008595527,
+            "residual_db_relative_to_reference": 3.8718626650270376,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        },
+        "candidate_prefix_gain_sensitivity": {
+          "summary": {
+            "spectral_convergence_mean": 0.5104056379266327,
+            "log_spectral_error_db_mean": 15.21430739400573,
+            "envelope_error_db_p95_max": 9.619178664051807,
+            "stereo_side_fraction_error": 0.07395283841163179,
+            "stereo_balance_error_db": 0.037018834395013384
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 107,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.5184532541739145,
+              "log_spectral_error_db_mean": 11.81818870046858,
+              "log_spectral_error_db_p95": 27.574130587959303,
+              "active_time_frequency_channel_bins": 14260
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 24,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.5227340321779136,
+              "log_spectral_error_db_mean": 14.679477909856088,
+              "log_spectral_error_db_p95": 30.356681864107436,
+              "active_time_frequency_channel_bins": 5925
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 3,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.4900296274280699,
+              "log_spectral_error_db_mean": 19.145255571692516,
+              "log_spectral_error_db_p95": 30.827134140722617,
+              "active_time_frequency_channel_bins": 2286
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 4.500757727914552,
+              "error_db_p95": 9.619178664051807
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 3.3442265820044614,
+              "error_db_p95": 7.406119304883103
+            }
+          ],
+          "stereo": {
+            "reference": {
+              "side_fraction": 0.002603536074587651,
+              "side_to_mid_db": -25.833042245423364,
+              "balance_db": 0.20676139617564782,
+              "uncentered_channel_correlation": 0.9950747878843292
+            },
+            "candidate": {
+              "side_fraction": 0.07655637448621944,
+              "side_to_mid_db": -10.81429029547408,
+              "balance_db": 0.16974256178063443,
+              "uncentered_channel_correlation": 0.8470489704984053
+            }
+          },
+          "raw_level_difference_db": -1.1925963945646003,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.5795745836531103,
+            "residual_db_relative_to_reference": 3.9708027409962665,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        },
+        "predeclared_diagnostics": {}
+      },
+      "gain-0.25": {
+        "wav_sha256": "615a254ef945f13a714fc5d2458b903f6a7891913fe155ce9fee900db1ec9ec5",
+        "receipt_sha256": "c20ce7fb26d10d88bbbb66c62998477d7435e2ed7bc08fd4dd73eceab376f6ff",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Tools/render_midi.py",
+          "--renderer",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/builds/gain-0.25/SeptumRenderMidi",
+          "--midi",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-new-preset-validation/run-01/baseline-corpus/ambient-sqr-nominal-v100/reconstructed-performance.mid",
+          "--syx",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-new-preset-validation/run-01/baseline-corpus/ambient-sqr-nominal-v100/original-patch.syx",
+          "--output",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-new-preset-validation/run-01/cases/ambient-sqr-nominal-v100/gain-0.25.wav",
+          "--tail",
+          "2",
+          "--tempo-policy",
+          "preserve-patch",
+          "--master-level",
+          "100"
+        ],
+        "fitted_prefix_gain": 7.716971308651011,
+        "peak": 0.10519485175609589,
+        "finite": true,
+        "samples_at_or_above_full_scale": 0,
+        "active_voices_at_end": 0,
+        "measurements": {
+          "summary": {
+            "spectral_convergence_mean": 0.5086874273822153,
+            "log_spectral_error_db_mean": 16.029998162468363,
+            "envelope_error_db_p95_max": 12.626439827540432,
+            "stereo_side_fraction_error": 0.04536503776761714,
+            "stereo_balance_error_db": 0.16494474976503293
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 107,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.521950496539639,
+              "log_spectral_error_db_mean": 13.242897611048067,
+              "log_spectral_error_db_p95": 28.818356758798807,
+              "active_time_frequency_channel_bins": 14058
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 24,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.5095860644050219,
+              "log_spectral_error_db_mean": 15.43699961456745,
+              "log_spectral_error_db_p95": 31.06005071167542,
+              "active_time_frequency_channel_bins": 5519
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 3,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.49452572120198496,
+              "log_spectral_error_db_mean": 19.41009726178958,
+              "log_spectral_error_db_p95": 30.60178151772358,
+              "active_time_frequency_channel_bins": 2163
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 5.3318082423325475,
+              "error_db_p95": 12.626439827540432
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 3.9592585648440535,
+              "error_db_p95": 7.997018783319608
+            }
+          ],
+          "stereo": {
+            "reference": {
+              "side_fraction": 0.002603536074587651,
+              "side_to_mid_db": -25.833042245423364,
+              "balance_db": 0.20676139617564782,
+              "uncentered_channel_correlation": 0.9950747878843292
+            },
+            "candidate": {
+              "side_fraction": 0.04796857384220479,
+              "side_to_mid_db": -12.9769447788842,
+              "balance_db": 0.04181664641061489,
+              "uncentered_channel_correlation": 0.904073329371342
+            }
+          },
+          "raw_level_difference_db": -1.7143491481143258,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.5546016793585355,
+            "residual_db_relative_to_reference": 3.8323826503271174,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        },
+        "candidate_prefix_gain_sensitivity": {
+          "summary": {
+            "spectral_convergence_mean": 0.5120569927449979,
+            "log_spectral_error_db_mean": 16.027549621554233,
+            "envelope_error_db_p95_max": 12.34147781574925,
+            "stereo_side_fraction_error": 0.04536503776761715,
+            "stereo_balance_error_db": 0.16494474976503293
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 107,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.5210600713850593,
+              "log_spectral_error_db_mean": 13.126718676699486,
+              "log_spectral_error_db_p95": 28.71957362219079,
+              "active_time_frequency_channel_bins": 14084
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 24,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.510043566449044,
+              "log_spectral_error_db_mean": 15.424665391878449,
+              "log_spectral_error_db_p95": 31.211340476996387,
+              "active_time_frequency_channel_bins": 5564
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 3,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.5050673404008907,
+              "log_spectral_error_db_mean": 19.531264796084763,
+              "log_spectral_error_db_p95": 30.85359089078578,
+              "active_time_frequency_channel_bins": 2189
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 5.153732234250679,
+              "error_db_p95": 12.34147781574925
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 3.8178691424841618,
+              "error_db_p95": 7.71205677153026
+            }
+          ],
+          "stereo": {
+            "reference": {
+              "side_fraction": 0.002603536074587651,
+              "side_to_mid_db": -25.833042245423364,
+              "balance_db": 0.20676139617564782,
+              "uncentered_channel_correlation": 0.9950747878843292
+            },
+            "candidate": {
+              "side_fraction": 0.0479685738422048,
+              "side_to_mid_db": -12.976944778884196,
+              "balance_db": 0.04181664641061489,
+              "uncentered_channel_correlation": 0.9040733293713418
+            }
+          },
+          "raw_level_difference_db": -1.42938713632507,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.5771055805880105,
+            "residual_db_relative_to_reference": 3.9572153698361396,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        },
+        "predeclared_diagnostics": {}
+      }
+    },
+    "listening_common_gain": 0.3359029599364907
+  },
+  "first_note_held_until_next": {
+    "id": "ambient-sqr-first-held-until-next",
+    "reconstruction_sha256": "ab8a8d0b23e97566f5b5dcd50bc65c5d7ce83201534e78036a56ff55114ad91c",
+    "comparison_sha256": "17776c6be212594e3368e7fd368e240f751730a0d0310bc931d110b76fbc296a",
+    "comparison": {
+      "schema_version": 1,
+      "case": {
+        "schema_version": 1,
+        "id": "ambient-sqr-first-held-until-next",
+        "title": "Ambient SQR \u2014 exploratory first note held until next onset",
+        "reference_id": "lead-07",
+        "midi_status": "reconstructed_not_original",
+        "source_start_seconds": 0,
+        "duration_seconds": 0.775,
+        "calibration_end_seconds": 0.405,
+        "method": "Exploratory source-only articulation follow-up after earlier reverb candidate outcomes were known. Original MP3 measurements in fixed first-note windows show persistent narrow harmonic families through0.40s, changing harmonic balance and increasing stereo side energy. These cannot identify a key release or separate beating from releasing/wet tone. Extend only first D5 key-up to the already frozen next onset0.418s; retain all other canonical event times, velocity100, original complete patch, crop and calibration. No candidate audio or new candidate scores were used for this source analysis.",
+        "uncertainties": [
+          "Original MIDI, velocity, controllers, global transpose/tuning, output latency/capture chain and exact recorded patch revision are unavailable. The MP3 and bank are associated by Roland name/category.",
+          "Velocity 100 is nominal. Upper AMP velocity sensitivity is 0, Lower is 8; both cutoff velocity sensitivities are 0. Velocity can alter the layer and wet/dry balance, so a common scalar gain does not remove its uncertainty.",
+          "Upper has two Squares, drive 30, Solo Legato and portamento 20; Lower has two Sines, slower AMP attack 76 and Solo without portamento. Old-note energy may be release, delay or reverb; it does not prove held-key overlap.",
+          "Onset ranges are operational source-clock reconstruction uncertainties, not certified MIDI time bounds. A later production-only prefix alignment may absorb one common latency; do not tune later notes to candidate errors.",
+          "Key-up estimates near envelope maxima are provisional: the amplitude/filter envelopes, two layers, drive, interference and wet tails prevent uniquely recovering key release. Off-time ranges are sensitivity settings, not confidence intervals or observed gates.",
+          "The 0.775-second crop excludes the next obvious new pitch group near 0.79 s. The third note's gate is still estimated; later hardware decay is not covered by this short reconstruction.",
+          "All three original notes and preceding silence are retained from source time 0 for effect history. Exact published SysEx must remain unchanged. This is a conditional generalization case, not an output-equivalence benchmark.",
+          "This exploratory first-key-up extends beyond the original0.160\u20130.240s operational bracket because that bracket was not a recovered MIDI bound. Strong late narrow harmonics can be held/releasing oscillators or coherent effects; the source does not select among them. The new gate is frozen before its own render, after earlier model outcomes were known."
+        ],
+        "notes": [
+          {
+            "on": 0.085,
+            "off": 0.418,
+            "note": 74,
+            "velocity": 100,
+            "on_uncertainty_seconds": [
+              0.075,
+              0.095
+            ]
+          },
+          {
+            "on": 0.418,
+            "off": 0.53,
+            "note": 76,
+            "velocity": 100,
+            "on_uncertainty_seconds": [
+              0.408,
+              0.428
+            ],
+            "off_sensitivity_seconds": [
+              0.49,
+              0.57
+            ]
+          },
+          {
+            "on": 0.618,
+            "off": 0.73,
+            "note": 77,
+            "velocity": 100,
+            "on_uncertainty_seconds": [
+              0.608,
+              0.628
+            ],
+            "off_sensitivity_seconds": [
+              0.7,
+              0.76
+            ]
+          }
+        ],
+        "validation_plan": {
+          "calibration_seconds": [
+            0,
+            0.405
+          ],
+          "later_evaluation_seconds": [
+            0.405,
+            0.775
+          ],
+          "training_note": 74,
+          "later_notes": [
+            76,
+            77
+          ],
+          "frozen_before_candidate_render_or_score_inspection": false,
+          "comparison_policy": "Exploratory single first-gate extension after known earlier outcomes. Retain all earlier nine scenarios and this one; compare equal frozen inputs across DSP models without selecting the best reconstruction. Keep source_start0, calibration_end0.405, duration0.775; first held gate crosses calibration boundary by design.",
+          "velocity_sensitivity_suggestion": [
+            80,
+            100,
+            120
+          ],
+          "gate_sensitivity_suggestion": "This single additional0.418s first-note key-up; later key-ups0.530/0.730s unchanged. No additional fitted offsets or best-case selection.",
+          "exploratory_variant_frozen_before_its_own_render_or_score": true
+        },
+        "active_velocity_sensitivity": {
+          "upper": {
+            "cutoff": 0,
+            "amp": 0
+          },
+          "lower": {
+            "cutoff": 0,
+            "amp": 8
+          }
+        },
+        "unmodified_sysex_sha256": "1e420e8a04502d790a1018f4547167377bdfd4470e21bb6602853d09218aff07",
+        "original_mp3_sha256": "d113bb3d65c34bb6827d29561e29dd9c9d4a6236143d5528685643f84a86e565",
+        "reconstruction_parent_sha256": "d9529fe92b8178dd1acc556feb54863b18e8dd1b30e724f28736765f4eeee532",
+        "sensitivity": {
+          "status": "exploratory_after_known_candidate_outcomes_not_prospective_independent_validation",
+          "changed_event": "Only note74 key-up:0.200\u21920.418s; same-time note-off is emitted before note76 note-on. This is a contiguous-gate sensitivity, not a held-key overlap/legato claim.",
+          "original_operational_off_bracket_seconds": [
+            0.16,
+            0.24
+          ],
+          "chosen_off_seconds": 0.418,
+          "rationale": "Use the already frozen second onset as a bounded alternative; spectral persistence cannot prove this gate. Do not replace canonical cases or select the best-performing reconstruction."
+        }
+      },
+      "qualification": "same published preset; reconstructed MIDI, not verified original MIDI",
+      "reference": {
+        "id": "lead-07",
+        "title": "Ambient SQR",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_AmbientSQR.mp3",
+        "local_filename": "TOP8_AmbientSQR.mp3",
+        "sha256": "d113bb3d65c34bb6827d29561e29dd9c9d4a6236143d5528685643f84a86e565",
+        "size_bytes": 468139,
+        "bank_id": "lead",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 7,
+        "patch_name": "Ambient SQR",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+      },
+      "bank": {
+        "id": "lead",
+        "category": "LEAD",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/shl/SH-201_Patch_LEAD.zip",
+        "local_filename": "SH-201_Patch_LEAD.zip",
+        "sha256": "102c47ee393c09115779172b8cbbb2c2f2563e0b4fdb2f57e0c8fca2a23c3b29",
+        "size_bytes": 42223,
+        "archive_member": "SH-201_Patch_LEAD/100_LEAD.shl",
+        "bank_sha256": "d6649236cd89c1652480f9ae194bc20f0a3e33e147cb16828216871fba35b26c",
+        "patch_count": 100,
+        "parameter_blocks_per_patch": 22,
+        "contains_original_performance_midi": false
+      },
+      "archive_member": "SH-201_Patch_LEAD/100_LEAD.shl",
+      "parameter_modifications": [],
+      "raw_excerpt_statistics": {
+        "hardware": {
+          "peak": 0.5932819843292236,
+          "peak_dbfs": -4.534776785996537,
+          "rms_dbfs": -12.205198722783475,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 652.2625393444068,
+          "identical_stereo_channels": false,
+          "side_to_mid_db": -24.615331096034282
+        },
+        "septum": {
+          "peak": 0.17824800312519073,
+          "peak_dbfs": -14.979506535167761,
+          "rms_dbfs": -25.578654272416635,
+          "samples_at_or_above_full_scale": 0,
+          "power_spectral_centroid_20_16000_hz": 650.6223756174596,
+          "identical_stereo_channels": false,
+          "side_to_mid_db": -5.350298097234313
+        }
+      },
+      "listening_transform": {
+        "method": "whole-excerpt RMS matching; no EQ, compression or time warp",
+        "target_rms_dbfs": -20,
+        "hardware_gain": 0.4076241781000876,
+        "septum_gain": 1.9007837637123397,
+        "common_peak_attenuation": 1.0,
+        "ab_only_edge_fade_seconds": 0.005011337868480726,
+        "ab_gap_seconds": 0.5
+      },
+      "alignment": "transcribed event times on decoded hardware timeline; no post-render alignment",
+      "hardware_start_sample": 0,
+      "comparison_frames": 34178,
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "build-fidelity/hardware-benchmark/sources/TOP8_AmbientSQR.mp3",
+        "-ar",
+        "44100",
+        "-ac",
+        "2",
+        "-c:a",
+        "pcm_f32le",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-articulation-followup/run-01/baseline-corpus/ambient-sqr-first-held-until-next/hardware-decoded-full.wav"
+      ],
+      "retained_engine_latency_samples": 93,
+      "catalog_sha256": "32e356db740bd827792b6d98800aa7f923b34ceb3b7a164dd2cfcb5220119736",
+      "comparison_limits": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Original MIDI, velocity, controllers, global transpose/tuning, output latency/capture chain and exact recorded patch revision are unavailable. The MP3 and bank are associated by Roland name/category.",
+        "Velocity 100 is nominal. Upper AMP velocity sensitivity is 0, Lower is 8; both cutoff velocity sensitivities are 0. Velocity can alter the layer and wet/dry balance, so a common scalar gain does not remove its uncertainty.",
+        "Upper has two Squares, drive 30, Solo Legato and portamento 20; Lower has two Sines, slower AMP attack 76 and Solo without portamento. Old-note energy may be release, delay or reverb; it does not prove held-key overlap.",
+        "Onset ranges are operational source-clock reconstruction uncertainties, not certified MIDI time bounds. A later production-only prefix alignment may absorb one common latency; do not tune later notes to candidate errors.",
+        "Key-up estimates near envelope maxima are provisional: the amplitude/filter envelopes, two layers, drive, interference and wet tails prevent uniquely recovering key release. Off-time ranges are sensitivity settings, not confidence intervals or observed gates.",
+        "The 0.775-second crop excludes the next obvious new pitch group near 0.79 s. The third note's gate is still estimated; later hardware decay is not covered by this short reconstruction.",
+        "All three original notes and preceding silence are retained from source time 0 for effect history. Exact published SysEx must remain unchanged. This is a conditional generalization case, not an output-equivalence benchmark.",
+        "This exploratory first-key-up extends beyond the original0.160\u20130.240s operational bracket because that bracket was not a recovered MIDI bound. Strong late narrow harmonics can be held/releasing oscillators or coherent effects; the source does not select among them. The new gate is frozen before its own render, after earlier model outcomes were known."
+      ],
+      "reconstruction_file_sha256": "ab8a8d0b23e97566f5b5dcd50bc65c5d7ce83201534e78036a56ff55114ad91c",
+      "runtime": {
+        "python": "3.11.0",
+        "numpy": "1.26.4",
+        "scipy": "1.14.1",
+        "matplotlib": "3.9.2",
+        "ffmpeg": "ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers"
+      },
+      "source_code_sha256": {
+        "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+        "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+        "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+        "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+        "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+        "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+        "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+        "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+        "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+        "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+        "Source/DSP/SeptumEngine.h": "b1b7cfd308c42d3b768b098624c26e417d00c4e0387ff5c2331ca1bb93d0d99e",
+        "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+        "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+        "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+        "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+        "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+        "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9"
+      },
+      "tool_sha256": {
+        "compare_hardware.py": "98c1fad577e2cc13b5c20dff04d06a1414ae0332fe48e2696b690db03d87be86",
+        "render_midi.py": "ffb8899e5a4b3588d459e5de3e710c74a002dfc04e45d7691a03102e9b5093e3",
+        "RenderMidi.cpp": "73fc5cd13bf635bbd95dc2a4e65301b06038cd96d2e684de1bb694b3e0066bfb",
+        "extract_reference_patch.py": "461407495e9f5bfc99767a0146a750708c5cdb2fd34c0d029aaf5e5f5a80703b"
+      },
+      "files": {
+        "hardware-then-septum.wav": "30f0e7c15196ab521131dc4cde1cfc5550b6265b69e24bca2ed065b5e8160e26",
+        "hardware-listen.wav": "4840459adef021b74fa32bba16b2fbab58206167268d90a25fe8b263f5a16502",
+        "septum-listen.wav": "a20173ed9209664e20ef8a7bc425bcd63b7806d53c8824aa74ef712b3d044c04",
+        "reconstructed-performance.mid": "cf3dce955b1b20e65407e4adb0485125b61222e2aa21b66e90af00292fcc901a",
+        "septum-raw.render.json": "660adae99e51b68b018f9cbb15ba455affc09a3f7b59a4f2f2a4ddbb212dfad2",
+        "comparison.png": "804e41604749a676bd0241f076aaa913a3c06270db2ac9c6cf9a48e77dce0516",
+        "original-patch.syx": "1e420e8a04502d790a1018f4547167377bdfd4470e21bb6602853d09218aff07",
+        "plot-data.json": "ca799eb4a18da3b2dfba59a4156f4a0abae5636e23cec2e2b7713b0bbc131bec",
+        "septum-raw.wav": "169e04fd0980b437698cea764ad2ee3f13da2277ba082387cddae6be243bb049",
+        "hardware-excerpt-raw.wav": "3c4733491dca0ff12fd5e5ac12a363f6dc92c4703e09bdeca3d8a274470ce29e",
+        "hardware-decoded-full.wav": "ccde7bbc4aceb5b8653a9cdad60a77c40fd6a472bd6c1ea75667c9fc4dcb4fc7"
+      }
+    },
+    "calibration": {
+      "candidate_lag_samples": -2147,
+      "candidate_lag_seconds": -0.04868480725623583,
+      "candidate_gain": 4.776839387977921,
+      "candidate_gain_db": 13.582812784270564,
+      "calibration_frames": 17860,
+      "max_lag_seconds": 0.05,
+      "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+      "alignment_correlation": 0.7242275398046042,
+      "alignment_identifiable": true,
+      "alignment_at_search_boundary": false,
+      "gain_method": "one scalar RMS gain over calibration interval after alignment",
+      "allowed_transforms": [
+        "one global integer delay",
+        "one positive scalar gain"
+      ]
+    },
+    "calibration_reference_samples": [
+      2147,
+      17860
+    ],
+    "calibration_candidate_samples": [
+      0,
+      15713
+    ],
+    "evaluation_samples": [
+      20007,
+      34178
+    ],
+    "models": {
+      "gain-1": {
+        "wav_sha256": "169e04fd0980b437698cea764ad2ee3f13da2277ba082387cddae6be243bb049",
+        "receipt_sha256": "660adae99e51b68b018f9cbb15ba455affc09a3f7b59a4f2f2a4ddbb212dfad2",
+        "command": null,
+        "fitted_prefix_gain": 4.776839387977921,
+        "peak": 0.17824800312519073,
+        "finite": true,
+        "samples_at_or_above_full_scale": 0,
+        "active_voices_at_end": 0,
+        "measurements": {
+          "summary": {
+            "spectral_convergence_mean": 0.6827647362509728,
+            "log_spectral_error_db_mean": 14.002841030419228,
+            "envelope_error_db_p95_max": 4.8915947018808295,
+            "stereo_side_fraction_error": 0.394347951582861,
+            "stereo_balance_error_db": 0.24272309572717532
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 107,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.5791837326663711,
+              "log_spectral_error_db_mean": 11.411750664100113,
+              "log_spectral_error_db_p95": 25.536319120742437,
+              "active_time_frequency_channel_bins": 14102
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 24,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.7079475060358076,
+              "log_spectral_error_db_mean": 13.851234642180502,
+              "log_spectral_error_db_p95": 28.297113730466265,
+              "active_time_frequency_channel_bins": 5600
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 3,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.7611629700507397,
+              "log_spectral_error_db_mean": 16.745537784977067,
+              "log_spectral_error_db_p95": 28.47009089852016,
+              "active_time_frequency_channel_bins": 1716
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 2.116394016805199,
+              "error_db_p95": 4.8915947018808295
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 1.734694866745989,
+              "error_db_p95": 4.0514411097833
+            }
+          ],
+          "stereo": {
+            "reference": {
+              "side_fraction": 0.0026059104318725277,
+              "side_to_mid_db": -25.82907305881395,
+              "balance_db": 0.20863001719223745,
+              "uncentered_channel_correlation": 0.9950751557283013
+            },
+            "candidate": {
+              "side_fraction": 0.39695386201473354,
+              "side_to_mid_db": -1.8161050890075408,
+              "balance_db": -0.034093078534937885,
+              "uncentered_channel_correlation": 0.20609386355229514
+            }
+          },
+          "raw_level_difference_db": -1.1908505965209824,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.3324932653873918,
+            "residual_db_relative_to_reference": 2.493300454347662,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        },
+        "candidate_prefix_gain_sensitivity": {
+          "summary": {
+            "spectral_convergence_mean": 0.6827647362509728,
+            "log_spectral_error_db_mean": 14.002841030419228,
+            "envelope_error_db_p95_max": 4.8915947018808295,
+            "stereo_side_fraction_error": 0.394347951582861,
+            "stereo_balance_error_db": 0.24272309572717532
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 107,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.5791837326663711,
+              "log_spectral_error_db_mean": 11.411750664100113,
+              "log_spectral_error_db_p95": 25.536319120742437,
+              "active_time_frequency_channel_bins": 14102
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 24,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.7079475060358076,
+              "log_spectral_error_db_mean": 13.851234642180502,
+              "log_spectral_error_db_p95": 28.297113730466265,
+              "active_time_frequency_channel_bins": 5600
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 3,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.7611629700507397,
+              "log_spectral_error_db_mean": 16.745537784977067,
+              "log_spectral_error_db_p95": 28.47009089852016,
+              "active_time_frequency_channel_bins": 1716
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 2.116394016805199,
+              "error_db_p95": 4.8915947018808295
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 1.734694866745989,
+              "error_db_p95": 4.0514411097833
+            }
+          ],
+          "stereo": {
+            "reference": {
+              "side_fraction": 0.0026059104318725277,
+              "side_to_mid_db": -25.82907305881395,
+              "balance_db": 0.20863001719223745,
+              "uncentered_channel_correlation": 0.9950751557283013
+            },
+            "candidate": {
+              "side_fraction": 0.39695386201473354,
+              "side_to_mid_db": -1.8161050890075408,
+              "balance_db": -0.034093078534937885,
+              "uncentered_channel_correlation": 0.20609386355229514
+            }
+          },
+          "raw_level_difference_db": -1.1908505965209824,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.3324932653873918,
+            "residual_db_relative_to_reference": 2.493300454347662,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        },
+        "predeclared_diagnostics": {}
+      },
+      "gain-0.5": {
+        "wav_sha256": "08b51af86996771f27b161535f21552e846e112fdc74e6e46220a517db2218bd",
+        "receipt_sha256": "ba526f0307a6c9d330a5dae9fcf6c0e2c8786075673972590ce139ae9579874d",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Tools/render_midi.py",
+          "--renderer",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/builds/gain-0.5/SeptumRenderMidi",
+          "--midi",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-articulation-followup/run-01/baseline-corpus/ambient-sqr-first-held-until-next/reconstructed-performance.mid",
+          "--syx",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-articulation-followup/run-01/baseline-corpus/ambient-sqr-first-held-until-next/original-patch.syx",
+          "--output",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-articulation-followup/run-01/cases/ambient-sqr-first-held-until-next/gain-0.5.wav",
+          "--tail",
+          "2",
+          "--tempo-policy",
+          "preserve-patch",
+          "--master-level",
+          "100"
+        ],
+        "fitted_prefix_gain": 4.8541054878551195,
+        "peak": 0.1292601227760315,
+        "finite": true,
+        "samples_at_or_above_full_scale": 0,
+        "active_voices_at_end": 0,
+        "measurements": {
+          "summary": {
+            "spectral_convergence_mean": 0.6157973573105971,
+            "log_spectral_error_db_mean": 14.535379958250743,
+            "envelope_error_db_p95_max": 8.1923604669088,
+            "stereo_side_fraction_error": 0.24074146037586167,
+            "stereo_balance_error_db": 0.5320926935706012
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 107,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.5516168592785177,
+              "log_spectral_error_db_mean": 12.742069674980229,
+              "log_spectral_error_db_p95": 27.596307008621874,
+              "active_time_frequency_channel_bins": 13833
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 24,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.6102755484069914,
+              "log_spectral_error_db_mean": 14.279048717116016,
+              "log_spectral_error_db_p95": 29.0445422665558,
+              "active_time_frequency_channel_bins": 5162
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 3,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.6854996642462824,
+              "log_spectral_error_db_mean": 16.585021482655986,
+              "log_spectral_error_db_p95": 27.851019807791594,
+              "active_time_frequency_channel_bins": 1577
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 4.236649391289575,
+              "error_db_p95": 8.1923604669088
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 4.120128983126325,
+              "error_db_p95": 7.261755893317551
+            }
+          ],
+          "stereo": {
+            "reference": {
+              "side_fraction": 0.0026059104318725277,
+              "side_to_mid_db": -25.82907305881395,
+              "balance_db": 0.20863001719223745,
+              "uncentered_channel_correlation": 0.9950751557283013
+            },
+            "candidate": {
+              "side_fraction": 0.2433473708077342,
+              "side_to_mid_db": -4.926698871182682,
+              "balance_db": -0.3234626763783637,
+              "uncentered_channel_correlation": 0.5136612302258428
+            }
+          },
+          "raw_level_difference_db": -2.859658552907365,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.23148919124727,
+            "residual_db_relative_to_reference": 1.8086120879804402,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        },
+        "candidate_prefix_gain_sensitivity": {
+          "summary": {
+            "spectral_convergence_mean": 0.6135647263342968,
+            "log_spectral_error_db_mean": 14.521132111686265,
+            "envelope_error_db_p95_max": 8.052989050257812,
+            "stereo_side_fraction_error": 0.2407414603758617,
+            "stereo_balance_error_db": 0.5320926935706012
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 107,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.548736209290733,
+              "log_spectral_error_db_mean": 12.678263561399158,
+              "log_spectral_error_db_p95": 27.533224738580635,
+              "active_time_frequency_channel_bins": 13844
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 24,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.6078009509785371,
+              "log_spectral_error_db_mean": 14.252368939847718,
+              "log_spectral_error_db_p95": 29.115981485125605,
+              "active_time_frequency_channel_bins": 5194
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 3,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.6841570187336204,
+              "log_spectral_error_db_mean": 16.63276383381192,
+              "log_spectral_error_db_p95": 27.876322963147018,
+              "active_time_frequency_channel_bins": 1592
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 4.114975932308211,
+              "error_db_p95": 8.052989050257812
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 3.98075756647494,
+              "error_db_p95": 7.122384476666239
+            }
+          ],
+          "stereo": {
+            "reference": {
+              "side_fraction": 0.0026059104318725277,
+              "side_to_mid_db": -25.82907305881395,
+              "balance_db": 0.20863001719223745,
+              "uncentered_channel_correlation": 0.9950751557283013
+            },
+            "candidate": {
+              "side_fraction": 0.24334737080773422,
+              "side_to_mid_db": -4.926698871182682,
+              "balance_db": -0.3234626763783637,
+              "uncentered_channel_correlation": 0.5136612302258426
+            }
+          },
+          "raw_level_difference_db": -2.7202871362559504,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.2383172523352652,
+            "residual_db_relative_to_reference": 1.8566384718335793,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        },
+        "predeclared_diagnostics": {}
+      },
+      "gain-0.25": {
+        "wav_sha256": "1f4e44d4f78c6692441b9b106d7fb48520adbb2bec7722520431daaee8eb6fc8",
+        "receipt_sha256": "8fdd1ad8d66910e0dd3a6b3e111d724aa13e068c351627c3dcc2f650837908ff",
+        "command": [
+          "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Tools/render_midi.py",
+          "--renderer",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/builds/gain-0.25/SeptumRenderMidi",
+          "--midi",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-articulation-followup/run-01/baseline-corpus/ambient-sqr-first-held-until-next/reconstructed-performance.mid",
+          "--syx",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-articulation-followup/run-01/baseline-corpus/ambient-sqr-first-held-until-next/original-patch.syx",
+          "--output",
+          "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-articulation-followup/run-01/cases/ambient-sqr-first-held-until-next/gain-0.25.wav",
+          "--tail",
+          "2",
+          "--tempo-policy",
+          "preserve-patch",
+          "--master-level",
+          "100"
+        ],
+        "fitted_prefix_gain": 4.879926610492312,
+        "peak": 0.12825459241867065,
+        "finite": true,
+        "samples_at_or_above_full_scale": 0,
+        "active_voices_at_end": 0,
+        "measurements": {
+          "summary": {
+            "spectral_convergence_mean": 0.6093896606116923,
+            "log_spectral_error_db_mean": 15.293870126773214,
+            "envelope_error_db_p95_max": 11.3148719197557,
+            "stereo_side_fraction_error": 0.16025688480894534,
+            "stereo_balance_error_db": 0.6088955942568979
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 107,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.5597985934020847,
+              "log_spectral_error_db_mean": 13.926111223348874,
+              "log_spectral_error_db_p95": 28.91733958218267,
+              "active_time_frequency_channel_bins": 13748
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 24,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.5932391246575023,
+              "log_spectral_error_db_mean": 15.135563995168814,
+              "log_spectral_error_db_p95": 30.272308838061143,
+              "active_time_frequency_channel_bins": 5006
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 3,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.67513126377549,
+              "log_spectral_error_db_mean": 16.819935161801958,
+              "log_spectral_error_db_p95": 27.713576832988398,
+              "active_time_frequency_channel_bins": 1524
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 5.556034548722063,
+              "error_db_p95": 11.3148719197557
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 5.385474435654261,
+              "error_db_p95": 10.756266250479012
+            }
+          ],
+          "stereo": {
+            "reference": {
+              "side_fraction": 0.0026059104318725277,
+              "side_to_mid_db": -25.82907305881395,
+              "balance_db": 0.20863001719223745,
+              "uncentered_channel_correlation": 0.9950751557283013
+            },
+            "candidate": {
+              "side_fraction": 0.16286279524081787,
+              "side_to_mid_db": -7.109747592520538,
+              "balance_db": -0.40026557706466037,
+              "uncentered_channel_correlation": 0.6749904728020992
+            }
+          },
+          "raw_level_difference_db": -3.4914120681900664,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.1992766335996266,
+            "residual_db_relative_to_reference": 1.5783874416023347,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        },
+        "candidate_prefix_gain_sensitivity": {
+          "summary": {
+            "spectral_convergence_mean": 0.6048889587596887,
+            "log_spectral_error_db_mean": 15.266726835569477,
+            "envelope_error_db_p95_max": 11.129418890601869,
+            "stereo_side_fraction_error": 0.16025688480894543,
+            "stereo_balance_error_db": 0.6088955942568973
+          },
+          "multi_resolution_stft": [
+            {
+              "window_samples": 512,
+              "hop_samples": 128,
+              "frames": 107,
+              "frequency_resolution_hz": 86.1328125,
+              "spectral_convergence": 0.5548317479209236,
+              "log_spectral_error_db_mean": 13.835656692046294,
+              "log_spectral_error_db_p95": 28.824916905233472,
+              "active_time_frequency_channel_bins": 13755
+            },
+            {
+              "window_samples": 2048,
+              "hop_samples": 512,
+              "frames": 24,
+              "frequency_resolution_hz": 21.533203125,
+              "spectral_convergence": 0.5881129657576639,
+              "log_spectral_error_db_mean": 15.0969186654301,
+              "log_spectral_error_db_p95": 30.25096646949076,
+              "active_time_frequency_channel_bins": 5030
+            },
+            {
+              "window_samples": 8192,
+              "hop_samples": 2048,
+              "frames": 3,
+              "frequency_resolution_hz": 5.38330078125,
+              "spectral_convergence": 0.6717221626004788,
+              "log_spectral_error_db_mean": 16.867605149232034,
+              "log_spectral_error_db_p95": 27.869942136947458,
+              "active_time_frequency_channel_bins": 1539
+            }
+          ],
+          "rms_envelope": [
+            {
+              "window_samples": 441,
+              "hop_samples": 220,
+              "error_db_mean": 5.394131110572739,
+              "error_db_p95": 11.129418890601869
+            },
+            {
+              "window_samples": 2205,
+              "hop_samples": 220,
+              "error_db_mean": 5.200021406501341,
+              "error_db_p95": 10.570813221325963
+            }
+          ],
+          "stereo": {
+            "reference": {
+              "side_fraction": 0.0026059104318725277,
+              "side_to_mid_db": -25.82907305881395,
+              "balance_db": 0.20863001719223745,
+              "uncentered_channel_correlation": 0.9950751557283013
+            },
+            "candidate": {
+              "side_fraction": 0.16286279524081795,
+              "side_to_mid_db": -7.109747592520536,
+              "balance_db": -0.40026557706465987,
+              "uncentered_channel_correlation": 0.674990472802099
+            }
+          },
+          "raw_level_difference_db": -3.305959039037094,
+          "waveform_diagnostic": {
+            "normalized_rms_residual": 1.2073067991918431,
+            "residual_db_relative_to_reference": 1.6363529291234253,
+            "used_for_bounds": false,
+            "limitation": "Free oscillator phases, modulation and capture clocks can defeat a null despite similar sound."
+          }
+        },
+        "predeclared_diagnostics": {}
+      }
+    },
+    "listening_common_gain": 0.3361996748844829
+  },
+  "post_score_reference_mask_sensitivity": {
+    "gain-1": {
+      "spectra": [
+        {
+          "window": 512,
+          "bins": 13220,
+          "mean_db": 11.331855074714968,
+          "p95_db": 25.616882426704322
+        },
+        {
+          "window": 2048,
+          "bins": 4049,
+          "mean_db": 11.689523449096233,
+          "p95_db": 26.009919160807268
+        },
+        {
+          "window": 8192,
+          "bins": 834,
+          "mean_db": 12.904115342216572,
+          "p95_db": 25.84429693848826
+        }
+      ],
+      "envelopes": [
+        {
+          "window": 441,
+          "bins": 63,
+          "mean_db": 2.116394016805199,
+          "p95_db": 4.8915947018808295
+        },
+        {
+          "window": 2205,
+          "bins": 55,
+          "mean_db": 1.734694866745989,
+          "p95_db": 4.0514411097833
+        }
+      ],
+      "summary": {
+        "log_spectral_error_db_mean": 11.975164622009258,
+        "envelope_error_db_p95_max": 4.8915947018808295
+      }
+    },
+    "gain-0.5": {
+      "spectra": [
+        {
+          "window": 512,
+          "bins": 13220,
+          "mean_db": 12.741466047216235,
+          "p95_db": 27.6600449910544
+        },
+        {
+          "window": 2048,
+          "bins": 4049,
+          "mean_db": 12.864647894353592,
+          "p95_db": 27.90285055772653
+        },
+        {
+          "window": 8192,
+          "bins": 834,
+          "mean_db": 13.346357090042762,
+          "p95_db": 25.640373458761218
+        }
+      ],
+      "envelopes": [
+        {
+          "window": 441,
+          "bins": 63,
+          "mean_db": 4.236649391289575,
+          "p95_db": 8.1923604669088
+        },
+        {
+          "window": 2205,
+          "bins": 55,
+          "mean_db": 4.120128983126325,
+          "p95_db": 7.261755893317551
+        }
+      ],
+      "summary": {
+        "log_spectral_error_db_mean": 12.98415701053753,
+        "envelope_error_db_p95_max": 8.1923604669088
+      }
+    },
+    "gain-0.25": {
+      "spectra": [
+        {
+          "window": 512,
+          "bins": 13220,
+          "mean_db": 13.959364645440678,
+          "p95_db": 28.99957158074754
+        },
+        {
+          "window": 2048,
+          "bins": 4049,
+          "mean_db": 13.988605735064544,
+          "p95_db": 29.622336528936806
+        },
+        {
+          "window": 8192,
+          "bins": 834,
+          "mean_db": 13.90841545981486,
+          "p95_db": 26.107198890029256
+        }
+      ],
+      "envelopes": [
+        {
+          "window": 441,
+          "bins": 63,
+          "mean_db": 5.556034548722063,
+          "p95_db": 11.3148719197557
+        },
+        {
+          "window": 2205,
+          "bins": 55,
+          "mean_db": 5.385474435654261,
+          "p95_db": 10.756266250479012
+        }
+      ],
+      "summary": {
+        "log_spectral_error_db_mean": 13.952128613440026,
+        "envelope_error_db_p95_max": 11.3148719197557
+      }
+    }
+  },
+  "decision": "No replacement MIDI chosen and no new DSP change. The single first-key extension does not remove the half-return envelope/log-spectrum regressions. All original nine scenarios remain part of the evidence."
+}

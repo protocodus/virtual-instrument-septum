@@ -137,6 +137,11 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   envelope/log-spectrum regressions under all nine gate/velocity scenarios.
   Six Ambient alignments hit the fixed search bound; even the three interior
   alignments retain the regression. No preferred reconstruction is selected.
+  A [separate first-key extension](source-audits/ambient-first-note-followup-2026-09-15.md)
+  also retains it. All five supportive active presets use SINGLE mode and
+  both contrary presets use DUAL, so damping is confounded with layering.
+  The common 4 kHz HF corner is above Club's useful measured tail bands;
+  a damping diagnosis cannot follow just from the stored negative gain.
   [Cotton's effective decay](source-audits/cotton-reverb-decay-2026-09-15.md)
   is longer than the model, while the weaker
   [Class A estimate](source-audits/class-a-reverb-decay-2026-09-15.md) goes the
@@ -151,10 +156,10 @@ metrics. Their preset bytes and reconstructed performances are preserved.
    interaction separately before changing the high-note sound.
 2. Examine creator recordings for independent oscillator measurements,
    retaining uncertain panel state and unmeasured raw settings explicitly.
-3. Investigate the damped-tail mismatch in Club Bass and Ambient SQR, keeping
-   reverb level, frequency-dependent decay, source release and active delay
-   separate. Preserve their regressions under the new return level and
-   validate any damping correction independently.
+3. Investigate the tail mismatch in Club Bass and Ambient SQR, keeping
+   reverb level, layer mixing, phase, frequency-dependent decay, source
+   release and active delay separate. Test references that separate layer
+   mode from damping status, and preserve the original regressions.
 4. Keep independent validation passages and input uncertainty visible.
    Matching a fitted spectral feature cannot establish complete output
    agreement or a market-wide superiority claim.
