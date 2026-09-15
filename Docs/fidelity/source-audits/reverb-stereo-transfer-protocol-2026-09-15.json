@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "status": "Frozen before transfer/coherence results or new model controls. Complete original source spectra/RMS informed interval selection, not candidate error.",
+  "target": "Feasibility of cancellation of source phase/performance in L-to-R and Mid-to-Side transfer. No reverb topology or parameter fitting.",
+  "estimator": "H1 = mean(conj(X)*Y) / mean(abs(X)^2); MSC = abs(mean(conj(X)*Y))^2 / (mean(abs(X)^2)*mean(abs(Y)^2)). Periodic Hann, 75% overlap, no detrending or padding. X=L,Y=R, or X=(L+R)/2,Y=(L-R)/2.",
+  "window_seconds": [
+    0.25,
+    0.5,
+    1.0,
+    2.0
+  ],
+  "minimum_frames": 8,
+  "frequency_range_hz": [
+    80,
+    8000
+  ],
+  "activity_guard_db_below_pair_peak": 50,
+  "minimum_side_over_mid_db": -35,
+  "coherence_guard": 0.9,
+  "guard_policy": "Report excited-bin counts and weighted coherence before selecting coherent bins. Both X/Y power must exceed -50 dB relative to their respective 80-8k maxima; SM also requires side/mid >= -35 dB. Stability/error uses common eligible bins and reports lost coverage. Overlapping frames are not independent trials.",
+  "model_controls": {
+    "duration_seconds": 32,
+    "driven_until_seconds": 22,
+    "steady_train_seconds": [
+      4,
+      12
+    ],
+    "steady_check_seconds": [
+      12,
+      20
+    ],
+    "cotton_stimuli": [
+      "white_seed_A",
+      "white_seed_B",
+      "fixed_chord_phase_A",
+      "fixed_chord_phase_B",
+      "impulse_at4",
+      "impulse_at12"
+    ],
+    "air_stimuli": [
+      "white_seed_A",
+      "white_seed_B"
+    ],
+    "routing": "Actual current engine, exact original delay/reverb blocks and sends. Single centered EXT-IN, filter bypass, no overdrive, constant AMP. Input HPF/startup remain; exclude first 4 seconds. No FX implementation changes.",
+    "white_seeds": [
+      "0x12345678",
+      "0x87654321"
+    ],
+    "chord": "C3/E3/G3 harmonics to 8 kHz with phases 0.37*h*h or 0.91*h*h. These are diagnostic inputs, not recovered original notes.",
+    "impulse_truth": "Cotton impulses start after 4 or 12 seconds of silence. Fold the complete remaining response modulo each FFT size before FFT, evaluating exact transfer at estimator bins. Common input-filter response and phase cancel in L/R and S/M ratios. Require terminal 1 s power at least 100 dB below full response before accepting this finite-response control.",
+    "time_invariance": "Compare the two Cotton impulse launch times without a phase search or candidate."
+  },
+  "hardware_source_intervals": {
+    "pad-01": {
+      "train": [
+        0.5,
+        8.0
+      ],
+      "check": [
+        8.0,
+        15.5
+      ]
+    },
+    "lead-03": {
+      "train": [
+        0.5,
+        4.5
+      ],
+      "check": [
+        4.5,
+        8.5
+      ]
+    },
+    "lead-06": {
+      "train": [
+        0.5,
+        8.0
+      ],
+      "check": [
+        8.0,
+        16.0
+      ]
+    },
+    "lead-01": {
+      "train": [
+        0.5,
+        8.0
+      ],
+      "check": [
+        8.0,
+        16.0
+      ]
+    }
+  },
+  "source_scope": "Driven musical passages have changing notes, not authenticated stationary stochastic inputs. Tails are excluded. All window sizes retain the same intervals; insufficient-frame results are flagged.",
+  "cotton_channel_sensitivity": "Raw primary; separately divide R by 10^(.6/20), fixed from the earlier pre-return channel-gain observation. No new gain, phase or capture fit.",
+  "truth_error": "Complex relative error, magnitude and phase difference to Cotton impulse truth, with excited/coherent/common coverage counts. Compare independent white and phase-varied chord inputs.",
+  "synthetic_controls": [
+    "Known two-tap stereo FIR with two independent white inputs, compared with exact response.",
+    "Independent L/R noise as a negative coherence control."
+  ],
+  "qualifications": [
+    "Original controller, patch revision and capture state are unknown.",
+    "Current Cotton mono/LTI behavior does not prove original topology.",
+    "Air/Supa/Class A have active modulated delay.",
+    "Finite-window convolution leakage and preexisting network state can prevent source cancellation.",
+    "High L/R coherence may reflect dominant dry mono; Mid/Side requires adequate side energy and coherence.",
+    "No single-frame coherence or complete-recording Fourier ratio is accepted without separate checks."
+  ]
+}
