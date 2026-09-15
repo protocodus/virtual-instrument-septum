@@ -279,12 +279,16 @@ Implemented as a TPT state-variable filter. The −12 dB voice path uses one
 resonant section; −24 dB adds a second section with Q capped at 2. An empirical
 calibration from SupaJuce 1 and Air Lead 1 recordings strengthens the original
 resonance curve: for positive base damping `b = 2 − 2.04·√(v/127)`, the voice
-uses `k1 = 2·(b/2)^1.5`, then `k2 = clamp(k1, 0.5, 1.2)`. Zero resonance and
-the first section's self-oscillation threshold retain their prior behavior.
+uses `k1 = 2·(b/2)^1.5` at raw 40 and above. Dry LP12/LP24 hardware recordings
+now anchor `k1 = 1.2` at resonance zero; a provisional straight interpolation
+joins that endpoint to raw 40. Both regions use `k2 = clamp(k1, 0.5, 1.2)`.
+The first section's self-oscillation threshold retains its prior behavior.
 The modeled raw40 peak rises from about 2.2 to 10.8 dB. This is a recording-informed
 model, not a recovered Roland topology or complete Q table. The separate
 AUDIO FILTER retains its original curve. See the
-[resonance investigation](Docs/fidelity/resonance-investigation.md).
+[resonance investigation](Docs/fidelity/resonance-investigation.md) and the
+[dry filter calibration](Docs/fidelity/dry-filter-calibration.md), which records
+the isolated improvement and mixed results on wet factory demos.
 Cutoff maps exponentially over 20 Hz → 20.48 kHz; cutoff velocity sensitivity
 ±63 spans ±4 octaves. Filter-envelope depth ±63 now spans ±12 octaves linearly.
 The previous ±10 range left SupaJuce's early resonant peak about an octave too
@@ -328,7 +332,13 @@ PW2, AMP}, each with a signed depth whose negative half inverts the waveform.
 With KEY TRIGGER on, each voice has its own LFO phase (*reported*, Aikin p. 93);
 otherwise the waveform free-runs across the tone. Each note has its own fade.
 The single external AUDIO FILTER retains a shared modulation source.
-*Voiced:* rate 0.03 → 30 Hz exponential, the trapezoid as
+*Measured endpoints:* free rate runs from a 20.59 s period to 40.22 ms
+(approximately 0.04857–24.863 Hz), from
+[deep!sonic's hardware timing table](https://www.deepsonic.ch/deep/docs_misc/deepsonic_analytics_-_envelope_lfo_speed.pdf).
+Intermediate rates retain provisional logarithmic interpolation; the complete
+hardware control table and measurement tolerance are unpublished. Rendered
+audio verifies both LFO endpoints and unchanged tempo-sync periods.
+*Voiced:* the trapezoid as
 rise-¼/high-¼/fall-¼/low-¼, RND as linearly interpolated random targets per
 cycle against S&H's stepped ones, fade time `(v/127)² × 10 s`, and the depth
 scalings — pitch ±1 octave with a squared taper, PW the full parameter span,
@@ -513,7 +523,7 @@ it; the constants they own are tagged in the engine's `mapping` namespace.
 | OQ-07 | BALANCE law; LOW FREQ shelf corner and gain | Capture BALANCE at −63/−32/0/+32/+63 with dissimilar waves; fit the shelf from a saw |
 | OQ-08 | Filter calibration — cutoff-to-Hz table, resonance-to-Q curve, oscillation onset, whether −24 dB puts resonance on one stage or both, envelope and velocity depth scalings | Measure a real unit's swept responses at a grid of knob values |
 | OQ-09 | Envelope time tables and segment curvature; filter decay now has a conditional empirical anchor of about 419 ms at raw 49, with provisional interpolation and linear shape | Measure attack/decay/release at slider 0/32/37/49/58/64/96/127 from dry captures |
-| OQ-10 | LFO rate table, trapezoid segment ratios, RND smoothing, depth scalings | Film the rate LED or capture PWM audio at rate 0/64/127; scope filter-cutoff modulation |
+| OQ-10 | LFO interior rate table, trapezoid segment ratios, RND smoothing, depth scalings; free-rate endpoints now follow published 20.59 s / 40.22 ms hardware periods | Capture PWM audio across intermediate rates; scope filter-cutoff modulation |
 | OQ-11 | Overdrive transfer curve | Capture a sine through DRIVE 0/32/64/96/127 and fit the static curve |
 | OQ-12 | Effect calibration — delay TIME-to-ms, the 16 template parameter sets, reverb RT60 per TIME/SIZE. Reverb PRE DELAY is now *settled*: the manual prints only the endpoints, and Roland's editor gives the table — four regular runs, 0.1 ms steps to 4.9, 0.5 ms to 9.5, 1 ms to 49, 2 ms to 100. Read linearly, raw 50 sat at 40 ms where the unit puts it at 5 | Tap the repeats; dump SysEx after applying each template |
 | OQ-13 | Voice-steal policy | Play 11 notes and observe which voice drops |

@@ -274,6 +274,16 @@ if(BUILD_TESTING)
     add_test(NAME Septum.HardwareVoiceFidelity COMMAND SeptumHardwareVoiceFidelityTests)
     set_tests_properties(Septum.HardwareVoiceFidelity PROPERTIES TIMEOUT 120)
 
+    add_executable(SeptumLfoRateFidelityTests Tests/LfoRateFidelityTests.cpp)
+    target_link_libraries(SeptumLfoRateFidelityTests PRIVATE SeptumDSP)
+    add_test(NAME Septum.LfoRateFidelity COMMAND SeptumLfoRateFidelityTests)
+    set_tests_properties(Septum.LfoRateFidelity PROPERTIES TIMEOUT 120)
+
+    add_executable(SeptumDryFilterFidelityTests Tests/DryFilterFidelityTests.cpp)
+    target_link_libraries(SeptumDryFilterFidelityTests PRIVATE SeptumDSP)
+    add_test(NAME Septum.DryFilterFidelity COMMAND SeptumDryFilterFidelityTests)
+    set_tests_properties(Septum.DryFilterFidelity PROPERTIES TIMEOUT 120)
+
     add_executable(SeptumHardwarePerformanceFidelityTests Tests/HardwarePerformanceFidelityTests.cpp)
     target_link_libraries(SeptumHardwarePerformanceFidelityTests PRIVATE SeptumDSP)
     add_test(NAME Septum.HardwarePerformanceFidelity COMMAND SeptumHardwarePerformanceFidelityTests)
@@ -306,6 +316,11 @@ if(BUILD_TESTING)
                      COMMAND "${Python3_EXECUTABLE}" -B
                              "${CMAKE_CURRENT_SOURCE_DIR}/Tests/HardwareEquivalenceTests.py")
             set_tests_properties(Septum.HardwareEquivalence PROPERTIES TIMEOUT 120)
+            add_test(NAME Septum.DryFilterAnalysis
+                     COMMAND "${Python3_EXECUTABLE}" -B
+                             "${CMAKE_CURRENT_SOURCE_DIR}/Tools/analyze_deepsonic_filter.py"
+                             --self-test)
+            set_tests_properties(Septum.DryFilterAnalysis PROPERTIES TIMEOUT 60)
         endif()
         add_test(NAME Septum.Packaging
                  COMMAND "${Python3_EXECUTABLE}" -B

@@ -781,8 +781,11 @@ void testModerateResonanceResponse()
 
         const double zero = 20.0 * std::log10 (
             amplitude (response (false, false, 0, 256)) / amplitude (bypass));
-        expect (std::abs (zero - (-7.6042)) < 0.02,
-                "zero-resonance LP24 response retains its prior calibration");
+        // The dry hardware audit replaces the previous 2.0/1.2 damping with
+        // two 1.2 sections. At the natural cutoff their combined gain is
+        // 1/(1.2*1.2); the separate AUDIO FILTER below retains its old law.
+        expect (std::abs (zero - (-3.16725)) < 0.02,
+                "zero-resonance LP24 adopts the dry recording response");
         const double external = 20.0 * std::log10 (
             amplitude (response (true, false, 44, 256))
                 / amplitude (response (true, true, 44, 256)));

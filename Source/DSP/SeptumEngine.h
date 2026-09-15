@@ -70,15 +70,21 @@ namespace mapping
         return 2.0 - 2.04 * std::sqrt (std::clamp (value / 127.0, 0.0, 1.0));
     }
 
-    // [conditional recording fit, OQ-08] SupaJuce 1's upper square harmonics
-    // require substantially more resonant contrast at raw40 than the original
-    // curve. Air Lead 1 supports stronger contrast near raw44, with effects
-    // and waveform assumptions. Power1.5 is a conservative interpolation:
-    // k40=0.559, k44=0.505 (Q1.79/1.98 per resonant section). This is not a
-    // recovered Roland parameter table. Preserve zero resonance and the
-    // original self-oscillation threshold/negative damping at the top.
+    // [conditional recording fit, OQ-08] The owner's dry LP12/LP24 saw
+    // recordings identify k0 ~= 1.2 across notes and moving cutoffs. Their
+    // original MIDI is available, but the patch is a recipe, not a dump.
+    // SupaJuce/Air Lead retain the prior k40=0.559, k44=0.505 anchors.
+    // A straight bridge joins 0 to 40; these interior values are unmeasured.
+    // Keep the original power curve from 40 onward, including its autonomous
+    // oscillation threshold. This is not a recovered Roland parameter table.
+    // Docs/fidelity/dry-filter-calibration.md
     [[nodiscard]] inline double voiceResonanceDamping (double value) noexcept
     {
+        if (value < 40.0)
+        {
+            constexpr double moderateDamping = 0.5591507918157866;
+            return 1.2 + (moderateDamping - 1.2) * std::clamp (value / 40.0, 0.0, 1.0);
+        }
         const double base = resonanceDamping (value);
         return base > 0.0 ? 2.0 * std::pow (base * 0.5, 1.5) : base;
     }
@@ -110,10 +116,17 @@ namespace mapping
                            * std::pow (std::clamp (value, 0, 127) / 127.0, power);
     }
 
-    // [voiced, OQ-10] LFO RATE 0-127 -> Hz, 0.03 to 30 Hz.
+    // [published hardware measurement, OQ-10] deep!sonic reports endpoint
+    // periods of 20.59 s and 40.22 ms for the SH-201. Intermediate positions
+    // retain provisional logarithmic interpolation; no full hardware rate
+    // table or measurement tolerance was published. Tempo sync is separate.
+    // Docs/fidelity/source-audits/2026-09-15-new-sources.md
     [[nodiscard]] inline double lfoRateHz (double value) noexcept
     {
-        return 0.03 * std::pow (1000.0, value / 127.0);
+        constexpr double slowPeriodSeconds = 20.59;
+        constexpr double fastPeriodSeconds = 0.04022;
+        return std::pow (slowPeriodSeconds / fastPeriodSeconds, value / 127.0)
+                   / slowPeriodSeconds;
     }
 
     // [settled] Tempo-synced LFO frequency from the documented note table.
@@ -509,16 +522,17 @@ namespace mapping
     inline constexpr double reverbInputInjection = 0.35;
     inline constexpr double reverbWetReturn = 0.8;
 
-    // [voiced, OQ-08] Original voice second-stage damping, retained at low
-    // resonance. The separate AUDIO FILTER has its own stage configuration.
+    // [conditional recording fit, OQ-08] The dry LP24 response supports two
+    // k=1.2 sections at resonance zero. The separate AUDIO FILTER has its own
+    // stage configuration. See Docs/fidelity/dry-filter-calibration.md.
     inline constexpr double filterSecondStageDamping = 1.2;
 
     // [empirical, OQ-08] A resonant second section better matches SupaJuce's
     // early spectral peak under the current TPT model. Its Q is capped at 2:
     // the measured moderate settings do not establish a second autonomous
     // oscillator, and extrapolating both stages to negative damping caused
-    // HPF headroom and filter-modulation regressions. Zero-resonance response
-    // is unchanged. Exact hardware topology remains unverified; see
+    // HPF headroom and filter-modulation regressions. The second section stays
+    // at k=1.2 at zero resonance. Exact hardware topology remains unverified; see
     // Docs/fidelity/resonance-investigation.md.
     [[nodiscard]] inline double voiceSecondStageDamping (double firstStage) noexcept
     {

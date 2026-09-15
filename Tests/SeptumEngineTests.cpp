@@ -4718,15 +4718,21 @@ void testControlChangesDoNotStepTheOutput()
 
     // An S&H LFO on the AMP destination steps its own value; the gain it
     // lands on is walked, so the edge stays audible without being a click.
+    // Compare with the same unmodulated carrier's steady maximum slope.
+    // The modulated take's median depends on how long the random low-gain
+    // plateaus last, so changing LFO rate can change that bound even though
+    // gain smoothing is identical. Full-depth tremolo can double the carrier
+    // gain; the existing four-times bound leaves room for the smoothed edge.
+    const auto sampleHoldAmpTake = [sampleRate] (int rate, int depth)
     {
         septum::Engine engine;
         engine.prepare (sampleRate, 8);
         septum::Patch patch = plainSawPatch();
         patch.upper.osc1.wave = septum::Waveform::Sine;
         patch.upper.lfo1.shape = septum::LfoShape::SampleHold;
-        patch.upper.lfo1.rate = 70;
+        patch.upper.lfo1.rate = rate;
         patch.upper.lfo1.destination2 = septum::LfoDest2::Amp;
-        patch.upper.lfo1.depth2 = 63;
+        patch.upper.lfo1.depth2 = depth;
         engine.setPatch (patch);
         engine.noteOn (36, 100);
         std::vector<float> left (8), right (8), out;
@@ -4736,16 +4742,21 @@ void testControlChangesDoNotStepTheOutput()
             for (int i = 0; i < 8; ++i)
                 out.push_back (left[(std::size_t) i]);
         }
-        std::vector<double> jumps;
-        for (std::size_t i = 1; i < out.size(); ++i)
-            jumps.push_back (std::abs ((double) out[i] - (double) out[i - 1]));
-        std::sort (jumps.begin(), jumps.end());
-        const double median = jumps[jumps.size() / 2];
-        const double worst = jumps.back();
-        expect (worst < 4.0 * median,
-                "an S&H LFO on the AMP destination does not click (worst "
-                    + std::to_string (worst) + " against a median "
-                    + std::to_string (median) + ")");
+        return out;
+    };
+    // Exclude the initial note attack from both the control and each take.
+    const auto settledFrom = (std::size_t) (sampleRate * 0.1);
+    const auto control = sampleHoldAmpTake (70, 0);
+    const double steady = worstJump (control, settledFrom, control.size());
+    for (int rate : { 70, 100, 127 })
+    {
+        const auto out = sampleHoldAmpTake (rate, 63);
+        const double worst = worstJump (out, settledFrom, out.size());
+        expect (worst < 4.0 * steady,
+                "an S&H LFO on the AMP destination does not click at rate "
+                    + std::to_string (rate) + " (worst "
+                    + std::to_string (worst) + " against a steady carrier "
+                    + std::to_string (steady) + ")");
     }
 }
 
