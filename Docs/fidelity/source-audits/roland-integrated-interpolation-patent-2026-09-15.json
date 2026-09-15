@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-09-15",
+  "status": "primary source inspected; proposal only; no SH-201 implementation attribution",
+  "scope": {
+    "production_changes": false,
+    "model_fits_run": false,
+    "staged": false,
+    "committed": false,
+    "additional_patent_citation_search": false
+  },
+  "source_assets": [
+    {
+      "path": "build-fidelity/public-waveforms/roland-interpolation-patent-2026-09-15/US4715257.pdf",
+      "sha256": "ef733e3073f597b7dd00d7908baf04d543468aa68c3b4a4b9519750d2b8e95f4",
+      "bytes": 902967,
+      "url": "https://patentimages.storage.googleapis.com/14/6b/54/9d7e5c83b72512/US4715257.pdf",
+      "pages": 10
+    },
+    {
+      "path": "build-fidelity/public-waveforms/roland-interpolation-patent-2026-09-15/US4715257A.html",
+      "sha256": "98c63cebd14703d53ef35774c11c30d5b0f9abf0e05d0de27b0ff5f3b6a5c7d5",
+      "bytes": 238425,
+      "url": "https://patents.google.com/patent/US4715257A/en"
+    }
+  ],
+  "derived_assets": [
+    {
+      "path": "build-fidelity/public-waveforms/roland-interpolation-patent-2026-09-15/US4715257-layout.txt",
+      "sha256": "a573a079062ecc556845f755089b756b1226307356e36155c14374bc5b5dcb4d",
+      "bytes": 45896
+    },
+    {
+      "path": "build-fidelity/public-waveforms/roland-interpolation-patent-2026-09-15/pdf-extra-05.png",
+      "sha256": "e78cc30b68529cb66e927ba1fee762a1b5f7b410e22b98c2b96495e1f5648f8d",
+      "bytes": 54366
+    },
+    {
+      "path": "build-fidelity/public-waveforms/roland-interpolation-patent-2026-09-15/pdf-extra-06.png",
+      "sha256": "09dabab8e0a448ff5e90992e585e5246791cd063dc365e8a2d062372d25ea243",
+      "bytes": 247078
+    },
+    {
+      "path": "build-fidelity/public-waveforms/roland-interpolation-patent-2026-09-15/pdf-formulas-07.png",
+      "sha256": "4bc0d05c9e4e6d2c8e9a90c51902eb1e0ade45ea1016fac71ec3af92728379bb",
+      "bytes": 269746
+    },
+    {
+      "path": "build-fidelity/public-waveforms/roland-interpolation-patent-2026-09-15/pdf-formulas-08.png",
+      "sha256": "2f3fe8418432644a699b5845794a67a3ac150cf0e16295150c47a20faf9ebfcc",
+      "bytes": 314506
+    },
+    {
+      "path": "build-fidelity/public-waveforms/roland-interpolation-patent-2026-09-15/pdf-page03.png",
+      "sha256": "4cd22c23e9528bf759ab513029929c8432522311942b9f344a76a7a97e14d127",
+      "bytes": 62168
+    },
+    {
+      "path": "build-fidelity/public-waveforms/roland-interpolation-patent-2026-09-15/pdf-page04.png",
+      "sha256": "37a951f816b5fb2dc8edc2dc328329753891783e91616660e4113b288534001d",
+      "bytes": 47451
+    },
+    {
+      "path": "build-fidelity/public-waveforms/roland-interpolation-patent-2026-09-15/pdf-page10.png",
+      "sha256": "9aeeeb5b93b1bb1cce950f3b52fbf120a643dcbd60fbafa71d0030e074115c59",
+      "bytes": 202977
+    }
+  ],
+  "visual_inspection_pdf_pages_one_based": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    10
+  ],
+  "formula_inspection": {
+    "equation_1_pdf_page": 6,
+    "equations_2_3_4_pdf_page": 7,
+    "general_formula_pdf_pages": [
+      8,
+      10
+    ],
+    "transcription_in_report": "Expanded sums (2-3) compacted algebraically; original scanned equations retained."
+  },
+  "report": {
+    "path": "Docs/fidelity/source-audits/roland-integrated-interpolation-patent-2026-09-15.md",
+    "sha256": "4ad8e4ef47d31a08c2bdc0c91d65e60615d3c86ac21e41951cdd212e4447d4dc",
+    "bytes": 6572
+  },
+  "confidence": {
+    "patent_document_and_formulas": "high: original scanned PDF and HTML agree",
+    "algebraic_equivalence": "exact mathematical identity, subject to equal coefficients and arithmetic",
+    "specific_SH201_implementation": "not established",
+    "surrogate_test_feasibility": "conditional proposal; no hardware score produced"
+  },
+  "reproduction": {
+    "acquire_pdf": [
+      "curl",
+      "-L",
+      "--fail",
+      "--max-time",
+      "45",
+      "https://patentimages.storage.googleapis.com/14/6b/54/9d7e5c83b72512/US4715257.pdf",
+      "-o",
+      "US4715257.pdf"
+    ],
+    "acquire_html": [
+      "curl",
+      "-L",
+      "--fail",
+      "--max-time",
+      "45",
+      "https://patents.google.com/patent/US4715257A/en",
+      "-o",
+      "US4715257A.html"
+    ],
+    "extract": [
+      "pdftotext",
+      "-layout",
+      "US4715257.pdf",
+      "US4715257-layout.txt"
+    ],
+    "render_commands": [
+      [
+        "pdftoppm",
+        "-f",
+        "3",
+        "-l",
+        "3",
+        "-scale-to",
+        "1600",
+        "-png",
+        "-singlefile",
+        "US4715257.pdf",
+        "pdf-page03"
+      ],
+      [
+        "pdftoppm",
+        "-f",
+        "4",
+        "-l",
+        "4",
+        "-scale-to",
+        "1800",
+        "-png",
+        "-singlefile",
+        "US4715257.pdf",
+        "pdf-page04"
+      ],
+      [
+        "pdftoppm",
+        "-f",
+        "5",
+        "-l",
+        "6",
+        "-scale-to",
+        "1800",
+        "-png",
+        "US4715257.pdf",
+        "pdf-extra"
+      ],
+      [
+        "pdftoppm",
+        "-f",
+        "7",
+        "-l",
+        "8",
+        "-scale-to",
+        "2200",
+        "-png",
+        "US4715257.pdf",
+        "pdf-formulas"
+      ],
+      [
+        "pdftoppm",
+        "-f",
+        "10",
+        "-l",
+        "10",
+        "-scale-to",
+        "1800",
+        "-png",
+        "-singlefile",
+        "US4715257.pdf",
+        "pdf-page10"
+      ]
+    ],
+    "pdftotext_version": "pdftotext version 26.04.0",
+    "pdftoppm_version": "pdftoppm version 26.04.0"
+  },
+  "proposal_status": "Eight unimplemented surrogate definitions in report; a later coordinated protocol may supersede this proposal before fitting. Earlier hardware passages are already studied, so this is exploratory research rather than a blinded prospective test."
+}

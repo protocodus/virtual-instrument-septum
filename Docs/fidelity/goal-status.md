@@ -98,6 +98,11 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   adds nine schema-checked presets and numbered demo passages. Patch 06's
   active filter LFO prevents a static cutoff anchor, while its short passage
   and changing note mixtures do not establish an interior LFO rate.
+  [Patch 01's longer passage](source-audits/rcs-acid-patch01-feasibility-2026-09-15.md)
+  permits many putative cycles, but its dominant brightness cadence coincides
+  with the measured level cadence. Known no-LFO sequences reproduce that ambiguity,
+  and sequencing can conceal a planted modulation. These features do not
+  calibrate raw rate 88 or exclude a weaker recoverable LFO signature.
 - [Classic-Saw alias lines](source-audits/deepsonic-saw-aliases-2026-09-15.md)
   establish a 44.1 kHz folding signature across eight pitches and both dry
   filter slopes. Synthetic codec controls rule out that MP3 round-trip as
@@ -129,6 +134,11 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   test sampled/Fourier tables, three interpolation methods and deterministic
   harmonic caps with equal postfilter freedom. None reproduces the alias
   pattern across pitches, and no table architecture is identified.
+  An [original Roland interpolation patent](source-audits/roland-integrated-interpolation-patent-2026-09-15.md)
+  describes distinct windowed low-pass kernels, finite fractional lookup
+  and pitch-selected cutoff banks. Its difference coding is algebraically
+  equivalent to convolution with the same weights. It supplies a bounded
+  new hypothesis, but no SH-201 implementation link or recovered coefficients.
   [Slope/time controls](source-audits/deepsonic-high-note-invariance-2026-09-15.md)
   identify an early, nearly invariant Q0 high-note region followed by a
   moving response. Q50 differs strongly there, ruling out an unconditional
@@ -199,8 +209,16 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   A [short-tail recurrence control](source-audits/reverb-tail-recurrence-2026-09-15.md)
   passes on simple known modes but fails to predict the exact current FDN's
   later envelope at every declared order. No public pole fitting follows.
-  The next diagnostic must distinguish direct sound, source release, delay
-  and their contributions to reverb before fitting another decay parameter.
+  [Verified bus decomposition](source-audits/reverb-tail-bus-decomposition-2026-09-15.md)
+  now reproduces three shipping recordings exactly and separates Upper/Lower
+  dry, delay, direct-fed reverb and delay-fed reverb. Club's later Side deficit
+  belongs to its Upper reverb response: dry Side is zero to rounding, and
+  halting new input 250 ms after the reconstructed gate changes no sample.
+  Mono output-coupling state explains its low dry-output tail but cannot
+  explain that Side mismatch. Ambient's paths remain coherently mixed;
+  Cotton's controlled extension still is not its original final performance.
+  The decomposition identifies current model contributions, not hardware
+  damping coefficients or a global time curve.
 
 ## Benchmark numerical correction
 
@@ -222,12 +240,11 @@ reliability and does not change the instrument's DSP.
    alone is not new evidence. Keep both main harmonics and aliases visible.
 2. Examine creator recordings for independent oscillator measurements,
    retaining uncertain panel state and unmeasured raw settings explicitly.
-3. Decompose model signal paths to investigate Club Bass and Ambient SQR,
-   keeping
-   reverb level, layer mixing, phase, frequency-dependent decay, source
-   release and active delay separate. Verify stem recombination before
-   using input-halt controls. Cotton's opening reconstruction does not
-   authenticate its final recorded excitation; preserve that limitation
+3. Use the verified model buses to isolate the current HF feedback shelf's
+   contribution to Club and Ambient, keeping time, return level and inputs
+   fixed. Removing a shelf changes phase as well as attenuation; it cannot
+   uniquely identify hardware damping. Cotton's opening reconstruction does
+   not authenticate its final recorded excitation; preserve that limitation
    and the original Club/Ambient/Class A counterexamples.
 4. Keep independent validation passages and input uncertainty visible.
    Matching a fitted spectral feature cannot establish complete output

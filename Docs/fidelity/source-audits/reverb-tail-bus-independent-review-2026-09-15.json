@@ -1,0 +1,318 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-15",
+  "reviewer": "source_research",
+  "status": "passed; no consequential blocker",
+  "scope": "Independent source/order/provenance and raw-output reproduction review. No renderer rebuild, parameter fit, production edit, staging or commit.",
+  "reviewed_artifacts": [
+    {
+      "path": "Tools/decompose_reverb_tail_buses.py",
+      "sha256": "051312bca98a89acf9bf88626d589d99c82ae60ac5cba33959202f0fb8297d99"
+    },
+    {
+      "path": "Tools/assess_reverb_tail_buses.py",
+      "sha256": "fc27abd43c55d1ed7e886ea07875610b28576f0e16b7591658c17f200a064c78"
+    },
+    {
+      "path": "Docs/fidelity/source-audits/reverb-tail-bus-decomposition-2026-09-15.md",
+      "sha256": "30475d1268286b8448eacc99de5f545c7cdc5ef80e9deec027aee672d66d3524"
+    },
+    {
+      "path": "Docs/fidelity/source-audits/reverb-tail-bus-decomposition-2026-09-15.json",
+      "sha256": "b8203c7f6e2e50b58865a1739f460d44c09dd0dc88253419cb78377aa87a197b"
+    },
+    {
+      "path": "Docs/fidelity/plots/reverb-tail-bus-components.png",
+      "sha256": "d1593a35de56198d2bdb85e015b18bb5d5df1ae2a357c6f350279f22242d9ddb"
+    }
+  ],
+  "verification_script": {
+    "path": "build-fidelity/reverb-tail-buses/run-01/independent-review/verify.py",
+    "sha256": "fdf705f77c57e7d9180e3ae0d5b16fb9894321c96332660b43f10f87e3796e44"
+  },
+  "raw_checks": {
+    "path": "build-fidelity/reverb-tail-buses/run-01/independent-review/checks.json",
+    "sha256": "04907ab13adb953af1fbc43e8051dd3828fb3d77d6f20ab3aad9a329b1e740da"
+  },
+  "reproduce": [
+    "python3",
+    "build-fidelity/reverb-tail-buses/run-01/independent-review/verify.py"
+  ],
+  "source_revision": "e44363925ba9edbe9321fcdd21caf7d656ddb7dc",
+  "hash_checks": 166,
+  "numeric_fields_compared": 1038,
+  "maximum_numeric_absolute_difference": 0.0,
+  "verified": [
+    "Every frozen native DSP/renderer file equals its requested git blob and the current working source. Instrumented header differs only by private-to-public access for the isolated fixture.",
+    "All three original shipping/native/diagnostic WAVs are byte-identical. Replayed full effects match captured effects PCM; replayed pre-limiter output matches captured analog output; replayed complete original-support PCM matches native output exactly.",
+    "Instrumentation adds per-voice taps after the same AMP/filter/overdrive/gain operations without changing accumulation order or original expressions. Separate part summation has only measured float-rounding differences.",
+    "Effects replay preserves captured 1-to-8-sample tick boundaries and each master/pan sample. Pre-extension bus data are identical; extension supplies zero dry/delay/reverb inputs and retains final gain/pan values. This extension is a controlled model continuation, not a new native-performance identity assertion.",
+    "Independent SMF parse plus stored replay events place every track/event before extension. Active voice count is zero and arpeggiator off. No MIDI is injected by the effects-only fixture.",
+    "All eight stem networks start from the same initialized state and replay full input history. Delay modulation and geometry clocks continue unchanged; direct-fed and delay-fed reverb isolate new network input, not already mixed output.",
+    "The input-halt branches replace only new buses or reverb input before predelay; they do not reset delay, predelay, diffuser, FDN, output-filter, smoothing or read-head state. All 18 halt first-change indices and per-stage identical prefixes were reproduced.",
+    "Impulse controls independently distinguish two-sample strict AnalogOutput onset from 74-sample group delay. No 93-sample overall-engine latency is added to already captured post-voice input.",
+    "All actual full, stem AND halt outputs are below the limiter knee; pre/post limiter arrays match. Quiet known-input additivity passes, overloaded control preserves pre-limiter additivity and deliberately fails post-limiter additivity.",
+    "All declared component RMS, Mid/Side, halt-difference norms, coherent cross terms, and original-support model/hardware level differences reproduce from raw files. Pairwise cross products independently agree with the residual-power accounting within float summation error.",
+    "Every hardware support uses the earlier recorded gain/lag without fitting; raw excerpt/original MP3/prior comparison/result hashes are unchanged. Requested versus clipped support mapping matches the frozen common coverage.",
+    "Durable result JSON is byte-identical to final assessment-04 results; plot hash agrees and labels/colors were visually checked."
+  ],
+  "cases": [
+    {
+      "id": "club-bass",
+      "frames": 362061,
+      "original_frames": 231525,
+      "tick_lengths_samples": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        8
+      ],
+      "original_native_diagnostic_full_pcm_identity": true,
+      "before_limiter_pcm_matches_native_capture": true,
+      "source_extension_zero_and_final_controls_held": true,
+      "no_future_midi_or_arpeggio": true,
+      "all_full_stem_halt_outputs_below_limiter": true,
+      "recombination": {
+        "before_output": {
+          "maximum_absolute": 2.9802322387695312e-08,
+          "rms": 2.5340236220328343e-09,
+          "relative_rms": 3.708528458543521e-08
+        },
+        "before_limiter": {
+          "maximum_absolute": 3.573950380086899e-08,
+          "rms": 2.5188324420633303e-09,
+          "relative_rms": 4.68197687258557e-08
+        },
+        "after_limiter": {
+          "maximum_absolute": 3.573950380086899e-08,
+          "rms": 2.5188324420633303e-09,
+          "relative_rms": 4.68197687258557e-08
+        }
+      },
+      "halt_first_change_frames": {
+        "source_gate": {
+          "before_output": 97461,
+          "before_limiter": 97479,
+          "after_limiter": 97479
+        },
+        "reverb_gate": {
+          "before_output": 98814,
+          "before_limiter": 98835,
+          "after_limiter": 98835
+        },
+        "delay_feed_gate": {
+          "before_output": null,
+          "before_limiter": null,
+          "after_limiter": null
+        },
+        "source_gate_plus250ms": {
+          "before_output": null,
+          "before_limiter": null,
+          "after_limiter": null
+        },
+        "reverb_gate_plus250ms": {
+          "before_output": null,
+          "before_limiter": null,
+          "after_limiter": null
+        },
+        "delay_feed_gate_plus250ms": {
+          "before_output": null,
+          "before_limiter": null,
+          "after_limiter": null
+        }
+      },
+      "maximum_cross_term_pairwise_vs_residual_fraction_difference": 3.609953009989838e-08
+    },
+    {
+      "id": "ambient-sqr-nominal-v100",
+      "frames": 296793,
+      "original_frames": 122378,
+      "tick_lengths_samples": [
+        1,
+        3,
+        5,
+        6,
+        7,
+        8
+      ],
+      "original_native_diagnostic_full_pcm_identity": true,
+      "before_limiter_pcm_matches_native_capture": true,
+      "source_extension_zero_and_final_controls_held": true,
+      "no_future_midi_or_arpeggio": true,
+      "all_full_stem_halt_outputs_below_limiter": true,
+      "recombination": {
+        "before_output": {
+          "maximum_absolute": 1.1135853128507733e-08,
+          "rms": 5.638733171371253e-10,
+          "relative_rms": 4.11079471292771e-08
+        },
+        "before_limiter": {
+          "maximum_absolute": 1.0550138540565968e-08,
+          "rms": 5.318933158057606e-10,
+          "relative_rms": 4.928037356660633e-08
+        },
+        "after_limiter": {
+          "maximum_absolute": 1.0550138540565968e-08,
+          "rms": 5.318933158057606e-10,
+          "relative_rms": 4.928037356660633e-08
+        }
+      },
+      "halt_first_change_frames": {
+        "source_gate": {
+          "before_output": 32193,
+          "before_limiter": 32209,
+          "after_limiter": 32209
+        },
+        "reverb_gate": {
+          "before_output": 33546,
+          "before_limiter": 33575,
+          "after_limiter": 33575
+        },
+        "delay_feed_gate": {
+          "before_output": 33546,
+          "before_limiter": 33577,
+          "after_limiter": 33577
+        },
+        "source_gate_plus250ms": {
+          "before_output": null,
+          "before_limiter": null,
+          "after_limiter": null
+        },
+        "reverb_gate_plus250ms": {
+          "before_output": 44571,
+          "before_limiter": 44606,
+          "after_limiter": 44606
+        },
+        "delay_feed_gate_plus250ms": {
+          "before_output": 44571,
+          "before_limiter": 44606,
+          "after_limiter": 44606
+        }
+      },
+      "maximum_cross_term_pairwise_vs_residual_fraction_difference": 3.762648193017526e-09
+    },
+    {
+      "id": "cotton-wool",
+      "frames": 474075,
+      "original_frames": 308700,
+      "tick_lengths_samples": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "original_native_diagnostic_full_pcm_identity": true,
+      "before_limiter_pcm_matches_native_capture": true,
+      "source_extension_zero_and_final_controls_held": true,
+      "no_future_midi_or_arpeggio": true,
+      "all_full_stem_halt_outputs_below_limiter": true,
+      "recombination": {
+        "before_output": {
+          "maximum_absolute": 7.450580596923828e-09,
+          "rms": 8.087827333412366e-10,
+          "relative_rms": 2.6500372704754972e-08
+        },
+        "before_limiter": {
+          "maximum_absolute": 2.08965502679348e-08,
+          "rms": 1.0066582705700874e-09,
+          "relative_rms": 4.1898689178304644e-08
+        },
+        "after_limiter": {
+          "maximum_absolute": 2.08965502679348e-08,
+          "rms": 1.0066582705700874e-09,
+          "relative_rms": 4.1898689178304644e-08
+        }
+      },
+      "halt_first_change_frames": {
+        "source_gate": {
+          "before_output": 209475,
+          "before_limiter": 209486,
+          "after_limiter": 209486
+        },
+        "reverb_gate": {
+          "before_output": 215194,
+          "before_limiter": 215218,
+          "after_limiter": 215218
+        },
+        "delay_feed_gate": {
+          "before_output": null,
+          "before_limiter": null,
+          "after_limiter": null
+        },
+        "source_gate_plus250ms": {
+          "before_output": null,
+          "before_limiter": null,
+          "after_limiter": null
+        },
+        "reverb_gate_plus250ms": {
+          "before_output": null,
+          "before_limiter": null,
+          "after_limiter": null
+        },
+        "delay_feed_gate_plus250ms": {
+          "before_output": null,
+          "before_limiter": null,
+          "after_limiter": null
+        }
+      },
+      "maximum_cross_term_pairwise_vs_residual_fraction_difference": 1.4907914629010236e-09
+    }
+  ],
+  "synthetic_controls": [
+    {
+      "name": "quiet",
+      "recombination": {
+        "before_output": {
+          "maximum_absolute": 6.246409611776471e-09,
+          "rms": 4.3830363690956587e-10,
+          "relative_rms": 4.48174442620701e-08
+        },
+        "before_limiter": {
+          "maximum_absolute": 6.693881005048752e-09,
+          "rms": 4.091970644706238e-10,
+          "relative_rms": 5.348713627347223e-08
+        },
+        "after_limiter": {
+          "maximum_absolute": 6.693881005048752e-09,
+          "rms": 4.091970644706238e-10,
+          "relative_rms": 5.348713627347223e-08
+        }
+      }
+    },
+    {
+      "name": "overloaded",
+      "recombination": {
+        "before_output": {
+          "maximum_absolute": 5.811452865600586e-07,
+          "rms": 4.433880370598669e-08,
+          "relative_rms": 4.533733416624278e-08
+        },
+        "before_limiter": {
+          "maximum_absolute": 6.183981895446777e-07,
+          "rms": 4.1105670483160284e-08,
+          "relative_rms": 5.37301488118436e-08
+        },
+        "after_limiter": {
+          "maximum_absolute": 3.4320682784891687,
+          "rms": 0.2738243271174645,
+          "relative_rms": 0.6276818583952524
+        }
+      }
+    }
+  ],
+  "qualifications": [
+    "Ambient public .405-.775 s maps to model .355-.725 s because frozen lag is -2205 samples at the search boundary; this is an opening-performance comparison, before its .730 s final gate, and provides no halt-tail validation.",
+    "Cotton original17.25-21.75 s and Ambient original11.65-13.15 s late performances remain unmatched. Their model-only extensions cannot identify hardware decay constants or establish output equivalence.",
+    "Club support decomposition locates the current model Side contribution in its reverb path and excludes current mono coupling or delay contributions. It does not rule out different original release, modal excitation, capture, or patch revision.",
+    "Component powers can exceed or fall below full power because contributions interfere. The direct pairwise cross-term check confirms the interpretation; these numbers are not independent allocation fractions.",
+    "No state-array dump was taken at each halt; state preservation is established by review of the restricted branch mutations plus identical complete prefix/state-history processing and causal output checks.",
+    "Assessor explicitly guards limiter inactivity for actual full/stem outputs; this review also checked all halt outputs directly. The current18 halts are safely linear, so no missing qualification affects these results."
+  ],
+  "actionable_blockers": []
+}

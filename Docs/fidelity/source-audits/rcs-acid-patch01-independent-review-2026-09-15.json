@@ -1,0 +1,22 @@
+{
+  "status": "Independent review passed with no consequential blockers",
+  "reviewer": "root",
+  "date": "2026-09-15",
+  "receipt_sha256": "917809286e20a0a36984b8bdad2c769609c3e85381340d8fc85644b782f002ef",
+  "tool_sha256": "88868c8f69f7675a0a3e549327f984193f5371024dd982076f3d7f7d908c8a0c",
+  "checks": [
+    "Original media/archive/SHE hashes verified independently",
+    "Retained run and durable receipt match; decoded PCM and both image hashes verified",
+    "All four feature windows/grid policies and all 44 probe rows recomputed exactly with OPENBLAS_NUM_THREADS=1",
+    "All 11 primary cadence winners independently reproduced by dense least squares at every search frequency",
+    "Raw feature supports remain inside Patch01 card and training/check supports disjoint",
+    "Both plot and boundary montage visually inspected",
+    "Maximum-depth velocity/filter-envelope and effects confounds retained; negative cadence controls and hidden planted LFO prevent a rate correction"
+  ],
+  "caveats": [
+    "Source preset schema verification is not an authenticated recording-state receipt",
+    "Failure applies to this feature-cadence identification method; weaker modulation is not excluded",
+    "Host BLAS threading can cause insignificant floating arithmetic differences; exact repeat used recorded one-thread setting"
+  ],
+  "production_dsp_changed": false
+}
