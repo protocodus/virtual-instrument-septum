@@ -1,0 +1,1278 @@
+{
+  "schema_version": 1,
+  "status": "Source-only inventory; no comparator spectrum fitting, production changes, or capture correction",
+  "report": "Docs/fidelity/source-audits/deepsonic-capture-chain-controls-2026-09-15.md",
+  "search_queries": [
+    "site:deepsonic.ch \"recording\" \"filter\"",
+    "site:deepsonic.ch \"SH-201\" \"RME\"",
+    "site:deepsonic.ch \"soundcard\"",
+    "site:deepsonic.ch/deep/htm/ \"RME\"",
+    "site:deepsonic.ch/deep/htm/ \"recording\" -manual",
+    "site:deepsonic.ch/deep/htm/ \"Filtervergleich\"",
+    "\"deepsonic\" \"audio interface\"",
+    "\"deepsonic\" \"recorded\" \"SH-201\"",
+    "\"deepsonic\" \"Aufnahme\" Filter",
+    "\"SH-201\" \"oscillator\" \"waveforms\" measurements",
+    "\"SH-201\" \"saw\" \"spectrum\" -manual -scribd",
+    "\"SH-201\" \"waveform\" \"oscilloscope\"",
+    "\"SH-201\" \"sawtooth\" \"wav\" -manual -scribd",
+    "\"SH-201\" \"\u6ce2\u5f62\" \"\u6e2c\u5b9a\"",
+    "\"SH-201\" \"spectrum\" oscillator -site:scribd.com -shelter",
+    "\"SH201\" \"saw\" samples waveform -site:scribd.com",
+    "\"SH-201\" \"Spektrum\" S\u00e4gezahn",
+    "\"SH-201\" \"oscillogramme\" OR \"spectre\""
+  ],
+  "search_count": 18,
+  "findings": [
+    {
+      "claim": "Creator routing PDF documents SH-201 analog L/Mono and R outputs to MOTU24 I/O1 inputs21/22; return outputs21/22 to Filter In; MIDI via AMT8 unit1 port7.",
+      "confidence": "High for the 2020 table; unknown for 2010 recordings",
+      "url": "https://www.deepsonic.ch/deep/docs_misc/deepsonic_studio_-_connections_current.pdf#page=3",
+      "internal_date": "2020-01-04",
+      "source_page_link_label_date": "2020-02-12"
+    },
+    {
+      "claim": "All six SH-201 filter MP3s and four acquired comparator MP3s carry year2010, same album/artist tags, and duration30.0182s. Tags do not prove a shared session or exact recording date.",
+      "confidence": "High for observed metadata"
+    },
+    {
+      "claim": "No independent controlled SH-201 saw/pulse/sine or same-session known input/output was recovered; waveform and Synthesizer Pure pages are not SH-201 measurements.",
+      "confidence": "Bounded negative search result"
+    },
+    {
+      "claim": "Four comparator files are linked under common one-saw/no-effects/original MIDI procedure; no exact raw patches and octave shifts permitted.",
+      "confidence": "High for procedural source association; unknown exact state",
+      "url": "https://www.deepsonic.ch/deep/htm/deepsonic_analytics_filter_comparison.php"
+    }
+  ],
+  "comparison_scope": {
+    "intended_use": "Potential negative control for collection-wide coloration; parent performs any later harmonic measurement separately",
+    "same_session": false,
+    "same_converter_channels_established": false,
+    "ideal_saw_established": false,
+    "comparator_audio_pitch_checked_in_this_audit": false,
+    "observed_notch_claim": null,
+    "interpretation_limit": "Presence may motivate shared-path investigation; absence argues against blanket site EQ but cannot exclude SH-specific capture error."
+  },
+  "pages": [
+    {
+      "url": "https://www.deepsonic.ch/deep/",
+      "final_url": "https://www.deepsonic.ch/deep/",
+      "status": 200,
+      "path": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/page-0.html",
+      "sha256": "9c4171d98b66af9aef43936c9f5b39c180e655132e12d828a89451e7c8b3d7a9"
+    },
+    {
+      "url": "https://www.deepsonic.ch/deep/htm/roland_sh-201.php",
+      "final_url": "https://www.deepsonic.ch/deep/htm/roland_sh-201.php",
+      "status": 200,
+      "path": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/page-1.html",
+      "sha256": "4a8f4ef5dde3ccdb17a65b107dfb52e60a7a41d65f2c0e30fed8a178eb34e6e8"
+    },
+    {
+      "url": "https://www.deepsonic.ch/deep/htm/deepsonic_analytics_filter_comparison.php",
+      "final_url": "https://www.deepsonic.ch/deep/htm/deepsonic_analytics_filter_comparison.php",
+      "status": 200,
+      "path": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/page-2.html",
+      "sha256": "aa8536528eb13b6f04acd20599fe2a3b62c12af5c4cab3f82ee68ad3a6972548"
+    },
+    {
+      "url": "https://www.deepsonic.ch/deep/htm/deepsonic_analytics_waveform.php",
+      "status": 200,
+      "final_url": "https://www.deepsonic.ch/deep/htm/deepsonic_analytics_waveform.php",
+      "path": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/deepsonic_analytics_waveform.html",
+      "sha256": "0b77a7fe8dfb12e0eb7564c572164c9e1de34377d790523a86366d807cc061d0"
+    },
+    {
+      "url": "https://www.deepsonic.ch/deep/htm/deepsonic_analytics_synthesizer_pure.php",
+      "status": 200,
+      "final_url": "https://www.deepsonic.ch/deep/htm/deepsonic_analytics_synthesizer_pure.php",
+      "path": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/deepsonic_analytics_synthesizer_pure.html",
+      "sha256": "2e2b204f78f67a4884e3627a820fae34cde238269380ee81ea1a7cec591f77f3"
+    },
+    {
+      "url": "https://www.deepsonic.ch/deep/htm/deepsonic_studio.php",
+      "status": 200,
+      "final_url": "https://www.deepsonic.ch/deep/htm/deepsonic_studio.php",
+      "path": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/deepsonic_studio.html",
+      "sha256": "0230d63937aa0d06c91530902cb798242ed3bc9a732533a6cb7efe35d3bfc8d6"
+    },
+    {
+      "url": "https://www.deepsonic.ch/deep/htm/deepsonic_studio_history.php",
+      "status": 200,
+      "final_url": "https://www.deepsonic.ch/deep/htm/deepsonic_studio_history.php",
+      "path": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/deepsonic_studio_history.html",
+      "sha256": "c9b83caf00ac05bd4cab203afe55c7933a1077c733f32175599fd0ed27b21d8d"
+    },
+    {
+      "url": "https://www.deepsonic.ch/deep/htm/deepsonic_gear_history.php",
+      "status": 200,
+      "final_url": "https://www.deepsonic.ch/deep/htm/deepsonic_gear_history.php",
+      "path": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/deepsonic_gear_history.html",
+      "sha256": "49e32dbfb9aac3f2199ae38d5ac22537051765e11b4dfe113eafe187fddb032c"
+    },
+    {
+      "url": "https://www.deepsonic.ch/deep/htm/motu.php",
+      "final_url": "https://www.deepsonic.ch/deep/htm/motu.php",
+      "status": 200,
+      "path": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/motu.html",
+      "sha256": "f8a7e2e9bb12ceaedd7ef6282b42c6e95b3323dbee530e0eaff50b71165cefad"
+    },
+    {
+      "url": "https://recording.de/threads/user-review-roland-sh-201.242424/",
+      "final_url": "https://recording.de/threads/user-review-roland-sh-201.242424/",
+      "status": 200,
+      "path": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/recording-de-review.html",
+      "bytes": 149862,
+      "sha256": "2e28317e6b411e1876bec1f74ef872725e66e29f225aea4d2732ba64b300631e",
+      "finding": "First-person overview with panel/editor photographs; no isolated waveform recording, spectrum, MIDI or patch measurement protocol found in the article."
+    }
+  ],
+  "new_assets": [
+    {
+      "url": "https://www.deepsonic.ch/deep/docs_misc/deepsonic_studio_-_connections_current.pdf",
+      "final_url": "https://www.deepsonic.ch/deep/docs_misc/deepsonic_studio_-_connections_current.pdf",
+      "status": 200,
+      "headers": {
+        "Server": "nginx",
+        "Date": "Tue, 15 Sep 2026 15:13:51 GMT",
+        "Content-Type": "application/pdf",
+        "Content-Length": "1271363",
+        "Last-Modified": "Wed, 09 Jul 2025 15:26:03 GMT",
+        "Connection": "keep-alive",
+        "ETag": "\"686e8a0b-136643\"",
+        "Accept-Ranges": "bytes"
+      },
+      "path": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/deepsonic_studio_-_connections_current.pdf",
+      "sha256": "dadd86c4924ac60d255e94c8ce885db60857f720092245d8ed20fcf4a5874069",
+      "bytes": 1271363
+    },
+    {
+      "url": "https://www.deepsonic.ch/deep/docs_misc/deepsonic_studio_-_connections_2007.txt",
+      "final_url": "https://www.deepsonic.ch/deep/docs_misc/deepsonic_studio_-_connections_2007.txt",
+      "status": 200,
+      "headers": {
+        "Server": "nginx",
+        "Date": "Tue, 15 Sep 2026 15:13:51 GMT",
+        "Content-Type": "text/plain",
+        "Last-Modified": "Wed, 09 Jul 2025 15:26:02 GMT",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Vary": "Accept-Encoding",
+        "ETag": "W/\"686e8a0a-17bd\"",
+        "Content-Encoding": "gzip"
+      },
+      "path": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/deepsonic_studio_-_connections_2007.txt",
+      "sha256": "8b901635f155b38015e24253896ac7ee0bac3bc5d168f15c59a317c6d6b68203",
+      "bytes": 6077
+    },
+    {
+      "url": "https://www.deepsonic.ch/deep/audio_filter/roland_sh-201_-_filter_demo_-_filterinput.mp3",
+      "final_url": "https://www.deepsonic.ch/deep/audio_filter/roland_sh-201_-_filter_demo_-_filterinput.mp3",
+      "status": 200,
+      "headers": {
+        "Server": "nginx",
+        "Date": "Tue, 15 Sep 2026 15:13:51 GMT",
+        "Content-Type": "audio/mpeg",
+        "Content-Length": "8843056",
+        "Last-Modified": "Fri, 24 Apr 2015 13:06:00 GMT",
+        "Connection": "keep-alive",
+        "ETag": "\"553a3fb8-86ef30\"",
+        "Accept-Ranges": "bytes"
+      },
+      "path": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/roland_sh-201_-_filter_demo_-_filterinput.mp3",
+      "sha256": "b1f4a5ad0554c6d708b8cfdd2980fba44805ac5a34bab639206b81d81ccb6f4e",
+      "bytes": 8843056,
+      "probe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mp3",
+            "codec_long_name": "MP3 (MPEG audio layer 3)",
+            "codec_type": "audio",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "mime_codec_string": "mp4a.40.34",
+            "sample_fmt": "fltp",
+            "sample_rate": "44100",
+            "channels": 2,
+            "channel_layout": "stereo",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/14112000",
+            "start_pts": 353600,
+            "start_time": "0.025057",
+            "duration_ts": 3117985600,
+            "duration": "220.945692",
+            "bit_rate": "320000",
+            "disposition": {
+              "default": 0,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0,
+              "multilayer": 0
+            },
+            "tags": {
+              "encoder": "LAME3.98r"
+            }
+          }
+        ],
+        "format": {
+          "filename": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/roland_sh-201_-_filter_demo_-_filterinput.mp3",
+          "nb_streams": 1,
+          "nb_programs": 0,
+          "nb_stream_groups": 0,
+          "format_name": "mp3",
+          "format_long_name": "MP2/3 (MPEG audio layer 2/3)",
+          "start_time": "0.025057",
+          "duration": "220.945692",
+          "size": "8843056",
+          "bit_rate": "320189",
+          "probe_score": 51,
+          "tags": {
+            "album": "filter-demos @ deepsonic.ch",
+            "artist": "dr.squ",
+            "comment": "http://www.deepsonic.ch",
+            "genre": "Experimental",
+            "title": "Roland SH-201 - Filter Demo - Filterinput with external Loop",
+            "date": "2012"
+          }
+        }
+      }
+    },
+    {
+      "url": "https://www.deepsonic.ch/deep/audio_equipment/roland_sh-201_-_sounds_demo_-_impressions.mp3",
+      "final_url": "https://www.deepsonic.ch/deep/audio_equipment/roland_sh-201_-_sounds_demo_-_impressions.mp3",
+      "status": 200,
+      "headers": {
+        "Server": "nginx",
+        "Date": "Tue, 15 Sep 2026 15:13:51 GMT",
+        "Content-Type": "audio/mpeg",
+        "Content-Length": "47358302",
+        "Last-Modified": "Fri, 24 Apr 2015 11:48:51 GMT",
+        "Connection": "keep-alive",
+        "ETag": "\"553a2da3-2d2a15e\"",
+        "Accept-Ranges": "bytes"
+      },
+      "path": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/roland_sh-201_-_sounds_demo_-_impressions.mp3",
+      "sha256": "224f1dbdf387cdecb5fc4df38b3bba64e44c237aebf8dce5f3b8bde659fe4147",
+      "bytes": 47358302,
+      "probe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mp3",
+            "codec_long_name": "MP3 (MPEG audio layer 3)",
+            "codec_type": "audio",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "mime_codec_string": "mp4a.40.34",
+            "sample_fmt": "fltp",
+            "sample_rate": "44100",
+            "channels": 2,
+            "channel_layout": "stereo",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/14112000",
+            "start_pts": 353600,
+            "start_time": "0.025057",
+            "duration_ts": 16705974080,
+            "duration": "1183.813356",
+            "bit_rate": "320000",
+            "disposition": {
+              "default": 0,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0,
+              "multilayer": 0
+            },
+            "tags": {
+              "encoder": "LAME3.96r"
+            }
+          }
+        ],
+        "format": {
+          "filename": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/roland_sh-201_-_sounds_demo_-_impressions.mp3",
+          "nb_streams": 1,
+          "nb_programs": 0,
+          "nb_stream_groups": 0,
+          "format_name": "mp3",
+          "format_long_name": "MP2/3 (MPEG audio layer 2/3)",
+          "start_time": "0.025057",
+          "duration": "1183.813356",
+          "size": "47358302",
+          "bit_rate": "320038",
+          "probe_score": 51,
+          "tags": {
+            "album": "synth-demos @ deepsonic.ch",
+            "artist": "dr.squ",
+            "comment": "http://www.deepsonic.ch",
+            "genre": "Electronic",
+            "title": "Roland SH-201 - Impressions",
+            "date": "2009"
+          }
+        }
+      }
+    }
+  ],
+  "comparators": [
+    {
+      "label": ":play ASS Tassman 4 LPF 2Pole Q000%",
+      "url": "https://www.deepsonic.ch/deep/audio_filter/aas_tassmann_4_vsti_-_filter_demo_-_lpf2pole_q000.mp3",
+      "final_url": "https://www.deepsonic.ch/deep/audio_filter/aas_tassmann_4_vsti_-_filter_demo_-_lpf2pole_q000.mp3",
+      "status": 200,
+      "headers": {
+        "Server": "nginx",
+        "Date": "Tue, 15 Sep 2026 15:17:56 GMT",
+        "Content-Type": "audio/mpeg",
+        "Content-Length": "1203051",
+        "Last-Modified": "Fri, 24 Apr 2015 12:33:26 GMT",
+        "Connection": "keep-alive",
+        "ETag": "\"553a3816-125b6b\"",
+        "Accept-Ranges": "bytes"
+      },
+      "path": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/comparators/aas_tassmann_4_vsti_-_filter_demo_-_lpf2pole_q000.mp3",
+      "sha256": "b3846daa594ca2bdefed2344607b610cbd1c365e17150ae422c479422689d3ac",
+      "bytes": 1203051,
+      "probe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mp3",
+            "codec_long_name": "MP3 (MPEG audio layer 3)",
+            "codec_type": "audio",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "mime_codec_string": "mp4a.40.34",
+            "sample_fmt": "fltp",
+            "sample_rate": "44100",
+            "channels": 1,
+            "channel_layout": "mono",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/14112000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 423616838,
+            "duration": "30.018200",
+            "bit_rate": "320000",
+            "disposition": {
+              "default": 0,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0,
+              "multilayer": 0
+            }
+          }
+        ],
+        "format": {
+          "filename": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/comparators/aas_tassmann_4_vsti_-_filter_demo_-_lpf2pole_q000.mp3",
+          "nb_streams": 1,
+          "nb_programs": 0,
+          "nb_stream_groups": 0,
+          "format_name": "mp3",
+          "format_long_name": "MP2/3 (MPEG audio layer 2/3)",
+          "start_time": "0.000000",
+          "duration": "30.018200",
+          "size": "1203051",
+          "bit_rate": "320619",
+          "probe_score": 51,
+          "tags": {
+            "album": "filter-demos @ deepsonic.ch",
+            "artist": "dr.squ",
+            "comment": "http://www.deepsonic.ch",
+            "genre": "Experimental",
+            "title": "AAS Tassmann 4 VSTi - LPF2Pole Q000",
+            "date": "2010"
+          }
+        }
+      },
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/comparators/aas_tassmann_4_vsti_-_filter_demo_-_lpf2pole_q000.mp3",
+        "-c:a",
+        "pcm_f32le",
+        "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/comparators/aas_tassmann_4_vsti_-_filter_demo_-_lpf2pole_q000.wav"
+      ],
+      "decode_returncode": 0,
+      "decode_stderr": "",
+      "wav": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/comparators/aas_tassmann_4_vsti_-_filter_demo_-_lpf2pole_q000.wav",
+      "wav_sha256": "7aa31697fc5379ae85d20bf8ff321d748afc247d25b36ee37887d28ed6575c6b"
+    },
+    {
+      "label": ":play Access Virus C LPF12 Q000%",
+      "url": "https://www.deepsonic.ch/deep/audio_filter/access_virus_c_-_filter_demo_-_lpf12_q000.mp3",
+      "final_url": "https://www.deepsonic.ch/deep/audio_filter/access_virus_c_-_filter_demo_-_lpf12_q000.mp3",
+      "status": 200,
+      "headers": {
+        "Server": "nginx",
+        "Date": "Tue, 15 Sep 2026 15:17:56 GMT",
+        "Content-Type": "audio/mpeg",
+        "Content-Length": "1203045",
+        "Last-Modified": "Fri, 24 Apr 2015 12:34:34 GMT",
+        "Connection": "keep-alive",
+        "ETag": "\"553a385a-125b65\"",
+        "Accept-Ranges": "bytes"
+      },
+      "path": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/comparators/access_virus_c_-_filter_demo_-_lpf12_q000.mp3",
+      "sha256": "fff30fed14335a36ba2196a0ad9f82bfd16c331d99fa0271ceafeb158fdc960d",
+      "bytes": 1203045,
+      "probe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mp3",
+            "codec_long_name": "MP3 (MPEG audio layer 3)",
+            "codec_type": "audio",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "mime_codec_string": "mp4a.40.34",
+            "sample_fmt": "fltp",
+            "sample_rate": "44100",
+            "channels": 1,
+            "channel_layout": "mono",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/14112000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 423616838,
+            "duration": "30.018200",
+            "bit_rate": "320000",
+            "disposition": {
+              "default": 0,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0,
+              "multilayer": 0
+            }
+          }
+        ],
+        "format": {
+          "filename": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/comparators/access_virus_c_-_filter_demo_-_lpf12_q000.mp3",
+          "nb_streams": 1,
+          "nb_programs": 0,
+          "nb_stream_groups": 0,
+          "format_name": "mp3",
+          "format_long_name": "MP2/3 (MPEG audio layer 2/3)",
+          "start_time": "0.000000",
+          "duration": "30.018200",
+          "size": "1203045",
+          "bit_rate": "320617",
+          "probe_score": 51,
+          "tags": {
+            "album": "filter-demos @ deepsonic.ch",
+            "artist": "dr.squ",
+            "comment": "http://www.deepsonic.ch",
+            "genre": "Experimental",
+            "title": "Access Virus C - LPF12 Q000",
+            "date": "2010"
+          }
+        }
+      },
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/comparators/access_virus_c_-_filter_demo_-_lpf12_q000.mp3",
+        "-c:a",
+        "pcm_f32le",
+        "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/comparators/access_virus_c_-_filter_demo_-_lpf12_q000.wav"
+      ],
+      "decode_returncode": 0,
+      "decode_stderr": "",
+      "wav": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/comparators/access_virus_c_-_filter_demo_-_lpf12_q000.wav",
+      "wav_sha256": "779361025f24c590e19d67d282669eab627e192387351f73e993c22fb1c85cd0"
+    },
+    {
+      "label": ":play Clavia Nord Modular LPF12 Q000%",
+      "url": "https://www.deepsonic.ch/deep/audio_filter/clavia_nord_modular_kb_-_filter_demo_-_lpf12_q000.mp3",
+      "final_url": "https://www.deepsonic.ch/deep/audio_filter/clavia_nord_modular_kb_-_filter_demo_-_lpf12_q000.mp3",
+      "status": 200,
+      "headers": {
+        "Server": "nginx",
+        "Date": "Tue, 15 Sep 2026 15:17:56 GMT",
+        "Content-Type": "audio/mpeg",
+        "Content-Length": "1203055",
+        "Last-Modified": "Fri, 24 Apr 2015 12:37:42 GMT",
+        "Connection": "keep-alive",
+        "ETag": "\"553a3916-125b6f\"",
+        "Accept-Ranges": "bytes"
+      },
+      "path": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/comparators/clavia_nord_modular_kb_-_filter_demo_-_lpf12_q000.mp3",
+      "sha256": "35a4585f06315842df916fdd7be1e2d884c0c56d98479547c604274c22dcddc7",
+      "bytes": 1203055,
+      "probe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mp3",
+            "codec_long_name": "MP3 (MPEG audio layer 3)",
+            "codec_type": "audio",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "mime_codec_string": "mp4a.40.34",
+            "sample_fmt": "fltp",
+            "sample_rate": "44100",
+            "channels": 1,
+            "channel_layout": "mono",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/14112000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 423616838,
+            "duration": "30.018200",
+            "bit_rate": "320000",
+            "disposition": {
+              "default": 0,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0,
+              "multilayer": 0
+            }
+          }
+        ],
+        "format": {
+          "filename": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/comparators/clavia_nord_modular_kb_-_filter_demo_-_lpf12_q000.mp3",
+          "nb_streams": 1,
+          "nb_programs": 0,
+          "nb_stream_groups": 0,
+          "format_name": "mp3",
+          "format_long_name": "MP2/3 (MPEG audio layer 2/3)",
+          "start_time": "0.000000",
+          "duration": "30.018200",
+          "size": "1203055",
+          "bit_rate": "320620",
+          "probe_score": 51,
+          "tags": {
+            "album": "filter-demos @ deepsonic.ch",
+            "artist": "dr.squ",
+            "comment": "http://www.deepsonic.ch",
+            "genre": "Experimental",
+            "title": "Clavia Nord Modular KB - LPF12 Q000",
+            "date": "2010"
+          }
+        }
+      },
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/comparators/clavia_nord_modular_kb_-_filter_demo_-_lpf12_q000.mp3",
+        "-c:a",
+        "pcm_f32le",
+        "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/comparators/clavia_nord_modular_kb_-_filter_demo_-_lpf12_q000.wav"
+      ],
+      "decode_returncode": 0,
+      "decode_stderr": "",
+      "wav": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/comparators/clavia_nord_modular_kb_-_filter_demo_-_lpf12_q000.wav",
+      "wav_sha256": "d6b287185dc8a9f13af25a0ccd5090a8169a464d0e3212729b2db3f16aab5c57"
+    },
+    {
+      "label": ":play Roland Juno-106 (D80017A) LPF Q000%",
+      "url": "https://www.deepsonic.ch/deep/audio_filter/roland_juno-106_-_filter_demo_-_lpf_q000.mp3",
+      "final_url": "https://www.deepsonic.ch/deep/audio_filter/roland_juno-106_-_filter_demo_-_lpf_q000.mp3",
+      "status": 200,
+      "headers": {
+        "Server": "nginx",
+        "Date": "Tue, 15 Sep 2026 15:17:56 GMT",
+        "Content-Type": "audio/mpeg",
+        "Content-Length": "1203043",
+        "Last-Modified": "Fri, 24 Apr 2015 13:04:51 GMT",
+        "Connection": "keep-alive",
+        "ETag": "\"553a3f73-125b63\"",
+        "Accept-Ranges": "bytes"
+      },
+      "path": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/comparators/roland_juno-106_-_filter_demo_-_lpf_q000.mp3",
+      "sha256": "d87ec22a64d54d8c5620699086fe4457377cc588c35b9bde3ab1f8fc15ca3a9f",
+      "bytes": 1203043,
+      "probe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mp3",
+            "codec_long_name": "MP3 (MPEG audio layer 3)",
+            "codec_type": "audio",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "mime_codec_string": "mp4a.40.34",
+            "sample_fmt": "fltp",
+            "sample_rate": "44100",
+            "channels": 1,
+            "channel_layout": "mono",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/14112000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 423616838,
+            "duration": "30.018200",
+            "bit_rate": "320000",
+            "disposition": {
+              "default": 0,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0,
+              "multilayer": 0
+            }
+          }
+        ],
+        "format": {
+          "filename": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/comparators/roland_juno-106_-_filter_demo_-_lpf_q000.mp3",
+          "nb_streams": 1,
+          "nb_programs": 0,
+          "nb_stream_groups": 0,
+          "format_name": "mp3",
+          "format_long_name": "MP2/3 (MPEG audio layer 2/3)",
+          "start_time": "0.000000",
+          "duration": "30.018200",
+          "size": "1203043",
+          "bit_rate": "320616",
+          "probe_score": 51,
+          "tags": {
+            "album": "filter-demos @ deepsonic.ch",
+            "artist": "dr.squ",
+            "comment": "http://www.deepsonic.ch",
+            "genre": "Experimental",
+            "title": "Roland Juno-106 - LPF Q000",
+            "date": "2010"
+          }
+        }
+      },
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/comparators/roland_juno-106_-_filter_demo_-_lpf_q000.mp3",
+        "-c:a",
+        "pcm_f32le",
+        "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/comparators/roland_juno-106_-_filter_demo_-_lpf_q000.wav"
+      ],
+      "decode_returncode": 0,
+      "decode_stderr": "",
+      "wav": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/comparators/roland_juno-106_-_filter_demo_-_lpf_q000.wav",
+      "wav_sha256": "4319434d4ecf7e3360714598bd5bea4ed14ea32f8cb1f431db6ae41c31d4704a"
+    }
+  ],
+  "prior_sh201_metadata": [
+    {
+      "path": "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf12_q000.mp3",
+      "sha256": "28e241247a0efb217eb4cb7154cc3b69713fcebca781639c45b8904b3dc8615b",
+      "probe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mp3",
+            "codec_long_name": "MP3 (MPEG audio layer 3)",
+            "codec_type": "audio",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "mime_codec_string": "mp4a.40.34",
+            "sample_fmt": "fltp",
+            "sample_rate": "44100",
+            "channels": 1,
+            "channel_layout": "mono",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/14112000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 423616838,
+            "duration": "30.018200",
+            "bit_rate": "320000",
+            "disposition": {
+              "default": 0,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0,
+              "multilayer": 0
+            }
+          }
+        ],
+        "format": {
+          "filename": "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf12_q000.mp3",
+          "nb_streams": 1,
+          "nb_programs": 0,
+          "nb_stream_groups": 0,
+          "format_name": "mp3",
+          "format_long_name": "MP2/3 (MPEG audio layer 2/3)",
+          "start_time": "0.000000",
+          "duration": "30.018200",
+          "size": "1203043",
+          "bit_rate": "320616",
+          "probe_score": 51,
+          "tags": {
+            "album": "filter-demos @ deepsonic.ch",
+            "artist": "dr.squ",
+            "comment": "http://www.deepsonic.ch",
+            "genre": "Experimental",
+            "title": "Roland SH-201 - LPF12 Q000",
+            "date": "2010"
+          }
+        }
+      }
+    },
+    {
+      "path": "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf12_q050.mp3",
+      "sha256": "eada93d2d7330a573bf5166244d8b9cb6a4d55fb49f0c1d6bd18197b5a9529ca",
+      "probe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mp3",
+            "codec_long_name": "MP3 (MPEG audio layer 3)",
+            "codec_type": "audio",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "mime_codec_string": "mp4a.40.34",
+            "sample_fmt": "fltp",
+            "sample_rate": "44100",
+            "channels": 1,
+            "channel_layout": "mono",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/14112000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 423616838,
+            "duration": "30.018200",
+            "bit_rate": "320000",
+            "disposition": {
+              "default": 0,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0,
+              "multilayer": 0
+            }
+          }
+        ],
+        "format": {
+          "filename": "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf12_q050.mp3",
+          "nb_streams": 1,
+          "nb_programs": 0,
+          "nb_stream_groups": 0,
+          "format_name": "mp3",
+          "format_long_name": "MP2/3 (MPEG audio layer 2/3)",
+          "start_time": "0.000000",
+          "duration": "30.018200",
+          "size": "1203043",
+          "bit_rate": "320616",
+          "probe_score": 51,
+          "tags": {
+            "album": "filter-demos @ deepsonic.ch",
+            "artist": "dr.squ",
+            "comment": "http://www.deepsonic.ch",
+            "genre": "Experimental",
+            "title": "Roland SH-201 - LPF12 Q050",
+            "date": "2010"
+          }
+        }
+      }
+    },
+    {
+      "path": "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf12_q100.mp3",
+      "sha256": "57db9bd6449ed94441b39e1885c14491863149a35740f768d81511dcf91086ae",
+      "probe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mp3",
+            "codec_long_name": "MP3 (MPEG audio layer 3)",
+            "codec_type": "audio",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "mime_codec_string": "mp4a.40.34",
+            "sample_fmt": "fltp",
+            "sample_rate": "44100",
+            "channels": 1,
+            "channel_layout": "mono",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/14112000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 423616838,
+            "duration": "30.018200",
+            "bit_rate": "320000",
+            "disposition": {
+              "default": 0,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0,
+              "multilayer": 0
+            }
+          }
+        ],
+        "format": {
+          "filename": "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf12_q100.mp3",
+          "nb_streams": 1,
+          "nb_programs": 0,
+          "nb_stream_groups": 0,
+          "format_name": "mp3",
+          "format_long_name": "MP2/3 (MPEG audio layer 2/3)",
+          "start_time": "0.000000",
+          "duration": "30.018200",
+          "size": "1203043",
+          "bit_rate": "320616",
+          "probe_score": 51,
+          "tags": {
+            "album": "filter-demos @ deepsonic.ch",
+            "artist": "dr.squ",
+            "comment": "http://www.deepsonic.ch",
+            "genre": "Experimental",
+            "title": "Roland SH-201 - LPF12 Q100",
+            "date": "2010"
+          }
+        }
+      }
+    },
+    {
+      "path": "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf24_q000.mp3",
+      "sha256": "ebb6fa4e12136028bbff614633095aa510c31654fcce840af5e3a85b3a469d90",
+      "probe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mp3",
+            "codec_long_name": "MP3 (MPEG audio layer 3)",
+            "codec_type": "audio",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "mime_codec_string": "mp4a.40.34",
+            "sample_fmt": "fltp",
+            "sample_rate": "44100",
+            "channels": 1,
+            "channel_layout": "mono",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/14112000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 423616838,
+            "duration": "30.018200",
+            "bit_rate": "320000",
+            "disposition": {
+              "default": 0,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0,
+              "multilayer": 0
+            }
+          }
+        ],
+        "format": {
+          "filename": "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf24_q000.mp3",
+          "nb_streams": 1,
+          "nb_programs": 0,
+          "nb_stream_groups": 0,
+          "format_name": "mp3",
+          "format_long_name": "MP2/3 (MPEG audio layer 2/3)",
+          "start_time": "0.000000",
+          "duration": "30.018200",
+          "size": "1203043",
+          "bit_rate": "320616",
+          "probe_score": 51,
+          "tags": {
+            "album": "filter-demos @ deepsonic.ch",
+            "artist": "dr.squ",
+            "comment": "http://www.deepsonic.ch",
+            "genre": "Experimental",
+            "title": "Roland SH-201 - LPF24 Q000",
+            "date": "2010"
+          }
+        }
+      }
+    },
+    {
+      "path": "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf24_q050.mp3",
+      "sha256": "57dabaf9090e306913f05e3fc03fbcff60f01cb04bd05851f73536c5fc54809c",
+      "probe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mp3",
+            "codec_long_name": "MP3 (MPEG audio layer 3)",
+            "codec_type": "audio",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "mime_codec_string": "mp4a.40.34",
+            "sample_fmt": "fltp",
+            "sample_rate": "44100",
+            "channels": 1,
+            "channel_layout": "mono",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/14112000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 423616838,
+            "duration": "30.018200",
+            "bit_rate": "320000",
+            "disposition": {
+              "default": 0,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0,
+              "multilayer": 0
+            }
+          }
+        ],
+        "format": {
+          "filename": "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf24_q050.mp3",
+          "nb_streams": 1,
+          "nb_programs": 0,
+          "nb_stream_groups": 0,
+          "format_name": "mp3",
+          "format_long_name": "MP2/3 (MPEG audio layer 2/3)",
+          "start_time": "0.000000",
+          "duration": "30.018200",
+          "size": "1203043",
+          "bit_rate": "320616",
+          "probe_score": 51,
+          "tags": {
+            "album": "filter-demos @ deepsonic.ch",
+            "artist": "dr.squ",
+            "comment": "http://www.deepsonic.ch",
+            "genre": "Experimental",
+            "title": "Roland SH-201 - LPF24 Q050",
+            "date": "2010"
+          }
+        }
+      }
+    },
+    {
+      "path": "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf24_q100.mp3",
+      "sha256": "58de7cd421177e831ba082548c2b6ac1d4188623c55e1ddc629c5586a2a18e0c",
+      "probe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mp3",
+            "codec_long_name": "MP3 (MPEG audio layer 3)",
+            "codec_type": "audio",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "mime_codec_string": "mp4a.40.34",
+            "sample_fmt": "fltp",
+            "sample_rate": "44100",
+            "channels": 1,
+            "channel_layout": "mono",
+            "bits_per_sample": 0,
+            "initial_padding": 0,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/14112000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 423616838,
+            "duration": "30.018200",
+            "bit_rate": "320000",
+            "disposition": {
+              "default": 0,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0,
+              "non_diegetic": 0,
+              "captions": 0,
+              "descriptions": 0,
+              "metadata": 0,
+              "dependent": 0,
+              "still_image": 0,
+              "multilayer": 0
+            }
+          }
+        ],
+        "format": {
+          "filename": "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf24_q100.mp3",
+          "nb_streams": 1,
+          "nb_programs": 0,
+          "nb_stream_groups": 0,
+          "format_name": "mp3",
+          "format_long_name": "MP2/3 (MPEG audio layer 2/3)",
+          "start_time": "0.000000",
+          "duration": "30.018200",
+          "size": "1203043",
+          "bit_rate": "320616",
+          "probe_score": 51,
+          "tags": {
+            "album": "filter-demos @ deepsonic.ch",
+            "artist": "dr.squ",
+            "comment": "http://www.deepsonic.ch",
+            "genre": "Experimental",
+            "title": "Roland SH-201 - LPF24 Q100",
+            "date": "2010"
+          }
+        }
+      }
+    }
+  ],
+  "original_midi": {
+    "url": "https://www.deepsonic.ch/deep/audio_midi/deepsonic_-_filter_demo_-_comparsion_sequence.mid",
+    "path": "build-fidelity/deepsonic/deepsonic_-_filter_demo_-_comparsion_sequence.mid",
+    "sha256": "21ea21b9ba3ba14cc205931134fb7a320b09e67821bd3a3c70f97fa2e8b5d99a",
+    "newly_downloaded": false
+  },
+  "native_decoder": {
+    "path": "/opt/homebrew/Cellar/ffmpeg/8.1.1/bin/ffmpeg",
+    "sha256": "00d01197255300c02122c783dd0126a9e7f47d6c6a19faafae2e6610efd071d3",
+    "version": "ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers",
+    "policy": "No resampling/channel conversion; comparator PCM float32 WAVs only"
+  },
+  "additional_sh201_complete_decode_checks": [
+    {
+      "path": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/roland_sh-201_-_filter_demo_-_filterinput.mp3",
+      "command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/roland_sh-201_-_filter_demo_-_filterinput.mp3",
+        "-f",
+        "null",
+        "-"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "sha256": "b1f4a5ad0554c6d708b8cfdd2980fba44805ac5a34bab639206b81d81ccb6f4e"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/roland_sh-201_-_sounds_demo_-_impressions.mp3",
+      "command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/roland_sh-201_-_sounds_demo_-_impressions.mp3",
+        "-f",
+        "null",
+        "-"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "sha256": "224f1dbdf387cdecb5fc4df38b3bba64e44c237aebf8dce5f3b8bde659fe4147"
+    }
+  ],
+  "pdf_visual_check": {
+    "path": "build-fidelity/public-waveforms/deepsonic-capture-chain-2026-09-15/connections-page3.png",
+    "sha256": "754ee8498e1060dd6908c0a2d89851705f54d7e5493851054218326df3c5272e",
+    "method": "pdftoppm -f3 -singlefile -scale-to1600 -png; full page visually inspected"
+  },
+  "limitations": [
+    "General site equipment is not a session receipt.",
+    "MP3 tag dates and HTTP modification dates are distinct and not authenticated session timestamps.",
+    "No exact source/capture transfer, analog-vs-USB comparison, resampler, mono mixing or gain for 2010 SH filter files recovered.",
+    "Filterinput is labeled external loop but no matching dry loop is linked. Impressions is not time-indexed by patch.",
+    "No scoring outcomes used for source selection.",
+    "Earlier dead-pack/firmware/archive endpoints were not polled again."
+  ],
+  "deduplicated_prior_reports": [
+    "2026-09-15-new-sources.md",
+    "sh201-high-note-source-feasibility-2026-09-15.md",
+    "raw-cutoff-anchor-search-2026-09-15.md",
+    "public-waveform-recovery-2026-09-15.md",
+    "evilsoft-recovery-second-pass-2026-09-15.md"
+  ]
+}

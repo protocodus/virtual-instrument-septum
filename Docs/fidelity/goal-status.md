@@ -120,6 +120,15 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   also rule out small pitch or recording-clock offsets as the explanation
   for those large level errors: local-frequency refinement changes the
   measured lines by at most 0.0007 dB in the retained windows.
+  [Simultaneous alias separation](source-audits/saw-alias-separation-2026-09-15.md)
+  additionally preserves the failed notch predictions when both first and
+  second fold families are fitted together. Its independent controls also
+  show that omitting a nearby family can bias a joint estimator more than
+  the original Hann detector; the benchmark default remains unchanged.
+  [Forty-eight periodic-table models](source-audits/high-note-wavetable-models-2026-09-15.md)
+  test sampled/Fourier tables, three interpolation methods and deterministic
+  harmonic caps with equal postfilter freedom. None reproduces the alias
+  pattern across pitches, and no table architecture is identified.
   [Slope/time controls](source-audits/deepsonic-high-note-invariance-2026-09-15.md)
   identify an early, nearly invariant Q0 high-note region followed by a
   moving response. Q50 differs strongly there, ruling out an unconditional
@@ -131,6 +140,12 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   section conditionally. High harmonics reject the frozen low-note cutoff
   extrapolation with that section model; they do not identify a raw-control
   law, precise endpoint or switching threshold.
+  A new [creator routing audit](source-audits/deepsonic-capture-chain-controls-2026-09-15.md)
+  finds a 2020 analog MOTU route but cannot authenticate the 2010 recording
+  session. [Four same-collection instruments](source-audits/filter-collection-high-notes-2026-09-15.md)
+  lack the SH-201's sampled high-note dip/rebound. This weakens a universal
+  collection-coloration explanation but does not exclude an SH-specific
+  capture path or identify the oscillator's pre-filter response.
 - [Stereo and Super Saw isolation](source-audits/official-stereo-feasibility-2026-09-15.md)
   identifies reverb as the source of Cotton's modeled stereo, but its clean
   opening is too short to resolve the individual detuned oscillators.
@@ -181,6 +196,11 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   reverb estimate from short musical windows. Cotton's limited common
   spectral support and the other presets' modulated delays prevent a
   dependable parameter anchor under the tested protocol.
+  A [short-tail recurrence control](source-audits/reverb-tail-recurrence-2026-09-15.md)
+  passes on simple known modes but fails to predict the exact current FDN's
+  later envelope at every declared order. No public pole fitting follows.
+  The next diagnostic must distinguish direct sound, source release, delay
+  and their contributions to reverb before fitting another decay parameter.
 
 ## Benchmark numerical correction
 
@@ -196,15 +216,19 @@ reliability and does not change the instrument's DSP.
 
 ## Next work
 
-1. Investigate the high-register saw's nonharmonic lines in the original-MIDI
-   dry recordings. Test codec artifacts, oscillator models and filter
-   interaction separately before changing the high-note sound.
+1. Distinguish the remaining high-register oscillator/filter mechanisms in
+   the original-MIDI dry recordings. The tested short FIR, wrap-kernel and
+   periodic-table families fail joint reproduction; expanding those grids
+   alone is not new evidence. Keep both main harmonics and aliases visible.
 2. Examine creator recordings for independent oscillator measurements,
    retaining uncertain panel state and unmeasured raw settings explicitly.
-3. Investigate the tail mismatch in Club Bass and Ambient SQR, keeping
+3. Decompose model signal paths to investigate Club Bass and Ambient SQR,
+   keeping
    reverb level, layer mixing, phase, frequency-dependent decay, source
-   release and active delay separate. Test references that separate layer
-   mode from damping status, and preserve the original regressions.
+   release and active delay separate. Verify stem recombination before
+   using input-halt controls. Cotton's opening reconstruction does not
+   authenticate its final recorded excitation; preserve that limitation
+   and the original Club/Ambient/Class A counterexamples.
 4. Keep independent validation passages and input uncertainty visible.
    Matching a fitted spectral feature cannot establish complete output
    agreement or a market-wide superiority claim.

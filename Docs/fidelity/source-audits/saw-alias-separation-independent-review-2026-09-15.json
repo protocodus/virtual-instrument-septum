@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "status": "Independent bounded code/provenance/numerical-summary review complete; no consequential blocker found",
+  "reviewed_tool": {
+    "path": "Tools/audit_saw_alias_separation.py",
+    "sha256": "ad488a0358069250a34bf78d8c7a9a7a22100889a0fe8bafa1b2f31e926b81be"
+  },
+  "reviewed_results": {
+    "path": "Docs/fidelity/source-audits/saw-alias-separation-2026-09-15.json",
+    "sha256": "60bf88ba59c950922d72d9d0d813e70a47dab7fe3db0b9f067b06609b6a66ee9"
+  },
+  "reviewed_report": {
+    "path": "Docs/fidelity/source-audits/saw-alias-separation-2026-09-15.md",
+    "sha256": "2c59b45b1414cb83a38531db2e6c6c95680a56e49680b4a0d769304b44374046"
+  },
+  "verified": [
+    "Durable result byte-identical to alias-separation-v2/results.json.",
+    "Tool, candidate baseline, imported helper and source catalog lineage hashes checked.",
+    "Both original MP3 hashes, exact decoded WAV hashes and original MIDI hash checked.",
+    "All15 passage sample hashes reconstructed from original WAVs or frozen W4 design using fixed training coefficients and prior phases.",
+    "Allfive per-method RMS error table rows recomputed from line arrays.",
+    "20 control counts and maximum recovery errors recomputed; maximum joint basis condition5.601681587053322."
+  ],
+  "technical_review": [
+    "One80ms local clip is passed unchanged into the existing detector via onset0/offset40ms; no timestamp or length discrepancy.",
+    "Joint columns represent DC/quadratic trend, nominal-MIDI main harmonics with quadratic complex variation, and both alias branches per included fold with linear complex variation. Center amplitude indexing and SVD pseudoinverse agree with the stated estimand.",
+    "Hardware-derived planted magnitudes are subsequently known constants; direct cosine synthesis is independent of regression matrix construction. The stationary scope is stated.",
+    "The first-only joint estimator intentionally omits the second-fold stress family; its2.683dB bias correctly cautions against automatically treating a larger model as hardware truth.",
+    "Center-versus-Hann estimand, nominal frequency, residual-SNR proxy, capture ambiguity, prior exploration and overlapping same-note support are qualified."
+  ],
+  "actionable_issues": [],
+  "limits": [
+    "This review reconstructed inputs and summaries but did not refit any oscillator candidate or rerun all20 regressions.",
+    "No approval of SH201 topology, sample rate, raw preset, physical confidence intervals, or global alias calibration is implied."
+  ],
+  "changes": "No tool or DSP edits; review receipt only."
+}

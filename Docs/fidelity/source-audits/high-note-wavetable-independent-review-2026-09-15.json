@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "status": "Independent bounded review complete; no consequential measurement or provenance blocker found",
+  "reviewed_files": [
+    {
+      "path": "Tools/fit_high_note_wavetable_models.py",
+      "sha256": "a8a3988d227c9340e3682fa31abf75157ec016976091e7748fc1f6b14bc7ccf8"
+    },
+    {
+      "path": "Tools/summarize_high_note_wavetable_models.py",
+      "sha256": "9bdf2849609a117309342562ea9af6e550fdb4b51e0b2baaa9e7e77cdd7cedc6"
+    },
+    {
+      "path": "Docs/fidelity/source-audits/high-note-wavetable-models-2026-09-15.md",
+      "sha256": "54cecdb7992c5899a435bc083db7016a256b81c59e26ab38000e0967bec12735"
+    },
+    {
+      "path": "Docs/fidelity/source-audits/high-note-wavetable-models-2026-09-15.json",
+      "sha256": "ece050911bbf24b3d6239924cb1d644199b155cabb0d5928faa8997d1e76419c"
+    },
+    {
+      "path": "build-fidelity/high-note-shape/wavetable-v1/results.json",
+      "sha256": "0922c53db122c6f89150eb9ff8ce71ab4212d7d4045f58f1d9af45d0573ab3d5"
+    },
+    {
+      "path": "build-fidelity/high-note-shape/wavetable-v1/protocol-before-fit.json",
+      "sha256": "a482c67a868ec4cfbfd0c09f8c7681c61d7bb854bc546756fb46de2b83ed551e"
+    }
+  ],
+  "verification": {
+    "source_and_protocol_pass": true,
+    "hardware_windows": 5,
+    "all_candidate_mask_metric_checks": 240,
+    "reconstructed_prediction_hashes": 25,
+    "actual_cubic_polynomial_max_absolute_error": 9.094947017729282e-13,
+    "actual_periodic_knot_max_absolute_error": 0.0,
+    "controls_have_equal13tap": true,
+    "different_pitch_taps_and_gain_frozen": true,
+    "historical_polyblep_lines": 50,
+    "historical_polyblep_max_difference_db": 8.100187187665142e-12
+  },
+  "code_review": [
+    "Periodic left-hold, linear and four-point Lagrange interpolation have the stated index/weight semantics. The Fourier saw polarity and cap policies match their documented formulas.",
+    "All models and both baseline controls share13 signed FIR taps at offsets-6..6. Those taps include global gain and remain fixed across pitches; only phase and DC centering change.",
+    "Training uses only91+100ms waveform error. Alias errors are diagnostics; no validation-based selected model appears.",
+    "All48 full-rank training results and every hardware-qualified alias position remain present. Candidate disappearance does not trim the hardware mask.",
+    "Historical equal-FIR control reproduces the same source windows and50 line errors.",
+    "The report treats weak or unresolved candidate bins as residual proxies, not precise attenuation, and preserves nominal-frequency/capture/unknown-patch/overlapping-window qualifications.",
+    "Negative evidence concerns the tested families under the stated training objective; it does not exclude arbitrary tables, bank switching, phase quantization, other interpolation, or a jointly alias-weighted fit."
+  ],
+  "actionable_issues": [],
+  "scope": [
+    "No model optimization or fitting rerun.",
+    "Selected generated-waveform reconstruction, actual interpolation identities, source/hash checks and stored-metric recomputation only.",
+    "No production source, fitting tool, or experiment outputs modified except adding an independent-review-checks receipt.",
+    "No commits or staging performed."
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "status": "Frozen before recurrence controls or new public-fit selection; targeted post-outcome investigation, not independent validation.",
+  "source_revision": "e44363925ba9edbe9321fcdd21caf7d656ddb7dc",
+  "source_sha256": {
+    "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+    "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+    "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+    "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+    "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+    "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+    "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+    "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+    "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+    "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+    "Source/DSP/SeptumEngine.h": "b1b7cfd308c42d3b768b098624c26e417d00c4e0387ff5c2331ca1bb93d0d99e",
+    "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+    "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+    "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+    "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+    "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+    "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9",
+    "Tools/RenderMidi.cpp": "73fc5cd13bf635bbd95dc2a4e65301b06038cd96d2e684de1bb694b3e0066bfb"
+  },
+  "prior_control_receipt": {
+    "path": "Docs/fidelity/source-audits/club-reverb-decay-2026-09-15.json",
+    "sha256": "b742d11893c0f7dc6d0916cdf5a23c90cd611e85f03c9a5eb4e94ea0b4a84b87"
+  },
+  "controls_directory": "build-fidelity/club-reverb-decay/run-01/controls",
+  "control_audio": [
+    {
+      "id": "white_noise",
+      "raw_sha256": "fc915b9690691dddc7386fb528b6fe6d1106a2145414d02c15b02968826f55c2",
+      "wav_sha256": "33d291459d9fc3c0dbf1fc48c4ba04671939636d80e03b80c1f3804fabea0cd1",
+      "peak": 0.006430305540561676
+    },
+    {
+      "id": "dark_noise",
+      "raw_sha256": "54c3948b184d7e98bb0706941a6abd29832cbf8a72222da3c9be83d9f42e0ed8",
+      "wav_sha256": "1d4627ba42de5df447158b8103d8346ef3702ac2cf5fee2bc62c6d0445b0dfae",
+      "peak": 0.001750429393723607
+    },
+    {
+      "id": "d2_harmonic",
+      "raw_sha256": "c4a3ca17d4e35585c151af7b53d80b632c2924e1cb46d7926a3bb8e86bfc077d",
+      "wav_sha256": "f382550bbcddd2c4b1fa6230b69bb83626aad3bfc57cf06631552ed3b128da8c",
+      "peak": 0.004390654619783163
+    },
+    {
+      "id": "d2_sine",
+      "raw_sha256": "d9faa11cadc3a01b54460ae463de1c1beaab173c002f428d063b64dbe624db4d",
+      "wav_sha256": "501b324b96cd3436558d661ca1f2efdf34aeb369166d41723ba00449aed224ee",
+      "peak": 0.0018887758487835526
+    }
+  ],
+  "source_routing": {
+    "club": "DUAL, release0/0, delayoff, direct reverb send50/0; brief late gaps give best release/delay attribution, original key-up unknown.",
+    "ambient": "DUAL, release30/22, active modulated delay and sends43/112; combined tail cannot isolate reverb.",
+    "cotton": "SINGLE, release39, delay send0, neutral damping; long17.25\u201321.75s tail gives conditional8.2\u20138.5s effective decay, current isolated target7.011s."
+  },
+  "algorithm": {
+    "sample_rate": 2100,
+    "decimation": 21,
+    "filter": "Causal2205-tap Hamming FIR bandpass80\u2013640Hz at44100Hz, downsample21; add1102sample filter group delay and93sample engine delay once.",
+    "training_seconds": [
+      0.29,
+      0.64
+    ],
+    "check_seconds": [
+      0.64,
+      0.99
+    ],
+    "seconds_clock": "Stimulus time; burst ends.20s, so train starts.09s after input ends. Same operational ages as Club firstgap2.30s minus approximate2.21s key-up.",
+    "train_inputs": [
+      "white_noise",
+      "dark_noise"
+    ],
+    "check_inputs": [
+      "white_noise",
+      "dark_noise",
+      "d2_harmonic",
+      "d2_sine"
+    ],
+    "fit": "Shared real AR coefficients pooled across left/right of two noise-tail training supports. Normalize each complete training channel by its trainingRMS only for regression conditioning. SVD least squares rcond1e-10; no ridge or pole reflection.",
+    "orders": [
+      16,
+      32,
+      64,
+      128
+    ],
+    "primary_order": 64,
+    "prediction": "Initialize each sequence from only its final p training samples, then free-run over full.35s check; no check samples fed back, no gain/time fit.",
+    "envelope_windows_ms": [
+      50,
+      100
+    ],
+    "envelope_hop_ms": 25,
+    "positive_control": "Eight known complex-conjugate damped modes, fixed irregular100\u2013600Hz frequencies andT60s1.2\u20134.1s; two independent initial states train and third heldout. Analytic release-oscillator versus modal-reverb interpretations give identical waveform.",
+    "continuing_input_control": "Add a fixed chirped input beginning after training; coefficients remain from pure training. This should challenge any no-input extrapolation, but predictable input could still pass.",
+    "numerical_guard": "Known eight-mode positive control order>=16 must free-run with waveform relativeRMS<1e-3. Actual FDN must predict every source/channel later RMS envelope within0.5dB at both50/100ms windows before this recurrence can inform public-data pole fitting.0.5dB is a discrimination target smaller than priorClub2.31dB gain-invariant drift, not a perceptual equivalence tolerance.",
+    "hardware_branch": "Do not fit new hardware poles/order/period in this tool. If actualFDN fails, stop; if it passes, propose a separate frozen firsttwo-gap/common-recurrence fit and third-gap holdout with coefficient/order unchanged. A successful recurrence never by itself identifies reverb versus source release or damping topology."
+  },
+  "existing_public_gap_supports": [
+    [
+      2.3,
+      2.65,
+      3.0
+    ],
+    [
+      5.95,
+      6.3,
+      6.65
+    ],
+    [
+      9.68,
+      10.03,
+      10.38
+    ]
+  ],
+  "excluded_claims": [
+    "No gain or phase grid/refit",
+    "No hardwarematchedMIDI claim",
+    "No productionDSP edits",
+    "No candidate parameter identification from a successful recurrence alone"
+  ]
+}
