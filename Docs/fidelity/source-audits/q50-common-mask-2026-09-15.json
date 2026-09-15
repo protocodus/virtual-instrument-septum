@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "status": "fixed_mask_sensitivity_not_equivalence",
+  "experiment_results_sha256": "1b1ee6c9b5c3dcefec4685e5f490a8646d128f3a50d4174b9b8b8ed91c4ff2e2",
+  "tool_sha256": "279c5b9ea1a8a192437b5a2e6639669237386da9458e2957455bb92fb4f08d96",
+  "numpy_version": "1.26.4",
+  "scipy_version": "1.14.1",
+  "decoded_hardware_sha256": "4eb50eeb48f9cd09708c39f724c8d92afbdbc1022aeb92efe823865c770481e4",
+  "inputs": {
+    "checkpoint-lp12-raw63": {
+      "render_sha256": "bed436e2ddf8b85a7dc5a413cc227272d0d59d252db9c4f344508887a88520f7",
+      "training_gain": 2.1044830809346826,
+      "training_gain_db": 6.462908771448056
+    },
+    "checkpoint-lp12-raw64": {
+      "render_sha256": "a91c593d80fc6bd674584e9f2be0e1143a72f63b63b8977550d0ed97472a8968",
+      "training_gain": 2.0853051132284954,
+      "training_gain_db": 6.38339216266492
+    },
+    "lp12-stronger-lp12-raw64": {
+      "render_sha256": "62798982b2b49e563a88e70ef09ec5fa85f114203c9a292c54b4b529bf0308f8",
+      "training_gain": 1.7351275705457752,
+      "training_gain_db": 4.786628212478476
+    }
+  },
+  "source_revision": "b0f6c03",
+  "recipe_policy": "Q0 onset-corrected recipe learned solely from note36; no Q50 recipe or envelope refit",
+  "reference_samples": [
+    88200,
+    1324800
+  ],
+  "lag_samples": -1303,
+  "gain_policy": "Exact per-whole-render training gain inherited from experiment; no refit",
+  "mask_policy": "At each resolution use identical union of hardware, raw63, raw64 and stronger candidate bins at >= -60 dB relative to hardware spectral peak; -80 dB floor",
+  "original_pairwise_metrics_reproduced": true,
+  "summary": {
+    "checkpoint-lp12-raw63": {
+      "pairwise_log_spectral_error_db_mean": 5.463356514178577,
+      "common_log_spectral_error_db_mean": 5.5002761519002545
+    },
+    "checkpoint-lp12-raw64": {
+      "pairwise_log_spectral_error_db_mean": 5.439430432647277,
+      "common_log_spectral_error_db_mean": 5.473641561365294
+    },
+    "lp12-stronger-lp12-raw64": {
+      "pairwise_log_spectral_error_db_mean": 5.173254019691173,
+      "common_log_spectral_error_db_mean": 5.128358384545204
+    }
+  },
+  "resolutions": [
+    {
+      "window_samples": 512,
+      "hop_samples": 128,
+      "common_active_bins": 271049,
+      "common_mask_sha256": "729e182e9e9831042fabc4f7375d0e3d602d002aafeda4bef06a5afeb76d25ae",
+      "models": {
+        "checkpoint-lp12-raw63": {
+          "pairwise_active_bins": 270158,
+          "pairwise_log_error_db_mean": 5.84196611073342,
+          "common_log_error_db_mean": 5.851552565561331,
+          "common_log_error_db_p95": 22.946184039758585
+        },
+        "checkpoint-lp12-raw64": {
+          "pairwise_active_bins": 269761,
+          "pairwise_log_error_db_mean": 5.813453185658793,
+          "common_log_error_db_mean": 5.8207520467619425,
+          "common_log_error_db_p95": 22.921872149497162
+        },
+        "lp12-stronger-lp12-raw64": {
+          "pairwise_active_bins": 262160,
+          "pairwise_log_error_db_mean": 5.457235316763785,
+          "common_log_error_db_mean": 5.399415618664662,
+          "common_log_error_db_p95": 22.57686689310736
+        }
+      }
+    },
+    {
+      "window_samples": 2048,
+      "hop_samples": 512,
+      "common_active_bins": 223208,
+      "common_mask_sha256": "8a8e15a03d576f6b9ad6a0d5a55de9d17f9852f6e799aced222376f8a6c58400",
+      "models": {
+        "checkpoint-lp12-raw63": {
+          "pairwise_active_bins": 221345,
+          "pairwise_log_error_db_mean": 5.467429911225645,
+          "common_log_error_db_mean": 5.498757857734098,
+          "common_log_error_db_p95": 20.75671845767488
+        },
+        "checkpoint-lp12-raw64": {
+          "pairwise_active_bins": 221101,
+          "pairwise_log_error_db_mean": 5.446285071279497,
+          "common_log_error_db_mean": 5.474026122935561,
+          "common_log_error_db_p95": 20.743425187708294
+        },
+        "lp12-stronger-lp12-raw64": {
+          "pairwise_active_bins": 216488,
+          "pairwise_log_error_db_mean": 5.219657174305913,
+          "common_log_error_db_mean": 5.165322299630903,
+          "common_log_error_db_p95": 20.766594172428157
+        }
+      }
+    },
+    {
+      "window_samples": 8192,
+      "hop_samples": 2048,
+      "common_active_bins": 250073,
+      "common_mask_sha256": "92d63af70463465ab2fd1cc2a8dea5be62aa9fe7764edeeabd37b7f12e3185ee",
+      "models": {
+        "checkpoint-lp12-raw63": {
+          "pairwise_active_bins": 244491,
+          "pairwise_log_error_db_mean": 5.080673520576666,
+          "common_log_error_db_mean": 5.150518032405335,
+          "common_log_error_db_p95": 17.034918493386442
+        },
+        "checkpoint-lp12-raw64": {
+          "pairwise_active_bins": 244509,
+          "pairwise_log_error_db_mean": 5.058553041003541,
+          "common_log_error_db_mean": 5.126146514398375,
+          "common_log_error_db_p95": 16.99339196627435
+        },
+        "lp12-stronger-lp12-raw64": {
+          "pairwise_active_bins": 243414,
+          "pairwise_log_error_db_mean": 4.842869568003822,
+          "common_log_error_db_mean": 4.8203372353400455,
+          "common_log_error_db_p95": 16.35349900454289
+        }
+      }
+    }
+  ]
+}

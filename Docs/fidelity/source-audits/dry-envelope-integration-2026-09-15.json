@@ -1,0 +1,2149 @@
+{
+  "schema_version": 1,
+  "status": "passed_extracted_method_control_target_guard",
+  "renders_sha256": "8272c581cb009e91c59369b0d362ba6e2085ee79aefe5ae1759793ed4b4cdf3a",
+  "tool_sha256": "63e9cafee38478b424276cf7d41d1acb9dfea6e71e50d15676f725be584a1f55",
+  "trajectory_source_sha256": "294b5206d92dc80b2e9eaddbd391fa04fd3a620698cae8ea4ca0de3e602236c4",
+  "models": [
+    {
+      "id": "production",
+      "kind": "production",
+      "manifest_sha256": "446310fd85ef866589c5270b11f56e8f2aada0eebe7b1e7ffe15243ace4b73fd",
+      "profile_header_sha256": "60dad6449a2acd2d69600e2fe55b932af8bdb8b8f948d779fe02fbbf166abd28",
+      "extracted_probe_sha256": "e5b4991a328a3d971d5de7249ed7b13e0bcfcbee5cb1937c0a9fe597349dc95c",
+      "compiler_command": [
+        "/usr/bin/c++",
+        "-std=c++20",
+        "-O2",
+        "-fno-fast-math",
+        "probe.cpp",
+        "-o",
+        "probe"
+      ],
+      "probe_sha256": "d93d361296b2745028911b87da646b8cba1eeb0d6662767a4c77b3fda57024f3",
+      "raw_measurements_sha256": "b70a08faa21addb6d51c40b724739c74855cd567c11d4aaaa2477ecb1750d74f",
+      "attack_samples": 45,
+      "nominal_attack_samples": 44.1,
+      "attack_rounding_seconds": 2.040816326530609e-05,
+      "tick_samples": 8,
+      "tick_interval_seconds": 0.00018140589569160998,
+      "maximum_evaluation_tick_rounding_seconds": 0.00014739229024951506,
+      "predeclared_audio_lag_samples": -1406,
+      "predeclared_audio_lag_minus_actual_attack_target_samples": -0.4999999999997726,
+      "first_observed_sustain_sample": 24392,
+      "first_observed_sustain_seconds": 0.5531065759637188,
+      "decay_coefficient": 0.99792647678584,
+      "termination_amount_threshold": 0.0001,
+      "maximum_cutoff_error_cents": 1.220889909133511e-09,
+      "maximum_level_absolute_error": 3.336775300510908e-13,
+      "observations": [
+        {
+          "sample": 272,
+          "decay_age_seconds": 0.005147392290249433,
+          "paired_hardware_seconds_after_midi": 0.04014739229024944,
+          "requested_hardware_seconds_after_midi": 0.04,
+          "tick_quantization_seconds": 0.00014739229024943873,
+          "level": 0.9906744456881688,
+          "expected_level": 0.9906744456881619,
+          "level_absolute_error": 6.8833827526759706e-15,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 263.54651547500515,
+              "expected_hz": 263.54651547500134,
+              "error_cents": 2.4986726729756174e-11
+            },
+            {
+              "note": 36,
+              "actual_hz": 527.0930309500103,
+              "expected_hz": 527.0930309500027,
+              "error_cents": 2.4986726729756174e-11
+            },
+            {
+              "note": 57,
+              "actual_hz": 1772.9225609243156,
+              "expected_hz": 1772.9225609242897,
+              "error_cents": 2.537113791021396e-11
+            }
+          ]
+        },
+        {
+          "sample": 2912,
+          "decay_age_seconds": 0.06501133786848072,
+          "paired_hardware_seconds_after_midi": 0.10001133786848072,
+          "requested_hardware_seconds_after_midi": 0.1,
+          "tick_quantization_seconds": 1.133786848071805e-05,
+          "level": 0.882218659858942,
+          "expected_level": 0.8822186598588557,
+          "level_absolute_error": 8.626432901337466e-14,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 209.58358094126888,
+              "expected_hz": 209.58358094123065,
+              "error_cents": 3.156015791558169e-10
+            },
+            {
+              "note": 36,
+              "actual_hz": 419.16716188253775,
+              "expected_hz": 419.1671618824613,
+              "error_cents": 3.156015791558169e-10
+            },
+            {
+              "note": 57,
+              "actual_hz": 1409.9046552763978,
+              "expected_hz": 1409.9046552761406,
+              "error_cents": 3.156015791558169e-10
+            }
+          ]
+        },
+        {
+          "sample": 6440,
+          "decay_age_seconds": 0.14501133786848072,
+          "paired_hardware_seconds_after_midi": 0.18001133786848073,
+          "requested_hardware_seconds_after_midi": 0.18,
+          "tick_quantization_seconds": 1.1337868480731927e-05,
+          "level": 0.7372822915235208,
+          "expected_level": 0.7372822915233284,
+          "level_absolute_error": 1.9240165016753963e-13,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 154.30821416817895,
+              "expected_hz": 154.3082141681162,
+              "error_cents": 7.042412825985283e-10
+            },
+            {
+              "note": 36,
+              "actual_hz": 308.6164283363579,
+              "expected_hz": 308.6164283362324,
+              "error_cents": 7.042412825985283e-10
+            },
+            {
+              "note": 57,
+              "actual_hz": 1038.057793105793,
+              "expected_hz": 1038.0577931053708,
+              "error_cents": 7.042412825985283e-10
+            }
+          ]
+        },
+        {
+          "sample": 9968,
+          "decay_age_seconds": 0.22501133786848074,
+          "paired_hardware_seconds_after_midi": 0.26001133786848074,
+          "requested_hardware_seconds_after_midi": 0.26,
+          "tick_quantization_seconds": 1.1337868480731927e-05,
+          "level": 0.5923459231880995,
+          "expected_level": 0.592345923187801,
+          "level_absolute_error": 2.985389713217046e-13,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 113.61111806962154,
+              "expected_hz": 113.61111806954989,
+              "error_cents": 1.0917277524997797e-09
+            },
+            {
+              "note": 36,
+              "actual_hz": 227.22223613924308,
+              "expected_hz": 227.22223613909978,
+              "error_cents": 1.0917277524997797e-09
+            },
+            {
+              "note": 57,
+              "actual_hz": 764.28145534169,
+              "expected_hz": 764.281455341208,
+              "error_cents": 1.0917277524997797e-09
+            }
+          ]
+        },
+        {
+          "sample": 13496,
+          "decay_age_seconds": 0.3050113378684807,
+          "paired_hardware_seconds_after_midi": 0.3400113378684807,
+          "requested_hardware_seconds_after_midi": 0.34,
+          "tick_quantization_seconds": 1.1337868480676416e-05,
+          "level": 0.4474095548526072,
+          "expected_level": 0.4474095548522735,
+          "level_absolute_error": 3.336775300510908e-13,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 83.64743392700929,
+              "expected_hz": 83.6474339269503,
+              "error_cents": 1.220889909133511e-09
+            },
+            {
+              "note": 36,
+              "actual_hz": 167.29486785401858,
+              "expected_hz": 167.2948678539006,
+              "error_cents": 1.220889909133511e-09
+            },
+            {
+              "note": 57,
+              "actual_hz": 562.7106186751524,
+              "expected_hz": 562.7106186747556,
+              "error_cents": 1.220889909133511e-09
+            }
+          ]
+        },
+        {
+          "sample": 42608,
+          "decay_age_seconds": 0.9651473922902495,
+          "paired_hardware_seconds_after_midi": 1.0001473922902495,
+          "requested_hardware_seconds_after_midi": 1.0,
+          "tick_quantization_seconds": 0.00014739229024951506,
+          "level": 0.0,
+          "expected_level": 0.0,
+          "level_absolute_error": 0.0,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 32.507833307092746,
+              "expected_hz": 32.507833307092746,
+              "error_cents": 0.0
+            },
+            {
+              "note": 36,
+              "actual_hz": 65.01566661418549,
+              "expected_hz": 65.01566661418549,
+              "error_cents": 0.0
+            },
+            {
+              "note": 57,
+              "actual_hz": 218.68576396479673,
+              "expected_hz": 218.68576396479673,
+              "error_cents": 0.0
+            }
+          ]
+        },
+        {
+          "sample": 108752,
+          "decay_age_seconds": 2.465011337868481,
+          "paired_hardware_seconds_after_midi": 2.500011337868481,
+          "requested_hardware_seconds_after_midi": 2.5,
+          "tick_quantization_seconds": 1.1337868480953972e-05,
+          "level": 0.0,
+          "expected_level": 0.0,
+          "level_absolute_error": 0.0,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 32.507833307092746,
+              "expected_hz": 32.507833307092746,
+              "error_cents": 0.0
+            },
+            {
+              "note": 36,
+              "actual_hz": 65.01566661418549,
+              "expected_hz": 65.01566661418549,
+              "error_cents": 0.0
+            },
+            {
+              "note": 57,
+              "actual_hz": 218.68576396479673,
+              "expected_hz": 218.68576396479673,
+              "error_cents": 0.0
+            }
+          ]
+        },
+        {
+          "sample": 174904,
+          "decay_age_seconds": 3.9650566893424037,
+          "paired_hardware_seconds_after_midi": 4.000056689342403,
+          "requested_hardware_seconds_after_midi": 4.0,
+          "tick_quantization_seconds": 5.668934240343759e-05,
+          "level": 0.0,
+          "expected_level": 0.0,
+          "level_absolute_error": 0.0,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 32.507833307092746,
+              "expected_hz": 32.507833307092746,
+              "error_cents": 0.0
+            },
+            {
+              "note": 36,
+              "actual_hz": 65.01566661418549,
+              "expected_hz": 65.01566661418549,
+              "error_cents": 0.0
+            },
+            {
+              "note": 57,
+              "actual_hz": 218.68576396479673,
+              "expected_hz": 218.68576396479673,
+              "error_cents": 0.0
+            }
+          ]
+        },
+        {
+          "sample": 880504,
+          "decay_age_seconds": 19.965056689342404,
+          "paired_hardware_seconds_after_midi": 20.000056689342404,
+          "requested_hardware_seconds_after_midi": 20.0,
+          "tick_quantization_seconds": 5.668934240432577e-05,
+          "level": 0.0,
+          "expected_level": 0.0,
+          "level_absolute_error": 0.0,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 32.507833307092746,
+              "expected_hz": 32.507833307092746,
+              "error_cents": 0.0
+            },
+            {
+              "note": 36,
+              "actual_hz": 65.01566661418549,
+              "expected_hz": 65.01566661418549,
+              "error_cents": 0.0
+            },
+            {
+              "note": 57,
+              "actual_hz": 218.68576396479673,
+              "expected_hz": 218.68576396479673,
+              "error_cents": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dry-hz-30ms",
+      "kind": "hz",
+      "manifest_sha256": "f506f54cd2fcee99cf09dae5ff656ef84a90f26b44721e64b79a4a4dee612bff",
+      "profile_header_sha256": "8cd91a2156b33c49f5c3c9faf96a1835a36ac6c14908d63c798c95e9dd928fe4",
+      "extracted_probe_sha256": "1768c9d4dd718b62ce1208f4777f748a8465d5a598542bd2857345a753fa0e19",
+      "compiler_command": [
+        "/usr/bin/c++",
+        "-std=c++20",
+        "-O2",
+        "-fno-fast-math",
+        "probe.cpp",
+        "-o",
+        "probe"
+      ],
+      "probe_sha256": "4ba6af90278da7dbc6d1ac6cb0f56a473faf2c75153e8eec70edd388172fc571",
+      "raw_measurements_sha256": "fa8afe6c0e86c06fbaac53f9b09eb415066d0b734365976623146cbf80343b7d",
+      "attack_samples": 45,
+      "nominal_attack_samples": 44.1,
+      "attack_rounding_seconds": 2.040816326530609e-05,
+      "tick_samples": 8,
+      "tick_interval_seconds": 0.00018140589569160998,
+      "maximum_evaluation_tick_rounding_seconds": 0.0001360544217696713,
+      "predeclared_audio_lag_samples": -1186,
+      "predeclared_audio_lag_minus_actual_attack_target_samples": -1.0,
+      "first_observed_sustain_sample": 173952,
+      "first_observed_sustain_seconds": 3.944489795918367,
+      "decay_coefficient": 0.9998940820054777,
+      "termination_amount_threshold": 1e-08,
+      "maximum_cutoff_error_cents": 0.00012114287466630607,
+      "maximum_level_absolute_error": 8.82724920424266e-09,
+      "observations": [
+        {
+          "sample": 488,
+          "decay_age_seconds": 0.010045351473922902,
+          "paired_hardware_seconds_after_midi": 0.0400453514739229,
+          "requested_hardware_seconds_after_midi": 0.04,
+          "tick_quantization_seconds": 4.5351473922899954e-05,
+          "level": 0.9541597614964633,
+          "expected_level": 0.9541597614964601,
+          "level_absolute_error": 3.219646771412954e-15,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 260.985429210284,
+              "expected_hz": 260.98542921028337,
+              "error_cents": 4.228522985035686e-12
+            },
+            {
+              "note": 36,
+              "actual_hz": 521.970858420568,
+              "expected_hz": 521.9708584205667,
+              "error_cents": 4.228522985035686e-12
+            },
+            {
+              "note": 57,
+              "actual_hz": 1755.693694851039,
+              "expected_hz": 1755.693694851035,
+              "error_cents": 3.844111804577897e-12
+            }
+          ]
+        },
+        {
+          "sample": 3136,
+          "decay_age_seconds": 0.0700907029478458,
+          "paired_hardware_seconds_after_midi": 0.1000907029478458,
+          "requested_hardware_seconds_after_midi": 0.1,
+          "tick_quantization_seconds": 9.070294784579991e-05,
+          "level": 0.7207882597164056,
+          "expected_level": 0.7207882597163856,
+          "level_absolute_error": 1.9984014443252818e-14,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 204.60657495666024,
+              "expected_hz": 204.6065749566555,
+              "error_cents": 3.9978762767609705e-11
+            },
+            {
+              "note": 36,
+              "actual_hz": 409.2131499133205,
+              "expected_hz": 409.213149913311,
+              "error_cents": 3.9978762767609705e-11
+            },
+            {
+              "note": 57,
+              "actual_hz": 1376.4234833471683,
+              "expected_hz": 1376.4234833471364,
+              "error_cents": 3.9978762767609705e-11
+            }
+          ]
+        },
+        {
+          "sample": 6664,
+          "decay_age_seconds": 0.1500907029478458,
+          "paired_hardware_seconds_after_midi": 0.1800907029478458,
+          "requested_hardware_seconds_after_midi": 0.18,
+          "tick_quantization_seconds": 9.070294784579991e-05,
+          "level": 0.4960352251193442,
+          "expected_level": 0.49603522511931264,
+          "level_absolute_error": 3.1585845050585704e-14,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 150.30980571124675,
+              "expected_hz": 150.3098057112392,
+              "error_cents": 8.726133796391616e-11
+            },
+            {
+              "note": 36,
+              "actual_hz": 300.6196114224935,
+              "expected_hz": 300.6196114224784,
+              "error_cents": 8.726133796391616e-11
+            },
+            {
+              "note": 57,
+              "actual_hz": 1011.1598144005577,
+              "expected_hz": 1011.1598144005069,
+              "error_cents": 8.687692678345838e-11
+            }
+          ]
+        },
+        {
+          "sample": 10192,
+          "decay_age_seconds": 0.2300907029478458,
+          "paired_hardware_seconds_after_midi": 0.2600907029478458,
+          "requested_hardware_seconds_after_midi": 0.26,
+          "tick_quantization_seconds": 9.070294784579991e-05,
+          "level": 0.3413636962622095,
+          "expected_level": 0.34136369626217655,
+          "level_absolute_error": 3.297362383136715e-14,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 112.94361696880138,
+              "expected_hz": 112.94361696879346,
+              "error_cents": 1.214739330246574e-10
+            },
+            {
+              "note": 36,
+              "actual_hz": 225.88723393760276,
+              "expected_hz": 225.88723393758693,
+              "error_cents": 1.214739330246574e-10
+            },
+            {
+              "note": 57,
+              "actual_hz": 759.7910610788294,
+              "expected_hz": 759.7910610787762,
+              "error_cents": 1.2108952184419964e-10
+            }
+          ]
+        },
+        {
+          "sample": 13720,
+          "decay_age_seconds": 0.3100907029478458,
+          "paired_hardware_seconds_after_midi": 0.3400907029478458,
+          "requested_hardware_seconds_after_midi": 0.34,
+          "tick_quantization_seconds": 9.070294784579991e-05,
+          "level": 0.23492116532200227,
+          "expected_level": 0.23492116532197183,
+          "level_absolute_error": 3.044786645034492e-14,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 87.22878935492861,
+              "expected_hz": 87.22878935492128,
+              "error_cents": 1.4569183739349634e-10
+            },
+            {
+              "note": 36,
+              "actual_hz": 174.45757870985722,
+              "expected_hz": 174.45757870984255,
+              "error_cents": 1.4569183739349634e-10
+            },
+            {
+              "note": 57,
+              "actual_hz": 586.8030102038466,
+              "expected_hz": 586.8030102037974,
+              "error_cents": 1.4530742621303857e-10
+            }
+          ]
+        },
+        {
+          "sample": 42824,
+          "decay_age_seconds": 0.9700453514739229,
+          "paired_hardware_seconds_after_midi": 1.000045351473923,
+          "requested_hardware_seconds_after_midi": 1.0,
+          "tick_quantization_seconds": 4.535147392292771e-05,
+          "level": 0.010766607149778784,
+          "expected_level": 0.010766607149774258,
+          "level_absolute_error": 4.52589354882349e-15,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 33.07660252370367,
+              "expected_hz": 33.07660252370258,
+              "error_cents": 5.6892854707752e-11
+            },
+            {
+              "note": 36,
+              "actual_hz": 66.15320504740734,
+              "expected_hz": 66.15320504740517,
+              "error_cents": 5.6892854707752e-11
+            },
+            {
+              "note": 57,
+              "actual_hz": 222.51197192763505,
+              "expected_hz": 222.51197192762777,
+              "error_cents": 5.6508443527294224e-11
+            }
+          ]
+        },
+        {
+          "sample": 108976,
+          "decay_age_seconds": 2.4700907029478456,
+          "paired_hardware_seconds_after_midi": 2.5000907029478454,
+          "requested_hardware_seconds_after_midi": 2.5,
+          "tick_quantization_seconds": 9.070294784541133e-05,
+          "level": 9.748821692668162e-06,
+          "expected_level": 9.74882169265796e-06,
+          "level_absolute_error": 1.0201664816730793e-17,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 30.47791612334958,
+              "expected_hz": 30.477916123349583,
+              "error_cents": -1.9220559022889507e-13
+            },
+            {
+              "note": 36,
+              "actual_hz": 60.95583224669916,
+              "expected_hz": 60.95583224669917,
+              "error_cents": -1.9220559022889507e-13
+            },
+            {
+              "note": 57,
+              "actual_hz": 205.0301633002244,
+              "expected_hz": 205.03016330022442,
+              "error_cents": -1.9220559022889507e-13
+            }
+          ]
+        },
+        {
+          "sample": 175128,
+          "decay_age_seconds": 3.9701360544217685,
+          "paired_hardware_seconds_after_midi": 4.000136054421769,
+          "requested_hardware_seconds_after_midi": 4.0,
+          "tick_quantization_seconds": 0.00013605442176878313,
+          "level": 0.0,
+          "expected_level": 8.82724920424266e-09,
+          "level_absolute_error": 8.82724920424266e-09,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 30.475560962615887,
+              "expected_hz": 30.475563095139325,
+              "error_cents": -0.00012114287447410047
+            },
+            {
+              "note": 36,
+              "actual_hz": 60.951121925231774,
+              "expected_hz": 60.95112619027865,
+              "error_cents": -0.00012114287447410047
+            },
+            {
+              "note": 57,
+              "actual_hz": 205.01431973047792,
+              "expected_hz": 205.01433407632845,
+              "error_cents": -0.00012114287466630607
+            }
+          ]
+        },
+        {
+          "sample": 880728,
+          "decay_age_seconds": 19.97013605442177,
+          "paired_hardware_seconds_after_midi": 20.00013605442177,
+          "requested_hardware_seconds_after_midi": 20.0,
+          "tick_quantization_seconds": 0.0001360544217696713,
+          "level": 0.0,
+          "expected_level": 3.067525680462161e-41,
+          "level_absolute_error": 3.067525680462161e-41,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 30.475560962615887,
+              "expected_hz": 30.47556096261589,
+              "error_cents": -1.9220559022889507e-13
+            },
+            {
+              "note": 36,
+              "actual_hz": 60.951121925231774,
+              "expected_hz": 60.95112192523178,
+              "error_cents": -1.9220559022889507e-13
+            },
+            {
+              "note": 57,
+              "actual_hz": 205.01431973047792,
+              "expected_hz": 205.01431973047795,
+              "error_cents": -1.9220559022889507e-13
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dry-hz-35ms",
+      "kind": "hz",
+      "manifest_sha256": "71879648758609f004d514c28c9a3d5b45869a9a4175b2390e8ac76d574ebf8f",
+      "profile_header_sha256": "8cd91a2156b33c49f5c3c9faf96a1835a36ac6c14908d63c798c95e9dd928fe4",
+      "extracted_probe_sha256": "1768c9d4dd718b62ce1208f4777f748a8465d5a598542bd2857345a753fa0e19",
+      "compiler_command": [
+        "/usr/bin/c++",
+        "-std=c++20",
+        "-O2",
+        "-fno-fast-math",
+        "probe.cpp",
+        "-o",
+        "probe"
+      ],
+      "probe_sha256": "36b5e43b3aff519447d56d0b8cebc483d658de739ab6d52a92a5b3f9bee3e053",
+      "raw_measurements_sha256": "6d5d646054c28d7c3d22ff4f45c6883feb9e02189b4405a73cfa7403a1589731",
+      "attack_samples": 45,
+      "nominal_attack_samples": 44.1,
+      "attack_rounding_seconds": 2.040816326530609e-05,
+      "tick_samples": 8,
+      "tick_interval_seconds": 0.00018140589569160998,
+      "maximum_evaluation_tick_rounding_seconds": 0.00014739229024951506,
+      "predeclared_audio_lag_samples": -1406,
+      "predeclared_audio_lag_minus_actual_attack_target_samples": -0.4999999999997726,
+      "first_observed_sustain_sample": 173952,
+      "first_observed_sustain_seconds": 3.944489795918367,
+      "decay_coefficient": 0.9998940820054777,
+      "termination_amount_threshold": 1e-08,
+      "maximum_cutoff_error_cents": 0.00012118779465353113,
+      "maximum_level_absolute_error": 9.03919683733743e-09,
+      "observations": [
+        {
+          "sample": 272,
+          "decay_age_seconds": 0.005147392290249433,
+          "paired_hardware_seconds_after_midi": 0.04014739229024944,
+          "requested_hardware_seconds_after_midi": 0.04,
+          "tick_quantization_seconds": 0.00014739229024943873,
+          "level": 0.9762421116079613,
+          "expected_level": 0.9762421116079596,
+          "level_absolute_error": 1.6653345369377348e-15,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 260.87558142992896,
+              "expected_hz": 260.8755814299286,
+              "error_cents": 2.306467082746739e-12
+            },
+            {
+              "note": 36,
+              "actual_hz": 521.7511628598579,
+              "expected_hz": 521.7511628598572,
+              "error_cents": 2.306467082746739e-12
+            },
+            {
+              "note": 57,
+              "actual_hz": 1754.954730013246,
+              "expected_hz": 1754.9547300132438,
+              "error_cents": 2.306467082746739e-12
+            }
+          ]
+        },
+        {
+          "sample": 2912,
+          "decay_age_seconds": 0.06501133786848072,
+          "paired_hardware_seconds_after_midi": 0.10001133786848072,
+          "requested_hardware_seconds_after_midi": 0.1,
+          "tick_quantization_seconds": 1.133786848071805e-05,
+          "level": 0.7380948251112011,
+          "expected_level": 0.7380948251111822,
+          "level_absolute_error": 1.887379141862766e-14,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 204.67114297079092,
+              "expected_hz": 204.6711429707865,
+              "error_cents": 3.7672295684863016e-11
+            },
+            {
+              "note": 36,
+              "actual_hz": 409.34228594158185,
+              "expected_hz": 409.342285941573,
+              "error_cents": 3.7672295684863016e-11
+            },
+            {
+              "note": 57,
+              "actual_hz": 1376.8578434401486,
+              "expected_hz": 1376.8578434401188,
+              "error_cents": 3.7287884504405245e-11
+            }
+          ]
+        },
+        {
+          "sample": 6440,
+          "decay_age_seconds": 0.14501133786848072,
+          "paired_hardware_seconds_after_midi": 0.18001133786848073,
+          "requested_hardware_seconds_after_midi": 0.18,
+          "tick_quantization_seconds": 1.1337868480731927e-05,
+          "level": 0.5079453331794107,
+          "expected_level": 0.5079453331793798,
+          "level_absolute_error": 3.086420008457935e-14,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 150.3542404103321,
+              "expected_hz": 150.35424041032485,
+              "error_cents": 8.341722615933845e-11
+            },
+            {
+              "note": 36,
+              "actual_hz": 300.7084808206642,
+              "expected_hz": 300.7084808206497,
+              "error_cents": 8.341722615933845e-11
+            },
+            {
+              "note": 57,
+              "actual_hz": 1011.4587342339474,
+              "expected_hz": 1011.4587342338989,
+              "error_cents": 8.303281497888068e-11
+            }
+          ]
+        },
+        {
+          "sample": 9968,
+          "decay_age_seconds": 0.22501133786848074,
+          "paired_hardware_seconds_after_midi": 0.26001133786848074,
+          "requested_hardware_seconds_after_midi": 0.26,
+          "tick_quantization_seconds": 1.1337868480731927e-05,
+          "level": 0.3495600466510122,
+          "expected_level": 0.3495600466509793,
+          "level_absolute_error": 3.291811268013589e-14,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 112.97419623485744,
+              "expected_hz": 112.97419623484967,
+              "error_cents": 1.1916746594191084e-10
+            },
+            {
+              "note": 36,
+              "actual_hz": 225.9483924697149,
+              "expected_hz": 225.94839246969934,
+              "error_cents": 1.1916746594191084e-10
+            },
+            {
+              "note": 57,
+              "actual_hz": 759.9967730404904,
+              "expected_hz": 759.9967730404383,
+              "error_cents": 1.1878305476145307e-10
+            }
+          ]
+        },
+        {
+          "sample": 13496,
+          "decay_age_seconds": 0.3050113378684807,
+          "paired_hardware_seconds_after_midi": 0.3400113378684807,
+          "requested_hardware_seconds_after_midi": 0.34,
+          "tick_quantization_seconds": 1.1337868480676416e-05,
+          "level": 0.2405617656723276,
+          "expected_level": 0.240561765672297,
+          "level_absolute_error": 3.058664432842306e-14,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 87.24983352832852,
+              "expected_hz": 87.2498335283213,
+              "error_cents": 1.4338537031074977e-10
+            },
+            {
+              "note": 36,
+              "actual_hz": 174.49966705665705,
+              "expected_hz": 174.4996670566426,
+              "error_cents": 1.4338537031074977e-10
+            },
+            {
+              "note": 57,
+              "actual_hz": 586.9445779636384,
+              "expected_hz": 586.94457796359,
+              "error_cents": 1.4300095913029202e-10
+            }
+          ]
+        },
+        {
+          "sample": 42608,
+          "decay_age_seconds": 0.9651473922902495,
+          "paired_hardware_seconds_after_midi": 1.0001473922902495,
+          "requested_hardware_seconds_after_midi": 1.0,
+          "tick_quantization_seconds": 0.00014739229024951506,
+          "level": 0.011015781342810654,
+          "expected_level": 0.011015781342806055,
+          "level_absolute_error": 4.598751934814516e-15,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 33.075363016500496,
+              "expected_hz": 33.07536301649941,
+              "error_cents": 5.6892854707752e-11
+            },
+            {
+              "note": 36,
+              "actual_hz": 66.15072603300099,
+              "expected_hz": 66.15072603299882,
+              "error_cents": 5.6892854707752e-11
+            },
+            {
+              "note": 57,
+              "actual_hz": 222.5036335503244,
+              "expected_hz": 222.50363355031712,
+              "error_cents": 5.6508443527294224e-11
+            }
+          ]
+        },
+        {
+          "sample": 108752,
+          "decay_age_seconds": 2.465011337868481,
+          "paired_hardware_seconds_after_midi": 2.500011337868481,
+          "requested_hardware_seconds_after_midi": 2.5,
+          "tick_quantization_seconds": 1.1337868480953972e-05,
+          "level": 9.982896842855463e-06,
+          "expected_level": 9.982896842845014e-06,
+          "level_absolute_error": 1.0448998437329049e-17,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 30.477916996646346,
+              "expected_hz": 30.47791699664635,
+              "error_cents": -1.9220559022889507e-13
+            },
+            {
+              "note": 36,
+              "actual_hz": 60.95583399329269,
+              "expected_hz": 60.9558339932927,
+              "error_cents": -1.9220559022889507e-13
+            },
+            {
+              "note": 57,
+              "actual_hz": 205.03016917504135,
+              "expected_hz": 205.03016917504138,
+              "error_cents": -1.9220559022889507e-13
+            }
+          ]
+        },
+        {
+          "sample": 174904,
+          "decay_age_seconds": 3.9650566893424037,
+          "paired_hardware_seconds_after_midi": 4.000056689342403,
+          "requested_hardware_seconds_after_midi": 4.0,
+          "tick_quantization_seconds": 5.668934240343759e-05,
+          "level": 0.0,
+          "expected_level": 9.03919683733743e-09,
+          "level_absolute_error": 9.03919683733743e-09,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 30.475560962615887,
+              "expected_hz": 30.475563095930067,
+              "error_cents": -0.00012118779446132553
+            },
+            {
+              "note": 36,
+              "actual_hz": 60.951121925231774,
+              "expected_hz": 60.95112619186013,
+              "error_cents": -0.00012118779446132553
+            },
+            {
+              "note": 57,
+              "actual_hz": 205.01431973047792,
+              "expected_hz": 205.01433408164792,
+              "error_cents": -0.00012118779465353113
+            }
+          ]
+        },
+        {
+          "sample": 880504,
+          "decay_age_seconds": 19.965056689342404,
+          "paired_hardware_seconds_after_midi": 20.000056689342404,
+          "requested_hardware_seconds_after_midi": 20.0,
+          "tick_quantization_seconds": 5.668934240432577e-05,
+          "level": 0.0,
+          "expected_level": 3.141178841530583e-41,
+          "level_absolute_error": 3.141178841530583e-41,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 30.475560962615887,
+              "expected_hz": 30.47556096261589,
+              "error_cents": -1.9220559022889507e-13
+            },
+            {
+              "note": 36,
+              "actual_hz": 60.951121925231774,
+              "expected_hz": 60.95112192523178,
+              "error_cents": -1.9220559022889507e-13
+            },
+            {
+              "note": 57,
+              "actual_hz": 205.01431973047792,
+              "expected_hz": 205.01431973047795,
+              "error_cents": -1.9220559022889507e-13
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dry-hz-40ms",
+      "kind": "hz",
+      "manifest_sha256": "0c9abcb288384d5e8c0aca249636091cba76f2df4a932b2df826deac56a71396",
+      "profile_header_sha256": "8cd91a2156b33c49f5c3c9faf96a1835a36ac6c14908d63c798c95e9dd928fe4",
+      "extracted_probe_sha256": "1768c9d4dd718b62ce1208f4777f748a8465d5a598542bd2857345a753fa0e19",
+      "compiler_command": [
+        "/usr/bin/c++",
+        "-std=c++20",
+        "-O2",
+        "-fno-fast-math",
+        "probe.cpp",
+        "-o",
+        "probe"
+      ],
+      "probe_sha256": "89a76ac4f72605729387b61e131e11c8ef86866f3096eda2628d1bcf53fddacb",
+      "raw_measurements_sha256": "557980c3e444a7c76aef29173a9ce1d8a65eda4844ea248cba9b30346c8ee18a",
+      "attack_samples": 45,
+      "nominal_attack_samples": 44.1,
+      "attack_rounding_seconds": 2.040816326530609e-05,
+      "tick_samples": 8,
+      "tick_interval_seconds": 0.00018140589569160998,
+      "maximum_evaluation_tick_rounding_seconds": 0.00015873015873069107,
+      "predeclared_audio_lag_samples": -1627,
+      "predeclared_audio_lag_minus_actual_attack_target_samples": -1.0,
+      "first_observed_sustain_sample": 173952,
+      "first_observed_sustain_seconds": 3.944489795918367,
+      "decay_coefficient": 0.9998940820054777,
+      "termination_amount_threshold": 1e-08,
+      "maximum_cutoff_error_cents": 0.00012113004321241015,
+      "maximum_level_absolute_error": 9.248393155756677e-09,
+      "observations": [
+        {
+          "sample": 48,
+          "decay_age_seconds": 6.802721088435374e-05,
+          "paired_hardware_seconds_after_midi": 0.04006802721088436,
+          "requested_hardware_seconds_after_midi": 0.04,
+          "tick_quantization_seconds": 6.802721088435687e-05,
+          "level": 0.9996822796711096,
+          "expected_level": 0.9996822796711095,
+          "level_absolute_error": 1.1102230246251565e-16,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 260.96101406732095,
+              "expected_hz": 260.961014067321,
+              "error_cents": -3.844111804577902e-13
+            },
+            {
+              "note": 36,
+              "actual_hz": 521.9220281346419,
+              "expected_hz": 521.922028134642,
+              "error_cents": -3.844111804577902e-13
+            },
+            {
+              "note": 57,
+              "actual_hz": 1755.5294500014747,
+              "expected_hz": 1755.5294500014752,
+              "error_cents": -3.844111804577902e-13
+            }
+          ]
+        },
+        {
+          "sample": 2696,
+          "decay_age_seconds": 0.060113378684807255,
+          "paired_hardware_seconds_after_midi": 0.10011337868480726,
+          "requested_hardware_seconds_after_midi": 0.1,
+          "tick_quantization_seconds": 0.00011337868480724989,
+          "level": 0.7551767321474272,
+          "expected_level": 0.7551767321474092,
+          "level_absolute_error": 1.7985612998927536e-14,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 204.58813134887322,
+              "expected_hz": 204.5881313488691,
+              "error_cents": 3.498141742165855e-11
+            },
+            {
+              "note": 36,
+              "actual_hz": 409.17626269774644,
+              "expected_hz": 409.1762626977382,
+              "error_cents": 3.498141742165855e-11
+            },
+            {
+              "note": 57,
+              "actual_hz": 1376.2994100377887,
+              "expected_hz": 1376.2994100377612,
+              "error_cents": 3.459700624120077e-11
+            }
+          ]
+        },
+        {
+          "sample": 6224,
+          "decay_age_seconds": 0.14011337868480725,
+          "paired_hardware_seconds_after_midi": 0.18011337868480726,
+          "requested_hardware_seconds_after_midi": 0.18,
+          "tick_quantization_seconds": 0.00011337868480726376,
+          "level": 0.5197008348651845,
+          "expected_level": 0.5197008348651538,
+          "level_absolute_error": 3.064215547965432e-14,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 150.29711310836734,
+              "expected_hz": 150.2971131083603,
+              "error_cents": 8.111075907659182e-11
+            },
+            {
+              "note": 36,
+              "actual_hz": 300.5942262167347,
+              "expected_hz": 300.5942262167206,
+              "error_cents": 8.111075907659182e-11
+            },
+            {
+              "note": 57,
+              "actual_hz": 1011.0744290864653,
+              "expected_hz": 1011.074429086418,
+              "error_cents": 8.111075907659182e-11
+            }
+          ]
+        },
+        {
+          "sample": 9752,
+          "decay_age_seconds": 0.22011337868480726,
+          "paired_hardware_seconds_after_midi": 0.2601133786848073,
+          "requested_hardware_seconds_after_midi": 0.26,
+          "tick_quantization_seconds": 0.00011337868480726376,
+          "level": 0.3576499993472279,
+          "expected_level": 0.3576499993471952,
+          "level_absolute_error": 3.269606807521086e-14,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 112.93488211769666,
+              "expected_hz": 112.93488211768914,
+              "error_cents": 1.153233541373332e-10
+            },
+            {
+              "note": 36,
+              "actual_hz": 225.86976423539332,
+              "expected_hz": 225.86976423537828,
+              "error_cents": 1.153233541373332e-10
+            },
+            {
+              "note": 57,
+              "actual_hz": 759.7323002389755,
+              "expected_hz": 759.7323002389251,
+              "error_cents": 1.1493894295687544e-10
+            }
+          ]
+        },
+        {
+          "sample": 13280,
+          "decay_age_seconds": 0.30011337868480725,
+          "paired_hardware_seconds_after_midi": 0.34011337868480723,
+          "requested_hardware_seconds_after_midi": 0.34,
+          "tick_quantization_seconds": 0.00011337868480720825,
+          "level": 0.24612914479203077,
+          "expected_level": 0.246129144792,
+          "level_absolute_error": 3.0780933357732465e-14,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 87.22277816679438,
+              "expected_hz": 87.2227781667873,
+              "error_cents": 1.4069449204754548e-10
+            },
+            {
+              "note": 36,
+              "actual_hz": 174.44555633358877,
+              "expected_hz": 174.4455563335746,
+              "error_cents": 1.4069449204754548e-10
+            },
+            {
+              "note": 57,
+              "actual_hz": 586.7625719114188,
+              "expected_hz": 586.7625719113712,
+              "error_cents": 1.4069449204754548e-10
+            }
+          ]
+        },
+        {
+          "sample": 42384,
+          "decay_age_seconds": 0.9600680272108844,
+          "paired_hardware_seconds_after_midi": 1.0000680272108844,
+          "requested_hardware_seconds_after_midi": 1.0,
+          "tick_quantization_seconds": 6.802721088439156e-05,
+          "level": 0.011280276966336952,
+          "expected_level": 0.011280276966332261,
+          "level_absolute_error": 4.690692279041286e-15,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 33.076327026597845,
+              "expected_hz": 33.076327026596765,
+              "error_cents": 5.6508443527294224e-11
+            },
+            {
+              "note": 36,
+              "actual_hz": 66.15265405319569,
+              "expected_hz": 66.15265405319353,
+              "error_cents": 5.6508443527294224e-11
+            },
+            {
+              "note": 57,
+              "actual_hz": 222.51011861140543,
+              "expected_hz": 222.5101186113982,
+              "error_cents": 5.612403234683645e-11
+            }
+          ]
+        },
+        {
+          "sample": 108536,
+          "decay_age_seconds": 2.4601133786848073,
+          "paired_hardware_seconds_after_midi": 2.5001133786848073,
+          "requested_hardware_seconds_after_midi": 2.5,
+          "tick_quantization_seconds": 0.00011337868480731927,
+          "level": 1.021393343872401e-05,
+          "expected_level": 1.0213933438713353e-05,
+          "level_absolute_error": 1.0657368542353607e-17,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 30.477915873895675,
+              "expected_hz": 30.47791587389568,
+              "error_cents": -1.9220559022889507e-13
+            },
+            {
+              "note": 36,
+              "actual_hz": 60.95583174779135,
+              "expected_hz": 60.95583174779136,
+              "error_cents": -1.9220559022889507e-13
+            },
+            {
+              "note": 57,
+              "actual_hz": 205.03016162210525,
+              "expected_hz": 205.03016162210528,
+              "error_cents": -1.9220559022889507e-13
+            }
+          ]
+        },
+        {
+          "sample": 174688,
+          "decay_age_seconds": 3.96015873015873,
+          "paired_hardware_seconds_after_midi": 4.00015873015873,
+          "requested_hardware_seconds_after_midi": 4.0,
+          "tick_quantization_seconds": 0.0001587301587298029,
+          "level": 0.0,
+          "expected_level": 9.248393155756677e-09,
+          "level_absolute_error": 9.248393155756677e-09,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 30.475560962615887,
+              "expected_hz": 30.47556309491345,
+              "error_cents": -0.00012113004321241015
+            },
+            {
+              "note": 36,
+              "actual_hz": 60.951121925231774,
+              "expected_hz": 60.9511261898269,
+              "error_cents": -0.00012113004321241015
+            },
+            {
+              "note": 57,
+              "actual_hz": 205.01431973047792,
+              "expected_hz": 205.01433407480894,
+              "error_cents": -0.00012113004321241015
+            }
+          ]
+        },
+        {
+          "sample": 880288,
+          "decay_age_seconds": 19.96015873015873,
+          "paired_hardware_seconds_after_midi": 20.00015873015873,
+          "requested_hardware_seconds_after_midi": 20.0,
+          "tick_quantization_seconds": 0.00015873015873069107,
+          "level": 0.0,
+          "expected_level": 3.2138759031135444e-41,
+          "level_absolute_error": 3.2138759031135444e-41,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 30.475560962615887,
+              "expected_hz": 30.47556096261589,
+              "error_cents": -1.9220559022889507e-13
+            },
+            {
+              "note": 36,
+              "actual_hz": 60.951121925231774,
+              "expected_hz": 60.95112192523178,
+              "error_cents": -1.9220559022889507e-13
+            },
+            {
+              "note": 57,
+              "actual_hz": 205.01431973047792,
+              "expected_hz": 205.01431973047795,
+              "error_cents": -1.9220559022889507e-13
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dry-log-30ms",
+      "kind": "log",
+      "manifest_sha256": "1484190bb80f830a58ca67371e742564d6f8f4ad3983545b51cc71e58d37f806",
+      "profile_header_sha256": "cbcadef47d180a4f475ec551b0ddafaff3765d332f92851c3a3a991f34cde91a",
+      "extracted_probe_sha256": "3df460a9e125c7bb7e718c54793992efb7c31eda9aacd39d5ca1e18a6c58592f",
+      "compiler_command": [
+        "/usr/bin/c++",
+        "-std=c++20",
+        "-O2",
+        "-fno-fast-math",
+        "probe.cpp",
+        "-o",
+        "probe"
+      ],
+      "probe_sha256": "f2a7212ee884ba30bf352f3d749303367eaa1202e74324425845b738ca1cd81f",
+      "raw_measurements_sha256": "a2cce7aaae340bba673409f47a34b4b6eedf3f48e4804f71c2abb92378648380",
+      "attack_samples": 45,
+      "nominal_attack_samples": 44.1,
+      "attack_rounding_seconds": 2.040816326530609e-05,
+      "tick_samples": 8,
+      "tick_interval_seconds": 0.00018140589569160998,
+      "maximum_evaluation_tick_rounding_seconds": 0.0001360544217696713,
+      "predeclared_audio_lag_samples": -1186,
+      "predeclared_audio_lag_minus_actual_attack_target_samples": -1.0,
+      "first_observed_sustain_sample": 737616,
+      "first_observed_sustain_seconds": 16.72598639455782,
+      "decay_coefficient": 0.9999750254729015,
+      "termination_amount_threshold": 1e-08,
+      "maximum_cutoff_error_cents": 1.9261060595577103e-06,
+      "maximum_level_absolute_error": 2.8036855619214274e-10,
+      "observations": [
+        {
+          "sample": 488,
+          "decay_age_seconds": 0.010045351473922902,
+          "paired_hardware_seconds_after_midi": 0.0400453514739229,
+          "requested_hardware_seconds_after_midi": 0.04,
+          "tick_quantization_seconds": 4.5351473922899954e-05,
+          "level": 0.9889971256704725,
+          "expected_level": 0.9889971256704554,
+          "level_absolute_error": 1.709743457922741e-14,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 263.1163512521083,
+              "expected_hz": 263.1163512520904,
+              "error_cents": 1.1762982122007978e-10
+            },
+            {
+              "note": 36,
+              "actual_hz": 526.2327025042166,
+              "expected_hz": 526.2327025041808,
+              "error_cents": 1.1762982122007978e-10
+            },
+            {
+              "note": 57,
+              "actual_hz": 1770.0287725002806,
+              "expected_hz": 1770.0287725001604,
+              "error_cents": 1.1762982122007978e-10
+            }
+          ]
+        },
+        {
+          "sample": 3136,
+          "decay_age_seconds": 0.0700907029478458,
+          "paired_hardware_seconds_after_midi": 0.1000907029478458,
+          "requested_hardware_seconds_after_midi": 0.1,
+          "tick_quantization_seconds": 9.070294784579991e-05,
+          "level": 0.9257072609058457,
+          "expected_level": 0.9257072609057265,
+          "level_absolute_error": 1.191269305422793e-13,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 204.6801822725846,
+              "expected_hz": 204.68018227248785,
+              "error_cents": 8.184114031944418e-10
+            },
+            {
+              "note": 36,
+              "actual_hz": 409.360364545169,
+              "expected_hz": 409.3603645449757,
+              "error_cents": 8.172581696530689e-10
+            },
+            {
+              "note": 57,
+              "actual_hz": 1376.9186523719454,
+              "expected_hz": 1376.9186523712956,
+              "error_cents": 8.168737584726112e-10
+            }
+          ]
+        },
+        {
+          "sample": 6664,
+          "decay_age_seconds": 0.1500907029478458,
+          "paired_hardware_seconds_after_midi": 0.1800907029478458,
+          "requested_hardware_seconds_after_midi": 0.18,
+          "tick_quantization_seconds": 9.070294784579991e-05,
+          "level": 0.8476322038720346,
+          "expected_level": 0.8476322038718012,
+          "level_absolute_error": 2.334799020786704e-13,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 150.1493136240991,
+              "expected_hz": 150.14931362395998,
+              "error_cents": 1.604147856049615e-09
+            },
+            {
+              "note": 36,
+              "actual_hz": 300.2986272481984,
+              "expected_hz": 300.29862724791997,
+              "error_cents": 1.6049166784105298e-09
+            },
+            {
+              "note": 57,
+              "actual_hz": 1010.0801566344859,
+              "expected_hz": 1010.0801566335493,
+              "error_cents": 1.6053010895909872e-09
+            }
+          ]
+        },
+        {
+          "sample": 10192,
+          "decay_age_seconds": 0.2300907029478458,
+          "paired_hardware_seconds_after_midi": 0.2600907029478458,
+          "requested_hardware_seconds_after_midi": 0.26,
+          "tick_quantization_seconds": 9.070294784579991e-05,
+          "level": 0.7761420736161204,
+          "expected_level": 0.7761420736157931,
+          "level_absolute_error": 3.2729374765949615e-13,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 113.06265832248788,
+              "expected_hz": 113.06265832234104,
+              "error_cents": 2.2484209944961547e-09
+            },
+            {
+              "note": 36,
+              "actual_hz": 226.12531664497575,
+              "expected_hz": 226.12531664468207,
+              "error_cents": 2.2484209944961547e-09
+            },
+            {
+              "note": 57,
+              "actual_hz": 760.5918726594848,
+              "expected_hz": 760.5918726584971,
+              "error_cents": 2.248036583315697e-09
+            }
+          ]
+        },
+        {
+          "sample": 13720,
+          "decay_age_seconds": 0.3100907029478458,
+          "paired_hardware_seconds_after_midi": 0.3400907029478458,
+          "requested_hardware_seconds_after_midi": 0.34,
+          "tick_quantization_seconds": 9.070294784579991e-05,
+          "level": 0.7106814909643003,
+          "expected_level": 0.7106814909638942,
+          "level_absolute_error": 4.0611958240788226e-13,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 87.19793352956745,
+              "expected_hz": 87.19793352942693,
+              "error_cents": 2.7896719365799352e-09
+            },
+            {
+              "note": 36,
+              "actual_hz": 174.3958670591349,
+              "expected_hz": 174.39586705885387,
+              "error_cents": 2.7896719365799352e-09
+            },
+            {
+              "note": 57,
+              "actual_hz": 586.5954377803599,
+              "expected_hz": 586.5954377794144,
+              "error_cents": 2.7904407589408496e-09
+            }
+          ]
+        },
+        {
+          "sample": 42824,
+          "decay_age_seconds": 0.9700453514739229,
+          "paired_hardware_seconds_after_midi": 1.000045351473923,
+          "requested_hardware_seconds_after_midi": 1.0,
+          "tick_quantization_seconds": 4.535147392292771e-05,
+          "level": 0.34355823888402576,
+          "expected_level": 0.3435582388834059,
+          "level_absolute_error": 6.198375146482249e-13,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 20.31495662917776,
+              "expected_hz": 20.3149566291278,
+              "error_cents": 4.257738234745248e-09
+            },
+            {
+              "note": 36,
+              "actual_hz": 40.62991325835552,
+              "expected_hz": 40.6299132582556,
+              "error_cents": 4.257738234745248e-09
+            },
+            {
+              "note": 57,
+              "actual_hz": 136.6621936440821,
+              "expected_hz": 136.662193643746,
+              "error_cents": 4.257353823564791e-09
+            }
+          ]
+        },
+        {
+          "sample": 108976,
+          "decay_age_seconds": 2.4700907029478456,
+          "paired_hardware_seconds_after_midi": 2.5000907029478454,
+          "requested_hardware_seconds_after_midi": 2.5,
+          "tick_quantization_seconds": 9.070294784541133e-05,
+          "level": 0.06583957461435506,
+          "expected_level": 0.06583957461405308,
+          "level_absolute_error": 3.019806626980426e-13,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 6.748434812474358,
+              "expected_hz": 6.748434812466272,
+              "error_cents": 2.074282729748993e-09
+            },
+            {
+              "note": 36,
+              "actual_hz": 13.496869624948715,
+              "expected_hz": 13.496869624932543,
+              "error_cents": 2.074282729748993e-09
+            },
+            {
+              "note": 57,
+              "actual_hz": 45.397877139064484,
+              "expected_hz": 45.39787713901009,
+              "error_cents": 2.074282729748993e-09
+            }
+          ]
+        },
+        {
+          "sample": 175128,
+          "decay_age_seconds": 3.9701360544217685,
+          "paired_hardware_seconds_after_midi": 4.000136054421769,
+          "requested_hardware_seconds_after_midi": 4.0,
+          "tick_quantization_seconds": 0.00013605442176878313,
+          "level": 0.012617510205780625,
+          "expected_level": 0.012617510205687688,
+          "level_absolute_error": 9.293781022545744e-14,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 5.4636338784831295,
+              "expected_hz": 5.463633878481117,
+              "error_cents": 6.377381483793564e-10
+            },
+            {
+              "note": 36,
+              "actual_hz": 10.927267756966259,
+              "expected_hz": 10.927267756962234,
+              "error_cents": 6.377381483793564e-10
+            },
+            {
+              "note": 57,
+              "actual_hz": 36.75480114140171,
+              "expected_hz": 36.754801141388164,
+              "error_cents": 6.377381483793564e-10
+            }
+          ]
+        },
+        {
+          "sample": 880728,
+          "decay_age_seconds": 19.97013605442177,
+          "paired_hardware_seconds_after_midi": 20.00013605442177,
+          "requested_hardware_seconds_after_midi": 20.0,
+          "tick_quantization_seconds": 0.0001360544217696713,
+          "level": 0.0,
+          "expected_level": 2.8036855619214274e-10,
+          "level_absolute_error": 2.8036855619214274e-10,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 5.196810887951325,
+              "expected_hz": 5.196810893733101,
+              "error_cents": -1.9261056751465295e-06
+            },
+            {
+              "note": 36,
+              "actual_hz": 10.39362177590265,
+              "expected_hz": 10.393621787466202,
+              "error_cents": -1.9261056751465295e-06
+            },
+            {
+              "note": 57,
+              "actual_hz": 34.95983717143794,
+              "expected_hz": 34.95983721033294,
+              "error_cents": -1.9261060595577103e-06
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dry-log-35ms",
+      "kind": "log",
+      "manifest_sha256": "1921f883bf1be73ea250b9f9c5dfab316989307818a10d92c952a3d3666b0d36",
+      "profile_header_sha256": "cbcadef47d180a4f475ec551b0ddafaff3765d332f92851c3a3a991f34cde91a",
+      "extracted_probe_sha256": "3df460a9e125c7bb7e718c54793992efb7c31eda9aacd39d5ca1e18a6c58592f",
+      "compiler_command": [
+        "/usr/bin/c++",
+        "-std=c++20",
+        "-O2",
+        "-fno-fast-math",
+        "probe.cpp",
+        "-o",
+        "probe"
+      ],
+      "probe_sha256": "85294ca6a2e0b7700d6cc73364d762c76c409ab9a895501c7d8b9e1d3e225bcb",
+      "raw_measurements_sha256": "81364ebd0929a5622d9f4aba6c4c2e0c4eaae8d87fe362a48575e20b4ac58609",
+      "attack_samples": 45,
+      "nominal_attack_samples": 44.1,
+      "attack_rounding_seconds": 2.040816326530609e-05,
+      "tick_samples": 8,
+      "tick_interval_seconds": 0.00018140589569160998,
+      "maximum_evaluation_tick_rounding_seconds": 0.00014739229024951506,
+      "predeclared_audio_lag_samples": -1406,
+      "predeclared_audio_lag_minus_actual_attack_target_samples": -0.4999999999997726,
+      "first_observed_sustain_sample": 737616,
+      "first_observed_sustain_seconds": 16.72598639455782,
+      "decay_coefficient": 0.9999750254729015,
+      "termination_amount_threshold": 1e-08,
+      "maximum_cutoff_error_cents": 1.9262740472437575e-06,
+      "maximum_level_absolute_error": 2.819414354569597e-10,
+      "observations": [
+        {
+          "sample": 272,
+          "decay_age_seconds": 0.005147392290249433,
+          "paired_hardware_seconds_after_midi": 0.04014739229024944,
+          "requested_hardware_seconds_after_midi": 0.04,
+          "tick_quantization_seconds": 0.00014739229024943873,
+          "level": 0.9943467516439085,
+          "expected_level": 0.9943467516439,
+          "level_absolute_error": 8.548717289613705e-15,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 263.00033124855764,
+              "expected_hz": 263.0003312485489,
+              "error_cents": 5.766167706866756e-11
+            },
+            {
+              "note": 36,
+              "actual_hz": 526.0006624971153,
+              "expected_hz": 526.0006624970978,
+              "error_cents": 5.766167706866756e-11
+            },
+            {
+              "note": 57,
+              "actual_hz": 1769.2482860596126,
+              "expected_hz": 1769.248286059554,
+              "error_cents": 5.7277265888209784e-11
+            }
+          ]
+        },
+        {
+          "sample": 2912,
+          "decay_age_seconds": 0.06501133786848072,
+          "paired_hardware_seconds_after_midi": 0.10001133786848072,
+          "requested_hardware_seconds_after_midi": 0.1,
+          "tick_quantization_seconds": 1.133786848071805e-05,
+          "level": 0.9309005171530583,
+          "expected_level": 0.9309005171529472,
+          "level_absolute_error": 1.1113332476497817e-13,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 204.74591836535956,
+              "expected_hz": 204.7459183652698,
+              "error_cents": 7.588276702235115e-10
+            },
+            {
+              "note": 36,
+              "actual_hz": 409.4918367307189,
+              "expected_hz": 409.4918367305396,
+              "error_cents": 7.580588478625961e-10
+            },
+            {
+              "note": 57,
+              "actual_hz": 1377.3608703300833,
+              "expected_hz": 1377.3608703294806,
+              "error_cents": 7.576744366821385e-10
+            }
+          ]
+        },
+        {
+          "sample": 6440,
+          "decay_age_seconds": 0.14501133786848072,
+          "paired_hardware_seconds_after_midi": 0.18001133786848073,
+          "requested_hardware_seconds_after_midi": 0.18,
+          "tick_quantization_seconds": 1.1337868480731927e-05,
+          "level": 0.8523874558010192,
+          "expected_level": 0.8523874558007918,
+          "level_absolute_error": 2.2737367544323206e-13,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 150.19346856827187,
+              "expected_hz": 150.1934685681371,
+              "error_cents": 1.553405580229233e-09
+            },
+            {
+              "note": 36,
+              "actual_hz": 300.38693713654374,
+              "expected_hz": 300.3869371362742,
+              "error_cents": 1.553405580229233e-09
+            },
+            {
+              "note": 57,
+              "actual_hz": 1010.3771945086502,
+              "expected_hz": 1010.3771945077435,
+              "error_cents": 1.553405580229233e-09
+            }
+          ]
+        },
+        {
+          "sample": 9968,
+          "decay_age_seconds": 0.22501133786848074,
+          "paired_hardware_seconds_after_midi": 0.26001133786848074,
+          "requested_hardware_seconds_after_midi": 0.26,
+          "tick_quantization_seconds": 1.1337868480731927e-05,
+          "level": 0.7804962629400624,
+          "expected_level": 0.7804962629397402,
+          "level_absolute_error": 3.2218672174622043e-13,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 113.09310245292903,
+              "expected_hz": 113.09310245278527,
+              "error_cents": 2.2007540081194493e-09
+            },
+            {
+              "note": 36,
+              "actual_hz": 226.18620490585806,
+              "expected_hz": 226.18620490557055,
+              "error_cents": 2.2007540081194493e-09
+            },
+            {
+              "note": 57,
+              "actual_hz": 760.7966755407132,
+              "expected_hz": 760.7966755397457,
+              "error_cents": 2.201522830480364e-09
+            }
+          ]
+        },
+        {
+          "sample": 13496,
+          "decay_age_seconds": 0.3050113378684807,
+          "paired_hardware_seconds_after_midi": 0.3400113378684807,
+          "requested_hardware_seconds_after_midi": 0.34,
+          "tick_quantization_seconds": 1.1337868480676416e-05,
+          "level": 0.714668443696114,
+          "expected_level": 0.7146684436957127,
+          "level_absolute_error": 4.013456234019941e-13,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 87.21943258709268,
+              "expected_hz": 87.21943258695455,
+              "error_cents": 2.7416205390227885e-09
+            },
+            {
+              "note": 36,
+              "actual_hz": 174.43886517418537,
+              "expected_hz": 174.4388651739091,
+              "error_cents": 2.7416205390227885e-09
+            },
+            {
+              "note": 57,
+              "actual_hz": 586.740065623594,
+              "expected_hz": 586.7400656226648,
+              "error_cents": 2.7416205390227885e-09
+            }
+          ]
+        },
+        {
+          "sample": 42608,
+          "decay_age_seconds": 0.9651473922902495,
+          "paired_hardware_seconds_after_midi": 1.0001473922902495,
+          "requested_hardware_seconds_after_midi": 1.0,
+          "tick_quantization_seconds": 0.00014739229024951506,
+          "level": 0.34541659421228416,
+          "expected_level": 0.3454165942116639,
+          "level_absolute_error": 6.20281603858075e-13,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 20.311844420040405,
+              "expected_hz": 20.311844419990695,
+              "error_cents": 4.2369800310005774e-09
+            },
+            {
+              "note": 36,
+              "actual_hz": 40.62368884008081,
+              "expected_hz": 40.62368883998139,
+              "error_cents": 4.2369800310005774e-09
+            },
+            {
+              "note": 57,
+              "actual_hz": 136.64125728002514,
+              "expected_hz": 136.64125727969073,
+              "error_cents": 4.2369800310005774e-09
+            }
+          ]
+        },
+        {
+          "sample": 108752,
+          "decay_age_seconds": 2.465011337868481,
+          "paired_hardware_seconds_after_midi": 2.500011337868481,
+          "requested_hardware_seconds_after_midi": 2.5,
+          "tick_quantization_seconds": 1.1337868480953972e-05,
+          "level": 0.0662089373671602,
+          "expected_level": 0.06620893736685705,
+          "level_absolute_error": 3.03146396873899e-13,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 6.748588939828709,
+              "expected_hz": 6.748588939820637,
+              "error_cents": 2.070823029124877e-09
+            },
+            {
+              "note": 36,
+              "actual_hz": 13.497177879657418,
+              "expected_hz": 13.497177879641274,
+              "error_cents": 2.070823029124877e-09
+            },
+            {
+              "note": 57,
+              "actual_hz": 45.39891398018262,
+              "expected_hz": 45.39891398012832,
+              "error_cents": 2.070823029124877e-09
+            }
+          ]
+        },
+        {
+          "sample": 174904,
+          "decay_age_seconds": 3.9650566893424037,
+          "paired_hardware_seconds_after_midi": 4.000056689342403,
+          "requested_hardware_seconds_after_midi": 4.0,
+          "tick_quantization_seconds": 5.668934240343759e-05,
+          "level": 0.012688294962979484,
+          "expected_level": 0.012688294962886133,
+          "level_absolute_error": 9.335067441273992e-14,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 5.463657791859286,
+              "expected_hz": 5.463657791857274,
+              "error_cents": 6.373537371988987e-10
+            },
+            {
+              "note": 36,
+              "actual_hz": 10.927315583718572,
+              "expected_hz": 10.927315583714549,
+              "error_cents": 6.373537371988987e-10
+            },
+            {
+              "note": 57,
+              "actual_hz": 36.754962010779984,
+              "expected_hz": 36.75496201076646,
+              "error_cents": 6.369693260184411e-10
+            }
+          ]
+        },
+        {
+          "sample": 880504,
+          "decay_age_seconds": 19.965056689342404,
+          "paired_hardware_seconds_after_midi": 20.000056689342404,
+          "requested_hardware_seconds_after_midi": 20.0,
+          "tick_quantization_seconds": 5.668934240432577e-05,
+          "level": 0.0,
+          "expected_level": 2.819414354569597e-10,
+          "level_absolute_error": 2.819414354569597e-10,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 5.196810887951325,
+              "expected_hz": 5.196810893733606,
+              "error_cents": -1.9262740472437575e-06
+            },
+            {
+              "note": 36,
+              "actual_hz": 10.39362177590265,
+              "expected_hz": 10.393621787467213,
+              "error_cents": -1.9262740472437575e-06
+            },
+            {
+              "note": 57,
+              "actual_hz": 34.95983717143794,
+              "expected_hz": 34.95983721033633,
+              "error_cents": -1.926273855038167e-06
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dry-log-40ms",
+      "kind": "log",
+      "manifest_sha256": "6465f70269926800adf3468d49e7db3400b4c53d1db82926ea2fbd738a3795e7",
+      "profile_header_sha256": "cbcadef47d180a4f475ec551b0ddafaff3765d332f92851c3a3a991f34cde91a",
+      "extracted_probe_sha256": "3df460a9e125c7bb7e718c54793992efb7c31eda9aacd39d5ca1e18a6c58592f",
+      "compiler_command": [
+        "/usr/bin/c++",
+        "-std=c++20",
+        "-O2",
+        "-fno-fast-math",
+        "probe.cpp",
+        "-o",
+        "probe"
+      ],
+      "probe_sha256": "795c772896a9a79ad448851a520bb6d70664e058de5ce11750bb0ea97c1ca7f3",
+      "raw_measurements_sha256": "e88e6cf1b6b12a05f4e970d97fbb2531a4f6a7a6bc5d47a28225ce17b354cd92",
+      "attack_samples": 45,
+      "nominal_attack_samples": 44.1,
+      "attack_rounding_seconds": 2.040816326530609e-05,
+      "tick_samples": 8,
+      "tick_interval_seconds": 0.00018140589569160998,
+      "maximum_evaluation_tick_rounding_seconds": 0.00015873015873069107,
+      "predeclared_audio_lag_samples": -1627,
+      "predeclared_audio_lag_minus_actual_attack_target_samples": -1.0,
+      "first_observed_sustain_sample": 737616,
+      "first_observed_sustain_seconds": 16.72598639455782,
+      "decay_coefficient": 0.9999750254729015,
+      "termination_amount_threshold": 1e-08,
+      "maximum_cutoff_error_cents": 1.9260578159545096e-06,
+      "maximum_level_absolute_error": 2.834664967407198e-10,
+      "observations": [
+        {
+          "sample": 48,
+          "decay_age_seconds": 6.802721088435374e-05,
+          "paired_hardware_seconds_after_midi": 0.04006802721088436,
+          "requested_hardware_seconds_after_midi": 0.04,
+          "tick_quantization_seconds": 6.802721088435687e-05,
+          "level": 0.9999250782898699,
+          "expected_level": 0.9999250782898699,
+          "level_absolute_error": 0.0,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 263.0905634798328,
+              "expected_hz": 263.0905634798328,
+              "error_cents": 0.0
+            },
+            {
+              "note": 36,
+              "actual_hz": 526.1811269596656,
+              "expected_hz": 526.1811269596656,
+              "error_cents": 0.0
+            },
+            {
+              "note": 57,
+              "actual_hz": 1769.8552937381696,
+              "expected_hz": 1769.8552937381696,
+              "error_cents": 0.0
+            }
+          ]
+        },
+        {
+          "sample": 2696,
+          "decay_age_seconds": 0.060113378684807255,
+          "paired_hardware_seconds_after_midi": 0.10011337868480726,
+          "requested_hardware_seconds_after_midi": 0.1,
+          "tick_quantization_seconds": 0.00011337868480724989,
+          "level": 0.9359358903164239,
+          "expected_level": 0.9359358903163205,
+          "level_absolute_error": 1.0336176359260207e-13,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 204.66140546368428,
+              "expected_hz": 204.66140546360108,
+              "error_cents": 7.038568714180707e-10
+            },
+            {
+              "note": 36,
+              "actual_hz": 409.32281092736855,
+              "expected_hz": 409.32281092720217,
+              "error_cents": 7.038568714180707e-10
+            },
+            {
+              "note": 57,
+              "actual_hz": 1376.7923375615926,
+              "expected_hz": 1376.7923375610333,
+              "error_cents": 7.03472460237613e-10
+            }
+          ]
+        },
+        {
+          "sample": 6224,
+          "decay_age_seconds": 0.14011337868480725,
+          "paired_hardware_seconds_after_midi": 0.18011337868480726,
+          "requested_hardware_seconds_after_midi": 0.18,
+          "tick_quantization_seconds": 0.00011337868480726376,
+          "level": 0.8569981406600804,
+          "expected_level": 0.8569981406598595,
+          "level_absolute_error": 2.2093438190040615e-13,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 150.13670101892208,
+              "expected_hz": 150.13670101879194,
+              "error_cents": 1.5007412485065621e-09
+            },
+            {
+              "note": 36,
+              "actual_hz": 300.2734020378444,
+              "expected_hz": 300.2734020375839,
+              "error_cents": 1.5018944820479344e-09
+            },
+            {
+              "note": 57,
+              "actual_hz": 1009.995309478643,
+              "expected_hz": 1009.9953094777668,
+              "error_cents": 1.5018944820479344e-09
+            }
+          ]
+        },
+        {
+          "sample": 9752,
+          "decay_age_seconds": 0.22011337868480726,
+          "paired_hardware_seconds_after_midi": 0.2601133786848073,
+          "requested_hardware_seconds_after_midi": 0.26,
+          "tick_quantization_seconds": 0.00011337868480726376,
+          "level": 0.784718078122349,
+          "expected_level": 0.7847180781220323,
+          "level_absolute_error": 3.1663560662309465e-13,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 113.05396199354826,
+              "expected_hz": 113.05396199340773,
+              "error_cents": 2.1519337882013716e-09
+            },
+            {
+              "note": 36,
+              "actual_hz": 226.1079239870965,
+              "expected_hz": 226.10792398681545,
+              "error_cents": 2.1519337882013716e-09
+            },
+            {
+              "note": 57,
+              "actual_hz": 760.5333709648348,
+              "expected_hz": 760.53337096389,
+              "error_cents": 2.15078055466e-09
+            }
+          ]
+        },
+        {
+          "sample": 13280,
+          "decay_age_seconds": 0.30011337868480725,
+          "paired_hardware_seconds_after_midi": 0.34011337868480723,
+          "requested_hardware_seconds_after_midi": 0.34,
+          "tick_quantization_seconds": 0.00011337868480720825,
+          "level": 0.7185341868510295,
+          "expected_level": 0.7185341868506324,
+          "level_absolute_error": 3.971267759084185e-13,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 87.1917922602097,
+              "expected_hz": 87.1917922600738,
+              "error_cents": 2.698182075631126e-09
+            },
+            {
+              "note": 36,
+              "actual_hz": 174.3835845204194,
+              "expected_hz": 174.3835845201476,
+              "error_cents": 2.698182075631126e-09
+            },
+            {
+              "note": 57,
+              "actual_hz": 586.5541244092557,
+              "expected_hz": 586.5541244083411,
+              "error_cents": 2.699335309172498e-09
+            }
+          ]
+        },
+        {
+          "sample": 42384,
+          "decay_age_seconds": 0.9600680272108844,
+          "paired_hardware_seconds_after_midi": 1.0000680272108844,
+          "requested_hardware_seconds_after_midi": 1.0,
+          "tick_quantization_seconds": 6.802721088439156e-05,
+          "level": 0.34735439567667886,
+          "expected_level": 0.347354395676058,
+          "level_absolute_error": 6.208367153703875e-13,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 20.31426495571079,
+              "expected_hz": 20.314264955661297,
+              "error_cents": 4.217759471977736e-09
+            },
+            {
+              "note": 36,
+              "actual_hz": 40.62852991142158,
+              "expected_hz": 40.628529911322595,
+              "error_cents": 4.217759471977736e-09
+            },
+            {
+              "note": 57,
+              "actual_hz": 136.65754063817087,
+              "expected_hz": 136.65754063783797,
+              "error_cents": 4.217375060797278e-09
+            }
+          ]
+        },
+        {
+          "sample": 108536,
+          "decay_age_seconds": 2.4601133786848073,
+          "paired_hardware_seconds_after_midi": 2.5001133786848073,
+          "requested_hardware_seconds_after_midi": 2.5,
+          "tick_quantization_seconds": 0.00011337868480731927,
+          "level": 0.06656707091661093,
+          "expected_level": 0.06656707091630674,
+          "level_absolute_error": 3.041872309594851e-13,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 6.748390779208357,
+              "expected_hz": 6.748390779200301,
+              "error_cents": 2.0665945061398463e-09
+            },
+            {
+              "note": 36,
+              "actual_hz": 13.496781558416714,
+              "expected_hz": 13.496781558400603,
+              "error_cents": 2.0665945061398463e-09
+            },
+            {
+              "note": 57,
+              "actual_hz": 45.397580919740236,
+              "expected_hz": 45.39758091968604,
+              "error_cents": 2.0665945061398463e-09
+            }
+          ]
+        },
+        {
+          "sample": 174688,
+          "decay_age_seconds": 3.96015873015873,
+          "paired_hardware_seconds_after_midi": 4.00015873015873,
+          "requested_hardware_seconds_after_midi": 4.0,
+          "tick_quantization_seconds": 0.0001587301587298029,
+          "level": 0.012756927753238136,
+          "expected_level": 0.012756927753144411,
+          "level_absolute_error": 9.372537468355091e-14,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 5.4636270464930865,
+              "expected_hz": 5.463627046491079,
+              "error_cents": 6.362005036575257e-10
+            },
+            {
+              "note": 36,
+              "actual_hz": 10.927254092986173,
+              "expected_hz": 10.927254092982158,
+              "error_cents": 6.362005036575257e-10
+            },
+            {
+              "note": 57,
+              "actual_hz": 36.7547551814342,
+              "expected_hz": 36.754755181420705,
+              "error_cents": 6.354316812966105e-10
+            }
+          ]
+        },
+        {
+          "sample": 880288,
+          "decay_age_seconds": 19.96015873015873,
+          "paired_hardware_seconds_after_midi": 20.00015873015873,
+          "requested_hardware_seconds_after_midi": 20.0,
+          "tick_quantization_seconds": 0.00015873015873069107,
+          "level": 0.0,
+          "expected_level": 2.834664967407198e-10,
+          "level_absolute_error": 2.834664967407198e-10,
+          "cutoffs": [
+            {
+              "note": 24,
+              "actual_hz": 5.196810887951325,
+              "expected_hz": 5.196810893732957,
+              "error_cents": -1.9260578159545096e-06
+            },
+            {
+              "note": 36,
+              "actual_hz": 10.39362177590265,
+              "expected_hz": 10.393621787465914,
+              "error_cents": -1.9260578159545096e-06
+            },
+            {
+              "note": 57,
+              "actual_hz": 34.95983717143794,
+              "expected_hz": 34.95983721033197,
+              "error_cents": -1.9260578159545096e-06
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "compiler": {
+    "path": "/usr/bin/c++",
+    "sha256": "179301dcb41ea78accc3fa0048a7e6f6710d891945a751a34addd622020c1818",
+    "version": "Apple clang version 21.0.0 (clang-2100.1.1.101)\nTarget: arm64-apple-darwin25.5.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n"
+  },
+  "method": "Compile exact frozen Envelope configure/advance/default calibration methods, actual CandidateProfile.h, mappings and cutoff expression; only separate copied-header private visibility changes.",
+  "alignment": "Paired hardware age L+(n-actual_attack_samples)/44100; L is the frozen 30/35/40ms convention. Output transport latency is not applied to this internal control target and must be handled once by full-audio comparison.",
+  "scope": "Eight-sample control-target endpoints, not full audio or within-tick g interpolation; zero sustain/positive depth fixture only. Late sustained synthetic probes continue beyond original MIDI gates to expose termination.",
+  "acceptance_bounds": {
+    "maximum_cutoff_error_cents": 0.001,
+    "maximum_level_absolute_error": 1.1e-08
+  }
+}

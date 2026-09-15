@@ -34,6 +34,15 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   [Longer chords](source-audits/deepsonic-chord-envelope-2026-09-15.md) now favor
   the frozen exponential-in-Hz trajectory, with independent isolation controls.
   This supports an experimental recipe model; its peak/floor remain extrapolated.
+  [Actual preset experiments](source-audits/envelope-preset-holdouts-2026-09-15.md)
+  now test Hz and log exponential implementations with a timing grid selected
+  only on the first Moogie note. Both give mixed results on other notes and
+  ten unchanged presets; neither is promoted. Air Lead and Club Bass remain
+  byte-identical controls in both candidates.
+  [Complete dry-engine replay](source-audits/dry-envelope-engine-2026-09-15.md)
+  validates the implemented physical curves and favors Hz interpolation for
+  late chords. Limited LP24 harmonic coverage, timing sensitivity and the
+  failed generalization still prevent a production raw-control correction.
 - [Triangle phase/amplitude candidates](source-audits/waveform-conventions-2026-09-15.md)
   improve Dist Bs 1 but fail other presets' harmonic checks. No global
   waveform change was promoted.
@@ -41,6 +50,10 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   suggests stronger LP12 resonance, but moving-peak leakage invalidates many
   harmonic estimates and LP24 upper harmonics fail validation. No midpoint
   table or topology change was promoted.
+  [Complete-engine Q50 replay](source-audits/deepsonic-q50-engine-2026-09-15.md)
+  confirms a split: stronger resonance improves most isolated notes under
+  one reconstructed envelope, but worsens the complete sequence; the nominal
+  one-second envelope reverses the isolated-note gains too.
 - Firmware, service, manual, editor and controller-code searches did not
   yield an authenticated DSP firmware payload. The existing schematic model
   and newly found primary measurements are useful evidence; they do not
@@ -51,12 +64,12 @@ metrics. Their preset bytes and reconstructed performances are preserved.
 
 ## Next work
 
-1. Build an isolated experimental envelope renderer for the favored dry
-   trajectory. Test it against unchanged named presets before considering
-   any production envelope change.
-2. Characterize the nominal 50% resonance recordings with a method that
-   handles the moving resonant peak. Do not force the zero-resonance estimator
-   through windows that fail its signal-fit checks.
+1. Measure phase-only variation in the current short-window audio metrics.
+   Separate audible timbre errors from residuals caused by free oscillator
+   phase, especially on low notes. This cannot establish equivalence alone.
+2. Seek independent static-cutoff evidence across the published presets.
+   Air Lead's zero-depth filter mismatch is large, but one wet recording
+   cannot uniquely establish a replacement cutoff or key-follow law.
 3. Use unchanged named presets to investigate oscillator mixture, Super Saw
    stereo structure and wet tails. Air Lead and Cotton currently have the
    largest spectrum/stereo residuals, with uncertain original performances.

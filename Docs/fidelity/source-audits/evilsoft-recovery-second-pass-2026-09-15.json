@@ -1,0 +1,561 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-15",
+  "status": "no_controlled_waveform_or_pack_recovered",
+  "scope": "Bounded public recovery of original Evilsoft SH-201 cycles and SamplePackA.txt; no login bypass, contacting or unrelated executable download.",
+  "newly_recovered_sample_pack_assets": [],
+  "primary_source_pages": [
+    {
+      "url": "https://www.dogsonacid.com/threads/sh-201-sample-pack-a.485074/",
+      "author": "evilsoft",
+      "published": "2007-04-01",
+      "verified_original_download": "http://www.mediafire.com/?2zgmozmielz",
+      "note": "Original sample-pack provenance; details text not recovered."
+    },
+    {
+      "url": "https://www.dogsonacid.com/threads/sh-201-sample-pack-a.485074/page-2",
+      "note": "Inspected continuation; no alternate download."
+    },
+    {
+      "url": "https://www.dogsonacid.com/threads/sh201-kontakt-multi.485260/",
+      "author": "Mecha Hate Chimp",
+      "published": "2007-04-02",
+      "note": "Original derived Kontakt pack and later corrected Aymat path."
+    },
+    {
+      "url": "https://www.dogsonacid.com/threads/man-i-am-loving-this-sh201.483187/",
+      "author": "evilsoft",
+      "relevant_posts_date": "2007-03-27",
+      "finding": "Owner explicitly describes SH-201 envelopes as linear with straight inter-stage trajectories; no waveform trace, patch, timing or stated measured quantity.",
+      "confidence": "firsthand unmeasured qualitative claim; no DSP calibration recommended"
+    }
+  ],
+  "requests": [
+    {
+      "id": "ia-catalog-sh201",
+      "url": "https://archive.org/advancedsearch.php?q=%28%22SH201%22+OR+%22SH-201%22%29+AND+%28sample%2A+OR+wave%2A+OR+synthesizer%29&output=json&rows=50&fl%5B%5D=identifier%2Ctitle%2Cmediatype",
+      "curl_exit": 0,
+      "response": "200\nhttps://archive.org/advancedsearch.php?q=%28%22SH201%22+OR+%22SH-201%22%29+AND+%28sample%2A+OR+wave%2A+OR+synthesizer%29&output=json&rows=50&fl%5B%5D=identifier%2Ctitle%2Cmediatype\napplication/json",
+      "stderr": "",
+      "bytes": 2032,
+      "sha256": "06af362e27b6b43977f6035e24436fa99930f3ea6a6d428ceefd94e2cb617051",
+      "file": "build-fidelity/public-waveforms/evilsoft-recovery-2/ia-catalog-sh201.response",
+      "signature": "7b22726573706f6e7365486561646572223a7b22",
+      "catalog_result": {
+        "numFound": 15,
+        "start": 0,
+        "docs": [
+          {
+            "identifier": "midnightradio36",
+            "mediatype": "audio",
+            "title": "Midnight Radio Compilation 36"
+          },
+          {
+            "identifier": "endraum_unitybox_MR34",
+            "mediatype": "audio",
+            "title": "Midnight Radio Compilation 34"
+          },
+          {
+            "identifier": "MidnightRadioCompilationVariousArtists31",
+            "mediatype": "audio",
+            "title": "Midnight Radio compilation various artists 31"
+          },
+          {
+            "identifier": "MRchristmas2014",
+            "mediatype": "audio",
+            "title": "Midnight Radio compilation christmas edition 2014"
+          },
+          {
+            "identifier": "MidnightRadio65",
+            "mediatype": "audio",
+            "title": "Midnight Radio 65"
+          },
+          {
+            "identifier": "jamendo-121125",
+            "mediatype": "audio",
+            "title": "electron7 - Recto-Verso"
+          },
+          {
+            "identifier": "MidnightRadio43",
+            "mediatype": "audio",
+            "title": "Midnight Radio Compilation 43"
+          },
+          {
+            "identifier": "VacydSoundsetForSH201",
+            "mediatype": "texts",
+            "title": "Vacyd soundset for Roland SH-201"
+          },
+          {
+            "identifier": "MidnightRadiocompilationvariousartists37",
+            "mediatype": "audio",
+            "title": "Midnight Radio Compilation 37"
+          },
+          {
+            "identifier": "MidnightRadioCompilationVariousArtists30",
+            "mediatype": "audio",
+            "title": "Midnight Radio compilation various artists 30"
+          },
+          {
+            "identifier": "MidnightRadio44",
+            "mediatype": "audio",
+            "title": "Midnight Radio Compilation 44"
+          },
+          {
+            "identifier": "manualzz-id-804651",
+            "mediatype": "texts",
+            "title": "Roland SH-201 Owner`s manual"
+          },
+          {
+            "identifier": "endraum_unitybox_MR32",
+            "mediatype": "audio",
+            "title": "Midnight Radio compilation various artists 32"
+          },
+          {
+            "identifier": "midnight-radio-33",
+            "mediatype": "audio",
+            "title": "Midnight Radio Compilation 33"
+          },
+          {
+            "identifier": "WoodenToaster",
+            "mediatype": "movies",
+            "title": "WoodenToaster"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ia-catalog-exact",
+      "url": "https://archive.org/advancedsearch.php?q=%28%22SamplePackA%22+OR+%22SH201-multi%22+OR+%22SH201-A%22+OR+%22evilsoft%22%29&output=json&rows=50&fl%5B%5D=identifier%2Ctitle%2Cmediatype",
+      "curl_exit": 0,
+      "response": "200\nhttps://archive.org/advancedsearch.php?q=%28%22SamplePackA%22+OR+%22SH201-multi%22+OR+%22SH201-A%22+OR+%22evilsoft%22%29&output=json&rows=50&fl%5B%5D=identifier%2Ctitle%2Cmediatype\napplication/json",
+      "stderr": "",
+      "bytes": 681,
+      "sha256": "0026bf05783cc9d3ac411e932483e95a833db47bfad541aeadaf27025f0de9d8",
+      "file": "build-fidelity/public-waveforms/evilsoft-recovery-2/ia-catalog-exact.response",
+      "signature": "7b22726573706f6e7365486561646572223a7b22",
+      "catalog_result": {
+        "numFound": 1,
+        "start": 0,
+        "docs": [
+          {
+            "identifier": "speak_466",
+            "mediatype": "audio",
+            "title": "speak"
+          }
+        ]
+      }
+    },
+    {
+      "id": "wayback-aymat-direct",
+      "url": "https://web.archive.org/web/20080203000000id_/http://www.aymat.org/temp/samples/-keys%20%26%20synth/SH201-multi.rar",
+      "curl_exit": 0,
+      "response": "404\nhttps://web.archive.org/web/20080203000000id_/http://www.aymat.org/temp/samples/-keys%20%26%20synth/SH201-multi.rar\ntext/html",
+      "stderr": "",
+      "bytes": 4698,
+      "sha256": "86cf747b72f288ae4b2b942b0cb91b2c372746cdb018db8676a99c1d4b3e6014",
+      "file": "build-fidelity/public-waveforms/evilsoft-recovery-2/wayback-aymat-direct.response",
+      "signature": "3c21444f43545950452068746d6c3e0a3c68746d",
+      "explicit_not_archived_message": true,
+      "response_classification": "missing_url"
+    },
+    {
+      "id": "aymat-author-original",
+      "url": "https://www.aymat.org/temp/samples/SH201-multi.rar",
+      "curl_exit": 0,
+      "response": "404\nhttps://aymat.org/temp/samples/SH201-multi.rar\ntext/html; charset=UTF-8",
+      "stderr": "",
+      "bytes": 1596787,
+      "sha256": "0cbc433102af7b95eabdd938ab71d978dfdb2f3055d7d6097f8cec97e065d147",
+      "file": "build-fidelity/public-waveforms/evilsoft-recovery-2/aymat-author-original.response",
+      "signature": "3c21444f43545950452068746d6c3e0a3c68746d"
+    },
+    {
+      "id": "ia-vacyd-metadata",
+      "url": "https://archive.org/metadata/VacydSoundsetForSH201",
+      "curl_exit": 0,
+      "response": "200\nhttps://archive.org/metadata/VacydSoundsetForSH201\napplication/json",
+      "stderr": "",
+      "bytes": 2587,
+      "sha256": "f5b8db842f9b14210f272e6784614bc24a6b30c8aab2d5f46a5408da106e4600",
+      "file": "build-fidelity/public-waveforms/evilsoft-recovery-2/ia-vacyd-metadata.response",
+      "signature": "7b22616c7465726e6174655f6c6f636174696f6e",
+      "metadata": {
+        "identifier": "VacydSoundsetForSH201",
+        "mediatype": "texts",
+        "creator": "Vacyd",
+        "date": "2011-03-12",
+        "description": "This is the free Vacyd soundset for the Roland SH-201 synthesizer.",
+        "subject": "Roland SH-201 synth soundset patches",
+        "title": "Vacyd soundset for Roland SH-201"
+      },
+      "files": [
+        {
+          "name": "VacydSoundsetForSH201_archive.torrent",
+          "size": "1730",
+          "format": "Archive BitTorrent",
+          "source": "metadata"
+        },
+        {
+          "name": "VacydSoundsetForSH201_files.xml",
+          "size": null,
+          "format": "Metadata",
+          "source": "original"
+        },
+        {
+          "name": "VacydSoundsetForSH201_meta.sqlite",
+          "size": "9216",
+          "format": "Metadata",
+          "source": "original"
+        },
+        {
+          "name": "VacydSoundsetForSH201_meta.xml",
+          "size": "1057",
+          "format": "Metadata",
+          "source": "original"
+        },
+        {
+          "name": "Vengeance Sound - Vacyd soundset for SH-201.zip",
+          "size": "8787",
+          "format": "ZIP",
+          "source": "original"
+        }
+      ]
+    },
+    {
+      "id": "ia-speak-metadata",
+      "url": "https://archive.org/metadata/speak_466",
+      "curl_exit": 0,
+      "response": "200\nhttps://archive.org/metadata/speak_466\napplication/json",
+      "stderr": "",
+      "bytes": 6895,
+      "sha256": "b8268cf1a13bbc5a90416349427b944103aac498563c9ea3abf1eef4df5ba6cf",
+      "file": "build-fidelity/public-waveforms/evilsoft-recovery-2/ia-speak-metadata.response",
+      "signature": "7b22616c7465726e6174655f6c6f636174696f6e",
+      "metadata": {
+        "mediatype": "audio",
+        "title": "speak",
+        "description": "july162008 2:35 valmis . lel distortion drive pedaal ja roland sh201 \u00c3\u00bchendamisel raadiolained??? kokkupandud renoises, kolmas lugu t\u00c3\u00a4na , v\u00c3\u00a4sinud...\n\n06.152008 roland sh201 lel distortion drive pedaal ja roland sh201 tesla ddl kokkupandud renoises",
+        "subject": "radiowaves; audio; techno; clicks",
+        "creator": "mihkel tomberg",
+        "licenseurl": "http://creativecommons.org/licenses/by-nc-sa/3.0/us/",
+        "identifier": "speak_466"
+      },
+      "files": [
+        {
+          "name": "Naftaasia-534.mp3",
+          "size": "13948450",
+          "format": "VBR MP3",
+          "source": "original"
+        },
+        {
+          "name": "Naftaasia-534.ogg",
+          "size": "4936612",
+          "format": "Ogg Vorbis",
+          "source": "derivative"
+        },
+        {
+          "name": "Naftaasia-534.png",
+          "size": "9505",
+          "format": "PNG",
+          "source": "derivative"
+        },
+        {
+          "name": "Naftaasia-534_64kb.mp3",
+          "size": "3487369",
+          "format": "64Kbps MP3",
+          "source": "derivative"
+        },
+        {
+          "name": "Naftaasia-534_spectrogram.png",
+          "size": "267386",
+          "format": "Spectrogram",
+          "source": "derivative"
+        },
+        {
+          "name": "Naftaasia-Speak.mp3",
+          "size": "14054612",
+          "format": "VBR MP3",
+          "source": "original"
+        },
+        {
+          "name": "Naftaasia-Speak.ogg",
+          "size": "5531426",
+          "format": "Ogg Vorbis",
+          "source": "derivative"
+        },
+        {
+          "name": "Naftaasia-Speak.png",
+          "size": "8570",
+          "format": "PNG",
+          "source": "derivative"
+        },
+        {
+          "name": "Naftaasia-Speak.xrns",
+          "size": "59353993",
+          "format": "Unknown",
+          "source": "original"
+        },
+        {
+          "name": "Naftaasia-Speak_64kb.mp3",
+          "size": "3513909",
+          "format": "64Kbps MP3",
+          "source": "derivative"
+        },
+        {
+          "name": "Naftaasia-Speak_spectrogram.png",
+          "size": "307990",
+          "format": "Spectrogram",
+          "source": "derivative"
+        },
+        {
+          "name": "__ia_thumb.jpg",
+          "size": "2759",
+          "format": "Item Tile",
+          "source": "original"
+        },
+        {
+          "name": "speak_466_64kb.m3u",
+          "size": "132",
+          "format": "64Kbps M3U",
+          "source": "derivative"
+        },
+        {
+          "name": "speak_466_64kb_mp3.zip",
+          "size": "7001612",
+          "format": "64Kbps MP3 ZIP",
+          "source": "derivative"
+        },
+        {
+          "name": "speak_466_archive.torrent",
+          "size": "7718",
+          "format": "Archive BitTorrent",
+          "source": "metadata"
+        },
+        {
+          "name": "speak_466_files.xml",
+          "size": null,
+          "format": "Metadata",
+          "source": "original"
+        },
+        {
+          "name": "speak_466_meta.xml",
+          "size": "1088",
+          "format": "Metadata",
+          "source": "original"
+        },
+        {
+          "name": "speak_466_vbr.m3u",
+          "size": "122",
+          "format": "VBR M3U",
+          "source": "derivative"
+        },
+        {
+          "name": "speak_466_vbr_mp3.zip",
+          "size": "28003376",
+          "format": "VBR ZIP",
+          "source": "derivative"
+        }
+      ]
+    },
+    {
+      "id": "mediafire-original-key",
+      "url": "https://www.mediafire.com/?2zgmozmielz",
+      "curl_exit": 0,
+      "response": "404\nhttps://www.mediafire.com/error.php?errno=320&origin=download\ntext/html; charset=UTF-8",
+      "stderr": "",
+      "bytes": 38887,
+      "sha256": "4f4b531adc9a8c23bf1ffecab761a44507dd2ee1de3b25ea50bed39e10483f84",
+      "file": "build-fidelity/public-waveforms/evilsoft-recovery-2/mediafire-original-key.response",
+      "signature": "203c21444f43545950452068746d6c3e203c6874"
+    },
+    {
+      "id": "wayback-mediafire-original",
+      "url": "https://web.archive.org/web/20070401000000id_/http://www.mediafire.com/?2zgmozmielz",
+      "curl_exit": 0,
+      "response": "404\nhttps://web.archive.org/web/20070401000000id_/http://www.mediafire.com/?2zgmozmielz\ntext/html",
+      "stderr": "",
+      "bytes": 4602,
+      "sha256": "6d8da8871ac53b0cb514972456869e5c005eeb94c4d5778b255fa44fe45f7584",
+      "file": "build-fidelity/public-waveforms/evilsoft-recovery-2/wayback-mediafire-original.response",
+      "signature": "3c21444f43545950452068746d6c3e0a3c68746d",
+      "explicit_not_archived_message": true,
+      "response_classification": "missing_url"
+    },
+    {
+      "id": "wayback-aymat-original",
+      "url": "https://web.archive.org/web/20070402000000id_/http://www.aymat.org/temp/samples/SH201-multi.rar",
+      "curl_exit": 0,
+      "response": "404\nhttps://web.archive.org/web/20070402000000id_/http://www.aymat.org/temp/samples/SH201-multi.rar\ntext/html",
+      "stderr": "",
+      "bytes": 4632,
+      "sha256": "768b8d52a4118c50697c3760da09e94102bd472906019579cbd51a06ce46e3e1",
+      "file": "build-fidelity/public-waveforms/evilsoft-recovery-2/wayback-aymat-original.response",
+      "signature": "3c21444f43545950452068746d6c3e0a3c68746d",
+      "explicit_not_archived_message": true,
+      "response_classification": "missing_url"
+    },
+    {
+      "id": "wayback-aymat-cdx-path",
+      "url": "https://web.archive.org/cdx/search/cdx?url=www.aymat.org%2Ftemp%2Fsamples%2F%2A&output=json&filter=urlkey%3A.%2A%5BSs%5D%5BHh%5D201.%2A&fl=timestamp%2Coriginal%2Cstatuscode%2Cmimetype%2Cdigest%2Clength&collapse=digest",
+      "curl_exit": 0,
+      "response": "503\nhttps://web.archive.org/cdx/search/cdx?url=www.aymat.org%2Ftemp%2Fsamples%2F%2A&output=json&filter=urlkey%3A.%2A%5BSs%5D%5BHh%5D201.%2A&fl=timestamp%2Coriginal%2Cstatuscode%2Cmimetype%2Cdigest%2Clength&collapse=digest\ntext/html",
+      "stderr": "",
+      "bytes": 11832,
+      "sha256": "e084d527921708642a79724e9f0210da659bbc0905c6ce9a3a1f416e4628091c",
+      "file": "build-fidelity/public-waveforms/evilsoft-recovery-2/wayback-aymat-cdx-path.response",
+      "signature": "3c68746d6c3e3c686561643e3c6d657461206368",
+      "explicit_not_archived_message": false,
+      "response_classification": "temporary_service_failure"
+    },
+    {
+      "id": "speak-xrns-directory-probe",
+      "url": "https://archive.org/download/speak_466/Naftaasia-Speak.xrns",
+      "curl_exit": 0,
+      "request_range": "last65536bytes",
+      "response": "206\nhttps://dn710300.ca.archive.org/0/items/speak_466/Naftaasia-Speak.xrns\napplication/octet-stream",
+      "stderr": "",
+      "bytes": 65536,
+      "sha256": "a8e11503eabe2a8d6a4a58819e37d75ae87f5c843d140de76a1528c66d79736c",
+      "file": "build-fidelity/public-waveforms/evilsoft-recovery-2/speak-xrns-tail.bin",
+      "central_directory_entries": [
+        {
+          "name": "Song.xml",
+          "compressed_size": 98779,
+          "uncompressed_size": 1852347,
+          "local_header_offset": 0
+        },
+        {
+          "name": "SampleData/Instrument00 (Recorded Sample)/Sample00 (Recorded Sample).flac",
+          "compressed_size": 28009288,
+          "uncompressed_size": 28009288,
+          "local_header_offset": 98817
+        },
+        {
+          "name": "SampleData/Instrument01 (b3)/Sample00 (b3).flac",
+          "compressed_size": 16048,
+          "uncompressed_size": 16048,
+          "local_header_offset": 28108208
+        },
+        {
+          "name": "SampleData/Instrument02 (b2)/Sample00 (b2).flac",
+          "compressed_size": 24794,
+          "uncompressed_size": 24794,
+          "local_header_offset": 28124333
+        },
+        {
+          "name": "SampleData/Instrument03 (b3)/Sample00 (b3).flac",
+          "compressed_size": 3061,
+          "uncompressed_size": 3061,
+          "local_header_offset": 28149204
+        },
+        {
+          "name": "SampleData/Instrument04 (b3)/Sample00 (b3).flac",
+          "compressed_size": 3061,
+          "uncompressed_size": 3061,
+          "local_header_offset": 28152342
+        },
+        {
+          "name": "SampleData/Instrument08 (Recorded Sample)/Sample00 (Recorded Sample).flac",
+          "compressed_size": 4001875,
+          "uncompressed_size": 4001875,
+          "local_header_offset": 28155480
+        },
+        {
+          "name": "SampleData/Instrument09 (Recorded Sample)/Sample00 (Recorded Sample).flac",
+          "compressed_size": 12498985,
+          "uncompressed_size": 12498985,
+          "local_header_offset": 32157458
+        },
+        {
+          "name": "SampleData/Instrument10 (Recorded Sample)/Sample00 (Recorded Sample).flac",
+          "compressed_size": 7264856,
+          "uncompressed_size": 7264856,
+          "local_header_offset": 44656546
+        },
+        {
+          "name": "SampleData/Instrument11 (Recorded Sample)/Sample00 (Recorded Sample).flac",
+          "compressed_size": 960368,
+          "uncompressed_size": 960368,
+          "local_header_offset": 51921505
+        },
+        {
+          "name": "SampleData/Instrument12 (Recorded Sample)/Sample00 (Recorded Sample).flac",
+          "compressed_size": 1111972,
+          "uncompressed_size": 1111972,
+          "local_header_offset": 52881976
+        },
+        {
+          "name": "SampleData/Instrument16 (Recorded Sample)/Sample00 (Recorded Sample).flac",
+          "compressed_size": 2030622,
+          "uncompressed_size": 2030622,
+          "local_header_offset": 53994051
+        },
+        {
+          "name": "SampleData/Instrument18 (Recorded Sample)/Sample00 (Recorded Sample).flac",
+          "compressed_size": 1344981,
+          "uncompressed_size": 1344981,
+          "local_header_offset": 56024776
+        },
+        {
+          "name": "SampleData/Instrument19 (Recorded Sample)/Sample00 (Recorded Sample).flac",
+          "compressed_size": 1389276,
+          "uncompressed_size": 1389276,
+          "local_header_offset": 57369860
+        },
+        {
+          "name": "SampleData/Instrument20 (Recorded Sample)/Sample00 (Recorded Sample).flac",
+          "compressed_size": 231886,
+          "uncompressed_size": 231886,
+          "local_header_offset": 58759239
+        },
+        {
+          "name": "SampleData/Instrument21 (Recorded Sample)/Sample00 (Recorded Sample).flac",
+          "compressed_size": 320052,
+          "uncompressed_size": 320052,
+          "local_header_offset": 58991228
+        },
+        {
+          "name": "SampleData/Instrument22 (Recorded Sample)/Sample00 (Recorded Sample).flac",
+          "compressed_size": 40631,
+          "uncompressed_size": 40631,
+          "local_header_offset": 59311383
+        }
+      ]
+    },
+    {
+      "id": "speak-xrns-songxml-probe",
+      "url": "https://archive.org/download/speak_466/Naftaasia-Speak.xrns",
+      "request_range": "0-98816",
+      "curl_exit": 0,
+      "response": "206\nhttps://dn710300.ca.archive.org/0/items/speak_466/Naftaasia-Speak.xrns",
+      "bytes": 98817,
+      "sha256": "8270153df20c517d6902de5a2d9561b3e2d903681b31c5353f9ca6e6a369d392",
+      "file": "build-fidelity/public-waveforms/evilsoft-recovery-2/speak-xrns-songxml-range.bin",
+      "decompressed_xml_sha256": "52fed32825ea1887817c908f7bfd7e219b5339b1a9151fa7b6ff3ee39dbfa525",
+      "decompressed_xml_bytes": 1852347
+    },
+    {
+      "id": "wayback-maxsynths-direct",
+      "url": "https://web.archive.org/web/20121205000000id_/http://www.maxsynths.com/download/MaxSynths_Rayblaster_Impulses01.zip",
+      "curl_exit": 0,
+      "response": "404\nhttps://web.archive.org/web/20121205000000id_/http://www.maxsynths.com/download/MaxSynths_Rayblaster_Impulses01.zip\ntext/html",
+      "stderr": "",
+      "bytes": 4652,
+      "sha256": "b52bd7a14c32ff818a50f68ccbac854bd8fa7e6361afe02654a292fd0234c201",
+      "file": "build-fidelity/public-waveforms/evilsoft-recovery-2/wayback-maxsynths-direct.response",
+      "signature": "3c21444f43545950452068746d6c3e0a3c68746d",
+      "explicit_not_archived_message": true,
+      "response_classification": "missing_url"
+    }
+  ],
+  "archive_project_disposition": {
+    "identifier": "speak_466",
+    "url": "https://archive.org/details/speak_466",
+    "original_project_url": "https://archive.org/download/speak_466/Naftaasia-Speak.xrns",
+    "inspection": "Only public last65536bytes ZIP directory and first98817bytes compressed Song.xml downloaded; no full project or embedded audio.",
+    "song_xml_sha256": "52fed32825ea1887817c908f7bfd7e219b5339b1a9151fa7b6ff3ee39dbfa525",
+    "result": "Processed SH-201 composition with generic recorded samples and software percussion. No identified dry SH-201 waveform or exact patch recipe."
+  },
+  "search_outcome": "No identifiable public mirror from exact filename/key, author, sample-cycle and GitHub-index searches; not a proof of absence.",
+  "deduplication": "Trioda/Amazona originals not reacquired. Vacyd is previously identified and its archive was not downloaded."
+}

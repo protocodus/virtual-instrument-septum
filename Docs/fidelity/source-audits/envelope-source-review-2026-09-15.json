@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-15",
+  "status": "independent_source_review_no_consequential_defect_found",
+  "production_revision": "b0f6c03",
+  "files": [
+    {
+      "path": "Tools/build_envelope_experiment.py",
+      "sha256": "1b1dbc1ea71e3bf50aeb2a251cb7a8ad586350068ad887e289c1903e86b35520"
+    },
+    {
+      "path": "Docs/fidelity/source-audits/hz-envelope-experiment-design-2026-09-15.md",
+      "sha256": "30fbe8c90a486e45a3c26be70dbd978fbf1f866590caf7546fb39c929c7cf490"
+    },
+    {
+      "path": "Docs/fidelity/source-audits/deepsonic-envelope-shape-2026-09-15.json",
+      "sha256": "294b5206d92dc80b2e9eaddbd391fa04fd3a620698cae8ea4ca0de3e602236c4"
+    },
+    {
+      "path": "build-fidelity/envelope-hypothesis/dry-v2/experiment-script.py",
+      "sha256": "d1d7eade7a1857a9c69897d1ed4c4af16f833fe2bdf34d0dcb883673e22a2d7a"
+    },
+    {
+      "path": "build-fidelity/envelope-hypothesis/dry-v2/predeclared-definitions.json",
+      "sha256": "8a5983d7c5203dc9c03cc69e2cba1277c8712d0954c9b2dc8fcb106d619548ce"
+    },
+    {
+      "path": "build-fidelity/envelope-hypothesis/dry-v2/checkpoint-source/Source/DSP/SeptumEngine.cpp",
+      "sha256": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae"
+    },
+    {
+      "path": "build-fidelity/envelope-hypothesis/dry-v2/prototype-dry-hz-35ms/Source/DSP/SeptumEngine.cpp",
+      "sha256": "d40171c841d0bbbac9d4ca47387481ae7d18344dedbda55520257f1c1fed30ed"
+    },
+    {
+      "path": "build-fidelity/envelope-hypothesis/dry-v2/prototype-dry-hz-35ms/Source/DSP/SeptumEngine.h",
+      "sha256": "17402248ff9db700850fcea6423ac1e842349008dc8fb0b06094c95a6c3c3b44"
+    },
+    {
+      "path": "build-fidelity/envelope-hypothesis/dry-v2/prototype-dry-log-35ms/Source/DSP/SeptumEngine.cpp",
+      "sha256": "3460f29793fd40f3eb1c891d72e9e18810687ce602fdef5c616dd32fd04462f8"
+    }
+  ],
+  "methods": [
+    "Read transform and predeclared design; inspect generated copied DSP.",
+    "Compare PitchEnvelope::configure byte-for-byte against frozen source.",
+    "Inspect AMP nullptr branch and its unchanged coefficient/termination constants.",
+    "Compare generated physical-target table entries with predeclared T60, cutoff and depth.",
+    "Independently hash both dry-v2 production renders against pinned Q0 hashes."
+  ],
+  "identity_guards": {
+    "lp12": "e960507e6c9404554980eceae90d51e1253347d22fbe7e661f48730dce7484da",
+    "lp24": "dd505cd6a020417a5b86c52083a8dd6091b3f18edbad7c28a0de431df2356a33"
+  },
+  "dry_hz_35ms_targets": {
+    "base_cutoff_hz_midi60": 243.80448770092713,
+    "depth_octaves": 3.1283167105928182,
+    "tau_seconds": 0.21407633479296448,
+    "T60_seconds": 1.4787869317712476
+  },
+  "resolved_issue": "Dry production identity and MIDI/omission guards were absent initially and subsequently added by experiment author; existing dry-v2 production WAVs independently match pinned Q0.",
+  "not_claimed": [
+    "No hardware-match decision from source review.",
+    "No executed AMP/pitch isolation render or extreme-depth continuity fixture in this review.",
+    "No code edits to shipping DSP or experimental builder by reviewer."
+  ]
+}

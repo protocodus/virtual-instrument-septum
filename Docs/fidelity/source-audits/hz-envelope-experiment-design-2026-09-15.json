@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "status": "predeclared experiment design; no candidate scores or DSP edits",
+  "source_commit": "b0f6c03cba701ccb2dd9dcf1d8ad26c3eba578d5",
+  "inputs": {
+    "single_note_result_sha256": "294b5206d92dc80b2e9eaddbd391fa04fd3a620698cae8ea4ca0de3e602236c4",
+    "chord_result_sha256": "fb3d507b1a1cefc041f7b0fd0bd10f6833176bf8d6ab2e6c1cded1d9c0f8b1b9",
+    "sources": [
+      {
+        "filename": "roland_sh-201_-_filter_demo_-_lpf12_q000.mp3",
+        "sha256": "28e241247a0efb217eb4cb7154cc3b69713fcebca781639c45b8904b3dc8615b",
+        "decoded_sha256": "3154afa9bd5b509d44dbc8fcb1972cbc2ffeb46d9adb00d107da4c2d05cc8a37"
+      },
+      {
+        "filename": "roland_sh-201_-_filter_demo_-_lpf24_q000.mp3",
+        "sha256": "ebb6fa4e12136028bbff614633095aa510c31654fcce840af5e3a85b3a469d90",
+        "decoded_sha256": "92fc303c94e9bde908cbeb72571c06dd5a4a9d8fc59b10cb90378040404eed4f"
+      }
+    ]
+  },
+  "dry_model": {
+    "base_ratio": 0.9318832715021725,
+    "midi_timeline_coefficient": 8.498434407093052,
+    "tau_seconds": 0.21407633479296448,
+    "T60_seconds": 1.4787869317712476,
+    "base_C4_hz": 243.80448770092713,
+    "current_fractional_cutoff": 45.8171902644523
+  },
+  "dry_timing_sensitivity": [
+    {
+      "effective_delay_seconds": 0.03,
+      "peak_ratio": 8.319055628393162,
+      "depth_octaves": 3.158198606145028,
+      "current_fractional_depth": 16.580542682261395
+    },
+    {
+      "effective_delay_seconds": 0.035,
+      "peak_ratio": 8.14851898034229,
+      "depth_octaves": 3.1283167105928182,
+      "current_fractional_depth": 16.423662730612296
+    },
+    {
+      "effective_delay_seconds": 0.04,
+      "peak_ratio": 7.981919257940825,
+      "depth_octaves": 3.098514527077482,
+      "current_fractional_depth": 16.26720126715678
+    }
+  ],
+  "conditional_delay_for_exact_recipe_peak8_seconds": 0.03945167598273776,
+  "onset_diagnostic": {
+    "method": "centered 45-sample RMS; thresholds relative to 90th percentile at MIDI+40..80ms; no subthreshold interpolation",
+    "sample_rate": 44100,
+    "observations": [
+      {
+        "slope": 12,
+        "midi_on_seconds": 17.25,
+        "threshold_crossings_seconds": {
+          "0.01": 0.03489795918367378,
+          "0.03": 0.034943310657595816,
+          "0.1": 0.03503401360544345,
+          "0.3": 0.03575963718821029,
+          "0.5": 0.037414965986393156
+        }
+      },
+      {
+        "slope": 12,
+        "midi_on_seconds": 22.0,
+        "threshold_crossings_seconds": {
+          "0.01": 0.03662131519274325,
+          "0.03": 0.036689342403629865,
+          "0.1": 0.03759637188208487,
+          "0.3": 0.03841269841269934,
+          "0.5": 0.038752834467121744
+        }
+      },
+      {
+        "slope": 12,
+        "midi_on_seconds": 24.0,
+        "threshold_crossings_seconds": {
+          "0.01": 0.03539682539682687,
+          "0.03": 0.03544217687074891,
+          "0.1": 0.03553287981859299,
+          "0.3": 0.03591836734693743,
+          "0.5": 0.036689342403629865
+        }
+      },
+      {
+        "slope": 12,
+        "midi_on_seconds": 28.0,
+        "threshold_crossings_seconds": {
+          "0.01": 0.03505668934240447,
+          "0.03": 0.035192743764170586,
+          "0.1": 0.03551020408163197,
+          "0.3": 0.03619047619047677,
+          "0.5": 0.036553287981860194
+        }
+      },
+      {
+        "slope": 24,
+        "midi_on_seconds": 17.25,
+        "threshold_crossings_seconds": {
+          "0.01": 0.03444444444444272,
+          "0.03": 0.034489795918368316,
+          "0.1": 0.034580498866212395,
+          "0.3": 0.034784580498865125,
+          "0.5": 0.03501133786848243
+        }
+      },
+      {
+        "slope": 24,
+        "midi_on_seconds": 22.0,
+        "threshold_crossings_seconds": {
+          "0.01": 0.03487528344671276,
+          "0.03": 0.0349206349206348,
+          "0.1": 0.03501133786848243,
+          "0.3": 0.03530612244897924,
+          "0.5": 0.03582766439909335
+        }
+      },
+      {
+        "slope": 24,
+        "midi_on_seconds": 24.0,
+        "threshold_crossings_seconds": {
+          "0.01": 0.03562358276644062,
+          "0.03": 0.03578231292517131,
+          "0.1": 0.036553287981860194,
+          "0.3": 0.037142857142857366,
+          "0.5": 0.03746031746031875
+        }
+      },
+      {
+        "slope": 24,
+        "midi_on_seconds": 28.0,
+        "threshold_crossings_seconds": {
+          "0.01": 0.03444444444444272,
+          "0.03": 0.034489795918368316,
+          "0.1": 0.034580498866212395,
+          "0.3": 0.034784580498865125,
+          "0.5": 0.03764172335601046
+        }
+      }
+    ],
+    "limit": "Audio energy edge is not exact filter decay-start latency; phase, MP3, attack and filter group delay remain."
+  },
+  "moogie_grid": [
+    {
+      "tau49_seconds": 0.08,
+      "T60_raw49_seconds": 0.552620422318571
+    },
+    {
+      "tau49_seconds": 0.11,
+      "T60_raw49_seconds": 0.759853080688035
+    },
+    {
+      "tau49_seconds": 0.15,
+      "T60_raw49_seconds": 1.0361632918473205
+    },
+    {
+      "tau49_seconds": 0.2,
+      "T60_raw49_seconds": 1.3815510557964275
+    },
+    {
+      "tau49_seconds": 0.27,
+      "T60_raw49_seconds": 1.865093925325177
+    }
+  ],
+  "time_table_rule": "Freeze g(v)=current committed filterDecaySeconds(v); candidate T60(v)=T60(49)*g(v)/g(49). No second interpolation parameter selected on holdouts.",
+  "moogie_timing": "Reconstructed MIDI onsets are already on decoded hardware audio timeline; do not add dry original-MIDI delay. Compensate known renderer latency once; report +/-20ms onset sensitivity.",
+  "filter_only_termination": {
+    "existing_decay_amount_threshold": 0.0001,
+    "existing_release_amount_threshold": 1e-05,
+    "max_depth_octaves": 12,
+    "decay_cutoff_jump_cents": 594.2201734900017,
+    "release_cutoff_jump_cents": 69.48092791587085,
+    "suggested_amount_threshold": 1e-07,
+    "max_jump_at_suggested_threshold_cents": 0.7087952271727991
+  },
+  "limits": [
+    "Initial peak and floor are extrapolated; dry raw decay/depth unknown.",
+    "Delay and exponential coefficient trade exactly in post-attack curve.",
+    "Published decay endpoint durations have unknown threshold and envelope identity; do not treat them as T60.",
+    "Global additive-Hz mapping changes attack, sustain, release and negative-depth trajectories; only S=0 positive decay currently has evidence.",
+    "Any winning candidate remains conditional until held-out notes/presets and endpoint continuity pass."
+  ]
+}
