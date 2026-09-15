@@ -1,0 +1,878 @@
+{
+  "mode": "gain",
+  "script_sha256": "0a5a6a55f46be0645b643c03c753c19ea5e5ecbc03b60e1d16fac98f558d9f9b",
+  "experiment_results_sha256": "ff09418c895d188c0df2323ec45cb6616fd7e3d40184b6205acaea5c04b92d51",
+  "experiment_snapshot_sha256": "ac74e8f89b296ed2466d515e7424069b76fd72ac1e5472334969d580414ad55a",
+  "source_manifest_sha256": "fa7a2b9a3eb88733d2a6e37c5dca985a09bbcfcd3c23b311688056067cf02c7d",
+  "source_checks": [
+    {
+      "mode": "gain",
+      "scale": 1.0,
+      "only_expected_return_change": true,
+      "dsp_snapshot_verified": true,
+      "no_profile_or_rate_override": true,
+      "renderer_sha256": "0e69118d0dab0928793ef3b59208fddf43b7bd56d982f2c053d3c0ad9f15b646"
+    },
+    {
+      "mode": "gain",
+      "scale": 0.5,
+      "only_expected_return_change": true,
+      "dsp_snapshot_verified": true,
+      "no_profile_or_rate_override": true,
+      "renderer_sha256": "f75f864dffa98eca24025836bf9d04705ad7fd68717ddef982092f4865828758"
+    },
+    {
+      "mode": "gain",
+      "scale": 0.25,
+      "only_expected_return_change": true,
+      "dsp_snapshot_verified": true,
+      "no_profile_or_rate_override": true,
+      "renderer_sha256": "3d4edd95e8a645dcf410db4d1b151abd0bda747b58f1990e018442a6866fc567"
+    }
+  ],
+  "controls": {
+    "engine_sha256": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+    "analog_output_sha256": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+    "engine_header_sha256": "f1c2f678f1b3c7b4df650df5d3c4f9c376cd64c8a5655a440fca0212a6868119",
+    "compile_command": [
+      "c++",
+      "-O2",
+      "-std=c++17",
+      "-I",
+      "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/frozen-source/Source/DSP",
+      "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/isolation-audit-v1/actual-output-route.cpp",
+      "-o",
+      "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/isolation-audit-v1/actual-output-route"
+    ],
+    "fixture_sha256": "eeef4316a86dbc0fe78d3c24358775f9f851991e6b6097fcc9c746285e597165",
+    "binary_sha256": "aa95a0e4383c929f829beedfc54f7e4863ada1850c06ad5aa73336956911b8e1",
+    "raw_output_sha256": "94289517a3ae132b5066a3a1832d2a3a2817c80ed4f411ca0ea236986405aee2",
+    "limiter_source": "    [[nodiscard]] inline double outputLimit (double x) noexcept\n    {\n        const double a = std::abs (x);\n        if (a <= mapping::outputLimitKnee)\n            return x;\n        const double over = a - mapping::outputLimitKnee;\n        const double limited =\n            mapping::outputLimitKnee\n            + mapping::outputLimitRange\n                  * (1.0 - std::exp (-over * (1.0 / mapping::outputLimitRange)));\n        return x < 0.0 ? -limited : limited;\n    }\n\n",
+    "method": "Actual AnalogOutput implementation and verbatim outputLimit; float wet/dry mix, shared master slew, documented code pan law, final float conversion. Synthetic wet-return input, not a reverb-network model.",
+    "rows": [
+      {
+        "mode": "width",
+        "condition": "wet_only_centered_small_signal",
+        "models": [
+          {
+            "value": 1.0,
+            "peak": 0.15967939794063568,
+            "mid_expected_error_max": 0.0,
+            "mid_rms_ratio": 1.0,
+            "side_expected_error_max": 0.0,
+            "side_rms_ratio": 1.0
+          },
+          {
+            "value": 0.5,
+            "peak": 0.12936504185199738,
+            "mid_expected_error_max": 1.30385160446167e-08,
+            "mid_rms_ratio": 0.9999999997960357,
+            "side_expected_error_max": 8.381903171539307e-09,
+            "side_rms_ratio": 0.4999999995829129
+          },
+          {
+            "value": 0.25,
+            "peak": 0.11420785635709763,
+            "mid_expected_error_max": 1.1175870895385742e-08,
+            "mid_rms_ratio": 0.9999999999096751,
+            "side_expected_error_max": 7.450580596923828e-09,
+            "side_rms_ratio": 0.2500000001853115
+          }
+        ],
+        "affine_max_error": 2.2351741790771484e-08
+      },
+      {
+        "mode": "width",
+        "condition": "dry_plus_wet_centered_small_signal",
+        "models": [
+          {
+            "value": 1.0,
+            "peak": 0.2179100215435028,
+            "mid_expected_error_max": 0.0,
+            "mid_rms_ratio": 1.0,
+            "side_expected_error_max": 0.0,
+            "side_rms_ratio": 1.0
+          },
+          {
+            "value": 0.5,
+            "peak": 0.1893954873085022,
+            "mid_expected_error_max": 1.4901161193847656e-08,
+            "mid_rms_ratio": 0.999999999562157,
+            "side_expected_error_max": 0.02899676375091076,
+            "side_rms_ratio": 0.7562974093335564
+          },
+          {
+            "value": 0.25,
+            "peak": 0.1755070984363556,
+            "mid_expected_error_max": 1.4901161193847656e-08,
+            "mid_rms_ratio": 1.0000000000191323,
+            "side_expected_error_max": 0.04349514190107584,
+            "side_rms_ratio": 0.6818966376627027
+          }
+        ],
+        "affine_max_error": 2.9802322387695312e-08
+      },
+      {
+        "mode": "width",
+        "condition": "wet_only_offcenter_pan_small_signal",
+        "models": [
+          {
+            "value": 1.0,
+            "peak": 0.20120777189731598,
+            "mid_expected_error_max": 0.0,
+            "mid_rms_ratio": 1.0,
+            "side_expected_error_max": 0.0,
+            "side_rms_ratio": 1.0
+          },
+          {
+            "value": 0.5,
+            "peak": 0.16300944983959198,
+            "mid_expected_error_max": 0.009383216500282288,
+            "mid_rms_ratio": 0.9864459416087343,
+            "side_expected_error_max": 0.015324899926781654,
+            "side_rms_ratio": 0.6500965957264794
+          },
+          {
+            "value": 0.25,
+            "peak": 0.14391028881072998,
+            "mid_expected_error_max": 0.014074821025133133,
+            "mid_rms_ratio": 0.9830319304601988,
+            "side_expected_error_max": 0.022987344302237034,
+            "side_rms_ratio": 0.5275399973170601
+          }
+        ],
+        "affine_max_error": 2.9802322387695312e-08
+      },
+      {
+        "mode": "width",
+        "condition": "wet_only_centered_limiter_active",
+        "models": [
+          {
+            "value": 1.0,
+            "peak": 1.0498286485671997,
+            "mid_expected_error_max": 0.0,
+            "mid_rms_ratio": 1.0,
+            "side_expected_error_max": 0.0,
+            "side_rms_ratio": 1.0
+          },
+          {
+            "value": 0.5,
+            "peak": 1.0480624437332153,
+            "mid_expected_error_max": 0.1810196191072464,
+            "mid_rms_ratio": 1.0701770676204978,
+            "side_expected_error_max": 0.0666436143219471,
+            "side_rms_ratio": 0.5309410785881368
+          },
+          {
+            "value": 0.25,
+            "peak": 1.0434856414794922,
+            "mid_expected_error_max": 0.2661857157945633,
+            "mid_rms_ratio": 1.0911721843777926,
+            "side_expected_error_max": 0.05240505840629339,
+            "side_rms_ratio": 0.27052505521035713
+          }
+        ],
+        "affine_max_error": 0.1257326602935791
+      },
+      {
+        "mode": "width",
+        "condition": "pure_mid_centered_small_signal",
+        "models": [
+          {
+            "value": 1.0,
+            "peak": 0.09918481856584549,
+            "mid_expected_error_max": 0.0,
+            "mid_rms_ratio": 1.0,
+            "side_expected_error_max": 0.0,
+            "side_rms_ratio": 0.0
+          },
+          {
+            "value": 0.5,
+            "peak": 0.09918481856584549,
+            "mid_expected_error_max": 0.0,
+            "mid_rms_ratio": 1.0,
+            "side_expected_error_max": 0.0,
+            "side_rms_ratio": 0.0
+          },
+          {
+            "value": 0.25,
+            "peak": 0.09918481856584549,
+            "mid_expected_error_max": 0.0,
+            "mid_rms_ratio": 1.0,
+            "side_expected_error_max": 0.0,
+            "side_rms_ratio": 0.0
+          }
+        ],
+        "affine_max_error": 0.0
+      },
+      {
+        "mode": "gain",
+        "condition": "wet_only_centered_small_signal",
+        "models": [
+          {
+            "value": 1.0,
+            "peak": 0.15967939794063568,
+            "mid_expected_error_max": 0.0,
+            "mid_rms_ratio": 1.0,
+            "side_expected_error_max": 0.0,
+            "side_rms_ratio": 1.0
+          },
+          {
+            "value": 0.5,
+            "peak": 0.07983969897031784,
+            "mid_expected_error_max": 0.0,
+            "mid_rms_ratio": 0.5,
+            "side_expected_error_max": 0.0,
+            "side_rms_ratio": 0.5
+          },
+          {
+            "value": 0.25,
+            "peak": 0.03991984948515892,
+            "mid_expected_error_max": 0.0,
+            "mid_rms_ratio": 0.25,
+            "side_expected_error_max": 0.0,
+            "side_rms_ratio": 0.25
+          }
+        ],
+        "affine_max_error": 0.0
+      },
+      {
+        "mode": "gain",
+        "condition": "dry_plus_wet_centered_small_signal",
+        "models": [
+          {
+            "value": 1.0,
+            "peak": 0.2179100215435028,
+            "mid_expected_error_max": 0.0,
+            "mid_rms_ratio": 1.0,
+            "side_expected_error_max": 0.0,
+            "side_rms_ratio": 1.0
+          },
+          {
+            "value": 0.5,
+            "peak": 0.14093734323978424,
+            "mid_expected_error_max": 0.02899625664576888,
+            "mid_rms_ratio": 0.638132270464909,
+            "side_expected_error_max": 0.0289967643620912,
+            "side_rms_ratio": 0.7562974097886713
+          },
+          {
+            "value": 0.25,
+            "peak": 0.10245101898908615,
+            "mid_expected_error_max": 0.04349438357166946,
+            "mid_rms_ratio": 0.5091347848469295,
+            "side_expected_error_max": 0.04349514376372099,
+            "side_rms_ratio": 0.6818966377435461
+          }
+        ],
+        "affine_max_error": 2.9802322387695312e-08
+      },
+      {
+        "mode": "gain",
+        "condition": "wet_only_offcenter_pan_small_signal",
+        "models": [
+          {
+            "value": 1.0,
+            "peak": 0.20120777189731598,
+            "mid_expected_error_max": 0.0,
+            "mid_rms_ratio": 1.0,
+            "side_expected_error_max": 0.0,
+            "side_rms_ratio": 1.0
+          },
+          {
+            "value": 0.5,
+            "peak": 0.10060388594865799,
+            "mid_expected_error_max": 0.0,
+            "mid_rms_ratio": 0.5,
+            "side_expected_error_max": 0.0,
+            "side_rms_ratio": 0.5
+          },
+          {
+            "value": 0.25,
+            "peak": 0.050301942974328995,
+            "mid_expected_error_max": 0.0,
+            "mid_rms_ratio": 0.25,
+            "side_expected_error_max": 0.0,
+            "side_rms_ratio": 0.25
+          }
+        ],
+        "affine_max_error": 0.0
+      },
+      {
+        "mode": "gain",
+        "condition": "wet_only_centered_limiter_active",
+        "models": [
+          {
+            "value": 1.0,
+            "peak": 1.0498286485671997,
+            "mid_expected_error_max": 0.0,
+            "mid_rms_ratio": 1.0,
+            "side_expected_error_max": 0.0,
+            "side_rms_ratio": 1.0
+          },
+          {
+            "value": 0.5,
+            "peak": 0.9481542706489563,
+            "mid_expected_error_max": 0.21161997318267822,
+            "mid_rms_ratio": 0.564919821827745,
+            "side_expected_error_max": 0.21161997318267822,
+            "side_rms_ratio": 0.5908297943150168
+          },
+          {
+            "value": 0.25,
+            "peak": 0.47903820872306824,
+            "mid_expected_error_max": 0.10829052329063416,
+            "mid_rms_ratio": 0.2824659115032538,
+            "side_expected_error_max": 0.10829052329063416,
+            "side_rms_ratio": 0.29542561555251623
+          }
+        ],
+        "affine_max_error": 0.41827887296676636
+      },
+      {
+        "mode": "gain",
+        "condition": "pure_mid_centered_small_signal",
+        "models": [
+          {
+            "value": 1.0,
+            "peak": 0.09918481856584549,
+            "mid_expected_error_max": 0.0,
+            "mid_rms_ratio": 1.0,
+            "side_expected_error_max": 0.0,
+            "side_rms_ratio": 0.0
+          },
+          {
+            "value": 0.5,
+            "peak": 0.049592409282922745,
+            "mid_expected_error_max": 0.0,
+            "mid_rms_ratio": 0.5,
+            "side_expected_error_max": 0.0,
+            "side_rms_ratio": 0.0
+          },
+          {
+            "value": 0.25,
+            "peak": 0.024796204641461372,
+            "mid_expected_error_max": 0.0,
+            "mid_rms_ratio": 0.25,
+            "side_expected_error_max": 0.0,
+            "side_rms_ratio": 0.0
+          }
+        ],
+        "affine_max_error": 0.0
+      }
+    ]
+  },
+  "cases": [
+    {
+      "id": "air-lead-1",
+      "all_input_and_output_hashes_verified": true,
+      "scale1_byte_identical": true,
+      "pan_events": [],
+      "frozen_lag_samples": -780,
+      "calibration_frames": 38036,
+      "calibration_reference": [
+        780,
+        38036
+      ],
+      "calibration_candidate": [
+        0,
+        37256
+      ],
+      "evaluation_reference": [
+        38816,
+        152145
+      ],
+      "evaluation_candidate": [
+        38036,
+        151365
+      ],
+      "models": [
+        {
+          "mode": "gain",
+          "scale": 1.0,
+          "peak": 0.36272913217544556,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 3.2073782898411323
+        },
+        {
+          "mode": "gain",
+          "scale": 0.5,
+          "peak": 0.2771969139575958,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 3.9397896737180327
+        },
+        {
+          "mode": "gain",
+          "scale": 0.25,
+          "peak": 0.24563895165920258,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 4.253956018195266
+        }
+      ],
+      "raw_mid_max_absolute_change": 0.15365349873900414,
+      "raw_affine_max_absolute_error": 4.470348358154297e-08,
+      "raw_affine_rms_error": 2.9065195275107403e-09,
+      "raw_samples": 240345
+    },
+    {
+      "id": "brassy-ld-1",
+      "all_input_and_output_hashes_verified": true,
+      "scale1_byte_identical": true,
+      "pan_events": [],
+      "frozen_lag_samples": -106,
+      "calibration_frames": 33406,
+      "calibration_reference": [
+        106,
+        33406
+      ],
+      "calibration_candidate": [
+        0,
+        33300
+      ],
+      "evaluation_reference": [
+        33512,
+        133623
+      ],
+      "evaluation_candidate": [
+        33406,
+        133517
+      ],
+      "models": [
+        {
+          "mode": "gain",
+          "scale": 1.0,
+          "peak": 0.2847314178943634,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 4.329190817597279
+        },
+        {
+          "mode": "gain",
+          "scale": 0.5,
+          "peak": 0.2721758782863617,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 4.352831535632635
+        },
+        {
+          "mode": "gain",
+          "scale": 0.25,
+          "peak": 0.2659837305545807,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 4.354685021024283
+        }
+      ],
+      "raw_mid_max_absolute_change": 0.026247255504131317,
+      "raw_affine_max_absolute_error": 5.960464477539063e-08,
+      "raw_affine_rms_error": 3.0522159218392035e-09,
+      "raw_samples": 221823
+    },
+    {
+      "id": "club-bass",
+      "all_input_and_output_hashes_verified": true,
+      "scale1_byte_identical": true,
+      "pan_events": [],
+      "frozen_lag_samples": 232,
+      "calibration_frames": 35831,
+      "calibration_reference": [
+        0,
+        35599
+      ],
+      "calibration_candidate": [
+        232,
+        35831
+      ],
+      "evaluation_reference": [
+        35831,
+        143093
+      ],
+      "evaluation_candidate": [
+        36063,
+        143325
+      ],
+      "models": [
+        {
+          "mode": "gain",
+          "scale": 1.0,
+          "peak": 0.24302904307842255,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 1.8256797473972683
+        },
+        {
+          "mode": "gain",
+          "scale": 0.5,
+          "peak": 0.23154553771018982,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 1.828628717461392
+        },
+        {
+          "mode": "gain",
+          "scale": 0.25,
+          "peak": 0.22584140300750732,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 1.8296866185553817
+        }
+      ],
+      "raw_mid_max_absolute_change": 0.015348896384239197,
+      "raw_affine_max_absolute_error": 5.21540641784668e-08,
+      "raw_affine_rms_error": 4.298330058737121e-09,
+      "raw_samples": 231525
+    },
+    {
+      "id": "cotton-wool",
+      "all_input_and_output_hashes_verified": true,
+      "scale1_byte_identical": true,
+      "pan_events": [],
+      "frozen_lag_samples": -1346,
+      "calibration_frames": 55125,
+      "calibration_reference": [
+        1346,
+        55125
+      ],
+      "calibration_candidate": [
+        0,
+        53779
+      ],
+      "evaluation_reference": [
+        56471,
+        220500
+      ],
+      "evaluation_candidate": [
+        55125,
+        219154
+      ],
+      "models": [
+        {
+          "mode": "gain",
+          "scale": 1.0,
+          "peak": 0.21871031820774078,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 3.5906029484109427
+        },
+        {
+          "mode": "gain",
+          "scale": 0.5,
+          "peak": 0.1901782900094986,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 3.8509083328464366
+        },
+        {
+          "mode": "gain",
+          "scale": 0.25,
+          "peak": 0.17627127468585968,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 3.9300217582613444
+        }
+      ],
+      "raw_mid_max_absolute_change": 0.0715546254068613,
+      "raw_affine_max_absolute_error": 2.9802322387695312e-08,
+      "raw_affine_rms_error": 1.8748647116296752e-09,
+      "raw_samples": 308700
+    },
+    {
+      "id": "dist-bs-1",
+      "all_input_and_output_hashes_verified": true,
+      "scale1_byte_identical": true,
+      "pan_events": [],
+      "frozen_lag_samples": 218,
+      "calibration_frames": 13892,
+      "calibration_reference": [
+        0,
+        13674
+      ],
+      "calibration_candidate": [
+        218,
+        13892
+      ],
+      "evaluation_reference": [
+        13892,
+        55348
+      ],
+      "evaluation_candidate": [
+        14110,
+        55566
+      ],
+      "models": [
+        {
+          "mode": "gain",
+          "scale": 1.0,
+          "peak": 0.5705353617668152,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 1.0792218262944944
+        },
+        {
+          "mode": "gain",
+          "scale": 0.5,
+          "peak": 0.5705353617668152,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 1.0792218262944944
+        },
+        {
+          "mode": "gain",
+          "scale": 0.25,
+          "peak": 0.5705353617668152,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 1.0792218262944944
+        }
+      ],
+      "raw_mid_max_absolute_change": 0.0,
+      "raw_affine_max_absolute_error": 0.0,
+      "raw_affine_rms_error": 0.0,
+      "raw_samples": 143766
+    },
+    {
+      "id": "moogie-1",
+      "all_input_and_output_hashes_verified": true,
+      "scale1_byte_identical": true,
+      "pan_events": [],
+      "frozen_lag_samples": -475,
+      "calibration_frames": 40792,
+      "calibration_reference": [
+        475,
+        40792
+      ],
+      "calibration_candidate": [
+        0,
+        40317
+      ],
+      "evaluation_reference": [
+        41267,
+        163170
+      ],
+      "evaluation_candidate": [
+        40792,
+        162695
+      ],
+      "models": [
+        {
+          "mode": "gain",
+          "scale": 1.0,
+          "peak": 0.7355461120605469,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 0.7505073726787631
+        },
+        {
+          "mode": "gain",
+          "scale": 0.5,
+          "peak": 0.7355461120605469,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 0.7505073726787631
+        },
+        {
+          "mode": "gain",
+          "scale": 0.25,
+          "peak": 0.7355461120605469,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 0.7505073726787631
+        }
+      ],
+      "raw_mid_max_absolute_change": 0.0,
+      "raw_affine_max_absolute_error": 0.0,
+      "raw_affine_rms_error": 0.0,
+      "raw_samples": 251370
+    },
+    {
+      "id": "pedal-bs-1",
+      "all_input_and_output_hashes_verified": true,
+      "scale1_byte_identical": true,
+      "pan_events": [],
+      "frozen_lag_samples": 178,
+      "calibration_frames": 17089,
+      "calibration_reference": [
+        0,
+        16911
+      ],
+      "calibration_candidate": [
+        178,
+        17089
+      ],
+      "evaluation_reference": [
+        17089,
+        68177
+      ],
+      "evaluation_candidate": [
+        17267,
+        68355
+      ],
+      "models": [
+        {
+          "mode": "gain",
+          "scale": 1.0,
+          "peak": 0.2152988761663437,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 1.347577354388231
+        },
+        {
+          "mode": "gain",
+          "scale": 0.5,
+          "peak": 0.2152988761663437,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 1.347577354388231
+        },
+        {
+          "mode": "gain",
+          "scale": 0.25,
+          "peak": 0.2152988761663437,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 1.347577354388231
+        }
+      ],
+      "raw_mid_max_absolute_change": 0.0,
+      "raw_affine_max_absolute_error": 0.0,
+      "raw_affine_rms_error": 0.0,
+      "raw_samples": 156555
+    },
+    {
+      "id": "so-juno-1",
+      "all_input_and_output_hashes_verified": true,
+      "scale1_byte_identical": true,
+      "pan_events": [],
+      "frozen_lag_samples": -337,
+      "calibration_frames": 17089,
+      "calibration_reference": [
+        337,
+        17089
+      ],
+      "calibration_candidate": [
+        0,
+        16752
+      ],
+      "evaluation_reference": [
+        17426,
+        68355
+      ],
+      "evaluation_candidate": [
+        17089,
+        68018
+      ],
+      "models": [
+        {
+          "mode": "gain",
+          "scale": 1.0,
+          "peak": 0.23973974585533142,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 2.4034245935971854
+        },
+        {
+          "mode": "gain",
+          "scale": 0.5,
+          "peak": 0.23973974585533142,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 2.4034245935971854
+        },
+        {
+          "mode": "gain",
+          "scale": 0.25,
+          "peak": 0.23973974585533142,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 2.4034245935971854
+        }
+      ],
+      "raw_mid_max_absolute_change": 0.0,
+      "raw_affine_max_absolute_error": 0.0,
+      "raw_affine_rms_error": 0.0,
+      "raw_samples": 156555
+    },
+    {
+      "id": "supa-juce-1",
+      "all_input_and_output_hashes_verified": true,
+      "scale1_byte_identical": true,
+      "pan_events": [],
+      "frozen_lag_samples": 223,
+      "calibration_frames": 19845,
+      "calibration_reference": [
+        0,
+        19622
+      ],
+      "calibration_candidate": [
+        223,
+        19845
+      ],
+      "evaluation_reference": [
+        19845,
+        79157
+      ],
+      "evaluation_candidate": [
+        20068,
+        79380
+      ],
+      "models": [
+        {
+          "mode": "gain",
+          "scale": 1.0,
+          "peak": 0.5648640990257263,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 1.7531787465575264
+        },
+        {
+          "mode": "gain",
+          "scale": 0.5,
+          "peak": 0.5096883177757263,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 1.84043280046605
+        },
+        {
+          "mode": "gain",
+          "scale": 0.25,
+          "peak": 0.48702025413513184,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 1.865659325926457
+        }
+      ],
+      "raw_mid_max_absolute_change": 0.164015406742692,
+      "raw_affine_max_absolute_error": 8.940696716308594e-08,
+      "raw_affine_rms_error": 5.145737927391605e-09,
+      "raw_samples": 167580
+    },
+    {
+      "id": "vangelead",
+      "all_input_and_output_hashes_verified": true,
+      "scale1_byte_identical": true,
+      "pan_events": [],
+      "frozen_lag_samples": -469,
+      "calibration_frames": 56779,
+      "calibration_reference": [
+        469,
+        56779
+      ],
+      "calibration_candidate": [
+        0,
+        56310
+      ],
+      "evaluation_reference": [
+        57248,
+        227115
+      ],
+      "evaluation_candidate": [
+        56779,
+        226646
+      ],
+      "models": [
+        {
+          "mode": "gain",
+          "scale": 1.0,
+          "peak": 0.3364163339138031,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 2.0338006518638494
+        },
+        {
+          "mode": "gain",
+          "scale": 0.5,
+          "peak": 0.3364163339138031,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 2.0338006518638494
+        },
+        {
+          "mode": "gain",
+          "scale": 0.25,
+          "peak": 0.3364163339138031,
+          "limiter_inactive_by_peak": true,
+          "training_gain": 2.0338006518638494
+        }
+      ],
+      "raw_mid_max_absolute_change": 0.0,
+      "raw_affine_max_absolute_error": 0.0,
+      "raw_affine_rms_error": 0.0,
+      "raw_samples": 315315
+    }
+  ],
+  "interpretation": "Width preserves wet-return mid algebraically; gain scales wet mid/side equally. Centered unclipped isolated-wet output preserves the expected relationships within float precision. Mixed dry/delay, unequal final pan, limiting, and later per-render fitted gain must be considered for final-output relationships."
+}

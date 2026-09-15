@@ -1,0 +1,643 @@
+{
+  "schema_version": 1,
+  "source": {
+    "path": "build-fidelity/public-waveforms/synth-love/OB3J7AQBla0.f251.webm",
+    "sha256": "6ed77a823dde937f4bf87bf9cf803a7293dd21a97056f36694704355b8b15f4c"
+  },
+  "tool_sha256": "589330ff53413cfb7127d1c930987f8648c9ccf6ba1df4b80f453f8e8d48ad63",
+  "decode": {
+    "command": [
+      "ffmpeg",
+      "-v",
+      "error",
+      "-i",
+      "build-fidelity/public-waveforms/synth-love/OB3J7AQBla0.f251.webm",
+      "-ss",
+      "540",
+      "-t",
+      "64.9",
+      "-c:a",
+      "pcm_f32le",
+      "-y",
+      "build-fidelity/public-waveforms/synth-love/supersaw-feasibility/run-01/chapter-native-48k.wav"
+    ],
+    "wav": "build-fidelity/public-waveforms/synth-love/supersaw-feasibility/run-01/chapter-native-48k.wav",
+    "sha256": "f0a72bafa0471e5183a475fe9a237dee2dcb31a297903cfdf7ea114fe29082d2",
+    "rate_hz": 48000,
+    "channels": 2,
+    "no_resampling": true,
+    "no_downmix": true,
+    "chapter_origin_seconds": 540
+  },
+  "protocol": {
+    "windows": [
+      [
+        "visual-a",
+        589.2,
+        591.0
+      ],
+      [
+        "visual-b",
+        598.5,
+        601.3
+      ],
+      [
+        "nearby-reference",
+        591.5,
+        593.3
+      ]
+    ],
+    "extra_reference_count": 1,
+    "amplitude_policy": "mean of left/right spectral powers, never mono sample averaging",
+    "window": "Hann; 8x zero padding only interpolates spectrum and does not improve resolving power",
+    "peaks": "40\u20138000 Hz; >=8 dB local prominence; >=-50 dB from spectrum maximum; >=0.5 Hz grid-peak spacing",
+    "width": "local -3 dB crossings; may include unresolved neighbouring lines",
+    "half_comparison": "nearest detected peak, descriptive only, not component identity",
+    "stft": "0.5-second Hann, 50 ms hop, 2 Hz native bin spacing",
+    "bands_hz": [
+      [
+        100,
+        145
+      ],
+      [
+        155,
+        180
+      ],
+      [
+        250,
+        290
+      ],
+      [
+        320,
+        360
+      ]
+    ],
+    "no_adaptive_window_search": true,
+    "no_model_or_detune_fit": true
+  },
+  "synthetic_peak_width_controls": [
+    {
+      "seconds": 1.8,
+      "frequency_hz": 131.125,
+      "opposite_channel_phase": true,
+      "measured": {
+        "frequency_hz": 131.11111111111111,
+        "relative_db": 0.0,
+        "prominence_db": 192.5166673437048,
+        "local_3db_width_hz": 0.7974124347851728
+      }
+    },
+    {
+      "seconds": 2.8,
+      "frequency_hz": 131.125,
+      "opposite_channel_phase": true,
+      "measured": {
+        "frequency_hz": 131.11607142857144,
+        "relative_db": 0.0,
+        "prominence_db": 175.6106686725281,
+        "local_3db_width_hz": 0.5126200401294625
+      }
+    }
+  ],
+  "scope": "Descriptive feasibility only. Multiple notes/oscillators, modulation, effects and platform encoding may contribute. Detected spectral peaks are not automatically Super Saw components.",
+  "source_url": "https://www.youtube.com/watch?v=OB3J7AQBla0",
+  "visual_audit": "Docs/fidelity/source-audits/synth-love-supersaw-visual-2026-09-15.json",
+  "full_result": {
+    "path": "build-fidelity/public-waveforms/synth-love/supersaw-feasibility/run-01/results.json",
+    "bytes": 5865427,
+    "sha256": "24f4202d4a8af1a67f65ed03b3f6183d3c6488743ae31c2f2cf597ee45f2f00b"
+  },
+  "durable_plot": {
+    "path": "Docs/fidelity/source-audits/synth-love-supersaw-audio-feasibility-2026-09-15.png",
+    "bytes": 810685,
+    "sha256": "6d60ea8fdb9bc7b9d089347907f30d4992b612b2b2da2c96b28310addf4c1418"
+  },
+  "tool_path": "Tools/assess_public_supersaw_feasibility.py",
+  "result": "No sufficiently attributable stable set of Super Saw component lines established in the two visual intervals or the one nearby reference. Time-varying note/group content invalidates treating full-window maxima as one detuned oscillator family. No raw endpoint, offset table, or shipping change follows.",
+  "windows": [
+    {
+      "id": "visual-a",
+      "source_seconds": [
+        589.2,
+        591.0
+      ],
+      "samples": 86400,
+      "rms": 0.09169896770587375,
+      "quarter_rms": [
+        0.04662004239967674,
+        0.1015817441609999,
+        0.11899717916641385,
+        0.08355952946007673
+      ],
+      "whole_unpadded_bin_hz": 0.5555555555555556,
+      "approx_isolated_hann_3db_width_hz": 0.8,
+      "six_strongest_100_to_430_hz_peaks": [
+        {
+          "frequency_hz": 337.56944444444446,
+          "relative_db": 0.0,
+          "prominence_db": 59.8695426455553,
+          "local_3db_width_hz": 3.079769343854707,
+          "nearest_half_window_peaks": [
+            {
+              "frequency_hz": 339.58333333333337,
+              "difference_hz": 2.013888888888914,
+              "local_3db_width_hz": 3.502743080839366,
+              "relative_db": -14.119841221430427
+            },
+            {
+              "frequency_hz": 336.52777777777777,
+              "difference_hz": -1.0416666666666856,
+              "local_3db_width_hz": 1.24626332743685,
+              "relative_db": -7.96817387265564
+            }
+          ]
+        },
+        {
+          "frequency_hz": 268.05555555555554,
+          "relative_db": -0.39906159896121096,
+          "prominence_db": 46.217605623933835,
+          "local_3db_width_hz": 2.009401082712543,
+          "nearest_half_window_peaks": [
+            {
+              "frequency_hz": 267.9166666666667,
+              "difference_hz": -0.1388888888888573,
+              "local_3db_width_hz": 6.0100458331843924,
+              "relative_db": -9.90615667879122
+            },
+            {
+              "frequency_hz": 263.19444444444446,
+              "difference_hz": -4.861111111111086,
+              "local_3db_width_hz": 2.345947829281613,
+              "relative_db": -1.155855870757449
+            }
+          ]
+        },
+        {
+          "frequency_hz": 131.11111111111111,
+          "relative_db": -3.6978429094728114,
+          "prominence_db": 43.49036373544092,
+          "local_3db_width_hz": 2.6572025135412503,
+          "nearest_half_window_peaks": [
+            {
+              "frequency_hz": 139.72222222222223,
+              "difference_hz": 8.611111111111114,
+              "local_3db_width_hz": 2.644149591431301,
+              "relative_db": -23.515001789537365
+            },
+            {
+              "frequency_hz": 131.66666666666669,
+              "difference_hz": 0.5555555555555713,
+              "local_3db_width_hz": 7.290763002252248,
+              "relative_db": 0.0
+            }
+          ]
+        },
+        {
+          "frequency_hz": 166.18055555555557,
+          "relative_db": -4.271722875012777,
+          "prominence_db": 40.40900846805476,
+          "local_3db_width_hz": 3.137994140647777,
+          "nearest_half_window_peaks": [
+            {
+              "frequency_hz": 164.44444444444446,
+              "difference_hz": -1.7361111111111143,
+              "local_3db_width_hz": 1.480844413980094,
+              "relative_db": -25.21005121010905
+            },
+            {
+              "frequency_hz": 168.19444444444446,
+              "difference_hz": 2.0138888888888857,
+              "local_3db_width_hz": 7.540208682995058,
+              "relative_db": -6.857529366126052
+            }
+          ]
+        },
+        {
+          "frequency_hz": 275.4166666666667,
+          "relative_db": -4.352090298249692,
+          "prominence_db": 22.29035775355532,
+          "local_3db_width_hz": 0.9575391132393065,
+          "nearest_half_window_peaks": [
+            {
+              "frequency_hz": 281.25,
+              "difference_hz": 5.833333333333314,
+              "local_3db_width_hz": 2.3658140118303095,
+              "relative_db": -22.87252519551548
+            },
+            {
+              "frequency_hz": 275.27777777777777,
+              "difference_hz": -0.13888888888891415,
+              "local_3db_width_hz": 4.496856829175272,
+              "relative_db": -1.3952322278265399
+            }
+          ]
+        },
+        {
+          "frequency_hz": 350.625,
+          "relative_db": -4.515183140323913,
+          "prominence_db": 19.60043566627389,
+          "local_3db_width_hz": 2.1373514974311547,
+          "nearest_half_window_peaks": [
+            {
+              "frequency_hz": 347.9166666666667,
+              "difference_hz": -2.7083333333333144,
+              "local_3db_width_hz": 4.432397011779301,
+              "relative_db": -15.920217034801645
+            },
+            {
+              "frequency_hz": 350.4166666666667,
+              "difference_hz": -0.20833333333331439,
+              "local_3db_width_hz": 1.1720225748950952,
+              "relative_db": -12.26169863396229
+            }
+          ]
+        }
+      ],
+      "strongest_100_to_180_hz_half_peaks": [
+        [
+          {
+            "frequency_hz": 112.08333333333334,
+            "relative_db": 0.0,
+            "prominence_db": 60.07101735980014,
+            "local_3db_width_hz": 4.0171441047447445
+          },
+          {
+            "frequency_hz": 144.30555555555557,
+            "relative_db": -23.343515125563513,
+            "prominence_db": 8.419158387095507,
+            "local_3db_width_hz": 1.8551279751751224
+          },
+          {
+            "frequency_hz": 139.72222222222223,
+            "relative_db": -23.515001789537365,
+            "prominence_db": 8.195799801451997,
+            "local_3db_width_hz": 2.644149591431301
+          }
+        ],
+        [
+          {
+            "frequency_hz": 131.66666666666669,
+            "relative_db": 0.0,
+            "prominence_db": 58.89696538696972,
+            "local_3db_width_hz": 7.290763002252248
+          },
+          {
+            "frequency_hz": 168.19444444444446,
+            "relative_db": -6.857529366126052,
+            "prominence_db": 34.94242461954744,
+            "local_3db_width_hz": 7.540208682995058
+          },
+          {
+            "frequency_hz": 152.5,
+            "relative_db": -18.72602886126692,
+            "prominence_db": 16.70547069378115,
+            "local_3db_width_hz": 1.5647394093426215
+          }
+        ]
+      ]
+    },
+    {
+      "id": "visual-b",
+      "source_seconds": [
+        598.5,
+        601.3
+      ],
+      "samples": 134400,
+      "rms": 0.15227005399859,
+      "quarter_rms": [
+        0.14955442891552231,
+        0.10620904882325208,
+        0.13253954696211317,
+        0.2037916990699668
+      ],
+      "whole_unpadded_bin_hz": 0.35714285714285715,
+      "approx_isolated_hann_3db_width_hz": 0.5142857142857142,
+      "six_strongest_100_to_430_hz_peaks": [
+        {
+          "frequency_hz": 270.625,
+          "relative_db": 0.0,
+          "prominence_db": 61.47437979135908,
+          "local_3db_width_hz": 0.6288635367614006,
+          "nearest_half_window_peaks": [
+            {
+              "frequency_hz": 270.26785714285717,
+              "difference_hz": -0.3571428571428328,
+              "local_3db_width_hz": 2.372918332937104,
+              "relative_db": -0.4161585527129219
+            },
+            {
+              "frequency_hz": 268.30357142857144,
+              "difference_hz": -2.321428571428555,
+              "local_3db_width_hz": 4.040045686635665,
+              "relative_db": -0.22644074982053297
+            }
+          ]
+        },
+        {
+          "frequency_hz": 272.5446428571429,
+          "relative_db": -1.2979795661927227,
+          "prominence_db": 10.745948105397403,
+          "local_3db_width_hz": 1.1389776455833953,
+          "nearest_half_window_peaks": [
+            {
+              "frequency_hz": 274.19642857142856,
+              "difference_hz": 1.6517857142856656,
+              "local_3db_width_hz": 1.5817008760946578,
+              "relative_db": 0.0
+            },
+            {
+              "frequency_hz": 268.30357142857144,
+              "difference_hz": -4.241071428571445,
+              "local_3db_width_hz": 4.040045686635665,
+              "relative_db": -0.22644074982053297
+            }
+          ]
+        },
+        {
+          "frequency_hz": 349.2857142857143,
+          "relative_db": -3.0974130689070165,
+          "prominence_db": 32.82599773765683,
+          "local_3db_width_hz": 0.6049270672947387,
+          "nearest_half_window_peaks": [
+            {
+              "frequency_hz": 350.5357142857143,
+              "difference_hz": 1.25,
+              "local_3db_width_hz": 2.199119325994104,
+              "relative_db": -11.196743588114522
+            },
+            {
+              "frequency_hz": 349.2857142857143,
+              "difference_hz": 0.0,
+              "local_3db_width_hz": 2.3295683064218338,
+              "relative_db": 0.0
+            }
+          ]
+        },
+        {
+          "frequency_hz": 345.75892857142856,
+          "relative_db": -3.2392328454504664,
+          "prominence_db": 18.4230743196306,
+          "local_3db_width_hz": 0.6582182596692974,
+          "nearest_half_window_peaks": [
+            {
+              "frequency_hz": 350.5357142857143,
+              "difference_hz": 4.776785714285722,
+              "local_3db_width_hz": 2.199119325994104,
+              "relative_db": -11.196743588114522
+            },
+            {
+              "frequency_hz": 345.625,
+              "difference_hz": -0.1339285714285552,
+              "local_3db_width_hz": 2.3102937156848498,
+              "relative_db": -0.4017969272333275
+            }
+          ]
+        },
+        {
+          "frequency_hz": 277.1875,
+          "relative_db": -3.7699571384732593,
+          "prominence_db": 16.514889320019428,
+          "local_3db_width_hz": 1.630124341449232,
+          "nearest_half_window_peaks": [
+            {
+              "frequency_hz": 280.0,
+              "difference_hz": 2.8125,
+              "local_3db_width_hz": 1.1812957730118114,
+              "relative_db": -9.050693812812952
+            },
+            {
+              "frequency_hz": 282.8571428571429,
+              "difference_hz": 5.66964285714289,
+              "local_3db_width_hz": 1.3810809466402816,
+              "relative_db": -12.24913990469387
+            }
+          ]
+        },
+        {
+          "frequency_hz": 334.2857142857143,
+          "relative_db": -4.3788804857764205,
+          "prominence_db": 12.057840656093035,
+          "local_3db_width_hz": 0.6469771791029189,
+          "nearest_half_window_peaks": [
+            {
+              "frequency_hz": 337.2321428571429,
+              "difference_hz": 2.946428571428612,
+              "local_3db_width_hz": 7.94123302726905,
+              "relative_db": -5.260895751914248
+            },
+            {
+              "frequency_hz": 335.3571428571429,
+              "difference_hz": 1.071428571428612,
+              "local_3db_width_hz": 3.2962985350424674,
+              "relative_db": -2.619110200218749
+            }
+          ]
+        }
+      ],
+      "strongest_100_to_180_hz_half_peaks": [
+        [
+          {
+            "frequency_hz": 136.33928571428572,
+            "relative_db": -19.807737049680327,
+            "prominence_db": 31.510619973824305,
+            "local_3db_width_hz": 4.697180427346808
+          },
+          {
+            "frequency_hz": 121.69642857142857,
+            "relative_db": -26.330266785646124,
+            "prominence_db": 17.70942198362885,
+            "local_3db_width_hz": 1.1882737539372528
+          },
+          {
+            "frequency_hz": 178.92857142857144,
+            "relative_db": -27.730908422153668,
+            "prominence_db": 22.722722567547386,
+            "local_3db_width_hz": 2.3421396568808177
+          }
+        ],
+        [
+          {
+            "frequency_hz": 165.53571428571428,
+            "relative_db": -2.930742796407948,
+            "prominence_db": 34.28762007495587,
+            "local_3db_width_hz": 1.056714248129765
+          },
+          {
+            "frequency_hz": 175.53571428571428,
+            "relative_db": -9.392992675224797,
+            "prominence_db": 12.082192089378196,
+            "local_3db_width_hz": 1.840904780103699
+          },
+          {
+            "frequency_hz": 160.625,
+            "relative_db": -16.157006110176603,
+            "prominence_db": 12.351271913193898,
+            "local_3db_width_hz": 0.936165149529387
+          }
+        ]
+      ]
+    },
+    {
+      "id": "nearby-reference",
+      "source_seconds": [
+        591.5,
+        593.3
+      ],
+      "samples": 86400,
+      "rms": 0.1037962561768602,
+      "quarter_rms": [
+        0.09914046999382553,
+        0.11128764202122912,
+        0.14433510365666352,
+        0.00694672444450552
+      ],
+      "whole_unpadded_bin_hz": 0.5555555555555556,
+      "approx_isolated_hann_3db_width_hz": 0.8,
+      "six_strongest_100_to_430_hz_peaks": [
+        {
+          "frequency_hz": 270.7638888888889,
+          "relative_db": 0.0,
+          "prominence_db": 73.53545921153493,
+          "local_3db_width_hz": 1.4096579465700643,
+          "nearest_half_window_peaks": [
+            {
+              "frequency_hz": 272.5,
+              "difference_hz": 1.7361111111110858,
+              "local_3db_width_hz": 4.473379027929639,
+              "relative_db": -5.179684087379378
+            },
+            {
+              "frequency_hz": 271.3888888888889,
+              "difference_hz": 0.625,
+              "local_3db_width_hz": 6.653006855919159,
+              "relative_db": 0.0
+            }
+          ]
+        },
+        {
+          "frequency_hz": 404.65277777777777,
+          "relative_db": -0.04768183387100322,
+          "prominence_db": 51.53311743818592,
+          "local_3db_width_hz": 1.4601135121696984,
+          "nearest_half_window_peaks": [
+            {
+              "frequency_hz": 398.75,
+              "difference_hz": -5.9027777777777715,
+              "local_3db_width_hz": 4.589694079859498,
+              "relative_db": -3.1892533598905644
+            },
+            {
+              "frequency_hz": 405.27777777777777,
+              "difference_hz": 0.625,
+              "local_3db_width_hz": 9.601646132027497,
+              "relative_db": -2.387226873883556
+            }
+          ]
+        },
+        {
+          "frequency_hz": 274.65277777777777,
+          "relative_db": -0.7551135873241535,
+          "prominence_db": 34.58474649018361,
+          "local_3db_width_hz": 1.3794709946394619,
+          "nearest_half_window_peaks": [
+            {
+              "frequency_hz": 272.5,
+              "difference_hz": -2.1527777777777715,
+              "local_3db_width_hz": 4.473379027929639,
+              "relative_db": -5.179684087379378
+            },
+            {
+              "frequency_hz": 271.3888888888889,
+              "difference_hz": -3.2638888888888573,
+              "local_3db_width_hz": 6.653006855919159,
+              "relative_db": 0.0
+            }
+          ]
+        },
+        {
+          "frequency_hz": 260.83333333333337,
+          "relative_db": -2.833355969269192,
+          "prominence_db": 29.1730730473582,
+          "local_3db_width_hz": 1.26068886823424,
+          "nearest_half_window_peaks": [
+            {
+              "frequency_hz": 262.9166666666667,
+              "difference_hz": 2.0833333333333144,
+              "local_3db_width_hz": 7.570712833801224,
+              "relative_db": -2.2301749704062956
+            },
+            {
+              "frequency_hz": 260.83333333333337,
+              "difference_hz": 0.0,
+              "local_3db_width_hz": 5.5379025946877505,
+              "relative_db": -4.992766203984033
+            }
+          ]
+        },
+        {
+          "frequency_hz": 410.20833333333337,
+          "relative_db": -3.0528831299479933,
+          "prominence_db": 20.31948254743191,
+          "local_3db_width_hz": 1.3874163970745599,
+          "nearest_half_window_peaks": [
+            {
+              "frequency_hz": 411.6666666666667,
+              "difference_hz": 1.4583333333333144,
+              "local_3db_width_hz": 8.024587562328179,
+              "relative_db": -1.362181885775307
+            },
+            {
+              "frequency_hz": 405.27777777777777,
+              "difference_hz": -4.9305555555556,
+              "local_3db_width_hz": 9.601646132027497,
+              "relative_db": -2.387226873883556
+            }
+          ]
+        },
+        {
+          "frequency_hz": 329.44444444444446,
+          "relative_db": -3.2074363459341555,
+          "prominence_db": 37.98810007000078,
+          "local_3db_width_hz": 1.533741682971879,
+          "nearest_half_window_peaks": [
+            {
+              "frequency_hz": 330.69444444444446,
+              "difference_hz": 1.25,
+              "local_3db_width_hz": 8.028181267292553,
+              "relative_db": 0.0
+            },
+            {
+              "frequency_hz": 329.30555555555554,
+              "difference_hz": -0.13888888888891415,
+              "local_3db_width_hz": 5.928649365478293,
+              "relative_db": -10.844463531335691
+            }
+          ]
+        }
+      ],
+      "strongest_100_to_180_hz_half_peaks": [
+        [],
+        [
+          {
+            "frequency_hz": 177.63888888888889,
+            "relative_db": -28.27723765260906,
+            "prominence_db": 9.44743984548954,
+            "local_3db_width_hz": 1.5504534036732593
+          },
+          {
+            "frequency_hz": 174.86111111111111,
+            "relative_db": -28.53420904866833,
+            "prominence_db": 10.720117324914384,
+            "local_3db_width_hz": 1.503057944407857
+          },
+          {
+            "frequency_hz": 171.80555555555557,
+            "relative_db": -29.518835903505618,
+            "prominence_db": 16.83717885015008,
+            "local_3db_width_hz": 1.4957925473443936
+          }
+        ]
+      ]
+    }
+  ]
+}

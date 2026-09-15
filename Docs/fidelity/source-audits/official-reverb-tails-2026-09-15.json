@@ -1,0 +1,3142 @@
+{
+  "schema_version": 1,
+  "claim": "Descriptive complete-file tail stereo; no width fit or hardware equivalence claim.",
+  "configuration": {
+    "air-lead-1": {
+      "mp3": "TOP8_AirLead1.mp3",
+      "sha256": "eda084781108d6de6961f6b6807fff283eac097173b5675dc52c678dc2ad3d3b",
+      "last_obvious_pitch_onset_range": [
+        8.7,
+        8.85
+      ],
+      "last_excitation_upper_bound": 9.95,
+      "hardware_starts": [
+        10.45,
+        10.95,
+        11.45
+      ],
+      "model_starts": [
+        4.445,
+        4.945
+      ],
+      "model_last_off": 3.445,
+      "preview": [
+        8.5,
+        12.4
+      ]
+    },
+    "cotton-wool": {
+      "mp3": "TOP8_Cotton_Wool.mp3",
+      "sha256": "abf9d3ad400119ab0546fd724ab7a7442ea724bb164f8e9d024c642c791a1379",
+      "last_obvious_pitch_onset_range": [
+        15.6,
+        15.8
+      ],
+      "last_excitation_upper_bound": 16.2,
+      "hardware_starts": [
+        17.25,
+        17.75,
+        18.25,
+        18.75,
+        19.25,
+        19.75,
+        20.25,
+        20.75,
+        21.25,
+        21.75
+      ],
+      "model_starts": [
+        5.75,
+        6.25
+      ],
+      "model_last_off": 4.75,
+      "preview": [
+        14.5,
+        22.4
+      ]
+    }
+  },
+  "window_seconds": 0.5,
+  "octave_band_edges_hz": [
+    80,
+    160,
+    320,
+    640,
+    1280,
+    2560,
+    5120,
+    10240
+  ],
+  "latency_compensation": "Production only: exactly93samples; hardware unshifted. Different excitation histories are not time aligned.",
+  "guard_policy": "Exploratory descriptive flags: RMS>=\u221265dBFS, second-half RMS rise<=1dB, half-window normalized octave-power cosine>=.90. These are neither perceptual thresholds nor a proof that no new notes occurred. All windows retained; exclude visibly edited endings beyond the chosen ranges.",
+  "source_inspection": "Last obvious new pitch/excitation ranges are coarse manual spectrogram/RMS observations, not recovered MIDI. Hardware analysis begins>=1s after latest possible obvious note onset; first Air window is only.5s after the conservative excitation upper bound and is labeled sensitivity.",
+  "channel_sensitivity": "Cotton only: divide right channel by10^(.6/20), fixed from early recording imbalance; does not change DSP. Air early excerpt is already wet and supplies no clean capture-gain estimate.",
+  "coherence": "Power-weighted per-bin magnitude-squared coherence,18overlapping4096sampleHannSTFTframes per0.5swindow. Not independent trials; no confidence intervals. Very weak bands are retained without a hardware interpretation.",
+  "controls_result_sha256": "8cde3fb6a7ab8cfd94ea0973b8644884e86e53a99b2bb44afeedb23a426c4709",
+  "tool_sha256": {
+    "assess_official_reverb_tails.py": "0df5971c2438d85b9f4f1c57088b9aeb7524e45098aeb12db9ea1225da4b9eb7",
+    "assess_official_stereo_feasibility.py": "a273e2398139f181c6227ccf3bdf22e03f2da5aa9151bd0b2e84f97d4a3efa42",
+    "assess_hardware_equivalence.py": "b6ca63fa02ff11f3154cf34c1233cfe460fd4447be403fe4c0695646ccb74631"
+  },
+  "decoder": {
+    "path": "/opt/homebrew/bin/ffmpeg",
+    "sha256": "00d01197255300c02122c783dd0126a9e7f47d6c6a19faafae2e6610efd071d3",
+    "version": "ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers"
+  },
+  "cases": {
+    "air-lead-1": {
+      "reference": {
+        "id": "lead-03",
+        "title": "Air Lead 1",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_AirLead1.mp3",
+        "local_filename": "TOP8_AirLead1.mp3",
+        "sha256": "eda084781108d6de6961f6b6807fff283eac097173b5675dc52c678dc2ad3d3b",
+        "size_bytes": 402102,
+        "bank_id": "lead",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 3,
+        "patch_name": "Air Lead 1",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+      },
+      "comparison_limits": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Original performance MIDI is unavailable. This is an audio-derived estimate, not an original MIDI file.",
+        "Velocity 100 is a placeholder for every note; original velocity, controllers, system transpose and exact recording patch revision are unverified.",
+        "Published delay/reverb and recording processing obscure exact key-down/up times. Note boundaries are estimated, generally within 10\u201330 ms; longer ambiguity is described below.",
+        "No Septum audio or synthesis parameter search was used to choose these notes. The paired Roland preset must remain unmodified.",
+        "The continuous melodic line, short portamento and active pitch modulation leave exact articulation and overlap unknown; adjacent notes use adjoining estimated gates.",
+        "The 3.45-second prefix intentionally stops during the final note; its final note-off at 3.445 seconds is an artificial crop boundary, not a measured hardware key release."
+      ],
+      "decoded_sha256": "53e8c6900e06dbc831145ce236ab7789f8800dac180e1334a61ef94166ee3be4",
+      "decode_command": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "build-fidelity/hardware-benchmark/sources/TOP8_AirLead1.mp3",
+        "-ar",
+        "44100",
+        "-ac",
+        "2",
+        "-c:a",
+        "pcm_f32le",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/stereo-feasibility/tails-02/air-lead-1/hardware-full.wav"
+      ],
+      "production_sha256": "43bca32341c215f6ccfe58291f787a7c286602f8772061e26d59566921c591e3",
+      "duration_seconds": 12.564897959183673,
+      "full_file_peak": 0.9907064437866211,
+      "hardware": [
+        {
+          "seconds": [
+            10.45,
+            10.95
+          ],
+          "samples": [
+            460845,
+            482895
+          ],
+          "raw": {
+            "rms": 0.02148611248515208,
+            "right_over_left_db": 0.4923390496929775,
+            "side_over_mid_db": -5.265067005334302,
+            "cosine_similarity": 0.5422906716190385,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 0.9316706450545517,
+            "max_abs_channel_difference": 0.08707373589277267,
+            "rms_dbfs": -33.35684309917371,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                1.3070278498784596e-06,
+                0.6923398871327513,
+                0.11455566243093579,
+                0.1828950294876355,
+                0.010199198157695504,
+                3.837538056087602e-06,
+                5.078225076009373e-06
+              ],
+              "second_half_octave_power_fraction": [
+                3.062014328756407e-06,
+                0.5114457960358604,
+                0.17610829241453352,
+                0.2947428083529381,
+                0.017666537383540855,
+                1.1531680029533544e-05,
+                2.1972118768856582e-05
+              ],
+              "half_distribution_cosine": 0.9583909616162637,
+              "half_distribution_L1": 0.3617881821937818,
+              "second_over_first_rms_db": -6.801271634049936,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 1.6993834883829125e-06,
+                "side_over_mid_db": -0.4537574832270608,
+                "power_weighted_magnitude_squared_coherence": 0.09333658533219505
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.6549727376211145,
+                "side_over_mid_db": -7.565155137712564,
+                "power_weighted_magnitude_squared_coherence": 0.6593719537773147
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.1231348468622044,
+                "side_over_mid_db": -3.564527243780921,
+                "power_weighted_magnitude_squared_coherence": 0.31872580419317115
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.2110981125099808,
+                "side_over_mid_db": -1.1529939979740336,
+                "power_weighted_magnitude_squared_coherence": 0.25242989903712976
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.010742986715342259,
+                "side_over_mid_db": 3.1500187878073467,
+                "power_weighted_magnitude_squared_coherence": 0.29165448085841295
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 5.702633069871973e-06,
+                "side_over_mid_db": -1.1362938485677683,
+                "power_weighted_magnitude_squared_coherence": 0.17381595446052184
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 8.651183188888438e-06,
+                "side_over_mid_db": -3.313688058262309,
+                "power_weighted_magnitude_squared_coherence": 0.37618487253170885
+              }
+            ]
+          },
+          "at_least_one_second_after_excitation_upper_bound": false
+        },
+        {
+          "seconds": [
+            10.95,
+            11.45
+          ],
+          "samples": [
+            482895,
+            504945
+          ],
+          "raw": {
+            "rms": 0.007222452255218279,
+            "right_over_left_db": -0.8573686793500364,
+            "side_over_mid_db": -4.440327832496614,
+            "cosine_similarity": 0.4731845785365458,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.08337518401078,
+            "max_abs_channel_difference": 0.02997742034494877,
+            "rms_dbfs": -42.82630640847428,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                2.8747888835063093e-06,
+                0.6678837694982717,
+                0.14072687083170335,
+                0.17954565664157957,
+                0.011793874140245776,
+                1.4759379476136985e-05,
+                3.2194719840121244e-05
+              ],
+              "second_half_octave_power_fraction": [
+                5.541939719769472e-06,
+                0.6797830985726203,
+                0.1613362816911875,
+                0.15230204318296406,
+                0.006450750262694049,
+                3.389229517241556e-05,
+                8.83920556419458e-05
+              ],
+              "half_distribution_cosine": 0.9987600105106627,
+              "half_distribution_L1": 0.06517347467233439,
+              "second_over_first_rms_db": -5.48723102455922,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 3.4481691806948032e-06,
+                "side_over_mid_db": -1.387365269547495,
+                "power_weighted_magnitude_squared_coherence": 0.08875634911321624
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.6637894019425211,
+                "side_over_mid_db": -6.625070929472415,
+                "power_weighted_magnitude_squared_coherence": 0.6998866741203948
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.14733949958913067,
+                "side_over_mid_db": -3.369332527698787,
+                "power_weighted_magnitude_squared_coherence": 0.41159441014024867
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.17872804569867048,
+                "side_over_mid_db": 0.7552945648303735,
+                "power_weighted_magnitude_squared_coherence": 0.31897315927735054
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.010027405677593861,
+                "side_over_mid_db": 0.844146894728835,
+                "power_weighted_magnitude_squared_coherence": 0.17394253820318978
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 2.0214430949890113e-05,
+                "side_over_mid_db": -1.5831259316933073,
+                "power_weighted_magnitude_squared_coherence": 0.22060243172136437
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 4.700523378007454e-05,
+                "side_over_mid_db": -2.908722519899375,
+                "power_weighted_magnitude_squared_coherence": 0.3422030304683759
+              }
+            ]
+          },
+          "at_least_one_second_after_excitation_upper_bound": true
+        },
+        {
+          "seconds": [
+            11.45,
+            11.95
+          ],
+          "samples": [
+            504945,
+            526995
+          ],
+          "raw": {
+            "rms": 0.0013440264141354639,
+            "right_over_left_db": -1.263148619143719,
+            "side_over_mid_db": -5.219876443473085,
+            "cosine_similarity": 0.5434288310163519,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.0395094390998507,
+            "max_abs_channel_difference": 0.007559133926406503,
+            "rms_dbfs": -57.43184392027853,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                1.1425627262102304e-05,
+                0.5643581846598884,
+                0.13485660063178556,
+                0.2931650203226704,
+                0.0070029121750847505,
+                0.00016555844682596035,
+                0.00044029813648266755
+              ],
+              "second_half_octave_power_fraction": [
+                4.561853178336145e-05,
+                0.6484630560075307,
+                0.13686608418385587,
+                0.20735880481766378,
+                0.006100457122001468,
+                0.0003683077258849753,
+                0.0007976716112798047
+              ],
+              "half_distribution_cosine": 0.9861823344727026,
+              "half_distribution_L1": 0.17341734111617998,
+              "second_over_first_rms_db": -8.337930353091918,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 1.7988564159563268e-05,
+                "side_over_mid_db": -0.14947907088103496,
+                "power_weighted_magnitude_squared_coherence": 0.1792932754856098
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.5813703616659859,
+                "side_over_mid_db": -6.565738034200361,
+                "power_weighted_magnitude_squared_coherence": 0.6478364567313619
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.1370827545445298,
+                "side_over_mid_db": -3.3045320714000788,
+                "power_weighted_magnitude_squared_coherence": 0.3226374042809383
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.272967506320923,
+                "side_over_mid_db": -2.4430891979802487,
+                "power_weighted_magnitude_squared_coherence": 0.36977619346591084
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.007458711871141917,
+                "side_over_mid_db": 1.0683947094732555,
+                "power_weighted_magnitude_squared_coherence": 0.19202117049552242
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.00020803096234792487,
+                "side_over_mid_db": -1.2308331358867695,
+                "power_weighted_magnitude_squared_coherence": 0.21502804388741195
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.0005261440444065328,
+                "side_over_mid_db": -2.4875327333672717,
+                "power_weighted_magnitude_squared_coherence": 0.31593226907971833
+              }
+            ]
+          },
+          "at_least_one_second_after_excitation_upper_bound": true
+        }
+      ],
+      "production_tail": [
+        {
+          "midi_clock_seconds": [
+            4.445,
+            4.945
+          ],
+          "samples": [
+            196117,
+            218167
+          ],
+          "raw": {
+            "rms": 0.006987706912003524,
+            "right_over_left_db": -0.2254653988230265,
+            "side_over_mid_db": -5.68087398738149,
+            "cosine_similarity": 0.5745734130874021,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 0.9348369063264874,
+            "max_abs_channel_difference": 0.027303696610033512,
+            "rms_dbfs": -43.113306381649785,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                3.2152503288066847e-06,
+                2.358274382619557e-05,
+                0.4473209001552825,
+                0.04636626497850342,
+                0.23108985572216606,
+                0.27366828452893777,
+                0.0015278966209552448
+              ],
+              "second_half_octave_power_fraction": [
+                2.8379813981278586e-06,
+                2.3731899431875323e-05,
+                0.4146740301898487,
+                0.04353034382052048,
+                0.2663596775796894,
+                0.27395793314649713,
+                0.0014514453826141422
+              ],
+              "half_distribution_cosine": 0.9965708553488507,
+              "half_distribution_L1": 0.0711192392613769,
+              "second_over_first_rms_db": -3.676451683234227,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 2.9325310991289977e-06,
+                "side_over_mid_db": -3.8286131335712796,
+                "power_weighted_magnitude_squared_coherence": 0.3254123546710959
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 2.2255628259421137e-05,
+                "side_over_mid_db": -8.182511841222333,
+                "power_weighted_magnitude_squared_coherence": 0.6398412405417858
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.46486456321677894,
+                "side_over_mid_db": -4.304513073558222,
+                "power_weighted_magnitude_squared_coherence": 0.9062331729236411
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.04375857034596138,
+                "side_over_mid_db": -3.7445047411409025,
+                "power_weighted_magnitude_squared_coherence": 0.4326311682035301
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.22456179343964056,
+                "side_over_mid_db": -9.27720899999941,
+                "power_weighted_magnitude_squared_coherence": 0.7337094486738126
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.26532417209138615,
+                "side_over_mid_db": -5.839295025710384,
+                "power_weighted_magnitude_squared_coherence": 0.5065176046640029
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.001463061140016812,
+                "side_over_mid_db": -3.431150896966625,
+                "power_weighted_magnitude_squared_coherence": 0.7139031904129757
+              }
+            ]
+          }
+        },
+        {
+          "midi_clock_seconds": [
+            4.945,
+            5.445
+          ],
+          "samples": [
+            218167,
+            240217
+          ],
+          "raw": {
+            "rms": 0.002946132068300464,
+            "right_over_left_db": 0.10508768427148854,
+            "side_over_mid_db": -6.17904256973007,
+            "cosine_similarity": 0.6115915865531123,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 0.8761390437109718,
+            "max_abs_channel_difference": 0.010499112540856004,
+            "rms_dbfs": -50.61495577275625,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                2.6711836009275936e-06,
+                2.1081142767602787e-05,
+                0.4697381312637886,
+                0.041210358857239615,
+                0.22130860143186926,
+                0.26641424476910186,
+                0.001304911351632121
+              ],
+              "second_half_octave_power_fraction": [
+                2.2361677123390496e-06,
+                1.9492786027154954e-05,
+                0.4863194488871273,
+                0.040058521530862604,
+                0.22343488377091408,
+                0.24889502419140855,
+                0.0012703926659480623
+              ],
+              "half_distribution_cosine": 0.9992125004383484,
+              "half_distribution_L1": 0.03741519992476694,
+              "second_over_first_rms_db": -3.678035273483066,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 2.68082453301915e-06,
+                "side_over_mid_db": -3.9745627224806435,
+                "power_weighted_magnitude_squared_coherence": 0.3403414943425255
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 2.0773089612059038e-05,
+                "side_over_mid_db": -7.614103547776793,
+                "power_weighted_magnitude_squared_coherence": 0.6297406693084375
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.4774138685779642,
+                "side_over_mid_db": -4.879391943808839,
+                "power_weighted_magnitude_squared_coherence": 0.9425394377811952
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.040768919411137104,
+                "side_over_mid_db": -3.736989845644195,
+                "power_weighted_magnitude_squared_coherence": 0.38785263172627604
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.22442327820452357,
+                "side_over_mid_db": -9.41734833668146,
+                "power_weighted_magnitude_squared_coherence": 0.7526613910846341
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.25600352644162744,
+                "side_over_mid_db": -6.431313019792036,
+                "power_weighted_magnitude_squared_coherence": 0.5474632080746051
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.001364404501680815,
+                "side_over_mid_db": -3.2890266361762253,
+                "power_weighted_magnitude_squared_coherence": 0.71663692178157
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "cotton-wool": {
+      "reference": {
+        "id": "pad-01",
+        "title": "Cotton Wool",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_pad.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/PAD/TOP8_Cotton_Wool.mp3",
+        "local_filename": "TOP8_Cotton_Wool.mp3",
+        "sha256": "abf9d3ad400119ab0546fd724ab7a7442ea724bb164f8e9d024c642c791a1379",
+        "size_bytes": 744869,
+        "bank_id": "pad",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 1,
+        "patch_name": "Cotton Wool",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+      },
+      "comparison_limits": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "This is an estimated reconstruction, not a recovered original MIDI performance.",
+        "Played MIDI octave is conditional on the measured WIDE-off range and default system transpose. The original performance MIDI has not been recovered.",
+        "Bass C2/C3 octave allocation is less certain than the Eb/F/Bb and Eb/F/A chord pitch classes because their harmonics overlap.",
+        "Onsets are approximate within roughly30\u201370 ms, with the later F3 strum less certain. Short-time analysis window smears exact attacks.",
+        "Note-off times are placeholders informed by audible-band decay; release envelopes and reverb prevent exact recovery.",
+        "Velocities, controllers, pitch bend, system transpose/tuning, master gain, and recording processing are unknown.",
+        "Small note overlaps, extra quiet notes, and the exact voicing may differ from this estimate.",
+        "All note-on velocities fixed to100 as an explicit placeholder. Original velocities were not recoverable, and filter velocity sensitivity is+18 in the published patch. No velocity or preset parameters were fitted against Septum output.",
+        "Five-second excerpt only; the later untranscribed performance is not compared with the rendered release tail."
+      ],
+      "decoded_sha256": "9c05ef61182c5a3b72ddbf33330b344ef4b1bfa5e5b72e4a7b40f6f2e7a57ec1",
+      "decode_command": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "build-fidelity/hardware-benchmark/sources/TOP8_Cotton_Wool.mp3",
+        "-ar",
+        "44100",
+        "-ac",
+        "2",
+        "-c:a",
+        "pcm_f32le",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/stereo-feasibility/tails-02/cotton-wool/hardware-full.wav"
+      ],
+      "production_sha256": "54b7512438fb6a743292f314354cf5c37d68ba4f74a39e9474f03f9854e219a5",
+      "duration_seconds": 23.17061224489796,
+      "full_file_peak": 1.0320448875427246,
+      "hardware": [
+        {
+          "seconds": [
+            17.25,
+            17.75
+          ],
+          "samples": [
+            760725,
+            782775
+          ],
+          "raw": {
+            "rms": 0.01575098490268666,
+            "right_over_left_db": 1.4296847654657727,
+            "side_over_mid_db": -1.7999623660122972,
+            "cosine_similarity": 0.20708596901546497,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.1696950084204523,
+            "max_abs_channel_difference": 0.08128571324050426,
+            "rms_dbfs": -36.05384569535604,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                0.2555614093943478,
+                0.30358289172409536,
+                0.31489125164102283,
+                0.09483447536484324,
+                0.022027853579137457,
+                0.007782851459144737,
+                0.0013192668374085064
+              ],
+              "second_half_octave_power_fraction": [
+                0.19103183381676045,
+                0.3967088459146582,
+                0.2599335715981405,
+                0.11213858317405977,
+                0.029800321856274938,
+                0.00901553718498467,
+                0.0013713064551215967
+              ],
+              "half_distribution_cosine": 0.9701589398947712,
+              "half_distribution_L1": 0.23897451124093952,
+              "second_over_first_rms_db": -2.417812253988019,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 0.2128831589466767,
+                "side_over_mid_db": -0.4676496328104823,
+                "power_weighted_magnitude_squared_coherence": 0.08621157682004296
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.3614314924719819,
+                "side_over_mid_db": -3.8492814804808226,
+                "power_weighted_magnitude_squared_coherence": 0.3422771242457381
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.29429916975034875,
+                "side_over_mid_db": -1.0496272009000807,
+                "power_weighted_magnitude_squared_coherence": 0.3721737754471674
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.09710348762221592,
+                "side_over_mid_db": 0.5312744138074614,
+                "power_weighted_magnitude_squared_coherence": 0.20785326223009862
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.024488430032528003,
+                "side_over_mid_db": -0.37426388433890756,
+                "power_weighted_magnitude_squared_coherence": 0.27977877409595114
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.007928441932099708,
+                "side_over_mid_db": -0.8214837975984448,
+                "power_weighted_magnitude_squared_coherence": 0.3061151220577273
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.00128560704701349,
+                "side_over_mid_db": 0.9964701382895109,
+                "power_weighted_magnitude_squared_coherence": 0.32742027161313725
+              }
+            ]
+          },
+          "at_least_one_second_after_excitation_upper_bound": true,
+          "right_minus_0p6_db": {
+            "rms": 0.015148460650891264,
+            "right_over_left_db": 0.8296847654656486,
+            "side_over_mid_db": -1.8165814988302345,
+            "cosine_similarity": 0.20708596901546972,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.2040171642372197,
+            "max_abs_channel_difference": 0.07730128609501989,
+            "rms_dbfs": -36.392629937015336,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                0.24938605786470416,
+                0.30920875221001703,
+                0.31078183951740457,
+                0.0987595766475739,
+                0.02261711184467584,
+                0.007909458811542664,
+                0.0013372031040821152
+              ],
+              "second_half_octave_power_fraction": [
+                0.19637787402406123,
+                0.40376685268626417,
+                0.2526352564007524,
+                0.10724470016983172,
+                0.02962120301590092,
+                0.008995323793604395,
+                0.0013587899095851648
+              ],
+              "half_distribution_cosine": 0.9721723288833499,
+              "half_distribution_L1": 0.2223095339145899,
+              "second_over_first_rms_db": -2.3488560501737634,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 0.21010900905040558,
+                "side_over_mid_db": -0.47769736944544416,
+                "power_weighted_magnitude_squared_coherence": 0.08646698910650251
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.36925264919383577,
+                "side_over_mid_db": -3.791618117725986,
+                "power_weighted_magnitude_squared_coherence": 0.33905640050445296
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.28766185490338575,
+                "side_over_mid_db": -1.0829153724586593,
+                "power_weighted_magnitude_squared_coherence": 0.36853567349376226
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.09839872061569281,
+                "side_over_mid_db": 0.528537908550694,
+                "power_weighted_magnitude_squared_coherence": 0.2048989075280953
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.02471806514788759,
+                "side_over_mid_db": -0.37380159296786164,
+                "power_weighted_magnitude_squared_coherence": 0.2789137688196721
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.0079841555780464,
+                "side_over_mid_db": -0.8223905833330898,
+                "power_weighted_magnitude_squared_coherence": 0.30589297365164014
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.0012895408697401077,
+                "side_over_mid_db": 1.0015536343525742,
+                "power_weighted_magnitude_squared_coherence": 0.32765508701712887
+              }
+            ]
+          }
+        },
+        {
+          "seconds": [
+            17.75,
+            18.25
+          ],
+          "samples": [
+            782775,
+            804825
+          ],
+          "raw": {
+            "rms": 0.010372408252512606,
+            "right_over_left_db": 1.3229199962571279,
+            "side_over_mid_db": -3.021802472180364,
+            "cosine_similarity": 0.33839732726381944,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.0752803898586036,
+            "max_abs_channel_difference": 0.039856476709246635,
+            "rms_dbfs": -39.68240795929524,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                0.2722372059536656,
+                0.36475077481882884,
+                0.2836979921927265,
+                0.05404252599352034,
+                0.017671072735038148,
+                0.006751420313474024,
+                0.0008490079927464928
+              ],
+              "second_half_octave_power_fraction": [
+                0.24048838332409642,
+                0.39419079999339196,
+                0.24925827081987276,
+                0.09269262767932497,
+                0.018215094416556523,
+                0.0045356394495349355,
+                0.0006191843172224872
+              ],
+              "half_distribution_cosine": 0.9921385292967461,
+              "half_distribution_L1": 0.13726829708377214,
+              "second_over_first_rms_db": -1.5052286306367189,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 0.2628947557756024,
+                "side_over_mid_db": -5.1389106238317765,
+                "power_weighted_magnitude_squared_coherence": 0.4848345213906694
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.3776973416030422,
+                "side_over_mid_db": -4.610523378699697,
+                "power_weighted_magnitude_squared_coherence": 0.37486894394770337
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.259644168362975,
+                "side_over_mid_db": -0.30983295230292673,
+                "power_weighted_magnitude_squared_coherence": 0.4130547098424016
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.07396847737152218,
+                "side_over_mid_db": 1.0737084559402534,
+                "power_weighted_magnitude_squared_coherence": 0.12429589068122332
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.018751059425056706,
+                "side_over_mid_db": -1.8810969496312933,
+                "power_weighted_magnitude_squared_coherence": 0.1982929861479997
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.005578100885995417,
+                "side_over_mid_db": -1.359696692269146,
+                "power_weighted_magnitude_squared_coherence": 0.24598580399434472
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.0007384378058519623,
+                "side_over_mid_db": 0.8660840542879626,
+                "power_weighted_magnitude_squared_coherence": 0.3286661573520251
+              }
+            ]
+          },
+          "at_least_one_second_after_excitation_upper_bound": true,
+          "right_minus_0p6_db": {
+            "rms": 0.009979801261845406,
+            "right_over_left_db": 0.7229199962569594,
+            "side_over_mid_db": -3.048419397231723,
+            "cosine_similarity": 0.338397327263826,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.1063055667407908,
+            "max_abs_channel_difference": 0.03798798197959589,
+            "rms_dbfs": -40.017562143677985,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                0.26704185064116803,
+                0.37131454652615803,
+                0.2804452298374864,
+                0.055344340761722864,
+                0.018149520901596154,
+                0.006847526946520958,
+                0.0008569843853475984
+              ],
+              "second_half_octave_power_fraction": [
+                0.230210089109098,
+                0.40580863694512714,
+                0.2499082941978419,
+                0.09057839390659518,
+                0.01835202607263009,
+                0.0045204888186447635,
+                0.0006220709500625558
+              ],
+              "half_distribution_cosine": 0.9918613312652154,
+              "half_distribution_L1": 0.1398612974697511,
+              "second_over_first_rms_db": -1.4697262520603687,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 0.25503387286649953,
+                "side_over_mid_db": -5.383929259345837,
+                "power_weighted_magnitude_squared_coherence": 0.485156638380573
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.38629795547503765,
+                "side_over_mid_db": -4.523233553084648,
+                "power_weighted_magnitude_squared_coherence": 0.37244198379647425
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.2582629012786201,
+                "side_over_mid_db": -0.31352990931775704,
+                "power_weighted_magnitude_squared_coherence": 0.41392876161772985
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.07430006972225572,
+                "side_over_mid_db": 1.0759282911090227,
+                "power_weighted_magnitude_squared_coherence": 0.12433673044748365
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.01903738864217547,
+                "side_over_mid_db": -1.8644153909137557,
+                "power_weighted_magnitude_squared_coherence": 0.19795380563079276
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.005619835717823215,
+                "side_over_mid_db": -1.358402642140778,
+                "power_weighted_magnitude_squared_coherence": 0.24544776583399985
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.0007418393427346755,
+                "side_over_mid_db": 0.867760868375284,
+                "power_weighted_magnitude_squared_coherence": 0.32898077902276346
+              }
+            ]
+          }
+        },
+        {
+          "seconds": [
+            18.25,
+            18.75
+          ],
+          "samples": [
+            804825,
+            826875
+          ],
+          "raw": {
+            "rms": 0.006794779196659277,
+            "right_over_left_db": 1.2228396220074562,
+            "side_over_mid_db": -2.0484615175589647,
+            "cosine_similarity": 0.23385918236574715,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.161164403763801,
+            "max_abs_channel_difference": 0.030851276591420174,
+            "rms_dbfs": -43.35649303096388,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                0.22602165894625753,
+                0.37864682554616386,
+                0.2954018671172345,
+                0.07663926195912833,
+                0.01775195128578753,
+                0.004972297492058698,
+                0.0005661376533694129
+              ],
+              "second_half_octave_power_fraction": [
+                0.27417062789763996,
+                0.42358698581970156,
+                0.22003799472781066,
+                0.0630761593013863,
+                0.01474815920157645,
+                0.0038916629215573354,
+                0.0004884101303276365
+              ],
+              "half_distribution_cosine": 0.9833584435162862,
+              "half_distribution_L1": 0.1861782584498402,
+              "second_over_first_rms_db": -2.3148563980135743,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 0.2361617994229056,
+                "side_over_mid_db": -1.3155473796843449,
+                "power_weighted_magnitude_squared_coherence": 0.08193442830296237
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.4075005481538012,
+                "side_over_mid_db": -3.6717115090698953,
+                "power_weighted_magnitude_squared_coherence": 0.3054380757384577
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.2572297792939647,
+                "side_over_mid_db": -1.4009152630008508,
+                "power_weighted_magnitude_squared_coherence": 0.3818724439686917
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.07559269754847543,
+                "side_over_mid_db": 1.030291644235167,
+                "power_weighted_magnitude_squared_coherence": 0.2170729619065703
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.017424163484015324,
+                "side_over_mid_db": 1.0752443215850755,
+                "power_weighted_magnitude_squared_coherence": 0.2481742111295226
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.004725308593144223,
+                "side_over_mid_db": -0.5502429095210403,
+                "power_weighted_magnitude_squared_coherence": 0.30792869776264725
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.0005371325734354503,
+                "side_over_mid_db": 0.9370892090932181,
+                "power_weighted_magnitude_squared_coherence": 0.33165273528248057
+              }
+            ]
+          },
+          "at_least_one_second_after_excitation_upper_bound": true,
+          "right_minus_0p6_db": {
+            "rms": 0.006540158213708797,
+            "right_over_left_db": 0.6228396220073822,
+            "side_over_mid_db": -2.064058153046296,
+            "cosine_similarity": 0.23385918236574746,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.1962613837779266,
+            "max_abs_channel_difference": 0.029239109727316692,
+            "rms_dbfs": -43.68823490963214,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                0.22383190503089195,
+                0.3864893315370604,
+                0.2866978937184815,
+                0.0795046851392427,
+                0.01790962058939076,
+                0.005000862077771275,
+                0.0005657019071613818
+              ],
+              "second_half_octave_power_fraction": [
+                0.2768480983995362,
+                0.4265093400895556,
+                0.2163749402519347,
+                0.06102711024516197,
+                0.014823058945891806,
+                0.003926325004873441,
+                0.0004911270630463098
+              ],
+              "half_distribution_cosine": 0.9843615682259597,
+              "half_distribution_L1": 0.18607240384227888,
+              "second_over_first_rms_db": -2.330727125145237,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 0.23554336470670084,
+                "side_over_mid_db": -1.3224970324460452,
+                "power_weighted_magnitude_squared_coherence": 0.08193332879856943
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.4149826879163658,
+                "side_over_mid_db": -3.6079332352172027,
+                "power_weighted_magnitude_squared_coherence": 0.301328773778485
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.25002239895321127,
+                "side_over_mid_db": -1.4458093062321822,
+                "power_weighted_magnitude_squared_coherence": 0.37777940869452104
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.07589705433822991,
+                "side_over_mid_db": 1.0287830799514301,
+                "power_weighted_magnitude_squared_coherence": 0.21522377724644934
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.0174590587931222,
+                "side_over_mid_db": 1.0758591582377441,
+                "power_weighted_magnitude_squared_coherence": 0.24841208441230075
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.004746383255239495,
+                "side_over_mid_db": -0.549204738376401,
+                "power_weighted_magnitude_squared_coherence": 0.3080976602104574
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.000536667283396697,
+                "side_over_mid_db": 0.9403371138738346,
+                "power_weighted_magnitude_squared_coherence": 0.33192244904490453
+              }
+            ]
+          }
+        },
+        {
+          "seconds": [
+            18.75,
+            19.25
+          ],
+          "samples": [
+            826875,
+            848925
+          ],
+          "raw": {
+            "rms": 0.004465827211635062,
+            "right_over_left_db": 1.4681566373564634,
+            "side_over_mid_db": -2.4493878196821703,
+            "cosine_similarity": 0.2786858289616221,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.1146584287906658,
+            "max_abs_channel_difference": 0.01887643802911043,
+            "rms_dbfs": -47.001961686577445,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                0.31185956837395784,
+                0.3264630682801009,
+                0.28056588349630807,
+                0.06195212628829917,
+                0.015130018398820678,
+                0.0036192756430805453,
+                0.0004100595194329193
+              ],
+              "second_half_octave_power_fraction": [
+                0.3043549464676504,
+                0.3906470037071548,
+                0.23930133469933357,
+                0.05123159946039472,
+                0.0114453461605149,
+                0.0027302339160085996,
+                0.00028953558894298395
+              ],
+              "half_distribution_cosine": 0.9903404931949134,
+              "half_distribution_L1": 0.128367870854108,
+              "second_over_first_rms_db": -1.601402786066538,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 0.2940039907227873,
+                "side_over_mid_db": -3.5257366793023,
+                "power_weighted_magnitude_squared_coherence": 0.3242765079175924
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.37675694487051925,
+                "side_over_mid_db": -5.014893188179088,
+                "power_weighted_magnitude_squared_coherence": 0.4144131662294559
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.24865596632937192,
+                "side_over_mid_db": -0.543812232673954,
+                "power_weighted_magnitude_squared_coherence": 0.5079350618753664
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.06393450535562946,
+                "side_over_mid_db": 1.7421702545770046,
+                "power_weighted_magnitude_squared_coherence": 0.1791721733772014
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.012699052816229869,
+                "side_over_mid_db": -2.5159066860057395,
+                "power_weighted_magnitude_squared_coherence": 0.26642256718386953
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.003078091656752251,
+                "side_over_mid_db": -0.9899963718952727,
+                "power_weighted_magnitude_squared_coherence": 0.27458544851955297
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.0003440773902207502,
+                "side_over_mid_db": 0.7975203071285814,
+                "power_weighted_magnitude_squared_coherence": 0.32347144048139487
+              }
+            ]
+          },
+          "at_least_one_second_after_excitation_upper_bound": true,
+          "right_minus_0p6_db": {
+            "rms": 0.0042943500112650876,
+            "right_over_left_db": 0.8681566373563753,
+            "side_over_mid_db": -2.473344411327166,
+            "cosine_similarity": 0.2786858289616243,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.1464974594234736,
+            "max_abs_channel_difference": 0.018059871548268575,
+            "rms_dbfs": -47.34205122516748,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                0.3030991371662788,
+                0.33456496407038794,
+                0.27873530122879747,
+                0.06425431220486273,
+                0.015280949988281922,
+                0.0036544145893080875,
+                0.00041092075208306743
+              ],
+              "second_half_octave_power_fraction": [
+                0.2958900620095004,
+                0.39908479634588506,
+                0.23943272721109432,
+                0.05090927897968033,
+                0.011621419436795198,
+                0.0027683295167298594,
+                0.0002933865003147343
+              ],
+              "half_distribution_cosine": 0.9905816178948809,
+              "half_distribution_L1": 0.12903966455099433,
+              "second_over_first_rms_db": -1.640127963680404,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 0.28498966762292927,
+                "side_over_mid_db": -3.6799987814216975,
+                "power_weighted_magnitude_squared_coherence": 0.3235685232371522
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.38650973920729553,
+                "side_over_mid_db": -4.90239586215773,
+                "power_weighted_magnitude_squared_coherence": 0.4138371370952013
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.24732210496843984,
+                "side_over_mid_db": -0.5506806459327531,
+                "power_weighted_magnitude_squared_coherence": 0.5093891890588474
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.06439544603952674,
+                "side_over_mid_db": 1.742090520409094,
+                "power_weighted_magnitude_squared_coherence": 0.1795493401983629
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.012811278831341049,
+                "side_over_mid_db": -2.5114986561705526,
+                "power_weighted_magnitude_squared_coherence": 0.26595895612778275
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.0030952163219218625,
+                "side_over_mid_db": -0.9915865936626838,
+                "power_weighted_magnitude_squared_coherence": 0.274422198927898
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.00034469151789337824,
+                "side_over_mid_db": 0.8018275016187821,
+                "power_weighted_magnitude_squared_coherence": 0.324327658466711
+              }
+            ]
+          }
+        },
+        {
+          "seconds": [
+            19.25,
+            19.75
+          ],
+          "samples": [
+            848925,
+            870975
+          ],
+          "raw": {
+            "rms": 0.002849669675164228,
+            "right_over_left_db": 0.5661927701609926,
+            "side_over_mid_db": -2.3792221706575933,
+            "cosine_similarity": 0.26783485842372645,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.1729894909526497,
+            "max_abs_channel_difference": 0.012530133593827486,
+            "rms_dbfs": -50.90410958276108,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                0.25004397383322097,
+                0.47974725669993223,
+                0.20203972284271562,
+                0.04955844155289756,
+                0.015468232249510156,
+                0.0028459780568430224,
+                0.0002963947648803958
+              ],
+              "second_half_octave_power_fraction": [
+                0.3592960684574568,
+                0.3970037328869031,
+                0.18357515909796365,
+                0.0465912460172332,
+                0.01053472007497866,
+                0.0026527210282587237,
+                0.00034635243720554083
+              ],
+              "half_distribution_cosine": 0.9711303382029832,
+              "half_distribution_L1": 0.2186041045931223,
+              "second_over_first_rms_db": -1.8792987700667088,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 0.29515051976442447,
+                "side_over_mid_db": -4.084830890280581,
+                "power_weighted_magnitude_squared_coherence": 0.25756604982108594
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.43812876147120833,
+                "side_over_mid_db": -2.86932310180454,
+                "power_weighted_magnitude_squared_coherence": 0.2901425306324174
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.19621461447441516,
+                "side_over_mid_db": -0.035432363018412696,
+                "power_weighted_magnitude_squared_coherence": 0.40437670202944587
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.054217281894240195,
+                "side_over_mid_db": 0.7826231587758893,
+                "power_weighted_magnitude_squared_coherence": 0.2051592228098821
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.012375586303145414,
+                "side_over_mid_db": 0.9945427687019914,
+                "power_weighted_magnitude_squared_coherence": 0.22133928217831295
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.002753217133562074,
+                "side_over_mid_db": -0.805991110157043,
+                "power_weighted_magnitude_squared_coherence": 0.2832217941661019
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.0003225740985805262,
+                "side_over_mid_db": 0.5177503867395498,
+                "power_weighted_magnitude_squared_coherence": 0.21681205934260692
+              }
+            ]
+          },
+          "at_least_one_second_after_excitation_upper_bound": true,
+          "right_minus_0p6_db": {
+            "rms": 0.0027500155437728043,
+            "right_over_left_db": -0.03380722983909085,
+            "side_over_mid_db": -2.3845174172523724,
+            "cosine_similarity": 0.26783485842372734,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.2124586861699405,
+            "max_abs_channel_difference": 0.012128380478740179,
+            "rms_dbfs": -51.21329702844435,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                0.2507179546537633,
+                0.488194118023388,
+                0.19325016041845444,
+                0.049432976152354945,
+                0.015272583706988842,
+                0.0028388858135032875,
+                0.00029332123154716846
+              ],
+              "second_half_octave_power_fraction": [
+                0.35607443790364773,
+                0.4028848756041923,
+                0.1819819448957481,
+                0.04527621569463907,
+                0.010770876549633554,
+                0.0026674276418147823,
+                0.0003442217103244848
+              ],
+              "half_distribution_cosine": 0.9724537572476853,
+              "half_distribution_L1": 0.21081476745732353,
+              "second_over_first_rms_db": -1.9192447945157822,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 0.2934474453889889,
+                "side_over_mid_db": -4.108288779055472,
+                "power_weighted_magnitude_squared_coherence": 0.25818431201090547
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.4465408752346151,
+                "side_over_mid_db": -2.8088768639306356,
+                "power_weighted_magnitude_squared_coherence": 0.28658860959786703
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.1904513994682931,
+                "side_over_mid_db": -0.0364743290765961,
+                "power_weighted_magnitude_squared_coherence": 0.3997562674334073
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.05329649849712939,
+                "side_over_mid_db": 0.7955557881262749,
+                "power_weighted_magnitude_squared_coherence": 0.20570487759467387
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.012373910252109299,
+                "side_over_mid_db": 0.9938469633647756,
+                "power_weighted_magnitude_squared_coherence": 0.2207342843938971
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.0027557050513800805,
+                "side_over_mid_db": -0.8045879653290395,
+                "power_weighted_magnitude_squared_coherence": 0.2833206096009042
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.0003204286472955384,
+                "side_over_mid_db": 0.5207922441150884,
+                "power_weighted_magnitude_squared_coherence": 0.21718496764472503
+              }
+            ]
+          }
+        },
+        {
+          "seconds": [
+            19.75,
+            20.25
+          ],
+          "samples": [
+            870975,
+            893025
+          ],
+          "raw": {
+            "rms": 0.0019950085320833053,
+            "right_over_left_db": 1.4195041690599441,
+            "side_over_mid_db": -2.6778634987847125,
+            "cosine_similarity": 0.30289044631547446,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.0985186115279804,
+            "max_abs_channel_difference": 0.009494233876466751,
+            "rms_dbfs": -54.00110485238902,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                0.33914302285726056,
+                0.4012802532402065,
+                0.18728678226763684,
+                0.06188358710435217,
+                0.00847427759137645,
+                0.0016298628552797079,
+                0.000302214083887745
+              ],
+              "second_half_octave_power_fraction": [
+                0.35332831481457144,
+                0.32626809280341795,
+                0.25096826884287315,
+                0.05877671159014225,
+                0.007959865310812227,
+                0.0022398024131149844,
+                0.00045894422506801574
+              ],
+              "half_distribution_cosine": 0.9842444181699711,
+              "half_distribution_L1": 0.15726689646312544,
+              "second_over_first_rms_db": -2.38701121037385,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 0.3226874581322825,
+                "side_over_mid_db": -1.301146083307305,
+                "power_weighted_magnitude_squared_coherence": 0.14078855573103555
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.4014411879749972,
+                "side_over_mid_db": -5.609469941032074,
+                "power_weighted_magnitude_squared_coherence": 0.47963160636276947
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.20699129367691277,
+                "side_over_mid_db": -1.0795071249235573,
+                "power_weighted_magnitude_squared_coherence": 0.5170879179107963
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.057371384087204214,
+                "side_over_mid_db": 2.034707359494753,
+                "power_weighted_magnitude_squared_coherence": 0.1610759978979212
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.008450852868698068,
+                "side_over_mid_db": -1.5782640220037059,
+                "power_weighted_magnitude_squared_coherence": 0.2541543506094823
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.0018742792032580362,
+                "side_over_mid_db": -0.97016007924006,
+                "power_weighted_magnitude_squared_coherence": 0.27554161879611017
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.0003538932127291029,
+                "side_over_mid_db": 0.38488302008870634,
+                "power_weighted_magnitude_squared_coherence": 0.17433654863753376
+              }
+            ]
+          },
+          "at_least_one_second_after_excitation_upper_bound": true,
+          "right_minus_0p6_db": {
+            "rms": 0.0019187695976271135,
+            "right_over_left_db": 0.8195041690598193,
+            "side_over_mid_db": -2.7032296097826842,
+            "cosine_similarity": 0.3028904463154783,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.1299544918942177,
+            "max_abs_channel_difference": 0.009174033375586772,
+            "rms_dbfs": -54.33954342854833,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                0.3241070841988485,
+                0.41562326716277936,
+                0.18679360596250358,
+                0.06311950140007988,
+                0.008440326016107379,
+                0.0016164363852506894,
+                0.00029977887443056957
+              ],
+              "second_half_octave_power_fraction": [
+                0.35072677872057934,
+                0.32690126274571757,
+                0.250891237890175,
+                0.060606977844170545,
+                0.008135039573017028,
+                0.002273969099316906,
+                0.00046473412702356925
+              ],
+              "half_distribution_cosine": 0.979829856808399,
+              "half_distribution_L1": 0.18307962883212295,
+              "second_over_first_rms_db": -2.4559659545465555,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 0.31289059863293034,
+                "side_over_mid_db": -1.3545569166997617,
+                "power_weighted_magnitude_squared_coherence": 0.13981020182180828
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.4115437259407421,
+                "side_over_mid_db": -5.493856462476005,
+                "power_weighted_magnitude_squared_coherence": 0.4782179254847393
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.20596507480092222,
+                "side_over_mid_db": -1.0946088299359984,
+                "power_weighted_magnitude_squared_coherence": 0.5166542354043873
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.058067410598187846,
+                "side_over_mid_db": 2.027798062148559,
+                "power_weighted_magnitude_squared_coherence": 0.16084618842222273
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.008486563808292102,
+                "side_over_mid_db": -1.5856408031556066,
+                "power_weighted_magnitude_squared_coherence": 0.2524941550140054
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.0018718519033659932,
+                "side_over_mid_db": -0.9800662880542186,
+                "power_weighted_magnitude_squared_coherence": 0.275340843156125
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.0003534675721534264,
+                "side_over_mid_db": 0.38874922699854625,
+                "power_weighted_magnitude_squared_coherence": 0.17531637780587805
+              }
+            ]
+          }
+        },
+        {
+          "seconds": [
+            20.25,
+            20.75
+          ],
+          "samples": [
+            893025,
+            915075
+          ],
+          "raw": {
+            "rms": 0.0012752374784248397,
+            "right_over_left_db": 0.3858346827505115,
+            "side_over_mid_db": -3.0651985667623016,
+            "cosine_similarity": 0.33927406766828916,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.1251330087828002,
+            "max_abs_channel_difference": 0.004978441866114736,
+            "rms_dbfs": -57.888178642392205,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                0.3219351221485167,
+                0.44931865946808675,
+                0.16980585118934205,
+                0.047749882275896625,
+                0.008465266041094049,
+                0.0021033030956778484,
+                0.000621915781386088
+              ],
+              "second_half_octave_power_fraction": [
+                0.4147930980064364,
+                0.3290879623664169,
+                0.2074320800404364,
+                0.037313819570410134,
+                0.008170056537802691,
+                0.002275509099388093,
+                0.0009274743791095103
+              ],
+              "half_distribution_cosine": 0.962966252426193,
+              "half_distribution_L1": 0.26192393862089536,
+              "second_over_first_rms_db": -2.0748029995565993,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 0.3625316318062227,
+                "side_over_mid_db": -6.08363864437921,
+                "power_weighted_magnitude_squared_coherence": 0.46395196397259425
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.405119798492143,
+                "side_over_mid_db": -2.227810605065776,
+                "power_weighted_magnitude_squared_coherence": 0.2431322331107089
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.1767635665740836,
+                "side_over_mid_db": -0.563132782801651,
+                "power_weighted_magnitude_squared_coherence": 0.38772606312059077
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.04345988383825888,
+                "side_over_mid_db": 0.8405200754354389,
+                "power_weighted_magnitude_squared_coherence": 0.3145339993853319
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.008150589559599691,
+                "side_over_mid_db": -1.2104617233675816,
+                "power_weighted_magnitude_squared_coherence": 0.17036126102057414
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.00216302342671201,
+                "side_over_mid_db": -0.7330900059364422,
+                "power_weighted_magnitude_squared_coherence": 0.22631560838960893
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.0007465130241517834,
+                "side_over_mid_db": -0.021928946312482402,
+                "power_weighted_magnitude_squared_coherence": 0.13300009945493751
+              }
+            ]
+          },
+          "at_least_one_second_after_excitation_upper_bound": true,
+          "right_minus_0p6_db": {
+            "rms": 0.0012315240582938475,
+            "right_over_left_db": -0.21416531724963173,
+            "side_over_mid_db": -3.0674690581076454,
+            "cosine_similarity": 0.339274067668295,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.1640715916518123,
+            "max_abs_channel_difference": 0.004901687255242201,
+            "rms_dbfs": -58.191141992661514,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                0.319154389469818,
+                0.46022634906447113,
+                0.1632673892988285,
+                0.046479439967751106,
+                0.00819694750282255,
+                0.0020666169391536744,
+                0.0006088677571549098
+              ],
+              "second_half_octave_power_fraction": [
+                0.41047484326956624,
+                0.3337389645497866,
+                0.20693912742895365,
+                0.03730178470766534,
+                0.008331058228798354,
+                0.0022797647342656245,
+                0.0009344570809642564
+              ],
+              "half_distribution_cosine": 0.9608736604342394,
+              "half_distribution_L1": 0.2713300795495408,
+              "second_over_first_rms_db": -2.166451566966793,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 0.35689607255841443,
+                "side_over_mid_db": -6.223928063414075,
+                "power_weighted_magnitude_squared_coherence": 0.4653757669159554
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.41570583061636623,
+                "side_over_mid_db": -2.170864915830258,
+                "power_weighted_magnitude_squared_coherence": 0.2415010241653716
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.1728825563609415,
+                "side_over_mid_db": -0.5763749540741707,
+                "power_weighted_magnitude_squared_coherence": 0.3833516563161607
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.04247905019796487,
+                "side_over_mid_db": 0.8608984007219196,
+                "power_weighted_magnitude_squared_coherence": 0.31526102072150175
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.008091138487088815,
+                "side_over_mid_db": -1.2206790615779033,
+                "power_weighted_magnitude_squared_coherence": 0.16772566583525478
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.0021413711182905137,
+                "side_over_mid_db": -0.741264914391544,
+                "power_weighted_magnitude_squared_coherence": 0.22629274114090636
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.0007388025233278417,
+                "side_over_mid_db": -0.022179442134508395,
+                "power_weighted_magnitude_squared_coherence": 0.13307306729724955
+              }
+            ]
+          }
+        },
+        {
+          "seconds": [
+            20.75,
+            21.25
+          ],
+          "samples": [
+            915075,
+            937125
+          ],
+          "raw": {
+            "rms": 0.00088026166581554,
+            "right_over_left_db": 1.3335670583469548,
+            "side_over_mid_db": -2.2261772979984147,
+            "cosine_similarity": 0.253791928392572,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.1402902208420602,
+            "max_abs_channel_difference": 0.0042348268907517195,
+            "rms_dbfs": -61.107764213181824,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                0.3409048896185874,
+                0.4722498355985814,
+                0.1356372003502103,
+                0.04209529192350153,
+                0.006429447731206687,
+                0.0017606209154044585,
+                0.000922713862508335
+              ],
+              "second_half_octave_power_fraction": [
+                0.3825483172318151,
+                0.31961181637562996,
+                0.2389030721072695,
+                0.04315204749413718,
+                0.010251246646102583,
+                0.0034637201091794793,
+                0.0020697800358662065
+              ],
+              "half_distribution_cosine": 0.949330576055896,
+              "half_distribution_L1": 0.3052760384459028,
+              "second_over_first_rms_db": -2.759088141958471,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 0.34790417616693453,
+                "side_over_mid_db": -0.5999022558126609,
+                "power_weighted_magnitude_squared_coherence": 0.07050913194256568
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.4189493363523634,
+                "side_over_mid_db": -5.436806748816957,
+                "power_weighted_magnitude_squared_coherence": 0.5192847429260022
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.1765902803875854,
+                "side_over_mid_db": -0.7095264063749563,
+                "power_weighted_magnitude_squared_coherence": 0.5057398871248647
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.04376732024732594,
+                "side_over_mid_db": 1.4142747336233423,
+                "power_weighted_magnitude_squared_coherence": 0.14579097657500295
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.007389820024414388,
+                "side_over_mid_db": 0.1382865367703804,
+                "power_weighted_magnitude_squared_coherence": 0.35153880292450346
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.0023010842924573033,
+                "side_over_mid_db": -0.6570192476137771,
+                "power_weighted_magnitude_squared_coherence": 0.2390614542650869
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.0013130799475787422,
+                "side_over_mid_db": -0.475898350776027,
+                "power_weighted_magnitude_squared_coherence": 0.12795988297865
+              }
+            ]
+          },
+          "at_least_one_second_after_excitation_upper_bound": true,
+          "right_minus_0p6_db": {
+            "rms": 0.00084690745437695,
+            "right_over_left_db": 0.7335670583468211,
+            "side_over_mid_db": -2.2452793487709637,
+            "cosine_similarity": 0.2537919283925774,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.173928749751825,
+            "max_abs_channel_difference": 0.004060159012465793,
+            "rms_dbfs": -61.44328089018217,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                0.32754977711603894,
+                0.48557762776362395,
+                0.1355960095216917,
+                0.04219196417470697,
+                0.006432562719077636,
+                0.001733145672810491,
+                0.0009189130320503087
+              ],
+              "second_half_octave_power_fraction": [
+                0.38387639679061974,
+                0.3240431587684398,
+                0.23263262627593026,
+                0.04367715102263056,
+                0.010301768923600959,
+                0.0034068231227247455,
+                0.002062075096053833
+              ],
+              "half_distribution_cosine": 0.9455363098171269,
+              "half_distribution_L1": 0.3230689379903682,
+              "second_over_first_rms_db": -2.769608321079253,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 0.3403506787596497,
+                "side_over_mid_db": -0.6204936395006898,
+                "power_weighted_magnitude_squared_coherence": 0.07044927878487697
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.4282234123032774,
+                "side_over_mid_db": -5.366313416405894,
+                "power_weighted_magnitude_squared_coherence": 0.5191328838034054
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.17467558786113663,
+                "side_over_mid_db": -0.7258110292813434,
+                "power_weighted_magnitude_squared_coherence": 0.5037114469648616
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.04398851538066513,
+                "side_over_mid_db": 1.423874725110742,
+                "power_weighted_magnitude_squared_coherence": 0.14388394951988706
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.00739911445192551,
+                "side_over_mid_db": 0.13973670549181727,
+                "power_weighted_magnitude_squared_coherence": 0.35250423808342374
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.002267295946547797,
+                "side_over_mid_db": -0.6747194431926017,
+                "power_weighted_magnitude_squared_coherence": 0.23896392593426755
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.0013100676137087126,
+                "side_over_mid_db": -0.4826137616598794,
+                "power_weighted_magnitude_squared_coherence": 0.12777227673337965
+              }
+            ]
+          }
+        },
+        {
+          "seconds": [
+            21.25,
+            21.75
+          ],
+          "samples": [
+            937125,
+            959175
+          ],
+          "raw": {
+            "rms": 0.000571589218978994,
+            "right_over_left_db": 0.8534058180749171,
+            "side_over_mid_db": -3.0051348048551665,
+            "cosine_similarity": 0.3344122911291246,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.1024344817404301,
+            "max_abs_channel_difference": 0.0023275146959349513,
+            "rms_dbfs": -64.85831942484626,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                0.3970475910528785,
+                0.4220248305631784,
+                0.1304277089155905,
+                0.03716015096978114,
+                0.007197085828850911,
+                0.0035357852351200823,
+                0.002606847434600525
+              ],
+              "second_half_octave_power_fraction": [
+                0.4626713047402872,
+                0.3096113660819122,
+                0.1733596889933356,
+                0.03607387344628479,
+                0.009688603316415204,
+                0.004727337298230389,
+                0.003867826123534767
+              ],
+              "half_distribution_cosine": 0.9731434246833582,
+              "half_distribution_L1": 0.22699948400952522,
+              "second_over_first_rms_db": -1.7253292939186207,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 0.424360455839287,
+                "side_over_mid_db": -5.130075317404415,
+                "power_weighted_magnitude_squared_coherence": 0.43368074078916224
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.377235820166395,
+                "side_over_mid_db": -1.8490548483694746,
+                "power_weighted_magnitude_squared_coherence": 0.3467848505507718
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.14267392177030708,
+                "side_over_mid_db": -0.8676606700566583,
+                "power_weighted_magnitude_squared_coherence": 0.45681526071043704
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.037585676504204864,
+                "side_over_mid_db": 0.40482781021438435,
+                "power_weighted_magnitude_squared_coherence": 0.2408850364764174
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.007862218941870544,
+                "side_over_mid_db": -1.721166940021408,
+                "power_weighted_magnitude_squared_coherence": 0.296311180106527
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.003861782144721388,
+                "side_over_mid_db": -0.879283892506077,
+                "power_weighted_magnitude_squared_coherence": 0.25626292535207323
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.003040832707701909,
+                "side_over_mid_db": -0.13692395538632476,
+                "power_weighted_magnitude_squared_coherence": 0.1186863951026865
+              }
+            ]
+          },
+          "at_least_one_second_after_excitation_upper_bound": true,
+          "right_minus_0p6_db": {
+            "rms": 0.0005509725972421452,
+            "right_over_left_db": 0.25340581807480245,
+            "side_over_mid_db": -3.0194561726473164,
+            "cosine_similarity": 0.3344122911291273,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.137421170605737,
+            "max_abs_channel_difference": 0.002273214037619556,
+            "rms_dbfs": -65.17740000708287,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                0.3886772939111291,
+                0.43603045314523514,
+                0.12681915834032073,
+                0.035574854675744436,
+                0.006960867186204208,
+                0.0033900913452963423,
+                0.0025472813960700728
+              ],
+              "second_half_octave_power_fraction": [
+                0.45145571425146147,
+                0.3186615989166117,
+                0.17514933948388625,
+                0.036588123597085256,
+                0.009593546529830077,
+                0.0046484243170689605,
+                0.0039032529040562433
+              ],
+              "half_distribution_cosine": 0.9716239908392205,
+              "half_distribution_L1": 0.23473770845724679,
+              "second_over_first_rms_db": -1.819274348564326,
+              "level_guard": false,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 0.41494417221607655,
+                "side_over_mid_db": -5.319682178083568,
+                "power_weighted_magnitude_squared_coherence": 0.4345976957253218
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.38935922552895397,
+                "side_over_mid_db": -1.8015993315533076,
+                "power_weighted_magnitude_squared_coherence": 0.34594509495230163
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.1410065917961651,
+                "side_over_mid_db": -0.8836499008365564,
+                "power_weighted_magnitude_squared_coherence": 0.4558589861501455
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.036829051569863554,
+                "side_over_mid_db": 0.4158063387157124,
+                "power_weighted_magnitude_squared_coherence": 0.2386338514316401
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.007723416393394645,
+                "side_over_mid_db": -1.7644713955004825,
+                "power_weighted_magnitude_squared_coherence": 0.29380183029767687
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.0037518389043963043,
+                "side_over_mid_db": -0.9110726991155836,
+                "power_weighted_magnitude_squared_coherence": 0.25321221126465027
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.0030179733117238604,
+                "side_over_mid_db": -0.1388446806516923,
+                "power_weighted_magnitude_squared_coherence": 0.11864957689599788
+              }
+            ]
+          }
+        },
+        {
+          "seconds": [
+            21.75,
+            22.25
+          ],
+          "samples": [
+            959175,
+            981225
+          ],
+          "raw": {
+            "rms": 0.00038619284206271924,
+            "right_over_left_db": 1.6113984259865517,
+            "side_over_mid_db": -2.550113266248984,
+            "cosine_similarity": 0.2903642296946812,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.0989186269920819,
+            "max_abs_channel_difference": 0.002090951253194362,
+            "rms_dbfs": -68.26391559929776,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                0.3535688527028215,
+                0.4422742068903738,
+                0.15142250322601136,
+                0.03344146577776058,
+                0.009433223745294012,
+                0.005167364703355159,
+                0.0046923829543836105
+              ],
+              "second_half_octave_power_fraction": [
+                0.4000495483841131,
+                0.36844221820707623,
+                0.15198225334151655,
+                0.0440980006384914,
+                0.016166692029081428,
+                0.010093480171749856,
+                0.009167807227971506
+              ],
+              "half_distribution_cosine": 0.988883837921897,
+              "half_distribution_L1": 0.14766397736659514,
+              "second_over_first_rms_db": -3.4195449454580897,
+              "level_guard": false,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 0.3739035063386257,
+                "side_over_mid_db": -1.2478709954771274,
+                "power_weighted_magnitude_squared_coherence": 0.07730801154914894
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.39041989989093345,
+                "side_over_mid_db": -5.901527837212701,
+                "power_weighted_magnitude_squared_coherence": 0.5462923840126731
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.16040913693034148,
+                "side_over_mid_db": -1.3312638206408824,
+                "power_weighted_magnitude_squared_coherence": 0.4495182267789442
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.039966258593730555,
+                "side_over_mid_db": -0.43978512821989,
+                "power_weighted_magnitude_squared_coherence": 0.28229063877012206
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.012309892284403063,
+                "side_over_mid_db": -0.26124513096290986,
+                "power_weighted_magnitude_squared_coherence": 0.21629712429642994
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.007234663534184895,
+                "side_over_mid_db": -0.5829751881414115,
+                "power_weighted_magnitude_squared_coherence": 0.2581951805248084
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.0065294483984135445,
+                "side_over_mid_db": -0.33231353520059437,
+                "power_weighted_magnitude_squared_coherence": 0.12023806442228228
+              }
+            ]
+          },
+          "at_least_one_second_after_excitation_upper_bound": true,
+          "right_minus_0p6_db": {
+            "rms": 0.0003711568165118472,
+            "right_over_left_db": 1.0113984259864714,
+            "side_over_mid_db": -2.5782123633703495,
+            "cosine_similarity": 0.2903642296946824,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.129314024637254,
+            "max_abs_channel_difference": 0.0020132592038822087,
+            "rms_dbfs": -68.60885117932163,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                0.34574046653033175,
+                0.45194053812217344,
+                0.15032445633288954,
+                0.033063764518462734,
+                0.009205341440529924,
+                0.005024991250749694,
+                0.004700441804862818
+              ],
+              "second_half_octave_power_fraction": [
+                0.3999809819630213,
+                0.37553689338020707,
+                0.1479720569464445,
+                0.04246129323566495,
+                0.015429265517417107,
+                0.0096393110220102,
+                0.008980197935234887
+              ],
+              "half_distribution_cosine": 0.9872451181732839,
+              "half_distribution_L1": 0.15751208825682295,
+              "second_over_first_rms_db": -3.3710872045126723,
+              "level_guard": false,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 0.3693709212304881,
+                "side_over_mid_db": -1.2777223311025772,
+                "power_weighted_magnitude_squared_coherence": 0.07683732975480159
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.39847894428457004,
+                "side_over_mid_db": -5.828684057131651,
+                "power_weighted_magnitude_squared_coherence": 0.547905495763367
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.15795795483024563,
+                "side_over_mid_db": -1.3676173524046815,
+                "power_weighted_magnitude_squared_coherence": 0.44819480653213084
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.039377746633531135,
+                "side_over_mid_db": -0.45136685285413874,
+                "power_weighted_magnitude_squared_coherence": 0.2757183290919601
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.011969464832675806,
+                "side_over_mid_db": -0.2716846519309092,
+                "power_weighted_magnitude_squared_coherence": 0.2170625358548003
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.007009797565266245,
+                "side_over_mid_db": -0.6084821303455412,
+                "power_weighted_magnitude_squared_coherence": 0.2549431931238299
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.0064996588512081154,
+                "side_over_mid_db": -0.33757278548587705,
+                "power_weighted_magnitude_squared_coherence": 0.12003759492359743
+              }
+            ]
+          }
+        }
+      ],
+      "production_tail": [
+        {
+          "midi_clock_seconds": [
+            5.75,
+            6.25
+          ],
+          "samples": [
+            253668,
+            275718
+          ],
+          "raw": {
+            "rms": 0.0066211505586092935,
+            "right_over_left_db": -0.09544031359651775,
+            "side_over_mid_db": -3.483301867738846,
+            "cosine_similarity": 0.3808528705414664,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.118971715500943,
+            "max_abs_channel_difference": 0.026294995099306107,
+            "rms_dbfs": -43.58133073133364,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                0.28222801264431413,
+                0.48723986065490693,
+                0.13216419856435282,
+                0.0654610648745558,
+                0.020328759502249466,
+                0.011501539726500358,
+                0.0010765640331205817
+              ],
+              "second_half_octave_power_fraction": [
+                0.22900220199459664,
+                0.587505176001791,
+                0.09824237922870359,
+                0.05492062778649806,
+                0.01888691170521852,
+                0.010472399696102828,
+                0.000970303587089285
+              ],
+              "half_distribution_cosine": 0.985607736170215,
+              "half_distribution_L1": 0.20053063069376828,
+              "second_over_first_rms_db": -1.8687103874189908,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 0.2188500573530658,
+                "side_over_mid_db": -4.341476093099036,
+                "power_weighted_magnitude_squared_coherence": 0.597766400615951
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.4450471334019774,
+                "side_over_mid_db": -4.652723894305918,
+                "power_weighted_magnitude_squared_coherence": 0.5870208869535644
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.09859803773075841,
+                "side_over_mid_db": -4.697436324996747,
+                "power_weighted_magnitude_squared_coherence": 0.49442474981356416
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.05071797488116991,
+                "side_over_mid_db": -7.352394145331479,
+                "power_weighted_magnitude_squared_coherence": 0.6588020099332628
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.01763015601465602,
+                "side_over_mid_db": -4.843294316856487,
+                "power_weighted_magnitude_squared_coherence": 0.5320976299469243
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.009801649289832058,
+                "side_over_mid_db": -6.110782718054583,
+                "power_weighted_magnitude_squared_coherence": 0.5884305635726698
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.0009083288412955381,
+                "side_over_mid_db": -4.641322954279256,
+                "power_weighted_magnitude_squared_coherence": 0.5084433325653949
+              }
+            ]
+          }
+        },
+        {
+          "midi_clock_seconds": [
+            6.25,
+            6.75
+          ],
+          "samples": [
+            275718,
+            297768
+          ],
+          "raw": {
+            "rms": 0.004038686632029768,
+            "right_over_left_db": -0.2133579644389366,
+            "side_over_mid_db": -3.611507424518155,
+            "cosine_similarity": 0.39349663483709185,
+            "fixed_training_channel_gain": 1.0,
+            "fixed_channel_prediction_relative_error": 1.1152533770775983,
+            "max_abs_channel_difference": 0.01900956593453884,
+            "rms_dbfs": -47.875196862126415,
+            "stationarity": {
+              "first_half_octave_power_fraction": [
+                0.26944812397505735,
+                0.5474425111152775,
+                0.09808042483393438,
+                0.051493731497081856,
+                0.020247688816479224,
+                0.012220238515592697,
+                0.001067281246577102
+              ],
+              "second_half_octave_power_fraction": [
+                0.2675473020649783,
+                0.524177036675018,
+                0.1154950402493923,
+                0.057762684914640525,
+                0.02206355374985718,
+                0.011816306607686702,
+                0.0011380757384270063
+              ],
+              "half_distribution_cosine": 0.9992214177789346,
+              "half_distribution_L1": 0.05114045651648902,
+              "second_over_first_rms_db": -2.195914663483008,
+              "level_guard": true,
+              "no_half_window_level_rise_guard": true,
+              "coarse_shape_guard": true
+            },
+            "stft_frames": 18,
+            "bands": [
+              {
+                "hz": [
+                  80,
+                  160
+                ],
+                "total_power_fraction": 0.2143685363817425,
+                "side_over_mid_db": -4.164982241807182,
+                "power_weighted_magnitude_squared_coherence": 0.6339944368758045
+              },
+              {
+                "hz": [
+                  160,
+                  320
+                ],
+                "total_power_fraction": 0.45572711517536973,
+                "side_over_mid_db": -4.343975026185364,
+                "power_weighted_magnitude_squared_coherence": 0.6145135086690058
+              },
+              {
+                "hz": [
+                  320,
+                  640
+                ],
+                "total_power_fraction": 0.08969801804596089,
+                "side_over_mid_db": -4.2606295393316636,
+                "power_weighted_magnitude_squared_coherence": 0.4864695271632134
+              },
+              {
+                "hz": [
+                  640,
+                  1280
+                ],
+                "total_power_fraction": 0.04647218799683379,
+                "side_over_mid_db": -7.212620802091044,
+                "power_weighted_magnitude_squared_coherence": 0.671949955271298
+              },
+              {
+                "hz": [
+                  1280,
+                  2560
+                ],
+                "total_power_fraction": 0.01739744970935174,
+                "side_over_mid_db": -4.777799305925878,
+                "power_weighted_magnitude_squared_coherence": 0.5397089455053963
+              },
+              {
+                "hz": [
+                  2560,
+                  5120
+                ],
+                "total_power_fraction": 0.009767886940049847,
+                "side_over_mid_db": -6.057321242613413,
+                "power_weighted_magnitude_squared_coherence": 0.5955172437924398
+              },
+              {
+                "hz": [
+                  5120,
+                  10240
+                ],
+                "total_power_fraction": 0.0009006061872655959,
+                "side_over_mid_db": -4.706768866738983,
+                "power_weighted_magnitude_squared_coherence": 0.5146547695170769
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

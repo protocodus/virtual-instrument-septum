@@ -112,18 +112,27 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   section conditionally. High harmonics reject the frozen low-note cutoff
   extrapolation with that section model; they do not identify a raw-control
   law, precise endpoint or switching threshold.
+- [Stereo and Super Saw isolation](source-audits/official-stereo-feasibility-2026-09-15.md)
+  identifies reverb as the source of Cotton's modeled stereo, but its clean
+  opening is too short to resolve the individual detuned oscillators.
+  [Complete hardware tails](source-audits/official-reverb-tails-2026-09-15.md)
+  are wider than the model controls, contrary to the earlier mixed passages.
+  [Full-engine return experiments](source-audits/reverb-return-candidates-2026-09-15.md)
+  therefore test both width and level. Half reverb level improves Cotton,
+  Air Lead, SupaJuce and Brassy, but worsens Club Bass's tail-envelope error.
+  All 20 unchanged controls reproduce production byte-for-byte. No return
+  change is promoted pending additional preset and decay checks.
 
 ## Next work
 
 1. Investigate the high-register saw's nonharmonic lines in the original-MIDI
    dry recordings. Test codec artifacts, oscillator models and filter
    interaction separately before changing the high-note sound.
-2. Examine newly accessible creator recordings for independent LFO,
-   portamento and oscillator measurements. Retain uncertain panel state and
-   unmeasured raw settings explicitly.
-3. Use unchanged named presets to investigate oscillator mixture, Super Saw
-   stereo structure and wet tails. Air Lead and Cotton currently have the
-   largest spectrum/stereo residuals, with uncertain original performances.
+2. Examine creator recordings for independent oscillator measurements,
+   retaining uncertain panel state and unmeasured raw settings explicitly.
+3. Check the reverb-level hypothesis against additional unchanged presets
+   selected for clear performance structure, and measure late decay with
+   independent forward controls. Preserve the Club Bass counterexample.
 4. Keep independent validation passages and input uncertainty visible.
    Matching a fitted spectral feature cannot establish complete output
    agreement or a market-wide superiority claim.

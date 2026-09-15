@@ -1,0 +1,335 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-09-15",
+  "scope": "Independent visual-only review of previously uninspected 9:00-to-end Super Saw chapter; no audio measurements or DSP changes.",
+  "primary_video": {
+    "url": "https://www.youtube.com/watch?v=OB3J7AQBla0",
+    "chapter_url": "https://www.youtube.com/watch?v=OB3J7AQBla0&t=540s",
+    "title": "Roland SH-201 Patch Creation Part 2 (no talking)",
+    "uploader": "something something",
+    "uploader_id": "@909techno",
+    "channel_id": "UCmVcKfVsgQJuYQRTRx9bqHA",
+    "upload_date": "2016-10-07",
+    "description_chapter": "9:00 supersaw tests",
+    "description_does_not_supply": [
+      "raw spread values",
+      "patch dump",
+      "dry oscillator claim",
+      "MIDI notes"
+    ]
+  },
+  "official_mapping": {
+    "url": "https://cdn.roland.com/assets/media/pdf/SH-201_OM.pdf",
+    "pages": [
+      28,
+      30
+    ],
+    "p28": "Super Saw is the right-middle WAVE indicator; final clockwise entry EXT IN lies below it.",
+    "p30": "PW/FEEDBACK changes spread of seven component saws; DETUNE instead shifts all components together. No numeric endpoint spread supplied here."
+  },
+  "acquisition": {
+    "video_format": "137, original offered 1080p H264 video stream, bounded ffmpeg stream-copy remux",
+    "requested_seconds": [
+      540,
+      605
+    ],
+    "command": "PYTHONPATH=build-fidelity/research-tools/yt-dlp python3 -m yt_dlp --no-playlist --socket-timeout 20 --retries 1 --download-sections '*540-605' -f 137 -o 'build-fidelity/public-waveforms/synth-love/OB3J7AQBla0.540-605.f137.mp4' 'https://www.youtube.com/watch?v=OB3J7AQBla0'",
+    "yt_dlp_version": "2026.8.19",
+    "audio": "Previously acquired complete original offered format251 Opus stream reused; no audio re-encoding in this audit.",
+    "access": "Public yt-dlp route, no cookies/account/login/CAPTCHA bypass. Missing-JS-runtime warning did not prevent this offered format.",
+    "video_probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1920,
+          "height": 1080,
+          "r_frame_rate": "30000/1001",
+          "start_time": "0.000000",
+          "duration": "64.937000"
+        }
+      ],
+      "format": {
+        "start_time": "0.000000",
+        "duration": "64.937000",
+        "size": "22856000"
+      }
+    },
+    "timing": "First presented frame timestamp0; retained preceding keyframe packet timestamps begin -0.800800 with discard flag. Nominal source time=540+presentation time, not packet time. Observations rounded about0.5s; not sample-accurate audio synchronization."
+  },
+  "inspection": {
+    "dense_sampling": "ffmpeg -i CLIP -vf fps=2 frame-%04d.png; crop contact sheets preserve actual pixels apart from ordinary resizing. Nominal grid labels approximate selected source frame within about0.5s.",
+    "selected_sampling": "ffmpeg -ss (source_seconds-540) -i CLIP -frames:v 1 FRAME; full-resolution selected PNG names give nominal source seconds, seek rounded to available frame.",
+    "selected_nominal_source_seconds": [
+      541.0,
+      545.0,
+      556.7,
+      560.0,
+      564.5,
+      570.0,
+      575.0,
+      586.8,
+      588.5,
+      589.5,
+      590.5,
+      595.0,
+      599.5,
+      600.5
+    ],
+    "observations": [
+      {
+        "seconds": [
+          540,
+          542
+        ],
+        "observed": "WAVE button operation; following exposed indicator lies at the right-middle WAVE position.",
+        "interpretation": "Position agrees with SUPER SAW in official OM p28.",
+        "confidence": "moderate-high; positional mapping, labels defocused"
+      },
+      {
+        "seconds": [
+          542.5,
+          549
+        ],
+        "observed": "Hand changes between the three OSC knobs.",
+        "interpretation": "Several oscillator parameters change; not one frozen spread setting.",
+        "confidence": "high for manipulation; exact raw values unobserved"
+      },
+      {
+        "seconds": [
+          549,
+          556.5
+        ],
+        "observed": "Repeated manipulation of rightmost OSC knob.",
+        "interpretation": "PW/FEEDBACK; with Super Saw selected this changes internal saw pitch spread (OM p30).",
+        "confidence": "high for knob identity; no certified endpoint"
+      },
+      {
+        "seconds": [
+          558.5,
+          564.5
+        ],
+        "observed": "Exposed WAVE indicator is on the left side; additional PW/FEEDBACK manipulation.",
+        "interpretation": "Different waveform state from preceding Super Saw state; transition not reconstructed.",
+        "confidence": "high for LED position difference; no exact left-side waveform assigned"
+      },
+      {
+        "seconds": [
+          565,
+          569.5
+        ],
+        "observed": "Repeated WAVE button presses/cycling; right-middle indicator visible again by 570s.",
+        "interpretation": "Ends at position consistent with Super Saw.",
+        "confidence": "moderate-high; no hidden intermediate selection inferred"
+      },
+      {
+        "seconds": [
+          570.5,
+          586.5
+        ],
+        "observed": "Repeated PW/FEEDBACK manipulation, then hand withdraws.",
+        "interpretation": "Super Saw spread sweep; hand and defocus conceal reliable stop/marker readings.",
+        "confidence": "high for knob gesture; raw0/127 unestablished"
+      },
+      {
+        "seconds": [
+          587.5,
+          588.5
+        ],
+        "observed": "Hand returns to OSC controls and withdraws.",
+        "interpretation": "Additional oscillator adjustment before late candidate passage; full post-adjustment state unknown.",
+        "confidence": "high for adjustment; raw parameter value not assigned"
+      },
+      {
+        "seconds": [
+          589.2,
+          591.0
+        ],
+        "observed": "OSC controls untouched; keyboard hand is partly below/outside frame.",
+        "interpretation": "Candidate for separate audio-stationarity inspection, not certified sustained single key or oscillator-only sound.",
+        "confidence": "moderate for visual continuity"
+      },
+      {
+        "seconds": [
+          594.5,
+          597.5
+        ],
+        "observed": "Hand operates far-right control area; FX switch/knob area is partially occluded.",
+        "interpretation": "Do not assume identical effects state across this interval.",
+        "confidence": "high for operation; exact FX state unestablished"
+      },
+      {
+        "seconds": [
+          598.5,
+          601.3
+        ],
+        "observed": "OSC controls untouched; keyboard hand remains partly outside frame.",
+        "interpretation": "Second candidate for separate audio-stationarity inspection; no single-key or dry claim.",
+        "confidence": "moderate for visual continuity"
+      }
+    ]
+  },
+  "feasibility": {
+    "super_saw_selection_supported": true,
+    "mechanical_minimum_or_maximum_authenticated": false,
+    "raw_endpoint_authenticated": false,
+    "single_oscillator_dry_passage_authenticated": false,
+    "sustained_single_note_authenticated": false,
+    "audio_inspection_candidates_seconds": [
+      [
+        589.2,
+        591.0
+      ],
+      [
+        598.5,
+        601.3
+      ]
+    ],
+    "conclusion": "Useful for conditional spectral-line inspection and a spread-sweep demonstration. It does not provide an independently calibrated Super Saw detune endpoint or authenticated oscillator-only passage. An audio analyst must establish local stationarity, note/voice mixture and resolving power independently; visual interval endpoints are not measured note gates."
+  },
+  "limitations": [
+    "OSC labels/indicator icons are defocused; waveform mapping is positional, not invented text reading.",
+    "The selected oscillator index, mixer balance, other oscillator, LFO/pitch-envelope settings, part layer, exact note count, effects state and capture chain are not fully authenticated.",
+    "A visible knob face can differ from its stored parameter before manipulation; no raw reading or mechanical stop is certified.",
+    "Different waveform/OSC/FX gestures interrupt the chapter; no single full-chapter patch state assumed.",
+    "YouTube streams are platform transcodes, not the uncompressed source master."
+  ],
+  "assets": [
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/OB3J7AQBla0.540-605.f137.mp4",
+      "bytes": 22856000,
+      "sha256": "4dd9738a3a83309a0259ac3ccf33eb99fdbe04472d805f1f351a264f07ed2b89"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/OB3J7AQBla0.f251.webm",
+      "bytes": 10312197,
+      "sha256": "6ed77a823dde937f4bf87bf9cf803a7293dd21a97056f36694704355b8b15f4c"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/OB3J7AQBla0.info.json",
+      "bytes": 48774,
+      "sha256": "84d3c9710d12b7f86a29d0df5c43f34b8874fd0fe7e60099ac84a2a0d05ea819"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/part2-supersaw-video.log",
+      "bytes": 12249,
+      "sha256": "e5a8dd41c24910ce26172d810c8d5a5ca5d698bd633f4984cf94253c313f2e7b"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/SH-201_OM.pdf",
+      "bytes": 4249153,
+      "sha256": "b4a2968d429c7f3e907a6243723d5e803ae2e0014e8e9107c85bd966deea8e79"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/manual-page28.png",
+      "bytes": 259983,
+      "sha256": "2bbd7d6b9cd76675791fc0466eb9eaf6dc93892542fcbf1cab0bfb5348d393e7"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/manual-page30.png",
+      "bytes": 218917,
+      "sha256": "8be4757b96cb560724110c70d5228b0a0bcbd81e74581620024d4a4a93ec1864"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/supersaw-frames/selected/541.0.png",
+      "bytes": 1622280,
+      "sha256": "1fee1747a8339c177b5fab22d9b9fe4b5bdb8b907237d4390ef7fb38465dbd8b"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/supersaw-frames/selected/545.0.png",
+      "bytes": 1596145,
+      "sha256": "0028947f7df3c26f73b3946f3765d8f926be26f702122ddbd8f05c1e54e52f63"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/supersaw-frames/selected/556.7.png",
+      "bytes": 1567576,
+      "sha256": "b2f163819a516f3d31aa0c61ece5e8fc82062c5eba7c90bfcff51baa093553ed"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/supersaw-frames/selected/560.0.png",
+      "bytes": 1569218,
+      "sha256": "c1569395f1acfa8544b55823d645a0141883f09335029ce759739773dbfdda55"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/supersaw-frames/selected/564.5.png",
+      "bytes": 1597136,
+      "sha256": "1839b8fd81e32a9e990de304ebb7b01c7613581b04ff32b01c5ade511206eab4"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/supersaw-frames/selected/570.0.png",
+      "bytes": 1597565,
+      "sha256": "97f54c85fa61de8ff00f4c6937c244a9b6868db53d4f5e9017a1f2a505d56ffb"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/supersaw-frames/selected/575.0.png",
+      "bytes": 1672127,
+      "sha256": "8750efab54c2293cc962073770a5b5944b534fa33b64ecf60b7dece0077fc12b"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/supersaw-frames/selected/586.8.png",
+      "bytes": 1580697,
+      "sha256": "0aad85745d9fb066d6f71ae0483f07e3fc264bc765a79c3287f24155c4604a6b"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/supersaw-frames/selected/588.5.png",
+      "bytes": 1595739,
+      "sha256": "3e42523e65825cb140410a2813e70b203dc7be7de7c06ca2feccbe7489f98b45"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/supersaw-frames/selected/589.5.png",
+      "bytes": 1613368,
+      "sha256": "180e711452c2c5a987cd0d96473e1201b0c74ea361a300e976782d96ba2b4441"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/supersaw-frames/selected/590.5.png",
+      "bytes": 1617920,
+      "sha256": "b932ef0384faa88067f71c1c7e62256a8ea5c28aad8f60df5bdc70c82b07483b"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/supersaw-frames/selected/595.0.png",
+      "bytes": 1427094,
+      "sha256": "ec5e300b023e04d5c0b0307f05035b926231057ece462020b1e8fccf3ad2eb90"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/supersaw-frames/selected/599.5.png",
+      "bytes": 1632611,
+      "sha256": "e97ac27fe4ca8954f482dc08814d57f8b0d041af1dd1383bb6024bc487f113c5"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/supersaw-frames/selected/600.5.png",
+      "bytes": 1623622,
+      "sha256": "c2f7a74103f575797ce5844c37326195203100d1b2eb25b67747a9109387e2ac"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/supersaw-frames/overview.jpg",
+      "bytes": 487179,
+      "sha256": "066210a48fc0372fa10281c2c09ab26b426daf8c4b058469fe3ece62503fe6d8"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/supersaw-frames/osc-dense-0.jpg",
+      "bytes": 252247,
+      "sha256": "1a6cf36ac0c96e458983b25ea34654a950b7cfa16b962cce1083db1b1b683365"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/supersaw-frames/osc-dense-40.jpg",
+      "bytes": 254220,
+      "sha256": "011c250d77541c2d12942fde796c2529cd840f6fa443552a529a01815b28d4c9"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/supersaw-frames/osc-dense-80.jpg",
+      "bytes": 260194,
+      "sha256": "3266bb859d1ffa80bd345e19c44cee3656e75a0f722e6d6b7d711b9f40482f4a"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/supersaw-frames/full-dense-90.jpg",
+      "bytes": 412190,
+      "sha256": "aeb75356a94bc196f6309c9c9e5b4e0a4782f6c8e71eb342056257576a3875fc"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/synth-love/supersaw-frames/full-dense-112.jpg",
+      "bytes": 326130,
+      "sha256": "1babc413a62b7430e8b8427da379de52daf63bc533032807686c7ad1490e9f94"
+    }
+  ]
+}

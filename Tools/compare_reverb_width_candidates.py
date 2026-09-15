@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Test fixed reverb-return widths in frozen full-engine preset replays.
+"""Test fixed reverb-return width or gain in frozen full-engine preset replays.
 
 Cotton's repeated stereo excess motivates this exploratory family. The other
 nine public presets assess generalization; none has authenticated performance
@@ -40,6 +40,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--comparison-root', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--mode', choices=('width', 'gain'), default='width')
     args = parser.parse_args()
     out = args.output.resolve()
     out.mkdir(parents=True, exist_ok=False)
@@ -62,14 +63,15 @@ def main():
     if {p.parent.name for p in comparisons} != set(guard):
         raise ValueError('Comparison set changed')
     protocol = dict(status='experimental_no_selection', source_revision=REVISION,
-        widths=list(WIDTHS), hypothesis_context='cotton-wool',
+        mode=args.mode, scales=list(WIDTHS), hypothesis_context='cotton-wool',
         comparative_cases=sorted(set(guard)-{'cotton-wool'}),
-        change='Only final reverb return: M=(L+R)/2, S=(L-R)/2, L=M+W*S, R=M-W*S. W1 retains original arithmetic.',
-        unchanged='Oscillators, filter, envelopes, delay, reverb feedback/diffusion/damping, wet mid, preset bytes, reconstructed MIDI and render rate.',
+        change=('Only final reverb return: M=(L+R)/2, S=(L-R)/2, L=M+W*S, R=M-W*S. W1 retains original arithmetic.'
+                if args.mode=='width' else 'Only final reverb return: multiply both L and R by the same G. G1 retains original arithmetic.'),
+        unchanged='Oscillators, filter, envelopes, delay, reverb feedback/diffusion/damping, preset bytes, reconstructed MIDI and render rate.',
         alignment='Production first-quarter envelope fit bounded50ms; same frozen lag for every width.',
         gain='One scalar per render trained on first quarter; production scalar also retained as sensitivity.',
         evaluation='Common remaining three quarters; no STFT frame crosses calibration boundary.',
-        limitations='Exploratory evidence follows inspected recordings. Exact recorded preset revision, performance MIDI and capture processing remain uncertain. Width is a hypothesis, not an identified hardware parameter. No shipping selection.')
+        limitations='Exploratory evidence follows inspected recordings. Exact recorded preset revision, performance MIDI and capture processing remain uncertain. Return width/gain are hypotheses, not identified hardware parameters. No shipping selection.')
     save(out/'protocol-before-rendering.json', protocol)
     shutil.copyfile(__file__, out/Path(__file__).name)
     save(out/'source-manifest.json', dict(revision=REVISION, input_sha256=hashes,
@@ -80,7 +82,7 @@ def main():
 
     builds = {}
     for width in WIDTHS:
-        identity = 'width-'+format(width, 'g')
+        identity = args.mode+'-'+format(width, 'g')
         variant = out/'variant-sources'/identity
         shutil.copytree(frozen, variant)
         engine = variant/'Source/DSP/SeptumEngine.cpp'
@@ -89,12 +91,16 @@ def main():
             raise ValueError('Reverb return integration point changed')
         changed = original
         if width != 1:
-            changed = original.replace(ANCHOR, ANCHOR+f'''
+            change = f'''
             // Experimental fixed return width; wet mid and FDN remain unchanged.
             const double reverbMid = 0.5 * (wetReverbL + wetReverbR);
             const double reverbSide = 0.5 * (wetReverbL - wetReverbR);
             wetReverbL = reverbMid + {width:.17g} * reverbSide;
-            wetReverbR = reverbMid - {width:.17g} * reverbSide;''')
+            wetReverbR = reverbMid - {width:.17g} * reverbSide;''' if args.mode=='width' else f'''
+            // Experimental equal-channel return gain; FDN and wet width unchanged.
+            wetReverbL *= {width:.17g};
+            wetReverbR *= {width:.17g};'''
+            changed = original.replace(ANCHOR, ANCHOR+change)
             engine.write_text(changed)
         mutated = [name for name in names if sha(variant/name) != hashes[name]]
         expected = [] if width == 1 else ['Source/DSP/SeptumEngine.cpp']
@@ -105,7 +111,7 @@ def main():
             fromfile='b0f6c03/SeptumEngine.cpp', tofile=identity+'/SeptumEngine.cpp')))
         profile = out/(identity+'.json')
         save(profile, dict(version=1, id=identity,
-             evidence='Experimental reverb width hypothesis; source diff changes only the final wet side component.'))
+             evidence='Experimental reverb '+args.mode+' hypothesis; exact final wet-return change retained in source diff.'))
         builds[identity] = builder.build_candidate(profile, out/'builds'/identity, source_root=variant)
         print('Built', identity, flush=True)
 
@@ -145,7 +151,7 @@ def main():
             limitations=meta['comparison_limits'], models={})
         sounds = {}
         for width in WIDTHS:
-            name = 'width-'+format(width, 'g')
+            name = args.mode+'-'+format(width, 'g')
             renderer = out/'builds'/name/'SeptumRenderMidi'
             wav = directory/(name+'.wav')
             command = [sys.executable, str(frozen/'Tools/render_midi.py'), '--renderer', str(renderer),
@@ -163,7 +169,7 @@ def main():
                 raise ValueError('Unchanged width failed production identity')
             c = candidate[:n]
             gain = assess.rms(hardware[ca:cb])/assess.rms(c[ca+lag:cb+lag])
-            record['models'][name] = dict(width=width, raw_sha256=sha(wav),
+            record['models'][name] = dict(mode=args.mode, scale=width, raw_sha256=sha(wav),
                 renderer_sha256=sha(renderer), receipt_sha256=sha(wav.with_suffix('.render.json')),
                 command=command, peak=float(abs(candidate).max()), finite=True,
                 samples_at_or_above_full_scale=int(np.count_nonzero(abs(candidate)>=1)),
@@ -188,12 +194,12 @@ def main():
               for k, v in record['models'].items()), flush=True)
     save(out/'results.json', dict(protocol=protocol, source_manifest_sha256=sha(out/'source-manifest.json'),
          build_manifest_sha256={name: sha(out/'builds'/name/'manifest.json') for name in builds},
-         all_ten_width1_byte_identical=True, cases=cases))
-    (out/'index.html').write_text('<!doctype html><meta charset="utf-8"><title>Reverb width experiment</title>'
+         all_ten_scale1_byte_identical=True, cases=cases))
+    (out/'index.html').write_text('<!doctype html><meta charset="utf-8"><title>Reverb return experiment</title>'
         '<style>body{font:16px system-ui;max-width:900px;margin:40px auto;padding:20px}section{border-top:1px solid #bbb;margin-top:32px}audio{width:100%}</style>'
-        '<h1>Experimental reverb return width</h1><p>Cotton supplies hypothesis context; nine other presets assess generalization. '
-        'The same published presets and reconstructed MIDI feed every candidate. Width1 is the current DSP. '
-        'Width.5 and.25 reduce only the reverb side component and retain its mid component. '
+        '<h1>Experimental reverb return '+args.mode+'</h1><p>Cotton supplies hypothesis context; nine other presets assess generalization. '
+        'The same published presets and reconstructed MIDI feed every candidate. Scale1 is the current DSP. '
+        +html.escape(protocol['change'])+' '
         'Listening uses the evaluation interval with frozen production timing and first-quarter candidate gain. '
         'No model selection or hardware-equivalence claim.</p>'+''.join(sections))
     print(out/'results.json')
