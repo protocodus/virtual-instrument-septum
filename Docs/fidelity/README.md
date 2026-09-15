@@ -21,6 +21,9 @@ independent neutral-damping recordings improve; Club Bass and Ambient SQR
 retain damped-tail regressions. Frozen performance variants, common gain and
 timing, all counterexamples and independent verification remain available.
 The exact Roland return coefficient, decay law and damping topology are open.
+The [synchronized seven-preset player](http://127.0.0.1:58513/) compares original
+recordings, the previous return and the corrected return, with
+[verified audio provenance](source-audits/reverb-listening-player-2026-09-15.md).
 
 The [synchronized dry listening comparison](source-audits/dry-listening-player-2026-09-15.md)
 presents original-MIDI hardware, current DSP and the retained envelope

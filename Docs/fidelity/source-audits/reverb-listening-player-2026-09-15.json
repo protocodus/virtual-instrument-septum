@@ -1,0 +1,2391 @@
+{
+  "schema_version": 1,
+  "status": "Selected half-return correction; synchronized listening, not whole-instrument equivalence.",
+  "models": {
+    "before": "Frozen gain-1 renderer: prior reverb return 0.8.",
+    "after": "Frozen gain-0.5 renderer: selected reverb return 0.4; production rebuild identity is audited separately."
+  },
+  "policy": "Use only previously frozen production-prefix lag AND gain for both model tracks. No candidate-specific gain, EQ, dynamics, phase fit or time warp. Maximal common assessed excerpt coverage includes training; one common attenuation targets hardware at most \u221220dBFS RMS and all peaks<=.98. Page switches with a12ms fade only during playback.",
+  "input_manifests": {
+    "gain_run": {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/results.json",
+      "sha256": "ff09418c895d188c0df2323ec45cb6616fd7e3d40184b6205acaea5c04b92d51"
+    },
+    "new_cases_run": {
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-new-preset-validation/run-01/results.json",
+      "sha256": "aa7e3e4cc09c298d86cf6e0d5e27e6345b4d46248c3b2882cc158088418797e2"
+    }
+  },
+  "script_sha256": "6dc38c79d764e5aba63be228faedbc77dc8e97d1e2ae7d46f486c675de031b63",
+  "template_sha256": "4e4fd5afd43982827c4de284afd2d588171117767042e6b39ed210205af261fb",
+  "assessor_sha256": "b6ca63fa02ff11f3154cf34c1233cfe460fd4447be403fe4c0695646ccb74631",
+  "groups": [
+    {
+      "id": "air-lead-1",
+      "title": "Air Lead 1",
+      "original_url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_AirLead1.mp3",
+      "counterexample": false,
+      "note": "Melodic gates and portamento are approximate; the excerpt stops during a held note.",
+      "sample_rate": 44100,
+      "frames": 151365,
+      "hardware_start_sample": 780,
+      "hardware_end_sample": 152145,
+      "model_start_sample": 0,
+      "model_end_sample": 151365,
+      "common_attenuation": 0.4286849580370825,
+      "calibration": {
+        "candidate_lag_samples": -780,
+        "candidate_lag_seconds": -0.017687074829931974,
+        "candidate_gain": 3.2073782898411323,
+        "candidate_gain_db": 10.123003704348362,
+        "calibration_frames": 38036,
+        "max_lag_seconds": 0.05,
+        "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+        "alignment_correlation": 0.6189958258428464,
+        "alignment_identifiable": true,
+        "alignment_at_search_boundary": false,
+        "gain_method": "one scalar RMS gain over calibration interval after alignment",
+        "allowed_transforms": [
+          "one global integer delay",
+          "one positive scalar gain"
+        ]
+      },
+      "calibration_reference_samples": [
+        780,
+        38036
+      ],
+      "calibration_candidate_samples": [
+        0,
+        37256
+      ],
+      "evaluation_reference_samples": [
+        38816,
+        152145
+      ],
+      "evaluation_playback_seconds": [
+        0.8624943310657597,
+        3.432312925170068
+      ],
+      "calibration_playback_seconds": [
+        0.0,
+        0.8448072562358276
+      ],
+      "tracks": [
+        {
+          "id": "hardware",
+          "file": "air-lead-1/hardware.wav",
+          "sha256": "6de3bfa720233bef9395864102e9eb9e171ebc3ca03a5d97905ad9eaee5cbdfe",
+          "frames": 151365,
+          "peak": 0.40112945437431335,
+          "rms_dbfs": -19.99999987057016,
+          "applied_model_gain": 1.0,
+          "raw_source": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/air-lead-1/hardware-excerpt-raw.wav",
+            "sha256": "4968acb7c5f4d71eab9d163ea3caad2eb5b082cd249ba757d13f70bc691c5f01"
+          }
+        },
+        {
+          "id": "before",
+          "file": "air-lead-1/before.wav",
+          "sha256": "6619e943741d044929bc368328dc37d6f58559443f94a5b1d4596ff20367ac3b",
+          "frames": 151365,
+          "peak": 0.498736172914505,
+          "rms_dbfs": -19.642052063336056,
+          "applied_model_gain": 3.2073782898411323,
+          "raw_source": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/cases/air-lead-1/gain-1.wav",
+            "raw_sha256": "43bca32341c215f6ccfe58291f787a7c286602f8772061e26d59566921c591e3",
+            "render_receipt_sha256": "174034babbc759f1a512015b54f95e0fc22e2fb84427fa6eed6fc41edea90ae0",
+            "renderer_sha256": "0e69118d0dab0928793ef3b59208fddf43b7bd56d982f2c053d3c0ad9f15b646"
+          }
+        },
+        {
+          "id": "after",
+          "file": "air-lead-1/after.wav",
+          "sha256": "dd949ff2e9a29f2cdac5f581786ffe38c022afe0e50c5e9731c2577d1e1c3100",
+          "frames": 151365,
+          "peak": 0.38113322854042053,
+          "rms_dbfs": -21.913718549532053,
+          "applied_model_gain": 3.2073782898411323,
+          "raw_source": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/cases/air-lead-1/gain-0.5.wav",
+            "raw_sha256": "6fdb95b1fcf979ab80db802cca4bfc16d08fb97298beb54a985ee4fc5db1b479",
+            "render_receipt_sha256": "dac654b492e152df966fc560270c237d48d8fa4a6b2d12c327ae47889622313e",
+            "renderer_sha256": "f75f864dffa98eca24025836bf9d04705ad7fd68717ddef982092f4865828758"
+          }
+        }
+      ],
+      "original_recording": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/sources/TOP8_AirLead1.mp3",
+        "id": "lead-03",
+        "title": "Air Lead 1",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_AirLead1.mp3",
+        "local_filename": "TOP8_AirLead1.mp3",
+        "sha256": "eda084781108d6de6961f6b6807fff283eac097173b5675dc52c678dc2ad3d3b",
+        "size_bytes": 402102,
+        "bank_id": "lead",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 3,
+        "patch_name": "Air Lead 1",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+      },
+      "input_files": {
+        "hardware-excerpt-raw.wav": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/air-lead-1/hardware-excerpt-raw.wav",
+          "sha256": "4968acb7c5f4d71eab9d163ea3caad2eb5b082cd249ba757d13f70bc691c5f01"
+        },
+        "original-patch.syx": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/air-lead-1/original-patch.syx",
+          "sha256": "e7e911d9be986fcc4987c41d79836034ef60ea5f9c70308a7d5f57348f4c091e"
+        },
+        "reconstructed-performance.mid": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/air-lead-1/reconstructed-performance.mid",
+          "sha256": "8e7e693c3ae0940ebabace9629fc25e07aef73e90c1fe250e6dcda0fefefe228"
+        }
+      },
+      "comparison_sha256": "011f6d7bd55a3b04d208095d5eb952b1b4dbfb566e8a12f71558d4cba813f23d",
+      "case_result_sha256": "617de8e11d90e971fc2efc6eb4c61ba43415a33431a4c3caa216fcb88ab76cc9",
+      "reconstruction": {
+        "schema_version": 1,
+        "id": "air-lead-1",
+        "title": "Air Lead 1 \u2014 opening melody",
+        "reference_id": "lead-03",
+        "midi_status": "reconstructed_not_original",
+        "source_start_seconds": 0,
+        "duration_seconds": 3.45,
+        "method": "Hardware-only inspection of a 4096-sample STFT and 70 ms Hann-window FFTs of the opening phrase. Stable fundamental families near 311, 415, 466, 622 and 554 Hz identify sounding MIDI 63, 68, 70, 75 and 73. The published Upper tone has both oscillator coarse bytes 100 (signed +36), WIDE off, hence +12 semitones each; tone octave -1 cancels this, so played and sounding MIDI agree. Transition times come from changes of the fundamental/harmonic family and short RMS dips; note-off at the next onset is a practical estimate. No model parameter fitting.",
+        "uncertainties": [
+          "Original performance MIDI is unavailable. This is an audio-derived estimate, not an original MIDI file.",
+          "Velocity 100 is a placeholder for every note; original velocity, controllers, system transpose and exact recording patch revision are unverified.",
+          "Published delay/reverb and recording processing obscure exact key-down/up times. Note boundaries are estimated, generally within 10\u201330 ms; longer ambiguity is described below.",
+          "No Septum audio or synthesis parameter search was used to choose these notes. The paired Roland preset must remain unmodified.",
+          "The continuous melodic line, short portamento and active pitch modulation leave exact articulation and overlap unknown; adjacent notes use adjoining estimated gates.",
+          "The 3.45-second prefix intentionally stops during the final note; its final note-off at 3.445 seconds is an artificial crop boundary, not a measured hardware key release."
+        ],
+        "notes": [
+          {
+            "on": 0.05,
+            "off": 0.14,
+            "note": 63,
+            "velocity": 100
+          },
+          {
+            "on": 0.14,
+            "off": 0.226,
+            "note": 68,
+            "velocity": 100
+          },
+          {
+            "on": 0.226,
+            "off": 0.323,
+            "note": 70,
+            "velocity": 100
+          },
+          {
+            "on": 0.323,
+            "off": 1.189,
+            "note": 75,
+            "velocity": 100
+          },
+          {
+            "on": 1.189,
+            "off": 1.318,
+            "note": 73,
+            "velocity": 100
+          },
+          {
+            "on": 1.318,
+            "off": 1.414,
+            "note": 70,
+            "velocity": 100
+          },
+          {
+            "on": 1.414,
+            "off": 1.712,
+            "note": 73,
+            "velocity": 100
+          },
+          {
+            "on": 1.712,
+            "off": 2.02,
+            "note": 75,
+            "velocity": 100
+          },
+          {
+            "on": 2.02,
+            "off": 2.579,
+            "note": 68,
+            "velocity": 100
+          },
+          {
+            "on": 2.579,
+            "off": 3.445,
+            "note": 70,
+            "velocity": 100
+          }
+        ]
+      },
+      "limitations": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Original performance MIDI is unavailable. This is an audio-derived estimate, not an original MIDI file.",
+        "Velocity 100 is a placeholder for every note; original velocity, controllers, system transpose and exact recording patch revision are unverified.",
+        "Published delay/reverb and recording processing obscure exact key-down/up times. Note boundaries are estimated, generally within 10\u201330 ms; longer ambiguity is described below.",
+        "No Septum audio or synthesis parameter search was used to choose these notes. The paired Roland preset must remain unmodified.",
+        "The continuous melodic line, short portamento and active pitch modulation leave exact articulation and overlap unknown; adjacent notes use adjoining estimated gates.",
+        "The 3.45-second prefix intentionally stops during the final note; its final note-off at 3.445 seconds is an artificial crop boundary, not a measured hardware key release."
+      ]
+    },
+    {
+      "id": "brassy-ld-1",
+      "title": "Brassy Ld 1",
+      "original_url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_BrassyLd1.mp3",
+      "counterexample": false,
+      "note": "Short note releases and velocity are reconstructed; delay and reverb are both active.",
+      "sample_rate": 44100,
+      "frames": 133517,
+      "hardware_start_sample": 106,
+      "hardware_end_sample": 133623,
+      "model_start_sample": 0,
+      "model_end_sample": 133517,
+      "common_attenuation": 0.3418213179488425,
+      "calibration": {
+        "candidate_lag_samples": -106,
+        "candidate_lag_seconds": -0.002403628117913832,
+        "candidate_gain": 4.329190817597279,
+        "candidate_gain_db": 12.728134572364633,
+        "calibration_frames": 33406,
+        "max_lag_seconds": 0.05,
+        "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+        "alignment_correlation": 0.7468060228963167,
+        "alignment_identifiable": true,
+        "alignment_at_search_boundary": false,
+        "gain_method": "one scalar RMS gain over calibration interval after alignment",
+        "allowed_transforms": [
+          "one global integer delay",
+          "one positive scalar gain"
+        ]
+      },
+      "calibration_reference_samples": [
+        106,
+        33406
+      ],
+      "calibration_candidate_samples": [
+        0,
+        33300
+      ],
+      "evaluation_reference_samples": [
+        33512,
+        133623
+      ],
+      "evaluation_playback_seconds": [
+        0.7575056689342403,
+        3.027596371882086
+      ],
+      "calibration_playback_seconds": [
+        0.0,
+        0.7551020408163265
+      ],
+      "tracks": [
+        {
+          "id": "hardware",
+          "file": "brassy-ld-1/hardware.wav",
+          "sha256": "53b0565ba7eb1b2454829b0fb1d327e3cb40f24e43bdf9197a6af65b1254b1af",
+          "frames": 133517,
+          "peak": 0.3374151885509491,
+          "rms_dbfs": -19.99999987057016,
+          "applied_model_gain": 1.0,
+          "raw_source": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/brassy-ld-1/hardware-excerpt-raw.wav",
+            "sha256": "dde80fcd0ba68c3be1ed1e8c9e0bc1fac6c49ea462d935967b069931fbbc1a9c"
+          }
+        },
+        {
+          "id": "before",
+          "file": "brassy-ld-1/before.wav",
+          "sha256": "80e9527b20c49a768907d68a2579da7de110ce0ee24cc8452188b89dbc0c8f62",
+          "frames": 133517,
+          "peak": 0.42134830355644226,
+          "rms_dbfs": -20.457337304383177,
+          "applied_model_gain": 4.329190817597279,
+          "raw_source": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/cases/brassy-ld-1/gain-1.wav",
+            "raw_sha256": "c71bb3a788f0ac64fabb5a81106d5a492494019459aaa62f816219b198ee1230",
+            "render_receipt_sha256": "28ede1426f73c13624b7e94d0ab38f31322e43123c37e7d4d24f62c529191e8b",
+            "renderer_sha256": "0e69118d0dab0928793ef3b59208fddf43b7bd56d982f2c053d3c0ad9f15b646"
+          }
+        },
+        {
+          "id": "after",
+          "file": "brassy-ld-1/after.wav",
+          "sha256": "fe3a3b48e581cd82c61599f13077f276b1488db6ee27308e53ec5ea259dfc1b1",
+          "frames": 133517,
+          "peak": 0.4027685225009918,
+          "rms_dbfs": -20.552206636711684,
+          "applied_model_gain": 4.329190817597279,
+          "raw_source": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/cases/brassy-ld-1/gain-0.5.wav",
+            "raw_sha256": "3f74529c678e7ab6cbbd55e08a48744f5315639cd1d352e4d1ff58952c3e0a7d",
+            "render_receipt_sha256": "543674168ec2c14872df219d39f006f80431626a39909a79a49499f1387fa196",
+            "renderer_sha256": "f75f864dffa98eca24025836bf9d04705ad7fd68717ddef982092f4865828758"
+          }
+        }
+      ],
+      "original_recording": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/sources/TOP8_BrassyLd1.mp3",
+        "id": "lead-08",
+        "title": "Brassy Ld 1",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_BrassyLd1.mp3",
+        "local_filename": "TOP8_BrassyLd1.mp3",
+        "sha256": "37b1c739ad3e1df4611b542f745111b78b51d9b372034275f5f1ceab48ed4c00",
+        "size_bytes": 513279,
+        "bank_id": "lead",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 8,
+        "patch_name": "Brassy Ld 1",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+      },
+      "input_files": {
+        "hardware-excerpt-raw.wav": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/brassy-ld-1/hardware-excerpt-raw.wav",
+          "sha256": "dde80fcd0ba68c3be1ed1e8c9e0bc1fac6c49ea462d935967b069931fbbc1a9c"
+        },
+        "original-patch.syx": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/brassy-ld-1/original-patch.syx",
+          "sha256": "daba0b97a4b9e2674c4832050bbd0d8e869a3b61e9ce867c7055d21b0f4a6f5a"
+        },
+        "reconstructed-performance.mid": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/brassy-ld-1/reconstructed-performance.mid",
+          "sha256": "fd78fd56cfa10d6ac15b71877b448a70ee161306953c64f528388d45c163f052"
+        }
+      },
+      "comparison_sha256": "935cece2f7de5a8921498907dd5fc75b8d62d2d446f5f499978e0812f7716ed6",
+      "case_result_sha256": "94c957428d655eb3f01f71d0558f742cb2aab13490b3adc2fb11c9998af30fb2",
+      "reconstruction": {
+        "schema_version": 1,
+        "id": "brassy-ld-1",
+        "title": "Brassy Ld 1 \u2014 opening staccato phrase",
+        "reference_id": "lead-08",
+        "midi_status": "reconstructed_not_original",
+        "source_start_seconds": 0,
+        "duration_seconds": 3.03,
+        "method": "Hardware-only 4096-sample STFT and 70 ms Hann-window FFT inspection. Settled fundamental families near 622, 311, 370, 415, 466, 554 and 277 Hz identify MIDI 75, 63, 66, 68, 70, 73 and 61. The published single Upper tone has oscillator coarse bytes 64, WIDE off and octave shift 0; no transposition is needed. Note onsets come from renewed harmonic families and the initial energy rise. Short key releases are approximated just before the large RMS falls, separated from the much quieter delay tails; pitch transient peaks are not interpreted as extra MIDI notes. No software audio or patch fitting was used.",
+        "uncertainties": [
+          "Original performance MIDI is unavailable. This is an audio-derived estimate, not an original MIDI file.",
+          "Velocity 100 is a placeholder for every note; original velocity, controllers, system transpose and exact recording patch revision are unverified.",
+          "Published delay/reverb and recording processing obscure exact key-down/up times. Note boundaries are estimated, generally within 10\u201330 ms; longer ambiguity is described below.",
+          "No Septum audio or synthesis parameter search was used to choose these notes. The paired Roland preset must remain unmodified.",
+          "Early pitch/brightness transients and beating do not reveal original pitch controllers or oscillator phase. Stable pitch centers, rather than transient frequency maxima, determine note numbers.",
+          "The 3.03-second excerpt ends in the quiet tail before the next note at about 3.06 seconds. Exact releases are less certain than stable pitches; velocities and expression are not recovered."
+        ],
+        "notes": [
+          {
+            "on": 0.061,
+            "off": 0.205,
+            "note": 75,
+            "velocity": 100
+          },
+          {
+            "on": 0.205,
+            "off": 0.342,
+            "note": 63,
+            "velocity": 100
+          },
+          {
+            "on": 0.468,
+            "off": 0.583,
+            "note": 66,
+            "velocity": 100
+          },
+          {
+            "on": 0.722,
+            "off": 0.848,
+            "note": 68,
+            "velocity": 100
+          },
+          {
+            "on": 1.004,
+            "off": 1.481,
+            "note": 70,
+            "velocity": 100
+          },
+          {
+            "on": 1.488,
+            "off": 1.792,
+            "note": 73,
+            "velocity": 100
+          },
+          {
+            "on": 1.87,
+            "off": 2.016,
+            "note": 75,
+            "velocity": 100
+          },
+          {
+            "on": 2.121,
+            "off": 2.249,
+            "note": 75,
+            "velocity": 100
+          },
+          {
+            "on": 2.256,
+            "off": 2.421,
+            "note": 63,
+            "velocity": 100
+          },
+          {
+            "on": 2.536,
+            "off": 2.668,
+            "note": 61,
+            "velocity": 100
+          },
+          {
+            "on": 2.78,
+            "off": 2.911,
+            "note": 63,
+            "velocity": 100
+          }
+        ]
+      },
+      "limitations": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Original performance MIDI is unavailable. This is an audio-derived estimate, not an original MIDI file.",
+        "Velocity 100 is a placeholder for every note; original velocity, controllers, system transpose and exact recording patch revision are unverified.",
+        "Published delay/reverb and recording processing obscure exact key-down/up times. Note boundaries are estimated, generally within 10\u201330 ms; longer ambiguity is described below.",
+        "No Septum audio or synthesis parameter search was used to choose these notes. The paired Roland preset must remain unmodified.",
+        "Early pitch/brightness transients and beating do not reveal original pitch controllers or oscillator phase. Stable pitch centers, rather than transient frequency maxima, determine note numbers.",
+        "The 3.03-second excerpt ends in the quiet tail before the next note at about 3.06 seconds. Exact releases are less certain than stable pitches; velocities and expression are not recovered."
+      ]
+    },
+    {
+      "id": "club-bass",
+      "title": "Club Bass",
+      "original_url": "https://www.rolandus.com/go/sh-201_patches/mp3/BASS/TOP8_ClubBass.mp3",
+      "counterexample": true,
+      "note": "Counterexample: reducing the return worsens the measured level envelope. Strong HF damping differs from most cases.",
+      "sample_rate": 44100,
+      "frames": 143093,
+      "hardware_start_sample": 0,
+      "hardware_end_sample": 143093,
+      "model_start_sample": 232,
+      "model_end_sample": 143325,
+      "common_attenuation": 0.6349610705295243,
+      "calibration": {
+        "candidate_lag_samples": 232,
+        "candidate_lag_seconds": 0.00526077097505669,
+        "candidate_gain": 1.8256797473972683,
+        "candidate_gain_db": 5.228491957544897,
+        "calibration_frames": 35831,
+        "max_lag_seconds": 0.05,
+        "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+        "alignment_correlation": 0.9730651298700843,
+        "alignment_identifiable": true,
+        "alignment_at_search_boundary": false,
+        "gain_method": "one scalar RMS gain over calibration interval after alignment",
+        "allowed_transforms": [
+          "one global integer delay",
+          "one positive scalar gain"
+        ]
+      },
+      "calibration_reference_samples": [
+        0,
+        35599
+      ],
+      "calibration_candidate_samples": [
+        232,
+        35831
+      ],
+      "evaluation_reference_samples": [
+        35831,
+        143093
+      ],
+      "evaluation_playback_seconds": [
+        0.8124943310657596,
+        3.2447392290249435
+      ],
+      "calibration_playback_seconds": [
+        0.0,
+        0.8072335600907029
+      ],
+      "tracks": [
+        {
+          "id": "hardware",
+          "file": "club-bass/hardware.wav",
+          "sha256": "b812c481c874e2f5c04946e392acce10c07f9756ae1e4699f10c9a2edf71a737",
+          "frames": 143093,
+          "peak": 0.4952995181083679,
+          "rms_dbfs": -19.99999987057016,
+          "applied_model_gain": 1.0,
+          "raw_source": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/club-bass/hardware-excerpt-raw.wav",
+            "sha256": "e5d5a628c59003732a17927b4690984627dd8427caca51c5f527df915424a6cd"
+          }
+        },
+        {
+          "id": "before",
+          "file": "club-bass/before.wav",
+          "sha256": "268d2d3bea68b993953b103426b1052542864eb8c8b2fbc0d9e0998a8920ea40",
+          "frames": 143093,
+          "peak": 0.2817279100418091,
+          "rms_dbfs": -20.053657975019632,
+          "applied_model_gain": 1.8256797473972683,
+          "raw_source": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/cases/club-bass/gain-1.wav",
+            "raw_sha256": "d5fab55b6cfccca0cbe60161eb8fdcfbcf24618e2d4d2b7333b7824fde50a61e",
+            "render_receipt_sha256": "197c6100bb71def69288cf1d7a8076daa1d9fd4aa21b0176fc6dc97410a05e18",
+            "renderer_sha256": "0e69118d0dab0928793ef3b59208fddf43b7bd56d982f2c053d3c0ad9f15b646"
+          }
+        },
+        {
+          "id": "after",
+          "file": "club-bass/after.wav",
+          "sha256": "3315decd54e742c408a8ede7012b6ebbefccb84962707f6fe0e58dceec3b08c0",
+          "frames": 143093,
+          "peak": 0.26841580867767334,
+          "rms_dbfs": -20.06932270844713,
+          "applied_model_gain": 1.8256797473972683,
+          "raw_source": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/cases/club-bass/gain-0.5.wav",
+            "raw_sha256": "7450ab25f2a776ca21725f7afee23fdcb218c8eee64b53f7a44daa3202670ddd",
+            "render_receipt_sha256": "65dcb8d9ce5281f043055d7a78a26bbe3c98b8e039c4155e32e97a05d21d40a1",
+            "renderer_sha256": "f75f864dffa98eca24025836bf9d04705ad7fd68717ddef982092f4865828758"
+          }
+        }
+      ],
+      "original_recording": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/sources/TOP8_ClubBass.mp3",
+        "id": "bass-05",
+        "title": "Club Bass",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_bass.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/BASS/TOP8_ClubBass.mp3",
+        "local_filename": "TOP8_ClubBass.mp3",
+        "sha256": "4376b5196eb9be233e85a4dc528dda1bdb6e4f8ba01a7163aa298c8ebbdb68a4",
+        "size_bytes": 968018,
+        "bank_id": "bass",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 5,
+        "patch_name": "Club Bass",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+      },
+      "input_files": {
+        "hardware-excerpt-raw.wav": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/club-bass/hardware-excerpt-raw.wav",
+          "sha256": "e5d5a628c59003732a17927b4690984627dd8427caca51c5f527df915424a6cd"
+        },
+        "original-patch.syx": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/club-bass/original-patch.syx",
+          "sha256": "1db074dd01883c578cda8eef19aacf28be2b13c4a2b9ab21e829ba915f9a194b"
+        },
+        "reconstructed-performance.mid": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/club-bass/reconstructed-performance.mid",
+          "sha256": "c86bc2a60af8086ae69c30886b50334da0c8799fc52bcc2a7a0495c39f893a3a"
+        }
+      },
+      "comparison_sha256": "606bbbd5d09fff8f1ef255da79cba3eb93f291681fbff6622cb35ab22331b035",
+      "case_result_sha256": "fbe9d08828429a91c554934682f15c939958aa97fff563e289243075bc033668",
+      "reconstruction": {
+        "id": "club-bass",
+        "title": "Club Bass \u2014 separated opening bass reconstruction",
+        "reference_id": "bass-05",
+        "duration_seconds": 3.25,
+        "method": "Hardware-only spectrograms show a low D1 family near 36.7 Hz together with components near 73.4 and 293 Hz. The original patch maps a played key to Lower oscillators at \u221212, Upper triangle at 0, and Upper sine at +24 semitones, so the first three keys are MIDI 38 (D2). Later 43.65/87.3/349 Hz families identify MIDI 41 (F2), followed by two more D2 events. Onsets, repeated-note renewals, and gates were read from the audio waveform and spectral changes without fitting to Septum.",
+        "uncertainties": [
+          "Original performance MIDI is unavailable; this is a source-audio reconstruction, not a recovered original performance.",
+          "All velocities are fixed to 100 as an explicit unknown placeholder; no velocity, preset parameter, or recording EQ was fitted to Septum output.",
+          "Played-note inference assumes default system transpose and the documented/current WIDE-dependent oscillator ranges. Original system settings, controller events, exact recorded patch revision, and recording processing are unknown.",
+          "Event times refer to decoded MP3 audio. Hardware latency, encoder history, oscillator state, and effect history are not recovered; no post-render alignment or time warping is implied.",
+          "Onsets and gates are approximate within 10\u201320 ms. The F-to-D transition may contain a short overlap; note-off and note-on are placed together as an explicit estimate.",
+          "The original Lower tone has SOLO LEGATO and portamento enabled, so overlap uncertainty can affect the F-to-D transition. The first three separated D notes are the strongest timing evidence.",
+          "Upper filter LFO, overdrive, and original reverb remain enabled. The residual reverb tail is retained in the crop and is not interpreted as additional MIDI notes."
+        ],
+        "schema_version": 1,
+        "midi_status": "reconstructed_not_original",
+        "source_start_seconds": 0,
+        "notes": [
+          {
+            "on": 0.163,
+            "off": 0.338,
+            "note": 38,
+            "velocity": 100,
+            "note_off_velocity": 64,
+            "pitch_confidence": "high for family and octave; exact played note conditional on unknown system transpose",
+            "onset_uncertainty_seconds": 0.02,
+            "note_off_confidence": "medium; about \u00b120 ms, final cropped held note excepted",
+            "velocity_source": "unknown constant placeholder; not fitted to amplitude"
+          },
+          {
+            "on": 0.508,
+            "off": 0.679,
+            "note": 38,
+            "velocity": 100,
+            "note_off_velocity": 64,
+            "pitch_confidence": "high for family and octave; exact played note conditional on unknown system transpose",
+            "onset_uncertainty_seconds": 0.02,
+            "note_off_confidence": "medium; about \u00b120 ms, final cropped held note excepted",
+            "velocity_source": "unknown constant placeholder; not fitted to amplitude"
+          },
+          {
+            "on": 0.852,
+            "off": 1.022,
+            "note": 38,
+            "velocity": 100,
+            "note_off_velocity": 64,
+            "pitch_confidence": "high for family and octave; exact played note conditional on unknown system transpose",
+            "onset_uncertainty_seconds": 0.02,
+            "note_off_confidence": "medium; about \u00b120 ms, final cropped held note excepted",
+            "velocity_source": "unknown constant placeholder; not fitted to amplitude"
+          },
+          {
+            "on": 1.584,
+            "off": 1.826,
+            "note": 41,
+            "velocity": 100,
+            "note_off_velocity": 64,
+            "pitch_confidence": "high for family and octave; exact played note conditional on unknown system transpose",
+            "onset_uncertainty_seconds": 0.02,
+            "note_off_confidence": "medium; about \u00b120 ms, final cropped held note excepted",
+            "velocity_source": "unknown constant placeholder; not fitted to amplitude"
+          },
+          {
+            "on": 1.826,
+            "off": 1.948,
+            "note": 38,
+            "velocity": 100,
+            "note_off_velocity": 64,
+            "pitch_confidence": "high for family and octave; exact played note conditional on unknown system transpose",
+            "onset_uncertainty_seconds": 0.02,
+            "note_off_confidence": "medium; about \u00b120 ms, final cropped held note excepted",
+            "velocity_source": "unknown constant placeholder; not fitted to amplitude"
+          },
+          {
+            "on": 2.046,
+            "off": 2.21,
+            "note": 38,
+            "velocity": 100,
+            "note_off_velocity": 64,
+            "pitch_confidence": "high for family and octave; exact played note conditional on unknown system transpose",
+            "onset_uncertainty_seconds": 0.02,
+            "note_off_confidence": "medium; about \u00b120 ms, final cropped held note excepted",
+            "velocity_source": "unknown constant placeholder; not fitted to amplitude"
+          }
+        ],
+        "preset_parameter_modifications": [],
+        "published_tuning_audit": "DUAL, octave shift 0 for both tones. Upper triangle raw coarse 64/WIDE off \u2192 0; Upper sine 88/WIDE on \u2192 +24; both Lower oscillators 28/WIDE off \u2192 \u221212. Arpeggiator off. Upper POLY, portamento off; Lower SOLO LEGATO, portamento on/time20. Delay off, reverb on.",
+        "evidence_artifact": "build-fidelity/hardware-benchmark/expanded-transcription-audit/bass-transcription-evidence.json"
+      },
+      "limitations": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Original performance MIDI is unavailable; this is a source-audio reconstruction, not a recovered original performance.",
+        "All velocities are fixed to 100 as an explicit unknown placeholder; no velocity, preset parameter, or recording EQ was fitted to Septum output.",
+        "Played-note inference assumes default system transpose and the documented/current WIDE-dependent oscillator ranges. Original system settings, controller events, exact recorded patch revision, and recording processing are unknown.",
+        "Event times refer to decoded MP3 audio. Hardware latency, encoder history, oscillator state, and effect history are not recovered; no post-render alignment or time warping is implied.",
+        "Onsets and gates are approximate within 10\u201320 ms. The F-to-D transition may contain a short overlap; note-off and note-on are placed together as an explicit estimate.",
+        "The original Lower tone has SOLO LEGATO and portamento enabled, so overlap uncertainty can affect the F-to-D transition. The first three separated D notes are the strongest timing evidence.",
+        "Upper filter LFO, overdrive, and original reverb remain enabled. The residual reverb tail is retained in the crop and is not interpreted as additional MIDI notes."
+      ]
+    },
+    {
+      "id": "cotton-wool",
+      "title": "Cotton Wool",
+      "original_url": "https://www.rolandus.com/go/sh-201_patches/mp3/PAD/TOP8_Cotton_Wool.mp3",
+      "counterexample": false,
+      "note": "Exploratory context for the change. Reconstructed chord gates and overlapping releases remain uncertain.",
+      "sample_rate": 44100,
+      "frames": 219154,
+      "hardware_start_sample": 1346,
+      "hardware_end_sample": 220500,
+      "model_start_sample": 0,
+      "model_end_sample": 219154,
+      "common_attenuation": 0.7313711932941269,
+      "calibration": {
+        "candidate_lag_samples": -1346,
+        "candidate_lag_seconds": -0.03052154195011338,
+        "candidate_gain": 3.5906029484109427,
+        "candidate_gain_db": 11.103347663379544,
+        "calibration_frames": 55125,
+        "max_lag_seconds": 0.05,
+        "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+        "alignment_correlation": 0.6483418898226418,
+        "alignment_identifiable": true,
+        "alignment_at_search_boundary": false,
+        "gain_method": "one scalar RMS gain over calibration interval after alignment",
+        "allowed_transforms": [
+          "one global integer delay",
+          "one positive scalar gain"
+        ]
+      },
+      "calibration_reference_samples": [
+        1346,
+        55125
+      ],
+      "calibration_candidate_samples": [
+        0,
+        53779
+      ],
+      "evaluation_reference_samples": [
+        56471,
+        220500
+      ],
+      "evaluation_playback_seconds": [
+        1.25,
+        4.9694784580498865
+      ],
+      "calibration_playback_seconds": [
+        0.0,
+        1.2194784580498865
+      ],
+      "tracks": [
+        {
+          "id": "hardware",
+          "file": "cotton-wool/hardware.wav",
+          "sha256": "b4ec9f87b1d9373c39f685614415d3a0579273ba064e8f4ea1ce045c5b48f894",
+          "frames": 219154,
+          "peak": 0.6491715908050537,
+          "rms_dbfs": -19.99999987057016,
+          "applied_model_gain": 1.0,
+          "raw_source": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/cotton-wool/hardware-excerpt-raw.wav",
+            "sha256": "cf85c5a424f99365f5d6fc2517608529f03f1d07ffae34646e2f3d0a16af16ef"
+          }
+        },
+        {
+          "id": "before",
+          "file": "cotton-wool/before.wav",
+          "sha256": "26f7317e9b61152b6c4d314d293424454908c1f72018bf8e864d0e55cf7d9d56",
+          "frames": 219154,
+          "peak": 0.574347198009491,
+          "rms_dbfs": -19.15307110837518,
+          "applied_model_gain": 3.5906029484109427,
+          "raw_source": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/cases/cotton-wool/gain-1.wav",
+            "raw_sha256": "54b7512438fb6a743292f314354cf5c37d68ba4f74a39e9474f03f9854e219a5",
+            "render_receipt_sha256": "9b7b4ce04d07c5c75115efe112e1f3645d8573febd120553693f709388e8fa6c",
+            "renderer_sha256": "0e69118d0dab0928793ef3b59208fddf43b7bd56d982f2c053d3c0ad9f15b646"
+          }
+        },
+        {
+          "id": "after",
+          "file": "cotton-wool/after.wav",
+          "sha256": "9b654756ea00aefbc68f53104a5cf66bf16cf5289dd29981ebd6620c1fb31408",
+          "frames": 219154,
+          "peak": 0.49942028522491455,
+          "rms_dbfs": -20.6770497966223,
+          "applied_model_gain": 3.5906029484109427,
+          "raw_source": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/cases/cotton-wool/gain-0.5.wav",
+            "raw_sha256": "3367e7a2077a96902cb4404d5051b3f6f8f5a1d3cdde915b9739984b8ca4f13c",
+            "render_receipt_sha256": "9d475ab8c15cffa70869c21ba1320a72d06204c304a4c13347a3518a71176c85",
+            "renderer_sha256": "f75f864dffa98eca24025836bf9d04705ad7fd68717ddef982092f4865828758"
+          }
+        }
+      ],
+      "original_recording": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/sources/TOP8_Cotton_Wool.mp3",
+        "id": "pad-01",
+        "title": "Cotton Wool",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_pad.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/PAD/TOP8_Cotton_Wool.mp3",
+        "local_filename": "TOP8_Cotton_Wool.mp3",
+        "sha256": "abf9d3ad400119ab0546fd724ab7a7442ea724bb164f8e9d024c642c791a1379",
+        "size_bytes": 744869,
+        "bank_id": "pad",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 1,
+        "patch_name": "Cotton Wool",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+      },
+      "input_files": {
+        "hardware-excerpt-raw.wav": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/cotton-wool/hardware-excerpt-raw.wav",
+          "sha256": "cf85c5a424f99365f5d6fc2517608529f03f1d07ffae34646e2f3d0a16af16ef"
+        },
+        "original-patch.syx": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/cotton-wool/original-patch.syx",
+          "sha256": "e7f23e39445895f2158482037b37a19dfe413e536869c0e6f78352de6e49fbef"
+        },
+        "reconstructed-performance.mid": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/cotton-wool/reconstructed-performance.mid",
+          "sha256": "9794993003bca0f1af71f2a39d30e294c6bf862ab1d6aabdbea50d145d0ce69f"
+        }
+      },
+      "comparison_sha256": "0b6c7b03f97b82c5c2a096bf37094902c3412e3118c4865c053fa9af7d71e646",
+      "case_result_sha256": "95219b746258a9d857f944dbbd1d52adda782c6a60e745481ec3f976f1b6a706",
+      "reconstruction": {
+        "schema_version": 1,
+        "id": "cotton-wool",
+        "title": "Cotton Wool \u2014 octave-corrected reconstruction",
+        "reference_id": "pad-01",
+        "midi_status": "reconstructed_not_original",
+        "source_start_seconds": 0,
+        "duration_seconds": 5,
+        "method": "Hardware FFT/STFT pitch families and attack estimates from the historical reconstruction, reinterpreted using the WIDE-off one-octave oscillator interval supported by Cotton Wool and Pedal Bs 1 recordings. The low peaks are the sine one octave below the Super Saw. All MIDI notes raised by 12 from the historical estimate; gates and velocity unchanged. No preset bytes modified.",
+        "uncertainties": [
+          "This is an estimated reconstruction, not a recovered original MIDI performance.",
+          "Played MIDI octave is conditional on the measured WIDE-off range and default system transpose. The original performance MIDI has not been recovered.",
+          "Bass C2/C3 octave allocation is less certain than the Eb/F/Bb and Eb/F/A chord pitch classes because their harmonics overlap.",
+          "Onsets are approximate within roughly30\u201370 ms, with the later F3 strum less certain. Short-time analysis window smears exact attacks.",
+          "Note-off times are placeholders informed by audible-band decay; release envelopes and reverb prevent exact recovery.",
+          "Velocities, controllers, pitch bend, system transpose/tuning, master gain, and recording processing are unknown.",
+          "Small note overlaps, extra quiet notes, and the exact voicing may differ from this estimate.",
+          "All note-on velocities fixed to100 as an explicit placeholder. Original velocities were not recoverable, and filter velocity sensitivity is+18 in the published patch. No velocity or preset parameters were fitted against Septum output.",
+          "Five-second excerpt only; the later untranscribed performance is not compared with the rendered release tail."
+        ],
+        "notes": [
+          {
+            "note": 48,
+            "velocity": 100,
+            "pitch_confidence": "medium-high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Distinct 65.4 Hz fundamental family begins near 0.12 s; 130.8 and 261.6 Hz harmonics. Low C family also repeats near 4.12 s.",
+            "on": 0.125,
+            "off": 0.37,
+            "previous_reconstructed_note": 36
+          },
+          {
+            "note": 60,
+            "velocity": 100,
+            "pitch_confidence": "medium",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "130.8/261.6 Hz bands have independent attacks near 0.54, 0.92, 1.17 s after the 65.4 Hz band has decayed. C3 interpreted separately from initial C2 harmonics.",
+            "on": 0.5,
+            "off": 0.625,
+            "previous_reconstructed_note": 48
+          },
+          {
+            "note": 63,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+            "on": 0.625,
+            "off": 0.75,
+            "previous_reconstructed_note": 51
+          },
+          {
+            "note": 65,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+            "on": 0.625,
+            "off": 0.75,
+            "previous_reconstructed_note": 53
+          },
+          {
+            "note": 70,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+            "on": 0.625,
+            "off": 0.75,
+            "previous_reconstructed_note": 58
+          },
+          {
+            "note": 60,
+            "velocity": 100,
+            "pitch_confidence": "medium",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "130.8/261.6 Hz bands have independent attacks near 0.54, 0.92, 1.17 s after the 65.4 Hz band has decayed. C3 interpreted separately from initial C2 harmonics.",
+            "on": 0.875,
+            "off": 1.0,
+            "previous_reconstructed_note": 48
+          },
+          {
+            "note": 60,
+            "velocity": 100,
+            "pitch_confidence": "medium",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "130.8/261.6 Hz bands have independent attacks near 0.54, 0.92, 1.17 s after the 65.4 Hz band has decayed. C3 interpreted separately from initial C2 harmonics.",
+            "on": 1.125,
+            "off": 1.25,
+            "previous_reconstructed_note": 48
+          },
+          {
+            "note": 63,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+            "on": 1.375,
+            "off": 1.5,
+            "previous_reconstructed_note": 51
+          },
+          {
+            "note": 65,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+            "on": 1.375,
+            "off": 1.5,
+            "previous_reconstructed_note": 53
+          },
+          {
+            "note": 70,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+            "on": 1.375,
+            "off": 1.5,
+            "previous_reconstructed_note": 58
+          },
+          {
+            "note": 63,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+            "on": 1.875,
+            "off": 2.0,
+            "previous_reconstructed_note": 51
+          },
+          {
+            "note": 65,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+            "on": 1.875,
+            "off": 2.0,
+            "previous_reconstructed_note": 53
+          },
+          {
+            "note": 70,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Simultaneous Eb3/F3/Bb3 pitch families near155.6/174.6/233.1 Hz; band peaks near0.70,1.45,1.95 s with corresponding higher harmonics.",
+            "on": 1.875,
+            "off": 2.0,
+            "previous_reconstructed_note": 58
+          },
+          {
+            "note": 63,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "A3 220/440 Hz family replaces Bb3; Eb3/F3 families remain. Short envelope peak near2.45 s.",
+            "on": 2.375,
+            "off": 2.5,
+            "previous_reconstructed_note": 51
+          },
+          {
+            "note": 65,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "A3 220/440 Hz family replaces Bb3; Eb3/F3 families remain. Short envelope peak near2.45 s.",
+            "on": 2.375,
+            "off": 2.5,
+            "previous_reconstructed_note": 53
+          },
+          {
+            "note": 69,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "A3 220/440 Hz family replaces Bb3; Eb3/F3 families remain. Short envelope peak near2.45 s.",
+            "on": 2.375,
+            "off": 2.5,
+            "previous_reconstructed_note": 57
+          },
+          {
+            "note": 63,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Long held passage: Eb3 near155.6/311.1 Hz and A3 near220/440 Hz from approximately2.6\u20133.7 s. Release inferred from decay.",
+            "on": 2.625,
+            "off": 3.625,
+            "previous_reconstructed_note": 51
+          },
+          {
+            "note": 69,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Long held passage: Eb3 near155.6/311.1 Hz and A3 near220/440 Hz from approximately2.6\u20133.7 s. Release inferred from decay.",
+            "on": 2.625,
+            "off": 3.625,
+            "previous_reconstructed_note": 57
+          },
+          {
+            "note": 65,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "low-medium",
+            "note_off_confidence": "low",
+            "evidence": "Long F3 family near174.6/349.2 Hz has a later clear growth near2.75 s. The strummed onset is less certain than its pitch.",
+            "on": 2.75,
+            "off": 3.75,
+            "previous_reconstructed_note": 53
+          },
+          {
+            "note": 58,
+            "velocity": 100,
+            "pitch_confidence": "medium-high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Independent low Bb2 116.5 Hz attacks centered near3.45 and3.70 s; harmonics overlap earlier Bb3.",
+            "on": 3.375,
+            "off": 3.475,
+            "previous_reconstructed_note": 46
+          },
+          {
+            "note": 58,
+            "velocity": 100,
+            "pitch_confidence": "medium-high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Independent low Bb2 116.5 Hz attacks centered near3.45 and3.70 s; harmonics overlap earlier Bb3.",
+            "on": 3.625,
+            "off": 3.725,
+            "previous_reconstructed_note": 46
+          },
+          {
+            "note": 60,
+            "velocity": 100,
+            "pitch_confidence": "medium",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "130.8/261.6 Hz bands grow near3.78\u20133.9 s before the next low C2 attack.",
+            "on": 3.75,
+            "off": 4.0,
+            "previous_reconstructed_note": 48
+          },
+          {
+            "note": 48,
+            "velocity": 100,
+            "pitch_confidence": "medium-high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "65.4 Hz family repeats the opening bass attack near4.12 s.",
+            "on": 4.125,
+            "off": 4.37,
+            "previous_reconstructed_note": 36
+          },
+          {
+            "note": 60,
+            "velocity": 100,
+            "pitch_confidence": "medium",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "130.8/261.6 Hz repeat the earlier C3 attack atapproximately4.53 s.",
+            "on": 4.5,
+            "off": 4.625,
+            "previous_reconstructed_note": 48
+          },
+          {
+            "note": 63,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Eb3/F3/Bb3 families repeat the first chord atapproximately4.65\u20134.71 s.",
+            "on": 4.625,
+            "off": 4.75,
+            "previous_reconstructed_note": 51
+          },
+          {
+            "note": 65,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Eb3/F3/Bb3 families repeat the first chord atapproximately4.65\u20134.71 s.",
+            "on": 4.625,
+            "off": 4.75,
+            "previous_reconstructed_note": 53
+          },
+          {
+            "note": 70,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium",
+            "note_off_confidence": "low",
+            "evidence": "Eb3/F3/Bb3 families repeat the first chord atapproximately4.65\u20134.71 s.",
+            "on": 4.625,
+            "off": 4.75,
+            "previous_reconstructed_note": 58
+          }
+        ],
+        "pitch_revision": {
+          "reason": "WIDE-off raw coarse +/-36 means physical +/-12 semitones, not +/-36; see source-audits/cotton-tuning-audit.md",
+          "semitone_shift_from_previous_reconstruction": 12,
+          "previous_reconstruction": "Docs/fidelity/reconstructions/historical-before-wide/cotton-wool.json",
+          "previous_reconstruction_sha256": "c4ad29ff167f11f51488f741a090529aff16c22f08541325927c349975bc657e",
+          "preset_parameter_modifications": []
+        }
+      },
+      "limitations": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "This is an estimated reconstruction, not a recovered original MIDI performance.",
+        "Played MIDI octave is conditional on the measured WIDE-off range and default system transpose. The original performance MIDI has not been recovered.",
+        "Bass C2/C3 octave allocation is less certain than the Eb/F/Bb and Eb/F/A chord pitch classes because their harmonics overlap.",
+        "Onsets are approximate within roughly30\u201370 ms, with the later F3 strum less certain. Short-time analysis window smears exact attacks.",
+        "Note-off times are placeholders informed by audible-band decay; release envelopes and reverb prevent exact recovery.",
+        "Velocities, controllers, pitch bend, system transpose/tuning, master gain, and recording processing are unknown.",
+        "Small note overlaps, extra quiet notes, and the exact voicing may differ from this estimate.",
+        "All note-on velocities fixed to100 as an explicit placeholder. Original velocities were not recoverable, and filter velocity sensitivity is+18 in the published patch. No velocity or preset parameters were fitted against Septum output.",
+        "Five-second excerpt only; the later untranscribed performance is not compared with the rendered release tail."
+      ]
+    },
+    {
+      "id": "supa-juce-1",
+      "title": "SupaJuice 1",
+      "original_url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_SupaJuce1.mp3",
+      "counterexample": false,
+      "note": "The stored preset is unchanged; pitch, articulation and velocity come from a short source reconstruction.",
+      "sample_rate": 44100,
+      "frames": 79157,
+      "hardware_start_sample": 0,
+      "hardware_end_sample": 79157,
+      "model_start_sample": 223,
+      "model_end_sample": 79380,
+      "common_attenuation": 0.42948264870052255,
+      "calibration": {
+        "candidate_lag_samples": 223,
+        "candidate_lag_seconds": 0.0050566893424036285,
+        "candidate_gain": 1.7531787465575264,
+        "candidate_gain_db": 4.876523942938275,
+        "calibration_frames": 19845,
+        "max_lag_seconds": 0.05,
+        "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+        "alignment_correlation": 0.9001657156874552,
+        "alignment_identifiable": true,
+        "alignment_at_search_boundary": false,
+        "gain_method": "one scalar RMS gain over calibration interval after alignment",
+        "allowed_transforms": [
+          "one global integer delay",
+          "one positive scalar gain"
+        ]
+      },
+      "calibration_reference_samples": [
+        0,
+        19622
+      ],
+      "calibration_candidate_samples": [
+        223,
+        19845
+      ],
+      "evaluation_reference_samples": [
+        19845,
+        79157
+      ],
+      "evaluation_playback_seconds": [
+        0.45,
+        1.7949433106575963
+      ],
+      "calibration_playback_seconds": [
+        0.0,
+        0.44494331065759635
+      ],
+      "tracks": [
+        {
+          "id": "hardware",
+          "file": "supa-juce-1/hardware.wav",
+          "sha256": "6151abc5358d8c459418eaa1c8912d1a46b0e380f9fb635d894247dd790df217",
+          "frames": 79157,
+          "peak": 0.42404651641845703,
+          "rms_dbfs": -19.99999987057016,
+          "applied_model_gain": 1.0,
+          "raw_source": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/supa-juce-1/hardware-excerpt-raw.wav",
+            "sha256": "94feaa31fa2ee16220a452f76852f3c1e3186d1889b895883b26e2a9fb6041f2"
+          }
+        },
+        {
+          "id": "before",
+          "file": "supa-juce-1/before.wav",
+          "sha256": "d93050c6d0c2d529106ce00228034129d0c34460361362414fcf6ca98dbe6b29",
+          "frames": 79157,
+          "peak": 0.42531999945640564,
+          "rms_dbfs": -20.173033097713247,
+          "applied_model_gain": 1.7531787465575264,
+          "raw_source": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/cases/supa-juce-1/gain-1.wav",
+            "raw_sha256": "2b4c5f8cbdf83ecc895b19f7015fd15bd9f126723830375df564f52e5ac79bb1",
+            "render_receipt_sha256": "a9ff0164341a5d3012222f2e068bfcff3a8bf8fab97484e0d2f1a428551e8066",
+            "renderer_sha256": "0e69118d0dab0928793ef3b59208fddf43b7bd56d982f2c053d3c0ad9f15b646"
+          }
+        },
+        {
+          "id": "after",
+          "file": "supa-juce-1/after.wav",
+          "sha256": "3c99bba7bb3adcab31bd4b1b207bc92cd3cbf5ee138f52bc20efc70d4e4dca74",
+          "frames": 79157,
+          "peak": 0.38377484679222107,
+          "rms_dbfs": -20.850207667481307,
+          "applied_model_gain": 1.7531787465575264,
+          "raw_source": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/cases/supa-juce-1/gain-0.5.wav",
+            "raw_sha256": "12785edfdedf0de105b6a370df7a52f58f2ce2341dfe280d7f3c58ffb9e93f33",
+            "render_receipt_sha256": "f92ed0c7ae989ec6383016d5de6bc7d2021b2e4239f45700a1fdde8eb3bde18f",
+            "renderer_sha256": "f75f864dffa98eca24025836bf9d04705ad7fd68717ddef982092f4865828758"
+          }
+        }
+      ],
+      "original_recording": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/sources/TOP8_SupaJuce1.mp3",
+        "id": "lead-06",
+        "title": "SupaJuice 1",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_SupaJuce1.mp3",
+        "local_filename": "TOP8_SupaJuce1.mp3",
+        "sha256": "e9c1dbe5cddf241f69b0d7b044201bb18e212345dc080c35a09001cb9afe103f",
+        "size_bytes": 647026,
+        "bank_id": "lead",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 6,
+        "patch_name": "SupaJuce 1",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank.",
+        "name_note": "Official HTML spells the title SupaJuice 1; downloaded librarian record spells it SupaJuce 1."
+      },
+      "input_files": {
+        "hardware-excerpt-raw.wav": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/supa-juce-1/hardware-excerpt-raw.wav",
+          "sha256": "94feaa31fa2ee16220a452f76852f3c1e3186d1889b895883b26e2a9fb6041f2"
+        },
+        "original-patch.syx": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/supa-juce-1/original-patch.syx",
+          "sha256": "9791c9e16ab0a6e4374791b8f47766cfa0ee725da0d4a14ee5d75a319bf6fad8"
+        },
+        "reconstructed-performance.mid": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/final-production-linear-lfo/supa-juce-1/reconstructed-performance.mid",
+          "sha256": "0df6bc4fa7ae91185c937d8ce770562aaa5ced55650bc5b4066951ba671a9498"
+        }
+      },
+      "comparison_sha256": "6104f138526954d2c681a07c469c83809a63d0002168cc6d7d150939599ce430",
+      "case_result_sha256": "18bfa7e694b214de085675d0bd9dc6d77192f234ae5efb8954198190ba190d0c",
+      "reconstruction": {
+        "schema_version": 1,
+        "id": "supa-juce-1",
+        "title": "SupaJuce 1 \u2014 two-square oscillator octave check",
+        "reference_id": "lead-06",
+        "midi_status": "reconstructed_not_original",
+        "source_start_seconds": 0,
+        "duration_seconds": 1.8,
+        "method": "Hardware-only FFT/STFT inspection of the first phrase. Lower square fundamentals near 330, 220, 294 and 196 Hz identify sounding MIDI 64, 57, 62 and 55. Undo the published Upper tone octave shift -1 to infer played MIDI 76, 69, 74 and 67. Strong even-numbered families at twice those frequencies, including H6 but not H4, identify the second square one octave above; this is consistent with published OSC1 coarse raw 100/WIDE off and OSC2 raw 64/WIDE off. Onsets and gates estimated from spectral renewals; no synthesis parameter fitting.",
+        "uncertainties": [
+          "Original MIDI is unavailable; this is an estimated reconstruction.",
+          "Event boundaries are approximate within 10\u201320 ms; pitch envelope, filter release and delay obscure exact key-down/up times.",
+          "All velocities are placeholders at 100. Original velocity, controllers, system transpose, recording processing and exact patch revision are unverified.",
+          "Lower square note identification is stronger than exact gates. The first 1.8 seconds exclude the rest of the demo and use an artificial final crop."
+        ],
+        "notes": [
+          {
+            "on": 0.123,
+            "off": 0.249,
+            "note": 76,
+            "velocity": 100
+          },
+          {
+            "on": 0.249,
+            "off": 0.36,
+            "note": 69,
+            "velocity": 100
+          },
+          {
+            "on": 0.526,
+            "off": 0.654,
+            "note": 69,
+            "velocity": 100
+          },
+          {
+            "on": 0.804,
+            "off": 0.915,
+            "note": 69,
+            "velocity": 100
+          },
+          {
+            "on": 1.087,
+            "off": 1.606,
+            "note": 74,
+            "velocity": 100
+          },
+          {
+            "on": 1.606,
+            "off": 1.785,
+            "note": 67,
+            "velocity": 100
+          }
+        ]
+      },
+      "limitations": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Original MIDI is unavailable; this is an estimated reconstruction.",
+        "Event boundaries are approximate within 10\u201320 ms; pitch envelope, filter release and delay obscure exact key-down/up times.",
+        "All velocities are placeholders at 100. Original velocity, controllers, system transpose, recording processing and exact patch revision are unverified.",
+        "Lower square note identification is stronger than exact gates. The first 1.8 seconds exclude the rest of the demo and use an artificial final crop."
+      ]
+    },
+    {
+      "id": "class-a-nominal",
+      "title": "Class A",
+      "original_url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_ClassA.mp3",
+      "counterexample": false,
+      "note": "Source-only note and pitch-bend reconstruction was frozen before scoring. Short gates remain uncertain; the end is a crop.",
+      "sample_rate": 44100,
+      "frames": 131751,
+      "hardware_start_sample": 549,
+      "hardware_end_sample": 132300,
+      "model_start_sample": 0,
+      "model_end_sample": 131751,
+      "common_attenuation": 0.3545549572820209,
+      "calibration": {
+        "candidate_lag_samples": -549,
+        "candidate_lag_seconds": -0.012448979591836735,
+        "candidate_gain": 4.224284782944742,
+        "candidate_gain_db": 12.515063775232802,
+        "calibration_frames": 13230,
+        "max_lag_seconds": 0.05,
+        "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+        "alignment_correlation": 0.6007769838802354,
+        "alignment_identifiable": true,
+        "alignment_at_search_boundary": false,
+        "gain_method": "one scalar RMS gain over calibration interval after alignment",
+        "allowed_transforms": [
+          "one global integer delay",
+          "one positive scalar gain"
+        ]
+      },
+      "calibration_reference_samples": [
+        549,
+        13230
+      ],
+      "calibration_candidate_samples": [
+        0,
+        12681
+      ],
+      "evaluation_reference_samples": [
+        13779,
+        132300
+      ],
+      "evaluation_playback_seconds": [
+        0.3,
+        2.9875510204081634
+      ],
+      "calibration_playback_seconds": [
+        0.0,
+        0.28755102040816327
+      ],
+      "tracks": [
+        {
+          "id": "hardware",
+          "file": "class-a-nominal/hardware.wav",
+          "sha256": "671b02baf78216fa0a71d36e138a551b252e12fc773a0a55d76a0b51f816a04d",
+          "frames": 131751,
+          "peak": 0.3518429100513458,
+          "rms_dbfs": -19.999999223420986,
+          "applied_model_gain": 1.0,
+          "raw_source": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-new-preset-validation/run-01/baseline-corpus/class-a-nominal/hardware-excerpt-raw.wav",
+            "sha256": "bbc82cb32f11e97281f36133ee16c9826faac7e22fbd7bacbf3ed006b1014936"
+          }
+        },
+        {
+          "id": "before",
+          "file": "class-a-nominal/before.wav",
+          "sha256": "0fb8cf097933354aa7b29da937e78b4e8d82dc72b15cc8b948fe2ced1efedd38",
+          "frames": 131751,
+          "peak": 0.5327334403991699,
+          "rms_dbfs": -16.587555483516432,
+          "applied_model_gain": 4.224284782944742,
+          "raw_source": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-new-preset-validation/run-01/cases/class-a-nominal/gain-1.wav",
+            "raw_sha256": "23e40547cdca13181a823bd272bcdd1c7a4ac494db325e1e89368114cdba9615",
+            "render_receipt_sha256": "97dea72ebf3d76871e6b133d5fe88718f260f62fcb4b9aa5d0a121e465d1cead",
+            "renderer_sha256": "0e69118d0dab0928793ef3b59208fddf43b7bd56d982f2c053d3c0ad9f15b646"
+          }
+        },
+        {
+          "id": "after",
+          "file": "class-a-nominal/after.wav",
+          "sha256": "c86d8996a46076e93163f7680d8348d857cf08036bed2a775a44fb116a587e36",
+          "frames": 131751,
+          "peak": 0.44262567162513733,
+          "rms_dbfs": -17.589223510164384,
+          "applied_model_gain": 4.224284782944742,
+          "raw_source": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-new-preset-validation/run-01/cases/class-a-nominal/gain-0.5.wav",
+            "raw_sha256": "3c6a2f1e86950186075639a8c69db2959e0519a28c34fa3c4dfb9836b3c9737d",
+            "render_receipt_sha256": "0c439e923a5e030375df62008d28d49b658769dfcdff2a5acab174bcfd5aebfa",
+            "renderer_sha256": "f75f864dffa98eca24025836bf9d04705ad7fd68717ddef982092f4865828758"
+          }
+        }
+      ],
+      "original_recording": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/sources/TOP8_ClassA.mp3",
+        "id": "lead-01",
+        "title": "Class A",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_ClassA.mp3",
+        "local_filename": "TOP8_ClassA.mp3",
+        "sha256": "88dc73e66c854e6ea57d976a96cd884dddb85275d56f73719000806f1609b886",
+        "size_bytes": 670432,
+        "bank_id": "lead",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 1,
+        "patch_name": "Class A",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+      },
+      "input_files": {
+        "hardware-excerpt-raw.wav": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-new-preset-validation/run-01/baseline-corpus/class-a-nominal/hardware-excerpt-raw.wav",
+          "sha256": "bbc82cb32f11e97281f36133ee16c9826faac7e22fbd7bacbf3ed006b1014936"
+        },
+        "original-patch.syx": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-new-preset-validation/run-01/baseline-corpus/class-a-nominal/original-patch.syx",
+          "sha256": "5ac5ab7f052f6f17c48cc342bf4493ee5919572fc66dabf7daaddd25178b95e9"
+        },
+        "reconstructed-performance.mid": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-new-preset-validation/run-01/baseline-corpus/class-a-nominal/reconstructed-performance.mid",
+          "sha256": "dbf688772c203dd3201d711cac0b421f4b9fb2ae75aa9d48bd5dcf9e6e74e130"
+        }
+      },
+      "comparison_sha256": "411ca14311b7e17d74f3398fd0f0e9a04de0747305e08fd5a321e3647f8e443e",
+      "case_result_sha256": "732e4552bb37e63c7538e2511e563c6f523dba6a7ffafd81b046e1ea3f211784",
+      "reconstruction": {
+        "schema_version": 1,
+        "id": "class-a-nominal",
+        "title": "Class A \u2014 source-derived opening and pitch bend",
+        "reference_id": "lead-01",
+        "midi_status": "reconstructed_not_original",
+        "source_start_seconds": 0,
+        "duration_seconds": 3.0,
+        "calibration_end_seconds": 0.3,
+        "method": "Source-only full-recording spectrogram, local harmonic peaks and stereo periodicity distinguish12early events. Both octave-related oscillator families determine played pitch with nominal A440. Conservative spectral-onset brackets are retained. Source H1/H2/H3 frequency medians in80mswindows supply interior bend knots; values are linearly interpolated in cents on a10msgrid and rounded to14bit. No renderer is consulted.",
+        "uncertainties": [
+          "Original MIDI, velocity, controller state, system tuning/transpose and recorded patch revision are unavailable.",
+          "No Septum output, candidate gain score or DSP parameter fit was used to choose performance inputs.",
+          "Pitch families are interpreted through exact stored coarse+12/0 and tone octave\u22121: net OSC1=played, OSC2=played\u221212. Brief A3 events and some octave assignments have lower confidence.",
+          "Onset brackets are conservative source inspection bounds, not confidence intervals. Echoes, phase and finite windows limit exact timing.",
+          "Velocity100 is a placeholder. Cutoff velocity sensitivity is0; AMP sensitivity+8 remains. No per-note velocity fit or cutoff-velocity sensitivity render is performed.",
+          "SOLO LEGATO makes note overlap affect envelope retriggering; contiguous nominal,10ms gap and20ms overlap variants are all frozen before scoring.",
+          "The continuous G4-to-A4 frequency rise is encoded as a reconstructed pitch-bend hypothesis using stored range2semitones, not original controller data. It constrains pitch input from the same source used for later audio evaluation.",
+          "Final note-off3.0s is an artificial crop while hardware continues; synthetic output after3.0s is not a matched wet tail. Separate full-recording tail observations cannot establish opening-performance equivalence."
+        ],
+        "pitch_bends": [
+          {
+            "time": 0.0,
+            "value": 8192
+          },
+          {
+            "time": 1.1,
+            "value": 8192
+          },
+          {
+            "time": 1.2,
+            "value": 8192
+          },
+          {
+            "time": 1.21,
+            "value": 8258
+          },
+          {
+            "time": 1.22,
+            "value": 8325
+          },
+          {
+            "time": 1.23,
+            "value": 8391
+          },
+          {
+            "time": 1.24,
+            "value": 8458
+          },
+          {
+            "time": 1.25,
+            "value": 8524
+          },
+          {
+            "time": 1.26,
+            "value": 8590
+          },
+          {
+            "time": 1.27,
+            "value": 8657
+          },
+          {
+            "time": 1.28,
+            "value": 8723
+          },
+          {
+            "time": 1.29,
+            "value": 8790
+          },
+          {
+            "time": 1.3,
+            "value": 8856
+          },
+          {
+            "time": 1.31,
+            "value": 8950
+          },
+          {
+            "time": 1.32,
+            "value": 9044
+          },
+          {
+            "time": 1.33,
+            "value": 9137
+          },
+          {
+            "time": 1.34,
+            "value": 9231
+          },
+          {
+            "time": 1.35,
+            "value": 9325
+          },
+          {
+            "time": 1.36,
+            "value": 9419
+          },
+          {
+            "time": 1.37,
+            "value": 9513
+          },
+          {
+            "time": 1.38,
+            "value": 9606
+          },
+          {
+            "time": 1.39,
+            "value": 9700
+          },
+          {
+            "time": 1.4,
+            "value": 9794
+          },
+          {
+            "time": 1.41,
+            "value": 9922
+          },
+          {
+            "time": 1.42,
+            "value": 10050
+          },
+          {
+            "time": 1.43,
+            "value": 10179
+          },
+          {
+            "time": 1.44,
+            "value": 10307
+          },
+          {
+            "time": 1.45,
+            "value": 10435
+          },
+          {
+            "time": 1.46,
+            "value": 10563
+          },
+          {
+            "time": 1.47,
+            "value": 10692
+          },
+          {
+            "time": 1.48,
+            "value": 10820
+          },
+          {
+            "time": 1.49,
+            "value": 10948
+          },
+          {
+            "time": 1.5,
+            "value": 11076
+          },
+          {
+            "time": 1.51,
+            "value": 11209
+          },
+          {
+            "time": 1.52,
+            "value": 11341
+          },
+          {
+            "time": 1.53,
+            "value": 11474
+          },
+          {
+            "time": 1.54,
+            "value": 11606
+          },
+          {
+            "time": 1.55,
+            "value": 11739
+          },
+          {
+            "time": 1.56,
+            "value": 11872
+          },
+          {
+            "time": 1.57,
+            "value": 12004
+          },
+          {
+            "time": 1.58,
+            "value": 12137
+          },
+          {
+            "time": 1.59,
+            "value": 12269
+          },
+          {
+            "time": 1.6,
+            "value": 12402
+          },
+          {
+            "time": 1.61,
+            "value": 12526
+          },
+          {
+            "time": 1.62,
+            "value": 12651
+          },
+          {
+            "time": 1.63,
+            "value": 12775
+          },
+          {
+            "time": 1.64,
+            "value": 12900
+          },
+          {
+            "time": 1.65,
+            "value": 13024
+          },
+          {
+            "time": 1.66,
+            "value": 13148
+          },
+          {
+            "time": 1.67,
+            "value": 13273
+          },
+          {
+            "time": 1.68,
+            "value": 13397
+          },
+          {
+            "time": 1.69,
+            "value": 13521
+          },
+          {
+            "time": 1.7,
+            "value": 13646
+          },
+          {
+            "time": 1.71,
+            "value": 13772
+          },
+          {
+            "time": 1.72,
+            "value": 13899
+          },
+          {
+            "time": 1.73,
+            "value": 14025
+          },
+          {
+            "time": 1.74,
+            "value": 14152
+          },
+          {
+            "time": 1.75,
+            "value": 14278
+          },
+          {
+            "time": 1.76,
+            "value": 14405
+          },
+          {
+            "time": 1.77,
+            "value": 14531
+          },
+          {
+            "time": 1.78,
+            "value": 14658
+          },
+          {
+            "time": 1.79,
+            "value": 14784
+          },
+          {
+            "time": 1.8,
+            "value": 14911
+          },
+          {
+            "time": 1.81,
+            "value": 15050
+          },
+          {
+            "time": 1.82,
+            "value": 15190
+          },
+          {
+            "time": 1.83,
+            "value": 15329
+          },
+          {
+            "time": 1.84,
+            "value": 15469
+          },
+          {
+            "time": 1.85,
+            "value": 15608
+          },
+          {
+            "time": 1.86,
+            "value": 15748
+          },
+          {
+            "time": 1.87,
+            "value": 15887
+          },
+          {
+            "time": 1.88,
+            "value": 16027
+          },
+          {
+            "time": 1.89,
+            "value": 16166
+          },
+          {
+            "time": 1.9,
+            "value": 16306
+          },
+          {
+            "time": 1.91,
+            "value": 16313
+          },
+          {
+            "time": 1.92,
+            "value": 16321
+          },
+          {
+            "time": 1.93,
+            "value": 16329
+          },
+          {
+            "time": 1.94,
+            "value": 16337
+          },
+          {
+            "time": 1.95,
+            "value": 16344
+          },
+          {
+            "time": 1.96,
+            "value": 16352
+          },
+          {
+            "time": 1.97,
+            "value": 16360
+          },
+          {
+            "time": 1.98,
+            "value": 16368
+          },
+          {
+            "time": 1.99,
+            "value": 16375
+          },
+          {
+            "time": 2.0,
+            "value": 16383
+          }
+        ],
+        "benchmark_protocol": {
+          "status": "frozen_before_any_candidate_render_or_score",
+          "calibration_interval_seconds": [
+            0,
+            0.3
+          ],
+          "evaluation_interval_seconds": [
+            0.3,
+            3.0
+          ],
+          "diagnostic_regions_seconds": {
+            "later_unbent_notes": [
+              0.32,
+              0.82
+            ],
+            "new_G4_plateau": [
+              0.9,
+              1.16
+            ],
+            "source_derived_bend": [
+              1.28,
+              1.9
+            ],
+            "held_maximum_bend": [
+              2.1,
+              3.0
+            ]
+          },
+          "source_start_seconds": 0,
+          "hidden_preroll_seconds": 0,
+          "render_tempo_policy": "preserve-patch",
+          "nominal_velocity": 100,
+          "cutoff_velocity_raw": 64,
+          "cutoff_velocity_signed": 0,
+          "amp_velocity_raw": 72,
+          "amp_velocity_signed": 8,
+          "patch_sha256": "5ac5ab7f052f6f17c48cc342bf4493ee5919572fc66dabf7daaddd25178b95e9",
+          "hardware_mp3_sha256": "88dc73e66c854e6ea57d976a96cd884dddb85275d56f73719000806f1609b886",
+          "no_postcrop_wet_comparison": true,
+          "descriptive_full_file_tail_seconds": [
+            18.25,
+            19.25
+          ],
+          "final_tail_qualification": "After the complete recording's final excitation, which has not been reconstructed here; descriptive source-only tail, not paired to this opening MIDI."
+        },
+        "gate_hypothesis": {
+          "name": "nominal",
+          "note_off_relative_to_next_onset_seconds": 0.0,
+          "final_off_is_crop": true
+        },
+        "notes": [
+          {
+            "on": 0.035,
+            "off": 0.133,
+            "note": 45,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium; source bracket retained",
+            "onset_bracket_seconds": [
+              0.029,
+              0.041
+            ],
+            "note_off_confidence": "unverified articulation",
+            "evidence_window_seconds": [
+              0.06,
+              0.11
+            ]
+          },
+          {
+            "on": 0.133,
+            "off": 0.223,
+            "note": 52,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium; source bracket retained",
+            "onset_bracket_seconds": [
+              0.123,
+              0.145
+            ],
+            "note_off_confidence": "unverified articulation",
+            "evidence_window_seconds": [
+              0.16,
+              0.2
+            ]
+          },
+          {
+            "on": 0.223,
+            "off": 0.252,
+            "note": 57,
+            "velocity": 100,
+            "pitch_confidence": "medium-low; very brief",
+            "onset_confidence": "medium; source bracket retained",
+            "onset_bracket_seconds": [
+              0.213,
+              0.237
+            ],
+            "note_off_confidence": "unverified articulation",
+            "evidence_window_seconds": [
+              0.226,
+              0.238
+            ]
+          },
+          {
+            "on": 0.252,
+            "off": 0.306,
+            "note": 50,
+            "velocity": 100,
+            "pitch_confidence": "medium; octave supported by low family",
+            "onset_confidence": "medium; source bracket retained",
+            "onset_bracket_seconds": [
+              0.24,
+              0.264
+            ],
+            "note_off_confidence": "unverified articulation",
+            "evidence_window_seconds": [
+              0.265,
+              0.29
+            ]
+          },
+          {
+            "on": 0.306,
+            "off": 0.364,
+            "note": 52,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium; source bracket retained",
+            "onset_bracket_seconds": [
+              0.296,
+              0.316
+            ],
+            "note_off_confidence": "unverified articulation",
+            "evidence_window_seconds": [
+              0.322,
+              0.348
+            ]
+          },
+          {
+            "on": 0.364,
+            "off": 0.41,
+            "note": 55,
+            "velocity": 100,
+            "pitch_confidence": "medium; brief",
+            "onset_confidence": "medium; source bracket retained",
+            "onset_bracket_seconds": [
+              0.353,
+              0.38
+            ],
+            "note_off_confidence": "unverified articulation",
+            "evidence_window_seconds": [
+              0.377,
+              0.391
+            ]
+          },
+          {
+            "on": 0.41,
+            "off": 0.532,
+            "note": 45,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium; source bracket retained",
+            "onset_bracket_seconds": [
+              0.398,
+              0.425
+            ],
+            "note_off_confidence": "unverified articulation",
+            "evidence_window_seconds": [
+              0.44,
+              0.5
+            ]
+          },
+          {
+            "on": 0.532,
+            "off": 0.613,
+            "note": 52,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium; source bracket retained",
+            "onset_bracket_seconds": [
+              0.521,
+              0.544
+            ],
+            "note_off_confidence": "unverified articulation",
+            "evidence_window_seconds": [
+              0.552,
+              0.59
+            ]
+          },
+          {
+            "on": 0.613,
+            "off": 0.636,
+            "note": 57,
+            "velocity": 100,
+            "pitch_confidence": "medium-low; very brief",
+            "onset_confidence": "medium; source bracket retained",
+            "onset_bracket_seconds": [
+              0.601,
+              0.625
+            ],
+            "note_off_confidence": "unverified articulation",
+            "evidence_window_seconds": [
+              0.616,
+              0.625
+            ]
+          },
+          {
+            "on": 0.636,
+            "off": 0.71,
+            "note": 62,
+            "velocity": 100,
+            "pitch_confidence": "medium-high; octave checked against half-frequency family",
+            "onset_confidence": "medium; source bracket retained",
+            "onset_bracket_seconds": [
+              0.628,
+              0.65
+            ],
+            "note_off_confidence": "unverified articulation",
+            "evidence_window_seconds": [
+              0.656,
+              0.689
+            ]
+          },
+          {
+            "on": 0.71,
+            "off": 0.834,
+            "note": 64,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium; source bracket retained",
+            "onset_bracket_seconds": [
+              0.699,
+              0.725
+            ],
+            "note_off_confidence": "unverified articulation",
+            "evidence_window_seconds": [
+              0.741,
+              0.8
+            ]
+          },
+          {
+            "on": 0.834,
+            "off": 3.0,
+            "note": 67,
+            "velocity": 100,
+            "pitch_confidence": "high",
+            "onset_confidence": "medium; source bracket retained",
+            "onset_bracket_seconds": [
+              0.822,
+              0.848
+            ],
+            "note_off_confidence": "artificial crop",
+            "evidence_window_seconds": [
+              0.9,
+              1.1
+            ]
+          }
+        ]
+      },
+      "limitations": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Original MIDI, velocity, controller state, system tuning/transpose and recorded patch revision are unavailable.",
+        "No Septum output, candidate gain score or DSP parameter fit was used to choose performance inputs.",
+        "Pitch families are interpreted through exact stored coarse+12/0 and tone octave\u22121: net OSC1=played, OSC2=played\u221212. Brief A3 events and some octave assignments have lower confidence.",
+        "Onset brackets are conservative source inspection bounds, not confidence intervals. Echoes, phase and finite windows limit exact timing.",
+        "Velocity100 is a placeholder. Cutoff velocity sensitivity is0; AMP sensitivity+8 remains. No per-note velocity fit or cutoff-velocity sensitivity render is performed.",
+        "SOLO LEGATO makes note overlap affect envelope retriggering; contiguous nominal,10ms gap and20ms overlap variants are all frozen before scoring.",
+        "The continuous G4-to-A4 frequency rise is encoded as a reconstructed pitch-bend hypothesis using stored range2semitones, not original controller data. It constrains pitch input from the same source used for later audio evaluation.",
+        "Final note-off3.0s is an artificial crop while hardware continues; synthetic output after3.0s is not a matched wet tail. Separate full-recording tail observations cannot establish opening-performance equivalence."
+      ]
+    },
+    {
+      "id": "ambient-sqr-nominal-v100",
+      "title": "Ambient SQR",
+      "original_url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_AmbientSQR.mp3",
+      "counterexample": true,
+      "note": "Counterexample: some measured errors worsen. Dual layers and uncertain gates/velocity remain; alignment reaches the 50 ms search limit.",
+      "sample_rate": 44100,
+      "frames": 31973,
+      "hardware_start_sample": 2205,
+      "hardware_end_sample": 34178,
+      "model_start_sample": 0,
+      "model_end_sample": 31973,
+      "common_attenuation": 0.3942559993700053,
+      "calibration": {
+        "candidate_lag_samples": -2205,
+        "candidate_lag_seconds": -0.05,
+        "candidate_gain": 7.46790500635611,
+        "candidate_gain_db": 17.4639756995265,
+        "calibration_frames": 17860,
+        "max_lag_seconds": 0.05,
+        "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+        "alignment_correlation": 0.8261247520355984,
+        "alignment_identifiable": true,
+        "alignment_at_search_boundary": true,
+        "gain_method": "one scalar RMS gain over calibration interval after alignment",
+        "allowed_transforms": [
+          "one global integer delay",
+          "one positive scalar gain"
+        ]
+      },
+      "calibration_reference_samples": [
+        2205,
+        17860
+      ],
+      "calibration_candidate_samples": [
+        0,
+        15655
+      ],
+      "evaluation_reference_samples": [
+        20065,
+        34178
+      ],
+      "evaluation_playback_seconds": [
+        0.4049886621315193,
+        0.7250113378684807
+      ],
+      "calibration_playback_seconds": [
+        0.0,
+        0.35498866213151925
+      ],
+      "tracks": [
+        {
+          "id": "hardware",
+          "file": "ambient-sqr-nominal-v100/hardware.wav",
+          "sha256": "9416ac60240e6843d33cd800e15aa92b20a1a5e0797a513c996feeac34ae92f2",
+          "frames": 31973,
+          "peak": 0.23390498757362366,
+          "rms_dbfs": -19.99999987057016,
+          "applied_model_gain": 1.0,
+          "raw_source": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-new-preset-validation/run-01/baseline-corpus/ambient-sqr-nominal-v100/hardware-excerpt-raw.wav",
+            "sha256": "3c4733491dca0ff12fd5e5ac12a363f6dc92c4703e09bdeca3d8a274470ce29e"
+          }
+        },
+        {
+          "id": "before",
+          "file": "ambient-sqr-nominal-v100/before.wav",
+          "sha256": "a272a5b45c837fbcf1d54e5aeb40740f66fe81a1297f07bdb1c70c4abfb1fcaa",
+          "frames": 31973,
+          "peak": 0.35596606135368347,
+          "rms_dbfs": -20.103748663451057,
+          "applied_model_gain": 7.46790500635611,
+          "raw_source": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-new-preset-validation/run-01/cases/ambient-sqr-nominal-v100/gain-1.wav",
+            "raw_sha256": "fc82ce6997aea815a8a47d00210b7632b2c632b8d7db7dae3c7994df02aa2f9a",
+            "render_receipt_sha256": "82fea08477610504bd27d7d74a9045f86ed538f8c49c3b4173ebba762c203f12",
+            "renderer_sha256": "0e69118d0dab0928793ef3b59208fddf43b7bd56d982f2c053d3c0ad9f15b646"
+          }
+        },
+        {
+          "id": "after",
+          "file": "ambient-sqr-nominal-v100/after.wav",
+          "sha256": "ff4475f85c547f261d5f98081335a092867344f1dec2943a83026b277e67f6e3",
+          "frames": 31973,
+          "peak": 0.3205142915248871,
+          "rms_dbfs": -20.96235690313055,
+          "applied_model_gain": 7.46790500635611,
+          "raw_source": {
+            "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-new-preset-validation/run-01/cases/ambient-sqr-nominal-v100/gain-0.5.wav",
+            "raw_sha256": "3c2e7de05f61f81f065154dd6592ef55972250adb74e74ee6ba6dac9aa54fad0",
+            "render_receipt_sha256": "90d615fd0b7d4dac4009023db63df6748627a77f3bab0cdfc301acaae7616de3",
+            "renderer_sha256": "f75f864dffa98eca24025836bf9d04705ad7fd68717ddef982092f4865828758"
+          }
+        }
+      ],
+      "original_recording": {
+        "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/sources/TOP8_AmbientSQR.mp3",
+        "id": "lead-07",
+        "title": "Ambient SQR",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_AmbientSQR.mp3",
+        "local_filename": "TOP8_AmbientSQR.mp3",
+        "sha256": "d113bb3d65c34bb6827d29561e29dd9c9d4a6236143d5528685643f84a86e565",
+        "size_bytes": 468139,
+        "bank_id": "lead",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 7,
+        "patch_name": "Ambient SQR",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+      },
+      "input_files": {
+        "hardware-excerpt-raw.wav": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-new-preset-validation/run-01/baseline-corpus/ambient-sqr-nominal-v100/hardware-excerpt-raw.wav",
+          "sha256": "3c4733491dca0ff12fd5e5ac12a363f6dc92c4703e09bdeca3d8a274470ce29e"
+        },
+        "original-patch.syx": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-new-preset-validation/run-01/baseline-corpus/ambient-sqr-nominal-v100/original-patch.syx",
+          "sha256": "1e420e8a04502d790a1018f4547167377bdfd4470e21bb6602853d09218aff07"
+        },
+        "reconstructed-performance.mid": {
+          "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/reverb-new-preset-validation/run-01/baseline-corpus/ambient-sqr-nominal-v100/reconstructed-performance.mid",
+          "sha256": "be11bd3402c53dccc505dc573409747578eca8a0ff946cf8976076f87c40fea0"
+        }
+      },
+      "comparison_sha256": "bf19964ad90299bc84a2d720bdb12b17a2e9ff090aec2e78fd6a55c3f70261d6",
+      "case_result_sha256": "c8b701d5de7c6f9bbf979c1dd0d019e228fbcef77b2f6dcda2d51398c5a8a02d",
+      "reconstruction": {
+        "schema_version": 1,
+        "id": "ambient-sqr-nominal-v100",
+        "title": "Ambient SQR \u2014 nominal gates, velocity 100",
+        "reference_id": "lead-07",
+        "midi_status": "reconstructed_not_original",
+        "source_start_seconds": 0,
+        "duration_seconds": 0.775,
+        "calibration_end_seconds": 0.405,
+        "method": "Source-only original MP3 inspection: native stereo spectra, fundamental and odd-harmonic families in three fixed plateaus, short RMS history and time-frequency transitions. Dominant families near 587, 659, 698 Hz support played MIDI 74, 76, 77 under the unchanged published preset's zero coarse/octave and zero pitch-envelope/LFO depths. Nominal key-ups follow envelope roll-off near the observed level maxima, with broad operational uncertainty; they are not recovered release events. No engine or candidate scores were used. This is an operational gate/velocity sensitivity derived from the frozen source-only reconstruction; no new note transcription or candidate-based fit.",
+        "uncertainties": [
+          "Original MIDI, velocity, controllers, global transpose/tuning, output latency/capture chain and exact recorded patch revision are unavailable. The MP3 and bank are associated by Roland name/category.",
+          "Velocity 100 is nominal. Upper AMP velocity sensitivity is 0, Lower is 8; both cutoff velocity sensitivities are 0. Velocity can alter the layer and wet/dry balance, so a common scalar gain does not remove its uncertainty.",
+          "Upper has two Squares, drive 30, Solo Legato and portamento 20; Lower has two Sines, slower AMP attack 76 and Solo without portamento. Old-note energy may be release, delay or reverb; it does not prove held-key overlap.",
+          "Onset ranges are operational source-clock reconstruction uncertainties, not certified MIDI time bounds. A later production-only prefix alignment may absorb one common latency; do not tune later notes to candidate errors.",
+          "Key-up estimates near envelope maxima are provisional: the amplitude/filter envelopes, two layers, drive, interference and wet tails prevent uniquely recovering key release. Off-time ranges are sensitivity settings, not confidence intervals or observed gates.",
+          "The 0.775-second crop excludes the next obvious new pitch group near 0.79 s. The third note's gate is still estimated; later hardware decay is not covered by this short reconstruction.",
+          "All three original notes and preceding silence are retained from source time 0 for effect history. Exact published SysEx must remain unchanged. This is a conditional generalization case, not an output-equivalence benchmark."
+        ],
+        "notes": [
+          {
+            "on": 0.085,
+            "off": 0.2,
+            "note": 74,
+            "velocity": 100,
+            "on_uncertainty_seconds": [
+              0.075,
+              0.095
+            ],
+            "off_sensitivity_seconds": [
+              0.16,
+              0.24
+            ]
+          },
+          {
+            "on": 0.418,
+            "off": 0.53,
+            "note": 76,
+            "velocity": 100,
+            "on_uncertainty_seconds": [
+              0.408,
+              0.428
+            ],
+            "off_sensitivity_seconds": [
+              0.49,
+              0.57
+            ]
+          },
+          {
+            "on": 0.618,
+            "off": 0.73,
+            "note": 77,
+            "velocity": 100,
+            "on_uncertainty_seconds": [
+              0.608,
+              0.628
+            ],
+            "off_sensitivity_seconds": [
+              0.7,
+              0.76
+            ]
+          }
+        ],
+        "validation_plan": {
+          "calibration_seconds": [
+            0,
+            0.405
+          ],
+          "later_evaluation_seconds": [
+            0.405,
+            0.775
+          ],
+          "training_note": 74,
+          "later_notes": [
+            76,
+            77
+          ],
+          "frozen_before_candidate_render_or_score_inspection": true,
+          "comparison_policy": "One production-only prefix lag and gain; freeze for the later E5/F5 region. Any velocity/gate sensitivity must be predeclared, reported in full and applied equally to all DSP candidates without selecting its best error. Keep original SysEx unchanged.",
+          "velocity_sensitivity_suggestion": [
+            80,
+            100,
+            120
+          ],
+          "gate_sensitivity_suggestion": "Nominal key-ups; then all early endpoints; then all late endpoints from each note's off_sensitivity_seconds. These bracket plausible articulation without recovering it."
+        },
+        "active_velocity_sensitivity": {
+          "upper": {
+            "cutoff": 0,
+            "amp": 0
+          },
+          "lower": {
+            "cutoff": 0,
+            "amp": 8
+          }
+        },
+        "unmodified_sysex_sha256": "1e420e8a04502d790a1018f4547167377bdfd4470e21bb6602853d09218aff07",
+        "original_mp3_sha256": "d113bb3d65c34bb6827d29561e29dd9c9d4a6236143d5528685643f84a86e565",
+        "reconstruction_parent_sha256": "d9529fe92b8178dd1acc556feb54863b18e8dd1b30e724f28736765f4eeee532",
+        "sensitivity": {
+          "gate": "nominal",
+          "velocity": 100,
+          "policy": "All nine predeclared combinations; same inputs to every frozen DSP candidate. No scenario selection by model error."
+        }
+      },
+      "limitations": [
+        "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+        "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+        "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording.",
+        "Original MIDI, velocity, controllers, global transpose/tuning, output latency/capture chain and exact recorded patch revision are unavailable. The MP3 and bank are associated by Roland name/category.",
+        "Velocity 100 is nominal. Upper AMP velocity sensitivity is 0, Lower is 8; both cutoff velocity sensitivities are 0. Velocity can alter the layer and wet/dry balance, so a common scalar gain does not remove its uncertainty.",
+        "Upper has two Squares, drive 30, Solo Legato and portamento 20; Lower has two Sines, slower AMP attack 76 and Solo without portamento. Old-note energy may be release, delay or reverb; it does not prove held-key overlap.",
+        "Onset ranges are operational source-clock reconstruction uncertainties, not certified MIDI time bounds. A later production-only prefix alignment may absorb one common latency; do not tune later notes to candidate errors.",
+        "Key-up estimates near envelope maxima are provisional: the amplitude/filter envelopes, two layers, drive, interference and wet tails prevent uniquely recovering key release. Off-time ranges are sensitivity settings, not confidence intervals or observed gates.",
+        "The 0.775-second crop excludes the next obvious new pitch group near 0.79 s. The third note's gate is still estimated; later hardware decay is not covered by this short reconstruction.",
+        "All three original notes and preceding silence are retained from source time 0 for effect history. Exact published SysEx must remain unchanged. This is a conditional generalization case, not an output-equivalence benchmark."
+      ]
+    }
+  ]
+}

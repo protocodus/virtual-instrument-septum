@@ -166,3 +166,7 @@ session's comparison server is running.
 The [synchronized dry player](http://127.0.0.1:58512/) adds the original-MIDI
 hardware, production and clearly labeled envelope experiment for both
 slopes, with [verified frozen adjustments](source-audits/dry-listening-player-2026-09-15.md).
+The [reverb before/after player](http://127.0.0.1:58513/) presents seven active
+presets with a shared production-prefix gain and timing, including the two
+damped-tail counterexamples. Its [21 audio exports and browser transport](source-audits/reverb-listening-player-2026-09-15.md)
+are verified; the served final export is `reverb-listening-player/run-03`.

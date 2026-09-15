@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SH-201 · Reverb listening comparison</title>
+<style>
+:root{color-scheme:light;font-family:system-ui,-apple-system,sans-serif;color:#23332f;background:#f6f5f0}*{box-sizing:border-box}body{max-width:980px;margin:48px auto;padding:0 24px}h1{font-size:clamp(30px,5vw,46px);letter-spacing:-1.5px;line-height:1.1;margin:10px 0 20px}h2{font-size:23px;margin:0}p{line-height:1.6}.eyebrow{color:#5b6d65;font-size:12px;letter-spacing:2px;text-transform:uppercase}.intro{max-width:770px;color:#52635b}.panel{background:white;border:1px solid #d7dfda;border-radius:18px;padding:28px;margin:24px 0}.row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:18px 0}button{font:inherit;border:1px solid #bdcbc4;background:#fff;border-radius:8px;padding:12px 16px;cursor:pointer;color:inherit}button[aria-pressed=true],#play{background:#124f47;color:white;border-color:#124f47}button:disabled{cursor:wait;opacity:.5}button:focus-visible,input:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #bc743e;outline-offset:3px}.presets{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.preset{text-align:left;font-size:14px;min-height:65px;padding:10px 12px}.preset small{display:block;font-size:11px;opacity:.8;margin-top:4px}.preset[aria-pressed=true] small{color:#f2dfbd;opacity:1}.note{color:#5a6761;font-size:14px}.counter{background:#fff3df;border-left:3px solid #bb7d27;padding:12px 14px;color:#795124}.time{font-variant-numeric:tabular-nums;color:#52615c;font-size:14px}.status{min-height:22px;font-size:14px}.sources button{flex:1;min-width:180px}.source small{display:block;margin-top:5px;font-size:12px;opacity:.8}.transport{margin:22px 0 10px}.seek-wrap{position:relative;padding:6px 0}.seek-wrap input{width:100%;accent-color:#124f47;margin:0;display:block}.coverage{display:flex;height:6px;border-radius:6px;background:#ebede9;overflow:hidden;margin:8px 0}.coverage span{display:block;height:100%}.legend{display:flex;flex-wrap:wrap;gap:15px;font-size:12px;color:#617067}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:#c2ccc5}.dot.eval{background:#4f9382}.source-clock{font-size:12px;min-height:18px}.segments button{padding:8px 12px;font-size:13px}.loop{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:14px}.loop input{accent-color:#124f47}details{line-height:1.65;border-top:1px solid #d7dfda;padding-top:18px}summary{cursor:pointer;font-weight:600}a{color:#124f47}footer{margin:32px 0;color:#66706c;font-size:13px}#evaluation{font-variant-numeric:tabular-nums}@media(max-width:650px){body{padding:0 16px;margin:28px auto}.panel{padding:20px}.presets{grid-template-columns:repeat(2,1fr)}.source{min-width:100%!important}.loop{margin-left:0}.row{gap:8px}}
+</style></head>
+<body>
+<div class="eyebrow">Septum · original hardware comparisons</div>
+<h1>Hear the reverb correction</h1>
+<p class="intro">Switch between the original SH-201 recording and Septum before or after the return-level correction. All three tracks stay at the same position. These comparisons use unchanged published presets with reconstructed performances.</p>
+<div class="panel">
+ <div class="presets" id="presets" role="group" aria-label="Preset"></div>
+ <div class="row"><h2 id="case-title"></h2></div>
+ <p id="case-note" class="note"></p>
+ <div class="row sources" role="group" aria-label="Audio source">
+  <button class="source" data-source="hardware" aria-pressed="true">Original SH-201<small>Published hardware recording</small></button>
+  <button class="source" data-source="before" aria-pressed="false">Septum · before<small>Previous reverb level</small></button>
+  <button class="source" data-source="after" aria-pressed="false">Septum · after<small>Corrected reverb level</small></button>
+ </div>
+ <p class="status" id="status" aria-live="polite">Ready. Press Play to listen.</p>
+ <div class="row transport"><button id="play">Play</button><span class="time" id="time">0.00 / 0.00 s</span><label class="loop"><input id="loop" type="checkbox">Repeat excerpt</label></div>
+ <label for="seek" class="note">Playback position</label>
+ <div class="seek-wrap"><input id="seek" type="range" min="0" max="1" step="0.001" value="0"></div>
+ <div class="coverage" id="coverage" aria-hidden="true"></div>
+ <div class="legend"><span><i class="dot"></i>Calibration / unscored edge</span><span><i class="dot eval"></i>Evaluated passage</span></div>
+ <p class="time source-clock" id="source-clock"></p>
+ <div class="row segments"><button id="beginning">Beginning</button><button id="evaluated">Evaluated passage</button></div>
+ <p class="note" id="evaluation"></p>
+ <p class="note">One timing adjustment and one level match from the <em>before</em> track are shared by both Septum versions. Common playback attenuation preserves their relative levels; source switching uses a short fade.</p>
+</div>
+<details><summary>Evidence and limits</summary>
+ <p>The correction halves the reverb return while leaving the stored preset, direct signal and delay settings unchanged. These files use the frozen before/after renderers; the production rebuild is checked separately.</p>
+ <p>Club Bass and Ambient SQR remain visible because some measurements worsen. Cotton supplied exploratory context; Class A and Ambient SQR were reconstructed before their candidate scores. The selected level is a provisional model improvement, not proof of an exact hardware match.</p>
+ <p>Original performance MIDI, some gates and velocities, oscillator phase, the recorded patch revision and the recording chain remain uncertain. The colored range marks the measured passage. The full available aligned excerpt, including its calibration prefix, is included for listening.</p>
+ <p><a id="original-link" href="#">Original recording source</a> · <a href="manifest.json">Audio hashes, settings and provenance</a></p>
+</details>
+<footer>Local research artifact · matching whole-instrument output remains unestablished</footer>
+<script>
+'use strict';
+const manifest=__MANIFEST__;
+const ids=['hardware','before','after'];
+const labels={hardware:'Original SH-201',before:'Septum · before',after:'Septum · after'};
+const el=id=>document.getElementById(id);
+const play=el('play'),seek=el('seek'),status=el('status');
+let selectedCase=manifest.groups[0].id,selected='hardware',ctx=null,buffers=new Map(),nodes=[],running=false,position=0,started=0,busy=false,epoch=0;
+const group=()=>manifest.groups.find(g=>g.id===selectedCase);
+const duration=()=>group().frames/group().sample_rate;
+const elapsed=()=>running?Math.min(duration(),position+Math.max(0,ctx.currentTime-started)):position;
+const seconds=t=>t.toFixed(2)+' s';
+const buttons=[];
+for(const g of manifest.groups){
+ const b=document.createElement('button');b.className='preset';b.dataset.id=g.id;b.setAttribute('aria-pressed',String(g.id===selectedCase));b.append(document.createTextNode(g.title));
+ if(g.counterexample){const small=document.createElement('small');small.textContent='Tail mismatch remains';b.append(small)}
+ b.onclick=()=>changeCase(g.id);buttons.push(b);el('presets').append(b);
+}
+function updateCase(){
+ const g=group();el('case-title').textContent=g.title;el('case-note').textContent=g.note;el('case-note').className=g.counterexample?'note counter':'note';
+ buttons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.id===g.id)));
+ seek.max=duration();const [a,b]=g.evaluation_playback_seconds;
+ el('evaluation').textContent='Evaluated: '+seconds(a)+'–'+seconds(b)+' on this player. Calibration: '+seconds(Math.max(0,g.calibration_playback_seconds[0]))+'–'+seconds(g.calibration_playback_seconds[1])+'.';
+ el('coverage').replaceChildren();
+ for(const [width,color] of [[a,'#c2ccc5'],[b-a,'#4f9382'],[duration()-b,'#c2ccc5']]){const s=document.createElement('span');s.style.width=(Math.max(0,width)/duration()*100)+'%';s.style.background=color;el('coverage').append(s)}
+ el('original-link').href=g.original_url;el('original-link').textContent='Original recording source';
+}
+function stop(){
+ if(running)position=elapsed();running=false;epoch++;
+ for(const n of nodes){try{n.source.stop()}catch{}}
+ nodes=[];play.textContent='Play';
+}
+function controls(disabled){play.disabled=disabled;seek.disabled=disabled;buttons.forEach(b=>b.disabled=disabled);el('beginning').disabled=disabled;el('evaluated').disabled=disabled}
+async function load(){
+ if(!ctx)ctx=new AudioContext({sampleRate:44100});await ctx.resume();
+ const g=group();if(buffers.has(g.id))return;
+ status.textContent='Loading three aligned tracks…';
+ const entries=await Promise.all(g.tracks.map(async t=>{
+  const response=await fetch(t.file);if(!response.ok)throw Error('Audio download failed');
+  const data=await response.arrayBuffer();
+  // Check exported file identity before decoding; HTTPS/localhost supports crypto.subtle.
+  if(globalThis.crypto?.subtle){const digest=await crypto.subtle.digest('SHA-256',data);const hex=Array.from(new Uint8Array(digest),n=>n.toString(16).padStart(2,'0')).join('');if(hex!==t.sha256)throw Error('Audio file identity changed')}
+  const buffer=await ctx.decodeAudioData(data);if(buffer.numberOfChannels!==2||Math.abs(buffer.duration-g.frames/g.sample_rate)>2/buffer.sampleRate)throw Error('Audio coverage changed');
+  return [t.id,buffer];
+ }));
+ if(new Set(entries.map(([,b])=>b.length)).size!==1)throw Error('Track lengths differ');
+ buffers.set(g.id,Object.fromEntries(entries));
+}
+async function start(){
+ if(busy)return;busy=true;controls(true);
+ try{
+  await load();if(position>=duration())position=0;
+  const when=ctx.currentTime+.04;const token=++epoch;
+  nodes=ids.map(id=>{const source=ctx.createBufferSource(),gain=ctx.createGain();source.buffer=buffers.get(selectedCase)[id];gain.gain.value=id===selected?1:0;source.connect(gain).connect(ctx.destination);source.start(when,position);return{id,source,gain}});
+  nodes[0].source.onended=()=>{if(token!==epoch||!running)return;stop();position=0;if(el('loop').checked)start();else status.textContent='End of excerpt · '+labels[selected]};
+  started=when;running=true;play.textContent='Pause';status.textContent=labels[selected];
+ }catch(e){stop();status.textContent='Could not load audio: '+e.message}
+ finally{busy=false;controls(false)}
+}
+function jump(value){if(busy)return;const resume=running;stop();position=Math.max(0,Math.min(duration(),value));seek.value=position;if(resume)start()}
+function changeCase(id){if(busy||id===selectedCase)return;const resume=running;stop();selectedCase=id;position=0;updateCase();status.textContent=labels[selected]+' · '+group().title;if(resume)start()}
+play.onclick=()=>running?stop():start();
+el('beginning').onclick=()=>jump(0);el('evaluated').onclick=()=>jump(group().evaluation_playback_seconds[0]);
+seek.oninput=()=>jump(Number(seek.value));
+document.querySelectorAll('.source').forEach(b=>b.onclick=()=>{
+ selected=b.dataset.source;document.querySelectorAll('.source').forEach(v=>v.setAttribute('aria-pressed',String(v===b)));
+ if(ctx){const t=ctx.currentTime;nodes.forEach(n=>{const p=n.gain.gain;if(p.cancelAndHoldAtTime)p.cancelAndHoldAtTime(t);else{p.cancelScheduledValues(t);p.setValueAtTime(p.value,t)}p.linearRampToValueAtTime(n.id===selected?1:0,t+.012)})}
+ status.textContent=labels[selected]+(running?'':' · paused');
+});
+document.addEventListener('keydown',e=>{if(e.code==='Space'&&e.target===document.body){e.preventDefault();if(!busy)play.click()}});
+function tick(){const t=Math.max(0,elapsed());seek.value=t;el('time').textContent=t.toFixed(2)+' / '+duration().toFixed(2)+' s';el('source-clock').textContent='Original recording clock: '+seconds(t+group().hardware_start_sample/group().sample_rate);requestAnimationFrame(tick)}
+updateCase();tick();
+</script>
+</body></html>
