@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SH-201 dry listening comparison</title>
+<style>
+:root{color-scheme:light;font-family:system-ui,sans-serif;color:#202b34;background:#f6f5f0}body{max-width:920px;margin:60px auto;padding:0 24px}h1{font-size:clamp(28px,5vw,46px);letter-spacing:-1.5px;margin:8px 0 18px}p{line-height:1.6;max-width:760px}.eyebrow{color:#586866;font-size:12px;letter-spacing:2px;text-transform:uppercase}.panel{background:white;border:1px solid #d7dfda;border-radius:18px;padding:28px;margin:28px 0}.row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:18px 0}button,select{font:inherit;border:1px solid #bdcbc4;background:#fff;border-radius:8px;padding:12px 18px;cursor:pointer;color:inherit}button[aria-pressed=true],#play{background:#124f47;color:white;border-color:#124f47}button:disabled{cursor:wait;opacity:.5}input[type=range]{width:100%;accent-color:#124f47}button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #bc743e;outline-offset:3px}.time{font-variant-numeric:tabular-nums;color:#52615c}.badge{display:inline-block;color:#895023;background:#fff1dc;border-radius:6px;padding:3px 8px;font-size:12px}.note{color:#5a6761;font-size:14px}a{color:#124f47}details{line-height:1.65;border-top:1px solid #d7dfda;padding-top:20px}summary{cursor:pointer;font-weight:600}.status{min-height:24px;font-size:14px}.segment{padding:8px 12px;font-size:14px}footer{margin:40px 0;color:#66706c;font-size:13px}
+</style>
+<div class="eyebrow">Septum · hardware research</div>
+<h1>Listen to the dry SH-201 comparison</h1>
+<p>The original hardware recording and Septum play the same published MIDI sequence. Switch sources during playback to compare the sound at the same position.</p>
+<div class="panel">
+ <label for="slope">Filter slope </label><select id="slope"><option value="12">12 dB / octave</option><option value="24">24 dB / octave</option></select>
+ <div class="row" role="group" aria-label="Audio source">
+  <button class="source" data-source="hardware" aria-pressed="true">Hardware recording</button>
+  <button class="source" data-source="production" aria-pressed="false">Septum · current DSP</button>
+  <button class="source" data-source="dry-hz-35ms" aria-pressed="false">Envelope experiment <span class="badge">Experimental</span></button>
+ </div>
+ <p class="status" id="status" aria-live="polite">Ready. Playback starts when you press Play.</p>
+ <div class="row"><button id="play">Play</button><span class="time" id="time">0:00 / 0:30</span></div>
+ <label class="note" for="seek">Playback position</label><input id="seek" type="range" min="0" max="30" value="0" step="0.01">
+ <div class="row" aria-label="Jump to passage">
+  <button class="segment" data-time="0">Beginning</button><button class="segment" data-time="8.5">Middle register</button><button class="segment" data-time="18.25">High notes</button><button class="segment" data-time="22">Chords</button>
+ </div>
+ <p class="note">One fixed timing adjustment and one gain per complete render. A common playback attenuation preserves their relative levels. Switching uses a short fade.</p>
+</div>
+<details><summary>What this comparison establishes</summary>
+ <p>The owner documents one saw oscillator, no unison or LFO, and no effects, with a filter envelope. The original MIDI is available; the original raw patch dump is not. Septum uses a documented recipe reconstruction.</p>
+ <p>The envelope experiment follows a curve measured from the dry recording. It improves some late chord features, but did not generalize consistently to the named presets. It is retained here for review and has not replaced the current DSP.</p>
+ <p>Oscillator phase and the original recording chain remain uncertain. These clips do not establish whole-instrument equivalence. Audio files contain the frozen adjustments; this page adds no EQ or per-note fitting.</p>
+ <p><a href="https://www.deepsonic.ch/deep/htm/deepsonic_analytics_filter_comparison.php">Original recipe and recordings</a> · <a href="manifest.json">Audio provenance and adjustments</a></p>
+</details>
+<footer>Local research artifact · original performance MIDI · matching output remains unestablished</footer>
+<script>
+const manifest=__MANIFEST__;
+const ids=['hardware','production','dry-hz-35ms'];
+const play=document.querySelector('#play'),seek=document.querySelector('#seek'),status=document.querySelector('#status'),slope=document.querySelector('#slope');
+let ctx=null,buffers={},nodes=[],selected='hardware',running=false,position=0,started=0,duration=30,busy=false;
+const labels={'hardware':'Hardware recording','production':'Septum · current DSP','dry-hz-35ms':'Envelope experiment · experimental'};
+function group(){return manifest.groups.find(g=>String(g.slope)===slope.value)}
+function elapsed(){return running?Math.min(duration,position+Math.max(0,ctx.currentTime-started)):position}
+function format(t){return Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0')}
+function stop(){if(running)position=elapsed();running=false;for(const n of nodes){try{n.source.stop()}catch{}}nodes=[];play.textContent='Play'}
+async function load(){
+ if(!ctx)ctx=new AudioContext();await ctx.resume();
+ const g=group();duration=g.frames/g.sample_rate;
+ if(!buffers[g.slope]){status.textContent='Loading the three aligned recordings…';buffers[g.slope]={};
+  try{await Promise.all(g.tracks.map(async t=>{const response=await fetch(t.file);if(!response.ok)throw Error('Audio download failed');const b=await ctx.decodeAudioData(await response.arrayBuffer());buffers[g.slope][t.id]=b}))}
+  catch(e){delete buffers[g.slope];throw e}
+ }
+ seek.max=duration;
+}
+async function start(){
+ if(busy)return;busy=true;play.disabled=true;slope.disabled=true;
+ try{await load();if(position>=duration)position=0;
+  const when=ctx.currentTime+.04;nodes=ids.map(id=>{const source=ctx.createBufferSource(),gain=ctx.createGain();source.buffer=buffers[slope.value][id];gain.gain.value=id===selected?1:0;source.connect(gain).connect(ctx.destination);source.start(when,position);return{id,source,gain}});
+  started=when;running=true;play.textContent='Pause';status.textContent=labels[selected];
+ }catch(e){stop();status.textContent='Could not load audio: '+e.message}
+ finally{busy=false;play.disabled=false;slope.disabled=false}
+}
+play.onclick=()=>running?stop():start();
+document.querySelectorAll('.source').forEach(b=>b.onclick=()=>{selected=b.dataset.source;document.querySelectorAll('.source').forEach(v=>v.setAttribute('aria-pressed',String(v===b)));if(ctx){const t=ctx.currentTime;nodes.forEach(n=>{n.gain.gain.cancelScheduledValues(t);n.gain.gain.setValueAtTime(n.gain.gain.value,t);n.gain.gain.linearRampToValueAtTime(n.id===selected?1:0,t+.012)})}status.textContent=labels[selected]});
+function jump(value){if(busy)return;const wasRunning=running;stop();position=Math.max(0,Math.min(duration,value));seek.value=position;if(wasRunning)start()}
+seek.oninput=()=>jump(Number(seek.value));
+document.querySelectorAll('[data-time]').forEach(b=>b.onclick=()=>jump(Number(b.dataset.time)-group().hardware_start_sample/group().sample_rate));
+slope.onchange=()=>{const wasRunning=running;stop();duration=group().frames/group().sample_rate;position=Math.min(position,duration);seek.max=duration;if(wasRunning)start()};
+duration=group().frames/group().sample_rate;seek.max=duration;
+function tick(){const t=Math.max(0,elapsed());seek.value=t;document.querySelector('#time').textContent=format(t)+' / '+format(duration);if(running&&t>=duration){stop();position=0}requestAnimationFrame(tick)}tick();
+</script></html>

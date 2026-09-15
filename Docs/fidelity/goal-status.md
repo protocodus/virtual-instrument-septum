@@ -17,6 +17,10 @@ is required to continue the present investigations.
   [sample-and-hold cadence](source-audits/public-lfo-clock-2026-09-15.md) is
   approximately 40.215 ms, corroborating the fast endpoint without selecting
   a new value. The camera does not authenticate the raw rate or sync state.
+  A separate [pitch-step test](source-audits/public-lfo-step-smoothing-2026-09-15.md)
+  finds that carrier phase can masquerade as sub-millisecond smoothing.
+  It supplies no correction to the current direct S&H pitch path or to
+  the separate filter-parameter smoothing.
 - [Audio agreement assessment](equivalence-assessment.md): measure spectral,
   envelope and stereo residuals, freeze gain/alignment before evaluation,
   retain hashes and distinguish original from reconstructed inputs.
@@ -90,12 +94,20 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   fit much of that waveform shape, but miss important alias notches even
   when their median alias level agrees. Those mathematical fits are not
   full-engine renders and do not justify a production oscillator change.
+  [Shared local wrap corrections](source-audits/deepsonic-saw-wrap-kernels-2026-09-15.md)
+  also transfer the gross waveform across pitches but fail measured notches;
+  small waveform residuals conceal large relative errors in quiet components.
   [Slope/time controls](source-audits/deepsonic-high-note-invariance-2026-09-15.md)
   identify an early, nearly invariant Q0 high-note region followed by a
   moving response. Q50 differs strongly there, ruling out an unconditional
   cutoff-only bypass. A [22.05 kHz image check](source-audits/deepsonic-half-rate-images-2026-09-15.md)
   finds no independent image family at the tested threshold; it does not
   exclude properly bandlimited internal blocks.
+  [Paired slope ratios](source-audits/deepsonic-slope-ratio-fits-2026-09-15.md)
+  cancel a shared source response and constrain an ordinary extra filter
+  section conditionally. High harmonics reject the frozen low-note cutoff
+  extrapolation with that section model; they do not identify a raw-control
+  law, precise endpoint or switching threshold.
 
 ## Next work
 
@@ -116,3 +128,6 @@ The [dry replay and complete reproduction](source-audits/zero-resonance-reproduc
 preserve all models, including failed sensitivity controls. The local
 [ten-preset listening page](http://127.0.0.1:58511/) is available while this
 session's comparison server is running.
+The [synchronized dry player](http://127.0.0.1:58512/) adds the original-MIDI
+hardware, production and clearly labeled envelope experiment for both
+slopes, with [verified frozen adjustments](source-audits/dry-listening-player-2026-09-15.md).

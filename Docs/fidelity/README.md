@@ -15,6 +15,11 @@ now quantify how strongly short-window metrics can vary without a parameter
 change other than waveform origin. Their distances cannot be subtracted from
 hardware errors or used as a perceptual acceptance margin.
 
+The [synchronized dry listening comparison](source-audits/dry-listening-player-2026-09-15.md)
+presents original-MIDI hardware, current DSP and the retained envelope
+experiment with frozen gain and timing. Source and model uncertainties
+remain explicit; the experiment has not replaced production.
+
 The [strict search for exact recording inputs](exact-reference-search.md) found no verified public set with both original performance MIDI and the exact preset used for a hardware recording. The estimated comparisons below do not qualify for that stricter requirement.
 
 The [ten-recording hardware A/B set](ten-recording-ab.md) pairs real official Roland recordings with unchanged published presets and explicitly reconstructed MIDI, including six new bass/lead transcriptions and current-engine renders.
