@@ -42,6 +42,8 @@ def main():
     parser.add_argument('--models', type=Path, required=True,
                         help='Completed reverb-gain-candidates run directory')
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--exploratory', action='store_true',
+                        help='Label follow-up inputs chosen after earlier candidate results')
     args = parser.parse_args()
     out = args.output.resolve()
     out.mkdir(parents=True, exist_ok=False)
@@ -102,12 +104,15 @@ def main():
             raise ValueError('Case identity differs from source-only reconstruction evidence')
         specs.append(dict(path=str(path.resolve()), frozen_path=str(target), sha256=sha(path),
                           midi_sha256=sha(midi), sysex_sha256=patch_hash, case=case))
-    protocol = dict(status='prospective_candidate_checks_with_reconstructed_inputs',
+    scope = ('Exploratory follow-up after earlier candidate outcomes. New inputs are fixed before their own scores; this is not independent confirmation or a replacement for the earlier cases.'
+        if args.exploratory else 'Case selections and reconstructions fixed before these candidate scores. No new-case selection or parameter fitting.')
+    protocol = dict(status=('exploratory_articulation_followup' if args.exploratory
+                            else 'prospective_candidate_checks_with_reconstructed_inputs'),
         primary_hypothesis='gain-0.5', secondary_sensitivity='gain-0.25', baseline='gain-1',
         models=builds, cases=specs, model_result_sha256=sha(args.models/'results.json'),
         catalog_sha256=sha(catalog_path),
         transformation='Primary: one production-only prefix lag bounded50ms and gain, frozen across models. Candidate-prefix RMS gains are a separately reported sensitivity. Same evaluation supports for all models.',
-        scope='Case selections and reconstructions fixed before these candidate scores. Original performance MIDI, gates, velocity and recorded patch revision remain unauthenticated. No new-case selection or parameter fitting.',
+        scope=scope+' Original performance MIDI, gates, velocity and recorded patch revision remain unauthenticated.',
         tools={name: sha(ROOT/'Tools'/name) for name in ('evaluate_reverb_validation_cases.py',
                'compare_hardware.py', 'assess_hardware_equivalence.py', 'render_midi.py', 'extract_reference_patch.py')})
     save(out/'protocol-before-rendering.json', protocol)
@@ -194,8 +199,8 @@ def main():
     save(out/'results.json', dict(protocol=protocol, cases=records))
     (out/'index.html').write_text('<!doctype html><meta charset="utf-8"><title>New reverb-gain checks</title>'
         '<style>body{font:16px system-ui;max-width:900px;margin:40px auto;padding:20px}section{border-top:1px solid #bbb;margin-top:32px}audio{width:100%}</style>'
-        '<h1>New preset checks: reverb return level</h1><p>Unchanged published presets with reconstructions fixed before these candidate scores. '
-        'Gain1 is current DSP, gain.5 is the primary hypothesis, gain.25 a sensitivity. '
+        '<h1>Reverb return level: '+('exploratory follow-up' if args.exploratory else 'new preset checks')+'</h1><p>'+html.escape(scope)+' '
+        'Gain1 is the previous return, gain.5 is half return, gain.25 a sensitivity. '
         'Listening contains later evaluation only, using the same production-prefix timing and gain for every model. '
         'Original performance and exact recorded patch revision remain unverified.</p>'+''.join(sections))
     print(out/'results.json')

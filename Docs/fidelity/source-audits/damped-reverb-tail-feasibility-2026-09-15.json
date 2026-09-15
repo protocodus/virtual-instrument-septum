@@ -1,0 +1,4544 @@
+{
+  "schema_version": 1,
+  "status": "Source-only coverage; no decay slope or damping-model fit.",
+  "support": {
+    "status": "Frozen after complete source spectrogram/RMS inspection, before band coverage calculations or any decay slope/candidate fit.",
+    "selection_chronology": "Follow-up to recorded Club Bass/Ambient envelope regressions; these references were not selected independently of those model outcomes. Interval choices use source audio only.",
+    "band_edges_hz": [
+      80,
+      160,
+      320,
+      640,
+      1280,
+      2560,
+      4000,
+      8000,
+      12500,
+      18000
+    ],
+    "band_guard": "At least20dB above same-file opening quiet band power; descriptive detectability threshold, not perceptual or calibrated confidence.",
+    "cases": {
+      "bass-05": {
+        "quiet": [
+          0.03,
+          0.14
+        ],
+        "training": [
+          2.3,
+          2.65
+        ],
+        "later_check": [
+          2.65,
+          3.0
+        ],
+        "late_sensitivity": [
+          3.0,
+          3.3
+        ],
+        "second_gap_early": [
+          5.95,
+          6.3
+        ],
+        "second_gap_later": [
+          6.3,
+          6.65
+        ],
+        "third_gap_early": [
+          9.68,
+          10.03
+        ],
+        "third_gap_later": [
+          10.03,
+          10.38
+        ],
+        "terminal_diagnostic": [
+          29.96,
+          30.249795918367347
+        ]
+      },
+      "lead-07": {
+        "quiet": [
+          0.03,
+          0.07
+        ],
+        "training": [
+          11.65,
+          12.15
+        ],
+        "later_check": [
+          12.15,
+          12.65
+        ],
+        "late_sensitivity": [
+          12.65,
+          13.15
+        ],
+        "terminal_floor_diagnostic": [
+          13.8,
+          14.55
+        ]
+      }
+    }
+  },
+  "support_sha256": "1e3ce551394718f52082261d8f613bdc2be781c21142148fbcf57b9dfabecda1",
+  "catalog_sha256": "32e356db740bd827792b6d98800aa7f923b34ceb3b7a164dd2cfcb5220119736",
+  "inventory_sha256": "7e5ec6a0d06c5679ec7cce6876c60276b252c62f8a9794706a9addfff2c88735",
+  "tool_sha256": "17df7dabd945924f86084fbe03baaad5ff7e257f09b293160f0ed4503397271b",
+  "patch_helper_sha256": "461407495e9f5bfc99767a0146a750708c5cdb2fd34c0d029aaf5e5f5a80703b",
+  "decoder": {
+    "path": "/opt/homebrew/bin/ffmpeg",
+    "sha256": "00d01197255300c02122c783dd0126a9e7f47d6c6a19faafae2e6610efd071d3",
+    "version": "ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers"
+  },
+  "analysis_policy": "Native44.1k stereo float32 decode, no resampling/gain/downmix mutation.1024sample periodicHann Welch75%overlap,detrendFalse,density integrated perband; mid/side descriptive channels. Quiet references are short same-file opening samples, not stationary calibrated noise; no noise subtraction.",
+  "cases": {
+    "bass-05": {
+      "name": "Club Bass",
+      "recording": {
+        "id": "bass-05",
+        "title": "Club Bass",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_bass.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/BASS/TOP8_ClubBass.mp3",
+        "local_filename": "TOP8_ClubBass.mp3",
+        "sha256": "4376b5196eb9be233e85a4dc528dda1bdb6e4f8ba01a7163aa298c8ebbdb68a4",
+        "size_bytes": 968018,
+        "bank_id": "bass",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 5,
+        "patch_name": "Club Bass",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+      },
+      "bank": {
+        "id": "bass",
+        "category": "BASS",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_bass.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/shl/SH-201_Patch_BASS.zip",
+        "local_filename": "SH-201_Patch_BASS.zip",
+        "sha256": "782e04766bec4dc8b8485e82499a0a7f12fe2408a8a04141a5e1db098c7f36fc",
+        "size_bytes": 42580,
+        "archive_member": "SH-201_Patch_BASS/100_BASS.shl",
+        "bank_sha256": "b69051b35e433f6a4ee879e28d76707dd9689bbc5199949fc38e19b9cdcca3bf",
+        "patch_count": 100,
+        "parameter_blocks_per_patch": 22,
+        "contains_original_performance_midi": false
+      },
+      "decoded": {
+        "keyboardMode": 1,
+        "keyboardPart": 0,
+        "splitPoint": 53,
+        "patchLevel": 127,
+        "toneBalance": 0,
+        "tempo": 142,
+        "delayOn": 0,
+        "reverbOn": 1,
+        "modulationAssign": 0,
+        "modulationDestination": 2,
+        "pitchBendDestination": 2,
+        "arpeggioOn": 0,
+        "delayTime": 55,
+        "delayFeedback": 20,
+        "delayModulationDepth": 10,
+        "reverbPreDelay": 10,
+        "upper": {
+          "pitchEnvAttack": 0,
+          "pitchEnvDecay": 0,
+          "mixType": 0,
+          "balance": 6,
+          "lowFreq": 0,
+          "filterType": 1,
+          "filterSlope": 0,
+          "cutoff": 103,
+          "keyFollow": 0,
+          "cutoffVelocitySens": 0,
+          "resonance": 41,
+          "filterEnvAttack": 0,
+          "filterEnvDecay": 0,
+          "filterEnvSustain": 127,
+          "filterEnvRelease": 0,
+          "filterEnvDepth": 0,
+          "overdrive": 1,
+          "drive": 70,
+          "level": 100,
+          "levelVelocitySens": 8,
+          "pan": 0,
+          "ampEnvAttack": 0,
+          "ampEnvDecay": 21,
+          "ampEnvSustain": 71,
+          "ampEnvRelease": 0,
+          "delayDepth": 65,
+          "reverbDepth": 50,
+          "bendRange": 2,
+          "octaveShift": 0,
+          "portamento": 0,
+          "portamentoTime": 20,
+          "mono": 0,
+          "osc1": {
+            "wave": 3,
+            "pitchWide": 0,
+            "coarse": 0,
+            "fine": 0,
+            "pulseWidth": 57,
+            "pitchEnvDepth": 0,
+            "decoded_by_current_codec": true,
+            "wave_name": "Triangle",
+            "signed_coarse_raw": 0,
+            "coarse_units": "physical semitones, current SysEx codec",
+            "net_coarse_and_tone_octave_semitones": 0,
+            "mixed_in": true
+          },
+          "osc2": {
+            "wave": 4,
+            "pitchWide": 1,
+            "coarse": 24,
+            "fine": 0,
+            "pulseWidth": 0,
+            "pitchEnvDepth": 0,
+            "decoded_by_current_codec": true,
+            "wave_name": "Sine",
+            "signed_coarse_raw": 24,
+            "coarse_units": "physical semitones, current SysEx codec",
+            "net_coarse_and_tone_octave_semitones": 24,
+            "mixed_in": true
+          },
+          "lfo1": {
+            "shape": 0,
+            "rate": 39,
+            "tempoSync": 0,
+            "tempoSyncNote": 17,
+            "fadeTime": 0,
+            "keyTrigger": 0,
+            "destination1": 2,
+            "depth1": 34,
+            "destination2": 2,
+            "depth2": 0,
+            "decoded_by_current_codec": true
+          },
+          "lfo2": {
+            "shape": 0,
+            "rate": 92,
+            "tempoSync": 0,
+            "tempoSyncNote": 17,
+            "fadeTime": 0,
+            "keyTrigger": 0,
+            "destination1": 2,
+            "depth1": 0,
+            "destination2": 2,
+            "depth2": 0,
+            "decoded_by_current_codec": true
+          },
+          "active_by_keyboard_mode": true,
+          "filter_lfo_depths": [
+            34,
+            0
+          ],
+          "zero_filter_envelope_lfo_and_velocity": false,
+          "active_effect_sends": {
+            "delay": 0,
+            "reverb": 50
+          }
+        },
+        "lower": {
+          "pitchEnvAttack": 0,
+          "pitchEnvDecay": 0,
+          "mixType": 0,
+          "balance": 0,
+          "lowFreq": 1,
+          "filterType": 1,
+          "filterSlope": 0,
+          "cutoff": 110,
+          "keyFollow": 0,
+          "cutoffVelocitySens": 0,
+          "resonance": 0,
+          "filterEnvAttack": 0,
+          "filterEnvDecay": 84,
+          "filterEnvSustain": 58,
+          "filterEnvRelease": 0,
+          "filterEnvDepth": 0,
+          "overdrive": 0,
+          "drive": 100,
+          "level": 95,
+          "levelVelocitySens": 8,
+          "pan": 0,
+          "ampEnvAttack": 0,
+          "ampEnvDecay": 0,
+          "ampEnvSustain": 127,
+          "ampEnvRelease": 0,
+          "delayDepth": 20,
+          "reverbDepth": 0,
+          "bendRange": 2,
+          "octaveShift": 0,
+          "portamento": 1,
+          "portamentoTime": 20,
+          "mono": 1,
+          "osc1": {
+            "wave": 3,
+            "pitchWide": 0,
+            "coarse": -12,
+            "fine": 0,
+            "pulseWidth": 64,
+            "pitchEnvDepth": 0,
+            "decoded_by_current_codec": true,
+            "wave_name": "Triangle",
+            "signed_coarse_raw": -36,
+            "coarse_units": "physical semitones, current SysEx codec",
+            "net_coarse_and_tone_octave_semitones": -12,
+            "mixed_in": true
+          },
+          "osc2": {
+            "wave": 4,
+            "pitchWide": 0,
+            "coarse": -12,
+            "fine": 0,
+            "pulseWidth": 61,
+            "pitchEnvDepth": 0,
+            "decoded_by_current_codec": true,
+            "wave_name": "Sine",
+            "signed_coarse_raw": -36,
+            "coarse_units": "physical semitones, current SysEx codec",
+            "net_coarse_and_tone_octave_semitones": -12,
+            "mixed_in": true
+          },
+          "lfo1": {
+            "shape": 1,
+            "rate": 79,
+            "tempoSync": 0,
+            "tempoSyncNote": 17,
+            "fadeTime": 0,
+            "keyTrigger": 0,
+            "destination1": 2,
+            "depth1": 8,
+            "destination2": 2,
+            "depth2": 0,
+            "decoded_by_current_codec": true
+          },
+          "lfo2": {
+            "shape": 0,
+            "rate": 92,
+            "tempoSync": 0,
+            "tempoSyncNote": 17,
+            "fadeTime": 0,
+            "keyTrigger": 0,
+            "destination1": 2,
+            "depth1": 0,
+            "destination2": 2,
+            "depth2": 0,
+            "decoded_by_current_codec": true
+          },
+          "active_by_keyboard_mode": true,
+          "filter_lfo_depths": [
+            8,
+            0
+          ],
+          "zero_filter_envelope_lfo_and_velocity": false,
+          "active_effect_sends": {
+            "delay": 0,
+            "reverb": 0
+          }
+        }
+      },
+      "unmodified_sysex_sha256": "1db074dd01883c578cda8eef19aacf28be2b13c4a2b9ab21e829ba915f9a194b",
+      "raw_delay": [
+        55,
+        59,
+        17,
+        5,
+        10
+      ],
+      "raw_reverb": [
+        77,
+        10,
+        7,
+        19,
+        127,
+        127,
+        19,
+        36,
+        0,
+        0
+      ],
+      "physical_reverb": {
+        "time_raw": 77,
+        "pre_delay_ms": 1,
+        "size": 8,
+        "high_cut_hz": 12500,
+        "density": 127,
+        "diffusion": 127,
+        "lf_frequency_hz": 4000,
+        "lf_gain_db": 0,
+        "hf_frequency_hz": 4000,
+        "hf_gain_db": -36
+      },
+      "decode_command": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/sources/TOP8_ClubBass.mp3",
+        "-c:a",
+        "pcm_f32le",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/reverb-damped-tail-feasibility/run-01/bass-05/hardware-full.wav"
+      ],
+      "decoded_sha256": "81aeaeabfcfed0250c308ef839de9f0f0ad25b35a1b235d18d10bdc320f4a9c4",
+      "sample_rate": 44100,
+      "sample_count": 1334016,
+      "duration_seconds": 30.249795918367347,
+      "quiet_reference_seconds": [
+        0.03,
+        0.14
+      ],
+      "quiet_reference_rms_dbfs": -78.12444714125347,
+      "last_10_stereo_samples": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "windows": {
+        "training": {
+          "seconds": [
+            2.3,
+            2.65
+          ],
+          "samples": [
+            101430,
+            116865
+          ],
+          "peak": 0.03262953460216522,
+          "exact_zero_sample_values": 0,
+          "channels": {
+            "stereo": {
+              "rms_dbfs": -41.718006619848815,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -46.988261820167374,
+                  "quiet_band_power_dbfs": -103.84447545269722,
+                  "above_opening_quiet_db": 56.85621363252985,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -46.00514450848627,
+                  "quiet_band_power_dbfs": -101.52469631310115,
+                  "above_opening_quiet_db": 55.51955180461488,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -52.55203639010269,
+                  "quiet_band_power_dbfs": -100.27519787336263,
+                  "above_opening_quiet_db": 47.723161483259936,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -70.86290766545511,
+                  "quiet_band_power_dbfs": -97.69767493668522,
+                  "above_opening_quiet_db": 26.834767271230106,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -83.20799700338986,
+                  "quiet_band_power_dbfs": -95.19290400412574,
+                  "above_opening_quiet_db": 11.984907000735873,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -92.47123008458459,
+                  "quiet_band_power_dbfs": -94.58657127409171,
+                  "above_opening_quiet_db": 2.11534118950712,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -88.8812726794542,
+                  "quiet_band_power_dbfs": -89.01727255182729,
+                  "above_opening_quiet_db": 0.13599987237309108,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -89.2384467536199,
+                  "quiet_band_power_dbfs": -89.13703128468292,
+                  "above_opening_quiet_db": -0.1014154689369775,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -99.62217168180717,
+                  "quiet_band_power_dbfs": -101.00146514808138,
+                  "above_opening_quiet_db": 1.3792934662742056,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -3.5145501435072575
+            },
+            "mid": {
+              "rms_dbfs": -43.283604704357074,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -48.956612549866136,
+                  "quiet_band_power_dbfs": -106.42726568415085,
+                  "above_opening_quiet_db": 57.47065313428472,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -47.436921861540505,
+                  "quiet_band_power_dbfs": -103.27400157393856,
+                  "above_opening_quiet_db": 55.83707971239806,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -54.215447840706105,
+                  "quiet_band_power_dbfs": -102.83938969155139,
+                  "above_opening_quiet_db": 48.623941850845284,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -73.25533274619556,
+                  "quiet_band_power_dbfs": -100.06945823300912,
+                  "above_opening_quiet_db": 26.814125486813552,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -86.08791931477704,
+                  "quiet_band_power_dbfs": -97.86638683270787,
+                  "above_opening_quiet_db": 11.778467517930835,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -94.83112883516486,
+                  "quiet_band_power_dbfs": -97.23167426311446,
+                  "above_opening_quiet_db": 2.400545427949595,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -90.5609089413287,
+                  "quiet_band_power_dbfs": -90.79996464801104,
+                  "above_opening_quiet_db": 0.23905570668233622,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -91.5635554689938,
+                  "quiet_band_power_dbfs": -91.58750803522553,
+                  "above_opening_quiet_db": 0.0239525662317277,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -102.60156007027021,
+                  "quiet_band_power_dbfs": -103.48905575419369,
+                  "above_opening_quiet_db": 0.8874956839234756,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -4.511374658329956
+            },
+            "side": {
+              "rms_dbfs": -46.90835529225758,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -51.372147423360715,
+                  "quiet_band_power_dbfs": -107.32900950369876,
+                  "above_opening_quiet_db": 55.95686208033804,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -51.520471409983486,
+                  "quiet_band_power_dbfs": -106.31921700462591,
+                  "above_opening_quiet_db": 54.798745594642426,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -57.52507444921628,
+                  "quiet_band_power_dbfs": -103.78273204036817,
+                  "above_opening_quiet_db": 46.2576575911519,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -74.59380430227733,
+                  "quiet_band_power_dbfs": -101.45682289007787,
+                  "above_opening_quiet_db": 26.86301858780054,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -86.3527100750082,
+                  "quiet_band_power_dbfs": -98.56835583827635,
+                  "above_opening_quiet_db": 12.215645763268142,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -96.24678898729218,
+                  "quiet_band_power_dbfs": -97.99562048636061,
+                  "above_opening_quiet_db": 1.7488314990684302,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -93.81974848375187,
+                  "quiet_band_power_dbfs": -93.74525104143002,
+                  "above_opening_quiet_db": -0.0744974423218423,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -93.06266792902902,
+                  "quiet_band_power_dbfs": -92.79014796078877,
+                  "above_opening_quiet_db": -0.27251996824024616,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -102.66360480258179,
+                  "quiet_band_power_dbfs": -104.60610661635039,
+                  "above_opening_quiet_db": 1.942501813768601,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -1.4809900383846255
+            }
+          },
+          "side_over_mid_db": -3.6247505879005075
+        },
+        "later_check": {
+          "seconds": [
+            2.65,
+            3.0
+          ],
+          "samples": [
+            116865,
+            132300
+          ],
+          "peak": 0.014774534851312637,
+          "exact_zero_sample_values": 0,
+          "channels": {
+            "stereo": {
+              "rms_dbfs": -47.106474116115095,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -52.020918792523965,
+                  "quiet_band_power_dbfs": -103.84447545269722,
+                  "above_opening_quiet_db": 51.82355666017326,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -50.77991838303319,
+                  "quiet_band_power_dbfs": -101.52469631310115,
+                  "above_opening_quiet_db": 50.744777930067954,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -58.190715714155786,
+                  "quiet_band_power_dbfs": -100.27519787336263,
+                  "above_opening_quiet_db": 42.08448215920684,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -78.87611125101333,
+                  "quiet_band_power_dbfs": -97.69767493668522,
+                  "above_opening_quiet_db": 18.82156368567189,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -91.1866274061269,
+                  "quiet_band_power_dbfs": -95.19290400412574,
+                  "above_opening_quiet_db": 4.006276597998834,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -94.78714979133633,
+                  "quiet_band_power_dbfs": -94.58657127409171,
+                  "above_opening_quiet_db": -0.2005785172446224,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -89.03684914893199,
+                  "quiet_band_power_dbfs": -89.01727255182729,
+                  "above_opening_quiet_db": -0.019576597104702387,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -89.12496176482435,
+                  "quiet_band_power_dbfs": -89.13703128468292,
+                  "above_opening_quiet_db": 0.012069519858570743,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -100.58847142402954,
+                  "quiet_band_power_dbfs": -101.00146514808138,
+                  "above_opening_quiet_db": 0.4129937240518444,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -4.963898519421356
+            },
+            "mid": {
+              "rms_dbfs": -50.85805611826609,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -57.08538487621438,
+                  "quiet_band_power_dbfs": -106.42726568415085,
+                  "above_opening_quiet_db": 49.34188080793648,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -53.88345749016855,
+                  "quiet_band_power_dbfs": -103.27400157393856,
+                  "above_opening_quiet_db": 49.39054408377001,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -62.17410350766005,
+                  "quiet_band_power_dbfs": -102.83938969155139,
+                  "above_opening_quiet_db": 40.66528618389134,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -83.99890659401785,
+                  "quiet_band_power_dbfs": -100.06945823300912,
+                  "above_opening_quiet_db": 16.07055163899126,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -95.26285357739467,
+                  "quiet_band_power_dbfs": -97.86638683270787,
+                  "above_opening_quiet_db": 2.6035332553132093,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -97.39490800965976,
+                  "quiet_band_power_dbfs": -97.23167426311446,
+                  "above_opening_quiet_db": -0.16323374654530198,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -90.69593571116206,
+                  "quiet_band_power_dbfs": -90.79996464801104,
+                  "above_opening_quiet_db": 0.10402893684897663,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -91.43794990077782,
+                  "quiet_band_power_dbfs": -91.58750803522553,
+                  "above_opening_quiet_db": 0.14955813444770172,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -103.05117179517339,
+                  "quiet_band_power_dbfs": -103.48905575419369,
+                  "above_opening_quiet_db": 0.4378839590202972,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -4.634353227860586
+            },
+            "side": {
+              "rms_dbfs": -49.48376270826506,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -53.642310767704785,
+                  "quiet_band_power_dbfs": -107.32900950369876,
+                  "above_opening_quiet_db": 53.68669873599397,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -53.69893894992696,
+                  "quiet_band_power_dbfs": -106.31921700462591,
+                  "above_opening_quiet_db": 52.62027805469895,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -60.40654677185957,
+                  "quiet_band_power_dbfs": -103.78273204036817,
+                  "above_opening_quiet_db": 43.37618526850861,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -80.47136006874844,
+                  "quiet_band_power_dbfs": -101.45682289007787,
+                  "above_opening_quiet_db": 20.985462821329435,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -93.34174305655011,
+                  "quiet_band_power_dbfs": -98.56835583827635,
+                  "above_opening_quiet_db": 5.226612781726232,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -98.24114992555295,
+                  "quiet_band_power_dbfs": -97.99562048636061,
+                  "above_opening_quiet_db": -0.24552943919233883,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -94.0191687005412,
+                  "quiet_band_power_dbfs": -93.74525104143002,
+                  "above_opening_quiet_db": -0.27391765911117716,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -92.9663580400424,
+                  "quiet_band_power_dbfs": -92.79014796078877,
+                  "above_opening_quiet_db": -0.17621007925362164,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -104.22551687416657,
+                  "quiet_band_power_dbfs": -104.60610661635039,
+                  "above_opening_quiet_db": 0.38058974218381536,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -5.212413885180759
+            }
+          },
+          "side_over_mid_db": 1.3742934100010302
+        },
+        "late_sensitivity": {
+          "seconds": [
+            3.0,
+            3.3
+          ],
+          "samples": [
+            132300,
+            145530
+          ],
+          "peak": 0.005670643877238035,
+          "exact_zero_sample_values": 0,
+          "channels": {
+            "stereo": {
+              "rms_dbfs": -57.57575068483031,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -62.79630529146418,
+                  "quiet_band_power_dbfs": -103.84447545269722,
+                  "above_opening_quiet_db": 41.048170161233045,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -61.192033575825064,
+                  "quiet_band_power_dbfs": -101.52469631310115,
+                  "above_opening_quiet_db": 40.33266273727608,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -66.66360120582313,
+                  "quiet_band_power_dbfs": -100.27519787336263,
+                  "above_opening_quiet_db": 33.6115966675395,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -88.95476597972412,
+                  "quiet_band_power_dbfs": -97.69767493668522,
+                  "above_opening_quiet_db": 8.742908956961102,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -94.42682796972613,
+                  "quiet_band_power_dbfs": -95.19290400412574,
+                  "above_opening_quiet_db": 0.7660760343996031,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -95.07806201674953,
+                  "quiet_band_power_dbfs": -94.58657127409171,
+                  "above_opening_quiet_db": -0.4914907426578168,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -89.17696015208062,
+                  "quiet_band_power_dbfs": -89.01727255182729,
+                  "above_opening_quiet_db": -0.15968760025333495,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -89.20262860573709,
+                  "quiet_band_power_dbfs": -89.13703128468292,
+                  "above_opening_quiet_db": -0.06559732105417027,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -100.52843042050515,
+                  "quiet_band_power_dbfs": -101.00146514808138,
+                  "above_opening_quiet_db": 0.4730347275762341,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -3.6566250121063746
+            },
+            "mid": {
+              "rms_dbfs": -60.712452477380914,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -64.79470350667769,
+                  "quiet_band_power_dbfs": -106.42726568415085,
+                  "above_opening_quiet_db": 41.63256217747316,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -65.1315054963363,
+                  "quiet_band_power_dbfs": -103.27400157393856,
+                  "above_opening_quiet_db": 38.14249607760226,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -70.51118879259923,
+                  "quiet_band_power_dbfs": -102.83938969155139,
+                  "above_opening_quiet_db": 32.32820089895216,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -91.90190801335473,
+                  "quiet_band_power_dbfs": -100.06945823300912,
+                  "above_opening_quiet_db": 8.167550219654387,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -97.02312979459327,
+                  "quiet_band_power_dbfs": -97.86638683270787,
+                  "above_opening_quiet_db": 0.8432570381146007,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -97.57394723502262,
+                  "quiet_band_power_dbfs": -97.23167426311446,
+                  "above_opening_quiet_db": -0.34227297190815875,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -90.83817715000035,
+                  "quiet_band_power_dbfs": -90.79996464801104,
+                  "above_opening_quiet_db": -0.0382125019893067,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -91.52088083579002,
+                  "quiet_band_power_dbfs": -91.58750803522553,
+                  "above_opening_quiet_db": 0.06662719943550144,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -103.09247337240494,
+                  "quiet_band_power_dbfs": -103.48905575419369,
+                  "above_opening_quiet_db": 0.39658238178874683,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -3.2963793082454487
+            },
+            "side": {
+              "rms_dbfs": -60.46322393417813,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -67.12827958771462,
+                  "quiet_band_power_dbfs": -107.32900950369876,
+                  "above_opening_quiet_db": 40.20072991598414,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -63.43734525864693,
+                  "quiet_band_power_dbfs": -106.31921700462591,
+                  "above_opening_quiet_db": 42.881871745978984,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -68.97224008713684,
+                  "quiet_band_power_dbfs": -103.78273204036817,
+                  "above_opening_quiet_db": 34.810491953231335,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -92.02915591410564,
+                  "quiet_band_power_dbfs": -101.45682289007787,
+                  "above_opening_quiet_db": 9.42766697597223,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -97.89478995379423,
+                  "quiet_band_power_dbfs": -98.56835583827635,
+                  "above_opening_quiet_db": 0.673565884482116,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -98.67199935958739,
+                  "quiet_band_power_dbfs": -97.99562048636061,
+                  "above_opening_quiet_db": -0.6763788732267813,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -94.15470401566722,
+                  "quiet_band_power_dbfs": -93.74525104143002,
+                  "above_opening_quiet_db": -0.4094529742371975,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -93.03655132056478,
+                  "quiet_band_power_dbfs": -92.79014796078877,
+                  "above_opening_quiet_db": -0.2464033597760107,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -104.03614957710067,
+                  "quiet_band_power_dbfs": -104.60610661635039,
+                  "above_opening_quiet_db": 0.5699570392497151,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -4.008034492102922
+            }
+          },
+          "side_over_mid_db": 0.24922854320278276
+        },
+        "second_gap_early": {
+          "seconds": [
+            5.95,
+            6.3
+          ],
+          "samples": [
+            262395,
+            277830
+          ],
+          "peak": 0.033463362604379654,
+          "exact_zero_sample_values": 0,
+          "channels": {
+            "stereo": {
+              "rms_dbfs": -41.2739867336013,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -48.062537738351324,
+                  "quiet_band_power_dbfs": -103.84447545269722,
+                  "above_opening_quiet_db": 55.7819377143459,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -45.15969158392787,
+                  "quiet_band_power_dbfs": -101.52469631310115,
+                  "above_opening_quiet_db": 56.36500472917328,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -52.3665917655954,
+                  "quiet_band_power_dbfs": -100.27519787336263,
+                  "above_opening_quiet_db": 47.90860610776723,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -71.28261378944862,
+                  "quiet_band_power_dbfs": -97.69767493668522,
+                  "above_opening_quiet_db": 26.4150611472366,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -83.79804281171701,
+                  "quiet_band_power_dbfs": -95.19290400412574,
+                  "above_opening_quiet_db": 11.394861192408726,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -92.20641118842677,
+                  "quiet_band_power_dbfs": -94.58657127409171,
+                  "above_opening_quiet_db": 2.38016008566494,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -89.05607233909679,
+                  "quiet_band_power_dbfs": -89.01727255182729,
+                  "above_opening_quiet_db": -0.03879978726949673,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -89.10045535567896,
+                  "quiet_band_power_dbfs": -89.13703128468292,
+                  "above_opening_quiet_db": 0.03657592900395912,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -100.4132859233264,
+                  "quiet_band_power_dbfs": -101.00146514808138,
+                  "above_opening_quiet_db": 0.5881792247549811,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -2.6916492873793842
+            },
+            "mid": {
+              "rms_dbfs": -42.75434586113778,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -50.017867881400335,
+                  "quiet_band_power_dbfs": -106.42726568415085,
+                  "above_opening_quiet_db": 56.40939780275052,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -46.883252526105174,
+                  "quiet_band_power_dbfs": -103.27400157393856,
+                  "above_opening_quiet_db": 56.39074904783339,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -53.98576471076549,
+                  "quiet_band_power_dbfs": -102.83938969155139,
+                  "above_opening_quiet_db": 48.8536249807859,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -72.7364991884255,
+                  "quiet_band_power_dbfs": -100.06945823300912,
+                  "above_opening_quiet_db": 27.332959044583617,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -86.71426362621888,
+                  "quiet_band_power_dbfs": -97.86638683270787,
+                  "above_opening_quiet_db": 11.152123206488994,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -94.22597673188548,
+                  "quiet_band_power_dbfs": -97.23167426311446,
+                  "above_opening_quiet_db": 3.005697531228975,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -90.78096197397818,
+                  "quiet_band_power_dbfs": -90.79996464801104,
+                  "above_opening_quiet_db": 0.019002674032861933,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -91.48178687377894,
+                  "quiet_band_power_dbfs": -91.58750803522553,
+                  "above_opening_quiet_db": 0.10572116144658139,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -103.38694954189286,
+                  "quiet_band_power_dbfs": -103.48905575419369,
+                  "above_opening_quiet_db": 0.10210621230082495,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -2.9275027046370283
+            },
+            "side": {
+              "rms_dbfs": -46.6673337458678,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -52.469225441101955,
+                  "quiet_band_power_dbfs": -107.32900950369876,
+                  "above_opening_quiet_db": 54.8597840625968,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -50.00658519830189,
+                  "quiet_band_power_dbfs": -106.31921700462591,
+                  "above_opening_quiet_db": 56.31263180632402,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -57.4359649715163,
+                  "quiet_band_power_dbfs": -103.78273204036817,
+                  "above_opening_quiet_db": 46.346767068851875,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -76.74183690481875,
+                  "quiet_band_power_dbfs": -101.45682289007787,
+                  "above_opening_quiet_db": 24.71498598525912,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -86.9045051127609,
+                  "quiet_band_power_dbfs": -98.56835583827635,
+                  "above_opening_quiet_db": 11.663850725515445,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -96.50239687716089,
+                  "quiet_band_power_dbfs": -97.99562048636061,
+                  "above_opening_quiet_db": 1.4932236091997169,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -93.9002397700755,
+                  "quiet_band_power_dbfs": -93.74525104143002,
+                  "above_opening_quiet_db": -0.15498872864547764,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -92.84649562121515,
+                  "quiet_band_power_dbfs": -92.79014796078877,
+                  "above_opening_quiet_db": -0.05634766042638262,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -103.4605339071276,
+                  "quiet_band_power_dbfs": -104.60610661635039,
+                  "above_opening_quiet_db": 1.1455727092227903,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -2.1262432045531696
+            }
+          },
+          "side_over_mid_db": -3.912987884730022
+        },
+        "second_gap_later": {
+          "seconds": [
+            6.3,
+            6.65
+          ],
+          "samples": [
+            277830,
+            293265
+          ],
+          "peak": 0.014306720346212387,
+          "exact_zero_sample_values": 0,
+          "channels": {
+            "stereo": {
+              "rms_dbfs": -48.12548625580142,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -51.57716583473192,
+                  "quiet_band_power_dbfs": -103.84447545269722,
+                  "above_opening_quiet_db": 52.2673096179653,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -54.2884324408619,
+                  "quiet_band_power_dbfs": -101.52469631310115,
+                  "above_opening_quiet_db": 47.23626387223925,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -60.345810802408934,
+                  "quiet_band_power_dbfs": -100.27519787336263,
+                  "above_opening_quiet_db": 39.929387070953695,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -80.88881261305528,
+                  "quiet_band_power_dbfs": -97.69767493668522,
+                  "above_opening_quiet_db": 16.80886232362994,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -91.60843650431103,
+                  "quiet_band_power_dbfs": -95.19290400412574,
+                  "above_opening_quiet_db": 3.584467499814707,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -94.53387525343601,
+                  "quiet_band_power_dbfs": -94.58657127409171,
+                  "above_opening_quiet_db": 0.052696020655702114,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -89.12884089917407,
+                  "quiet_band_power_dbfs": -89.01727255182729,
+                  "above_opening_quiet_db": -0.11156834734677545,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -89.74247080993082,
+                  "quiet_band_power_dbfs": -89.13703128468292,
+                  "above_opening_quiet_db": -0.6054395252479026,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -101.47167099531913,
+                  "quiet_band_power_dbfs": -101.00146514808138,
+                  "above_opening_quiet_db": -0.47020584723775016,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -6.56584384440464
+            },
+            "mid": {
+              "rms_dbfs": -52.660541836173785,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -56.83294574013782,
+                  "quiet_band_power_dbfs": -106.42726568415085,
+                  "above_opening_quiet_db": 49.59431994401303,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -58.04656437212398,
+                  "quiet_band_power_dbfs": -103.27400157393856,
+                  "above_opening_quiet_db": 45.22743720181458,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -64.6354227468617,
+                  "quiet_band_power_dbfs": -102.83938969155139,
+                  "above_opening_quiet_db": 38.20396694468968,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -84.06730201506622,
+                  "quiet_band_power_dbfs": -100.06945823300912,
+                  "above_opening_quiet_db": 16.002156217942897,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -94.95741210251695,
+                  "quiet_band_power_dbfs": -97.86638683270787,
+                  "above_opening_quiet_db": 2.90897473019092,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -97.24219706699526,
+                  "quiet_band_power_dbfs": -97.23167426311446,
+                  "above_opening_quiet_db": -0.010522803880803622,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -90.824313455583,
+                  "quiet_band_power_dbfs": -90.79996464801104,
+                  "above_opening_quiet_db": -0.024348807571954012,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -92.0844402432971,
+                  "quiet_band_power_dbfs": -91.58750803522553,
+                  "above_opening_quiet_db": -0.4969322080715699,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -104.210575726936,
+                  "quiet_band_power_dbfs": -103.48905575419369,
+                  "above_opening_quiet_db": -0.721519972742314,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -3.7947011509505586
+            },
+            "side": {
+              "rms_dbfs": -50.00947427550158,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -53.11466840030757,
+                  "quiet_band_power_dbfs": -107.32900950369876,
+                  "above_opening_quiet_db": 54.214341103391185,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -56.660954073825025,
+                  "quiet_band_power_dbfs": -106.31921700462591,
+                  "above_opening_quiet_db": 49.65826293080089,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -62.36915433089598,
+                  "quiet_band_power_dbfs": -103.78273204036817,
+                  "above_opening_quiet_db": 41.41357770947219,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -83.73719448862968,
+                  "quiet_band_power_dbfs": -101.45682289007787,
+                  "above_opening_quiet_db": 17.71962840144819,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -94.30457182348366,
+                  "quiet_band_power_dbfs": -98.56835583827635,
+                  "above_opening_quiet_db": 4.263784014792691,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -97.86873043776006,
+                  "quiet_band_power_dbfs": -97.99562048636061,
+                  "above_opening_quiet_db": 0.12689004860054354,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -94.03396811517646,
+                  "quiet_band_power_dbfs": -93.74525104143002,
+                  "above_opening_quiet_db": -0.2887170737464402,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -93.5429914050509,
+                  "quiet_band_power_dbfs": -92.79014796078877,
+                  "above_opening_quiet_db": -0.7528434442621261,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -104.77146313072089,
+                  "quiet_band_power_dbfs": -104.60610661635039,
+                  "above_opening_quiet_db": -0.16535651437050092,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -8.700195310504853
+            }
+          },
+          "side_over_mid_db": 2.651067560672203
+        },
+        "third_gap_early": {
+          "seconds": [
+            9.68,
+            10.03
+          ],
+          "samples": [
+            426888,
+            442323
+          ],
+          "peak": 0.02929646335542202,
+          "exact_zero_sample_values": 0,
+          "channels": {
+            "stereo": {
+              "rms_dbfs": -42.05896888520839,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -46.83918829423155,
+                  "quiet_band_power_dbfs": -103.84447545269722,
+                  "above_opening_quiet_db": 57.00528715846568,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -46.85497352170965,
+                  "quiet_band_power_dbfs": -101.52469631310115,
+                  "above_opening_quiet_db": 54.66972279139149,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -53.79153451875589,
+                  "quiet_band_power_dbfs": -100.27519787336263,
+                  "above_opening_quiet_db": 46.48366335460674,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -72.37433900816231,
+                  "quiet_band_power_dbfs": -97.69767493668522,
+                  "above_opening_quiet_db": 25.32333592852291,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -84.0136039926027,
+                  "quiet_band_power_dbfs": -95.19290400412574,
+                  "above_opening_quiet_db": 11.17930001152304,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -93.33911807206142,
+                  "quiet_band_power_dbfs": -94.58657127409171,
+                  "above_opening_quiet_db": 1.247453202030286,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -89.06738886408593,
+                  "quiet_band_power_dbfs": -89.01727255182729,
+                  "above_opening_quiet_db": -0.05011631225863766,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -89.13664679868218,
+                  "quiet_band_power_dbfs": -89.13703128468292,
+                  "above_opening_quiet_db": 0.00038448600074048045,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -100.23894372972008,
+                  "quiet_band_power_dbfs": -101.00146514808138,
+                  "above_opening_quiet_db": 0.7625214183613025,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -2.770856536602736
+            },
+            "mid": {
+              "rms_dbfs": -44.14640493251647,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -49.53006765630018,
+                  "quiet_band_power_dbfs": -106.42726568415085,
+                  "above_opening_quiet_db": 56.89719802785067,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -48.85680886740707,
+                  "quiet_band_power_dbfs": -103.27400157393856,
+                  "above_opening_quiet_db": 54.417192706531495,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -55.94888809342983,
+                  "quiet_band_power_dbfs": -102.83938969155139,
+                  "above_opening_quiet_db": 46.89050159812156,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -74.49545495267118,
+                  "quiet_band_power_dbfs": -100.06945823300912,
+                  "above_opening_quiet_db": 25.574003280337934,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -88.00223975323989,
+                  "quiet_band_power_dbfs": -97.86638683270787,
+                  "above_opening_quiet_db": 9.864147079467983,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -95.46083899466382,
+                  "quiet_band_power_dbfs": -97.23167426311446,
+                  "above_opening_quiet_db": 1.7708352684506394,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -90.76713612347675,
+                  "quiet_band_power_dbfs": -90.79996464801104,
+                  "above_opening_quiet_db": 0.03282852453429541,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -91.37114480161705,
+                  "quiet_band_power_dbfs": -91.58750803522553,
+                  "above_opening_quiet_db": 0.21636323360847598,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -103.1369936226224,
+                  "quiet_band_power_dbfs": -103.48905575419369,
+                  "above_opening_quiet_db": 0.3520621315712873,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -3.125786776968617
+            },
+            "side": {
+              "rms_dbfs": -46.24267317454765,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -50.1942804132033,
+                  "quiet_band_power_dbfs": -107.32900950369876,
+                  "above_opening_quiet_db": 57.134729090495455,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -51.18107173464061,
+                  "quiet_band_power_dbfs": -106.31921700462591,
+                  "above_opening_quiet_db": 55.1381452699853,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -57.86427995875304,
+                  "quiet_band_power_dbfs": -103.78273204036817,
+                  "above_opening_quiet_db": 45.918452081615136,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -76.5040163380943,
+                  "quiet_band_power_dbfs": -101.45682289007787,
+                  "above_opening_quiet_db": 24.95280655198357,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -86.22594526620276,
+                  "quiet_band_power_dbfs": -98.56835583827635,
+                  "above_opening_quiet_db": 12.34241057207359,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -97.46783485744643,
+                  "quiet_band_power_dbfs": -97.99562048636061,
+                  "above_opening_quiet_db": 0.5277856289141738,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -93.96357868933319,
+                  "quiet_band_power_dbfs": -93.74525104143002,
+                  "above_opening_quiet_db": -0.21832764790316617,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -93.09214125347808,
+                  "quiet_band_power_dbfs": -92.79014796078877,
+                  "above_opening_quiet_db": -0.3019932926893034,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -103.36447217721697,
+                  "quiet_band_power_dbfs": -104.60610661635039,
+                  "above_opening_quiet_db": 1.2416344391334206,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -2.2136522337600226
+            }
+          },
+          "side_over_mid_db": -2.0962682420311793
+        },
+        "third_gap_later": {
+          "seconds": [
+            10.03,
+            10.38
+          ],
+          "samples": [
+            442323,
+            457758
+          ],
+          "peak": 0.01518429908901453,
+          "exact_zero_sample_values": 0,
+          "channels": {
+            "stereo": {
+              "rms_dbfs": -48.65122042738945,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -52.43267114803332,
+                  "quiet_band_power_dbfs": -103.84447545269722,
+                  "above_opening_quiet_db": 51.4118043046639,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -54.037651922564066,
+                  "quiet_band_power_dbfs": -101.52469631310115,
+                  "above_opening_quiet_db": 47.48704439053708,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -60.50276346860693,
+                  "quiet_band_power_dbfs": -100.27519787336263,
+                  "above_opening_quiet_db": 39.7724344047557,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -79.26090809845792,
+                  "quiet_band_power_dbfs": -97.69767493668522,
+                  "above_opening_quiet_db": 18.4367668382273,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -91.2658657890288,
+                  "quiet_band_power_dbfs": -95.19290400412574,
+                  "above_opening_quiet_db": 3.9270382150969425,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -95.01520589378347,
+                  "quiet_band_power_dbfs": -94.58657127409171,
+                  "above_opening_quiet_db": -0.4286346196917634,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -89.17391748755983,
+                  "quiet_band_power_dbfs": -89.01727255182729,
+                  "above_opening_quiet_db": -0.1566449357325439,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -89.34434755192405,
+                  "quiet_band_power_dbfs": -89.13703128468292,
+                  "above_opening_quiet_db": -0.20731626724112573,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -100.65230288481823,
+                  "quiet_band_power_dbfs": -101.00146514808138,
+                  "above_opening_quiet_db": 0.34916226326315325,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -5.265591704513625
+            },
+            "mid": {
+              "rms_dbfs": -53.64642263238096,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -59.051261238275295,
+                  "quiet_band_power_dbfs": -106.42726568415085,
+                  "above_opening_quiet_db": 47.37600444587556,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -57.213862007531695,
+                  "quiet_band_power_dbfs": -103.27400157393856,
+                  "above_opening_quiet_db": 46.06013956640687,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -64.5096535998413,
+                  "quiet_band_power_dbfs": -102.83938969155139,
+                  "above_opening_quiet_db": 38.32973609171009,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -83.30011349771722,
+                  "quiet_band_power_dbfs": -100.06945823300912,
+                  "above_opening_quiet_db": 16.769344735291895,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -95.36012112142825,
+                  "quiet_band_power_dbfs": -97.86638683270787,
+                  "above_opening_quiet_db": 2.5062657112796245,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -97.61918338252809,
+                  "quiet_band_power_dbfs": -97.23167426311446,
+                  "above_opening_quiet_db": -0.38750911941363597,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -90.91141926142151,
+                  "quiet_band_power_dbfs": -90.79996464801104,
+                  "above_opening_quiet_db": -0.1114546134104728,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -91.69534865395148,
+                  "quiet_band_power_dbfs": -91.58750803522553,
+                  "above_opening_quiet_db": -0.10784061872595885,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -103.52113014633531,
+                  "quiet_band_power_dbfs": -103.48905575419369,
+                  "above_opening_quiet_db": -0.032074392141623775,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -2.0780901978576054
+            },
+            "side": {
+              "rms_dbfs": -50.304326469039566,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -53.49972449163828,
+                  "quiet_band_power_dbfs": -107.32900950369876,
+                  "above_opening_quiet_db": 53.829285012060474,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -56.8881473535075,
+                  "quiet_band_power_dbfs": -106.31921700462591,
+                  "above_opening_quiet_db": 49.43106965111841,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -62.703020465484755,
+                  "quiet_band_power_dbfs": -103.78273204036817,
+                  "above_opening_quiet_db": 41.07971157488342,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -81.43997807391608,
+                  "quiet_band_power_dbfs": -101.45682289007787,
+                  "above_opening_quiet_db": 20.016844816161793,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -93.40943665165537,
+                  "quiet_band_power_dbfs": -98.56835583827635,
+                  "above_opening_quiet_db": 5.158919186620977,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -98.47380455523448,
+                  "quiet_band_power_dbfs": -97.99562048636061,
+                  "above_opening_quiet_db": -0.47818406887387255,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -93.9923336945937,
+                  "quiet_band_power_dbfs": -93.74525104143002,
+                  "above_opening_quiet_db": -0.24708265316367317,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -93.13226319471687,
+                  "quiet_band_power_dbfs": -92.79014796078877,
+                  "above_opening_quiet_db": -0.34211523392809795,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -103.80883967972396,
+                  "quiet_band_power_dbfs": -104.60610661635039,
+                  "above_opening_quiet_db": 0.7972669366264284,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -7.258707367210633
+            }
+          },
+          "side_over_mid_db": 3.3420961633413953
+        },
+        "terminal_diagnostic": {
+          "seconds": [
+            29.96,
+            30.249795918367347
+          ],
+          "samples": [
+            1321236,
+            1334016
+          ],
+          "peak": 0.025052545592188835,
+          "exact_zero_sample_values": 192,
+          "channels": {
+            "stereo": {
+              "rms_dbfs": -45.42487994926819,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -75.37861985974112,
+                  "quiet_band_power_dbfs": -103.84447545269722,
+                  "above_opening_quiet_db": 28.465855592956103,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -85.10281194783188,
+                  "quiet_band_power_dbfs": -101.52469631310115,
+                  "above_opening_quiet_db": 16.421884365269264,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -89.35282567075024,
+                  "quiet_band_power_dbfs": -100.27519787336263,
+                  "above_opening_quiet_db": 10.922372202612394,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -91.60450943297447,
+                  "quiet_band_power_dbfs": -97.69767493668522,
+                  "above_opening_quiet_db": 6.09316550371075,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -92.87367470362882,
+                  "quiet_band_power_dbfs": -95.19290400412574,
+                  "above_opening_quiet_db": 2.3192293004969144,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -94.06758561109682,
+                  "quiet_band_power_dbfs": -94.58657127409171,
+                  "above_opening_quiet_db": 0.5189856629948935,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -89.12393240489618,
+                  "quiet_band_power_dbfs": -89.01727255182729,
+                  "above_opening_quiet_db": -0.1066598530688907,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -88.9265727604392,
+                  "quiet_band_power_dbfs": -89.13703128468292,
+                  "above_opening_quiet_db": 0.21045852424371958,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -99.76548311582516,
+                  "quiet_band_power_dbfs": -101.00146514808138,
+                  "above_opening_quiet_db": 1.2359820322562172,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -15.111177808145491
+            },
+            "mid": {
+              "rms_dbfs": -45.42885716584224,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -75.89070955441859,
+                  "quiet_band_power_dbfs": -106.42726568415085,
+                  "above_opening_quiet_db": 30.53655612973226,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -85.45229000477127,
+                  "quiet_band_power_dbfs": -103.27400157393856,
+                  "above_opening_quiet_db": 17.82171156916729,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -89.71481648293991,
+                  "quiet_band_power_dbfs": -102.83938969155139,
+                  "above_opening_quiet_db": 13.12457320861148,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -92.08843350817368,
+                  "quiet_band_power_dbfs": -100.06945823300912,
+                  "above_opening_quiet_db": 7.981024724835436,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -93.92802648073108,
+                  "quiet_band_power_dbfs": -97.86638683270787,
+                  "above_opening_quiet_db": 3.9383603519767973,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -95.74078706647086,
+                  "quiet_band_power_dbfs": -97.23167426311446,
+                  "above_opening_quiet_db": 1.4908871966435981,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -90.70839083265311,
+                  "quiet_band_power_dbfs": -90.79996464801104,
+                  "above_opening_quiet_db": 0.09157381535793263,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -91.3533122903924,
+                  "quiet_band_power_dbfs": -91.58750803522553,
+                  "above_opening_quiet_db": 0.23419574483313,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -102.56873757579143,
+                  "quiet_band_power_dbfs": -103.48905575419369,
+                  "above_opening_quiet_db": 0.9203181784022547,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -15.115952982202913
+            },
+            "side": {
+              "rms_dbfs": -75.80891911320636,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -84.91653183175501,
+                  "quiet_band_power_dbfs": -107.32900950369876,
+                  "above_opening_quiet_db": 22.412477671943748,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -96.22002325325806,
+                  "quiet_band_power_dbfs": -106.31921700462591,
+                  "above_opening_quiet_db": 10.09919375136785,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -100.32343159961967,
+                  "quiet_band_power_dbfs": -103.78273204036817,
+                  "above_opening_quiet_db": 3.459300440748507,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -101.37429575675611,
+                  "quiet_band_power_dbfs": -101.45682289007787,
+                  "above_opening_quiet_db": 0.08252713332176143,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -99.5381782350222,
+                  "quiet_band_power_dbfs": -98.56835583827635,
+                  "above_opening_quiet_db": -0.9698223967458546,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -99.01972057580055,
+                  "quiet_band_power_dbfs": -97.99562048636061,
+                  "above_opening_quiet_db": -1.0241000894399406,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -94.27113682205291,
+                  "quiet_band_power_dbfs": -93.74525104143002,
+                  "above_opening_quiet_db": -0.525885780622886,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -92.6111999757049,
+                  "quiet_band_power_dbfs": -92.79014796078877,
+                  "above_opening_quiet_db": 0.178947985083866,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -102.99319555046287,
+                  "quiet_band_power_dbfs": -104.60610661635039,
+                  "above_opening_quiet_db": 1.6129110658875163,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -11.600789045115476
+            }
+          },
+          "side_over_mid_db": -30.38006194736412
+        }
+      },
+      "source_gap_duplication_check": {
+        "template_seconds": [
+          2.3,
+          2.9
+        ],
+        "checks": [
+          {
+            "search_seconds": [
+              5.85,
+              6.8
+            ],
+            "best_start_seconds": 5.953990929705215,
+            "stereo_waveform_cosine": 0.7235235080681004,
+            "fixed_gain_relative_residual": 0.7406120240720766
+          },
+          {
+            "search_seconds": [
+              9.6,
+              10.49
+            ],
+            "best_start_seconds": 9.81641723356009,
+            "stereo_waveform_cosine": 0.3985135739355067,
+            "fixed_gain_relative_residual": 1.3417201359239919
+          }
+        ],
+        "limitation": "Only tests close waveform duplication inside the declared gaps; a low cosine does not prove independent performances or eliminate common phrase/excitation structure."
+      }
+    },
+    "lead-07": {
+      "name": "Ambient SQR",
+      "recording": {
+        "id": "lead-07",
+        "title": "Ambient SQR",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_AmbientSQR.mp3",
+        "local_filename": "TOP8_AmbientSQR.mp3",
+        "sha256": "d113bb3d65c34bb6827d29561e29dd9c9d4a6236143d5528685643f84a86e565",
+        "size_bytes": 468139,
+        "bank_id": "lead",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 7,
+        "patch_name": "Ambient SQR",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+      },
+      "bank": {
+        "id": "lead",
+        "category": "LEAD",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/shl/SH-201_Patch_LEAD.zip",
+        "local_filename": "SH-201_Patch_LEAD.zip",
+        "sha256": "102c47ee393c09115779172b8cbbb2c2f2563e0b4fdb2f57e0c8fca2a23c3b29",
+        "size_bytes": 42223,
+        "archive_member": "SH-201_Patch_LEAD/100_LEAD.shl",
+        "bank_sha256": "d6649236cd89c1652480f9ae194bc20f0a3e33e147cb16828216871fba35b26c",
+        "patch_count": 100,
+        "parameter_blocks_per_patch": 22,
+        "contains_original_performance_midi": false
+      },
+      "decoded": {
+        "keyboardMode": 1,
+        "keyboardPart": 0,
+        "splitPoint": 53,
+        "patchLevel": 127,
+        "toneBalance": 0,
+        "tempo": 120,
+        "delayOn": 1,
+        "reverbOn": 1,
+        "modulationAssign": 0,
+        "modulationDestination": 2,
+        "pitchBendDestination": 2,
+        "arpeggioOn": 0,
+        "delayTime": 83,
+        "delayFeedback": 20,
+        "delayModulationDepth": 10,
+        "reverbPreDelay": 10,
+        "upper": {
+          "pitchEnvAttack": 0,
+          "pitchEnvDecay": 0,
+          "mixType": 0,
+          "balance": -1,
+          "lowFreq": 0,
+          "filterType": 1,
+          "filterSlope": 0,
+          "cutoff": 11,
+          "keyFollow": 110,
+          "cutoffVelocitySens": 0,
+          "resonance": 0,
+          "filterEnvAttack": 5,
+          "filterEnvDecay": 48,
+          "filterEnvSustain": 99,
+          "filterEnvRelease": 74,
+          "filterEnvDepth": 20,
+          "overdrive": 1,
+          "drive": 30,
+          "level": 89,
+          "levelVelocitySens": 0,
+          "pan": 0,
+          "ampEnvAttack": 23,
+          "ampEnvDecay": 72,
+          "ampEnvSustain": 118,
+          "ampEnvRelease": 30,
+          "delayDepth": 40,
+          "reverbDepth": 43,
+          "bendRange": 2,
+          "octaveShift": 0,
+          "portamento": 1,
+          "portamentoTime": 20,
+          "mono": 1,
+          "osc1": {
+            "wave": 1,
+            "pitchWide": 0,
+            "coarse": 0,
+            "fine": 1,
+            "pulseWidth": 64,
+            "pitchEnvDepth": 0,
+            "decoded_by_current_codec": true,
+            "wave_name": "Square",
+            "signed_coarse_raw": 0,
+            "coarse_units": "physical semitones, current SysEx codec",
+            "net_coarse_and_tone_octave_semitones": 0,
+            "mixed_in": true
+          },
+          "osc2": {
+            "wave": 1,
+            "pitchWide": 0,
+            "coarse": 0,
+            "fine": -3,
+            "pulseWidth": 64,
+            "pitchEnvDepth": 0,
+            "decoded_by_current_codec": true,
+            "wave_name": "Square",
+            "signed_coarse_raw": 0,
+            "coarse_units": "physical semitones, current SysEx codec",
+            "net_coarse_and_tone_octave_semitones": 0,
+            "mixed_in": true
+          },
+          "lfo1": {
+            "shape": 0,
+            "rate": 92,
+            "tempoSync": 0,
+            "tempoSyncNote": 17,
+            "fadeTime": 0,
+            "keyTrigger": 0,
+            "destination1": 2,
+            "depth1": 0,
+            "destination2": 2,
+            "depth2": 0,
+            "decoded_by_current_codec": true
+          },
+          "lfo2": {
+            "shape": 0,
+            "rate": 92,
+            "tempoSync": 0,
+            "tempoSyncNote": 17,
+            "fadeTime": 0,
+            "keyTrigger": 0,
+            "destination1": 2,
+            "depth1": 0,
+            "destination2": 2,
+            "depth2": 0,
+            "decoded_by_current_codec": true
+          },
+          "active_by_keyboard_mode": true,
+          "filter_lfo_depths": [
+            0,
+            0
+          ],
+          "zero_filter_envelope_lfo_and_velocity": false,
+          "active_effect_sends": {
+            "delay": 40,
+            "reverb": 43
+          }
+        },
+        "lower": {
+          "pitchEnvAttack": 0,
+          "pitchEnvDecay": 0,
+          "mixType": 0,
+          "balance": 0,
+          "lowFreq": 0,
+          "filterType": 1,
+          "filterSlope": 0,
+          "cutoff": 101,
+          "keyFollow": 0,
+          "cutoffVelocitySens": 0,
+          "resonance": 0,
+          "filterEnvAttack": 0,
+          "filterEnvDecay": 0,
+          "filterEnvSustain": 0,
+          "filterEnvRelease": 44,
+          "filterEnvDepth": 0,
+          "overdrive": 0,
+          "drive": 100,
+          "level": 76,
+          "levelVelocitySens": 8,
+          "pan": 0,
+          "ampEnvAttack": 76,
+          "ampEnvDecay": 127,
+          "ampEnvSustain": 100,
+          "ampEnvRelease": 22,
+          "delayDepth": 40,
+          "reverbDepth": 112,
+          "bendRange": 2,
+          "octaveShift": 0,
+          "portamento": 0,
+          "portamentoTime": 20,
+          "mono": 2,
+          "osc1": {
+            "wave": 4,
+            "pitchWide": 0,
+            "coarse": 0,
+            "fine": -5,
+            "pulseWidth": 64,
+            "pitchEnvDepth": 0,
+            "decoded_by_current_codec": true,
+            "wave_name": "Sine",
+            "signed_coarse_raw": 0,
+            "coarse_units": "physical semitones, current SysEx codec",
+            "net_coarse_and_tone_octave_semitones": 0,
+            "mixed_in": true
+          },
+          "osc2": {
+            "wave": 4,
+            "pitchWide": 0,
+            "coarse": 0,
+            "fine": 6,
+            "pulseWidth": 64,
+            "pitchEnvDepth": 0,
+            "decoded_by_current_codec": true,
+            "wave_name": "Sine",
+            "signed_coarse_raw": 0,
+            "coarse_units": "physical semitones, current SysEx codec",
+            "net_coarse_and_tone_octave_semitones": 0,
+            "mixed_in": true
+          },
+          "lfo1": {
+            "shape": 0,
+            "rate": 92,
+            "tempoSync": 0,
+            "tempoSyncNote": 17,
+            "fadeTime": 0,
+            "keyTrigger": 0,
+            "destination1": 2,
+            "depth1": 0,
+            "destination2": 2,
+            "depth2": 0,
+            "decoded_by_current_codec": true
+          },
+          "lfo2": {
+            "shape": 0,
+            "rate": 92,
+            "tempoSync": 0,
+            "tempoSyncNote": 17,
+            "fadeTime": 0,
+            "keyTrigger": 0,
+            "destination1": 2,
+            "depth1": 0,
+            "destination2": 2,
+            "depth2": 0,
+            "decoded_by_current_codec": true
+          },
+          "active_by_keyboard_mode": true,
+          "filter_lfo_depths": [
+            0,
+            0
+          ],
+          "zero_filter_envelope_lfo_and_velocity": true,
+          "active_effect_sends": {
+            "delay": 40,
+            "reverb": 112
+          }
+        }
+      },
+      "unmodified_sysex_sha256": "1e420e8a04502d790a1018f4547167377bdfd4470e21bb6602853d09218aff07",
+      "raw_delay": [
+        83,
+        59,
+        9,
+        5,
+        10
+      ],
+      "raw_reverb": [
+        89,
+        10,
+        7,
+        19,
+        127,
+        127,
+        19,
+        36,
+        0,
+        28
+      ],
+      "physical_reverb": {
+        "time_raw": 89,
+        "pre_delay_ms": 1,
+        "size": 8,
+        "high_cut_hz": 12500,
+        "density": 127,
+        "diffusion": 127,
+        "lf_frequency_hz": 4000,
+        "lf_gain_db": 0,
+        "hf_frequency_hz": 4000,
+        "hf_gain_db": -8
+      },
+      "decode_command": [
+        "/opt/homebrew/bin/ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/sources/TOP8_AmbientSQR.mp3",
+        "-c:a",
+        "pcm_f32le",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/reverb-damped-tail-feasibility/run-01/lead-07/hardware-full.wav"
+      ],
+      "decoded_sha256": "ccde7bbc4aceb5b8653a9cdad60a77c40fd6a472bd6c1ea75667c9fc4dcb4fc7",
+      "sample_rate": 44100,
+      "sample_count": 645120,
+      "duration_seconds": 14.628571428571428,
+      "quiet_reference_seconds": [
+        0.03,
+        0.07
+      ],
+      "quiet_reference_rms_dbfs": -75.1029058446448,
+      "last_10_stereo_samples": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "windows": {
+        "training": {
+          "seconds": [
+            11.65,
+            12.15
+          ],
+          "samples": [
+            513765,
+            535815
+          ],
+          "peak": 0.04675113037228584,
+          "exact_zero_sample_values": 0,
+          "channels": {
+            "stereo": {
+              "rms_dbfs": -36.37042314242136,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -84.92511467485905,
+                  "quiet_band_power_dbfs": -98.63777332974011,
+                  "above_opening_quiet_db": 13.712658654881068,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -78.25685967757515,
+                  "quiet_band_power_dbfs": -95.83737601288036,
+                  "above_opening_quiet_db": 17.580516335305205,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -36.86979019636743,
+                  "quiet_band_power_dbfs": -94.41007628324559,
+                  "above_opening_quiet_db": 57.540286086878154,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -47.76808025397607,
+                  "quiet_band_power_dbfs": -82.95875109477657,
+                  "above_opening_quiet_db": 35.1906708408005,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -55.45285303290983,
+                  "quiet_band_power_dbfs": -87.02454068042118,
+                  "above_opening_quiet_db": 31.571687647511354,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -64.07005339720936,
+                  "quiet_band_power_dbfs": -87.71464016914476,
+                  "above_opening_quiet_db": 23.644586771935394,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -69.25223150714805,
+                  "quiet_band_power_dbfs": -82.21620887377125,
+                  "above_opening_quiet_db": 12.963977366623197,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -80.66783957203714,
+                  "quiet_band_power_dbfs": -82.7251355563875,
+                  "above_opening_quiet_db": 2.057295984350361,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -91.7132095826959,
+                  "quiet_band_power_dbfs": -93.49614103158807,
+                  "above_opening_quiet_db": 1.782931448892171,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -3.3677348269411382
+            },
+            "mid": {
+              "rms_dbfs": -38.71057891408094,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -85.8887259347795,
+                  "quiet_band_power_dbfs": -103.50534471601725,
+                  "above_opening_quiet_db": 17.616618781237747,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -79.33877724993243,
+                  "quiet_band_power_dbfs": -98.30827079659605,
+                  "above_opening_quiet_db": 18.969493546663614,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -39.325522508481484,
+                  "quiet_band_power_dbfs": -96.38610676985587,
+                  "above_opening_quiet_db": 57.06058426137439,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -50.37616696924151,
+                  "quiet_band_power_dbfs": -83.59680533576312,
+                  "above_opening_quiet_db": 33.22063836652161,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -58.43042110711269,
+                  "quiet_band_power_dbfs": -88.43505622032508,
+                  "above_opening_quiet_db": 30.004635113212387,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -68.61566994325202,
+                  "quiet_band_power_dbfs": -89.44553990409466,
+                  "above_opening_quiet_db": 20.829869960842643,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -71.16164012956988,
+                  "quiet_band_power_dbfs": -83.68824270104555,
+                  "above_opening_quiet_db": 12.526602571475678,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -82.16959216066164,
+                  "quiet_band_power_dbfs": -84.44916807401897,
+                  "above_opening_quiet_db": 2.279575913357334,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -94.09088056165652,
+                  "quiet_band_power_dbfs": -95.81369123334002,
+                  "above_opening_quiet_db": 1.7228106716835043,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -1.9329359036881115
+            },
+            "side": {
+              "rms_dbfs": -40.17348254064106,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -91.93683983459265,
+                  "quiet_band_power_dbfs": -100.35129655341629,
+                  "above_opening_quiet_db": 8.414456718823644,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -84.8224952958914,
+                  "quiet_band_power_dbfs": -99.46370610220214,
+                  "above_opening_quiet_db": 14.641210806310738,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -40.515984193547546,
+                  "quiet_band_power_dbfs": -98.78060058404309,
+                  "above_opening_quiet_db": 58.26461639049554,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -51.22168125380989,
+                  "quiet_band_power_dbfs": -91.60314014723873,
+                  "above_opening_quiet_db": 40.38145889342884,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -58.496133440048645,
+                  "quiet_band_power_dbfs": -92.59479157221773,
+                  "above_opening_quiet_db": 34.098658132169085,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -65.94831632257123,
+                  "quiet_band_power_dbfs": -92.5465079181258,
+                  "above_opening_quiet_db": 26.598191595554567,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -73.74086772691746,
+                  "quiet_band_power_dbfs": -87.63012155797257,
+                  "above_opening_quiet_db": 13.889253831055115,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -86.00895939793496,
+                  "quiet_band_power_dbfs": -87.57106131088435,
+                  "above_opening_quiet_db": 1.5621019129493874,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -95.46426691405001,
+                  "quiet_band_power_dbfs": -97.33105916682453,
+                  "above_opening_quiet_db": 1.8667922527745162,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -5.755682225423051
+            }
+          },
+          "side_over_mid_db": -1.46290362656012
+        },
+        "later_check": {
+          "seconds": [
+            12.15,
+            12.65
+          ],
+          "samples": [
+            535815,
+            557865
+          ],
+          "peak": 0.014560036361217499,
+          "exact_zero_sample_values": 0,
+          "channels": {
+            "stereo": {
+              "rms_dbfs": -46.329213406923635,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -92.694579877521,
+                  "quiet_band_power_dbfs": -98.63777332974011,
+                  "above_opening_quiet_db": 5.94319345221912,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -84.4928052688912,
+                  "quiet_band_power_dbfs": -95.83737601288036,
+                  "above_opening_quiet_db": 11.344570743989152,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -46.875708196542845,
+                  "quiet_band_power_dbfs": -94.41007628324559,
+                  "above_opening_quiet_db": 47.53436808670274,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -57.40105494578992,
+                  "quiet_band_power_dbfs": -82.95875109477657,
+                  "above_opening_quiet_db": 25.55769614898665,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -66.42432355421866,
+                  "quiet_band_power_dbfs": -87.02454068042118,
+                  "above_opening_quiet_db": 20.600217126202523,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -75.53868988051687,
+                  "quiet_band_power_dbfs": -87.71464016914476,
+                  "above_opening_quiet_db": 12.175950288627888,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -77.38418486136952,
+                  "quiet_band_power_dbfs": -82.21620887377125,
+                  "above_opening_quiet_db": 4.832024012401732,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -82.22839191334731,
+                  "quiet_band_power_dbfs": -82.7251355563875,
+                  "above_opening_quiet_db": 0.49674364304019036,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -92.31633186977575,
+                  "quiet_band_power_dbfs": -93.49614103158807,
+                  "above_opening_quiet_db": 1.1798091618123152,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -4.519528464053167
+            },
+            "mid": {
+              "rms_dbfs": -49.86370918065077,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -94.17836355923343,
+                  "quiet_band_power_dbfs": -103.50534471601725,
+                  "above_opening_quiet_db": 9.326981156783816,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -87.35301604372829,
+                  "quiet_band_power_dbfs": -98.30827079659605,
+                  "above_opening_quiet_db": 10.95525475286776,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -50.33026428687249,
+                  "quiet_band_power_dbfs": -96.38610676985587,
+                  "above_opening_quiet_db": 46.05584248298338,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -59.922617072287494,
+                  "quiet_band_power_dbfs": -83.59680533576312,
+                  "above_opening_quiet_db": 23.674188263475628,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -68.83766699635319,
+                  "quiet_band_power_dbfs": -88.43505622032508,
+                  "above_opening_quiet_db": 19.597389223971888,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -77.3733176473286,
+                  "quiet_band_power_dbfs": -89.44553990409466,
+                  "above_opening_quiet_db": 12.072222256766054,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -78.67868287469693,
+                  "quiet_band_power_dbfs": -83.68824270104555,
+                  "above_opening_quiet_db": 5.009559826348621,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -83.88027085115141,
+                  "quiet_band_power_dbfs": -84.44916807401897,
+                  "above_opening_quiet_db": 0.5688972228675624,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -94.69925255713335,
+                  "quiet_band_power_dbfs": -95.81369123334002,
+                  "above_opening_quiet_db": 1.1144386762066745,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -4.780536511400605
+            },
+            "side": {
+              "rms_dbfs": -48.87182853270285,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -98.07950691974014,
+                  "quiet_band_power_dbfs": -100.35129655341629,
+                  "above_opening_quiet_db": 2.27178963367615,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -87.65856763503612,
+                  "quiet_band_power_dbfs": -99.46370610220214,
+                  "above_opening_quiet_db": 11.805138467166017,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -49.483008941676914,
+                  "quiet_band_power_dbfs": -98.78060058404309,
+                  "above_opening_quiet_db": 49.29759164236617,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -60.96215089155082,
+                  "quiet_band_power_dbfs": -91.60314014723873,
+                  "above_opening_quiet_db": 30.640989255687913,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -70.12691193354053,
+                  "quiet_band_power_dbfs": -92.59479157221773,
+                  "above_opening_quiet_db": 22.467879638677204,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -80.1661227384438,
+                  "quiet_band_power_dbfs": -92.5465079181258,
+                  "above_opening_quiet_db": 12.380385179681994,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -83.27219790293093,
+                  "quiet_band_power_dbfs": -87.63012155797257,
+                  "above_opening_quiet_db": 4.357923655041645,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -87.22624435584238,
+                  "quiet_band_power_dbfs": -87.57106131088435,
+                  "above_opening_quiet_db": 0.3448169550419635,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -96.06019716756622,
+                  "quiet_band_power_dbfs": -97.33105916682453,
+                  "above_opening_quiet_db": 1.2708619992583152,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -4.317059855460741
+            }
+          },
+          "side_over_mid_db": 0.991880647947923
+        },
+        "late_sensitivity": {
+          "seconds": [
+            12.65,
+            13.15
+          ],
+          "samples": [
+            557865,
+            579915
+          ],
+          "peak": 0.00448137242347002,
+          "exact_zero_sample_values": 0,
+          "channels": {
+            "stereo": {
+              "rms_dbfs": -56.59638865218949,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -95.8384102520489,
+                  "quiet_band_power_dbfs": -98.63777332974011,
+                  "above_opening_quiet_db": 2.7993630776912113,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -91.94133996159496,
+                  "quiet_band_power_dbfs": -95.83737601288036,
+                  "above_opening_quiet_db": 3.8960360512853924,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -57.30606559407356,
+                  "quiet_band_power_dbfs": -94.41007628324559,
+                  "above_opening_quiet_db": 37.10401068917203,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -65.93956404800873,
+                  "quiet_band_power_dbfs": -82.95875109477657,
+                  "above_opening_quiet_db": 17.01918704676784,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -73.99947442027114,
+                  "quiet_band_power_dbfs": -87.02454068042118,
+                  "above_opening_quiet_db": 13.02506626015004,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -84.55893886873392,
+                  "quiet_band_power_dbfs": -87.71464016914476,
+                  "above_opening_quiet_db": 3.15570130041084,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -81.4665564948399,
+                  "quiet_band_power_dbfs": -82.21620887377125,
+                  "above_opening_quiet_db": 0.7496523789313443,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -82.55764843411585,
+                  "quiet_band_power_dbfs": -82.7251355563875,
+                  "above_opening_quiet_db": 0.16748712227165186,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -92.75086048458681,
+                  "quiet_band_power_dbfs": -93.49614103158807,
+                  "above_opening_quiet_db": 0.7452805470012578,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -2.401893972843645
+            },
+            "mid": {
+              "rms_dbfs": -59.79619025073583,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -98.15370550069012,
+                  "quiet_band_power_dbfs": -103.50534471601725,
+                  "above_opening_quiet_db": 5.3516392153271255,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -95.08522374654761,
+                  "quiet_band_power_dbfs": -98.30827079659605,
+                  "above_opening_quiet_db": 3.223047050048436,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -60.76917263928368,
+                  "quiet_band_power_dbfs": -96.38610676985587,
+                  "above_opening_quiet_db": 35.61693413057219,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -68.26942795178537,
+                  "quiet_band_power_dbfs": -83.59680533576312,
+                  "above_opening_quiet_db": 15.327377383977748,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -75.83213687401181,
+                  "quiet_band_power_dbfs": -88.43505622032508,
+                  "above_opening_quiet_db": 12.602919346313271,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -86.35769497159048,
+                  "quiet_band_power_dbfs": -89.44553990409466,
+                  "above_opening_quiet_db": 3.087844932504183,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -82.88734613883592,
+                  "quiet_band_power_dbfs": -83.68824270104555,
+                  "above_opening_quiet_db": 0.8008965622096298,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -84.41144913412043,
+                  "quiet_band_power_dbfs": -84.44916807401897,
+                  "above_opening_quiet_db": 0.03771893989853936,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -95.17210182005189,
+                  "quiet_band_power_dbfs": -95.81369123334002,
+                  "above_opening_quiet_db": 0.6415894132881306,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -2.9016049376437962
+            },
+            "side": {
+              "rms_dbfs": -59.425111187119086,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -99.67652836571331,
+                  "quiet_band_power_dbfs": -100.35129655341629,
+                  "above_opening_quiet_db": 0.6747681877029805,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -94.82204265290876,
+                  "quiet_band_power_dbfs": -99.46370610220214,
+                  "above_opening_quiet_db": 4.641663449293375,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -59.906343537349976,
+                  "quiet_band_power_dbfs": -98.78060058404309,
+                  "above_opening_quiet_db": 38.87425704669311,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -69.75707857004193,
+                  "quiet_band_power_dbfs": -91.60314014723873,
+                  "above_opening_quiet_db": 21.846061577196807,
+                  "coverage_20db_guard": true
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -78.63064836307845,
+                  "quiet_band_power_dbfs": -92.59479157221773,
+                  "above_opening_quiet_db": 13.96414320913928,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -89.25543953305004,
+                  "quiet_band_power_dbfs": -92.5465079181258,
+                  "above_opening_quiet_db": 3.2910683850757607,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -87.01014677061724,
+                  "quiet_band_power_dbfs": -87.63012155797257,
+                  "above_opening_quiet_db": 0.6199747873553321,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -87.14884051713354,
+                  "quiet_band_power_dbfs": -87.57106131088435,
+                  "above_opening_quiet_db": 0.42222079375081023,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -96.44284386654327,
+                  "quiet_band_power_dbfs": -97.33105916682453,
+                  "above_opening_quiet_db": 0.8882153002812601,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -1.9564528611550784
+            }
+          },
+          "side_over_mid_db": 0.37107906361674736
+        },
+        "terminal_floor_diagnostic": {
+          "seconds": [
+            13.8,
+            14.55
+          ],
+          "samples": [
+            608580,
+            641655
+          ],
+          "peak": 0.000997291412204504,
+          "exact_zero_sample_values": 0,
+          "channels": {
+            "stereo": {
+              "rms_dbfs": -72.49338790480974,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -95.71327648852272,
+                  "quiet_band_power_dbfs": -98.63777332974011,
+                  "above_opening_quiet_db": 2.9244968412173904,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -94.6081429789516,
+                  "quiet_band_power_dbfs": -95.83737601288036,
+                  "above_opening_quiet_db": 1.2292330339287503,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -83.77416462805728,
+                  "quiet_band_power_dbfs": -94.41007628324559,
+                  "above_opening_quiet_db": 10.635911655188309,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -89.88431970852098,
+                  "quiet_band_power_dbfs": -82.95875109477657,
+                  "above_opening_quiet_db": -6.925568613744403,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -88.3050448644916,
+                  "quiet_band_power_dbfs": -87.02454068042118,
+                  "above_opening_quiet_db": -1.2805041840704234,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -88.24804304945397,
+                  "quiet_band_power_dbfs": -87.71464016914476,
+                  "above_opening_quiet_db": -0.533402880309211,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -82.2137046681419,
+                  "quiet_band_power_dbfs": -82.21620887377125,
+                  "above_opening_quiet_db": 0.0025042056293500536,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -82.54745553116292,
+                  "quiet_band_power_dbfs": -82.7251355563875,
+                  "above_opening_quiet_db": 0.17768002522457493,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -92.67043448560288,
+                  "quiet_band_power_dbfs": -93.49614103158807,
+                  "above_opening_quiet_db": 0.8257065459851844,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -5.327855432369603
+            },
+            "mid": {
+              "rms_dbfs": -73.32964376043181,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -98.0811676973167,
+                  "quiet_band_power_dbfs": -103.50534471601725,
+                  "above_opening_quiet_db": 5.424177018700547,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -96.89182872797355,
+                  "quiet_band_power_dbfs": -98.30827079659605,
+                  "above_opening_quiet_db": 1.4164420686225014,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -88.41994276162995,
+                  "quiet_band_power_dbfs": -96.38610676985587,
+                  "above_opening_quiet_db": 7.966164008225917,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -93.10880118202607,
+                  "quiet_band_power_dbfs": -83.59680533576312,
+                  "above_opening_quiet_db": -9.511995846262948,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -90.47146070235854,
+                  "quiet_band_power_dbfs": -88.43505622032508,
+                  "above_opening_quiet_db": -2.0364044820334612,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -90.50925196317698,
+                  "quiet_band_power_dbfs": -89.44553990409466,
+                  "above_opening_quiet_db": -1.0637120590823201,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -83.7563855232962,
+                  "quiet_band_power_dbfs": -83.68824270104555,
+                  "above_opening_quiet_db": -0.06814282225064971,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -84.31469238735093,
+                  "quiet_band_power_dbfs": -84.44916807401897,
+                  "above_opening_quiet_db": 0.13447568666803988,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -95.34743784203948,
+                  "quiet_band_power_dbfs": -95.81369123334002,
+                  "above_opening_quiet_db": 0.46625339130054044,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -5.979319809705245
+            },
+            "side": {
+              "rms_dbfs": -80.05925991328337,
+              "bands": [
+                {
+                  "hz": [
+                    80,
+                    160
+                  ],
+                  "band_power_dbfs": -99.47778712076632,
+                  "quiet_band_power_dbfs": -100.35129655341629,
+                  "above_opening_quiet_db": 0.8735094326499677,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    160,
+                    320
+                  ],
+                  "band_power_dbfs": -98.49154496599256,
+                  "quiet_band_power_dbfs": -99.46370610220214,
+                  "above_opening_quiet_db": 0.9721611362095786,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    320,
+                    640
+                  ],
+                  "band_power_dbfs": -85.5991796798523,
+                  "quiet_band_power_dbfs": -98.78060058404309,
+                  "above_opening_quiet_db": 13.181420904190787,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    640,
+                    1280
+                  ],
+                  "band_power_dbfs": -92.69050637190861,
+                  "quiet_band_power_dbfs": -91.60314014723873,
+                  "above_opening_quiet_db": -1.0873662246698785,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    1280,
+                    2560
+                  ],
+                  "band_power_dbfs": -92.36374211926608,
+                  "quiet_band_power_dbfs": -92.59479157221773,
+                  "above_opening_quiet_db": 0.2310494529516518,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    2560,
+                    4000
+                  ],
+                  "band_power_dbfs": -92.16413878937858,
+                  "quiet_band_power_dbfs": -92.5465079181258,
+                  "above_opening_quiet_db": 0.3823691287472144,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    4000,
+                    8000
+                  ],
+                  "band_power_dbfs": -87.45731860363789,
+                  "quiet_band_power_dbfs": -87.63012155797257,
+                  "above_opening_quiet_db": 0.17280295433468496,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    8000,
+                    12500
+                  ],
+                  "band_power_dbfs": -87.30604710871214,
+                  "quiet_band_power_dbfs": -87.57106131088435,
+                  "above_opening_quiet_db": 0.2650142021722104,
+                  "coverage_20db_guard": false
+                },
+                {
+                  "hz": [
+                    12500,
+                    18000
+                  ],
+                  "band_power_dbfs": -96.04175182990463,
+                  "quiet_band_power_dbfs": -97.33105916682453,
+                  "above_opening_quiet_db": 1.2893073369199044,
+                  "coverage_20db_guard": false
+                }
+              ],
+              "second_over_first_half_level_db": -2.774345436609721
+            }
+          },
+          "side_over_mid_db": -6.729616152851563
+        }
+      }
+    }
+  },
+  "full_results": {
+    "path": "build-fidelity/reverb-damped-tail-feasibility/run-01/results.json",
+    "sha256": "6efda9776638b4417f56dd7440900a36b6b6e00f758ba619dcc7079c28422a90"
+  },
+  "manual": {
+    "url": "https://static.roland.com/assets/media/pdf/SH-201_OM.pdf#page=63",
+    "local_pdf": "build-fidelity/public-waveforms/synth-love/SH-201_OM.pdf",
+    "sha256": "b4a2968d429c7f3e907a6243723d5e803ae2e0014e8e9107c85bd966deea8e79",
+    "printed_page": 63,
+    "visual_render_sha256": "ad4638de638e0e0e76ad83f32bf47a8dc80ce3efcc0ad9c8842d2539058ad988",
+    "gain_range_db": [
+      -36,
+      0
+    ],
+    "hf_gain_exact_wording": "Adjusts the amount of damping applied to the high-frequency range.",
+    "lf_gain_exact_wording": "Adjusts the amount of damping applied to the low-frequency range.",
+    "observation": "Frequencies delimit the low/high range being reduced. HIGH CUT separately controls treble reduction. No internal placement or per-loop attenuation is specified.",
+    "unverified_model_assumptions": [
+      "Feedback-network topology",
+      "First-order shelf order and transition",
+      "Per-loop application of dB gain",
+      "Damping-to-decay-time relationship"
+    ]
+  },
+  "inspection": {
+    "club": {
+      "direct_break_brackets_seconds": [
+        [
+          2.19,
+          2.23
+        ],
+        [
+          5.83,
+          5.88
+        ],
+        [
+          9.56,
+          9.62
+        ]
+      ],
+      "note_offs": "Unrecovered; these are source level/spectrum breaks, not authenticated MIDI release times. Stored AMP release0 and no active delay improve conditional reverb attribution.",
+      "later_gaps": "Additional checks retained unchanged. Waveform similarity0.724/0.399 to first tail does not establish independent performance, and no scalar gain was fitted.",
+      "ending": "Final direct sound remains until around29.94s; only about0.3s of residual is available before the30.2498s file end and terminal digital zeros. The terminal side-energy behavior differs markedly from earlier tails. This is unsuitable for a sustained tail slope; the zeros may include codec padding and do not independently identify an edit, gate, FX switch or fade.",
+      "active_patch": "Dual layers; both centered, both AMP release0. Only Upper sends to reverb50; Lower0. Delay switch off despite stored sends. Upper drive70, cutoffLFO34; no dry-note constant-spectrum assertion."
+    },
+    "ambient": {
+      "obvious_direct_level_decline_bracket_seconds": [
+        10.75,
+        11.15
+      ],
+      "note_offs": "Unrecovered. Continuing side lobes and harmonic groups can include AMP release and active delay, even after the conservative direct-level decline.",
+      "delay": "Both sends40, feedback+20%, TIMEraw83, HF DAMPraw9=1600Hz; no delay-time conversion or decay fit.",
+      "ending": "Lower-band energy persists while upper bands approach same-file quiet level; selected support ends before final near-floor/codec padding. Smooth mastering fade cannot be excluded.",
+      "active_patch": "Dual centered layers. Upper square pair driven30, AMP23/72/118/30; Lower sine pair AMP76/127/100/22. Reverb sends43/112. Stored filter and layer release behavior remains a confound."
+    }
+  },
+  "feasibility": {
+    "answer": "Neither selected late-tail support identifies HF damping above the4kHz corner. Club supports conditional low-band reverb-tail checks; Ambient supports conditional combined-effects checks.",
+    "club_primary_common_coverage_hz": [
+      80,
+      640
+    ],
+    "ambient_primary_common_coverage_hz": [
+      320,
+      1280
+    ],
+    "coverage_scope": "Both training/check and stereo/mid/side must exceed frozen20dB opening-quiet band guard. Check per-channel tables; this is descriptive detectability, not calibrated SNR or a perceptual threshold.",
+    "no_fits_performed": true,
+    "no_model_audio_opened": true,
+    "no_new_dsp_law": true,
+    "future_protocol": "Keep frozen intervals and all later-gap/low-level diagnostics. Do not select new intervals by candidate fit. Any later damping hypothesis must account for initial spectral state, direct release, excitation history, delay and common output/capture filtering; no direct cross-preset attenuation division because TIME77/89 and source spectra differ.",
+    "ambient_stereo_and_side_coverage_hz": [
+      320,
+      2560
+    ]
+  },
+  "plots": {
+    "Docs/fidelity/plots/damped-reverb-tail-coverage.png": "cdc939ccc7c274f084c0a8adf58faf73ee5bb7b191661284c702bffa591d12a1",
+    "Docs/fidelity/plots/damped-reverb-complete-source.png": "f80492db1d2c479581b165977135bfe086fe3dba289307e255d12d79ecf09edc"
+  },
+  "numerical_method_guard": {
+    "sinusoid_hz": 4306.640625,
+    "expected_power": 0.005,
+    "measured_band_power": 0.005000000000000001,
+    "planted_power_ratio_db": 20,
+    "measured_power_ratio_db": 20.0,
+    "identical_channels_side_exact_zero": true,
+    "opposite_channels_mid_exact_zero": true
+  }
+}

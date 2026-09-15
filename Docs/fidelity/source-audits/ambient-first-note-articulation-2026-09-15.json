@@ -1,0 +1,2322 @@
+{
+  "schema_version": 1,
+  "protocol": {
+    "windows_seconds": [
+      [
+        0.11,
+        0.16
+      ],
+      [
+        0.22,
+        0.27
+      ],
+      [
+        0.3,
+        0.35
+      ],
+      [
+        0.36,
+        0.4
+      ]
+    ],
+    "note_hypothesis": 74,
+    "f0_hz": 587.3295358348151,
+    "candidate_audio_or_new_candidate_scores_consulted": false,
+    "context": "Source-only follow-up after earlier gain outcomes existed; no engine/candidate audio or scores read for this task, no canonical MIDI edit.",
+    "measurement": "Fixed full-rate stereo windows. Harmonic-family energy \u00b1100Hz; interpolated interior FFT peak and half-power width. Joint nominal harmonics H1\u201315 with linear complex amplitude and DC/slope, without separating unresolved fine-tuned oscillators.",
+    "eligibility": "At least12dB peak above median bins120\u2013220Hz away, and family level at least\u221255dB relative toH1. Weak rows retained.",
+    "uncertainty": "40\u201350ms windows have20\u201325Hz native bins; zero padding does not improve resolving power. Fitted L/R phase and side fraction are descriptions, not a dry/wet separator. Raw release values have no identified seconds mapping here."
+  },
+  "source": {
+    "path": "build-fidelity/hardware-benchmark/sources/TOP8_AmbientSQR.mp3",
+    "sha256": "d113bb3d65c34bb6827d29561e29dd9c9d4a6236143d5528685643f84a86e565",
+    "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_AmbientSQR.mp3"
+  },
+  "bank": {
+    "path": "build-fidelity/hardware-benchmark/sources/SH-201_Patch_LEAD.zip",
+    "sha256": "102c47ee393c09115779172b8cbbb2c2f2563e0b4fdb2f57e0c8fca2a23c3b29",
+    "member": "SH-201_Patch_LEAD/100_LEAD.shl",
+    "member_sha256": "d6649236cd89c1652480f9ae194bc20f0a3e33e147cb16828216871fba35b26c"
+  },
+  "patch": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/reverb-reference-expansion/ambient-first-note/run-03/original-patch.syx",
+    "sha256": "1e420e8a04502d790a1018f4547167377bdfd4470e21bb6602853d09218aff07",
+    "raw_reverb": [
+      89,
+      10,
+      7,
+      19,
+      127,
+      127,
+      19,
+      36,
+      0,
+      28
+    ],
+    "decoded": {
+      "keyboardMode": 1,
+      "keyboardPart": 0,
+      "splitPoint": 53,
+      "patchLevel": 127,
+      "toneBalance": 0,
+      "tempo": 120,
+      "delayOn": 1,
+      "reverbOn": 1,
+      "modulationAssign": 0,
+      "modulationDestination": 2,
+      "pitchBendDestination": 2,
+      "arpeggioOn": 0,
+      "delayTime": 83,
+      "delayFeedback": 20,
+      "delayModulationDepth": 10,
+      "reverbPreDelay": 10,
+      "upper": {
+        "pitchEnvAttack": 0,
+        "pitchEnvDecay": 0,
+        "mixType": 0,
+        "balance": -1,
+        "lowFreq": 0,
+        "filterType": 1,
+        "filterSlope": 0,
+        "cutoff": 11,
+        "keyFollow": 110,
+        "cutoffVelocitySens": 0,
+        "resonance": 0,
+        "filterEnvAttack": 5,
+        "filterEnvDecay": 48,
+        "filterEnvSustain": 99,
+        "filterEnvRelease": 74,
+        "filterEnvDepth": 20,
+        "overdrive": 1,
+        "drive": 30,
+        "level": 89,
+        "levelVelocitySens": 0,
+        "pan": 0,
+        "ampEnvAttack": 23,
+        "ampEnvDecay": 72,
+        "ampEnvSustain": 118,
+        "ampEnvRelease": 30,
+        "delayDepth": 40,
+        "reverbDepth": 43,
+        "bendRange": 2,
+        "octaveShift": 0,
+        "portamento": 1,
+        "portamentoTime": 20,
+        "mono": 1,
+        "osc1": {
+          "wave": 1,
+          "pitchWide": 0,
+          "coarse": 0,
+          "fine": 1,
+          "pulseWidth": 64,
+          "pitchEnvDepth": 0,
+          "decoded_by_current_codec": true,
+          "wave_name": "Square",
+          "signed_coarse_raw": 0,
+          "coarse_units": "physical semitones, current SysEx codec",
+          "net_coarse_and_tone_octave_semitones": 0,
+          "mixed_in": true
+        },
+        "osc2": {
+          "wave": 1,
+          "pitchWide": 0,
+          "coarse": 0,
+          "fine": -3,
+          "pulseWidth": 64,
+          "pitchEnvDepth": 0,
+          "decoded_by_current_codec": true,
+          "wave_name": "Square",
+          "signed_coarse_raw": 0,
+          "coarse_units": "physical semitones, current SysEx codec",
+          "net_coarse_and_tone_octave_semitones": 0,
+          "mixed_in": true
+        },
+        "lfo1": {
+          "shape": 0,
+          "rate": 92,
+          "tempoSync": 0,
+          "tempoSyncNote": 17,
+          "fadeTime": 0,
+          "keyTrigger": 0,
+          "destination1": 2,
+          "depth1": 0,
+          "destination2": 2,
+          "depth2": 0,
+          "decoded_by_current_codec": true
+        },
+        "lfo2": {
+          "shape": 0,
+          "rate": 92,
+          "tempoSync": 0,
+          "tempoSyncNote": 17,
+          "fadeTime": 0,
+          "keyTrigger": 0,
+          "destination1": 2,
+          "depth1": 0,
+          "destination2": 2,
+          "depth2": 0,
+          "decoded_by_current_codec": true
+        },
+        "active_by_keyboard_mode": true,
+        "filter_lfo_depths": [
+          0,
+          0
+        ],
+        "zero_filter_envelope_lfo_and_velocity": false,
+        "active_effect_sends": {
+          "delay": 40,
+          "reverb": 43
+        }
+      },
+      "lower": {
+        "pitchEnvAttack": 0,
+        "pitchEnvDecay": 0,
+        "mixType": 0,
+        "balance": 0,
+        "lowFreq": 0,
+        "filterType": 1,
+        "filterSlope": 0,
+        "cutoff": 101,
+        "keyFollow": 0,
+        "cutoffVelocitySens": 0,
+        "resonance": 0,
+        "filterEnvAttack": 0,
+        "filterEnvDecay": 0,
+        "filterEnvSustain": 0,
+        "filterEnvRelease": 44,
+        "filterEnvDepth": 0,
+        "overdrive": 0,
+        "drive": 100,
+        "level": 76,
+        "levelVelocitySens": 8,
+        "pan": 0,
+        "ampEnvAttack": 76,
+        "ampEnvDecay": 127,
+        "ampEnvSustain": 100,
+        "ampEnvRelease": 22,
+        "delayDepth": 40,
+        "reverbDepth": 112,
+        "bendRange": 2,
+        "octaveShift": 0,
+        "portamento": 0,
+        "portamentoTime": 20,
+        "mono": 2,
+        "osc1": {
+          "wave": 4,
+          "pitchWide": 0,
+          "coarse": 0,
+          "fine": -5,
+          "pulseWidth": 64,
+          "pitchEnvDepth": 0,
+          "decoded_by_current_codec": true,
+          "wave_name": "Sine",
+          "signed_coarse_raw": 0,
+          "coarse_units": "physical semitones, current SysEx codec",
+          "net_coarse_and_tone_octave_semitones": 0,
+          "mixed_in": true
+        },
+        "osc2": {
+          "wave": 4,
+          "pitchWide": 0,
+          "coarse": 0,
+          "fine": 6,
+          "pulseWidth": 64,
+          "pitchEnvDepth": 0,
+          "decoded_by_current_codec": true,
+          "wave_name": "Sine",
+          "signed_coarse_raw": 0,
+          "coarse_units": "physical semitones, current SysEx codec",
+          "net_coarse_and_tone_octave_semitones": 0,
+          "mixed_in": true
+        },
+        "lfo1": {
+          "shape": 0,
+          "rate": 92,
+          "tempoSync": 0,
+          "tempoSyncNote": 17,
+          "fadeTime": 0,
+          "keyTrigger": 0,
+          "destination1": 2,
+          "depth1": 0,
+          "destination2": 2,
+          "depth2": 0,
+          "decoded_by_current_codec": true
+        },
+        "lfo2": {
+          "shape": 0,
+          "rate": 92,
+          "tempoSync": 0,
+          "tempoSyncNote": 17,
+          "fadeTime": 0,
+          "keyTrigger": 0,
+          "destination1": 2,
+          "depth1": 0,
+          "destination2": 2,
+          "depth2": 0,
+          "decoded_by_current_codec": true
+        },
+        "active_by_keyboard_mode": true,
+        "filter_lfo_depths": [
+          0,
+          0
+        ],
+        "zero_filter_envelope_lfo_and_velocity": true,
+        "active_effect_sends": {
+          "delay": 40,
+          "reverb": 112
+        }
+      }
+    }
+  },
+  "inventory": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Docs/fidelity/source-audits/reverb-reference-openings-2026-09-15.json",
+    "sha256": "d7eab711362549a286e95981d8ed77213ae176e9bbb648c3a03b1f760baad51b"
+  },
+  "decoder": {
+    "command": [
+      "ffmpeg",
+      "-hide_banner",
+      "-loglevel",
+      "error",
+      "-nostdin",
+      "-i",
+      "build-fidelity/hardware-benchmark/sources/TOP8_AmbientSQR.mp3",
+      "-c:a",
+      "pcm_f32le",
+      "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/reverb-reference-expansion/ambient-first-note/run-03/hardware-full.wav"
+    ],
+    "binary_sha256": "00d01197255300c02122c783dd0126a9e7f47d6c6a19faafae2e6610efd071d3",
+    "version": "ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers",
+    "wav_sha256": "ccde7bbc4aceb5b8653a9cdad60a77c40fd6a472bd6c1ea75667c9fc4dcb4fc7"
+  },
+  "tools": {
+    "inspect_ambient_first_note_articulation.py": "dd27990d74028d9e90e1c84fc4ba205e5d72e895d50a68e23d9a1610f7aa9c65",
+    "extract_reference_patch.py": "461407495e9f5bfc99767a0146a750708c5cdb2fd34c0d029aaf5e5f5a80703b",
+    "compare_hardware.py": "98c1fad577e2cc13b5c20dff04d06a1414ae0332fe48e2696b690db03d87be86",
+    "render_midi.py": "ffb8899e5a4b3588d459e5de3e710c74a002dfc04e45d7691a03102e9b5093e3"
+  },
+  "windows": [
+    {
+      "start_seconds": 0.11,
+      "end_seconds": 0.16,
+      "sample_count": 2205,
+      "native_bin_hz": 20.0,
+      "stereo": {
+        "rms_dbfs": -12.713240834679842,
+        "right_minus_left_db": -0.10236103331975588,
+        "side_fraction": 0.0019942145921138057,
+        "side_to_mid_db": -26.993611691248077,
+        "zero_lag_channel_correlation": 0.9960811564960127
+      },
+      "right_minus0p6db_sensitivity": {
+        "rms_dbfs": -12.999359216474154,
+        "right_minus_left_db": -0.7023610333197781,
+        "side_fraction": 0.003583479435344132,
+        "side_to_mid_db": -24.44136003007703,
+        "zero_lag_channel_correlation": 0.9960811564960125
+      },
+      "harmonic_fit": {
+        "rank": 62,
+        "columns": 62,
+        "condition": 7.828167467360182,
+        "weighted_explained_power": 0.9999310017372564,
+        "residual_stereo": {
+          "rms_dbfs": -47.84226032971731,
+          "right_minus_left_db": -0.5656967011223129,
+          "side_fraction": 0.038391607344858365,
+          "side_to_mid_db": -13.987619499347456,
+          "zero_lag_channel_correlation": 0.9251708603578184
+        }
+      },
+      "harmonics": [
+        {
+          "harmonic": 1,
+          "frequency_hypothesis_hz": 587.3295358348151,
+          "band_power": 0.05172171798054674,
+          "band_rms_dbfs": -12.863270580940412,
+          "right_minus_left_db": -0.08255694333598283,
+          "right_minus_left_phase_degrees": -4.824668904288469,
+          "center_side_fraction": 0.0017941345058438837,
+          "center_phasor_real": [
+            -0.3207063844382508,
+            -0.3181200126184189
+          ],
+          "center_phasor_imaginary": [
+            -0.01888110815315247,
+            0.008082220192369793
+          ],
+          "identified": true,
+          "peak_frequency_hz": 586.9480133056641,
+          "half_power_width_hz": 29.120245403086983,
+          "peak_to_local_median_db": 62.5360696019672,
+          "level_relative_to_h1_db": 0.0,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 0.0
+        },
+        {
+          "harmonic": 3,
+          "frequency_hypothesis_hz": 1761.9886075044456,
+          "band_power": 0.00010399425556421106,
+          "band_rms_dbfs": -39.829906496018616,
+          "right_minus_left_db": -0.12335963188541649,
+          "right_minus_left_phase_degrees": 4.325807125475971,
+          "center_side_fraction": 0.001474648218435519,
+          "center_phasor_real": [
+            -0.013887218018832314,
+            -0.013844464330702548
+          ],
+          "center_phasor_imaginary": [
+            0.002583044327445447,
+            0.0015066520231279308
+          ],
+          "identified": true,
+          "peak_frequency_hz": 1761.6851806640625,
+          "half_power_width_hz": 30.402977308126538,
+          "peak_to_local_median_db": 56.22640151208283,
+          "level_relative_to_h1_db": -26.966635915078207,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 0.0
+        },
+        {
+          "harmonic": 5,
+          "frequency_hypothesis_hz": 2936.6476791740756,
+          "band_power": 1.80905906273403e-05,
+          "band_rms_dbfs": -47.42547253924738,
+          "right_minus_left_db": -0.2294917005041744,
+          "right_minus_left_phase_degrees": -2.7433372167790675,
+          "center_side_fraction": 0.0007472898729318203,
+          "center_phasor_real": [
+            0.005245650765864791,
+            0.005009466038503497
+          ],
+          "center_phasor_imaginary": [
+            -0.0020068717347174877,
+            -0.0021968226937149797
+          ],
+          "identified": true,
+          "peak_frequency_hz": 2936.254119873047,
+          "half_power_width_hz": 33.79344125466696,
+          "peak_to_local_median_db": 52.66272920842967,
+          "level_relative_to_h1_db": -34.56220195830697,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 0.0
+        },
+        {
+          "harmonic": 7,
+          "frequency_hypothesis_hz": 4111.306750843706,
+          "band_power": 2.1685040906109988e-05,
+          "band_rms_dbfs": -46.638397542723744,
+          "right_minus_left_db": 0.15473604885539816,
+          "right_minus_left_phase_degrees": 3.02678036857056,
+          "center_side_fraction": 0.000776737468613278,
+          "center_phasor_real": [
+            0.005378595015013899,
+            0.005645628076554602
+          ],
+          "center_phasor_imaginary": [
+            -0.0033114222815183113,
+            -0.003077130906849036
+          ],
+          "identified": true,
+          "peak_frequency_hz": 4109.477233886719,
+          "half_power_width_hz": 30.347755662360214,
+          "peak_to_local_median_db": 51.12801731834261,
+          "level_relative_to_h1_db": -33.775126961783336,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 0.0
+        },
+        {
+          "harmonic": 9,
+          "frequency_hypothesis_hz": 5285.965822513336,
+          "band_power": 6.673709953565424e-06,
+          "band_rms_dbfs": -51.75632672164788,
+          "right_minus_left_db": -0.23737391405171576,
+          "right_minus_left_phase_degrees": -4.431419750152757,
+          "center_side_fraction": 0.0016808324841451434,
+          "center_phasor_real": [
+            0.0031428824547379552,
+            0.0029253491988528724
+          ],
+          "center_phasor_imaginary": [
+            -0.0016448335081098928,
+            -0.0018319971280120403
+          ],
+          "identified": true,
+          "peak_frequency_hz": 5283.709716796875,
+          "half_power_width_hz": 30.879439535047823,
+          "peak_to_local_median_db": 51.894735482150054,
+          "level_relative_to_h1_db": -38.893056140707465,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 0.0
+        },
+        {
+          "harmonic": 11,
+          "frequency_hypothesis_hz": 6460.624894182966,
+          "band_power": 6.991091162364985e-07,
+          "band_rms_dbfs": -61.55455034724956,
+          "right_minus_left_db": 0.0334094295321168,
+          "right_minus_left_phase_degrees": 2.6327193665684265,
+          "center_side_fraction": 0.0005314438336324172,
+          "center_phasor_real": [
+            0.0007194731528325348,
+            0.0007380742087424331
+          ],
+          "center_phasor_imaginary": [
+            -0.0003598027015198797,
+            -0.00032763283111348143
+          ],
+          "identified": true,
+          "peak_frequency_hz": 6471.56867980957,
+          "half_power_width_hz": 54.9185165959334,
+          "peak_to_local_median_db": 38.2669771432183,
+          "level_relative_to_h1_db": -48.691279766309144,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 0.0
+        },
+        {
+          "harmonic": 13,
+          "frequency_hypothesis_hz": 7635.283965852597,
+          "band_power": 5.404737730776461e-07,
+          "band_rms_dbfs": -62.67225375686639,
+          "right_minus_left_db": -0.6251076227231017,
+          "right_minus_left_phase_degrees": -6.2231649128911215,
+          "center_side_fraction": 0.004230843063788909,
+          "center_phasor_real": [
+            -0.0003731069232312048,
+            -0.0002724170063769446
+          ],
+          "center_phasor_imaginary": [
+            0.0007210542742514987,
+            0.0007046674390458335
+          ],
+          "identified": true,
+          "peak_frequency_hz": 7642.9412841796875,
+          "half_power_width_hz": 50.701919334196646,
+          "peak_to_local_median_db": 40.655463085682946,
+          "level_relative_to_h1_db": -49.808983175925974,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 0.0
+        },
+        {
+          "harmonic": 15,
+          "frequency_hypothesis_hz": 8809.943037522227,
+          "band_power": 8.335079300657988e-07,
+          "band_rms_dbfs": -60.79090263901442,
+          "right_minus_left_db": -0.43477756219584657,
+          "right_minus_left_phase_degrees": 3.0924351675117183,
+          "center_side_fraction": 0.0013529258564953595,
+          "center_phasor_real": [
+            -0.0005465949095702326,
+            -0.000572533466747252
+          ],
+          "center_phasor_imaginary": [
+            0.0010403252966109666,
+            0.0009600445640493803
+          ],
+          "identified": true,
+          "peak_frequency_hz": 8806.070709228516,
+          "half_power_width_hz": 35.34853985169866,
+          "peak_to_local_median_db": 42.82917371870346,
+          "level_relative_to_h1_db": -47.927632058074,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 0.0
+        }
+      ]
+    },
+    {
+      "start_seconds": 0.22,
+      "end_seconds": 0.27,
+      "sample_count": 2205,
+      "native_bin_hz": 20.0,
+      "stereo": {
+        "rms_dbfs": -10.269884451462584,
+        "right_minus_left_db": -0.07387861110381845,
+        "side_fraction": 0.004951543449598772,
+        "side_to_mid_db": -23.031036360743144,
+        "zero_lag_channel_correlation": 0.9901332745268375
+      },
+      "right_minus0p6db_sensitivity": {
+        "rms_dbfs": -10.556984230921005,
+        "right_minus_left_db": -0.6738786111038273,
+        "side_fraction": 0.006419846439661038,
+        "side_to_mid_db": -21.89678267997825,
+        "zero_lag_channel_correlation": 0.9901332745268377
+      },
+      "harmonic_fit": {
+        "rank": 62,
+        "columns": 62,
+        "condition": 7.828167467360423,
+        "weighted_explained_power": 0.9999386742355728,
+        "residual_stereo": {
+          "rms_dbfs": -46.94557528230562,
+          "right_minus_left_db": -0.6447363123313171,
+          "side_fraction": 0.03969187994159931,
+          "side_to_mid_db": -13.837089320856373,
+          "zero_lag_channel_correlation": 0.9231541728229995
+        }
+      },
+      "harmonics": [
+        {
+          "harmonic": 1,
+          "frequency_hypothesis_hz": 587.3295358348151,
+          "band_power": 0.0930319169241376,
+          "band_rms_dbfs": -10.31368030306064,
+          "right_minus_left_db": -0.06664924648426379,
+          "right_minus_left_phase_degrees": -8.08515105834987,
+          "center_side_fraction": 0.004984502707091864,
+          "center_phasor_real": [
+            -0.427269849865232,
+            -0.4105516547581487
+          ],
+          "center_phasor_imaginary": [
+            0.06618665219819318,
+            0.12466174099504468
+          ],
+          "identified": true,
+          "peak_frequency_hz": 586.9480133056641,
+          "half_power_width_hz": 28.889952890750806,
+          "peak_to_local_median_db": 63.147573214816994,
+          "level_relative_to_h1_db": 0.0,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 2.549590277879771
+        },
+        {
+          "harmonic": 3,
+          "frequency_hypothesis_hz": 1761.9886075044456,
+          "band_power": 0.0016380489885220524,
+          "band_rms_dbfs": -27.856731140977846,
+          "right_minus_left_db": -0.12406476519236091,
+          "right_minus_left_phase_degrees": 2.1173634270676893,
+          "center_side_fraction": 0.0003923437962565102,
+          "center_phasor_real": [
+            0.029808963426432838,
+            0.031149388611907497
+          ],
+          "center_phasor_imaginary": [
+            -0.048959695383395924,
+            -0.04714667819537958
+          ],
+          "identified": true,
+          "peak_frequency_hz": 1760.8440399169922,
+          "half_power_width_hz": 29.020787918349242,
+          "peak_to_local_median_db": 66.38411955922481,
+          "level_relative_to_h1_db": -17.543050837917203,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 11.973175355040773
+        },
+        {
+          "harmonic": 5,
+          "frequency_hypothesis_hz": 2936.6476791740756,
+          "band_power": 8.873273912133773e-05,
+          "band_rms_dbfs": -40.519161118889116,
+          "right_minus_left_db": 0.2759602264369164,
+          "right_minus_left_phase_degrees": -7.371259676083283,
+          "center_side_fraction": 0.004382338291302119,
+          "center_phasor_real": [
+            0.0024271168184337513,
+            0.0008379656938295073
+          ],
+          "center_phasor_imaginary": [
+            -0.012434296494625742,
+            -0.013051058356118729
+          ],
+          "identified": true,
+          "peak_frequency_hz": 2934.5718383789062,
+          "half_power_width_hz": 30.338631535450986,
+          "peak_to_local_median_db": 58.34055922859534,
+          "level_relative_to_h1_db": -30.20548081582848,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 6.90631142035826
+        },
+        {
+          "harmonic": 7,
+          "frequency_hypothesis_hz": 4111.306750843706,
+          "band_power": 6.858455111149488e-05,
+          "band_rms_dbfs": -41.63773699491874,
+          "right_minus_left_db": -0.07618924658656552,
+          "right_minus_left_phase_degrees": 6.754119783649656,
+          "center_side_fraction": 0.003489099683651357,
+          "center_phasor_real": [
+            0.007510770266197866,
+            0.006394621095294013
+          ],
+          "center_phasor_imaginary": [
+            0.008568122203150796,
+            0.009309969515880128
+          ],
+          "identified": true,
+          "peak_frequency_hz": 4108.29963684082,
+          "half_power_width_hz": 29.773574633145927,
+          "peak_to_local_median_db": 51.495988136959745,
+          "level_relative_to_h1_db": -31.324056691858104,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 5.000660547805005
+        },
+        {
+          "harmonic": 9,
+          "frequency_hypothesis_hz": 5285.965822513336,
+          "band_power": 4.8059620202048525e-06,
+          "band_rms_dbfs": -53.18219665592175,
+          "right_minus_left_db": 0.12243116285376637,
+          "right_minus_left_phase_degrees": 1.4214824908435828,
+          "center_side_fraction": 0.00020352128624769345,
+          "center_phasor_real": [
+            0.0021433820638684514,
+            0.0021321462716338557
+          ],
+          "center_phasor_imaginary": [
+            0.0016293318119870483,
+            0.0017058776621750715
+          ],
+          "identified": true,
+          "peak_frequency_hz": 5285.728454589844,
+          "half_power_width_hz": 38.44639477472538,
+          "peak_to_local_median_db": 46.56078789824591,
+          "level_relative_to_h1_db": -42.868516352861114,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": -1.4258699342738743
+        },
+        {
+          "harmonic": 11,
+          "frequency_hypothesis_hz": 6460.624894182966,
+          "band_power": 1.1096363494804985e-05,
+          "band_rms_dbfs": -49.54819325078037,
+          "right_minus_left_db": 0.030145829201012293,
+          "right_minus_left_phase_degrees": 3.5014848343576723,
+          "center_side_fraction": 0.0009363977460907274,
+          "center_phasor_real": [
+            -0.004110512540089111,
+            -0.004215294804161817
+          ],
+          "center_phasor_imaginary": [
+            0.0016021633823743858,
+            0.0013528123988038043
+          ],
+          "identified": true,
+          "peak_frequency_hz": 6455.41877746582,
+          "half_power_width_hz": 30.161147785006506,
+          "peak_to_local_median_db": 52.10705872454494,
+          "level_relative_to_h1_db": -39.23451294771973,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 12.00635709646919
+        },
+        {
+          "harmonic": 13,
+          "frequency_hypothesis_hz": 7635.283965852597,
+          "band_power": 7.062224620588161e-07,
+          "band_rms_dbfs": -61.51058473415433,
+          "right_minus_left_db": 1.7693481666454756,
+          "right_minus_left_phase_degrees": -1.1753372310906207,
+          "center_side_fraction": 0.01030047169326133,
+          "center_phasor_real": [
+            -0.0007143192933627036,
+            -0.0008756937263670293
+          ],
+          "center_phasor_imaginary": [
+            -6.721428663765785e-06,
+            9.724299341979607e-06
+          ],
+          "identified": true,
+          "peak_frequency_hz": 7646.137619018555,
+          "half_power_width_hz": 23.799417174450355,
+          "peak_to_local_median_db": 38.63132311197314,
+          "level_relative_to_h1_db": -51.19690443109369,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 1.1616690227120583
+        },
+        {
+          "harmonic": 15,
+          "frequency_hypothesis_hz": 8809.943037522227,
+          "band_power": 3.24328971492339e-06,
+          "band_rms_dbfs": -54.890142551590586,
+          "right_minus_left_db": 0.21084112353624074,
+          "right_minus_left_phase_degrees": -0.4686095353681862,
+          "center_side_fraction": 0.0001639884754528595,
+          "center_phasor_real": [
+            4.551085491684946e-05,
+            2.772682322516734e-05
+          ],
+          "center_phasor_imaginary": [
+            -0.002255550850715788,
+            -0.002311276046555861
+          ],
+          "identified": true,
+          "peak_frequency_hz": 8803.210830688477,
+          "half_power_width_hz": 31.476739612191523,
+          "peak_to_local_median_db": 44.62153599842355,
+          "level_relative_to_h1_db": -44.57646224852994,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 5.900760087423831
+        }
+      ]
+    },
+    {
+      "start_seconds": 0.3,
+      "end_seconds": 0.35,
+      "sample_count": 2205,
+      "native_bin_hz": 20.0,
+      "stereo": {
+        "rms_dbfs": -15.95275931223431,
+        "right_minus_left_db": 0.18686432898021982,
+        "side_fraction": 0.009722979201096844,
+        "side_to_mid_db": -20.079573447089718,
+        "zero_lag_channel_correlation": 0.9807831763568688
+      },
+      "right_minus0p6db_sensitivity": {
+        "rms_dbfs": -16.24885351827935,
+        "right_minus_left_db": -0.4131356710197911,
+        "side_fraction": 0.010163707848868688,
+        "side_to_mid_db": -19.8851120012642,
+        "zero_lag_channel_correlation": 0.9807831763568686
+      },
+      "harmonic_fit": {
+        "rank": 62,
+        "columns": 62,
+        "condition": 7.828167467359351,
+        "weighted_explained_power": 0.9997867542511997,
+        "residual_stereo": {
+          "rms_dbfs": -49.76937850357316,
+          "right_minus_left_db": 0.08882084439753696,
+          "side_fraction": 0.06335681732014856,
+          "side_to_mid_db": -11.697808237853275,
+          "zero_lag_channel_correlation": 0.8733315581163117
+        }
+      },
+      "harmonics": [
+        {
+          "harmonic": 1,
+          "frequency_hypothesis_hz": 587.3295358348151,
+          "band_power": 0.02327289620320817,
+          "band_rms_dbfs": -16.33149567430737,
+          "right_minus_left_db": 0.22785769504719866,
+          "right_minus_left_phase_degrees": -11.447776070921005,
+          "center_side_fraction": 0.010115564074357628,
+          "center_phasor_real": [
+            -0.20327275921511026,
+            -0.19265373482038192
+          ],
+          "center_phasor_imaginary": [
+            0.05826087470957332,
+            0.10003647091287508
+          ],
+          "identified": true,
+          "peak_frequency_hz": 587.2844696044922,
+          "half_power_width_hz": 29.17731196580644,
+          "peak_to_local_median_db": 59.81040690416933,
+          "level_relative_to_h1_db": 0.0,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": -3.4682250933669567
+        },
+        {
+          "harmonic": 3,
+          "frequency_hypothesis_hz": 1761.9886075044456,
+          "band_power": 0.0013930075354419654,
+          "band_rms_dbfs": -28.560465342637514,
+          "right_minus_left_db": -0.2556987803696085,
+          "right_minus_left_phase_degrees": 7.987588221650783,
+          "center_side_fraction": 0.005065378568182625,
+          "center_phasor_real": [
+            0.0034802414098201555,
+            0.010500911315229091
+          ],
+          "center_phasor_imaginary": [
+            -0.05302414447417178,
+            -0.05051686313496697
+          ],
+          "identified": true,
+          "peak_frequency_hz": 1761.8534088134766,
+          "half_power_width_hz": 29.23412756614448,
+          "peak_to_local_median_db": 62.79616114508242,
+          "level_relative_to_h1_db": -12.22896966833015,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 11.269441153381099
+        },
+        {
+          "harmonic": 5,
+          "frequency_hypothesis_hz": 2936.6476791740756,
+          "band_power": 0.00019589728401044583,
+          "band_rms_dbfs": -37.0797158517654,
+          "right_minus_left_db": 0.4855300546677252,
+          "right_minus_left_phase_degrees": -5.478445307538195,
+          "center_side_fraction": 0.0030604946409841178,
+          "center_phasor_real": [
+            0.013451518665245353,
+            0.015500219237266608
+          ],
+          "center_phasor_imaginary": [
+            0.013275970114786128,
+            0.012617019665481575
+          ],
+          "identified": true,
+          "peak_frequency_hz": 2935.9176635742188,
+          "half_power_width_hz": 29.73477572253796,
+          "peak_to_local_median_db": 56.065650105983416,
+          "level_relative_to_h1_db": -20.74822017745803,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 10.34575668748198
+        },
+        {
+          "harmonic": 7,
+          "frequency_hypothesis_hz": 4111.306750843706,
+          "band_power": 8.036362935262451e-06,
+          "band_rms_dbfs": -50.94940458033481,
+          "right_minus_left_db": 0.20865974228664905,
+          "right_minus_left_phase_degrees": 10.173909251355042,
+          "center_side_fraction": 0.008003899078334369,
+          "center_phasor_real": [
+            -0.0027731913730356834,
+            -0.003020304281892367
+          ],
+          "center_phasor_imaginary": [
+            0.0012399837278124397,
+            0.0007484040068299973
+          ],
+          "identified": true,
+          "peak_frequency_hz": 4118.729782104492,
+          "half_power_width_hz": 49.74909076324866,
+          "peak_to_local_median_db": 47.461134369375095,
+          "level_relative_to_h1_db": -34.61790890602744,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": -4.311007037611064
+        },
+        {
+          "harmonic": 9,
+          "frequency_hypothesis_hz": 5285.965822513336,
+          "band_power": 7.071668364962304e-06,
+          "band_rms_dbfs": -51.50478114319078,
+          "right_minus_left_db": 0.49348833347853066,
+          "right_minus_left_phase_degrees": -3.512950848602949,
+          "center_side_fraction": 0.001743899297179439,
+          "center_phasor_real": [
+            -0.0016319502104397716,
+            -0.0015491813873430016
+          ],
+          "center_phasor_imaginary": [
+            0.002697146391467507,
+            0.002955299207475407
+          ],
+          "identified": true,
+          "peak_frequency_hz": 5287.074279785156,
+          "half_power_width_hz": 39.53736041324373,
+          "peak_to_local_median_db": 48.442375346661095,
+          "level_relative_to_h1_db": -35.173285468883414,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 0.2515455784570975
+        },
+        {
+          "harmonic": 11,
+          "frequency_hypothesis_hz": 6460.624894182966,
+          "band_power": 6.981632602228942e-06,
+          "band_rms_dbfs": -51.56043009005488,
+          "right_minus_left_db": -0.040205911794734636,
+          "right_minus_left_phase_degrees": 3.01017740286859,
+          "center_side_fraction": 0.0006952378827231239,
+          "center_phasor_real": [
+            -0.001989240118664623,
+            -0.0018290212274723258
+          ],
+          "center_phasor_imaginary": [
+            -0.00283715034367615,
+            -0.0029241305378707796
+          ],
+          "identified": true,
+          "peak_frequency_hz": 6459.11979675293,
+          "half_power_width_hz": 33.30334180493901,
+          "peak_to_local_median_db": 45.54162951169662,
+          "level_relative_to_h1_db": -35.22893441574751,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 9.99412025719468
+        },
+        {
+          "harmonic": 13,
+          "frequency_hypothesis_hz": 7635.283965852597,
+          "band_power": 2.2977159815630604e-06,
+          "band_rms_dbfs": -56.38703655048538,
+          "right_minus_left_db": -0.08310723455913677,
+          "right_minus_left_phase_degrees": -5.053790925387664,
+          "center_side_fraction": 0.001966579783754491,
+          "center_phasor_real": [
+            0.0018759296450468754,
+            0.001838915720629948
+          ],
+          "center_phasor_imaginary": [
+            -0.00013669734297738767,
+            -0.0002985481272666582
+          ],
+          "identified": true,
+          "peak_frequency_hz": 7635.202789306641,
+          "half_power_width_hz": 38.13390489960511,
+          "peak_to_local_median_db": 42.601807802618985,
+          "level_relative_to_h1_db": -40.055540876178014,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 6.285217206381006
+        },
+        {
+          "harmonic": 15,
+          "frequency_hypothesis_hz": 8809.943037522227,
+          "band_power": 6.430000655698043e-07,
+          "band_rms_dbfs": -61.917889827886825,
+          "right_minus_left_db": -7.547014797404139,
+          "right_minus_left_phase_degrees": -5.710777808409059,
+          "center_side_fraction": 0.14509415318326083,
+          "center_phasor_real": [
+            6.363134428768319e-05,
+            4.721596610309463e-05
+          ],
+          "center_phasor_imaginary": [
+            0.0004950294710633282,
+            0.00020393918125960041
+          ],
+          "identified": true,
+          "peak_frequency_hz": 8826.594543457031,
+          "half_power_width_hz": 22.802679046366393,
+          "peak_to_local_median_db": 42.67482139610088,
+          "level_relative_to_h1_db": -45.58639415357945,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": -1.1269871888724032
+        }
+      ]
+    },
+    {
+      "start_seconds": 0.36,
+      "end_seconds": 0.4,
+      "sample_count": 1764,
+      "native_bin_hz": 25.0,
+      "stereo": {
+        "rms_dbfs": -25.871200430294294,
+        "right_minus_left_db": 1.69146411674427,
+        "side_fraction": 0.03881009647055733,
+        "side_to_mid_db": -13.938644779965143,
+        "zero_lag_channel_correlation": 0.9399216636010707
+      },
+      "right_minus0p6db_sensitivity": {
+        "rms_dbfs": -26.218834488882386,
+        "right_minus_left_db": 1.0914641167442556,
+        "side_fraction": 0.03372385533357531,
+        "side_to_mid_db": -14.571640402258947,
+        "zero_lag_channel_correlation": 0.9399216636010703
+      },
+      "harmonic_fit": {
+        "rank": 62,
+        "columns": 62,
+        "condition": 7.829739408531676,
+        "weighted_explained_power": 0.9986993801798374,
+        "residual_stereo": {
+          "rms_dbfs": -52.502620448555454,
+          "right_minus_left_db": -1.6399607222260513,
+          "side_fraction": 0.04826256637127651,
+          "side_to_mid_db": -12.949067393890228,
+          "zero_lag_channel_correlation": 0.91960829565002
+        }
+      },
+      "harmonics": [
+        {
+          "harmonic": 1,
+          "frequency_hypothesis_hz": 587.3295358348151,
+          "band_power": 0.0019164820600065997,
+          "band_rms_dbfs": -27.174952417770207,
+          "right_minus_left_db": 2.467768100648713,
+          "right_minus_left_phase_degrees": -19.9335953555256,
+          "center_side_fraction": 0.04830897143043826,
+          "center_phasor_real": [
+            -0.05147522727053991,
+            -0.06228365366864201
+          ],
+          "center_phasor_imaginary": [
+            0.004433366219113876,
+            0.02885314749683581
+          ],
+          "identified": true,
+          "peak_frequency_hz": 588.7985229492188,
+          "half_power_width_hz": 37.09294268268252,
+          "peak_to_local_median_db": 54.25700218953658,
+          "level_relative_to_h1_db": 0.0,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": -14.311681836829793
+        },
+        {
+          "harmonic": 3,
+          "frequency_hypothesis_hz": 1761.9886075044456,
+          "band_power": 0.0001284783210266489,
+          "band_rms_dbfs": -38.91170147451649,
+          "right_minus_left_db": 1.4092596694220365,
+          "right_minus_left_phase_degrees": 24.856398731368618,
+          "center_side_fraction": 0.05222450525835918,
+          "center_phasor_real": [
+            0.0004322995592095768,
+            0.007528865729059019
+          ],
+          "center_phasor_imaginary": [
+            -0.01429544007822228,
+            -0.015042326564118125
+          ],
+          "identified": true,
+          "peak_frequency_hz": 1763.3674621582031,
+          "half_power_width_hz": 37.62117183006649,
+          "peak_to_local_median_db": 53.16113380087537,
+          "level_relative_to_h1_db": -11.736749056746289,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 0.9182050215021216
+        },
+        {
+          "harmonic": 5,
+          "frequency_hypothesis_hz": 2936.6476791740756,
+          "band_power": 5.038618318720637e-05,
+          "band_rms_dbfs": -42.97688538717391,
+          "right_minus_left_db": 0.4323570699932191,
+          "right_minus_left_phase_degrees": -9.49550218450151,
+          "center_side_fraction": 0.0074610413366020135,
+          "center_phasor_real": [
+            0.0071919116504975105,
+            0.008533584769744248
+          ],
+          "center_phasor_imaginary": [
+            0.006218309691446923,
+            0.00519911971966226
+          ],
+          "identified": true,
+          "peak_frequency_hz": 2936.590576171875,
+          "half_power_width_hz": 37.9552261485901,
+          "peak_to_local_median_db": 53.153601333049714,
+          "level_relative_to_h1_db": -15.801932969403705,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 4.448587152073471
+        },
+        {
+          "harmonic": 7,
+          "frequency_hypothesis_hz": 4111.306750843706,
+          "band_power": 1.7308032911542016e-05,
+          "band_rms_dbfs": -47.61752287653606,
+          "right_minus_left_db": 0.00913568431006324,
+          "right_minus_left_phase_degrees": 6.383180457172447,
+          "center_side_fraction": 0.003099975468254043,
+          "center_phasor_real": [
+            -0.004736881205700012,
+            -0.005059824951001833
+          ],
+          "center_phasor_imaginary": [
+            0.0031210583033011866,
+            0.002577786269526303
+          ],
+          "identified": true,
+          "peak_frequency_hz": 4111.327743530273,
+          "half_power_width_hz": 38.5597491461167,
+          "peak_to_local_median_db": 49.43170499059471,
+          "level_relative_to_h1_db": -20.44257045876585,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": -0.9791253338123116
+        },
+        {
+          "harmonic": 9,
+          "frequency_hypothesis_hz": 5285.965822513336,
+          "band_power": 8.573369320864161e-06,
+          "band_rms_dbfs": -50.66848467471375,
+          "right_minus_left_db": -0.961038786119341,
+          "right_minus_left_phase_degrees": -8.962245133399982,
+          "center_side_fraction": 0.00911219260935411,
+          "center_phasor_real": [
+            0.0002822420081048263,
+            -0.00033284852864707507
+          ],
+          "center_phasor_imaginary": [
+            -0.0041762222496548596,
+            -0.003732512212382362
+          ],
+          "identified": true,
+          "peak_frequency_hz": 5284.550857543945,
+          "half_power_width_hz": 38.83046201966317,
+          "peak_to_local_median_db": 49.97731646735837,
+          "level_relative_to_h1_db": -23.49353225694355,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 1.0878420469341235
+        },
+        {
+          "harmonic": 11,
+          "frequency_hypothesis_hz": 6460.624894182966,
+          "band_power": 4.726755800822199e-06,
+          "band_rms_dbfs": -53.25436834146189,
+          "right_minus_left_db": -0.17684628738199215,
+          "right_minus_left_phase_degrees": 3.397979867238632,
+          "center_side_fraction": 0.0009824750193325154,
+          "center_phasor_real": [
+            0.0025691699443058345,
+            0.002426467823930776
+          ],
+          "center_phasor_imaginary": [
+            0.001489351613807935,
+            0.0016059778017995258
+          ],
+          "identified": true,
+          "peak_frequency_hz": 6460.129165649414,
+          "half_power_width_hz": 39.23165281510592,
+          "peak_to_local_median_db": 43.41447185141868,
+          "level_relative_to_h1_db": -26.079415923691688,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 8.30018200578767
+        },
+        {
+          "harmonic": 13,
+          "frequency_hypothesis_hz": 7635.283965852597,
+          "band_power": 2.120898283470581e-06,
+          "band_rms_dbfs": -56.73480159388542,
+          "right_minus_left_db": -0.4297380384369107,
+          "right_minus_left_phase_degrees": -6.401208088299056,
+          "center_side_fraction": 0.0037247351696634715,
+          "center_phasor_real": [
+            -0.0017540508616658724,
+            -0.0015566386937583589
+          ],
+          "center_phasor_imaginary": [
+            0.0009644310614024855,
+            0.0010982731558702831
+          ],
+          "identified": true,
+          "peak_frequency_hz": 7633.688735961914,
+          "half_power_width_hz": 39.70823007342733,
+          "peak_to_local_median_db": 42.24231345808924,
+          "level_relative_to_h1_db": -29.559849176115215,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 5.93745216298097
+        },
+        {
+          "harmonic": 15,
+          "frequency_hypothesis_hz": 8809.943037522227,
+          "band_power": 1.3984658233681303e-06,
+          "band_rms_dbfs": -58.54348142738287,
+          "right_minus_left_db": -0.6606358106027331,
+          "right_minus_left_phase_degrees": 8.185258698369875,
+          "center_side_fraction": 0.0065216018452119865,
+          "center_phasor_real": [
+            -0.0003422238432693788,
+            -0.00010609971990769261
+          ],
+          "center_phasor_imaginary": [
+            -0.001575096677805015,
+            -0.0014900246273025185
+          ],
+          "identified": true,
+          "peak_frequency_hz": 8807.080078125,
+          "half_power_width_hz": 41.01381054077319,
+          "peak_to_local_median_db": 42.23629650547349,
+          "level_relative_to_h1_db": -31.368529009612665,
+          "eligible_line": true,
+          "level_relative_to_first_window_db": 2.247421211631545
+        }
+      ]
+    }
+  ],
+  "controls": {
+    "single_tone_width_and_phase": [
+      {
+        "window_seconds": [
+          0.11,
+          0.16
+        ],
+        "single_tone": {
+          "start_seconds": 0.11,
+          "end_seconds": 0.16,
+          "sample_count": 2205,
+          "native_bin_hz": 20.0,
+          "stereo": {
+            "rms_dbfs": -23.72796107206982,
+            "right_minus_left_db": -1.6170431038038662,
+            "side_fraction": 0.023826035719474024,
+            "side_to_mid_db": -16.124754317922793,
+            "zero_lag_channel_correlation": 0.9688934043500562
+          },
+          "right_minus0p6db_sensitivity": {
+            "rms_dbfs": -23.962827991607085,
+            "right_minus_left_db": -2.217043103803862,
+            "side_fraction": 0.030914144421684803,
+            "side_to_mid_db": -14.962050233247226,
+            "zero_lag_channel_correlation": 0.9688934043500563
+          },
+          "harmonic_fit": {
+            "rank": 62,
+            "columns": 62,
+            "condition": 7.828167467360182,
+            "weighted_explained_power": 1.0,
+            "residual_stereo": {
+              "rms_dbfs": -295.5173126032226,
+              "right_minus_left_db": 7.443973843437509,
+              "side_fraction": 0.48682358847995794,
+              "side_to_mid_db": -0.22895072229693253,
+              "zero_lag_channel_correlation": 0.12509946136624514
+            }
+          },
+          "harmonics": [
+            {
+              "harmonic": 1,
+              "frequency_hypothesis_hz": 587.3295358348151,
+              "band_power": 0.004222231224254769,
+              "band_rms_dbfs": -23.74457986881461,
+              "right_minus_left_db": -1.6184381524785243,
+              "right_minus_left_phase_degrees": -14.383580469425766,
+              "center_side_fraction": 0.023960481147123572,
+              "center_phasor_real": [
+                0.0,
+                -0.0206182213451434
+              ],
+              "center_phasor_imaginary": [
+                -0.09999999999999978,
+                -0.08039831433906211
+              ],
+              "identified": true,
+              "peak_frequency_hz": 587.2844696044922,
+              "half_power_width_hz": 28.825027012127293,
+              "peak_to_local_median_db": 69.93897207666143,
+              "level_relative_to_h1_db": 0.0,
+              "eligible_line": true
+            },
+            {
+              "harmonic": 3,
+              "frequency_hypothesis_hz": 1761.9886075044456,
+              "band_power": 3.152658977571065e-14,
+              "band_rms_dbfs": -135.01323004250193,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": -44.8084999707156,
+              "center_side_fraction": 0.3012425255013801,
+              "center_phasor_real": [
+                -2.030168567979107e-17,
+                -1.2969768488357847e-17
+              ],
+              "center_phasor_imaginary": [
+                -3.961403687718912e-17,
+                -4.228388472693467e-18
+              ],
+              "identified": true,
+              "peak_frequency_hz": 1677.066421508789,
+              "half_power_width_hz": 10.002333930046234,
+              "peak_to_local_median_db": 6.550372943579682,
+              "level_relative_to_h1_db": -111.2686501736873,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 5,
+              "frequency_hypothesis_hz": 2936.6476791740756,
+              "band_power": 4.1327509222441477e-16,
+              "band_rms_dbfs": -153.83760768527782,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": 11.631358066406975,
+              "center_side_fraction": 0.010701744325976797,
+              "center_phasor_real": [
+                -1.1692146342366823e-16,
+                -9.691623927541616e-17
+              ],
+              "center_phasor_imaginary": [
+                -6.663269382870679e-17,
+                -8.517255097820892e-17
+              ],
+              "identified": true,
+              "peak_frequency_hz": 2836.663055419922,
+              "half_power_width_hz": null,
+              "peak_to_local_median_db": 4.531620994055874,
+              "level_relative_to_h1_db": -130.0930278164632,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 7,
+              "frequency_hypothesis_hz": 4111.306750843706,
+              "band_power": 3.354796135774338e-17,
+              "band_rms_dbfs": -164.74333865896875,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": 13.933230433230362,
+              "center_side_fraction": 0.017189874642215663,
+              "center_phasor_real": [
+                -1.6825774807658722e-16,
+                -1.438276767514379e-16
+              ],
+              "center_phasor_imaginary": [
+                -1.7232038278941486e-17,
+                -5.1726608022925613e-17
+              ],
+              "identified": true,
+              "peak_frequency_hz": 4016.447067260742,
+              "half_power_width_hz": null,
+              "peak_to_local_median_db": 3.779996526553688,
+              "level_relative_to_h1_db": -140.9987587901541,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 9,
+              "frequency_hypothesis_hz": 5285.965822513336,
+              "band_power": 5.75049687077367e-18,
+              "band_rms_dbfs": -172.40294628542998,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": -108.26924154189781,
+              "center_side_fraction": 0.509098091124936,
+              "center_phasor_real": [
+                2.7755575615628914e-17,
+                -4.696763811207205e-16
+              ],
+              "center_phasor_imaginary": [
+                -5.204170427930421e-18,
+                -8.512071256183695e-16
+              ],
+              "identified": true,
+              "peak_frequency_hz": 5196.2310791015625,
+              "half_power_width_hz": 10.253204770470802,
+              "peak_to_local_median_db": 3.461161554985916,
+              "level_relative_to_h1_db": -148.65836641661537,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 11,
+              "frequency_hypothesis_hz": 6460.624894182966,
+              "band_power": 1.4898849265433152e-18,
+              "band_rms_dbfs": -178.2684727366637,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": -94.79352097520481,
+              "center_side_fraction": 0.5013852755933174,
+              "center_phasor_real": [
+                9.107298248878237e-18,
+                -8.017132964444063e-16
+              ],
+              "center_phasor_imaginary": [
+                -1.2576745200831851e-17,
+                -4.839336396889049e-16
+              ],
+              "identified": true,
+              "peak_frequency_hz": 6376.351547241211,
+              "half_power_width_hz": 10.343790500512114,
+              "peak_to_local_median_db": 3.2243026775531964,
+              "level_relative_to_h1_db": -154.52389286784907,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 13,
+              "frequency_hypothesis_hz": 7635.283965852597,
+              "band_power": 4.994956128723436e-19,
+              "band_rms_dbfs": -183.0146832187984,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": -175.6012946450045,
+              "center_side_fraction": 0.9760451632590784,
+              "center_phasor_real": [
+                3.903127820947816e-18,
+                -5.692061405548898e-18
+              ],
+              "center_phasor_imaginary": [
+                -3.903127820947816e-18,
+                4.87890977618477e-18
+              ],
+              "identified": true,
+              "peak_frequency_hz": 7536.452865600586,
+              "half_power_width_hz": null,
+              "peak_to_local_median_db": 3.1555073638268913,
+              "level_relative_to_h1_db": -159.2701033499838,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 15,
+              "frequency_hypothesis_hz": 8809.943037522227,
+              "band_power": 1.9847967602812853e-19,
+              "band_rms_dbfs": -187.02283957619923,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": -66.32783344817923,
+              "center_side_fraction": 0.42385790561105474,
+              "center_phasor_real": [
+                4.662069341687669e-18,
+                -1.9786689647860456e-18
+              ],
+              "center_phasor_imaginary": [
+                -1.3010426069826053e-17,
+                -1.870248747537495e-18
+              ],
+              "identified": true,
+              "peak_frequency_hz": 8716.741561889648,
+              "half_power_width_hz": 10.475274681468363,
+              "peak_to_local_median_db": 3.032146726367732,
+              "level_relative_to_h1_db": -163.2782597073846,
+              "eligible_line": false
+            }
+          ]
+        },
+        "expected_channel_phase_degrees": -14.383580469424043,
+        "expected_right_minus_left_db": -1.6184381524785225,
+        "interpretation": "A deterministic delayed tone can stand for dry channel delay or a wet echo; this measurement cannot decide which."
+      },
+      {
+        "window_seconds": [
+          0.22,
+          0.27
+        ],
+        "single_tone": {
+          "start_seconds": 0.22,
+          "end_seconds": 0.27,
+          "sample_count": 2205,
+          "native_bin_hz": 20.0,
+          "stereo": {
+            "rms_dbfs": -23.744102695673526,
+            "right_minus_left_db": -1.609754914147151,
+            "side_fraction": 0.023863737263191666,
+            "side_to_mid_db": -16.117719879381116,
+            "zero_lag_channel_correlation": 0.9686728501424351
+          },
+          "right_minus0p6db_sensitivity": {
+            "rms_dbfs": -23.979209427586582,
+            "right_minus_left_db": -2.209754914147139,
+            "side_fraction": 0.030925383716257155,
+            "side_to_mid_db": -14.960421209324847,
+            "zero_lag_channel_correlation": 0.9686728501424346
+          },
+          "harmonic_fit": {
+            "rank": 62,
+            "columns": 62,
+            "condition": 7.828167467360423,
+            "weighted_explained_power": 1.0,
+            "residual_stereo": {
+              "rms_dbfs": -291.7097722234306,
+              "right_minus_left_db": 11.28255338082649,
+              "side_fraction": 0.49412665217721685,
+              "side_to_mid_db": -0.10203519526602406,
+              "zero_lag_channel_correlation": 0.09131908791934558
+            }
+          },
+          "harmonics": [
+            {
+              "harmonic": 1,
+              "frequency_hypothesis_hz": 587.3295358348151,
+              "band_power": 0.004222231237280298,
+              "band_rms_dbfs": -23.74457985541668,
+              "right_minus_left_db": -1.6184381524785203,
+              "right_minus_left_phase_degrees": -14.38358046942438,
+              "center_side_fraction": 0.02396048114712058,
+              "center_phasor_real": [
+                -1.8041124150158794e-16,
+                -0.020618221345141647
+              ],
+              "center_phasor_imaginary": [
+                -0.09999999999999996,
+                -0.08039831433906276
+              ],
+              "identified": true,
+              "peak_frequency_hz": 587.2844696044922,
+              "half_power_width_hz": 28.82493994295021,
+              "peak_to_local_median_db": 69.91836987041475,
+              "level_relative_to_h1_db": 0.0,
+              "eligible_line": true
+            },
+            {
+              "harmonic": 3,
+              "frequency_hypothesis_hz": 1761.9886075044456,
+              "band_power": 3.6479756994332336e-14,
+              "band_rms_dbfs": -134.37948063336276,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": -24.388964400367723,
+              "center_side_fraction": 0.050394846095326705,
+              "center_phasor_real": [
+                -8.57603918436034e-17,
+                -7.421363870663278e-17
+              ],
+              "center_phasor_imaginary": [
+                3.6022617180830885e-17,
+                8.00683304380545e-17
+              ],
+              "identified": true,
+              "peak_frequency_hz": 1677.7393341064453,
+              "half_power_width_hz": 10.055135811338005,
+              "peak_to_local_median_db": 6.335761682669557,
+              "level_relative_to_h1_db": -110.63490077794609,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 5,
+              "frequency_hypothesis_hz": 2936.6476791740756,
+              "band_power": 5.964750621323994e-16,
+              "band_rms_dbfs": -152.2440770891684,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": 55.35477043791494,
+              "center_side_fraction": 0.21575383281997984,
+              "center_phasor_real": [
+                8.6150450515814e-17,
+                4.9449359944232427e-17
+              ],
+              "center_phasor_imaginary": [
+                -6.894848190650005e-19,
+                7.034947440125866e-17
+              ],
+              "identified": true,
+              "peak_frequency_hz": 2838.5135650634766,
+              "half_power_width_hz": null,
+              "peak_to_local_median_db": 4.251007137396184,
+              "level_relative_to_h1_db": -128.4994972337517,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 7,
+              "frequency_hypothesis_hz": 4111.306750843706,
+              "band_power": 5.605084932250144e-17,
+              "band_rms_dbfs": -162.5141780227898,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": -15.805913160422337,
+              "center_side_fraction": 0.07867322249041504,
+              "center_phasor_real": [
+                2.200962173881096e-17,
+                1.3131604720842622e-17
+              ],
+              "center_phasor_imaginary": [
+                -4.9274447640624414e-17,
+                -9.042076711939656e-17
+              ],
+              "identified": true,
+              "peak_frequency_hz": 4019.3069458007812,
+              "half_power_width_hz": 10.696506810293613,
+              "peak_to_local_median_db": 3.3927385976325732,
+              "level_relative_to_h1_db": -138.7695981673731,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 9,
+              "frequency_hypothesis_hz": 5285.965822513336,
+              "band_power": 1.057034674658109e-17,
+              "band_rms_dbfs": -169.75910765988996,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": 71.48477122241515,
+              "center_side_fraction": 0.4696916711928636,
+              "center_phasor_real": [
+                3.2959746043559335e-17,
+                -3.139849491518021e-16
+              ],
+              "center_phasor_imaginary": [
+                4.2934406030425976e-17,
+                4.659900937342698e-16
+              ],
+              "identified": true,
+              "peak_frequency_hz": 5200.100326538086,
+              "half_power_width_hz": 11.01855048656671,
+              "peak_to_local_median_db": 3.024106426152749,
+              "level_relative_to_h1_db": -146.0145278044733,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 11,
+              "frequency_hypothesis_hz": 6460.624894182966,
+              "band_power": 2.9234941245483065e-18,
+              "band_rms_dbfs": -175.34097774643124,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": 132.44095711431612,
+              "center_side_fraction": 0.5643989062227952,
+              "center_phasor_real": [
+                4.163336342344337e-17,
+                -6.574669736587879e-17
+              ],
+              "center_phasor_imaginary": [
+                -2.949029909160572e-17,
+                5.2562121322097255e-16
+              ],
+              "identified": true,
+              "peak_frequency_hz": 6360.874557495117,
+              "half_power_width_hz": null,
+              "peak_to_local_median_db": 2.8536469072926005,
+              "level_relative_to_h1_db": -151.59639789101453,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 13,
+              "frequency_hypothesis_hz": 7635.283965852597,
+              "band_power": 1.0183392943637823e-18,
+              "band_rms_dbfs": -179.9210749791354,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": 30.854604674728037,
+              "center_side_fraction": 0.22136338250249482,
+              "center_phasor_real": [
+                -7.806255641895632e-18,
+                -1.474514954580286e-17
+              ],
+              "center_phasor_imaginary": [
+                -2.4665599424045226e-18,
+                -1.6601845766184287e-17
+              ],
+              "identified": true,
+              "peak_frequency_hz": 7541.667938232422,
+              "half_power_width_hz": 11.464708783652895,
+              "peak_to_local_median_db": 2.6486135935912647,
+              "level_relative_to_h1_db": -156.17649512371872,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 15,
+              "frequency_hypothesis_hz": 8809.943037522227,
+              "band_power": 4.1352041614729087e-19,
+              "band_rms_dbfs": -183.83503043786823,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": -107.62229722866827,
+              "center_side_fraction": 0.6438721136767318,
+              "center_phasor_real": [
+                -1.3010426069826053e-17,
+                -4.336808689942018e-18
+              ],
+              "center_phasor_imaginary": [
+                -1.0408340855860843e-17,
+                1.1275702593849246e-17
+              ],
+              "identified": true,
+              "peak_frequency_hz": 8722.293090820312,
+              "half_power_width_hz": 11.611855119346728,
+              "peak_to_local_median_db": 2.516978828225109,
+              "level_relative_to_h1_db": -160.09045058245152,
+              "eligible_line": false
+            }
+          ]
+        },
+        "expected_channel_phase_degrees": -14.383580469424043,
+        "expected_right_minus_left_db": -1.6184381524785225,
+        "interpretation": "A deterministic delayed tone can stand for dry channel delay or a wet echo; this measurement cannot decide which."
+      },
+      {
+        "window_seconds": [
+          0.3,
+          0.35
+        ],
+        "single_tone": {
+          "start_seconds": 0.3,
+          "end_seconds": 0.35,
+          "sample_count": 2205,
+          "native_bin_hz": 20.0,
+          "stereo": {
+            "rms_dbfs": -23.741212662145106,
+            "right_minus_left_db": -1.609997667600282,
+            "side_fraction": 0.02384552533452379,
+            "side_to_mid_db": -16.12111654711668,
+            "zero_lag_channel_correlation": 0.9687138478903491
+          },
+          "right_minus0p6db_sensitivity": {
+            "rms_dbfs": -23.976311405036856,
+            "right_minus_left_db": -2.209997667600285,
+            "side_fraction": 0.03090830480515828,
+            "side_to_mid_db": -14.96289685391698,
+            "zero_lag_channel_correlation": 0.9687138478903489
+          },
+          "harmonic_fit": {
+            "rank": 62,
+            "columns": 62,
+            "condition": 7.828167467359351,
+            "weighted_explained_power": 1.0,
+            "residual_stereo": {
+              "rms_dbfs": -288.78719378291595,
+              "right_minus_left_db": 14.2094581102472,
+              "side_fraction": 0.49671719196931713,
+              "side_to_mid_db": -0.057029035980542646,
+              "zero_lag_channel_correlation": 0.053268503133234474
+            }
+          },
+          "harmonics": [
+            {
+              "harmonic": 1,
+              "frequency_hypothesis_hz": 587.3295358348151,
+              "band_power": 0.004222231234951735,
+              "band_rms_dbfs": -23.744579857811814,
+              "right_minus_left_db": -1.6184381524785096,
+              "right_minus_left_phase_degrees": -14.383580469420357,
+              "center_side_fraction": 0.02396048114711189,
+              "center_phasor_real": [
+                -1.9081958235744878e-16,
+                -0.020618221345136023
+              ],
+              "center_phasor_imaginary": [
+                -0.0999999999999999,
+                -0.08039831433906425
+              ],
+              "identified": true,
+              "peak_frequency_hz": 587.2844696044922,
+              "half_power_width_hz": 28.824955508222843,
+              "peak_to_local_median_db": 69.91689978609682,
+              "level_relative_to_h1_db": 0.0,
+              "eligible_line": true
+            },
+            {
+              "harmonic": 3,
+              "frequency_hypothesis_hz": 1761.9886075044456,
+              "band_power": 3.5594282951334106e-14,
+              "band_rms_dbfs": -134.48619751523594,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": -25.35910806520679,
+              "center_side_fraction": 0.04904566334042698,
+              "center_phasor_real": [
+                -7.24653627034999e-17,
+                -1.1939776424496618e-17
+              ],
+              "center_phasor_imaginary": [
+                1.2323312943013365e-16,
+                1.338379819297575e-16
+              ],
+              "identified": true,
+              "peak_frequency_hz": 1677.5711059570312,
+              "half_power_width_hz": 10.054877307078414,
+              "peak_to_local_median_db": 6.377882873987488,
+              "level_relative_to_h1_db": -110.74161765742414,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 5,
+              "frequency_hypothesis_hz": 2936.6476791740756,
+              "band_power": 5.637245394179829e-16,
+              "band_rms_dbfs": -152.48933059552965,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": 16.509169354461854,
+              "center_side_fraction": 0.021636729694348336,
+              "center_phasor_real": [
+                7.509158835646186e-17,
+                6.40886303716285e-17
+              ],
+              "center_phasor_imaginary": [
+                4.2106854840958524e-17,
+                6.588137560449223e-17
+              ],
+              "identified": true,
+              "peak_frequency_hz": 2838.3453369140625,
+              "half_power_width_hz": null,
+              "peak_to_local_median_db": 4.252064711538242,
+              "level_relative_to_h1_db": -128.74475073771782,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 7,
+              "frequency_hypothesis_hz": 4111.306750843706,
+              "band_power": 5.2028024783215196e-17,
+              "band_rms_dbfs": -162.83762661554152,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": -11.122715230595409,
+              "center_side_fraction": 0.01660552140020991,
+              "center_phasor_real": [
+                6.931000615630002e-17,
+                4.971479889407824e-17
+              ],
+              "center_phasor_imaginary": [
+                -4.6294585732183785e-17,
+                -4.9477735547965446e-17
+              ],
+              "identified": true,
+              "peak_frequency_hz": 4018.970489501953,
+              "half_power_width_hz": 10.80988359133653,
+              "peak_to_local_median_db": 3.35795375080604,
+              "level_relative_to_h1_db": -139.09304675772972,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 9,
+              "frequency_hypothesis_hz": 5285.965822513336,
+              "band_power": 9.708705652799496e-18,
+              "band_rms_dbfs": -170.1283866559314,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": -33.913503104797,
+              "center_side_fraction": 0.44830096365660954,
+              "center_phasor_real": [
+                2.5804011705155006e-17,
+                4.54605970923172e-16
+              ],
+              "center_phasor_imaginary": [
+                1.2576745200831851e-17,
+                -6.331740687315346e-17
+              ],
+              "identified": true,
+              "peak_frequency_hz": 5199.763870239258,
+              "half_power_width_hz": 11.25830495316859,
+              "peak_to_local_median_db": 2.9376990921132267,
+              "level_relative_to_h1_db": -146.38380679811956,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 11,
+              "frequency_hypothesis_hz": 6460.624894182966,
+              "band_power": 2.667208939675371e-18,
+              "band_rms_dbfs": -175.73942961890253,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": -73.01110795581064,
+              "center_side_fraction": 0.48686107938871487,
+              "center_phasor_real": [
+                1.8214596497756474e-17,
+                4.161167937999366e-16
+              ],
+              "center_phasor_imaginary": [
+                1.4040418133687282e-17,
+                -2.955535122195485e-16
+              ],
+              "identified": true,
+              "peak_frequency_hz": 6380.5572509765625,
+              "half_power_width_hz": 11.655531056665495,
+              "peak_to_local_median_db": 2.6140327589009447,
+              "level_relative_to_h1_db": -151.9948497610907,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 13,
+              "frequency_hypothesis_hz": 7635.283965852597,
+              "band_power": 9.255859956086355e-19,
+              "band_rms_dbfs": -180.3358322501126,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": -116.56505117707799,
+              "center_side_fraction": 0.5547112462006079,
+              "center_phasor_real": [
+                6.938893903907228e-18,
+                0.0
+              ],
+              "center_phasor_imaginary": [
+                3.469446951953614e-18,
+                -6.245004513516506e-17
+              ],
+              "identified": true,
+              "peak_frequency_hz": 7541.16325378418,
+              "half_power_width_hz": null,
+              "peak_to_local_median_db": 2.4621278883848396,
+              "level_relative_to_h1_db": -156.59125239230076,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 15,
+              "frequency_hypothesis_hz": 8809.943037522227,
+              "band_power": 3.750777518031292e-19,
+              "band_rms_dbfs": -184.25878695795137,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": -85.27626797699882,
+              "center_side_fraction": 0.4895611830659193,
+              "center_phasor_real": [
+                -4.336808689942018e-18,
+                -8.326672684688674e-17
+              ],
+              "center_phasor_imaginary": [
+                -1.0408340855860843e-17,
+                2.688821387764051e-17
+              ],
+              "identified": true,
+              "peak_frequency_hz": 8721.956634521484,
+              "half_power_width_hz": 12.253422830493946,
+              "peak_to_local_median_db": 2.3268921002634686,
+              "level_relative_to_h1_db": -160.51420710013957,
+              "eligible_line": false
+            }
+          ]
+        },
+        "expected_channel_phase_degrees": -14.383580469424043,
+        "expected_right_minus_left_db": -1.6184381524785225,
+        "interpretation": "A deterministic delayed tone can stand for dry channel delay or a wet echo; this measurement cannot decide which."
+      },
+      {
+        "window_seconds": [
+          0.36,
+          0.4
+        ],
+        "single_tone": {
+          "start_seconds": 0.36,
+          "end_seconds": 0.4,
+          "sample_count": 1764,
+          "native_bin_hz": 25.0,
+          "stereo": {
+            "rms_dbfs": -23.74400732890484,
+            "right_minus_left_db": -1.619009858790374,
+            "side_fraction": 0.02396264438497775,
+            "side_to_mid_db": -16.099316969202825,
+            "zero_lag_channel_correlation": 0.9686570922880716
+          },
+          "right_minus0p6db_sensitivity": {
+            "rms_dbfs": -23.978809548799347,
+            "right_minus_left_db": -2.219009858790377,
+            "side_fraction": 0.031055705809686848,
+            "side_to_mid_db": -14.941574056422759,
+            "zero_lag_channel_correlation": 0.9686570922880715
+          },
+          "harmonic_fit": {
+            "rank": 62,
+            "columns": 62,
+            "condition": 7.829739408531676,
+            "weighted_explained_power": 1.0,
+            "residual_stereo": {
+              "rms_dbfs": -288.80761642560935,
+              "right_minus_left_db": 14.200309926496766,
+              "side_fraction": 0.4994814169081384,
+              "side_to_mid_db": -0.00900871423841821,
+              "zero_lag_channel_correlation": 0.022235534682047746
+            }
+          },
+          "harmonics": [
+            {
+              "harmonic": 1,
+              "frequency_hypothesis_hz": 587.3295358348151,
+              "band_power": 0.004222191771277176,
+              "band_rms_dbfs": -23.744620449942467,
+              "right_minus_left_db": -1.6184381524785263,
+              "right_minus_left_phase_degrees": -14.383580469420309,
+              "center_side_fraction": 0.02396048114711197,
+              "center_phasor_real": [
+                4.336808689942018e-17,
+                -0.02061822134513573
+              ],
+              "center_phasor_imaginary": [
+                -0.09999999999999994,
+                -0.08039831433906419
+              ],
+              "identified": true,
+              "peak_frequency_hz": 587.2844696044922,
+              "half_power_width_hz": 36.0351927765596,
+              "peak_to_local_median_db": 64.23037111089269,
+              "level_relative_to_h1_db": 0.0,
+              "eligible_line": true
+            },
+            {
+              "harmonic": 3,
+              "frequency_hypothesis_hz": 1761.9886075044456,
+              "band_power": 1.0122464499193971e-13,
+              "band_rms_dbfs": -129.9471373768439,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": -76.5627464486969,
+              "center_side_fraction": 0.40803955299713046,
+              "center_phasor_real": [
+                -1.3823577699190182e-17,
+                -1.6642503347652493e-17
+              ],
+              "center_phasor_imaginary": [
+                -5.102526474259905e-18,
+                2.4956978757900705e-17
+              ],
+              "identified": true,
+              "peak_frequency_hz": 1675.2159118652344,
+              "half_power_width_hz": 12.506227993081438,
+              "peak_to_local_median_db": 6.568968245201119,
+              "level_relative_to_h1_db": -106.20251692690144,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 5,
+              "frequency_hypothesis_hz": 2936.6476791740756,
+              "band_power": 1.3910130935721132e-15,
+              "band_rms_dbfs": -148.5666878198541,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": -37.69965444205712,
+              "center_side_fraction": 0.427635859575177,
+              "center_phasor_real": [
+                -1.7759104530370474e-18,
+                6.824597395587101e-18
+              ],
+              "center_phasor_imaginary": [
+                3.3271454168148917e-18,
+                4.031538015751568e-17
+              ],
+              "identified": true,
+              "peak_frequency_hz": 2850.962448120117,
+              "half_power_width_hz": 12.518971065178903,
+              "peak_to_local_median_db": 4.393188891575132,
+              "level_relative_to_h1_db": -124.82206736991166,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 7,
+              "frequency_hypothesis_hz": 4111.306750843706,
+              "band_power": 1.183875742475263e-16,
+              "band_rms_dbfs": -159.2669387800941,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": -19.93097251082756,
+              "center_side_fraction": 0.12680650608665436,
+              "center_phasor_real": [
+                6.844026213814747e-18,
+                1.136421753683732e-17
+              ],
+              "center_phasor_imaginary": [
+                4.8644255127867214e-17,
+                2.1427392466692036e-17
+              ],
+              "identified": true,
+              "peak_frequency_hz": 4026.708984375,
+              "half_power_width_hz": 12.53441312187806,
+              "peak_to_local_median_db": 3.7489875064547573,
+              "level_relative_to_h1_db": -135.52231833015162,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 9,
+              "frequency_hypothesis_hz": 5285.965822513336,
+              "band_power": 2.1143756822992242e-17,
+              "band_rms_dbfs": -166.74817844723108,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": 2.040444090258845,
+              "center_side_fraction": 0.47979101785197675,
+              "center_phasor_real": [
+                1.0842021724855044e-17,
+                5.355958732078392e-16
+              ],
+              "center_phasor_imaginary": [
+                0.0,
+                1.9081958235744878e-17
+              ],
+              "identified": true,
+              "peak_frequency_hz": 5202.455520629883,
+              "half_power_width_hz": 12.547577161504705,
+              "peak_to_local_median_db": 3.543038440760231,
+              "level_relative_to_h1_db": -143.0035579972886,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 11,
+              "frequency_hypothesis_hz": 6460.624894182966,
+              "band_power": 5.621070135175982e-18,
+              "band_rms_dbfs": -172.50180995897261,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": -68.46074186543498,
+              "center_side_fraction": 0.4893581914812181,
+              "center_phasor_real": [
+                1.0408340855860843e-17,
+                5.193328406205566e-16
+              ],
+              "center_phasor_imaginary": [
+                1.2088854223213374e-17,
+                -1.807365021533336e-16
+              ],
+              "identified": true,
+              "peak_frequency_hz": 6378.202056884766,
+              "half_power_width_hz": 12.557464010262265,
+              "peak_to_local_median_db": 3.4033672331977183,
+              "level_relative_to_h1_db": -148.75718950903013,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 13,
+              "frequency_hypothesis_hz": 7635.283965852597,
+              "band_power": 1.908832479635778e-18,
+              "band_rms_dbfs": -177.19232183896605,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": 59.93390052502891,
+              "center_side_fraction": 0.46560060109111107,
+              "center_phasor_real": [
+                3.469446951953614e-18,
+                7.41594285980085e-17
+              ],
+              "center_phasor_imaginary": [
+                -3.903127820947816e-18,
+                1.5178830414797062e-17
+              ],
+              "identified": true,
+              "peak_frequency_hz": 7553.948593139648,
+              "half_power_width_hz": 12.564805627655915,
+              "peak_to_local_median_db": 3.3169006096485063,
+              "level_relative_to_h1_db": -153.44770138902356,
+              "eligible_line": false
+            },
+            {
+              "harmonic": 15,
+              "frequency_hypothesis_hz": 8809.943037522227,
+              "band_power": 7.656538057551623e-19,
+              "band_rms_dbfs": -181.15967554435142,
+              "right_minus_left_db": 0.0,
+              "right_minus_left_phase_degrees": -35.67912361875004,
+              "center_side_fraction": 0.436121990496829,
+              "center_phasor_real": [
+                5.204170427930421e-18,
+                9.497611030973019e-17
+              ],
+              "center_phasor_imaginary": [
+                5.637851296924623e-18,
+                1.951563910473908e-17
+              ],
+              "identified": true,
+              "peak_frequency_hz": 8729.526901245117,
+              "half_power_width_hz": 12.569869895069132,
+              "peak_to_local_median_db": 3.277478080711819,
+              "level_relative_to_h1_db": -157.41505509440893,
+              "eligible_line": false
+            }
+          ]
+        },
+        "expected_channel_phase_degrees": -14.383580469424043,
+        "expected_right_minus_left_db": -1.6184381524785225,
+        "interpretation": "A deterministic delayed tone can stand for dry channel delay or a wet echo; this measurement cannot decide which."
+      }
+    ],
+    "detuning_arithmetic": [
+      {
+        "name": "Upper square pair",
+        "fine_cents": [
+          1,
+          -3
+        ],
+        "frequencies_hz": [
+          587.6688886775103,
+          586.3126526218822
+        ],
+        "fundamental_spacing_hz": 1.3562360556280737,
+        "fundamental_beat_period_seconds": 0.7373347698951267,
+        "harmonic_period_seconds": {
+          "1": 0.7373347698951267,
+          "3": 0.2457782566317089,
+          "5": 0.14746695397902534,
+          "7": 0.10533353855644667
+        },
+        "fixed_zero_phase_first_minimum_seconds": 0.45366738494756337,
+        "phase_caveat": "Unknown oscillator phases move minima; values are arithmetic possibilities, not fitted source events or DSP renders."
+      },
+      {
+        "name": "Lower sine pair",
+        "fine_cents": [
+          -5,
+          6
+        ],
+        "frequencies_hz": [
+          585.6357087784471,
+          589.3685962754366
+        ],
+        "fundamental_spacing_hz": 3.7328874969895196,
+        "fundamental_beat_period_seconds": 0.2678891342979061,
+        "harmonic_period_seconds": {
+          "1": 0.2678891342979061
+        },
+        "fixed_zero_phase_first_minimum_seconds": 0.21894456714895305,
+        "phase_caveat": "Unknown oscillator phases move minima; values are arithmetic possibilities, not fitted source events or DSP renders."
+      }
+    ]
+  },
+  "gate_identification_status": "unrecovered",
+  "equivalence_status": "not_established",
+  "exploratory_articulation": {
+    "canonical_path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Docs/fidelity/reconstructions/reverb-validation/ambient-sqr.json",
+    "canonical_sha256": "d9529fe92b8178dd1acc556feb54863b18e8dd1b30e724f28736765f4eeee532",
+    "canonical_midi_sha256": "b41bad02fc86b6e5e861e50afd7d519646292cf275d79cf65c7fd300a95b38de",
+    "case_path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/reverb-reference-expansion/ambient-first-note/run-03/ambient-sqr-first-held-until-next.json",
+    "case_sha256": "ab8a8d0b23e97566f5b5dcd50bc65c5d7ce83201534e78036a56ff55114ad91c",
+    "midi_path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/reverb-reference-expansion/ambient-first-note/run-03/ambient-sqr-first-held-until-next.mid",
+    "midi_sha256": "cf3dce955b1b20e65407e4adb0485125b61222e2aa21b66e90af00292fcc901a",
+    "case_definition": {
+      "schema_version": 1,
+      "id": "ambient-sqr-first-held-until-next",
+      "title": "Ambient SQR \u2014 exploratory first note held until next onset",
+      "reference_id": "lead-07",
+      "midi_status": "reconstructed_not_original",
+      "source_start_seconds": 0,
+      "duration_seconds": 0.775,
+      "calibration_end_seconds": 0.405,
+      "method": "Exploratory source-only articulation follow-up after earlier reverb candidate outcomes were known. Original MP3 measurements in fixed first-note windows show persistent narrow harmonic families through0.40s, changing harmonic balance and increasing stereo side energy. These cannot identify a key release or separate beating from releasing/wet tone. Extend only first D5 key-up to the already frozen next onset0.418s; retain all other canonical event times, velocity100, original complete patch, crop and calibration. No candidate audio or new candidate scores were used for this source analysis.",
+      "uncertainties": [
+        "Original MIDI, velocity, controllers, global transpose/tuning, output latency/capture chain and exact recorded patch revision are unavailable. The MP3 and bank are associated by Roland name/category.",
+        "Velocity 100 is nominal. Upper AMP velocity sensitivity is 0, Lower is 8; both cutoff velocity sensitivities are 0. Velocity can alter the layer and wet/dry balance, so a common scalar gain does not remove its uncertainty.",
+        "Upper has two Squares, drive 30, Solo Legato and portamento 20; Lower has two Sines, slower AMP attack 76 and Solo without portamento. Old-note energy may be release, delay or reverb; it does not prove held-key overlap.",
+        "Onset ranges are operational source-clock reconstruction uncertainties, not certified MIDI time bounds. A later production-only prefix alignment may absorb one common latency; do not tune later notes to candidate errors.",
+        "Key-up estimates near envelope maxima are provisional: the amplitude/filter envelopes, two layers, drive, interference and wet tails prevent uniquely recovering key release. Off-time ranges are sensitivity settings, not confidence intervals or observed gates.",
+        "The 0.775-second crop excludes the next obvious new pitch group near 0.79 s. The third note's gate is still estimated; later hardware decay is not covered by this short reconstruction.",
+        "All three original notes and preceding silence are retained from source time 0 for effect history. Exact published SysEx must remain unchanged. This is a conditional generalization case, not an output-equivalence benchmark.",
+        "This exploratory first-key-up extends beyond the original0.160\u20130.240s operational bracket because that bracket was not a recovered MIDI bound. Strong late narrow harmonics can be held/releasing oscillators or coherent effects; the source does not select among them. The new gate is frozen before its own render, after earlier model outcomes were known."
+      ],
+      "notes": [
+        {
+          "on": 0.085,
+          "off": 0.418,
+          "note": 74,
+          "velocity": 100,
+          "on_uncertainty_seconds": [
+            0.075,
+            0.095
+          ]
+        },
+        {
+          "on": 0.418,
+          "off": 0.53,
+          "note": 76,
+          "velocity": 100,
+          "on_uncertainty_seconds": [
+            0.408,
+            0.428
+          ],
+          "off_sensitivity_seconds": [
+            0.49,
+            0.57
+          ]
+        },
+        {
+          "on": 0.618,
+          "off": 0.73,
+          "note": 77,
+          "velocity": 100,
+          "on_uncertainty_seconds": [
+            0.608,
+            0.628
+          ],
+          "off_sensitivity_seconds": [
+            0.7,
+            0.76
+          ]
+        }
+      ],
+      "validation_plan": {
+        "calibration_seconds": [
+          0,
+          0.405
+        ],
+        "later_evaluation_seconds": [
+          0.405,
+          0.775
+        ],
+        "training_note": 74,
+        "later_notes": [
+          76,
+          77
+        ],
+        "frozen_before_candidate_render_or_score_inspection": false,
+        "comparison_policy": "Exploratory single first-gate extension after known earlier outcomes. Retain all earlier nine scenarios and this one; compare equal frozen inputs across DSP models without selecting the best reconstruction. Keep source_start0, calibration_end0.405, duration0.775; first held gate crosses calibration boundary by design.",
+        "velocity_sensitivity_suggestion": [
+          80,
+          100,
+          120
+        ],
+        "gate_sensitivity_suggestion": "This single additional0.418s first-note key-up; later key-ups0.530/0.730s unchanged. No additional fitted offsets or best-case selection.",
+        "exploratory_variant_frozen_before_its_own_render_or_score": true
+      },
+      "active_velocity_sensitivity": {
+        "upper": {
+          "cutoff": 0,
+          "amp": 0
+        },
+        "lower": {
+          "cutoff": 0,
+          "amp": 8
+        }
+      },
+      "unmodified_sysex_sha256": "1e420e8a04502d790a1018f4547167377bdfd4470e21bb6602853d09218aff07",
+      "original_mp3_sha256": "d113bb3d65c34bb6827d29561e29dd9c9d4a6236143d5528685643f84a86e565",
+      "reconstruction_parent_sha256": "d9529fe92b8178dd1acc556feb54863b18e8dd1b30e724f28736765f4eeee532",
+      "sensitivity": {
+        "status": "exploratory_after_known_candidate_outcomes_not_prospective_independent_validation",
+        "changed_event": "Only note74 key-up:0.200\u21920.418s; same-time note-off is emitted before note76 note-on. This is a contiguous-gate sensitivity, not a held-key overlap/legato claim.",
+        "original_operational_off_bracket_seconds": [
+          0.16,
+          0.24
+        ],
+        "chosen_off_seconds": 0.418,
+        "rationale": "Use the already frozen second onset as a bounded alternative; spectral persistence cannot prove this gate. Do not replace canonical cases or select the best-performing reconstruction."
+      }
+    },
+    "midi_verification": {
+      "events": [
+        {
+          "sample": 3749,
+          "kind": "midi",
+          "value": "904a64"
+        },
+        {
+          "sample": 18434,
+          "kind": "midi",
+          "value": "804a00"
+        },
+        {
+          "sample": 18434,
+          "kind": "midi",
+          "value": "904c64"
+        },
+        {
+          "sample": 23373,
+          "kind": "midi",
+          "value": "804c00"
+        },
+        {
+          "sample": 27254,
+          "kind": "midi",
+          "value": "904d64"
+        },
+        {
+          "sample": 32193,
+          "kind": "midi",
+          "value": "804d00"
+        }
+      ],
+      "end_sample": 34178,
+      "sample_rate": 44100,
+      "exactly_one_key_up_sample_changed": true,
+      "ignored_events": []
+    }
+  }
+}

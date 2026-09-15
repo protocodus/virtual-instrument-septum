@@ -1,0 +1,79 @@
+{
+  "status": "Frozen after complete source spectrogram/RMS inspection, before band coverage calculations or any decay slope/candidate fit.",
+  "selection_chronology": "Follow-up to recorded Club Bass/Ambient envelope regressions; these references were not selected independently of those model outcomes. Interval choices use source audio only.",
+  "band_edges_hz": [
+    80,
+    160,
+    320,
+    640,
+    1280,
+    2560,
+    4000,
+    8000,
+    12500,
+    18000
+  ],
+  "band_guard": "At least20dB above same-file opening quiet band power; descriptive detectability threshold, not perceptual or calibrated confidence.",
+  "cases": {
+    "bass-05": {
+      "quiet": [
+        0.03,
+        0.14
+      ],
+      "training": [
+        2.3,
+        2.65
+      ],
+      "later_check": [
+        2.65,
+        3.0
+      ],
+      "late_sensitivity": [
+        3.0,
+        3.3
+      ],
+      "second_gap_early": [
+        5.95,
+        6.3
+      ],
+      "second_gap_later": [
+        6.3,
+        6.65
+      ],
+      "third_gap_early": [
+        9.68,
+        10.03
+      ],
+      "third_gap_later": [
+        10.03,
+        10.38
+      ],
+      "terminal_diagnostic": [
+        29.96,
+        30.249795918367347
+      ]
+    },
+    "lead-07": {
+      "quiet": [
+        0.03,
+        0.07
+      ],
+      "training": [
+        11.65,
+        12.15
+      ],
+      "later_check": [
+        12.15,
+        12.65
+      ],
+      "late_sensitivity": [
+        12.65,
+        13.15
+      ],
+      "terminal_floor_diagnostic": [
+        13.8,
+        14.55
+      ]
+    }
+  }
+}
