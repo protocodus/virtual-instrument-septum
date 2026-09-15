@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-09-15",
+  "scope": "Independent code/helper review preserved before inspecting any new-case candidate scores. No production DSP or evaluator edited.",
+  "candidate_scores_inspected": false,
+  "immediate_blocker": false,
+  "tools": {
+    "evaluate_reverb_validation_cases.py": "a95430bed4cbf2fadcd48fe62506fc68ba0a907720cd90eeca8663d049906ec4",
+    "assess_hardware_equivalence.py": "b6ca63fa02ff11f3154cf34c1233cfe460fd4447be403fe4c0695646ccb74631",
+    "compare_hardware.py": "98c1fad577e2cc13b5c20dff04d06a1414ae0332fe48e2696b690db03d87be86",
+    "render_midi.py": "ffb8899e5a4b3588d459e5de3e710c74a002dfc04e45d7691a03102e9b5093e3",
+    "extract_reference_patch.py": "461407495e9f5bfc99767a0146a750708c5cdb2fd34c0d029aaf5e5f5a80703b",
+    "compare_reverb_width_candidates.py": "ac74e8f89b296ed2466d515e7424069b76fd72ac1e5472334969d580414ad55a",
+    "build_timbre_candidate.py": "5c037fef5f87a39bdc2fce0cc12a2301accca7f3bb8cacd37a6fcc8946ab4025"
+  },
+  "canonical_cases": [
+    {
+      "path": "Docs/fidelity/reconstructions/reverb-validation/ambient-sqr.json",
+      "sha256": "d9529fe92b8178dd1acc556feb54863b18e8dd1b30e724f28736765f4eeee532",
+      "calibration_end_seconds": 0.405,
+      "duration_seconds": 0.775,
+      "worst_case_coverage": [
+        {
+          "lag_seconds": -0.05,
+          "evaluation_reference_seconds": [
+            0.455,
+            0.775
+          ]
+        },
+        {
+          "lag_seconds": 0,
+          "evaluation_reference_seconds": [
+            0.405,
+            0.775
+          ]
+        },
+        {
+          "lag_seconds": 0.05,
+          "evaluation_reference_seconds": [
+            0.405,
+            0.725
+          ]
+        }
+      ],
+      "all_diagnostics_at_least_250ms": true
+    },
+    {
+      "path": "Docs/fidelity/reconstructions/reverb-validation/class-a-nominal.json",
+      "sha256": "49dfc292d90acdb759edfa3e963017b992625a1265ea0f84ceebd3a737027aae",
+      "calibration_end_seconds": 0.3,
+      "duration_seconds": 3.0,
+      "worst_case_coverage": [
+        {
+          "lag_seconds": -0.05,
+          "evaluation_reference_seconds": [
+            0.35,
+            3.0
+          ]
+        },
+        {
+          "lag_seconds": 0,
+          "evaluation_reference_seconds": [
+            0.3,
+            3.0
+          ]
+        },
+        {
+          "lag_seconds": 0.05,
+          "evaluation_reference_seconds": [
+            0.3,
+            2.95
+          ]
+        }
+      ],
+      "all_diagnostics_at_least_250ms": true
+    }
+  ],
+  "findings": [
+    {
+      "area": "Source and preset identity",
+      "result": "The latest evaluator verifies catalog MP3/bank identities, original member hash/name, and source-only reconstruction MP3/SysEx pins before rendering. Each replay receipt is checked against renderer/MIDI/SysEx/output hashes."
+    },
+    {
+      "area": "Frozen MIDI",
+      "result": "Pre-render MIDI is compared with a canonical sibling MIDI when present. Rendered MIDI/SysEx are compared with the pre-render pins. Source time zero retains preceding events. Case IDs are validated before paths are formed."
+    },
+    {
+      "area": "Prefix alignment and gain",
+      "result": "fit_transform sees only reference/candidate prefixes. The evaluator uses one production-only lag bounded50ms and one prefix RMS gain for every primary candidate. Separately fitted candidate-prefix gains are labelled sensitivities."
+    },
+    {
+      "area": "Disjoint support",
+      "result": "For either lag sign, both reference and candidate calibration supports end at or before cal, and both evaluation supports begin at or after cal. STFT boundary=None/padded=False prevents frames from reaching back across the split."
+    },
+    {
+      "area": "Listening",
+      "result": "All primary listening signals use the same lag, baseline prefix gain and evaluation slice, then one shared scalar for level and peak management. The evaluation-derived shared listening scalar does not change raw metric comparisons."
+    },
+    {
+      "area": "Activity-mask qualification",
+      "result": "assess.measure uses max(reference,candidate) activity masks separately for each pair. Time/channel coverage is common, but active bins can differ for log-spectrum and envelope summaries. A ranking from these masked metrics is not identical-bin evidence. Spectral convergence uses all bins and is unaffected by this mask policy. Consider a common-union-mask sensitivity if masked metrics materially affect a promotion decision."
+    },
+    {
+      "area": "Provenance scope",
+      "result": "The evaluator checks frozen files/manifests/binaries against the prior run but does not independently anchor all source bytes to Git b0f6c03 or validate source-manifest.json against that prior run hash. It relies on the previously audited build chain. Parent separately reported gain1 frozen Source equals current Source; independent final-run receipt verification remains pending."
+    },
+    {
+      "area": "Auxiliary comparison metadata",
+      "result": "compare_hardware.render_case also emits legacy whole-excerpt listening transforms and working-tree DSP hashes. They are not the prospective prefix transformation or complete candidate build identity. Use the evaluator outer protocol/build manifests and raw audio for conclusions."
+    },
+    {
+      "area": "Nonblocking preflight gaps",
+      "result": "Generic boundary validation reserves200ms whereas assess.measure needs250ms after lag trimming, and the fit helper itself needs a longer prefix than the generic100ms minimum. Both frozen current cases pass worst-case50ms coverage. A boundary/unidentifiable alignment flag is retained but does not automatically prevent scoring; inspect it before interpreting alignment-dependent metrics."
+    }
+  ],
+  "synthetic_checks": {
+    "python_source": "import json\nimport numpy as np\nfrom assess_hardware_equivalence import fit_transform\nsr=1000; n=900; cal=405; rng=np.random.default_rng(278)\nt=np.arange(n)/sr\na=(np.exp(-((t-.12)/.025)**2)+.7*np.exp(-((t-.25)/.040)**2)+.25*np.exp(-((t-.35)/.015)**2))*rng.standard_normal(n)\na=np.column_stack((a,.9*a))\nrows=[]\nfor delay in (-50,-37,0,37,50):\n    c=np.zeros_like(a)\n    if delay>=0: c[delay:]=a[:n-delay]*1.3\n    else: c[:delay]=a[-delay:]*1.3\n    first=fit_transform(a,c,sr,cal,.05)\n    assert first['candidate_lag_samples']==delay\n    assert abs(first['candidate_gain']-1/1.3)<1e-12\n    ca,cb=max(0,-delay),min(cal,cal-delay)\n    start,end=max(cal,cal-delay),min(n,n-delay)\n    assert ca>=0 and ca+delay>=0 and cb<=cal and cb+delay<=cal\n    assert start>=cal and start+delay>=cal and end<=n and end+delay<=n\n    c[cal:]=rng.normal(0,100,c[cal:].shape)\n    second=fit_transform(a,c,sr,cal,.05)\n    assert first==second\n    rows.append(dict(planted_lag_samples=delay,recovered_lag_samples=first['candidate_lag_samples'],recovered_gain=first['candidate_gain'],prefix_reference=[ca,cb],prefix_candidate=[ca+delay,cb+delay],evaluation_reference=[start,end],evaluation_candidate=[start+delay,end+delay],heldout_poison_invariant=True))\nprint(json.dumps(rows))\n",
+    "invocation": "PYTHONPATH=Tools python3 -c CODE_FROM_python_source",
+    "sample_rate_hz": 1000,
+    "fixture": "Three localized envelope shapes on deterministic noise; two channels; known gain1.3 and planted integer delay. Replace all candidate samples from calibration boundary onward with large independent noise.",
+    "results": [
+      {
+        "planted_lag_samples": -50,
+        "recovered_lag_samples": -50,
+        "recovered_gain": 0.7692307692307694,
+        "prefix_reference": [
+          50,
+          405
+        ],
+        "prefix_candidate": [
+          0,
+          355
+        ],
+        "evaluation_reference": [
+          455,
+          900
+        ],
+        "evaluation_candidate": [
+          405,
+          850
+        ],
+        "heldout_poison_invariant": true
+      },
+      {
+        "planted_lag_samples": -37,
+        "recovered_lag_samples": -37,
+        "recovered_gain": 0.769230769230769,
+        "prefix_reference": [
+          37,
+          405
+        ],
+        "prefix_candidate": [
+          0,
+          368
+        ],
+        "evaluation_reference": [
+          442,
+          900
+        ],
+        "evaluation_candidate": [
+          405,
+          863
+        ],
+        "heldout_poison_invariant": true
+      },
+      {
+        "planted_lag_samples": 0,
+        "recovered_lag_samples": 0,
+        "recovered_gain": 0.7692307692307693,
+        "prefix_reference": [
+          0,
+          405
+        ],
+        "prefix_candidate": [
+          0,
+          405
+        ],
+        "evaluation_reference": [
+          405,
+          900
+        ],
+        "evaluation_candidate": [
+          405,
+          900
+        ],
+        "heldout_poison_invariant": true
+      },
+      {
+        "planted_lag_samples": 37,
+        "recovered_lag_samples": 37,
+        "recovered_gain": 0.7692307692307694,
+        "prefix_reference": [
+          0,
+          368
+        ],
+        "prefix_candidate": [
+          37,
+          405
+        ],
+        "evaluation_reference": [
+          405,
+          863
+        ],
+        "evaluation_candidate": [
+          442,
+          900
+        ],
+        "heldout_poison_invariant": true
+      },
+      {
+        "planted_lag_samples": 50,
+        "recovered_lag_samples": 50,
+        "recovered_gain": 0.7692307692307693,
+        "prefix_reference": [
+          0,
+          355
+        ],
+        "prefix_candidate": [
+          50,
+          405
+        ],
+        "evaluation_reference": [
+          405,
+          850
+        ],
+        "evaluation_candidate": [
+          455,
+          900
+        ],
+        "heldout_poison_invariant": true
+      }
+    ],
+    "all_pass": true
+  },
+  "checks": {
+    "syntax_check": true,
+    "five_planted_delay_gain_cases": true,
+    "evaluation_poison_does_not_affect_prefix_transform": true,
+    "both_delay_signs_have_disjoint_support": true,
+    "canonical_case_worst_case_evaluation_and_diagnostic_coverage": true
+  }
+}

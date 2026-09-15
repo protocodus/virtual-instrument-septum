@@ -24,9 +24,20 @@ is required to continue the present investigations.
 - [Audio agreement assessment](equivalence-assessment.md): measure spectral,
   envelope and stereo residuals, freeze gain/alignment before evaluation,
   retain hashes and distinguish original from reconstructed inputs.
+- [Reverb return level](source-audits/reverb-new-preset-validation-2026-09-15.md):
+  reduce the current network's wet return from 0.8 to 0.4. Five independent
+  neutral-damping public recordings support this provisional correction,
+  including a new Class A comparison with three frozen articulation variants.
+  Club Bass and Ambient SQR retain damped-tail regressions. This is an overall
+  current-model improvement, not an identified Roland coefficient; damping
+  calibration must revisit the level.
 
-All 34 configured DSP/tool CTests pass across the recorded validation runs.
-Universal arm64/x86_64 AU, VST3 and standalone Release builds also succeed.
+All 34 configured DSP/tool CTests pass in the latest
+[return integration run](source-audits/reverb-return-integration-2026-09-15.md).
+Its 22 fresh renders reproduce the selected half-return candidate byte-for-byte;
+five unaffected presets also match the earlier baseline.
+Universal arm64/x86_64 AU, VST3 and standalone Release builds also succeed,
+with [current artifact hashes and local signature checks](source-audits/reverb-level-universal-build-2026-09-15.json).
 These implementation tests establish the intended model behavior, not
 hardware-output equality. The ten official preset recordings still have
 substantial residuals; the new damping change produces mixed full-demo
@@ -120,8 +131,18 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   [Full-engine return experiments](source-audits/reverb-return-candidates-2026-09-15.md)
   therefore test both width and level. Half reverb level improves Cotton,
   Air Lead, SupaJuce and Brassy, but worsens Club Bass's tail-envelope error.
-  All 20 unchanged controls reproduce production byte-for-byte. No return
-  change is promoted pending additional preset and decay checks.
+  All 20 unchanged controls reproduce the earlier production byte-for-byte.
+  [Two additional preset checks](source-audits/reverb-new-preset-validation-2026-09-15.md)
+  support the limited level correction above while retaining Ambient's
+  envelope/log-spectrum regressions under all nine gate/velocity scenarios.
+  Six Ambient alignments hit the fixed search bound; even the three interior
+  alignments retain the regression. No preferred reconstruction is selected.
+  [Cotton's effective decay](source-audits/cotton-reverb-decay-2026-09-15.md)
+  is longer than the model, while the weaker
+  [Class A estimate](source-audits/class-a-reverb-decay-2026-09-15.md) goes the
+  other way. [Brassy's final tail](source-audits/brassy-reverb-tail-feasibility-2026-09-15.md)
+  contains delay steps and lacks clean later support. No global time
+  multiplier follows from these recordings.
 
 ## Next work
 
@@ -130,9 +151,10 @@ metrics. Their preset bytes and reconstructed performances are preserved.
    interaction separately before changing the high-note sound.
 2. Examine creator recordings for independent oscillator measurements,
    retaining uncertain panel state and unmeasured raw settings explicitly.
-3. Check the reverb-level hypothesis against additional unchanged presets
-   selected for clear performance structure, and measure late decay with
-   independent forward controls. Preserve the Club Bass counterexample.
+3. Investigate the damped-tail mismatch in Club Bass and Ambient SQR, keeping
+   reverb level, frequency-dependent decay, source release and active delay
+   separate. Preserve their regressions under the new return level and
+   validate any damping correction independently.
 4. Keep independent validation passages and input uncertainty visible.
    Matching a fitted spectral feature cannot establish complete output
    agreement or a market-wide superiority claim.

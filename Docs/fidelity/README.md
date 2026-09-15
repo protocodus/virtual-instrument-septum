@@ -15,6 +15,13 @@ now quantify how strongly short-window metrics can vary without a parameter
 change other than waveform origin. Their distances cannot be subtracted from
 hardware errors or used as a perceptual acceptance margin.
 
+The [new public reverb checks](source-audits/reverb-new-preset-validation-2026-09-15.md)
+support halving the current wet return as a provisional correction. Five
+independent neutral-damping recordings improve; Club Bass and Ambient SQR
+retain damped-tail regressions. Frozen performance variants, common gain and
+timing, all counterexamples and independent verification remain available.
+The exact Roland return coefficient, decay law and damping topology are open.
+
 The [synchronized dry listening comparison](source-audits/dry-listening-player-2026-09-15.md)
 presents original-MIDI hardware, current DSP and the retained envelope
 experiment with frozen gain and timing. Source and model uncertainties

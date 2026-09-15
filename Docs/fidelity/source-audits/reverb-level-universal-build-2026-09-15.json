@@ -1,0 +1,93 @@
+{
+  "date": "2026-09-15T12:04:36.256833+00:00",
+  "build_command": [
+    "cmake",
+    "--build",
+    "build-plugin-fidelity",
+    "--config",
+    "Release",
+    "--parallel",
+    "4"
+  ],
+  "build_exit_code": 0,
+  "source_revision_before_uncommitted_correction": "3f639ec0eb4045ba769617267a5e1d2de120ce5c",
+  "source_sha256": {
+    "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+    "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+    "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+    "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+    "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+    "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+    "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+    "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+    "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+    "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+    "Source/DSP/SeptumEngine.h": "b1b7cfd308c42d3b768b098624c26e417d00c4e0387ff5c2331ca1bb93d0d99e",
+    "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+    "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+    "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+    "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+    "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+    "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9"
+  },
+  "selected_change": "reverbWetReturn0.8\u21920.4 only",
+  "artifacts": [
+    {
+      "format": "AU",
+      "bundle": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-plugin-fidelity/Septum_artefacts/Release/AU/Septum.component",
+      "binary": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-plugin-fidelity/Septum_artefacts/Release/AU/Septum.component/Contents/MacOS/Septum",
+      "sha256": "4d75ff57a9f1b7a27a6cd5ab9d7e518a276db8759141c3c73f69d88c4f578022",
+      "architectures": [
+        "x86_64",
+        "arm64"
+      ],
+      "signature_verification_exit_code": 0,
+      "signature_verification_output": "",
+      "pre_sign_binary_sha256": "1e063f2b99a2d236dc8096519cf6b782a34b85b70cb888b686e2f4a5eaf5f2d9",
+      "local_sign_command": [
+        "codesign",
+        "--force",
+        "--sign",
+        "-",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-plugin-fidelity/Septum_artefacts/Release/AU/Septum.component"
+      ]
+    },
+    {
+      "format": "VST3",
+      "bundle": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-plugin-fidelity/Septum_artefacts/Release/VST3/Septum.vst3",
+      "binary": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-plugin-fidelity/Septum_artefacts/Release/VST3/Septum.vst3/Contents/MacOS/Septum",
+      "sha256": "673df25cdf03ad12e6203fb81fa8fcbccab6376c1773a9a5abf57271b5ead58e",
+      "architectures": [
+        "x86_64",
+        "arm64"
+      ],
+      "signature_verification_exit_code": 0,
+      "signature_verification_output": ""
+    },
+    {
+      "format": "Standalone",
+      "bundle": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-plugin-fidelity/Septum_artefacts/Release/Standalone/Septum.app",
+      "binary": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-plugin-fidelity/Septum_artefacts/Release/Standalone/Septum.app/Contents/MacOS/Septum",
+      "sha256": "c22fb1d203af4c153a4c0399286eb9acd1ba8540a8de0efb49f2ac253d984a45",
+      "architectures": [
+        "x86_64",
+        "arm64"
+      ],
+      "signature_verification_exit_code": 0,
+      "signature_verification_output": "",
+      "pre_sign_binary_sha256": "c29607b1d5ba5df0f8d8b872b1fa1e3cfa3953495eec01be1e6bc74e40e70838",
+      "local_sign_command": [
+        "codesign",
+        "--force",
+        "--sign",
+        "-",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-plugin-fidelity/Septum_artefacts/Release/Standalone/Septum.app"
+      ]
+    }
+  ],
+  "limits": [
+    "Build and architecture/signature checks only; no new DAW host playback or installation.",
+    "Ad hoc/local build, not notarized distribution.",
+    "DSP test and candidate reproduction evidence recorded separately."
+  ]
+}

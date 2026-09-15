@@ -520,7 +520,12 @@ namespace mapping
         return 0.2 + 0.55 * (value / 127.0);
     }
     inline constexpr double reverbInputInjection = 0.35;
-    inline constexpr double reverbWetReturn = 0.8;
+    // [conditional recording fit, OQ-12] Half the previous return improves
+    // five neutral-damping public presets, including a prospective Class A
+    // check. Damped presets retain tail regressions; this is current-model
+    // voicing, not an identified Roland coefficient. Revisit with damping.
+    // See Docs/fidelity/source-audits/reverb-new-preset-validation-2026-09-15.md.
+    inline constexpr double reverbWetReturn = 0.4;
 
     // [conditional recording fit, OQ-08] The dry LP24 response supports two
     // k=1.2 sections at resonance zero. The separate AUDIO FILTER has its own
