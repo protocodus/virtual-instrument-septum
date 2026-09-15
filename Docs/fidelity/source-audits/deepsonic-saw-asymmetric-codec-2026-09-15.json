@@ -1,0 +1,1079 @@
+{
+  "protocol": {
+    "status": "frozen_candidate_codec_sensitivity_not_model_selection",
+    "model_id": "asymmetric-W4",
+    "experiment_sha256": "da96ab806d7637845e3308914632a6cc472f29e1c5355c176c95c52858e53803",
+    "padding_samples_each_side": 22050,
+    "sample_rate": 44100,
+    "channels": 1,
+    "codec": "libmp3lame",
+    "bitrate_bps": 320000,
+    "scoring": "Original unchanged hardware-only alias mask. Compare float32 clean prediction with320kbps MP3 roundtrip using identical central80ms indices.",
+    "alignment": "No phase/parameter/offset fitting. Require gapless decode length equality; check integer cross-correlation over+/-1152samples diagnostically, without applying a lag.",
+    "limitation": "This controlled libmp3lame encode cannot identify the original MP3 encoder or recording path."
+  },
+  "script_sha256": "0d630c95e25e206b12a719baaf16c9f9932f7982b97d58b831e6359585c62440",
+  "fitter_sha256": "cd553961bdbfee2b47cd515327fbe74bcb87ed25a64303afbeba0ddaf3830687",
+  "dependencies": {
+    "fit_high_note_saw_wrap_kernels.py": "3c23fdfe123836eacf40970fd8e76c357061ebaadc24c73ef72316cbcea459c9",
+    "fit_high_note_saw_models.py": "8b3407dec63e40e7eab9e0c3182048a6bcd86b914c5df76c643706357adbf163",
+    "analyze_deepsonic_saw_aliases.py": "99e07f49b6804d605df6376dacd957add4d7bbda49d9b1b7136d3885824dc1c0",
+    "render_midi.py": "ffb8899e5a4b3588d459e5de3e710c74a002dfc04e45d7691a03102e9b5093e3"
+  },
+  "original_source": {
+    "url": "https://www.deepsonic.ch/deep/audio_filter/roland_sh-201_-_filter_demo_-_lpf12_q000.mp3",
+    "path": "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf12_q000.mp3",
+    "bytes": 1203043,
+    "sha256": "28e241247a0efb217eb4cb7154cc3b69713fcebca781639c45b8904b3dc8615b",
+    "audio": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1,
+          "bit_rate": "320000"
+        }
+      ],
+      "format": {
+        "duration": "30.018200"
+      }
+    },
+    "full_decode_ok": true
+  },
+  "original_midi": {
+    "url": "https://www.deepsonic.ch/deep/audio_midi/deepsonic_-_filter_demo_-_comparsion_sequence.mid",
+    "path": "build-fidelity/deepsonic/deepsonic_-_filter_demo_-_comparsion_sequence.mid",
+    "bytes": 925,
+    "sha256": "21ea21b9ba3ba14cc205931134fb7a320b09e67821bd3a3c70f97fa2e8b5d99a"
+  },
+  "coefficient_sha256": "f4fd919c22af5de535d1732e0e41510367a554c939eaa73fce2c1d3c67d01339",
+  "passages": [
+    {
+      "passage": {
+        "note": 91,
+        "midi_onset_seconds": 18.75,
+        "midi_off_seconds": 19.18750566893424,
+        "velocity": 127,
+        "offset_seconds": 0.1,
+        "role": "training",
+        "start_sample": 829521,
+        "end_sample": 833049,
+        "sample_sha256": "c35d23309676eab5bc803ff521373a54640a6e9901b044f3245fa3327d337006"
+      },
+      "frozen_phase": 0.59065049511737,
+      "context_center_max_absolute_difference": 6.741829317036263e-14,
+      "clean_peak": 0.26678895950317383,
+      "gapless_samples": 47628,
+      "lag_check": {
+        "search_samples": [
+          -1152,
+          1152
+        ],
+        "best_integer_lag": 0,
+        "best_correlation": 0.9999925586929287,
+        "zero_lag_correlation": 0.9999925586929287,
+        "applied_lag": 0
+      },
+      "encode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-0-note-91.wav",
+        "-c:a",
+        "libmp3lame",
+        "-b:a",
+        "320k",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-0-note-91.mp3"
+      ],
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-0-note-91.mp3",
+        "-c:a",
+        "pcm_f32le",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-0-note-91-decoded.wav"
+      ],
+      "probe_command": [
+        "ffprobe",
+        "-v",
+        "error",
+        "-show_entries",
+        "stream=codec_name,sample_rate,channels,bit_rate",
+        "-of",
+        "json",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-0-note-91.mp3"
+      ],
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "44100",
+            "channels": 1,
+            "bit_rate": "320000"
+          }
+        ]
+      },
+      "clean_sha256": "3bbd63db1ba989c73bf1737d12e35a31cefa0b651e5b124b048d1ae32fd29e29",
+      "mp3_sha256": "3c55111e798ad196add9d49934fdc8f363ed851ffad6ce61e7dab2a93ebf6500",
+      "decoded_sha256": "d72cebfae35f003084a79a7fe01bf0df39f848e076bbd34d3738239fd0caa902",
+      "codec_change_rms_db": 0.03276196467910523,
+      "codec_change_max_absolute_db": 0.05973198604387875,
+      "clean_alias_rms_error_db": 1.46650473339803,
+      "encoded_alias_rms_error_db": 1.4663357853739813,
+      "hardware_eligible_line_count": 9,
+      "lines": [
+        {
+          "parent_harmonic": 19,
+          "expected_hz": 14308.346865387055,
+          "hardware_dbc": -42.65603849509145,
+          "clean_dbc": -43.30720388962092,
+          "encoded_dbc": -43.276697718274015,
+          "encoded_minus_clean_db": 0.03050617134690725,
+          "clean_minus_hardware_db": -0.6511653945294711,
+          "encoded_minus_hardware_db": -0.6206592231825638,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 56.711904522380614
+        },
+        {
+          "parent_harmonic": 20,
+          "expected_hz": 12740.365121460058,
+          "hardware_dbc": -45.77605827893522,
+          "clean_dbc": -44.157450505426866,
+          "encoded_dbc": -44.16038663993966,
+          "encoded_minus_clean_db": -0.002936134512793842,
+          "clean_minus_hardware_db": 1.6186077735083515,
+          "encoded_minus_hardware_db": 1.6156716389955577,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 54.97436432749639
+        },
+        {
+          "parent_harmonic": 21,
+          "expected_hz": 11172.383377533064,
+          "hardware_dbc": -46.66369681376664,
+          "clean_dbc": -47.31195229781897,
+          "encoded_dbc": -47.32987116657323,
+          "encoded_minus_clean_db": -0.017918868754257744,
+          "clean_minus_hardware_db": -0.6482554840523278,
+          "encoded_minus_hardware_db": -0.6661743528065855,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 54.161408147939845
+        },
+        {
+          "parent_harmonic": 22,
+          "expected_hz": 9604.401633606067,
+          "hardware_dbc": -53.592872660054915,
+          "clean_dbc": -54.31642643512007,
+          "encoded_dbc": -54.37615842116395,
+          "encoded_minus_clean_db": -0.05973198604387875,
+          "clean_minus_hardware_db": -0.723553775065156,
+          "encoded_minus_hardware_db": -0.7832857611090347,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 45.58636158716254
+        },
+        {
+          "parent_harmonic": 23,
+          "expected_hz": 8036.4198896790695,
+          "hardware_dbc": -68.60280171376277,
+          "clean_dbc": -66.93273916366908,
+          "encoded_dbc": -66.98113090959939,
+          "encoded_minus_clean_db": -0.04839174593030293,
+          "clean_minus_hardware_db": 1.6700625500936894,
+          "encoded_minus_hardware_db": 1.6216708041633865,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 33.410908735155644
+        },
+        {
+          "parent_harmonic": 24,
+          "expected_hz": 6468.438145752072,
+          "hardware_dbc": -55.58414186189186,
+          "clean_dbc": -53.01350421096022,
+          "encoded_dbc": -52.97958993262047,
+          "encoded_minus_clean_db": 0.03391427833975058,
+          "clean_minus_hardware_db": 2.570637650931637,
+          "encoded_minus_hardware_db": 2.6045519292713877,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 48.746354928056704
+        },
+        {
+          "parent_harmonic": 25,
+          "expected_hz": 4900.456401825075,
+          "hardware_dbc": -47.306608531453506,
+          "clean_dbc": -48.845498320676846,
+          "encoded_dbc": -48.821179574609516,
+          "encoded_minus_clean_db": 0.024318746067329755,
+          "clean_minus_hardware_db": -1.5388897892233402,
+          "encoded_minus_hardware_db": -1.5145710431560104,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 48.789633754217306
+        },
+        {
+          "parent_harmonic": 26,
+          "expected_hz": 3332.4746578980776,
+          "hardware_dbc": -48.67409040557297,
+          "clean_dbc": -47.060773284350866,
+          "encoded_dbc": -47.04924872625608,
+          "encoded_minus_clean_db": 0.011524558094784254,
+          "clean_minus_hardware_db": 1.613317121222103,
+          "encoded_minus_hardware_db": 1.6248416793168872,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 52.94614728698896
+        },
+        {
+          "parent_harmonic": 27,
+          "expected_hz": 1764.4929139710803,
+          "hardware_dbc": -45.8414300785875,
+          "clean_dbc": -46.84132591995454,
+          "encoded_dbc": -46.8165122669112,
+          "encoded_minus_clean_db": 0.024813653043345596,
+          "clean_minus_hardware_db": -0.9998958413670422,
+          "encoded_minus_hardware_db": -0.9750821883236966,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 50.847066947083626
+        }
+      ]
+    },
+    {
+      "passage": {
+        "note": 91,
+        "midi_onset_seconds": 18.75,
+        "midi_off_seconds": 19.18750566893424,
+        "velocity": 127,
+        "offset_seconds": 0.16,
+        "role": "same-note-later",
+        "start_sample": 832167,
+        "end_sample": 835695,
+        "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+      },
+      "frozen_phase": 0.6699802353359776,
+      "context_center_max_absolute_difference": 6.741829317036263e-14,
+      "clean_peak": 0.26678895950317383,
+      "gapless_samples": 47628,
+      "lag_check": {
+        "search_samples": [
+          -1152,
+          1152
+        ],
+        "best_integer_lag": 0,
+        "best_correlation": 0.9999925912626765,
+        "zero_lag_correlation": 0.9999925912626765,
+        "applied_lag": 0
+      },
+      "encode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-1-note-91.wav",
+        "-c:a",
+        "libmp3lame",
+        "-b:a",
+        "320k",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-1-note-91.mp3"
+      ],
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-1-note-91.mp3",
+        "-c:a",
+        "pcm_f32le",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-1-note-91-decoded.wav"
+      ],
+      "probe_command": [
+        "ffprobe",
+        "-v",
+        "error",
+        "-show_entries",
+        "stream=codec_name,sample_rate,channels,bit_rate",
+        "-of",
+        "json",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-1-note-91.mp3"
+      ],
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "44100",
+            "channels": 1,
+            "bit_rate": "320000"
+          }
+        ]
+      },
+      "clean_sha256": "79b9dbee6981b32bf569020d299dc58ea55ef75e5245c53099f7e02eb94b9d58",
+      "mp3_sha256": "cce84172a9e8e2c5ab497374b9e3237b59f0c83dcc8abf9d38e1cedf95fa87de",
+      "decoded_sha256": "4ad541f7da351e35d95d994e1e546b98e6f3b1d47e4bb4e27e12d9b600ddcb80",
+      "codec_change_rms_db": 0.07445006179486491,
+      "codec_change_max_absolute_db": 0.2116905769787394,
+      "clean_alias_rms_error_db": 1.4797466333190146,
+      "encoded_alias_rms_error_db": 1.4539849622692291,
+      "hardware_eligible_line_count": 9,
+      "lines": [
+        {
+          "parent_harmonic": 19,
+          "expected_hz": 14308.346865387055,
+          "hardware_dbc": -42.963946324098075,
+          "clean_dbc": -43.29327565351231,
+          "encoded_dbc": -43.3115844611015,
+          "encoded_minus_clean_db": -0.018308807589193066,
+          "clean_minus_hardware_db": -0.32932932941423587,
+          "encoded_minus_hardware_db": -0.34763813700342894,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 55.22183718165347
+        },
+        {
+          "parent_harmonic": 20,
+          "expected_hz": 12740.365121460058,
+          "hardware_dbc": -46.01076640413165,
+          "clean_dbc": -44.14956647030304,
+          "encoded_dbc": -44.168223325472795,
+          "encoded_minus_clean_db": -0.018656855169751907,
+          "clean_minus_hardware_db": 1.8611999338286083,
+          "encoded_minus_hardware_db": 1.8425430786588564,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 55.54833532380424
+        },
+        {
+          "parent_harmonic": 21,
+          "expected_hz": 11172.383377533064,
+          "hardware_dbc": -46.87424087143909,
+          "clean_dbc": -47.31344615986754,
+          "encoded_dbc": -47.296516964519185,
+          "encoded_minus_clean_db": 0.016929195348353687,
+          "clean_minus_hardware_db": -0.43920528842844675,
+          "encoded_minus_hardware_db": -0.42227609308009306,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 53.1183640067494
+        },
+        {
+          "parent_harmonic": 22,
+          "expected_hz": 9604.401633606067,
+          "hardware_dbc": -53.85943917332975,
+          "clean_dbc": -54.35945144403398,
+          "encoded_dbc": -54.4129271376234,
+          "encoded_minus_clean_db": -0.05347569358941939,
+          "clean_minus_hardware_db": -0.5000122707042323,
+          "encoded_minus_hardware_db": -0.5534879642936517,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 45.05304756962502
+        },
+        {
+          "parent_harmonic": 23,
+          "expected_hz": 8036.4198896790695,
+          "hardware_dbc": -68.61608490084575,
+          "clean_dbc": -66.98854163565478,
+          "encoded_dbc": -67.20023221263352,
+          "encoded_minus_clean_db": -0.2116905769787394,
+          "clean_minus_hardware_db": 1.6275432651909654,
+          "encoded_minus_hardware_db": 1.415852688212226,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 35.04657460202721
+        },
+        {
+          "parent_harmonic": 24,
+          "expected_hz": 6468.438145752072,
+          "hardware_dbc": -55.64543838564148,
+          "clean_dbc": -52.94179043167369,
+          "encoded_dbc": -52.94874271702778,
+          "encoded_minus_clean_db": -0.006952285354088872,
+          "clean_minus_hardware_db": 2.7036479539677885,
+          "encoded_minus_hardware_db": 2.6966956686136996,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 45.9565963729836
+        },
+        {
+          "parent_harmonic": 25,
+          "expected_hz": 4900.456401825075,
+          "hardware_dbc": -47.387703079810734,
+          "clean_dbc": -48.78388552106009,
+          "encoded_dbc": -48.81253381850756,
+          "encoded_minus_clean_db": -0.028648297447467996,
+          "clean_minus_hardware_db": -1.3961824412493584,
+          "encoded_minus_hardware_db": -1.4248307386968264,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 50.324455417511516
+        },
+        {
+          "parent_harmonic": 26,
+          "expected_hz": 3332.4746578980776,
+          "hardware_dbc": -48.73244738126638,
+          "clean_dbc": -47.00250327701903,
+          "encoded_dbc": -47.01275988719246,
+          "encoded_minus_clean_db": -0.010256610173428271,
+          "clean_minus_hardware_db": 1.7299441042473518,
+          "encoded_minus_hardware_db": 1.7196874940739235,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 49.69165521347723
+        },
+        {
+          "parent_harmonic": 27,
+          "expected_hz": 1764.4929139710803,
+          "hardware_dbc": -45.891565307099555,
+          "clean_dbc": -46.780819477795646,
+          "encoded_dbc": -46.76443016667428,
+          "encoded_minus_clean_db": 0.016389311121365324,
+          "clean_minus_hardware_db": -0.8892541706960913,
+          "encoded_minus_hardware_db": -0.8728648595747259,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 51.49610238991788
+        }
+      ]
+    },
+    {
+      "passage": {
+        "note": 93,
+        "midi_onset_seconds": 18.25,
+        "midi_off_seconds": 18.43750566893424,
+        "velocity": 127,
+        "offset_seconds": 0.1,
+        "role": "other-pitch",
+        "start_sample": 807471,
+        "end_sample": 810999,
+        "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+      },
+      "frozen_phase": 0.1377189469570673,
+      "context_center_max_absolute_difference": 1.1328438187518941e-13,
+      "clean_peak": 0.2628204822540283,
+      "gapless_samples": 47628,
+      "lag_check": {
+        "search_samples": [
+          -1152,
+          1152
+        ],
+        "best_integer_lag": 0,
+        "best_correlation": 0.9999974806337131,
+        "zero_lag_correlation": 0.9999974806337131,
+        "applied_lag": 0
+      },
+      "encode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-2-note-93.wav",
+        "-c:a",
+        "libmp3lame",
+        "-b:a",
+        "320k",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-2-note-93.mp3"
+      ],
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-2-note-93.mp3",
+        "-c:a",
+        "pcm_f32le",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-2-note-93-decoded.wav"
+      ],
+      "probe_command": [
+        "ffprobe",
+        "-v",
+        "error",
+        "-show_entries",
+        "stream=codec_name,sample_rate,channels,bit_rate",
+        "-of",
+        "json",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-2-note-93.mp3"
+      ],
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "44100",
+            "channels": 1,
+            "bit_rate": "320000"
+          }
+        ]
+      },
+      "clean_sha256": "5cb51df469801381dae9f56f7149eec1d8720dc0ac9010d784b72f8de7dfad71",
+      "mp3_sha256": "6127670916deadb7aa3c928d90d847b3555d4a688bf5b5939b6ad4e94cfb14dd",
+      "decoded_sha256": "93920bf29ebcb83e73ecde634e673ef11a87eb605ee4201a21ffcc93eff1545e",
+      "codec_change_rms_db": 0.014214441642773636,
+      "codec_change_max_absolute_db": 0.02399635764226815,
+      "clean_alias_rms_error_db": 7.366238682680582,
+      "encoded_alias_rms_error_db": 7.371679615935837,
+      "hardware_eligible_line_count": 8,
+      "lines": [
+        {
+          "parent_harmonic": 17,
+          "expected_hz": 14180.0,
+          "hardware_dbc": -43.123630612661785,
+          "clean_dbc": -42.198622389085536,
+          "encoded_dbc": -42.18274242281922,
+          "encoded_minus_clean_db": 0.01587996626631849,
+          "clean_minus_hardware_db": 0.9250082235762491,
+          "encoded_minus_hardware_db": 0.9408881898425676,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 48.369512785244744
+        },
+        {
+          "parent_harmonic": 18,
+          "expected_hz": 12420.0,
+          "hardware_dbc": -49.3106219850521,
+          "clean_dbc": -43.50914603510101,
+          "encoded_dbc": -43.51029396694254,
+          "encoded_minus_clean_db": -0.0011479318415297257,
+          "clean_minus_hardware_db": 5.80147594995109,
+          "encoded_minus_hardware_db": 5.8003280181095604,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 46.3195549937919
+        },
+        {
+          "parent_harmonic": 19,
+          "expected_hz": 10660.0,
+          "hardware_dbc": -64.67454970051878,
+          "clean_dbc": -47.93368692692879,
+          "encoded_dbc": -47.9279199282097,
+          "encoded_minus_clean_db": 0.00576699871909625,
+          "clean_minus_hardware_db": 16.74086277358999,
+          "encoded_minus_hardware_db": 16.746629772309085,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 42.894931158539194
+        },
+        {
+          "parent_harmonic": 20,
+          "expected_hz": 8900.0,
+          "hardware_dbc": -57.13842013295781,
+          "clean_dbc": -60.207551437330345,
+          "encoded_dbc": -60.23154779497261,
+          "encoded_minus_clean_db": -0.02399635764226815,
+          "clean_minus_hardware_db": -3.069131304372533,
+          "encoded_minus_hardware_db": -3.093127662014801,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 31.10082871195916
+        },
+        {
+          "parent_harmonic": 21,
+          "expected_hz": 7140.0,
+          "hardware_dbc": -45.963313546265695,
+          "clean_dbc": -55.24447593079369,
+          "encoded_dbc": -55.26524955955086,
+          "encoded_minus_clean_db": -0.02077362875716915,
+          "clean_minus_hardware_db": -9.281162384527995,
+          "encoded_minus_hardware_db": -9.301936013285165,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 36.82430258749168
+        },
+        {
+          "parent_harmonic": 22,
+          "expected_hz": 5380.0,
+          "hardware_dbc": -47.74902002682283,
+          "clean_dbc": -48.60509598967599,
+          "encoded_dbc": -48.59122937423061,
+          "encoded_minus_clean_db": 0.013866615445380148,
+          "clean_minus_hardware_db": -0.8560759628531542,
+          "encoded_minus_hardware_db": -0.8422093474077741,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 42.439783729201814
+        },
+        {
+          "parent_harmonic": 23,
+          "expected_hz": 3620.0,
+          "hardware_dbc": -44.92004662895582,
+          "clean_dbc": -46.09655261898581,
+          "encoded_dbc": -46.086839687346234,
+          "encoded_minus_clean_db": 0.009712931639576539,
+          "clean_minus_hardware_db": -1.1765059900299946,
+          "encoded_minus_hardware_db": -1.166793058390418,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 44.70194900590735
+        },
+        {
+          "parent_harmonic": 24,
+          "expected_hz": 1860.0,
+          "hardware_dbc": -50.29527225246043,
+          "clean_dbc": -45.64275097299978,
+          "encoded_dbc": -45.64872261955553,
+          "encoded_minus_clean_db": -0.005971646555749999,
+          "clean_minus_hardware_db": 4.65252127946065,
+          "encoded_minus_hardware_db": 4.6465496329049,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 44.057760226921516
+        }
+      ]
+    },
+    {
+      "passage": {
+        "note": 88,
+        "midi_onset_seconds": 19.75,
+        "midi_off_seconds": 19.93750566893424,
+        "velocity": 127,
+        "offset_seconds": 0.1,
+        "role": "other-pitch",
+        "start_sample": 873621,
+        "end_sample": 877149,
+        "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+      },
+      "frozen_phase": 0.536692496446936,
+      "context_center_max_absolute_difference": 8.146261443187086e-14,
+      "clean_peak": 0.27196377515792847,
+      "gapless_samples": 47628,
+      "lag_check": {
+        "search_samples": [
+          -1152,
+          1152
+        ],
+        "best_integer_lag": 0,
+        "best_correlation": 0.9999983085633598,
+        "zero_lag_correlation": 0.9999983085633598,
+        "applied_lag": 0
+      },
+      "encode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-3-note-88.wav",
+        "-c:a",
+        "libmp3lame",
+        "-b:a",
+        "320k",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-3-note-88.mp3"
+      ],
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-3-note-88.mp3",
+        "-c:a",
+        "pcm_f32le",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-3-note-88-decoded.wav"
+      ],
+      "probe_command": [
+        "ffprobe",
+        "-v",
+        "error",
+        "-show_entries",
+        "stream=codec_name,sample_rate,channels,bit_rate",
+        "-of",
+        "json",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-3-note-88.mp3"
+      ],
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "44100",
+            "channels": 1,
+            "bit_rate": "320000"
+          }
+        ]
+      },
+      "clean_sha256": "f301557ea6c484aa52cc75c63726ec7c7358ccfea9b870c579450f266b210c61",
+      "mp3_sha256": "eede64e0a077dd6db0c0f264adc9a242cf8775ab99a13b42faba437fb2e241d8",
+      "decoded_sha256": "83429eb84bb05ea3f19f21087ff32766881b9e23e742056128b0ae6fc4fad915",
+      "codec_change_rms_db": 0.08788085842967173,
+      "codec_change_max_absolute_db": 0.21179565101611075,
+      "clean_alias_rms_error_db": 5.6010402146032225,
+      "encoded_alias_rms_error_db": 5.520364308959586,
+      "hardware_eligible_line_count": 11,
+      "lines": [
+        {
+          "parent_harmonic": 23,
+          "expected_hz": 13774.264764015967,
+          "hardware_dbc": -44.26015689756747,
+          "clean_dbc": -44.9368097986531,
+          "encoded_dbc": -44.92256924555063,
+          "encoded_minus_clean_db": 0.014240553102467857,
+          "clean_minus_hardware_db": -0.6766529010856317,
+          "encoded_minus_hardware_db": -0.6624123479831638,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 49.501376909019434
+        },
+        {
+          "parent_harmonic": 24,
+          "expected_hz": 12455.75453636449,
+          "hardware_dbc": -46.840906111611396,
+          "clean_dbc": -46.130788924430036,
+          "encoded_dbc": -46.1373305153424,
+          "encoded_minus_clean_db": -0.006541590912362949,
+          "clean_minus_hardware_db": 0.7101171871813605,
+          "encoded_minus_hardware_db": 0.7035755962689976,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 49.80681985184574
+        },
+        {
+          "parent_harmonic": 25,
+          "expected_hz": 11137.244308713009,
+          "hardware_dbc": -47.219418164571934,
+          "clean_dbc": -49.013721219091096,
+          "encoded_dbc": -48.994699958856415,
+          "encoded_minus_clean_db": 0.019021260234680426,
+          "clean_minus_hardware_db": -1.7943030545191618,
+          "encoded_minus_hardware_db": -1.7752817942844814,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 43.784141850567046
+        },
+        {
+          "parent_harmonic": 26,
+          "expected_hz": 9818.734081061528,
+          "hardware_dbc": -52.10833352094032,
+          "clean_dbc": -54.58863696921493,
+          "encoded_dbc": -54.64970745152925,
+          "encoded_minus_clean_db": -0.061070482314320884,
+          "clean_minus_hardware_db": -2.4803034482746114,
+          "encoded_minus_hardware_db": -2.5413739305889322,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 40.482232266266266
+        },
+        {
+          "parent_harmonic": 27,
+          "expected_hz": 8500.223853410047,
+          "hardware_dbc": -59.344109487813064,
+          "clean_dbc": -70.86177055000924,
+          "encoded_dbc": -70.68542490962146,
+          "encoded_minus_clean_db": 0.17634564038777967,
+          "clean_minus_hardware_db": -11.517661062196176,
+          "encoded_minus_hardware_db": -11.341315421808396,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 24.231505025131757
+        },
+        {
+          "parent_harmonic": 28,
+          "expected_hz": 7181.713625758566,
+          "hardware_dbc": -72.08643253062861,
+          "clean_dbc": -58.20125225033585,
+          "encoded_dbc": -58.41304790135196,
+          "encoded_minus_clean_db": -0.21179565101611075,
+          "clean_minus_hardware_db": 13.885180280292765,
+          "encoded_minus_hardware_db": 13.673384629276654,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 36.13426174278609
+        },
+        {
+          "parent_harmonic": 29,
+          "expected_hz": 5863.203398107093,
+          "hardware_dbc": -53.02189456385068,
+          "clean_dbc": -52.47994623579846,
+          "encoded_dbc": -52.52804665776602,
+          "encoded_minus_clean_db": -0.04810042196756115,
+          "clean_minus_hardware_db": 0.5419483280522215,
+          "encoded_minus_hardware_db": 0.49384790608466034,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 40.77013964850272
+        },
+        {
+          "parent_harmonic": 30,
+          "expected_hz": 4544.693170455612,
+          "hardware_dbc": -52.14237877150683,
+          "clean_dbc": -49.79197123433582,
+          "encoded_dbc": -49.80307043744435,
+          "encoded_minus_clean_db": -0.011099203108528855,
+          "clean_minus_hardware_db": 2.3504075371710087,
+          "encoded_minus_hardware_db": 2.33930833406248,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 43.957482748982464
+        },
+        {
+          "parent_harmonic": 31,
+          "expected_hz": 3226.182942804131,
+          "hardware_dbc": -47.90144437863475,
+          "clean_dbc": -48.51009765779136,
+          "encoded_dbc": -48.4722222464266,
+          "encoded_minus_clean_db": 0.03787541136476591,
+          "clean_minus_hardware_db": -0.6086532791566128,
+          "encoded_minus_hardware_db": -0.5707778677918469,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 44.03040304122833
+        },
+        {
+          "parent_harmonic": 32,
+          "expected_hz": 1907.6727151526502,
+          "hardware_dbc": -49.66948688435956,
+          "clean_dbc": -48.308467314047846,
+          "encoded_dbc": -48.33626547233052,
+          "encoded_minus_clean_db": -0.02779815828267118,
+          "clean_minus_hardware_db": 1.3610195703117114,
+          "encoded_minus_hardware_db": 1.3332214120290402,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 42.761965267370556
+        },
+        {
+          "parent_harmonic": 33,
+          "expected_hz": 589.1624875011694,
+          "hardware_dbc": -48.067310252895574,
+          "clean_dbc": -49.189320814628616,
+          "encoded_dbc": -49.193466918845004,
+          "encoded_minus_clean_db": -0.004146104216388835,
+          "clean_minus_hardware_db": -1.1220105617330418,
+          "encoded_minus_hardware_db": -1.1261566659494306,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 44.509443741395174
+        }
+      ]
+    },
+    {
+      "passage": {
+        "note": 86,
+        "midi_onset_seconds": 19.25,
+        "midi_off_seconds": 19.43750566893424,
+        "velocity": 127,
+        "offset_seconds": 0.1,
+        "role": "other-pitch",
+        "start_sample": 851571,
+        "end_sample": 855099,
+        "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+      },
+      "frozen_phase": 0.7748249232899612,
+      "context_center_max_absolute_difference": 9.259260025373806e-14,
+      "clean_peak": 0.2749602198600769,
+      "gapless_samples": 47628,
+      "lag_check": {
+        "search_samples": [
+          -1152,
+          1152
+        ],
+        "best_integer_lag": 0,
+        "best_correlation": 0.9999957526131527,
+        "zero_lag_correlation": 0.9999957526131527,
+        "applied_lag": 0
+      },
+      "encode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-4-note-86.wav",
+        "-c:a",
+        "libmp3lame",
+        "-b:a",
+        "320k",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-4-note-86.mp3"
+      ],
+      "decode_command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-4-note-86.mp3",
+        "-c:a",
+        "pcm_f32le",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-4-note-86-decoded.wav"
+      ],
+      "probe_command": [
+        "ffprobe",
+        "-v",
+        "error",
+        "-show_entries",
+        "stream=codec_name,sample_rate,channels,bit_rate",
+        "-of",
+        "json",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/asymmetric-codec-v1/passage-4-note-86.mp3"
+      ],
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "44100",
+            "channels": 1,
+            "bit_rate": "320000"
+          }
+        ]
+      },
+      "clean_sha256": "7bd6983ca99a2c6df216f3e8a9e4a88c599da985af29e0a222afd1fc507601cf",
+      "mp3_sha256": "c7427862795cf29ffde51a8b9c70a658d898db574431c0b526c443c415565dcd",
+      "decoded_sha256": "4c2751eb4feb7dcc30385e43ecb0ebdede8e568759ff63bbcf3da08d0fcacd07",
+      "codec_change_rms_db": 0.04757042954273463,
+      "codec_change_max_absolute_db": 0.12270062340205357,
+      "clean_alias_rms_error_db": 1.3540277088113044,
+      "encoded_alias_rms_error_db": 1.3511210130968268,
+      "hardware_eligible_line_count": 13,
+      "lines": [
+        {
+          "parent_harmonic": 25,
+          "expected_hz": 14733.523208259241,
+          "hardware_dbc": -46.171476991353664,
+          "clean_dbc": -46.06533853444384,
+          "encoded_dbc": -46.05927737220635,
+          "encoded_minus_clean_db": 0.006061162237486428,
+          "clean_minus_hardware_db": 0.10613845690982515,
+          "encoded_minus_hardware_db": 0.11219961914731158,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 46.93031984126941
+        },
+        {
+          "parent_harmonic": 26,
+          "expected_hz": 13558.864136589611,
+          "hardware_dbc": -48.05083267809306,
+          "clean_dbc": -46.069216810064574,
+          "encoded_dbc": -46.08364294092547,
+          "encoded_minus_clean_db": -0.014426130860897501,
+          "clean_minus_hardware_db": 1.9816158680284843,
+          "encoded_minus_hardware_db": 1.9671897371675868,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 46.195950123696136
+        },
+        {
+          "parent_harmonic": 27,
+          "expected_hz": 12384.205064919981,
+          "hardware_dbc": -47.559969127914485,
+          "clean_dbc": -47.284508848835955,
+          "encoded_dbc": -47.28731489490107,
+          "encoded_minus_clean_db": -0.0028060460651175845,
+          "clean_minus_hardware_db": 0.2754602790785299,
+          "encoded_minus_hardware_db": 0.2726542330134123,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 45.9467662336577
+        },
+        {
+          "parent_harmonic": 28,
+          "expected_hz": 11209.54599325035,
+          "hardware_dbc": -51.33838917132309,
+          "clean_dbc": -49.85059067764265,
+          "encoded_dbc": -49.872589846741455,
+          "encoded_minus_clean_db": -0.021999169098805282,
+          "clean_minus_hardware_db": 1.4877984936804367,
+          "encoded_minus_hardware_db": 1.4657993245816314,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 45.11957998487212
+        },
+        {
+          "parent_harmonic": 29,
+          "expected_hz": 10034.88692158072,
+          "hardware_dbc": -54.69654583909757,
+          "clean_dbc": -54.438699368197625,
+          "encoded_dbc": -54.529117811219834,
+          "encoded_minus_clean_db": -0.0904184430222088,
+          "clean_minus_hardware_db": 0.25784647089994195,
+          "encoded_minus_hardware_db": 0.16742802787773314,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 40.001842999771185
+        },
+        {
+          "parent_harmonic": 30,
+          "expected_hz": 8860.22784991109,
+          "hardware_dbc": -63.99548920210046,
+          "clean_dbc": -64.62714269556889,
+          "encoded_dbc": -64.62148907391334,
+          "encoded_minus_clean_db": 0.005653621655554275,
+          "clean_minus_hardware_db": -0.6316534934684341,
+          "encoded_minus_hardware_db": -0.6259998718128799,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 30.376284962525325
+        },
+        {
+          "parent_harmonic": 31,
+          "expected_hz": 7685.568778241461,
+          "hardware_dbc": -60.615855819206985,
+          "clean_dbc": -63.76147214362875,
+          "encoded_dbc": -63.79276033681883,
+          "encoded_minus_clean_db": -0.03128819319007903,
+          "clean_minus_hardware_db": -3.1456163244217663,
+          "encoded_minus_hardware_db": -3.1769045176118453,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 30.7581778947953
+        },
+        {
+          "parent_harmonic": 32,
+          "expected_hz": 6510.909706571831,
+          "hardware_dbc": -56.50682472383941,
+          "clean_dbc": -55.67533857853143,
+          "encoded_dbc": -55.64042956920197,
+          "encoded_minus_clean_db": 0.034909009329460616,
+          "clean_minus_hardware_db": 0.8314861453079772,
+          "encoded_minus_hardware_db": 0.8663951546374378,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 38.07011242935447
+        },
+        {
+          "parent_harmonic": 33,
+          "expected_hz": 5336.2506349022005,
+          "hardware_dbc": -50.33154292329123,
+          "clean_dbc": -52.19693788178658,
+          "encoded_dbc": -52.17057500581335,
+          "encoded_minus_clean_db": 0.026362875973234168,
+          "clean_minus_hardware_db": -1.8653949584953509,
+          "encoded_minus_hardware_db": -1.8390320825221167,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 39.57585083887865
+        },
+        {
+          "parent_harmonic": 34,
+          "expected_hz": 4161.5915632325705,
+          "hardware_dbc": -51.12671341050212,
+          "clean_dbc": -50.31054436826171,
+          "encoded_dbc": -50.28173827360783,
+          "encoded_minus_clean_db": 0.02880609465388062,
+          "clean_minus_hardware_db": 0.8161690422404106,
+          "encoded_minus_hardware_db": 0.8449751368942913,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 40.77770552763883
+        },
+        {
+          "parent_harmonic": 35,
+          "expected_hz": 2986.9324915629404,
+          "hardware_dbc": -48.309958974144905,
+          "clean_dbc": -49.408020127511996,
+          "encoded_dbc": -49.44849200550866,
+          "encoded_minus_clean_db": -0.04047187799666574,
+          "clean_minus_hardware_db": -1.098061153367091,
+          "encoded_minus_hardware_db": -1.1385330313637567,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 40.28606098253127
+        },
+        {
+          "parent_harmonic": 36,
+          "expected_hz": 1812.2734198933103,
+          "hardware_dbc": -50.377245492552454,
+          "clean_dbc": -49.34579416395011,
+          "encoded_dbc": -49.468494787352164,
+          "encoded_minus_clean_db": -0.12270062340205357,
+          "clean_minus_hardware_db": 1.0314513286023441,
+          "encoded_minus_hardware_db": 0.9087507052002906,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 40.92396180461037
+        },
+        {
+          "parent_harmonic": 37,
+          "expected_hz": 637.6143482236803,
+          "hardware_dbc": -49.769829194159854,
+          "clean_dbc": -50.14318066689544,
+          "encoded_dbc": -50.15081939991438,
+          "encoded_minus_clean_db": -0.0076387330189433555,
+          "clean_minus_hardware_db": -0.37335147273558533,
+          "encoded_minus_hardware_db": -0.3809902057545287,
+          "encoded_interior_peak": true,
+          "encoded_prominence_db": 40.027029629754395
+        }
+      ]
+    }
+  ]
+}

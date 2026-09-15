@@ -97,6 +97,10 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   [Shared local wrap corrections](source-audits/deepsonic-saw-wrap-kernels-2026-09-15.md)
   also transfer the gross waveform across pitches but fail measured notches;
   small waveform residuals conceal large relative errors in quiet components.
+  [Asymmetric corrections](source-audits/deepsonic-saw-asymmetric-kernels-2026-09-15.md)
+  improve training alias error to 1.47 dB but still miss other pitches'
+  notches by about 17 dB. Encoding the actual candidate spectrum changes
+  the disputed line by only 0.006 dB under the tested MP3 encoder.
   [Slope/time controls](source-audits/deepsonic-high-note-invariance-2026-09-15.md)
   identify an early, nearly invariant Q0 high-note region followed by a
   moving response. Q50 differs strongly there, ruling out an unconditional

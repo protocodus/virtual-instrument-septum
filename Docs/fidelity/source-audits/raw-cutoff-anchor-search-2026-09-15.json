@@ -1,0 +1,97 @@
+{
+  "date": "2026-09-15",
+  "scope": "Bounded public search for independent SH-201 raw-cutoff frequency anchors. No DSP edits, outreach, accounts, purchases or other-product DSP assumptions.",
+  "query_bound": 16,
+  "languages": [
+    "English",
+    "Japanese",
+    "German",
+    "French",
+    "Russian"
+  ],
+  "queries": [
+    "\"SH-201\" \"カットオフ\" \"Hz\"",
+    "\"SH-201\" \"cutoff\" \"frequency\" \"127\"",
+    "\"SH201\" \"cutoff\" \"Hz\"",
+    "\"SH-201\" \"Grenzfrequenz\"",
+    "\"SH-201\" \"カットオフ\" \"測定\"",
+    "\"SH-201\" \"fréquence\" \"mesure\"",
+    "\"SH-201\" \"частота\" \"фильтр\" измерения",
+    "\"SH-201\" \"Cutoff\" \"Messung\"",
+    "\"Roland SH-201\" \"cutoff\" \"calibration\"",
+    "\"Roland SH-201\" \"cutoff\" \"Ctrlr\"",
+    "\"SH-201\" \"cutoff\" \"github\"",
+    "\"SH-201\" フィルター 周波数 測定 -site:roland.com -site:manualslib.com",
+    "\"SH201\" \"cutoff\" \"table\" -site:scribd.com -site:manualslib.com",
+    "\"SH-201\" \"filter\" \"test mode\"",
+    "\"Roland SH-201\" \"20000\"",
+    "\"SH-201\" \"cutoff\" \"MIDI Quest\""
+  ],
+  "assets": [
+    {
+      "path": "build-fidelity/public-waveforms/raw-cutoff-search/misutrax-owner-note.html",
+      "url": "https://note.com/microlab/n/nc7898a7ed946",
+      "bytes": 297452,
+      "sha256": "eaeab509a7aca405631b335149d78c6811e5a9abc802a48802910c30b3c0f829"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/raw-cutoff-search/misutrax-video-metadata.json",
+      "url": "https://www.youtube.com/watch?v=IipRHyJH7Ds",
+      "bytes": 58464,
+      "sha256": "3bbab6e7cc4b07d3953b3a3578b50b96ef210aab9ce815819e05d10b40196690"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/raw-cutoff-search/midi-mod-parameter-list.html",
+      "url": "https://eokuwwy.blogspot.com/2019/05/device-parameter-mapping-list.html",
+      "bytes": 382236,
+      "sha256": "d6841ab2f1fe6bbe6cb7937f8a3e214a3df02c7b87e9677fc7cc4d8ab3744c0f"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/raw-cutoff-search/open-midi-specs-tree.json",
+      "url": "https://api.github.com/repos/eokuwwy/open-midi-rtc-specs/git/trees/master?recursive=1",
+      "bytes": 65524,
+      "sha256": "a6f0d723505ac49f91fd52fd2beb29d85bb815ed89a30955ea2233f86af4891d"
+    },
+    {
+      "path": "build-fidelity/public-waveforms/raw-cutoff-search/open-midi-sh-201.json",
+      "url": "https://raw.githubusercontent.com/eokuwwy/open-midi-rtc-specs/b7080441427d74a50c3dfda0f107f0215bc11c49/specs/0.0.1/json/sh-201.json",
+      "bytes": 12327,
+      "sha256": "192da117f4cd35ad68e61aca8f055231efa0b73052c9475e68c7f8da10dc88ee"
+    }
+  ],
+  "new_findings": [
+    {
+      "source": "https://note.com/microlab/n/nc7898a7ed946",
+      "author": "misutrax",
+      "published": "2022-01-13",
+      "observed": "Owner reports designing a SuperSaw sound using modest resonance and LP24, aiming around1–4kHz for brighter harmonics. No raw cutoff value, measurement method, full patch or calibrated frequency plot appears.",
+      "deduction": "Subjective target range cannot supply a raw-cutoff anchor.",
+      "confidence": "High for article content, no numerical calibration confidence"
+    },
+    {
+      "source": "https://www.youtube.com/watch?v=IipRHyJH7Ds",
+      "observed": "Linked primary video metadata: Roland SH-201 SUPERSAW 2x, uploader Synthwave-jp8k,23seconds, description#shorts, no subtitles or automatic captions. No media downloaded in this pass.",
+      "deduction": "Metadata does not recover raw patch/calibration; video content was not analyzed.",
+      "confidence": "High for downloaded metadata"
+    },
+    {
+      "source": "https://github.com/eokuwwy/open-midi-rtc-specs/blob/b7080441427d74a50c3dfda0f107f0215bc11c49/specs/0.0.1/json/sh-201.json",
+      "observed": "Author-published SH-201 controller specification: Upper Filter Cutoff CC74, Lower CC102, Audio Filter CC2; all valueRange0..127. The JSON contains no raw-to-Hz conversion, physical cutoff table or measured examples.",
+      "deduction": "Primary evidence for app routing, third-party documentation of hardware controls, not Roland DSP calibration.",
+      "confidence": "High for pinned source contents"
+    }
+  ],
+  "deduplication": [
+    "cutoff-parameter-audit.md",
+    "filter-transfer-audit.md",
+    "filter-envelope-conditional-fit.md",
+    "2026-09-15-new-sources.md",
+    "sh201-high-note-source-feasibility-2026-09-15.md"
+  ],
+  "retrieval_limits": [
+    "Web reader returned429 for the MIDI Mod parameter list; one ordinary public curl retrieval succeeded.",
+    "Web YouTube fetch throttled; public yt-dlp metadata retrieval succeeded without accounts or media acquisition.",
+    "Unrelated KEMET/TOKIN SH-201 line filters, Motorola shields, price listings and other Roland devices were rejected."
+  ],
+  "result": "No independent raw-cutoff physical-frequency anchor recovered after16 multilingual queries and bounded follow-up of the two new primary leads. This is a bounded feasibility failure, not proof no public anchor exists. Existing conditional audio fits must retain their labels."
+}
