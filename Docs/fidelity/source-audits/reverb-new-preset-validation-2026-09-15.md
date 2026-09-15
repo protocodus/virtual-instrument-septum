@@ -59,6 +59,8 @@ The apparent damping association is confounded with layering: all five supportiv
 
 Decay evidence also does not justify a universal time multiplier. [Cotton's longer tail](cotton-reverb-decay-2026-09-15.md) supports a conditional 8.2–8.5 s effective broadband decay versus the model's 7.01 s target. [Class A's shorter, bass-dominated tail](class-a-reverb-decay-2026-09-15.md) instead gives approximately 3.4–3.6 s versus 3.87 s, with significant short-window/modal and fade uncertainty. Time and damping remain separate investigations.
 
+The [common-phase check](dual-reverb-phase-sensitivity-2026-09-15.md) retains both envelope regressions, including with common later supports. Its half-cycle PCM pairs are exact polarity inversions; it covers two distinct magnitude responses and does not test independent layer or oscillator phases. With reference-only spectral masks, Club's log-spectrum error also worsens, despite improving with pair-dependent masks. [Club's conditional tail comparison](club-reverb-decay-2026-09-15.md) finds a gain-invariant temporal mismatch: the model loses another 2.31–2.42 dB relative to hardware in stereo between fixed early and later supports, and 4.41–4.58 dB in side. Large modal and window sensitivity in actual-engine controls prevents assigning that difference to a particular damping law.
+
 ## Reproduce
 
 `Tools/evaluate_reverb_validation_cases.py` takes the nine Ambient JSONs, Class A nominal JSON and two Class A sensitivity JSONs from `Docs/fidelity/reconstructions/reverb-validation`, the catalog-verified source directory, and the frozen reverb gain run. It writes the full protocol before rendering. No reference file is modified.

@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "status": "Frozen before any Club decay slope fit, model tail measurements or FDN control renders.",
+  "chronology": "Targeted follow-up to known Club/Ambient envelope counterexamples; source-only feasibility/support already saved. This does not replace or select from earlier outcomes.",
+  "source_support_sha256": "1e3ce551394718f52082261d8f613bdc2be781c21142148fbcf57b9dfabecda1",
+  "train_seconds": [
+    2.3,
+    2.65
+  ],
+  "check_seconds": [
+    2.65,
+    3.0
+  ],
+  "late_diagnostic_seconds": [
+    3.0,
+    3.25
+  ],
+  "band_edges_hz": [
+    80,
+    160,
+    320,
+    640
+  ],
+  "channels": [
+    "stereo",
+    "side"
+  ],
+  "window_specs": [
+    {
+      "duration_seconds": 0.15,
+      "hop_seconds": 0.025,
+      "role": "primary"
+    },
+    {
+      "duration_seconds": 0.1,
+      "hop_seconds": 0.025,
+      "role": "window_sensitivity"
+    },
+    {
+      "duration_seconds": 0.2,
+      "hop_seconds": 0.025,
+      "role": "window_sensitivity"
+    }
+  ],
+  "estimator": "Complete symmetric-Hann rFFT windows entirely within each support; correctly doubled one-sided squared spectrum divided by N*sum(w^2), integrated in fixed bands. Whole-channel broadband RMS uses unweighted samples. Fit ordinary linear dB-versus-window-center on training only; predict all later-window levels. Fit model separately on exact same support as descriptive comparison. Overlapping windows are not independent samples; no statistical confidence claims.",
+  "guards": "All80-640 bands remain predeclared. Retain all rows/failures. Flag training/evaluation band levels below-120dBFS or <0.1% of Hann-weighted full power; original quiet-reference coverage remains from source-only audit. No candidate-dependent bins or retuning.",
+  "source_rate": 44100,
+  "gain_and_alignment": {
+    "candidate_lag_samples": 232,
+    "candidate_lag_seconds": 0.00526077097505669,
+    "candidate_gain": 1.8256797473972683,
+    "candidate_gain_db": 5.228491957544897,
+    "calibration_frames": 35831,
+    "max_lag_seconds": 0.05,
+    "alignment_method": "10 ms RMS-envelope normalized correlation; integer sample grid",
+    "alignment_correlation": 0.9730651298700843,
+    "alignment_identifiable": true,
+    "alignment_at_search_boundary": false,
+    "gain_method": "one scalar RMS gain over calibration interval after alignment",
+    "allowed_transforms": [
+      "one global integer delay",
+      "one positive scalar gain"
+    ]
+  },
+  "calibration_source_results": {
+    "path": "build-fidelity/hardware-benchmark/reverb-gain-candidates/run-01/results.json",
+    "sha256": "ff09418c895d188c0df2323ec45cb6616fd7e3d40184b6205acaea5c04b92d51"
+  },
+  "transform": "Use only existing baseline232sample lag and gain1.8256797473972683; hardware source index t maps to candidate index t+232. No new fit, time warp, controller or MIDI changes.",
+  "shipping_wav": {
+    "path": "build-fidelity/hardware-benchmark/reverb-return-integration/run-01/renders/legacy/club-bass/shipping.wav",
+    "sha256": "7450ab25f2a776ca21725f7afee23fdcb218c8eee64b53f7a44daa3202670ddd"
+  },
+  "fdn_controls": {
+    "stimuli": [
+      "white_noise",
+      "dark_noise",
+      "d2_harmonic",
+      "d2_sine"
+    ],
+    "burst_seconds": 0.2,
+    "duration_seconds": 4,
+    "input": "Fixed-seed xorshift white/dark noise and fixed-phase D2(73.416Hz) harmonic/sine; Hann burst viaExtIn. Exact original Club reverb block, delayoff, filterbypass. No oscillator/damping candidates.",
+    "early_train_seconds": [
+      0.29,
+      0.64
+    ],
+    "early_check_seconds": [
+      0.64,
+      0.99
+    ],
+    "timing": "Source final gate2.21s maps to burst end.20s; all control audio indices add fixed93sample architecture latency. This is operational gate-age matching, not measured original key-up.",
+    "settled_train_seconds": [
+      1.2,
+      2.2
+    ],
+    "settled_check_seconds": [
+      2.2,
+      3.2
+    ],
+    "purpose": "Compare3window estimators and4known excitation spectra through actual shipping FDN; compare early short-support estimates with settled longer-support estimates to expose modal/time-dependent bias. Neither is assumed exact hardware T60."
+  },
+  "shelf_diagnostic": "Measure actual current first-order HF shelf impulse response at80,sqrt(80*160),160,sqrt(160*320),320,sqrt(320*640),640Hz,4kHz andNyquist; LFneutral. This is per-pass engine attenuation only, not hardware decay or evidence of internal placement.",
+  "controls": [
+    "Planted exponential amplitude with-20dB/s power-level slope, sinusoidal and dense-harmonic inputs; verify short-window estimator variability.",
+    "Posthoc uniform0.5 scaling must leave every slope unchanged and shift levels-6.0206dB; do not select return gain."
+  ],
+  "claims_excluded": [
+    "No isolated HFgain calibration: allprimarybands farbelow4k.",
+    "No inferred exactMIDI release or hardwareFDN.",
+    "A sub-corner mismatch may reflect modes/excitation/sendlaw/capture, not specifically HFdamping."
+  ]
+}

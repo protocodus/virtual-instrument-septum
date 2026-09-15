@@ -112,6 +112,10 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   improve training alias error to 1.47 dB but still miss other pitches'
   notches by about 17 dB. Encoding the actual candidate spectrum changes
   the disputed line by only 0.006 dB under the tested MP3 encoder.
+  [Frequency-estimator controls](source-audits/saw-alias-frequency-sensitivity-2026-09-15.md)
+  also rule out small pitch or recording-clock offsets as the explanation
+  for those large level errors: local-frequency refinement changes the
+  measured lines by at most 0.0007 dB in the retained windows.
   [Slope/time controls](source-audits/deepsonic-high-note-invariance-2026-09-15.md)
   identify an early, nearly invariant Q0 high-note region followed by a
   moving response. Q50 differs strongly there, ruling out an unconditional
@@ -142,6 +146,17 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   both contrary presets use DUAL, so damping is confounded with layering.
   The common 4 kHz HF corner is above Club's useful measured tail bands;
   a damping diagnosis cannot follow just from the stored negative gain.
+  [Common-phase controls](source-audits/dual-reverb-phase-sensitivity-2026-09-15.md)
+  preserve both envelope regressions, including on common later supports.
+  Half-cycle pairs are exact polarity inversions, so the four tested phases
+  represent only two distinct magnitude responses. Independent layer and
+  oscillator phases remain separate uncertainties.
+  [Club's low-band tail](source-audits/club-reverb-decay-2026-09-15.md)
+  grows quieter relative to hardware by 2.31–2.42 dB in stereo and
+  4.41–4.58 dB in side between fixed early and later supports. Constant
+  return gain cannot remove that temporal mismatch. Actual-engine burst
+  controls show unstable early modal slopes, preventing a unique damping
+  or time-law correction from these short intervals.
   [Cotton's effective decay](source-audits/cotton-reverb-decay-2026-09-15.md)
   is longer than the model, while the weaker
   [Class A estimate](source-audits/class-a-reverb-decay-2026-09-15.md) goes the
