@@ -1,0 +1,1523 @@
+{
+  "schema_version": 1,
+  "status": "No static-cutoff anchor; insufficient clean cycles for a raw21 LFO-period anchor.",
+  "source_extraction_sha256": "b516c9d1b5b48855b752c91d6eeedc4e75592c530def32bf8de272398ab70266",
+  "tool_sha256": "4bc56543465cdd457475cc477dd97ce066150d8b23027b6fa44fe2b43581de28",
+  "original_media_sha256": {
+    "7jW2GIgOOv8.m4a": "7b0e82d0f0edd1ad7ca43d1aadf44485aa6ab3ef59d2dcdfac20526d0f0d7dcf",
+    "7jW2GIgOOv8.info.json": "d6eda4192d528a52ab05e60c0c5f9fbe4ab0b78b87e43478adbf0e9020aef827",
+    "7jW2GIgOOv8-video.mp4": "c3eb7568c1fa4e9e77ddaa0facc6ed58564c45b634b0dc91fae5d0a3c1f1bd07",
+    "7jW2GIgOOv8-video.info.json": "a79c6a47a922f1bff5050b40a9a82b97186714dbb5a1a1be0c0dd38f149c56bc"
+  },
+  "decoded_sha256": "f07ccfa70d00bf2e6aac5842a09a2b4bb2ba608e55ae3c6e8b50f8a45563e3e5",
+  "patch": {
+    "member": "TB-303 06.she",
+    "bytes": 1525,
+    "sha256": "fb770fa1657f775ea9db8befb276001dba4bc4b8c6cba4f7249a69d8199cc246",
+    "sysEx_sha256": "5604a98324e4c92c8e1ba43fa3035563da4f341a259365e77ddb8b7f1c993c8b",
+    "native_block_sizes": [
+      33,
+      64,
+      64,
+      5,
+      10,
+      8,
+      66,
+      66,
+      66,
+      66,
+      66,
+      66,
+      66,
+      66,
+      66,
+      66,
+      66,
+      66,
+      66,
+      66,
+      66,
+      66
+    ],
+    "schema_range_anomalies": [],
+    "system": {
+      "patchBankSelectMSB": 87,
+      "patchBankSelectLSB": 0,
+      "patchProgramNumber": 31,
+      "patchRxTxChannel": 0,
+      "patchRemain": 1,
+      "masterTune": 1024,
+      "masterKeyShift": 64,
+      "masterLevel": 127,
+      "systemClockSource": 0,
+      "systemTempo": 140,
+      "receiveProgramChange": 0,
+      "receiveBankSelect": 0,
+      "transmitEditData": 1,
+      "softThrough": 0,
+      "midiUSBThru": 0,
+      "transmitProgramChange": 0,
+      "transmitBankSelect": 0,
+      "transmitActiveSensing": 1,
+      "octaveShift": 63,
+      "transposeValue": 64,
+      "localSwitch": 1,
+      "remoteKeyboardSwitch": 0,
+      "pedalPolarity": 0,
+      "pedalAssign": 0
+    },
+    "common": {
+      "patchName": "TB-303 06",
+      "patchLevel": 127,
+      "toneBalance": 64,
+      "patchTempo": 120,
+      "keyboardMode": 0,
+      "keyboardPart": 0,
+      "splitPoint": 53,
+      "splitArpeggio": 2,
+      "modulationDestination": 2,
+      "dBeamDestination": 2,
+      "pitchBendDestination": 2,
+      "expressionDestination": 2,
+      "activeExpressionSwitch": 0,
+      "arpeggioSwitch": 0,
+      "arpeggioHold": 0,
+      "delaySwitch": 1,
+      "reverbSwitch": 0,
+      "modulationAssign": 0,
+      "dBeamAssign": 7,
+      "dBeamPolarity": 1
+    },
+    "upper": {
+      "oscType[0]": 0,
+      "oscPitchWideSwitch[0]": 0,
+      "oscCoarseTune[0]": 64,
+      "oscFineTune[0]": 64,
+      "oscPulseWidth[0]": 64,
+      "oscPitchEnvDepth[0]": 64,
+      "oscType[1]": 1,
+      "oscPitchWideSwitch[1]": 0,
+      "oscCoarseTune[1]": 28,
+      "oscFineTune[1]": 64,
+      "oscPulseWidth[1]": 64,
+      "oscPitchEnvDepth[1]": 64,
+      "pitchEnvAttackTime": 0,
+      "pitchEnvDecay": 0,
+      "mixMODType": 0,
+      "mixMODBalance": 1,
+      "mixMODLowFreq": 0,
+      "filterType": 1,
+      "filterSlope": 1,
+      "filterCutoffFrequency": 81,
+      "filterCutoffKeyfollow": 64,
+      "filterCutoffVelocitySens": 64,
+      "filterResonance": 42,
+      "filterEnvAttackTime": 0,
+      "filterDecayTime": 14,
+      "filterSustainLevel": 2,
+      "filterReleaseTime": 4,
+      "filterEnvDepth": 80,
+      "ampOverdriveSwitch": 0,
+      "ampOverdriveDepth": 100,
+      "ampLevel": 64,
+      "ampLevelVelocitySens": 72,
+      "ampPan": 64,
+      "ampEnvAttackTime": 0,
+      "ampEnvDecayTime": 127,
+      "ampEnvSustainLevel": 127,
+      "ampEnvReleaseTime": 0,
+      "delayDepth": 16,
+      "reverbDepth": 104,
+      "lfoType[0]": 1,
+      "lfoRate[0]": 21,
+      "lfoTempoSyncSwitch[0]": 0,
+      "lfoTempoSyncNote[0]": 17,
+      "lfoFadeTime[0]": 0,
+      "lfoKeyTrigger[0]": 0,
+      "lfoDestination1[0]": 2,
+      "lfoDepth1[0]": 94,
+      "lfoDestination2[0]": 2,
+      "lfoDepth2[0]": 64,
+      "lfoType[1]": 0,
+      "lfoRate[1]": 92,
+      "lfoTempoSyncSwitch[1]": 0,
+      "lfoTempoSyncNote[1]": 17,
+      "lfoFadeTime[1]": 0,
+      "lfoKeyTrigger[1]": 0,
+      "lfoDestination1[1]": 2,
+      "lfoDepth1[1]": 64,
+      "lfoDestination2[1]": 2,
+      "lfoDepth2[1]": 64,
+      "pitchBendRange": 2,
+      "octaveShift": 64,
+      "portamentoSwitch": 0,
+      "portamentoTime": 20,
+      "monoSoloSelect": 0
+    },
+    "lower": {
+      "oscType[0]": 0,
+      "oscPitchWideSwitch[0]": 0,
+      "oscCoarseTune[0]": 64,
+      "oscFineTune[0]": 64,
+      "oscPulseWidth[0]": 64,
+      "oscPitchEnvDepth[0]": 64,
+      "oscType[1]": 1,
+      "oscPitchWideSwitch[1]": 0,
+      "oscCoarseTune[1]": 64,
+      "oscFineTune[1]": 64,
+      "oscPulseWidth[1]": 64,
+      "oscPitchEnvDepth[1]": 64,
+      "pitchEnvAttackTime": 0,
+      "pitchEnvDecay": 0,
+      "mixMODType": 0,
+      "mixMODBalance": 1,
+      "mixMODLowFreq": 0,
+      "filterType": 1,
+      "filterSlope": 0,
+      "filterCutoffFrequency": 127,
+      "filterCutoffKeyfollow": 64,
+      "filterCutoffVelocitySens": 64,
+      "filterResonance": 0,
+      "filterEnvAttackTime": 0,
+      "filterDecayTime": 0,
+      "filterSustainLevel": 127,
+      "filterReleaseTime": 0,
+      "filterEnvDepth": 64,
+      "ampOverdriveSwitch": 0,
+      "ampOverdriveDepth": 100,
+      "ampLevel": 127,
+      "ampLevelVelocitySens": 72,
+      "ampPan": 64,
+      "ampEnvAttackTime": 0,
+      "ampEnvDecayTime": 0,
+      "ampEnvSustainLevel": 127,
+      "ampEnvReleaseTime": 0,
+      "delayDepth": 40,
+      "reverbDepth": 20,
+      "lfoType[0]": 0,
+      "lfoRate[0]": 92,
+      "lfoTempoSyncSwitch[0]": 0,
+      "lfoTempoSyncNote[0]": 17,
+      "lfoFadeTime[0]": 0,
+      "lfoKeyTrigger[0]": 0,
+      "lfoDestination1[0]": 2,
+      "lfoDepth1[0]": 64,
+      "lfoDestination2[0]": 2,
+      "lfoDepth2[0]": 64,
+      "lfoType[1]": 0,
+      "lfoRate[1]": 92,
+      "lfoTempoSyncSwitch[1]": 0,
+      "lfoTempoSyncNote[1]": 17,
+      "lfoFadeTime[1]": 0,
+      "lfoKeyTrigger[1]": 0,
+      "lfoDestination1[1]": 2,
+      "lfoDepth1[1]": 64,
+      "lfoDestination2[1]": 2,
+      "lfoDepth2[1]": 64,
+      "pitchBendRange": 2,
+      "octaveShift": 64,
+      "portamentoSwitch": 0,
+      "portamentoTime": 20,
+      "monoSoloSelect": 0
+    },
+    "delay": {
+      "time": 60,
+      "feedback": 85,
+      "hfDamp": 16,
+      "modulationRate": 2,
+      "modulationDepth": 23
+    },
+    "reverb": {
+      "time": 93,
+      "preDelay": 62,
+      "size": 7,
+      "highCut": 17,
+      "density": 127,
+      "diffusion": 127,
+      "lfDampFrequency": 6,
+      "lfDampGain": 19,
+      "hfDampFrequency": 3,
+      "hfDampGain": 23
+    },
+    "arpeggio": {
+      "arpeggioGrid": 5,
+      "arpeggioDuration": 5,
+      "arpeggioMotif": 2,
+      "arpeggioOctaveRange": 64,
+      "arpeggioAccentRate": 100,
+      "arpeggioVelocity": 0,
+      "endStep": 1
+    },
+    "official_lfo_labels": {
+      "upper": [
+        {
+          "waveform": "SIN",
+          "destination1": "FILTER",
+          "depth1": 30,
+          "destination2": "AMP",
+          "depth2": 0,
+          "rate_raw": 21,
+          "key_trigger": 0,
+          "tempo_sync": 0
+        },
+        {
+          "waveform": "TRI",
+          "destination1": "FILTER",
+          "depth1": 0,
+          "destination2": "AMP",
+          "depth2": 0,
+          "rate_raw": 92,
+          "key_trigger": 0,
+          "tempo_sync": 0
+        }
+      ],
+      "lower": [
+        {
+          "waveform": "TRI",
+          "destination1": "FILTER",
+          "depth1": 0,
+          "destination2": "AMP",
+          "depth2": 0,
+          "rate_raw": 92,
+          "key_trigger": 0,
+          "tempo_sync": 0
+        },
+        {
+          "waveform": "TRI",
+          "destination1": "FILTER",
+          "depth1": 0,
+          "destination2": "AMP",
+          "depth2": 0,
+          "rate_raw": 92,
+          "key_trigger": 0,
+          "tempo_sync": 0
+        }
+      ]
+    },
+    "interpretation": "Observed packed container layout, validated against every official field range; not an Editor export round-trip."
+  },
+  "video_card": {
+    "frame_rate": 25,
+    "first_inclusive_frame": 1794,
+    "last_inclusive_frame": 2119,
+    "visible_seconds": [
+      71.76,
+      84.8
+    ],
+    "duration_seconds": 13.039999999999992,
+    "blank_template_frame": 1775,
+    "patch06_template_frame": 1875,
+    "roi_xywh": [
+      80,
+      220,
+      160,
+      40
+    ],
+    "match_amplitude_minimum": 0.95,
+    "match_relative_residual_maximum": 0.06,
+    "observed_relative_residual_maximum": 0.03998004379566001,
+    "extraction_command": [
+      "ffmpeg",
+      "-v",
+      "error",
+      "-nostdin",
+      "-i",
+      "build-fidelity/rcs-acid-feasibility/sources/7jW2GIgOOv8-video.mp4",
+      "-vf",
+      "crop=160:40:80:220,format=gray",
+      "-f",
+      "rawvideo",
+      "-"
+    ],
+    "frame_command": [
+      "ffmpeg",
+      "-v",
+      "error",
+      "-nostdin",
+      "-i",
+      "build-fidelity/rcs-acid-feasibility/sources/7jW2GIgOOv8-video.mp4",
+      "-vf",
+      "select=eq(n\\,1793)+eq(n\\,1794)+eq(n\\,2119)+eq(n\\,2120),tile=2x2",
+      "-frames:v",
+      "1",
+      "build-fidelity/rcs-acid-feasibility/patch06-02/card-boundaries.png"
+    ],
+    "caveat": "Exact visible text bounds; the absent labels before/after and unknown edit synchronization prevent calling them exact sound/patch switch times."
+  },
+  "feature_protocol": {
+    "source_only_exploratory_feasibility": true,
+    "rate_fit_performed": false,
+    "note_events_reconstructed": false,
+    "period_selected": false,
+    "source_support_seconds": [
+      71.76,
+      84.8
+    ],
+    "rms_block_samples": 44,
+    "peak_policy": {
+      "height": 0.1,
+      "prominence": 0.06,
+      "minimum_spacing_seconds": 0.38
+    },
+    "window": "60ms symmetric Hann; stereo powers averaged before band ratios",
+    "bands_hz": [
+      [
+        300,
+        900
+      ],
+      [
+        900,
+        3000
+      ],
+      [
+        3000,
+        7000
+      ]
+    ],
+    "normalizer_hz": [
+      40,
+      200
+    ],
+    "offsets_after_rms_peak_seconds": [
+      0.06,
+      0.12,
+      0.18
+    ],
+    "limitations": "RMS peaks are acoustic landmarks, not identified MIDI events. Broad bands are descriptive, not phase-invariant harmonic estimates or filter transfer functions."
+  },
+  "acoustic_landmarks": [
+    {
+      "rms_peak_source_seconds": 72.0308843537415,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3177885,
+            3180531
+          ],
+          "band_to_40_200hz_db": [
+            -24.24433156770785,
+            -22.503355269302936,
+            -43.18000398669448
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3180531,
+            3183177
+          ],
+          "band_to_40_200hz_db": [
+            -18.956055918636324,
+            -24.733883744848896,
+            -24.690138399313206
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3183177,
+            3185823
+          ],
+          "band_to_40_200hz_db": [
+            -14.016133772310821,
+            -11.688235531786049,
+            -44.248840756923265
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 72.51079365079366,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3199049,
+            3201695
+          ],
+          "band_to_40_200hz_db": [
+            -25.86889385706474,
+            -24.22863198399055,
+            -49.14192867170896
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3201695,
+            3204341
+          ],
+          "band_to_40_200hz_db": [
+            -20.671358115158583,
+            -25.41617660949802,
+            -27.357186620526587
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3204341,
+            3206987
+          ],
+          "band_to_40_200hz_db": [
+            -15.837745730796396,
+            -12.829002198527766,
+            -37.31120543099733
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 72.97274376417234,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3219421,
+            3222067
+          ],
+          "band_to_40_200hz_db": [
+            -24.943476958404936,
+            -23.625006839573544,
+            -28.53469990879355
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3222067,
+            3224713
+          ],
+          "band_to_40_200hz_db": [
+            -19.75283184096005,
+            -20.238342087836077,
+            -28.533664989664494
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3224713,
+            3227359
+          ],
+          "band_to_40_200hz_db": [
+            -15.688570904749643,
+            -14.11868690546637,
+            -17.670530745338844
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 73.4536507936508,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3240629,
+            3243275
+          ],
+          "band_to_40_200hz_db": [
+            -23.413118532598883,
+            -20.545699857380484,
+            -28.582511554937234
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3243275,
+            3245921
+          ],
+          "band_to_40_200hz_db": [
+            -22.96859773212992,
+            -22.598279648928006,
+            -32.37089471304128
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3245921,
+            3248567
+          ],
+          "band_to_40_200hz_db": [
+            -19.819735159815544,
+            -17.096115512572233,
+            -27.535032773348668
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 73.93256235827666,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3261749,
+            3264395
+          ],
+          "band_to_40_200hz_db": [
+            -28.47711467565439,
+            -26.674136541816228,
+            -31.44720558468135
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3264395,
+            3267041
+          ],
+          "band_to_40_200hz_db": [
+            -22.94333215326947,
+            -26.557951100105925,
+            -30.71079204038687
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3267041,
+            3269687
+          ],
+          "band_to_40_200hz_db": [
+            -18.51215719237238,
+            -15.84953898703088,
+            -23.15863210977023
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 74.40049886621316,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3282385,
+            3285031
+          ],
+          "band_to_40_200hz_db": [
+            -31.67078359050766,
+            -29.384720466584916,
+            -33.96286243248548
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3285031,
+            3287677
+          ],
+          "band_to_40_200hz_db": [
+            -26.445597055763383,
+            -25.014157387864287,
+            -31.525736133207573
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3287677,
+            3290323
+          ],
+          "band_to_40_200hz_db": [
+            -19.464879005600192,
+            -18.386631055851087,
+            -21.413038152896466
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 74.88040816326532,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3303549,
+            3306195
+          ],
+          "band_to_40_200hz_db": [
+            -26.94613584202049,
+            -22.4201973252409,
+            -28.817862092669596
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3306195,
+            3308841
+          ],
+          "band_to_40_200hz_db": [
+            -19.504441037663838,
+            -18.58071133850888,
+            -33.30447836947799
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3308841,
+            3311487
+          ],
+          "band_to_40_200hz_db": [
+            -16.47893604027995,
+            -13.567862053755677,
+            -20.50432049148348
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 75.37328798185942,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3325285,
+            3327931
+          ],
+          "band_to_40_200hz_db": [
+            -17.865312954436025,
+            -19.17818115137792,
+            -54.465391573831795
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3327931,
+            3330577
+          ],
+          "band_to_40_200hz_db": [
+            -18.089578816144364,
+            -28.33233173772088,
+            -31.74585653390821
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3330577,
+            3333223
+          ],
+          "band_to_40_200hz_db": [
+            -14.211408819297999,
+            -19.453589928986418,
+            -43.21949937638499
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 75.85319727891157,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3346449,
+            3349095
+          ],
+          "band_to_40_200hz_db": [
+            -21.466765524314933,
+            -31.567118738900724,
+            -37.48004508653726
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3349095,
+            3351741
+          ],
+          "band_to_40_200hz_db": [
+            -20.7307990001534,
+            -26.292771403507228,
+            -24.759094685360136
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3351741,
+            3354387
+          ],
+          "band_to_40_200hz_db": [
+            -9.108665566724511,
+            -25.198850440729963,
+            -45.26827824744704
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 76.32013605442177,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3367041,
+            3369687
+          ],
+          "band_to_40_200hz_db": [
+            -21.74707026230424,
+            -32.943396013282936,
+            -52.11177630365511
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3369687,
+            3372333
+          ],
+          "band_to_40_200hz_db": [
+            -23.43834840300399,
+            -29.527683419097773,
+            -29.270116861571665
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3372333,
+            3374979
+          ],
+          "band_to_40_200hz_db": [
+            -11.25364634023138,
+            -26.359841983558514,
+            -45.91313993041776
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 76.83097505668935,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3389569,
+            3392215
+          ],
+          "band_to_40_200hz_db": [
+            -29.346059765465434,
+            -35.83428264932244,
+            -43.12028867674094
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3392215,
+            3394861
+          ],
+          "band_to_40_200hz_db": [
+            -12.000885107028527,
+            -17.268047740746574,
+            -42.229603831421215
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3394861,
+            3397507
+          ],
+          "band_to_40_200hz_db": [
+            -30.917361811874603,
+            -38.52072169866803,
+            -50.10410838162912
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 77.29292517006803,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3409941,
+            3412587
+          ],
+          "band_to_40_200hz_db": [
+            -32.81412894592467,
+            -45.84231760812617,
+            -55.697971785650054
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3412587,
+            3415233
+          ],
+          "band_to_40_200hz_db": [
+            -21.92147606403556,
+            -22.335504415487954,
+            -44.65817078934858
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3415233,
+            3417879
+          ],
+          "band_to_40_200hz_db": [
+            -26.23102626932066,
+            -37.55465468972844,
+            -57.49402812453666
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 77.77283446712019,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3431105,
+            3433751
+          ],
+          "band_to_40_200hz_db": [
+            -34.18759649737146,
+            -31.746129322226967,
+            -37.54179500729178
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3433751,
+            3436397
+          ],
+          "band_to_40_200hz_db": [
+            -21.634215426229098,
+            -18.341083107362035,
+            -48.0062565087715
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3436397,
+            3439043
+          ],
+          "band_to_40_200hz_db": [
+            -24.29901903172007,
+            -39.386377001100826,
+            -54.92200009868302
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 78.25274376417234,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3452269,
+            3454915
+          ],
+          "band_to_40_200hz_db": [
+            -29.557938585511074,
+            -47.27631795854366,
+            -72.30871657551891
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3454915,
+            3457561
+          ],
+          "band_to_40_200hz_db": [
+            -28.718798883790164,
+            -21.818939786771093,
+            -37.81729965395954
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3457561,
+            3460207
+          ],
+          "band_to_40_200hz_db": [
+            -16.466924444012363,
+            -36.928460641425175,
+            -67.01405856954266
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 78.72068027210885,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3472905,
+            3475551
+          ],
+          "band_to_40_200hz_db": [
+            -18.713091986144132,
+            -26.49227373437222,
+            -32.730043294721945
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3475551,
+            3478197
+          ],
+          "band_to_40_200hz_db": [
+            -21.09537951801507,
+            -32.18550063524339,
+            -24.53541051565694
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3478197,
+            3480843
+          ],
+          "band_to_40_200hz_db": [
+            -7.497361634953754,
+            -27.478686936786325,
+            -52.95430217930903
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 79.200589569161,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3494069,
+            3496715
+          ],
+          "band_to_40_200hz_db": [
+            -23.91256775476546,
+            -19.931916066855646,
+            -56.301591747008885
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3496715,
+            3499361
+          ],
+          "band_to_40_200hz_db": [
+            -14.718909861547987,
+            -38.76339822705405,
+            -44.11574469119615
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3499361,
+            3502007
+          ],
+          "band_to_40_200hz_db": [
+            -26.366747595667817,
+            -18.35173912794696,
+            -43.871400585639115
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 79.68049886621316,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3515233,
+            3517879
+          ],
+          "band_to_40_200hz_db": [
+            -37.16012206582882,
+            -24.6956474600877,
+            -31.432356098515832
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3517879,
+            3520525
+          ],
+          "band_to_40_200hz_db": [
+            -28.789623228454136,
+            -23.068812213829112,
+            -39.54374743094199
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3520525,
+            3523171
+          ],
+          "band_to_40_200hz_db": [
+            -26.94973665831354,
+            -23.154796560554544,
+            -21.779779763536613
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 80.16040816326532,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3536397,
+            3539043
+          ],
+          "band_to_40_200hz_db": [
+            -32.10459483074105,
+            -35.83923245122582,
+            -30.55550143454729
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3539043,
+            3541689
+          ],
+          "band_to_40_200hz_db": [
+            -29.14745896404782,
+            -29.578573990606504,
+            -36.20734396795981
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3541689,
+            3544335
+          ],
+          "band_to_40_200hz_db": [
+            -20.02377146819803,
+            -21.834032830778686,
+            -19.940881014256135
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 80.64031746031746,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3557561,
+            3560207
+          ],
+          "band_to_40_200hz_db": [
+            -24.501500149267624,
+            -23.763999238390433,
+            -27.995518483676086
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3560207,
+            3562853
+          ],
+          "band_to_40_200hz_db": [
+            -18.468205400818757,
+            -19.93376307717247,
+            -30.272692866026887
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3562853,
+            3565499
+          ],
+          "band_to_40_200hz_db": [
+            -13.440007836988192,
+            -13.465115792760947,
+            -22.065112427583955
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 81.12022675736962,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3578725,
+            3581371
+          ],
+          "band_to_40_200hz_db": [
+            -18.968290822383683,
+            -21.56600001129432,
+            -44.92435385926515
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3581371,
+            3584017
+          ],
+          "band_to_40_200hz_db": [
+            -13.154733273022226,
+            -27.711100194579224,
+            -33.404484645712934
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3584017,
+            3586663
+          ],
+          "band_to_40_200hz_db": [
+            -17.885368130414648,
+            -23.216875309214903,
+            -45.50826368699177
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 81.60113378684808,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3599933,
+            3602579
+          ],
+          "band_to_40_200hz_db": [
+            -22.27857392564649,
+            -26.418912478169023,
+            -32.57779542597626
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3602579,
+            3605225
+          ],
+          "band_to_40_200hz_db": [
+            -20.3434061595468,
+            -24.753832830082004,
+            -28.03613488347695
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3605225,
+            3607871
+          ],
+          "band_to_40_200hz_db": [
+            -13.842147571541172,
+            -29.77853186889266,
+            -46.96773816635382
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 82.09301587301587,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3621625,
+            3624271
+          ],
+          "band_to_40_200hz_db": [
+            -29.40582693338107,
+            -44.886626685460776,
+            -58.93136722292421
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3624271,
+            3626917
+          ],
+          "band_to_40_200hz_db": [
+            -18.356440963105914,
+            -21.299942210210453,
+            -48.511471119967226
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3626917,
+            3629563
+          ],
+          "band_to_40_200hz_db": [
+            -30.76474767621405,
+            -39.80881204822678,
+            -50.3340910179237
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 82.56095238095239,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3642261,
+            3644907
+          ],
+          "band_to_40_200hz_db": [
+            -34.20585015476576,
+            -26.742686109880182,
+            -32.36061844502604
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3644907,
+            3647553
+          ],
+          "band_to_40_200hz_db": [
+            -18.72101058690412,
+            -20.42339793426585,
+            -51.50736578206506
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3647553,
+            3650199
+          ],
+          "band_to_40_200hz_db": [
+            -32.80464449200821,
+            -38.99075526402983,
+            -54.41916032767746
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 83.05283446712019,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3663953,
+            3666599
+          ],
+          "band_to_40_200hz_db": [
+            -41.27478800825794,
+            -46.50622578834313,
+            -71.48402687428734
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3666599,
+            3669245
+          ],
+          "band_to_40_200hz_db": [
+            -18.037556599367136,
+            -40.00166551814207,
+            -66.6069236954194
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3669245,
+            3671891
+          ],
+          "band_to_40_200hz_db": [
+            -27.847816584916465,
+            -38.85059701474439,
+            -65.24159420688677
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 83.52077097505669,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3684589,
+            3687235
+          ],
+          "band_to_40_200hz_db": [
+            -34.856427919023986,
+            -26.514601669900387,
+            -32.41592094200305
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3687235,
+            3689881
+          ],
+          "band_to_40_200hz_db": [
+            -28.913520530568583,
+            -25.780555473867945,
+            -52.74138364202156
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3689881,
+            3692527
+          ],
+          "band_to_40_200hz_db": [
+            -29.973886725942613,
+            -39.831424071468874,
+            -54.33287667105665
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 84.03160997732427,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3707117,
+            3709763
+          ],
+          "band_to_40_200hz_db": [
+            -41.697051833658506,
+            -57.41489976677993,
+            -73.51294760617273
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3709763,
+            3712409
+          ],
+          "band_to_40_200hz_db": [
+            -14.865676297445292,
+            -24.132674235535045,
+            -70.39082768216207
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3712409,
+            3715055
+          ],
+          "band_to_40_200hz_db": [
+            -34.03072055092978,
+            -53.865728449795576,
+            -57.93294841582256
+          ]
+        }
+      ]
+    },
+    {
+      "rms_peak_source_seconds": 84.480589569161,
+      "observations": [
+        {
+          "offset_from_rms_peak_seconds": 0.06,
+          "samples": [
+            3726917,
+            3729563
+          ],
+          "band_to_40_200hz_db": [
+            -18.694359993068048,
+            -26.61504338441176,
+            -32.609446355398084
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.12,
+          "samples": [
+            3729563,
+            3732209
+          ],
+          "band_to_40_200hz_db": [
+            -28.871436509943145,
+            -30.671069296189295,
+            -24.28024365874867
+          ]
+        },
+        {
+          "offset_from_rms_peak_seconds": 0.18,
+          "samples": [
+            3732209,
+            3734855
+          ],
+          "band_to_40_200hz_db": [
+            -7.870279388462333,
+            -30.413959688133225,
+            -54.35144148817816
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "landmarks": 27,
+    "rms_peak_spacing_median_seconds": 0.4799092970521528,
+    "within_peak_offset_range_db_median_by_band": [
+      11.64783773411983,
+      10.824597554785349,
+      16.266462953703673
+    ],
+    "within_peak_offset_range_db_maximum_by_band": [
+      26.831375536213216,
+      33.28222553124489,
+      34.49141692155938
+    ]
+  },
+  "conclusions": [
+    "Official destination1 raw2 is FILTER, not PW1. The sine LFO has rawrate21, depth+30, key trigger off, sync off; its free phase is unknown.",
+    "The source contains changing brightness, consistent with active filter modulation, but card-only video cannot exclude additional manual/MIDI automation or edited/processed capture.",
+    "The 13.04s visible-card support contains fewer than two cycles of the approximately7.3s current interpolation hypothesis. This duration alone does not measure the hardware period.",
+    "Beat-conditioned brightness depends strongly on offset and band. The strongest low-frequency transients and additional line families do not provide an authenticated isolated same-note saw input; backing/performance, note gates and delay remain confounded.",
+    "Do not fit a raw21 correction, LFO depth, cutoff81 conversion or filter resonance from this audit. No matched render or MIDI reconstruction was produced.",
+    "Patch03 is also unsuitable for isolated filter response: its original overdrive switch is on at depth127, with delay and portamento active."
+  ],
+  "output_sha256": {
+    "card-boundaries.png": "dbaee20af0271853b74abaf4722b240a43d84bc991bcb0fc85ad909ccbd2c864",
+    "source-brightness.png": "204a9c602b55ecf71ad8b0b7f01a46a47bc7b42c46f5f92d2ce9efae395be340"
+  }
+}
