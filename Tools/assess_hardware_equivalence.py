@@ -89,17 +89,27 @@ def fit_transform(reference, candidate, sr, calibration_frames, max_lag_seconds)
         centered = fixed - fixed.mean()
         ref_var = float(np.dot(centered, centered))
         size = len(fixed)
-        sums = np.concatenate(([0.0], np.cumsum(b)))
-        squares = np.concatenate(([0.0], np.cumsum(b * b)))
+        # Remove the common DC before rolling variance/correlation. Otherwise
+        # subtracting large nearly equal sums can invent variance in a flat
+        # envelope. Centering does not change Pearson correlation.
+        centered_candidate = b - b.mean()
+        sums = np.concatenate(([0.0], np.cumsum(centered_candidate)))
+        squares = np.concatenate(([0.0], np.cumsum(centered_candidate * centered_candidate)))
         variances = np.maximum(squares[size:] - squares[:-size]
                                - (sums[size:] - sums[:-size]) ** 2 / size, 0)
         denominator = np.sqrt(variances * ref_var)
+        # A prefix can be mostly silence before its first attack. FFT error
+        # divided by a near-silent window's tiny variance can exceed 1 and
+        # select a false "perfect" match. Require supported variation relative
+        # to this candidate's whole prefix energy; the guard is gain invariant.
+        variance_floor = 1e-12 * max(float(np.dot(b, b)), 1e-30)
+        supported = (variances > variance_floor) & (denominator > 1e-30)
         identifiable = bool(ref_var > 1e-12 * max(float(np.dot(fixed, fixed)), 1e-30))
         if identifiable:
-            correlations = signal.correlate(b, centered, mode="valid", method="fft")
+            correlations = signal.correlate(centered_candidate, centered, mode="valid", method="fft")
             normalized = np.divide(correlations, denominator,
                                    out=np.full_like(correlations, -np.inf),
-                                   where=denominator > 1e-30)
+                                   where=supported)
             index = int(np.argmax(normalized))
             if math.isfinite(float(normalized[index])):
                 lag = index - bound

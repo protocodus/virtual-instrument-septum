@@ -74,6 +74,41 @@ class HardwareEquivalenceTests(unittest.TestCase):
         self.assertEqual(changed["calibration"], result["calibration"])
         self.assertGreater(changed["calibrated_measurements"]["summary"]["envelope_error_db_p95_max"], 5)
 
+    def test_late_attack_does_not_align_to_numerical_noise_in_silence(self):
+        # Most of this prefix precedes the first note. FFT correlation error
+        # must not beat the real attack when divided by near-zero variance.
+        sr = 44100
+        t = np.arange(sr) / sr
+        envelope = np.where(t >= .320,
+                            .5 * (1 - np.exp(-np.maximum(t - .320, 0) / .01)), 0)
+        wave = envelope * (np.sin(2 * np.pi * 130.81 * t)
+                           + .25 * np.sin(2 * np.pi * 261.62 * t))
+        reference = np.column_stack((wave, wave))
+        for delay in (-137, 0, 132, 441):
+            candidate = np.zeros_like(reference)
+            if delay < 0:
+                candidate[:delay] = reference[-delay:]
+            elif delay > 0:
+                candidate[delay:] = reference[:-delay]
+            else:
+                candidate[:] = reference
+            quiet = round(.310 * sr)
+            candidate[:quiet] += 1e-18 * np.sin(2 * np.pi * 37 * t[:quiet, None])
+            for scale in (.001, 1, 1000):
+                with self.subTest(delay=delay, scale=scale):
+                    result = assess.fit_transform(reference, candidate * scale,
+                                                  sr, round(.4 * sr), .05)
+                    self.assertEqual(result["candidate_lag_samples"], delay)
+                    self.assertAlmostEqual(result["candidate_gain"] * scale, 1, places=10)
+                    self.assertGreater(result["alignment_correlation"], .999999)
+
+    def test_constant_candidate_prefix_does_not_identify_a_delay(self):
+        result = assess.fit_transform(self.audio, np.full_like(self.audio, .2),
+                                      self.sr, round(.9 * self.sr), .02)
+        self.assertFalse(result["alignment_identifiable"])
+        self.assertEqual(result["candidate_lag_samples"], 0)
+        self.assertIsNone(result["alignment_correlation"])
+
     def test_stereo_phase_collapse_is_detected_without_requiring_waveform_null(self):
         anti = self.audio.copy()
         anti[:, 1] *= -1
