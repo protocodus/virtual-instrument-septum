@@ -61,15 +61,26 @@ metrics. Their preset bytes and reconstructed performances are preserved.
 - [Additional public recordings and scope captures](source-audits/public-waveform-recovery-2026-09-15.md)
   provide phase-behavior leads. Their unknown patch settings do not justify
   oscillator drift, restart or waveform corrections.
+- [Four-phase audio controls](source-audits/dry-phase-sensitivity-2026-09-15.md)
+  show that the existing spectral and short RMS windows respond strongly to
+  oscillator phase, especially on low notes. Isolated-note spectra become
+  much more stable with longer windows. Hardware envelope errors remain
+  larger than these controls; the phase distances are neither a correction
+  to subtract nor an equivalence threshold.
+- [Additional static-filter preset references](source-audits/static-filter-reference-feasibility-2026-09-15.md)
+  do not supply an independent raw-cutoff anchor. JuicyFat's moving second
+  layer cannot be separated reliably; SequenceBs's opening disagrees with
+  its stored static state; The Choir combines unidentified notes, Super Saw,
+  noise and effects. No global cutoff law is inferred from those recordings.
 
 ## Next work
 
-1. Measure phase-only variation in the current short-window audio metrics.
-   Separate audible timbre errors from residuals caused by free oscillator
-   phase, especially on low notes. This cannot establish equivalence alone.
-2. Seek independent static-cutoff evidence across the published presets.
-   Air Lead's zero-depth filter mismatch is large, but one wet recording
-   cannot uniquely establish a replacement cutoff or key-follow law.
+1. Investigate the high-register saw's nonharmonic lines in the original-MIDI
+   dry recordings. Test codec artifacts, oscillator models and filter
+   interaction separately before changing the high-note sound.
+2. Examine newly accessible creator recordings for independent LFO,
+   portamento and oscillator measurements. Retain uncertain panel state and
+   unmeasured raw settings explicitly.
 3. Use unchanged named presets to investigate oscillator mixture, Super Saw
    stereo structure and wet tails. Air Lead and Cotton currently have the
    largest spectrum/stereo residuals, with uncertain original performances.

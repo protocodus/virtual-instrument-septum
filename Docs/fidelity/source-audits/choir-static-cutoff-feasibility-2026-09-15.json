@@ -1,0 +1,459 @@
+{
+  "schema_version": 1,
+  "status": "source_isolation_not_established",
+  "reference_id": "pad-03",
+  "source_url": "https://www.rolandus.com/go/sh-201_patches/mp3/PAD/TOP8_The_Choir.mp3",
+  "catalog_sha256": "32e356db740bd827792b6d98800aa7f923b34ceb3b7a164dd2cfcb5220119736",
+  "mp3_sha256": "aa02b5be1e219b8083772b5c896bc4612f2f9a1d7aef61f03edad59b9fc6355f",
+  "bank_sha256": "d00b19491c2cec27ee640147e0dfb6d1b8a47bcb70831a93a819a70d21a2a222",
+  "wav_sha256": "a1e9f3e884c7d801aefc674793212cdcea001746f678173d4116b68f4172cf27",
+  "sysex_sha256": "162432552bb99e66952237d783a20c2c284da6115991353f615b0c7d4053adba",
+  "script_sha256": "ba22df6dab07d1ca4c0b72505cdd800ae2c3003bcdfc457885c227b26ac13528",
+  "decoder": {
+    "command": [
+      "/opt/homebrew/bin/ffmpeg",
+      "-hide_banner",
+      "-loglevel",
+      "error",
+      "-nostdin",
+      "-i",
+      "build-fidelity/hardware-benchmark/sources/TOP8_The_Choir.mp3",
+      "-c:a",
+      "pcm_f32le",
+      "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/static-cutoff/the-choir-audit-v1/hardware.wav"
+    ],
+    "sha256": "00d01197255300c02122c783dd0126a9e7f47d6c6a19faafae2e6610efd071d3",
+    "version": "ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers"
+  },
+  "codec": {
+    "renderer_sha256": "3e07fa1722719173c091d0f3dfb135526788e8931630e918dbc5b63abdfa8ec0",
+    "inspection": {
+      "name": "The Choir",
+      "tempo": 120,
+      "keyboard_mode": "single",
+      "single_part": "upper",
+      "split_point": 53,
+      "patch_level": 127,
+      "tone_balance": 0,
+      "arpeggio_on": false,
+      "delay_on": true,
+      "reverb_on": true,
+      "upper": {
+        "mono_mode": 0,
+        "octave_shift": 0,
+        "level": 121,
+        "level_velocity_sensitivity": 8,
+        "cutoff_velocity_sensitivity": 0,
+        "oscillator_balance": -36,
+        "osc1": {
+          "wave": 7,
+          "pitch_wide": false,
+          "coarse_semitones": 0,
+          "fine_cents": 0,
+          "pw_feedback": 64
+        },
+        "osc2": {
+          "wave": 5,
+          "pitch_wide": false,
+          "coarse_semitones": -12,
+          "fine_cents": 0,
+          "pw_feedback": 64
+        }
+      },
+      "lower": {
+        "mono_mode": 0,
+        "octave_shift": 0,
+        "level": 79,
+        "level_velocity_sensitivity": 8,
+        "cutoff_velocity_sensitivity": 0,
+        "oscillator_balance": 0,
+        "osc1": {
+          "wave": 2,
+          "pitch_wide": false,
+          "coarse_semitones": 0,
+          "fine_cents": 0,
+          "pw_feedback": 64
+        },
+        "osc2": {
+          "wave": 7,
+          "pitch_wide": false,
+          "coarse_semitones": 0,
+          "fine_cents": 0,
+          "pw_feedback": 31
+        }
+      }
+    }
+  },
+  "audio": {
+    "sample_rate": 44100,
+    "duration_seconds": 43.65061224489796,
+    "peak": 0.9946203231811523
+  },
+  "method": {
+    "window_seconds": 0.2,
+    "window": "Hann",
+    "fft_samples": 131072,
+    "zero_padding_does_not_improve_true_resolution": true,
+    "peak_spacing_fft_bins": 20,
+    "frequency_interval_hz": [
+      70,
+      3000
+    ],
+    "peaks_per_window": 15,
+    "stereo_policy": "channel mean; possible wet cancellation retained"
+  },
+  "observations": [
+    {
+      "center_seconds": 0.35,
+      "sample_interval": [
+        11025,
+        19845
+      ],
+      "peaks": [
+        {
+          "frequency_hz": 149.05014038085938,
+          "relative_to_window_peak_db": -25.79556973028656
+        },
+        {
+          "frequency_hz": 261.4265441894531,
+          "relative_to_window_peak_db": -12.578489356422867
+        },
+        {
+          "frequency_hz": 291.7076110839844,
+          "relative_to_window_peak_db": -16.43825517596045
+        },
+        {
+          "frequency_hz": 350.2510070800781,
+          "relative_to_window_peak_db": -9.640884654166085
+        },
+        {
+          "frequency_hz": 516.4604187011719,
+          "relative_to_window_peak_db": -27.571503707988732
+        },
+        {
+          "frequency_hz": 527.5634765625,
+          "relative_to_window_peak_db": -24.883120726994967
+        },
+        {
+          "frequency_hz": 698.1468200683594,
+          "relative_to_window_peak_db": -17.80510468184713
+        },
+        {
+          "frequency_hz": 709.9227905273438,
+          "relative_to_window_peak_db": -31.175817057314703
+        },
+        {
+          "frequency_hz": 876.1322021484375,
+          "relative_to_window_peak_db": 0.0
+        },
+        {
+          "frequency_hz": 887.9081726074219,
+          "relative_to_window_peak_db": -3.3263423893572304
+        },
+        {
+          "frequency_hz": 907.7590942382812,
+          "relative_to_window_peak_db": -35.21097020485148
+        },
+        {
+          "frequency_hz": 1144.6243286132812,
+          "relative_to_window_peak_db": -36.30086480153181
+        },
+        {
+          "frequency_hz": 1746.5446472167969,
+          "relative_to_window_peak_db": -28.43223989674548
+        },
+        {
+          "frequency_hz": 1768.0778503417969,
+          "relative_to_window_peak_db": -31.152486364392026
+        },
+        {
+          "frequency_hz": 1778.8444519042969,
+          "relative_to_window_peak_db": -32.802852749969844
+        }
+      ]
+    },
+    {
+      "center_seconds": 0.6,
+      "sample_interval": [
+        22050,
+        30870
+      ],
+      "peaks": [
+        {
+          "frequency_hz": 146.35848999023438,
+          "relative_to_window_peak_db": -12.105913373761656
+        },
+        {
+          "frequency_hz": 259.7442626953125,
+          "relative_to_window_peak_db": -9.757317318204171
+        },
+        {
+          "frequency_hz": 293.7263488769531,
+          "relative_to_window_peak_db": -15.909717882830964
+        },
+        {
+          "frequency_hz": 346.54998779296875,
+          "relative_to_window_peak_db": -11.620920091125955
+        },
+        {
+          "frequency_hz": 520.8343505859375,
+          "relative_to_window_peak_db": -24.46155306257969
+        },
+        {
+          "frequency_hz": 530.9280395507812,
+          "relative_to_window_peak_db": -31.779357735845828
+        },
+        {
+          "frequency_hz": 690.4083251953125,
+          "relative_to_window_peak_db": -19.07192844007102
+        },
+        {
+          "frequency_hz": 706.8946838378906,
+          "relative_to_window_peak_db": -24.712744426200224
+        },
+        {
+          "frequency_hz": 875.1228332519531,
+          "relative_to_window_peak_db": -0.18316141636321367
+        },
+        {
+          "frequency_hz": 885.8894348144531,
+          "relative_to_window_peak_db": 0.0
+        },
+        {
+          "frequency_hz": 902.7122497558594,
+          "relative_to_window_peak_db": -31.684366285379323
+        },
+        {
+          "frequency_hz": 1143.2785034179688,
+          "relative_to_window_peak_db": -31.34839767242603
+        },
+        {
+          "frequency_hz": 1747.8904724121094,
+          "relative_to_window_peak_db": -26.760057150315113
+        },
+        {
+          "frequency_hz": 1754.9560546875,
+          "relative_to_window_peak_db": -27.660154121560684
+        },
+        {
+          "frequency_hz": 1766.7320251464844,
+          "relative_to_window_peak_db": -27.566991932840885
+        }
+      ]
+    },
+    {
+      "center_seconds": 1.0,
+      "sample_interval": [
+        39690,
+        48510
+      ],
+      "peaks": [
+        {
+          "frequency_hz": 149.05014038085938,
+          "relative_to_window_peak_db": -15.680787558133872
+        },
+        {
+          "frequency_hz": 174.28436279296875,
+          "relative_to_window_peak_db": -26.876830683046535
+        },
+        {
+          "frequency_hz": 254.69741821289062,
+          "relative_to_window_peak_db": -25.311726479665865
+        },
+        {
+          "frequency_hz": 264.7911071777344,
+          "relative_to_window_peak_db": -12.930862446318818
+        },
+        {
+          "frequency_hz": 291.7076110839844,
+          "relative_to_window_peak_db": -12.58424960896858
+        },
+        {
+          "frequency_hz": 350.58746337890625,
+          "relative_to_window_peak_db": -10.814675193524856
+        },
+        {
+          "frequency_hz": 698.4832763671875,
+          "relative_to_window_peak_db": -14.907026772736813
+        },
+        {
+          "frequency_hz": 708.2405090332031,
+          "relative_to_window_peak_db": -25.849844385984632
+        },
+        {
+          "frequency_hz": 871.7582702636719,
+          "relative_to_window_peak_db": -2.2595316771469935
+        },
+        {
+          "frequency_hz": 887.5717163085938,
+          "relative_to_window_peak_db": 0.0
+        },
+        {
+          "frequency_hz": 919.8715209960938,
+          "relative_to_window_peak_db": -26.769696469344915
+        },
+        {
+          "frequency_hz": 937.7037048339844,
+          "relative_to_window_peak_db": -19.678559230214223
+        },
+        {
+          "frequency_hz": 1739.1426086425781,
+          "relative_to_window_peak_db": -25.78199715984663
+        },
+        {
+          "frequency_hz": 1750.9185791015625,
+          "relative_to_window_peak_db": -23.185561330941084
+        },
+        {
+          "frequency_hz": 1764.7132873535156,
+          "relative_to_window_peak_db": -23.388345968924252
+        }
+      ]
+    },
+    {
+      "center_seconds": 2.0,
+      "sample_interval": [
+        83790,
+        92610
+      ],
+      "peaks": [
+        {
+          "frequency_hz": 146.02203369140625,
+          "relative_to_window_peak_db": -21.557515835505544
+        },
+        {
+          "frequency_hz": 173.94790649414062,
+          "relative_to_window_peak_db": -7.108425515723722
+        },
+        {
+          "frequency_hz": 262.0994567871094,
+          "relative_to_window_peak_db": -14.39023444237934
+        },
+        {
+          "frequency_hz": 307.52105712890625,
+          "relative_to_window_peak_db": -21.926370293239653
+        },
+        {
+          "frequency_hz": 315.9324645996094,
+          "relative_to_window_peak_db": -19.977259691917684
+        },
+        {
+          "frequency_hz": 346.2135314941406,
+          "relative_to_window_peak_db": -16.673471834347286
+        },
+        {
+          "frequency_hz": 387.59765625,
+          "relative_to_window_peak_db": -14.770102752492395
+        },
+        {
+          "frequency_hz": 397.3548889160156,
+          "relative_to_window_peak_db": -19.687922887248064
+        },
+        {
+          "frequency_hz": 621.4347839355469,
+          "relative_to_window_peak_db": -12.55121507321471
+        },
+        {
+          "frequency_hz": 701.1749267578125,
+          "relative_to_window_peak_db": -23.963302510328077
+        },
+        {
+          "frequency_hz": 785.2890014648438,
+          "relative_to_window_peak_db": -11.4265324526937
+        },
+        {
+          "frequency_hz": 878.1509399414062,
+          "relative_to_window_peak_db": -5.474158687997123
+        },
+        {
+          "frequency_hz": 887.5717163085938,
+          "relative_to_window_peak_db": -0.7313183642486025
+        },
+        {
+          "frequency_hz": 923.236083984375,
+          "relative_to_window_peak_db": -3.9819196893233593
+        },
+        {
+          "frequency_hz": 937.7037048339844,
+          "relative_to_window_peak_db": 0.0
+        }
+      ]
+    },
+    {
+      "center_seconds": 4.5,
+      "sample_interval": [
+        194040,
+        202860
+      ],
+      "peaks": [
+        {
+          "frequency_hz": 86.80572509765625,
+          "relative_to_window_peak_db": -5.979850909037841
+        },
+        {
+          "frequency_hz": 173.94790649414062,
+          "relative_to_window_peak_db": -2.8084919162491575
+        },
+        {
+          "frequency_hz": 310.5491638183594,
+          "relative_to_window_peak_db": -9.62530723147243
+        },
+        {
+          "frequency_hz": 393.9903259277344,
+          "relative_to_window_peak_db": -13.963373455290064
+        },
+        {
+          "frequency_hz": 619.7525024414062,
+          "relative_to_window_peak_db": -9.00584084013852
+        },
+        {
+          "frequency_hz": 629.5097351074219,
+          "relative_to_window_peak_db": -15.950603637829296
+        },
+        {
+          "frequency_hz": 780.57861328125,
+          "relative_to_window_peak_db": -9.979279194145217
+        },
+        {
+          "frequency_hz": 791.6816711425781,
+          "relative_to_window_peak_db": -20.21261460190274
+        },
+        {
+          "frequency_hz": 882.1884155273438,
+          "relative_to_window_peak_db": -9.305542798101795
+        },
+        {
+          "frequency_hz": 919.5350646972656,
+          "relative_to_window_peak_db": -8.603335081540536
+        },
+        {
+          "frequency_hz": 934.002685546875,
+          "relative_to_window_peak_db": 0.0
+        },
+        {
+          "frequency_hz": 946.1151123046875,
+          "relative_to_window_peak_db": -8.03949089163037
+        },
+        {
+          "frequency_hz": 1044.3603515625,
+          "relative_to_window_peak_db": -2.06191705495969
+        },
+        {
+          "frequency_hz": 1850.8460998535156,
+          "relative_to_window_peak_db": -25.008012582892466
+        },
+        {
+          "frequency_hz": 1863.2949829101562,
+          "relative_to_window_peak_db": -20.855089957306806
+        }
+      ]
+    }
+  ],
+  "conclusion": "Overlapping narrow components do not identify one isolated source or a played MIDI note. No filter frequency, key-follow anchor, raw control calibration or replacement DSP is inferred.",
+  "limits": [
+    "Harmonics, different voices and detuned Super Saw components can coincide.",
+    "Strong approximately880\u2013940Hz components cannot be assumed to be the filter corner.",
+    "Noise-floor extraction is contaminated by tonal leakage and wet effects.",
+    "Native patch octave0 does not recover original notes, system/controller state or exact recorded patch revision."
+  ]
+}

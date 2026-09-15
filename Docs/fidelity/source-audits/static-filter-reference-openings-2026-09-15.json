@@ -1,0 +1,360 @@
+{
+  "schema_version": 1,
+  "status": "source feasibility audit; no DSP changes",
+  "tool_sha256": "2e9a67fb5afad47e350ef424fc27d781b23f7302087c5a0e64ac88434fb3ad22",
+  "inventory_sha256": "7e5ec6a0d06c5679ec7cce6876c60276b252c62f8a9794706a9addfff2c88735",
+  "sources": [
+    {
+      "id": "bass-07",
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/static-reference-inventory-v1/bass-07.wav",
+      "sha256": "3430d7dbcc848efde80e7141735d0f89bb9d39abf0fb3124e81959db9803dc6e",
+      "command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/sources/TOP8_JuicyFat.mp3",
+        "-ar",
+        "44100",
+        "-ac",
+        "2",
+        "-c:a",
+        "pcm_f32le",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/static-reference-inventory-v1/bass-07.wav"
+      ],
+      "original_mp3_sha256": "0800f1fe60c5039ff7752dca88a14af584e2bcfc9be086c7e16ff9ae8f05eb99"
+    },
+    {
+      "id": "bass-08",
+      "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/static-reference-inventory-v1/bass-08.wav",
+      "sha256": "6b9c50bc1eec496fbf725503d1a77549f928d3c28084669098aa879b4f4e5b65",
+      "command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/sources/TOP8_SequenceBs.mp3",
+        "-ar",
+        "44100",
+        "-ac",
+        "2",
+        "-c:a",
+        "pcm_f32le",
+        "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/static-reference-inventory-v1/bass-08.wav"
+      ],
+      "original_mp3_sha256": "f68f82b8a64632917f5405e5838df325f61bbefe8c0190d8fbf139e704bbcd6d"
+    }
+  ],
+  "method": "Hann-window peak/energy diagnostics; unweighted full-sample joint quadrature condition number with optional independent linear complex-amplitude ramps. No layer amplitudes or cutoff fit retained after conditioning failure.",
+  "juicy_fat": {
+    "opening_window_center_seconds": 0.23,
+    "opening_window_width_seconds": 0.12,
+    "dominant_fundamental_peak_hz": 65.33393728612806,
+    "physical_note_interpretation": "Approximately C2 sounding, conditional on tuning; Upper coarse -12 implies played C3. Original MIDI is unavailable.",
+    "assumed_family_offsets_cents": [
+      0,
+      -4,
+      1205
+    ],
+    "upper_harmonics_assumed": [
+      1,
+      3,
+      5,
+      7,
+      9,
+      11
+    ],
+    "lower_saw1_harmonics": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "lower_saw2_harmonics": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "nearest_upper_lower_saw1_separation_hz": [
+      {
+        "harmonic": 1,
+        "hz": 0.15077919405091036
+      },
+      {
+        "harmonic": 3,
+        "hz": 0.45233758215273107
+      },
+      {
+        "harmonic": 5,
+        "hz": 0.7538959702545517
+      }
+    ],
+    "conditioning": [
+      {
+        "width_seconds": 0.08,
+        "independent_linear_complex_ramps": "none",
+        "lower_fine_offsets_cents": [
+          -4,
+          5
+        ],
+        "samples": 3528,
+        "columns": 50,
+        "condition_number": 105.0294245639965,
+        "below_predeclared_condition_limit_100": false
+      },
+      {
+        "width_seconds": 0.08,
+        "independent_linear_complex_ramps": "lower_only",
+        "lower_fine_offsets_cents": [
+          -4,
+          5
+        ],
+        "samples": 3528,
+        "columns": 86,
+        "condition_number": 46101.13518450488,
+        "below_predeclared_condition_limit_100": false
+      },
+      {
+        "width_seconds": 0.08,
+        "independent_linear_complex_ramps": "all",
+        "lower_fine_offsets_cents": [
+          -4,
+          5
+        ],
+        "samples": 3528,
+        "columns": 98,
+        "condition_number": 4287069.982025236,
+        "below_predeclared_condition_limit_100": false
+      },
+      {
+        "width_seconds": 0.12,
+        "independent_linear_complex_ramps": "none",
+        "lower_fine_offsets_cents": [
+          -4,
+          5
+        ],
+        "samples": 5292,
+        "columns": 50,
+        "condition_number": 64.65333439556238,
+        "below_predeclared_condition_limit_100": true
+      },
+      {
+        "width_seconds": 0.12,
+        "independent_linear_complex_ramps": "lower_only",
+        "lower_fine_offsets_cents": [
+          -4,
+          5
+        ],
+        "samples": 5292,
+        "columns": 86,
+        "condition_number": 11020.878181941107,
+        "below_predeclared_condition_limit_100": false
+      },
+      {
+        "width_seconds": 0.12,
+        "independent_linear_complex_ramps": "all",
+        "lower_fine_offsets_cents": [
+          -4,
+          5
+        ],
+        "samples": 5292,
+        "columns": 98,
+        "condition_number": 1075648.713777946,
+        "below_predeclared_condition_limit_100": false
+      },
+      {
+        "width_seconds": 0.2,
+        "independent_linear_complex_ramps": "none",
+        "lower_fine_offsets_cents": [
+          -4,
+          5
+        ],
+        "samples": 8820,
+        "columns": 50,
+        "condition_number": 37.48955633381373,
+        "below_predeclared_condition_limit_100": true
+      },
+      {
+        "width_seconds": 0.2,
+        "independent_linear_complex_ramps": "lower_only",
+        "lower_fine_offsets_cents": [
+          -4,
+          5
+        ],
+        "samples": 8820,
+        "columns": 86,
+        "condition_number": 2260.5916387500024,
+        "below_predeclared_condition_limit_100": false
+      },
+      {
+        "width_seconds": 0.2,
+        "independent_linear_complex_ramps": "all",
+        "lower_fine_offsets_cents": [
+          -4,
+          5
+        ],
+        "samples": 8820,
+        "columns": 98,
+        "condition_number": 197394.96019793843,
+        "below_predeclared_condition_limit_100": false
+      }
+    ],
+    "separated_frequency_matrix_controls": [
+      {
+        "width_seconds": 0.08,
+        "independent_linear_complex_ramps": "lower_only",
+        "lower_fine_offsets_cents": [
+          -50,
+          50
+        ],
+        "samples": 3528,
+        "columns": 86,
+        "condition_number": 80.48698008314663,
+        "below_predeclared_condition_limit_100": true
+      },
+      {
+        "width_seconds": 0.12,
+        "independent_linear_complex_ramps": "lower_only",
+        "lower_fine_offsets_cents": [
+          -50,
+          50
+        ],
+        "samples": 5292,
+        "columns": 86,
+        "condition_number": 33.51806615651228,
+        "below_predeclared_condition_limit_100": true
+      },
+      {
+        "width_seconds": 0.2,
+        "independent_linear_complex_ramps": "lower_only",
+        "lower_fine_offsets_cents": [
+          -50,
+          50
+        ],
+        "samples": 8820,
+        "columns": 86,
+        "condition_number": 12.990051266528717,
+        "below_predeclared_condition_limit_100": true
+      }
+    ],
+    "verdict": "Reject independent time-local layer amplitudes: even holding Upper amplitude/phase constant, all moving-Lower models exceed condition 100. Constant-amplitude models for every layer do not allow the moving Lower filter.",
+    "cutoff_estimate_hz": null
+  },
+  "sequence_bass": {
+    "windows": [
+      {
+        "center_seconds": 0.16,
+        "width_seconds": 0.08,
+        "rms": 0.009776657471136015,
+        "peak_frequency_hz": 11057.131576538086,
+        "power_below_1khz": 1.5418209779555862e-05,
+        "power_1_to_8khz": 0.006921068621432228,
+        "power_8_to_16khz": 0.9824946246150982,
+        "power_above_16khz": 0.010568710714287045
+      },
+      {
+        "center_seconds": 0.25,
+        "width_seconds": 0.08,
+        "rms": 0.012127478287687796,
+        "peak_frequency_hz": 11070.421600341797,
+        "power_below_1khz": 9.98089979411914e-06,
+        "power_1_to_8khz": 0.006775111626847043,
+        "power_8_to_16khz": 0.981821608874035,
+        "power_above_16khz": 0.011393298599323616
+      },
+      {
+        "center_seconds": 0.4,
+        "width_seconds": 0.08,
+        "rms": 0.014135498570419179,
+        "peak_frequency_hz": 11119.039535522461,
+        "power_below_1khz": 8.924246675506083e-06,
+        "power_1_to_8khz": 0.007777558867744487,
+        "power_8_to_16khz": 0.9811802529135721,
+        "power_above_16khz": 0.011033263930375738
+      },
+      {
+        "center_seconds": 1.0,
+        "width_seconds": 0.08,
+        "rms": 0.015862196665399477,
+        "peak_frequency_hz": 11116.852569580078,
+        "power_below_1khz": 1.0032357772590987e-05,
+        "power_1_to_8khz": 0.007917955010802275,
+        "power_8_to_16khz": 0.9807972437568823,
+        "power_above_16khz": 0.011274768736120065
+      },
+      {
+        "center_seconds": 2.0,
+        "width_seconds": 0.08,
+        "rms": 0.01275428151625104,
+        "peak_frequency_hz": 11047.37434387207,
+        "power_below_1khz": 9.88904178351716e-06,
+        "power_1_to_8khz": 0.007676596373903211,
+        "power_8_to_16khz": 0.9798486101184698,
+        "power_above_16khz": 0.01246490446583554
+      },
+      {
+        "center_seconds": 3.0,
+        "width_seconds": 0.08,
+        "rms": 0.022405429704343435,
+        "peak_frequency_hz": 3531.949996948242,
+        "power_below_1khz": 0.000258065826537376,
+        "power_1_to_8khz": 0.9919984387288608,
+        "power_8_to_16khz": 0.006654876708309549,
+        "power_above_16khz": 0.0010886187362920117
+      },
+      {
+        "center_seconds": 4.0,
+        "width_seconds": 0.08,
+        "rms": 0.024831856482215378,
+        "peak_frequency_hz": 1504.464340209961,
+        "power_below_1khz": 0.003563976490552146,
+        "power_1_to_8khz": 0.9946914634984947,
+        "power_8_to_16khz": 0.0017259228621572848,
+        "power_above_16khz": 1.863714879024893e-05
+      },
+      {
+        "center_seconds": 6.0,
+        "width_seconds": 0.08,
+        "rms": 0.07197056288599926,
+        "peak_frequency_hz": 326.6990661621094,
+        "power_below_1khz": 0.969256566675602,
+        "power_1_to_8khz": 0.028899928250368086,
+        "power_8_to_16khz": 0.001843463921800733,
+        "power_above_16khz": 4.1152228957227616e-08
+      },
+      {
+        "center_seconds": 10.0,
+        "width_seconds": 0.08,
+        "rms": 0.21489258289908103,
+        "peak_frequency_hz": 63.08555603027344,
+        "power_below_1khz": 0.9921607733865255,
+        "power_1_to_8khz": 0.00733326312531221,
+        "power_8_to_16khz": 0.0005024362307421116,
+        "power_above_16khz": 3.5272574198499153e-06
+      }
+    ],
+    "verdict": "Reject the opening as a static bank-patch filter measurement: energy distribution is inconsistent with an ordinary unmodulated sine-plus-square LP12 at maximum cutoff. Unknown controllers, system effects or patch revision can explain the discrepancy; no cause is identified.",
+    "cutoff_estimate_hz": null
+  },
+  "limits": [
+    "No original performance MIDI/controllers/system settings or exact recording patch revision.",
+    "MP3, output path and processing may color spectra.",
+    "Nominal fine tune cents and symmetric pulse are optimistic assumptions, not isolated hardware measurements.",
+    "Conditioning is necessary, not sufficient for separation; low condition alone does not authenticate any source model."
+  ]
+}

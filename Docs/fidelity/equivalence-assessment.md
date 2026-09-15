@@ -14,6 +14,16 @@ dump, and a published named preset is different from an authenticated recorded
 revision. A small metric is insufficient to settle those uncertainties or to
 establish superiority over other instruments.
 
+The subsequent [four-phase dry control](source-audits/dry-phase-sensitivity-2026-09-15.md)
+measures a material limitation of these metrics: at MIDI 24, changing only
+saw phase produces 512-sample spectral distances around 0.76, falling to
+0.006–0.012 with 8192 samples. Full-sequence distances remain sensitive to
+transients and changing note mixtures. Report each resolution and stable
+harmonic features together; do not interpret these distances as audible
+error percentages, subtract the control, or derive an equivalence margin
+from four synthetic phases. Hardware envelope errors still exceed the
+observed phase-control range.
+
 ## Baseline: ten official Roland recordings
 
 The baseline renders are identified as `d343d04`. Input/output and comparison

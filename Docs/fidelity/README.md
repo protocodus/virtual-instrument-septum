@@ -9,6 +9,12 @@ The [equivalence assessment](equivalence-assessment.md) measures spectrum,
 envelope and stereo differences and prevents missing evidence from becoming
 an output-equivalence claim. Whole-instrument equivalence remains open.
 
+The [current goal status](goal-status.md) records implemented corrections,
+rejected candidates and active investigations. [Phase-only controls](source-audits/dry-phase-sensitivity-2026-09-15.md)
+now quantify how strongly short-window metrics can vary without a parameter
+change other than waveform origin. Their distances cannot be subtracted from
+hardware errors or used as a perceptual acceptance margin.
+
 The [strict search for exact recording inputs](exact-reference-search.md) found no verified public set with both original performance MIDI and the exact preset used for a hardware recording. The estimated comparisons below do not qualify for that stricter requirement.
 
 The [ten-recording hardware A/B set](ten-recording-ab.md) pairs real official Roland recordings with unchanged published presets and explicitly reconstructed MIDI, including six new bass/lead transcriptions and current-engine renders.
