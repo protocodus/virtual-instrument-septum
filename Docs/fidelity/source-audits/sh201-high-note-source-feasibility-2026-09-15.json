@@ -1,0 +1,68 @@
+{
+  "date": "2026-09-15",
+  "scope": "Bounded SH-201-specific source audit for high-note Saw notch and antialias attribution; no DSP changes.",
+  "assets": [
+    {
+      "url": "https://android.googlesource.com/kernel/tegra/+/275f165fa970174f8a98205529750e8abb6c0a33/sound/usb/usbquirks.h?format=TEXT",
+      "path": "build-fidelity/public-waveforms/high-note-sources/linux-usbquirks-275f165.h",
+      "bytes": 48881,
+      "sha256": "f0d60ce93cbab0fa86a0a9406885062eed8ed3cb05e606e60723f635a3df13be"
+    },
+    {
+      "url": "https://www.deepsonic.ch/deep/htm/deepsonic_analytics_filter_comparison.php",
+      "path": "build-fidelity/deepsonic/filter_comparison.html",
+      "bytes": 117753,
+      "sha256": "aa8536528eb13b6f04acd20599fe2a3b62c12af5c4cab3f82ee68ad3a6972548"
+    },
+    {
+      "url": "https://cdn.roland.com/assets/media/pdf/SH-201_OM.pdf",
+      "path": "build-fidelity/public-waveforms/synth-love/SH-201_OM.pdf",
+      "bytes": 4249153,
+      "sha256": "b4a2968d429c7f3e907a6243723d5e803ae2e0014e8e9107c85bd966deea8e79"
+    }
+  ],
+  "claims": [
+    {
+      "claim": "The official manual documents explicit FILTER TYPE=BYPASS. No automatic bypass at maximum CUTOFF or modulation saturation was found in pp34-36/61.",
+      "confidence": "high for documented controls; bounded negative for undocumented behavior",
+      "source": "https://cdn.roland.com/assets/media/pdf/SH-201_OM.pdf"
+    },
+    {
+      "claim": "The deepsonic procedural recipe calls for one saw, no LFO/pitch/velocity/FX, and no thru/bypass filter configuration.",
+      "confidence": "high for author instructions, not proof of every captured raw parameter",
+      "source": "https://www.deepsonic.ch/deep/htm/deepsonic_analytics_filter_comparison.php"
+    },
+    {
+      "claim": "The source instructs 50ms/500ms boundary fades and mono 44.1kHz 320kbps MP3; 96kHz/24bit is an example recommendation for the original. Actual SH-201 interface, analog-versus-USB, resampler and mono downmix are unspecified.",
+      "confidence": "high for inspected page content",
+      "source": "https://www.deepsonic.ch/deep/htm/deepsonic_analytics_filter_comparison.php"
+    },
+    {
+      "claim": "Pinned ALSA code identifies USB 0582:00ad as SH-201 with two standard audio interfaces and a fixed MIDI endpoint; it contains no SH-201 oscillator algorithm, coefficients or declared audio sample rate.",
+      "confidence": "high for code contents",
+      "source": "https://android.googlesource.com/kernel/tegra/+/275f165fa970174f8a98205529750e8abb6c0a33/sound/usb/usbquirks.h?format=TEXT"
+    },
+    {
+      "claim": "No identified firmware payload, primary SH-201 classic-Saw antialias implementation or published numerical notch curve was recovered in this pass. This is bounded search failure, not proof no public source exists.",
+      "confidence": "bounded negative",
+      "source": "Search queries recorded below plus linked prior audits"
+    }
+  ],
+  "search_queries": [
+    "\"SH-201\" \"saw\" \"aliasing\"",
+    "\"SH-201\" oscillator \"sampling\" algorithm",
+    "\"SH-201\" \"filter\" \"bypass\"",
+    "\"SH-201\" \"anti-aliasing\"",
+    "\"SH-201\" \"saw\" \"algorithm\"",
+    "\"SH-201\" \"waveform\" \"notch\"",
+    "\"SH201\" \"oscillator\" \"code\"",
+    "\"SH-201\" \"bandlimited\"",
+    "\"SH-201\" \"waveform\" \"FFT\"",
+    "\"SH-201\" \"spectrum\" oscillator",
+    "\"Roland SH-201\" \"firmware\" oscillator source",
+    "site:roland.com \"SH-201\" \"saw\" \"filter\"",
+    "\"SH-201\" \"patent\"",
+    "\"SH-201\" \"BYPASS\" \"CUTOFF\""
+  ],
+  "recommendation": "Treat high-note oscillator/capture shape as a measured effective response. Freeze candidate hypotheses before checking other pitches and both main and alias families; do not label a fixed notch, moving average, max-cutoff bypass or JP-8000 implementation as established SH-201 firmware."
+}

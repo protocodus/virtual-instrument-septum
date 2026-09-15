@@ -1,0 +1,2508 @@
+{
+  "protocol": {
+    "status": "exploratory_system_identification_not_engine_validation",
+    "sample_rate": 44100,
+    "window_samples": 3528,
+    "blends": [
+      0.5,
+      0.75,
+      0.8125,
+      0.875,
+      0.9375,
+      1.0
+    ],
+    "fir_lengths": [
+      1,
+      4,
+      8,
+      13
+    ],
+    "phase_grid": 256,
+    "phase_refinement": "bounded scalar within one grid spacing",
+    "training": {
+      "note": 91,
+      "midi_onset_seconds": 18.75,
+      "offset_seconds": 0.1,
+      "role": "training",
+      "start_sample": 829521,
+      "end_sample": 833049,
+      "sample_sha256": "c35d23309676eab5bc803ff521373a54640a6e9901b044f3245fa3327d337006"
+    },
+    "evaluation": [
+      {
+        "note": 91,
+        "midi_onset_seconds": 18.75,
+        "offset_seconds": 0.16,
+        "role": "same-note-later",
+        "start_sample": 832167,
+        "end_sample": 835695,
+        "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+      },
+      {
+        "note": 93,
+        "midi_onset_seconds": 18.25,
+        "offset_seconds": 0.1,
+        "role": "other-pitch",
+        "start_sample": 807471,
+        "end_sample": 810999,
+        "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+      },
+      {
+        "note": 88,
+        "midi_onset_seconds": 19.75,
+        "offset_seconds": 0.1,
+        "role": "other-pitch",
+        "start_sample": 873621,
+        "end_sample": 877149,
+        "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+      },
+      {
+        "note": 86,
+        "midi_onset_seconds": 19.25,
+        "offset_seconds": 0.1,
+        "role": "other-pitch",
+        "start_sample": 851571,
+        "end_sample": 855099,
+        "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+      }
+    ],
+    "policy": "One FIR and gain trained on MIDI91 +100ms. Later passages fit phase and remove DC only. No per-pitch gain, FIR, frequency or time-warp fit.",
+    "limitation": "FIR has signed taps and noncausal offsets for identification, not a shipping implementation. Phase origin/delay and FIR coefficients are not uniquely identifiable. Candidate grid follows prior exploratory inspection; no blind validation or hardware-equivalence claim."
+  },
+  "script_sha256": "8b3407dec63e40e7eab9e0c3182048a6bcd86b914c5df76c643706357adbf163",
+  "catalog_sha256": "078a3f5e1306401da4316151c0d14851130b7dd741ffa3c2fd8a0eac3af6e127",
+  "source": {
+    "url": "https://www.deepsonic.ch/deep/audio_filter/roland_sh-201_-_filter_demo_-_lpf12_q000.mp3",
+    "path": "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf12_q000.mp3",
+    "bytes": 1203043,
+    "sha256": "28e241247a0efb217eb4cb7154cc3b69713fcebca781639c45b8904b3dc8615b",
+    "audio": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 1,
+          "bit_rate": "320000"
+        }
+      ],
+      "format": {
+        "duration": "30.018200"
+      }
+    },
+    "full_decode_ok": true
+  },
+  "original_midi": {
+    "url": "https://www.deepsonic.ch/deep/audio_midi/deepsonic_-_filter_demo_-_comparsion_sequence.mid",
+    "path": "build-fidelity/deepsonic/deepsonic_-_filter_demo_-_comparsion_sequence.mid",
+    "bytes": 925,
+    "sha256": "21ea21b9ba3ba14cc205931134fb7a320b09e67821bd3a3c70f97fa2e8b5d99a"
+  },
+  "decode_command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-loglevel",
+    "error",
+    "-nostdin",
+    "-i",
+    "build-fidelity/deepsonic/roland_sh-201_-_filter_demo_-_lpf12_q000.mp3",
+    "-c:a",
+    "pcm_f32le",
+    "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/high-note-shape/fir-model-audit-v2/hardware-lp12.wav"
+  ],
+  "decoded_wav_sha256": "3154afa9bd5b509d44dbc8fcb1972cbc2ffeb46d9adb00d107da4c2d05cc8a37",
+  "control": {
+    "phase": 0.32099999889356445,
+    "relative_error_power": 1.3893176963697124e-18,
+    "taps": [
+      0.10000000568062449,
+      0.30000000463625875,
+      0.399999999542542,
+      0.19999999030147286
+    ],
+    "dc_fit": -0.0001663028021420911,
+    "rank": 5,
+    "condition": 9.005027232481826,
+    "tap_sum": 1.0000000001608982
+  },
+  "models": [
+    {
+      "fir_length": 1,
+      "blep_correction": 0.5,
+      "tap_offsets": [
+        0
+      ],
+      "training": {
+        "phase": 0.5556072962370018,
+        "relative_error_power": 0.09217923355519171,
+        "taps": [
+          0.24446389459961934
+        ],
+        "dc_fit": -0.0007773270496029468,
+        "rank": 2,
+        "condition": 1.785720030457031,
+        "tap_sum": 0.24446389459961934
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.6356296445544417,
+          "relative_error_power": 0.09224535844319438,
+          "rms_ratio": 0.9523070611769052,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.09841269850113175,
+          "relative_error_power": 0.11197319617087757,
+          "rms_ratio": 0.9774285451829693,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.5063793939416721,
+          "relative_error_power": 0.07652064146290657,
+          "rms_ratio": 0.9322760310760887,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.7488254013786725,
+          "relative_error_power": 0.072019997649398,
+          "rms_ratio": 0.9233946632911197,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 1,
+      "blep_correction": 0.75,
+      "tap_offsets": [
+        0
+      ],
+      "training": {
+        "phase": 0.5556072999751138,
+        "relative_error_power": 0.07512634741996413,
+        "taps": [
+          0.24961546706511994
+        ],
+        "dc_fit": -0.000621216864570526,
+        "rank": 2,
+        "condition": 1.8064521821988921,
+        "tap_sum": 0.24961546706511994
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.6356296456799253,
+          "relative_error_power": 0.07514935348317094,
+          "rms_ratio": 0.9611306735061244,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.09841269874021859,
+          "relative_error_power": 0.09280430975859269,
+          "rms_ratio": 0.9850869302141587,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.5063793922366723,
+          "relative_error_power": 0.06205949619861428,
+          "rms_ratio": 0.9427822868201284,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.7487795845586411,
+          "relative_error_power": 0.05864898551997082,
+          "rms_ratio": 0.934778598863079,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 1,
+      "blep_correction": 0.8125,
+      "tap_offsets": [
+        0
+      ],
+      "training": {
+        "phase": 0.5556072965896779,
+        "relative_error_power": 0.0715889847868699,
+        "taps": [
+          0.2507109653027795
+        ],
+        "dc_fit": -0.00058063072594454,
+        "rank": 2,
+        "condition": 1.8109182325508655,
+        "tap_sum": 0.2507109653027795
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.6351455499869911,
+          "relative_error_power": 0.07158892639518429,
+          "rms_ratio": 0.9629661024367553,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.09841270081633817,
+          "relative_error_power": 0.08880243796910663,
+          "rms_ratio": 0.9866447064341735,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.5064229910686678,
+          "relative_error_power": 0.05907761601828079,
+          "rms_ratio": 0.9449703661612221,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.7486249606786736,
+          "relative_error_power": 0.05587735760921017,
+          "rms_ratio": 0.9371573118848442,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 1,
+      "blep_correction": 0.875,
+      "tap_offsets": [
+        0
+      ],
+      "training": {
+        "phase": 0.5556072945610522,
+        "relative_error_power": 0.06835942194022318,
+        "taps": [
+          0.251724529418386
+        ],
+        "dc_fit": -0.000539490773990014,
+        "rank": 2,
+        "condition": 1.8150830742478046,
+        "tap_sum": 0.251724529418386
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.6346980556457843,
+          "relative_error_power": 0.06830974274554816,
+          "rms_ratio": 0.9646109907290991,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.09841269970212385,
+          "relative_error_power": 0.08513843873346648,
+          "rms_ratio": 0.9880543647964747,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.5066208480332395,
+          "relative_error_power": 0.05635559949667707,
+          "rms_ratio": 0.9469755686178888,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.7485873545591525,
+          "relative_error_power": 0.0533461001072304,
+          "rms_ratio": 0.9393359529261871,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 1,
+      "blep_correction": 0.9375,
+      "tap_offsets": [
+        0
+      ],
+      "training": {
+        "phase": 0.5553762912539938,
+        "relative_error_power": 0.0654423583780133,
+        "taps": [
+          0.2526539362404313
+        ],
+        "dc_fit": -0.0004901569224249034,
+        "rank": 2,
+        "condition": 1.8189370455311071,
+        "tap_sum": 0.2526539362404313
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.6345489487072504,
+          "relative_error_power": 0.06533341697890843,
+          "rms_ratio": 0.9660744504566324,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.09837436737105913,
+          "relative_error_power": 0.08182223778966308,
+          "rms_ratio": 0.9893138486256798,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.5067020748713513,
+          "relative_error_power": 0.05390171090923476,
+          "rms_ratio": 0.9487855691829075,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.7485740216886587,
+          "relative_error_power": 0.05105980659119056,
+          "rms_ratio": 0.9413116946401264,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 1,
+      "blep_correction": 1.0,
+      "tap_offsets": [
+        0
+      ],
+      "training": {
+        "phase": 0.5550799366658682,
+        "relative_error_power": 0.06283119686151885,
+        "taps": [
+          0.25350304627768394
+        ],
+        "dc_fit": -0.000454778985066915,
+        "rank": 2,
+        "condition": 1.8225043514838104,
+        "tap_sum": 0.25350304627768394
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.6344747486400623,
+          "relative_error_power": 0.0626701967165739,
+          "rms_ratio": 0.9673861914819344,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.09835249138108643,
+          "relative_error_power": 0.07886394020871276,
+          "rms_ratio": 0.9904438735862273,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.5067453116106575,
+          "relative_error_power": 0.05172076887707295,
+          "rms_ratio": 0.9504227190068455,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.7485671944992534,
+          "relative_error_power": 0.04902091811223571,
+          "rms_ratio": 0.9431024723110094,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 4,
+      "blep_correction": 0.5,
+      "tap_offsets": [
+        -2,
+        -1,
+        0,
+        1
+      ],
+      "training": {
+        "phase": 0.5334202597654206,
+        "relative_error_power": 0.0035382821953294325,
+        "taps": [
+          0.08500513754953708,
+          0.06698151376792036,
+          0.07961610498374612,
+          0.056868066428696
+        ],
+        "dc_fit": -0.0009572121140807474,
+        "rank": 5,
+        "condition": 6.775720819202181,
+        "tap_sum": 0.28847082272989955
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.6133494613820542,
+          "relative_error_power": 0.003879471711701757,
+          "rms_ratio": 0.997107589763206,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.07346938831247966,
+          "relative_error_power": 0.005764281700158334,
+          "rms_ratio": 1.0081072029295632,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.48836915879714743,
+          "relative_error_power": 0.0026752822814126746,
+          "rms_ratio": 0.9970748428443209,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.7319949134884635,
+          "relative_error_power": 0.0037448767783063532,
+          "rms_ratio": 0.9986294071448868,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 4,
+      "blep_correction": 0.75,
+      "tap_offsets": [
+        -2,
+        -1,
+        0,
+        1
+      ],
+      "training": {
+        "phase": 0.5372097452839544,
+        "relative_error_power": 0.0014361532573686521,
+        "taps": [
+          0.0752621923659488,
+          0.06947603548168854,
+          0.07795549962386007,
+          0.06744783925499093
+        ],
+        "dc_fit": -0.0006563960252036923,
+        "rank": 5,
+        "condition": 8.16510832434018,
+        "tap_sum": 0.29014156672648833
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.616268669471198,
+          "relative_error_power": 0.0016457080582527078,
+          "rms_ratio": 0.9981287311358455,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.0775510214642741,
+          "relative_error_power": 0.002189470233952503,
+          "rms_ratio": 1.008432741927584,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.49135486765034964,
+          "relative_error_power": 0.0009409954330292098,
+          "rms_ratio": 0.9988236235471841,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.735142469125231,
+          "relative_error_power": 0.0014596085986998627,
+          "rms_ratio": 1.0010090204343984,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 4,
+      "blep_correction": 0.8125,
+      "tap_offsets": [
+        -2,
+        -1,
+        0,
+        1
+      ],
+      "training": {
+        "phase": 0.5367729124279598,
+        "relative_error_power": 0.0011152638281538743,
+        "taps": [
+          0.0762251034779892,
+          0.0689860566628031,
+          0.07850463132500077,
+          0.06669925692994015
+        ],
+        "dc_fit": -0.0005665463956841636,
+        "rank": 5,
+        "condition": 8.565016951382466,
+        "tap_sum": 0.29041504839573323
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.6159263974934505,
+          "relative_error_power": 0.0012860615822757947,
+          "rms_ratio": 0.998276530291045,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.07709750617473975,
+          "relative_error_power": 0.0018094440169845701,
+          "rms_ratio": 1.0084652443986668,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.491129848005985,
+          "relative_error_power": 0.0007044285550660068,
+          "rms_ratio": 0.9991297800933093,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.7345247776734312,
+          "relative_error_power": 0.0011909321751551467,
+          "rms_ratio": 1.0013871932209264,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 4,
+      "blep_correction": 0.875,
+      "tap_offsets": [
+        -2,
+        -1,
+        0,
+        1
+      ],
+      "training": {
+        "phase": 0.5363750880450633,
+        "relative_error_power": 0.0008893025590696494,
+        "taps": [
+          0.07727582700737057,
+          0.06837511739418844,
+          0.07918314750679833,
+          0.0658226269162642
+        ],
+        "dc_fit": -0.0005110657775163648,
+        "rank": 5,
+        "condition": 8.99007748912729,
+        "tap_sum": 0.2906567188246215
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.6156089233730963,
+          "relative_error_power": 0.0010236857328751023,
+          "rms_ratio": 0.9983824318643951,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.07677024632868668,
+          "relative_error_power": 0.0015443376688467419,
+          "rms_ratio": 1.008467641376837,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.49088802417148586,
+          "relative_error_power": 0.0005590761984533916,
+          "rms_ratio": 0.9993847859354262,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.7343670322945447,
+          "relative_error_power": 0.00098101815459696,
+          "rms_ratio": 1.0017008951650626,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 4,
+      "blep_correction": 0.9375,
+      "tap_offsets": [
+        -2,
+        -1,
+        0,
+        1
+      ],
+      "training": {
+        "phase": 0.535986717442431,
+        "relative_error_power": 0.0007588497264040586,
+        "taps": [
+          0.07847968400458172,
+          0.06759352267378889,
+          0.0800429451415313,
+          0.06474752446328079
+        ],
+        "dc_fit": -0.00048472865838324075,
+        "rank": 5,
+        "condition": 9.43625243206166,
+        "tap_sum": 0.2908636762831827
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.6152897028368103,
+          "relative_error_power": 0.0008591795846041564,
+          "rms_ratio": 0.9984454899228558,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.07639826381635412,
+          "relative_error_power": 0.0013838909861294073,
+          "rms_ratio": 1.0084366018601463,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.49057116332135164,
+          "relative_error_power": 0.0004926414447827246,
+          "rms_ratio": 0.9995801579219338,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.7340787512191512,
+          "relative_error_power": 0.0008485435185338738,
+          "rms_ratio": 1.0019489802733827,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 4,
+      "blep_correction": 1.0,
+      "tap_offsets": [
+        -2,
+        -1,
+        0,
+        1
+      ],
+      "training": {
+        "phase": 0.5355877107577065,
+        "relative_error_power": 0.000724382125212128,
+        "taps": [
+          0.07990211397674273,
+          0.06658216368522574,
+          0.08114455689810887,
+          0.06340356958370125
+        ],
+        "dc_fit": -0.00048657640533860037,
+        "rank": 5,
+        "condition": 9.896574998657766,
+        "tap_sum": 0.2910324041437786
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.6149509592709204,
+          "relative_error_power": 0.0007930967284160094,
+          "rms_ratio": 0.9984654043318522,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.07596700584244236,
+          "relative_error_power": 0.0013359429590880747,
+          "rms_ratio": 1.0083720282665385,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.49024441814935055,
+          "relative_error_power": 0.0005049683137786969,
+          "rms_ratio": 0.9997130010855672,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.733777832225488,
+          "relative_error_power": 0.0007626179713036092,
+          "rms_ratio": 1.002124798118098,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 8,
+      "blep_correction": 0.5,
+      "tap_offsets": [
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3
+      ],
+      "training": {
+        "phase": 0.5645193685196728,
+        "relative_error_power": 0.00288915640997294,
+        "taps": [
+          0.0034451752040519485,
+          -0.007772039062969818,
+          0.021116918637199656,
+          0.07735240917401719,
+          0.06821821380425933,
+          0.07985895362119082,
+          0.051526673785319006,
+          -0.00339570434546814
+        ],
+        "dc_fit": -0.0009016460354626005,
+        "rank": 9,
+        "condition": 9.008560818946426,
+        "tap_sum": 0.2903506008176
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.6435902429884929,
+          "relative_error_power": 0.003041911143254759,
+          "rms_ratio": 0.997485800652922,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.10748299372286105,
+          "relative_error_power": 0.005445208440900472,
+          "rms_ratio": 1.0076404381285933,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.514069553398206,
+          "relative_error_power": 0.0023984716343368024,
+          "rms_ratio": 0.9984904302298517,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.754845621585865,
+          "relative_error_power": 0.003135348456545896,
+          "rms_ratio": 1.0006743540208274,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 8,
+      "blep_correction": 0.75,
+      "tap_offsets": [
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3
+      ],
+      "training": {
+        "phase": 0.5645193685196728,
+        "relative_error_power": 0.0010474652658759391,
+        "taps": [
+          0.004144800887352102,
+          -0.009071438069516866,
+          0.018146978459826185,
+          0.081484126351518,
+          0.06587735131811372,
+          0.08220031938967565,
+          0.0532338697377044,
+          -0.005591886575690352
+        ],
+        "dc_fit": -0.0006942631180242746,
+        "rank": 9,
+        "condition": 11.464225315434103,
+        "tap_sum": 0.29042412149898283
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.6437851156260816,
+          "relative_error_power": 0.0011585089082070288,
+          "rms_ratio": 0.9983545225063327,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.10793650823461755,
+          "relative_error_power": 0.002661489004744793,
+          "rms_ratio": 1.0085816371057836,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.5142532353820611,
+          "relative_error_power": 0.0008405253237582566,
+          "rms_ratio": 0.9992351121603836,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.7548456243441286,
+          "relative_error_power": 0.0014699945022651427,
+          "rms_ratio": 1.0013995692754252,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 8,
+      "blep_correction": 0.8125,
+      "tap_offsets": [
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3
+      ],
+      "training": {
+        "phase": 0.5645193685196728,
+        "relative_error_power": 0.0007973691372653609,
+        "taps": [
+          0.004266299468476965,
+          -0.009209717224263538,
+          0.01720563550534582,
+          0.0826921200918238,
+          0.06509236537196549,
+          0.0828464850184969,
+          0.05360398809727948,
+          -0.006074599359178898
+        ],
+        "dc_fit": -0.0006423085275982229,
+        "rank": 9,
+        "condition": 12.262829800831518,
+        "tap_sum": 0.290422576969946
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.64381365235866,
+          "relative_error_power": 0.0008990664115945207,
+          "rms_ratio": 0.9984673591266552,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.10797931274441931,
+          "relative_error_power": 0.002212820240735572,
+          "rms_ratio": 1.0087103750421986,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.5143521254660232,
+          "relative_error_power": 0.0006244144332175845,
+          "rms_ratio": 0.999321156940892,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.7548456251149134,
+          "relative_error_power": 0.0011975470236384406,
+          "rms_ratio": 1.001484107131674,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 8,
+      "blep_correction": 0.875,
+      "tap_offsets": [
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3
+      ],
+      "training": {
+        "phase": 0.5645193695543406,
+        "relative_error_power": 0.0006352920273516167,
+        "taps": [
+          0.004347533356368804,
+          -0.009237362061142097,
+          0.0161640368823805,
+          0.08397349099317507,
+          0.06422617222869739,
+          0.08352632638253964,
+          0.05392778827219881,
+          -0.00651422832547644
+        ],
+        "dc_fit": -0.0005903235954592002,
+        "rank": 9,
+        "condition": 13.153332808132149,
+        "tap_sum": 0.2904137577287417
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.6438374718220797,
+          "relative_error_power": 0.0007279687130148006,
+          "rms_ratio": 0.9985365999795899,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.10812937930278273,
+          "relative_error_power": 0.0018642691751651124,
+          "rms_ratio": 1.0087937586867968,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.5144365258065979,
+          "relative_error_power": 0.000480411194524987,
+          "rms_ratio": 0.9993660746250227,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.7551797093190258,
+          "relative_error_power": 0.0009775051737732825,
+          "rms_ratio": 1.001530012822767,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 8,
+      "blep_correction": 0.9375,
+      "tap_offsets": [
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3
+      ],
+      "training": {
+        "phase": 0.5645193690646275,
+        "relative_error_power": 0.0005633096501302455,
+        "taps": [
+          0.004377921569255808,
+          -0.00913572562348576,
+          0.015015637711334814,
+          0.0853218222590794,
+          0.06328580006369297,
+          0.0842418538168468,
+          0.05419171090136243,
+          -0.006900996151464524
+        ],
+        "dc_fit": -0.0005383145588710298,
+        "rank": 9,
+        "condition": 14.143156099828623,
+        "tap_sum": 0.29039802454662195
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.6438574320774623,
+          "relative_error_power": 0.0006471987524976981,
+          "rms_ratio": 0.9985612244801191,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.10839002491445007,
+          "relative_error_power": 0.0016159640264581821,
+          "rms_ratio": 1.0088297287060997,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.514509272692805,
+          "relative_error_power": 0.00041025855446019357,
+          "rms_ratio": 0.999369457944683,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.7552672609507879,
+          "relative_error_power": 0.0008164697016671701,
+          "rms_ratio": 1.001535281850663,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 8,
+      "blep_correction": 1.0,
+      "tap_offsets": [
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3
+      ],
+      "training": {
+        "phase": 0.5646045081394754,
+        "relative_error_power": 0.0005835799158047344,
+        "taps": [
+          0.004335280526141436,
+          -0.008836874939640908,
+          0.013578336821529358,
+          0.08666492354221032,
+          0.06233603490495857,
+          0.0849186374918465,
+          0.05459088686134608,
+          -0.007209605827363171
+        ],
+        "dc_fit": -0.00048628263924459025,
+        "rank": 9,
+        "condition": 15.234972932669123,
+        "tap_sum": 0.2903776193810282
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.6439581877337449,
+          "relative_error_power": 0.0006590469316439064,
+          "rms_ratio": 0.9985400015389184,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.10846467706134467,
+          "relative_error_power": 0.0014738128343581213,
+          "rms_ratio": 1.0088165848047472,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.5146431640592494,
+          "relative_error_power": 0.0004150276240221341,
+          "rms_ratio": 0.9993318098554322,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.755407690512457,
+          "relative_error_power": 0.0007182218762309566,
+          "rms_ratio": 1.0015020197836209,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 13,
+      "blep_correction": 0.5,
+      "tap_offsets": [
+        -6,
+        -5,
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "training": {
+        "phase": 0.5645193685196728,
+        "relative_error_power": 0.0028695004551796224,
+        "taps": [
+          0.0013338868420985383,
+          -0.002343317011087199,
+          0.004700940331593884,
+          -0.008013752203270543,
+          0.02115976972868425,
+          0.07734217512812189,
+          0.06822612241930415,
+          0.07981584185354997,
+          0.051757158512808016,
+          -0.0046019175089891855,
+          0.0018117087025035228,
+          -0.00031277199829090577,
+          -0.0005539331873796263
+        ],
+        "dc_fit": -0.0009015537543538656,
+        "rank": 14,
+        "condition": 9.605727942421584,
+        "tap_sum": 0.29032191160964677
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.6435833588283301,
+          "relative_error_power": 0.0030323686453559823,
+          "rms_ratio": 0.9974954855277705,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.10748299355036851,
+          "relative_error_power": 0.0054634912550159875,
+          "rms_ratio": 1.007666703564003,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.5140695579760578,
+          "relative_error_power": 0.002384387495808257,
+          "rms_ratio": 0.998480415397196,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.7548456194632508,
+          "relative_error_power": 0.0031364396801546847,
+          "rms_ratio": 1.0006542220629309,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 13,
+      "blep_correction": 0.75,
+      "tap_offsets": [
+        -6,
+        -5,
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "training": {
+        "phase": 0.6000744982058682,
+        "relative_error_power": 0.0010121608550206676,
+        "taps": [
+          -0.0005626209638494522,
+          0.0024857870677289125,
+          -0.0036040119569319324,
+          0.006440230032118367,
+          -0.009776984169395285,
+          0.018372194468440496,
+          0.08140701205577502,
+          0.06597843504631691,
+          0.0819468559852042,
+          0.054105365128758576,
+          -0.008341918854902347,
+          0.003410210300539041,
+          -0.0012271921703177417
+        ],
+        "dc_fit": -0.0006945042264509736,
+        "rank": 14,
+        "condition": 12.403899835091327,
+        "tap_sum": 0.2906333619694848
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.679326365243696,
+          "relative_error_power": 0.0011422501105886641,
+          "rms_ratio": 0.9983717646968769,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.14784580546050635,
+          "relative_error_power": 0.00268741279158308,
+          "rms_ratio": 1.0085028749568714,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.544139086042748,
+          "relative_error_power": 0.0008184593268771339,
+          "rms_ratio": 0.9993722441729121,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.7815847077776389,
+          "relative_error_power": 0.0014942595434944757,
+          "rms_ratio": 1.0016038758022097,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 13,
+      "blep_correction": 0.8125,
+      "tap_offsets": [
+        -6,
+        -5,
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "training": {
+        "phase": 0.6000745106505997,
+        "relative_error_power": 0.0007563209726230784,
+        "taps": [
+          -0.0006305276337721728,
+          0.0027138867706748455,
+          -0.00398411041465929,
+          0.006918496940994018,
+          -0.010113817268226315,
+          0.01752525446238927,
+          0.08256270440379507,
+          0.06525420737940639,
+          0.08247025911125787,
+          0.054755255876022965,
+          -0.009363218855324849,
+          0.003918780338957242,
+          -0.001378819658800925
+        ],
+        "dc_fit": -0.0006425380732203868,
+        "rank": 14,
+        "condition": 13.34074106252295,
+        "tap_sum": 0.2906483514527141
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.6793532366904602,
+          "relative_error_power": 0.000879494832799788,
+          "rms_ratio": 0.9984872147708347,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.14786816797722707,
+          "relative_error_power": 0.0022359221971008027,
+          "rms_ratio": 1.0086249907253853,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.544237415176903,
+          "relative_error_power": 0.0005978189030660183,
+          "rms_ratio": 0.9994718512380135,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.7817031997314319,
+          "relative_error_power": 0.0012137495911412662,
+          "rms_ratio": 1.0017083588061548,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 13,
+      "blep_correction": 0.875,
+      "tap_offsets": [
+        -6,
+        -5,
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "training": {
+        "phase": 0.5992930673766084,
+        "relative_error_power": 0.0005877108177421908,
+        "taps": [
+          -0.0006959481776513999,
+          0.002933798216191042,
+          -0.004376544802510445,
+          0.007445168060186132,
+          -0.010670951238298174,
+          0.01798999498510345,
+          0.08414564102057334,
+          0.06425730489402018,
+          0.08330645276226499,
+          0.05399865592825555,
+          -0.010740437462809768,
+          0.004672553510797639,
+          -0.0016388558357064544
+        ],
+        "dc_fit": -0.0005337351334941092,
+        "rank": 14,
+        "condition": 14.386679710220225,
+        "tap_sum": 0.2906268318604161
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.6785987391882222,
+          "relative_error_power": 0.0007020967701877428,
+          "rms_ratio": 0.9985577178437335,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.1473922911760868,
+          "relative_error_power": 0.0019030370396139714,
+          "rms_ratio": 1.0087029195043615,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.5437591988031779,
+          "relative_error_power": 0.0004652180809161519,
+          "rms_ratio": 0.9995080794356329,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.7813502141669103,
+          "relative_error_power": 0.0009749151760363368,
+          "rms_ratio": 1.0017419608384333,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 13,
+      "blep_correction": 0.9375,
+      "tap_offsets": [
+        -6,
+        -5,
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "training": {
+        "phase": 0.598990750309594,
+        "relative_error_power": 0.0005086177837335806,
+        "taps": [
+          -0.0007896755899534258,
+          0.0032002327349166283,
+          -0.004815524333957819,
+          0.007974513765957179,
+          -0.011094595705297283,
+          0.01777720213379803,
+          0.08555074934196091,
+          0.06327217982213658,
+          0.08407382939919752,
+          0.053866716469171176,
+          -0.01191235636527736,
+          0.00538176728599277,
+          -0.0018952875959928146
+        ],
+        "dc_fit": -0.0004991391803044116,
+        "rank": 14,
+        "condition": 15.598227442200347,
+        "tap_sum": 0.2905897513626521
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.6783222084268516,
+          "relative_error_power": 0.0006160688448987981,
+          "rms_ratio": 0.9985869548692248,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.14698013134134633,
+          "relative_error_power": 0.0016489107437648103,
+          "rms_ratio": 1.0087511929426152,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.5435345973320583,
+          "relative_error_power": 0.00038664510876260447,
+          "rms_ratio": 0.9995090957332738,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.7811382822127985,
+          "relative_error_power": 0.0008164505805338464,
+          "rms_ratio": 1.001738245741579,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    },
+    {
+      "fir_length": 13,
+      "blep_correction": 1.0,
+      "tap_offsets": [
+        -6,
+        -5,
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "training": {
+        "phase": 0.5988563371343651,
+        "relative_error_power": 0.0005219398534436748,
+        "taps": [
+          -0.000903233328608771,
+          0.003494112955940931,
+          -0.0052745263631366794,
+          0.008482063238286508,
+          -0.011416944584854613,
+          0.017288604212988057,
+          0.0868854974891169,
+          0.062283352613120666,
+          0.08481385132738364,
+          0.05394168265005392,
+          -0.012975668361242853,
+          0.006075387095208038,
+          -0.0021597955292349128
+        ],
+        "dc_fit": -0.00048650028709728763,
+        "rank": 14,
+        "condition": 16.978685901597046,
+        "tap_sum": 0.29053438341502086
+      },
+      "evaluations": [
+        {
+          "passage": {
+            "note": 91,
+            "midi_onset_seconds": 18.75,
+            "offset_seconds": 0.16,
+            "role": "same-note-later",
+            "start_sample": 832167,
+            "end_sample": 835695,
+            "sample_sha256": "9576bdf152f40f3d5a1e0f6f7a35bccecfdc6c619f42e441716af969c566b36f"
+          },
+          "phase": 0.6782109591087627,
+          "relative_error_power": 0.00062301283906158,
+          "rms_ratio": 0.9985713386356863,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 93,
+            "midi_onset_seconds": 18.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 807471,
+            "end_sample": 810999,
+            "sample_sha256": "3103f561fdaa3ee8ac2bf158f66896f09920b5f17fc6f74f7bce700043afd60f"
+          },
+          "phase": 0.1468804515026715,
+          "relative_error_power": 0.0014936470812306596,
+          "rms_ratio": 1.0087591921845545,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 88,
+            "midi_onset_seconds": 19.75,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 873621,
+            "end_sample": 877149,
+            "sample_sha256": "965d797715730fce688ae13440990ba527be648ce63c5707ad6ebcdbeabc47df"
+          },
+          "phase": 0.5434478054983829,
+          "relative_error_power": 0.00038214062316246103,
+          "rms_ratio": 0.9994633867208603,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        },
+        {
+          "passage": {
+            "note": 86,
+            "midi_onset_seconds": 19.25,
+            "offset_seconds": 0.1,
+            "role": "other-pitch",
+            "start_sample": 851571,
+            "end_sample": 855099,
+            "sample_sha256": "b45954f5f0dd10004068578d044e9578bccbbf090ed98de2fe9168404c0125a4"
+          },
+          "phase": 0.7810530215965557,
+          "relative_error_power": 0.0007209760883414607,
+          "rms_ratio": 1.0016861838889823,
+          "fitted_gain": false,
+          "fitted_phase": true,
+          "dc_removed": true
+        }
+      ]
+    }
+  ],
+  "equivalence_status": "not_established"
+}

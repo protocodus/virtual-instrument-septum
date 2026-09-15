@@ -1,0 +1,47 @@
+{
+  "date": "2026-09-15",
+  "reviewed_tool": "Tools/fit_high_note_saw_models.py",
+  "tool_sha256": "8b3407dec63e40e7eab9e0c3182048a6bcd86b914c5df76c643706357adbf163",
+  "reviewed_result": "build-fidelity/high-note-shape/fir-model-audit-v2/results.json",
+  "result_sha256": "9b962eda472d77be1815e027703ae97b251bd2ce0862391f49cc0936352103b0",
+  "scope": "Independent bounded source/method review; no full refit, no engine changes.",
+  "source_identity": {
+    "catalog_hash": "verified",
+    "original_mp3_hash": "verified",
+    "original_midi_hash": "verified",
+    "decoded_wav_hash": "verified",
+    "all_five_passage_sample_hashes": "verified"
+  },
+  "numerical_check": {
+    "method": "Rebuilt each saved waveform from an independent scalar-tap implementation of the documented two-piece polyBLEP formula, removed DC, and recalculated normalized residual power; no optimizer rerun.",
+    "models": 24,
+    "saved_losses_reproduced": 120,
+    "max_absolute_power_error": 1.3877787807814457e-17,
+    "training_matrices_all_full_rank": true,
+    "maximum_training_condition_number": 16.978685901597046
+  },
+  "findings": [
+    {
+      "severity": "qualification",
+      "topic": "same-note reuse",
+      "detail": "The 80ms windows centered at +100ms and +160ms overlap by 882 samples (20ms, 25%). Same-note-later is partly reused training data and must not be called an independent holdout."
+    },
+    {
+      "severity": "qualification",
+      "topic": "baseline meaning",
+      "detail": "The one-tap full-BLEP row has freely fitted phase, gain and DC and only represents the steady mathematical oscillator. It omits the shipping filter, amp, output/capture and performance chain. It is not a production-engine baseline."
+    },
+    {
+      "severity": "qualification",
+      "topic": "phase and FIR identity",
+      "detail": "The free phase absorbs the engine Saw pre-increment convention and noncausal FIR time origin. Full conditional rank does not identify a unique physical stage, delay or oscillator algorithm; signed taps and a single periodic input preserve this ambiguity. The existing protocol explicitly records this."
+    },
+    {
+      "severity": "qualification",
+      "topic": "phase search",
+      "detail": "The 256-point grid plus one bounded local refinement retains the observed grid solution if refinement is worse. It is a recorded bounded search, not a certificate of the global optimum for every signed-FIR family."
+    }
+  ],
+  "waveform_review": "For these notes the low/high BLEP regions are disjoint. design() exactly uses 2*phase-1-polyBlep(phase,increment) at blend1, algebraically matching the free-running Saw branch. Phase absorbs the one-sample pre-increment; neither sync nor the complete engine signal path is represented.",
+  "conclusion": "No blocking source, indexing or residual-calculation bug found. Interpret every candidate as exploratory effective waveform identification. Separate alias errors remain necessary because strong carrier/harmonics dominate total error power."
+}

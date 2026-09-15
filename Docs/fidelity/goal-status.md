@@ -75,6 +75,10 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   layer cannot be separated reliably; SequenceBs's opening disagrees with
   its stored static state; The Choir combines unidentified notes, Super Saw,
   noise and effects. No global cutoff law is inferred from those recordings.
+  [Eight- and nine-octave taper experiments](source-audits/cutoff-taper-generalization-2026-09-15.md)
+  improve Air Lead but fail to improve the other nine presets consistently;
+  the Moogie harmonic checks also regress. All ten unchanged-taper controls
+  reproduce production byte-for-byte. Neither replacement is promoted.
 - [Classic-Saw alias lines](source-audits/deepsonic-saw-aliases-2026-09-15.md)
   establish a 44.1 kHz folding signature across eight pitches and both dry
   filter slopes. Synthetic codec controls rule out that MP3 round-trip as
@@ -82,6 +86,10 @@ metrics. Their preset bytes and reconstructed performances are preserved.
   frequencies but substantially underestimates many recorded levels. The
   high-note main-harmonic shape also differs; the responsible source or
   capture stage has not been identified.
+  [Short smoothing-filter models](source-audits/high-note-saw-fir-2026-09-15.md)
+  fit much of that waveform shape, but miss important alias notches even
+  when their median alias level agrees. Those mathematical fits are not
+  full-engine renders and do not justify a production oscillator change.
 
 ## Next work
 
