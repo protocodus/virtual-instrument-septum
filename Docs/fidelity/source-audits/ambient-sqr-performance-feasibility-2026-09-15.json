@@ -1,0 +1,543 @@
+{
+  "schema_version": 1,
+  "claim": "Source-only frozen reconstruction, not original MIDI or exact gate/velocity recovery.",
+  "candidate_scores_or_engine_audio_consulted": false,
+  "source": {
+    "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_AmbientSQR.mp3",
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/sources/TOP8_AmbientSQR.mp3",
+    "sha256": "d113bb3d65c34bb6827d29561e29dd9c9d4a6236143d5528685643f84a86e565"
+  },
+  "bank": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/sources/SH-201_Patch_LEAD.zip",
+    "sha256": "102c47ee393c09115779172b8cbbb2c2f2563e0b4fdb2f57e0c8fca2a23c3b29",
+    "member": "SH-201_Patch_LEAD/100_LEAD.shl",
+    "member_sha256": "d6649236cd89c1652480f9ae194bc20f0a3e33e147cb16828216871fba35b26c"
+  },
+  "patch": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/reverb-reference-expansion/ambient-performance-v1/original-patch.syx",
+    "sha256": "1e420e8a04502d790a1018f4547167377bdfd4470e21bb6602853d09218aff07"
+  },
+  "decoded_parameters": {
+    "source_inventory": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/Docs/fidelity/source-audits/static-filter-reference-inventory-2026-09-15.json",
+    "sha256": "7e5ec6a0d06c5679ec7cce6876c60276b252c62f8a9794706a9addfff2c88735",
+    "active_parts": [
+      "upper",
+      "lower"
+    ],
+    "decoded": {
+      "keyboardMode": 1,
+      "keyboardPart": 0,
+      "splitPoint": 53,
+      "patchLevel": 127,
+      "toneBalance": 0,
+      "tempo": 120,
+      "delayOn": 1,
+      "reverbOn": 1,
+      "modulationAssign": 0,
+      "modulationDestination": 2,
+      "pitchBendDestination": 2,
+      "arpeggioOn": 0,
+      "delayTime": 83,
+      "delayFeedback": 20,
+      "delayModulationDepth": 10,
+      "reverbPreDelay": 10,
+      "upper": {
+        "pitchEnvAttack": 0,
+        "pitchEnvDecay": 0,
+        "mixType": 0,
+        "balance": -1,
+        "lowFreq": 0,
+        "filterType": 1,
+        "filterSlope": 0,
+        "cutoff": 11,
+        "keyFollow": 110,
+        "cutoffVelocitySens": 0,
+        "resonance": 0,
+        "filterEnvAttack": 5,
+        "filterEnvDecay": 48,
+        "filterEnvSustain": 99,
+        "filterEnvRelease": 74,
+        "filterEnvDepth": 20,
+        "overdrive": 1,
+        "drive": 30,
+        "level": 89,
+        "levelVelocitySens": 0,
+        "pan": 0,
+        "ampEnvAttack": 23,
+        "ampEnvDecay": 72,
+        "ampEnvSustain": 118,
+        "ampEnvRelease": 30,
+        "delayDepth": 40,
+        "reverbDepth": 43,
+        "bendRange": 2,
+        "octaveShift": 0,
+        "portamento": 1,
+        "portamentoTime": 20,
+        "mono": 1,
+        "osc1": {
+          "wave": 1,
+          "pitchWide": 0,
+          "coarse": 0,
+          "fine": 1,
+          "pulseWidth": 64,
+          "pitchEnvDepth": 0,
+          "decoded_by_current_codec": true,
+          "wave_name": "Square",
+          "signed_coarse_raw": 0,
+          "coarse_units": "physical semitones, current SysEx codec",
+          "net_coarse_and_tone_octave_semitones": 0,
+          "mixed_in": true
+        },
+        "osc2": {
+          "wave": 1,
+          "pitchWide": 0,
+          "coarse": 0,
+          "fine": -3,
+          "pulseWidth": 64,
+          "pitchEnvDepth": 0,
+          "decoded_by_current_codec": true,
+          "wave_name": "Square",
+          "signed_coarse_raw": 0,
+          "coarse_units": "physical semitones, current SysEx codec",
+          "net_coarse_and_tone_octave_semitones": 0,
+          "mixed_in": true
+        },
+        "lfo1": {
+          "shape": 0,
+          "rate": 92,
+          "tempoSync": 0,
+          "tempoSyncNote": 17,
+          "fadeTime": 0,
+          "keyTrigger": 0,
+          "destination1": 2,
+          "depth1": 0,
+          "destination2": 2,
+          "depth2": 0,
+          "decoded_by_current_codec": true
+        },
+        "lfo2": {
+          "shape": 0,
+          "rate": 92,
+          "tempoSync": 0,
+          "tempoSyncNote": 17,
+          "fadeTime": 0,
+          "keyTrigger": 0,
+          "destination1": 2,
+          "depth1": 0,
+          "destination2": 2,
+          "depth2": 0,
+          "decoded_by_current_codec": true
+        },
+        "active_by_keyboard_mode": true,
+        "filter_lfo_depths": [
+          0,
+          0
+        ],
+        "zero_filter_envelope_lfo_and_velocity": false,
+        "active_effect_sends": {
+          "delay": 40,
+          "reverb": 43
+        }
+      },
+      "lower": {
+        "pitchEnvAttack": 0,
+        "pitchEnvDecay": 0,
+        "mixType": 0,
+        "balance": 0,
+        "lowFreq": 0,
+        "filterType": 1,
+        "filterSlope": 0,
+        "cutoff": 101,
+        "keyFollow": 0,
+        "cutoffVelocitySens": 0,
+        "resonance": 0,
+        "filterEnvAttack": 0,
+        "filterEnvDecay": 0,
+        "filterEnvSustain": 0,
+        "filterEnvRelease": 44,
+        "filterEnvDepth": 0,
+        "overdrive": 0,
+        "drive": 100,
+        "level": 76,
+        "levelVelocitySens": 8,
+        "pan": 0,
+        "ampEnvAttack": 76,
+        "ampEnvDecay": 127,
+        "ampEnvSustain": 100,
+        "ampEnvRelease": 22,
+        "delayDepth": 40,
+        "reverbDepth": 112,
+        "bendRange": 2,
+        "octaveShift": 0,
+        "portamento": 0,
+        "portamentoTime": 20,
+        "mono": 2,
+        "osc1": {
+          "wave": 4,
+          "pitchWide": 0,
+          "coarse": 0,
+          "fine": -5,
+          "pulseWidth": 64,
+          "pitchEnvDepth": 0,
+          "decoded_by_current_codec": true,
+          "wave_name": "Sine",
+          "signed_coarse_raw": 0,
+          "coarse_units": "physical semitones, current SysEx codec",
+          "net_coarse_and_tone_octave_semitones": 0,
+          "mixed_in": true
+        },
+        "osc2": {
+          "wave": 4,
+          "pitchWide": 0,
+          "coarse": 0,
+          "fine": 6,
+          "pulseWidth": 64,
+          "pitchEnvDepth": 0,
+          "decoded_by_current_codec": true,
+          "wave_name": "Sine",
+          "signed_coarse_raw": 0,
+          "coarse_units": "physical semitones, current SysEx codec",
+          "net_coarse_and_tone_octave_semitones": 0,
+          "mixed_in": true
+        },
+        "lfo1": {
+          "shape": 0,
+          "rate": 92,
+          "tempoSync": 0,
+          "tempoSyncNote": 17,
+          "fadeTime": 0,
+          "keyTrigger": 0,
+          "destination1": 2,
+          "depth1": 0,
+          "destination2": 2,
+          "depth2": 0,
+          "decoded_by_current_codec": true
+        },
+        "lfo2": {
+          "shape": 0,
+          "rate": 92,
+          "tempoSync": 0,
+          "tempoSyncNote": 17,
+          "fadeTime": 0,
+          "keyTrigger": 0,
+          "destination1": 2,
+          "depth1": 0,
+          "destination2": 2,
+          "depth2": 0,
+          "decoded_by_current_codec": true
+        },
+        "active_by_keyboard_mode": true,
+        "filter_lfo_depths": [
+          0,
+          0
+        ],
+        "zero_filter_envelope_lfo_and_velocity": true,
+        "active_effect_sends": {
+          "delay": 40,
+          "reverb": 112
+        }
+      }
+    }
+  },
+  "decoder": {
+    "command": [
+      "ffmpeg",
+      "-v",
+      "error",
+      "-i",
+      "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/hardware-benchmark/sources/TOP8_AmbientSQR.mp3",
+      "-c:a",
+      "pcm_f32le",
+      "-y",
+      "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/reverb-reference-expansion/ambient-performance-v1/hardware-full.wav"
+    ],
+    "sample_rate": 44100,
+    "channels": 2,
+    "no_resampling_or_downmix": true,
+    "binary_sha256": "00d01197255300c02122c783dd0126a9e7f47d6c6a19faafae2e6610efd071d3",
+    "version": "ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers",
+    "wav": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/reverb-reference-expansion/ambient-performance-v1/hardware-full.wav",
+    "wav_sha256": "ccde7bbc4aceb5b8653a9cdad60a77c40fd6a472bd6c1ea75667c9fc4dcb4fc7"
+  },
+  "tools": {
+    "reconstruct_ambient_sqr_opening.py": "40fec27c2d86d7d0ac5aa467d5c6dc266a84125531d84b6e57bbaffda51cbdb9",
+    "compare_hardware.py": "98c1fad577e2cc13b5c20dff04d06a1414ae0332fe48e2696b690db03d87be86",
+    "extract_reference_patch.py": "461407495e9f5bfc99767a0146a750708c5cdb2fd34c0d029aaf5e5f5a80703b"
+  },
+  "pitch_evidence": [
+    {
+      "played_note_hypothesis": 74,
+      "interior_seconds": [
+        0.1,
+        0.35
+      ],
+      "native_bin_hz": 4.0,
+      "harmonic_peak_hypotheses": [
+        {
+          "harmonic_hypothesis": 1,
+          "frequency_hz": 587.0,
+          "frequency_divided_by_h_hz": 587.0,
+          "relative_spectrum_peak_db": 0.0
+        },
+        {
+          "harmonic_hypothesis": 3,
+          "frequency_hz": 1761.0,
+          "frequency_divided_by_h_hz": 587.0,
+          "relative_spectrum_peak_db": -20.548379743237252
+        },
+        {
+          "harmonic_hypothesis": 5,
+          "frequency_hz": 2936.5,
+          "frequency_divided_by_h_hz": 587.3,
+          "relative_spectrum_peak_db": -30.09033607004435
+        }
+      ]
+    },
+    {
+      "played_note_hypothesis": 76,
+      "interior_seconds": [
+        0.45,
+        0.58
+      ],
+      "native_bin_hz": 7.6923076923076925,
+      "harmonic_peak_hypotheses": [
+        {
+          "harmonic_hypothesis": 1,
+          "frequency_hz": 658.6538461538461,
+          "frequency_divided_by_h_hz": 658.6538461538461,
+          "relative_spectrum_peak_db": 0.0
+        },
+        {
+          "harmonic_hypothesis": 3,
+          "frequency_hz": 1980.7692307692305,
+          "frequency_divided_by_h_hz": 660.2564102564102,
+          "relative_spectrum_peak_db": -28.48088214680153
+        },
+        {
+          "harmonic_hypothesis": 5,
+          "frequency_hz": 3294.230769230769,
+          "frequency_divided_by_h_hz": 658.8461538461538,
+          "relative_spectrum_peak_db": -27.49861110980195
+        }
+      ]
+    },
+    {
+      "played_note_hypothesis": 77,
+      "interior_seconds": [
+        0.64,
+        0.76
+      ],
+      "native_bin_hz": 8.333333333333334,
+      "harmonic_peak_hypotheses": [
+        {
+          "harmonic_hypothesis": 1,
+          "frequency_hz": 697.9166666666667,
+          "frequency_divided_by_h_hz": 697.9166666666667,
+          "relative_spectrum_peak_db": 0.0
+        },
+        {
+          "harmonic_hypothesis": 3,
+          "frequency_hz": 2101.041666666667,
+          "frequency_divided_by_h_hz": 700.3472222222223,
+          "relative_spectrum_peak_db": -32.1991700874956
+        },
+        {
+          "harmonic_hypothesis": 5,
+          "frequency_hz": 3490.6250000000005,
+          "frequency_divided_by_h_hz": 698.1250000000001,
+          "relative_spectrum_peak_db": -29.297571820748182
+        }
+      ]
+    }
+  ],
+  "envelope_maxima": [
+    {
+      "note": 74,
+      "time_seconds": 0.19541950113378684,
+      "rms": 0.35533169849692,
+      "meaning": "20 ms centered RMS maximum; not a detected key release"
+    },
+    {
+      "note": 76,
+      "time_seconds": 0.5289342403628118,
+      "rms": 0.38795526765876653,
+      "meaning": "20 ms centered RMS maximum; not a detected key release"
+    },
+    {
+      "note": 77,
+      "time_seconds": 0.7323356009070294,
+      "rms": 0.3581473605778869,
+      "meaning": "20 ms centered RMS maximum; not a detected key release"
+    }
+  ],
+  "case": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/reverb-reference-expansion/ambient-performance-v1/ambient-sqr.json",
+    "sha256": "d9529fe92b8178dd1acc556feb54863b18e8dd1b30e724f28736765f4eeee532"
+  },
+  "midi": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/reverb-reference-expansion/ambient-performance-v1/reconstructed-performance.mid",
+    "sha256": "b41bad02fc86b6e5e861e50afd7d519646292cf275d79cf65c7fd300a95b38de"
+  },
+  "plot": {
+    "path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/reverb-reference-expansion/ambient-performance-v1/performance-source.png",
+    "sha256": "9ecaf3982d07b15c4b66d55deccd772e279f7ac59f89c18fe0a23ea8a259a3f7"
+  },
+  "case_definition": {
+    "schema_version": 1,
+    "id": "ambient-sqr",
+    "title": "Ambient SQR \u2014 first three notes",
+    "reference_id": "lead-07",
+    "midi_status": "reconstructed_not_original",
+    "source_start_seconds": 0,
+    "duration_seconds": 0.775,
+    "calibration_end_seconds": 0.405,
+    "method": "Source-only original MP3 inspection: native stereo spectra, fundamental and odd-harmonic families in three fixed plateaus, short RMS history and time-frequency transitions. Dominant families near 587, 659, 698 Hz support played MIDI 74, 76, 77 under the unchanged published preset's zero coarse/octave and zero pitch-envelope/LFO depths. Nominal key-ups follow envelope roll-off near the observed level maxima, with broad operational uncertainty; they are not recovered release events. No engine or candidate scores were used.",
+    "uncertainties": [
+      "Original MIDI, velocity, controllers, global transpose/tuning, output latency/capture chain and exact recorded patch revision are unavailable. The MP3 and bank are associated by Roland name/category.",
+      "Velocity 100 is nominal. Upper AMP velocity sensitivity is 0, Lower is 8; both cutoff velocity sensitivities are 0. Velocity can alter the layer and wet/dry balance, so a common scalar gain does not remove its uncertainty.",
+      "Upper has two Squares, drive 30, Solo Legato and portamento 20; Lower has two Sines, slower AMP attack 76 and Solo without portamento. Old-note energy may be release, delay or reverb; it does not prove held-key overlap.",
+      "Onset ranges are operational source-clock reconstruction uncertainties, not certified MIDI time bounds. A later production-only prefix alignment may absorb one common latency; do not tune later notes to candidate errors.",
+      "Key-up estimates near envelope maxima are provisional: the amplitude/filter envelopes, two layers, drive, interference and wet tails prevent uniquely recovering key release. Off-time ranges are sensitivity settings, not confidence intervals or observed gates.",
+      "The 0.775-second crop excludes the next obvious new pitch group near 0.79 s. The third note's gate is still estimated; later hardware decay is not covered by this short reconstruction.",
+      "All three original notes and preceding silence are retained from source time 0 for effect history. Exact published SysEx must remain unchanged. This is a conditional generalization case, not an output-equivalence benchmark."
+    ],
+    "notes": [
+      {
+        "on": 0.085,
+        "off": 0.2,
+        "note": 74,
+        "velocity": 100,
+        "on_uncertainty_seconds": [
+          0.075,
+          0.095
+        ],
+        "off_sensitivity_seconds": [
+          0.16,
+          0.24
+        ]
+      },
+      {
+        "on": 0.418,
+        "off": 0.53,
+        "note": 76,
+        "velocity": 100,
+        "on_uncertainty_seconds": [
+          0.408,
+          0.428
+        ],
+        "off_sensitivity_seconds": [
+          0.49,
+          0.57
+        ]
+      },
+      {
+        "on": 0.618,
+        "off": 0.73,
+        "note": 77,
+        "velocity": 100,
+        "on_uncertainty_seconds": [
+          0.608,
+          0.628
+        ],
+        "off_sensitivity_seconds": [
+          0.7,
+          0.76
+        ]
+      }
+    ],
+    "validation_plan": {
+      "calibration_seconds": [
+        0,
+        0.405
+      ],
+      "later_evaluation_seconds": [
+        0.405,
+        0.775
+      ],
+      "training_note": 74,
+      "later_notes": [
+        76,
+        77
+      ],
+      "frozen_before_candidate_render_or_score_inspection": true,
+      "comparison_policy": "One production-only prefix lag and gain; freeze for the later E5/F5 region. Any velocity/gate sensitivity must be predeclared, reported in full and applied equally to all DSP candidates without selecting its best error. Keep original SysEx unchanged.",
+      "velocity_sensitivity_suggestion": [
+        80,
+        100,
+        120
+      ],
+      "gate_sensitivity_suggestion": "Nominal key-ups; then all early endpoints; then all late endpoints from each note's off_sensitivity_seconds. These bracket plausible articulation without recovering it."
+    },
+    "active_velocity_sensitivity": {
+      "upper": {
+        "cutoff": 0,
+        "amp": 0
+      },
+      "lower": {
+        "cutoff": 0,
+        "amp": 8
+      }
+    },
+    "unmodified_sysex_sha256": "1e420e8a04502d790a1018f4547167377bdfd4470e21bb6602853d09218aff07",
+    "original_mp3_sha256": "d113bb3d65c34bb6827d29561e29dd9c9d4a6236143d5528685643f84a86e565"
+  },
+  "canonical_case": {
+    "path": "Docs/fidelity/reconstructions/reverb-validation/ambient-sqr.json",
+    "sha256": "d9529fe92b8178dd1acc556feb54863b18e8dd1b30e724f28736765f4eeee532",
+    "bytes": 4328
+  },
+  "canonical_midi": {
+    "path": "Docs/fidelity/reconstructions/reverb-validation/ambient-sqr.mid",
+    "sha256": "b41bad02fc86b6e5e861e50afd7d519646292cf275d79cf65c7fd300a95b38de",
+    "bytes": 117
+  },
+  "durable_plot": {
+    "path": "Docs/fidelity/source-audits/ambient-sqr-performance-feasibility-2026-09-15.png",
+    "sha256": "9ecaf3982d07b15c4b66d55deccd772e279f7ac59f89c18fe0a23ea8a259a3f7",
+    "bytes": 298910
+  },
+  "full_result": {
+    "path": "build-fidelity/reverb-reference-expansion/ambient-performance-v1/results.json",
+    "sha256": "e17906cc23c9a92fe403ab1b1d4a809d968bc6e1b3d36a42e031ecd297d2b9d3"
+  },
+  "midi_verification": {
+    "parser": "Tools/render_midi.py",
+    "parser_sha256": "ffb8899e5a4b3588d459e5de3e710c74a002dfc04e45d7691a03102e9b5093e3",
+    "event_ticks_and_hex": [
+      [
+        1700,
+        "904a64"
+      ],
+      [
+        4000,
+        "804a00"
+      ],
+      [
+        8360,
+        "904c64"
+      ],
+      [
+        10600,
+        "804c00"
+      ],
+      [
+        12360,
+        "904d64"
+      ],
+      [
+        14600,
+        "804d00"
+      ]
+    ],
+    "end_tick": 15500,
+    "all_three_note_pairs_and_end_verified": true,
+    "all_off_sensitivity_endpoints_within_crop": true,
+    "second_onset_sensitivity_begins_after_calibration": true,
+    "current_writer_compatibility": {
+      "path": "Tools/compare_hardware.py",
+      "sha256": "98c1fad577e2cc13b5c20dff04d06a1414ae0332fe48e2696b690db03d87be86",
+      "frozen_midi_byte_identical": true,
+      "scope": "Shared helper currently includes optional pitch-bend support. Ambient case has no pitch-bend events; its frozen MIDI remains byte-identical. The actual helper version is pinned in tools."
+    }
+  }
+}

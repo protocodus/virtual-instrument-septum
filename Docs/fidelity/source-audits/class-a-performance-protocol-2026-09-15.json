@@ -1,0 +1,3536 @@
+{
+  "schema_version": 1,
+  "status": "Source-only protocol frozen; no renderer run or candidate score",
+  "source_evidence": {
+    "notes": [
+      {
+        "onset_seconds": 0.035,
+        "played_midi": 45,
+        "pitch_confidence": "high",
+        "onset_bracket_seconds": [
+          0.029,
+          0.041
+        ],
+        "spectrum_window_seconds": [
+          0.06,
+          0.11
+        ],
+        "predicted_osc1_hz": 110.0,
+        "predicted_osc2_hz": 55.0,
+        "spectral_peaks": [
+          {
+            "hz": 56.01997375488281,
+            "relative_db": 0.0
+          },
+          {
+            "hz": 111.03057861328125,
+            "relative_db": -7.533764796763618
+          },
+          {
+            "hz": 165.5364990234375,
+            "relative_db": -11.313740857208266
+          },
+          {
+            "hz": 219.8741912841797,
+            "relative_db": -15.219437299999843
+          },
+          {
+            "hz": 273.7071990966797,
+            "relative_db": -17.325083671909958
+          }
+        ],
+        "local_flux_maxima": {
+          "1024": {
+            "seconds": 0.040634920634920635,
+            "amplitude": 0.00445001734952855
+          },
+          "2048": {
+            "seconds": 0.03918367346938775,
+            "amplitude": 0.004378715054669793
+          }
+        }
+      },
+      {
+        "onset_seconds": 0.133,
+        "played_midi": 52,
+        "pitch_confidence": "high",
+        "onset_bracket_seconds": [
+          0.123,
+          0.145
+        ],
+        "spectrum_window_seconds": [
+          0.16,
+          0.2
+        ],
+        "predicted_osc1_hz": 164.81377845643496,
+        "predicted_osc2_hz": 82.4068892282175,
+        "spectral_peaks": [
+          {
+            "hz": 84.11407470703125,
+            "relative_db": 0.0
+          },
+          {
+            "hz": 167.3870086669922,
+            "relative_db": -7.194298127701222
+          },
+          {
+            "hz": 250.49171447753906,
+            "relative_db": -12.867977115390703
+          },
+          {
+            "hz": 492.0673370361328,
+            "relative_db": -17.396978985287493
+          },
+          {
+            "hz": 411.822509765625,
+            "relative_db": -18.18389046581535
+          },
+          {
+            "hz": 331.74591064453125,
+            "relative_db": -18.410303215298082
+          },
+          {
+            "hz": 739.6991729736328,
+            "relative_db": -18.589216014362574
+          },
+          {
+            "hz": 823.9814758300781,
+            "relative_db": -19.10210153633529
+          },
+          {
+            "hz": 575.6767272949219,
+            "relative_db": -19.566856907668896
+          },
+          {
+            "hz": 656.5944671630859,
+            "relative_db": -19.838644054784528
+          }
+        ],
+        "local_flux_maxima": {
+          "1024": {
+            "seconds": 0.13351473922902496,
+            "amplitude": 0.013114924131554628
+          },
+          "2048": {
+            "seconds": 0.1364172335600907,
+            "amplitude": 0.0036276795063479787
+          }
+        }
+      },
+      {
+        "onset_seconds": 0.223,
+        "played_midi": 57,
+        "pitch_confidence": "medium-low; very brief",
+        "onset_bracket_seconds": [
+          0.213,
+          0.237
+        ],
+        "spectrum_window_seconds": [
+          0.226,
+          0.238
+        ],
+        "predicted_osc1_hz": 220.0,
+        "predicted_osc2_hz": 110.0,
+        "spectral_peaks": [
+          {
+            "hz": 89.66560363769531,
+            "relative_db": 0.0
+          }
+        ],
+        "local_flux_maxima": {
+          "1024": {
+            "seconds": 0.22058956916099776,
+            "amplitude": 0.014694745849339854
+          },
+          "2048": {
+            "seconds": 0.2365532879818594,
+            "amplitude": 0.004608601738698354
+          }
+        }
+      },
+      {
+        "onset_seconds": 0.252,
+        "played_midi": 50,
+        "pitch_confidence": "medium; octave supported by low family",
+        "onset_bracket_seconds": [
+          0.24,
+          0.264
+        ],
+        "spectrum_window_seconds": [
+          0.265,
+          0.29
+        ],
+        "predicted_osc1_hz": 146.8323839587038,
+        "predicted_osc2_hz": 73.41619197935188,
+        "spectral_peaks": [
+          {
+            "hz": 144.17152404785156,
+            "relative_db": 0.0
+          },
+          {
+            "hz": 297.9320526123047,
+            "relative_db": -9.377407833981641
+          },
+          {
+            "hz": 439.5801544189453,
+            "relative_db": -10.825320427919054
+          },
+          {
+            "hz": 588.2938385009766,
+            "relative_db": -12.220525829357856
+          },
+          {
+            "hz": 733.4747314453125,
+            "relative_db": -14.139695057062989
+          },
+          {
+            "hz": 884.2071533203125,
+            "relative_db": -14.944922624628386
+          },
+          {
+            "hz": 1028.042221069336,
+            "relative_db": -16.631770369469024
+          },
+          {
+            "hz": 1470.8187103271484,
+            "relative_db": -18.347535217609533
+          },
+          {
+            "hz": 1613.6444091796875,
+            "relative_db": -18.866110358620173
+          },
+          {
+            "hz": 1169.6903228759766,
+            "relative_db": -19.337693151567255
+          }
+        ],
+        "local_flux_maxima": {
+          "1024": {
+            "seconds": 0.24235827664399093,
+            "amplitude": 0.011685248239791945
+          },
+          "2048": {
+            "seconds": 0.24018140589569162,
+            "amplitude": 0.00530920115439584
+          }
+        }
+      },
+      {
+        "onset_seconds": 0.306,
+        "played_midi": 52,
+        "pitch_confidence": "high",
+        "onset_bracket_seconds": [
+          0.296,
+          0.316
+        ],
+        "spectrum_window_seconds": [
+          0.322,
+          0.348
+        ],
+        "predicted_osc1_hz": 164.81377845643496,
+        "predicted_osc2_hz": 82.4068892282175,
+        "spectral_peaks": [
+          {
+            "hz": 164.190673828125,
+            "relative_db": 0.0
+          },
+          {
+            "hz": 76.37557983398438,
+            "relative_db": -6.641632062661101
+          },
+          {
+            "hz": 494.4225311279297,
+            "relative_db": -9.791104704048259
+          },
+          {
+            "hz": 330.40008544921875,
+            "relative_db": -10.550690752344087
+          },
+          {
+            "hz": 660.8001708984375,
+            "relative_db": -12.227559712510361
+          },
+          {
+            "hz": 826.0002136230469,
+            "relative_db": -14.643539759671807
+          },
+          {
+            "hz": 990.52734375,
+            "relative_db": -15.974151224667816
+          },
+          {
+            "hz": 1155.7273864746094,
+            "relative_db": -17.61701122650345
+          },
+          {
+            "hz": 1648.1311798095703,
+            "relative_db": -18.578304483133596
+          },
+          {
+            "hz": 1318.4040069580078,
+            "relative_db": -19.152276429847355
+          },
+          {
+            "hz": 1813.3312225341797,
+            "relative_db": -19.812270025406725
+          }
+        ],
+        "local_flux_maxima": {
+          "1024": {
+            "seconds": 0.30693877551020404,
+            "amplitude": 0.012257956930375161
+          },
+          "2048": {
+            "seconds": 0.30766439909297055,
+            "amplitude": 0.00416817385779412
+          }
+        }
+      },
+      {
+        "onset_seconds": 0.364,
+        "played_midi": 55,
+        "pitch_confidence": "medium; brief",
+        "onset_bracket_seconds": [
+          0.353,
+          0.38
+        ],
+        "spectrum_window_seconds": [
+          0.377,
+          0.391
+        ],
+        "predicted_osc1_hz": 195.99771799087463,
+        "predicted_osc2_hz": 97.99885899543733,
+        "spectral_peaks": [
+          {
+            "hz": 200.19149780273438,
+            "relative_db": 0.0
+          },
+          {
+            "hz": 392.6445007324219,
+            "relative_db": -7.306811544164464
+          },
+          {
+            "hz": 583.2469940185547,
+            "relative_db": -8.354154038093654
+          },
+          {
+            "hz": 793.3639526367188,
+            "relative_db": -9.883625256525368
+          },
+          {
+            "hz": 986.8263244628906,
+            "relative_db": -12.991237042967985
+          },
+          {
+            "hz": 1369.3771362304688,
+            "relative_db": -14.71311254435977
+          },
+          {
+            "hz": 1172.3819732666016,
+            "relative_db": -16.3440624651743
+          },
+          {
+            "hz": 1579.6623229980469,
+            "relative_db": -16.993491967603738
+          }
+        ],
+        "local_flux_maxima": {
+          "1024": {
+            "seconds": 0.36063492063492064,
+            "amplitude": 0.01050273155007187
+          },
+          "2048": {
+            "seconds": 0.35845804988662133,
+            "amplitude": 0.0058244098214326615
+          }
+        }
+      },
+      {
+        "onset_seconds": 0.41,
+        "played_midi": 45,
+        "pitch_confidence": "high",
+        "onset_bracket_seconds": [
+          0.398,
+          0.425
+        ],
+        "spectrum_window_seconds": [
+          0.44,
+          0.5
+        ],
+        "predicted_osc1_hz": 110.0,
+        "predicted_osc2_hz": 55.0,
+        "spectral_peaks": [
+          {
+            "hz": 110.02120971679688,
+            "relative_db": 0.0
+          },
+          {
+            "hz": 54.50592041015625,
+            "relative_db": -3.455913029164396
+          },
+          {
+            "hz": 220.37887573242188,
+            "relative_db": -6.684908726304991
+          },
+          {
+            "hz": 439.5801544189453,
+            "relative_db": -10.64774525672049
+          },
+          {
+            "hz": 328.8860321044922,
+            "relative_db": -10.688774363807912
+          },
+          {
+            "hz": 770.3166961669922,
+            "relative_db": -13.56230930193817
+          },
+          {
+            "hz": 659.7908020019531,
+            "relative_db": -14.828624546412835
+          },
+          {
+            "hz": 879.1603088378906,
+            "relative_db": -15.174204202026873
+          },
+          {
+            "hz": 549.6013641357422,
+            "relative_db": -15.228171560695937
+          },
+          {
+            "hz": 170.75157165527344,
+            "relative_db": -16.439667822596462
+          },
+          {
+            "hz": 1099.5391845703125,
+            "relative_db": -17.99248288125322
+          },
+          {
+            "hz": 1540.1287078857422,
+            "relative_db": -18.23669546602766
+          },
+          {
+            "hz": 1209.3921661376953,
+            "relative_db": -18.733560274415815
+          },
+          {
+            "hz": 990.3591156005859,
+            "relative_db": -19.43935899818261
+          },
+          {
+            "hz": 1649.6452331542969,
+            "relative_db": -19.74761804710847
+          }
+        ],
+        "local_flux_maxima": {
+          "1024": {
+            "seconds": 0.4019954648526077,
+            "amplitude": 0.010347419128688235
+          },
+          "2048": {
+            "seconds": 0.3983673469387755,
+            "amplitude": 0.004970295194884076
+          }
+        }
+      },
+      {
+        "onset_seconds": 0.532,
+        "played_midi": 52,
+        "pitch_confidence": "high",
+        "onset_bracket_seconds": [
+          0.521,
+          0.544
+        ],
+        "spectrum_window_seconds": [
+          0.552,
+          0.59
+        ],
+        "predicted_osc1_hz": 164.81377845643496,
+        "predicted_osc2_hz": 82.4068892282175,
+        "spectral_peaks": [
+          {
+            "hz": 164.02244567871094,
+            "relative_db": 0.0
+          },
+          {
+            "hz": 82.43179321289062,
+            "relative_db": -6.784823249923506
+          },
+          {
+            "hz": 330.90476989746094,
+            "relative_db": -9.589186774136353
+          },
+          {
+            "hz": 494.4225311279297,
+            "relative_db": -12.362898240539398
+          },
+          {
+            "hz": 824.1497039794922,
+            "relative_db": -13.526935736125962
+          },
+          {
+            "hz": 659.7908020019531,
+            "relative_db": -13.715035646437014
+          },
+          {
+            "hz": 988.5086059570312,
+            "relative_db": -14.848978712720893
+          },
+          {
+            "hz": 1152.194595336914,
+            "relative_db": -18.745598223257776
+          },
+          {
+            "hz": 1318.5722351074219,
+            "relative_db": -19.594212289657786
+          },
+          {
+            "hz": 1647.9629516601562,
+            "relative_db": -19.722614453850078
+          }
+        ],
+        "local_flux_maxima": {
+          "1024": {
+            "seconds": 0.5340589569160997,
+            "amplitude": 0.010320403405550337
+          },
+          "2048": {
+            "seconds": 0.5231746031746032,
+            "amplitude": 0.00423354470198052
+          }
+        }
+      },
+      {
+        "onset_seconds": 0.613,
+        "played_midi": 57,
+        "pitch_confidence": "medium-low; very brief",
+        "onset_bracket_seconds": [
+          0.601,
+          0.625
+        ],
+        "spectrum_window_seconds": [
+          0.616,
+          0.625
+        ],
+        "predicted_osc1_hz": 220.0,
+        "predicted_osc2_hz": 110.0,
+        "spectral_peaks": [
+          {
+            "hz": 219.53773498535156,
+            "relative_db": 0.0
+          },
+          {
+            "hz": 457.74879455566406,
+            "relative_db": -8.977730972693358
+          },
+          {
+            "hz": 667.0246124267578,
+            "relative_db": -13.0401947987842
+          },
+          {
+            "hz": 876.8051147460938,
+            "relative_db": -13.265059055348985
+          },
+          {
+            "hz": 1316.217041015625,
+            "relative_db": -15.145000721195714
+          },
+          {
+            "hz": 1538.2781982421875,
+            "relative_db": -15.250768008084634
+          },
+          {
+            "hz": 1098.5298156738281,
+            "relative_db": -16.585561932435514
+          },
+          {
+            "hz": 1768.7507629394531,
+            "relative_db": -18.540202878704083
+          }
+        ],
+        "local_flux_maxima": {
+          "1024": {
+            "seconds": 0.6124263038548753,
+            "amplitude": 0.014764096831755743
+          },
+          "2048": {
+            "seconds": 0.6131519274376417,
+            "amplitude": 0.009260115459773604
+          }
+        }
+      },
+      {
+        "onset_seconds": 0.636,
+        "played_midi": 62,
+        "pitch_confidence": "medium-high; octave checked against half-frequency family",
+        "onset_bracket_seconds": [
+          0.628,
+          0.65
+        ],
+        "spectrum_window_seconds": [
+          0.656,
+          0.689
+        ],
+        "predicted_osc1_hz": 293.6647679174076,
+        "predicted_osc2_hz": 146.8323839587038,
+        "spectral_peaks": [
+          {
+            "hz": 294.3992614746094,
+            "relative_db": 0.0
+          },
+          {
+            "hz": 586.6115570068359,
+            "relative_db": -2.8815797382363684
+          },
+          {
+            "hz": 880.169677734375,
+            "relative_db": -5.4792982406614374
+          },
+          {
+            "hz": 144.33975219726562,
+            "relative_db": -7.830224204402451
+          },
+          {
+            "hz": 1468.6317443847656,
+            "relative_db": -8.371580465701362
+          },
+          {
+            "hz": 1174.7371673583984,
+            "relative_db": -12.25792027131277
+          },
+          {
+            "hz": 1761.3487243652344,
+            "relative_db": -14.481828794615165
+          },
+          {
+            "hz": 738.3533477783203,
+            "relative_db": -16.056761449130242
+          },
+          {
+            "hz": 218.5283660888672,
+            "relative_db": -16.200405213104116
+          },
+          {
+            "hz": 436.72027587890625,
+            "relative_db": -17.379733682408038
+          }
+        ],
+        "local_flux_maxima": {
+          "1024": {
+            "seconds": 0.6349206349206349,
+            "amplitude": 0.01980949630839741
+          },
+          "2048": {
+            "seconds": 0.6312925170068027,
+            "amplitude": 0.009481817349369166
+          }
+        }
+      },
+      {
+        "onset_seconds": 0.71,
+        "played_midi": 64,
+        "pitch_confidence": "high",
+        "onset_bracket_seconds": [
+          0.699,
+          0.725
+        ],
+        "spectrum_window_seconds": [
+          0.741,
+          0.8
+        ],
+        "predicted_osc1_hz": 329.6275569128699,
+        "predicted_osc2_hz": 164.81377845643496,
+        "spectral_peaks": [
+          {
+            "hz": 329.3907165527344,
+            "relative_db": 0.0
+          },
+          {
+            "hz": 658.7814331054688,
+            "relative_db": -1.675976124589974
+          },
+          {
+            "hz": 165.70472717285156,
+            "relative_db": -4.949598465642716
+          },
+          {
+            "hz": 989.5179748535156,
+            "relative_db": -5.1866905084031405
+          },
+          {
+            "hz": 1648.4676361083984,
+            "relative_db": -7.56088627164385
+          },
+          {
+            "hz": 1319.076919555664,
+            "relative_db": -9.193440740161611
+          },
+          {
+            "hz": 496.1048126220703,
+            "relative_db": -14.07734200290011
+          },
+          {
+            "hz": 1976.8489837646484,
+            "relative_db": -14.107218850558102
+          },
+          {
+            "hz": 82.93647766113281,
+            "relative_db": -15.209417866797114
+          },
+          {
+            "hz": 822.4674224853516,
+            "relative_db": -16.85900739174469
+          }
+        ],
+        "local_flux_maxima": {
+          "1024": {
+            "seconds": 0.7096598639455782,
+            "amplitude": 0.012281903867529993
+          },
+          "2048": {
+            "seconds": 0.7074829931972789,
+            "amplitude": 0.007517875587693017
+          }
+        }
+      },
+      {
+        "onset_seconds": 0.834,
+        "played_midi": 67,
+        "pitch_confidence": "high",
+        "onset_bracket_seconds": [
+          0.822,
+          0.848
+        ],
+        "spectrum_window_seconds": [
+          0.9,
+          1.1
+        ],
+        "predicted_osc1_hz": 391.99543598174927,
+        "predicted_osc2_hz": 195.99771799087463,
+        "spectral_peaks": [
+          {
+            "hz": 391.9715881347656,
+            "relative_db": 0.0
+          },
+          {
+            "hz": 783.9431762695312,
+            "relative_db": -2.502884766055886
+          },
+          {
+            "hz": 1176.082992553711,
+            "relative_db": -8.329882860716902
+          },
+          {
+            "hz": 195.9857940673828,
+            "relative_db": -9.010941843729622
+          },
+          {
+            "hz": 1567.8863525390625,
+            "relative_db": -10.364877415596874
+          },
+          {
+            "hz": 1959.8579406738281,
+            "relative_db": -14.168921923771396
+          },
+          {
+            "hz": 587.7891540527344,
+            "relative_db": -16.265486288282005
+          },
+          {
+            "hz": 163.18130493164062,
+            "relative_db": -18.028892507383553
+          },
+          {
+            "hz": 329.3907165527344,
+            "relative_db": -19.375470289384364
+          }
+        ],
+        "local_flux_maxima": {
+          "1024": {
+            "seconds": 0.8344671201814059,
+            "amplitude": 0.01475286790624653
+          },
+          "2048": {
+            "seconds": 0.8315646258503401,
+            "amplitude": 0.00841780671600954
+          }
+        }
+      }
+    ],
+    "first_onset_1ms_rms_threshold_sensitivity": [
+      {
+        "relative_db": -60,
+        "seconds": 0.02873015873015873
+      },
+      {
+        "relative_db": -50,
+        "seconds": 0.03469387755102041
+      },
+      {
+        "relative_db": -40,
+        "seconds": 0.035147392290249435
+      },
+      {
+        "relative_db": -30,
+        "seconds": 0.03582766439909297
+      },
+      {
+        "relative_db": -20,
+        "seconds": 0.03693877551020408
+      },
+      {
+        "relative_db": -10,
+        "seconds": 0.03927437641723356
+      }
+    ],
+    "stereo_periodicity": [
+      {
+        "centre_seconds": 0.08,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 803,
+            "normalized_correlation": 0.8821684474503021,
+            "apparent_played_midi_from_half_frequency_assumption": 44.97450173148325
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.1,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 804,
+            "normalized_correlation": 0.860941965037135,
+            "apparent_played_midi_from_half_frequency_assumption": 44.95295556754388
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.12,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 801,
+            "normalized_correlation": 0.6854779657834933,
+            "apparent_played_midi_from_half_frequency_assumption": 45.017674672786505
+          },
+          {
+            "lag_samples": 747,
+            "normalized_correlation": 0.6767264505717753,
+            "apparent_played_midi_from_half_frequency_assumption": 46.22600266822018
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.14,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 538,
+            "normalized_correlation": 0.3974297728310526,
+            "apparent_played_midi_from_half_frequency_assumption": 51.90802751101154
+          },
+          {
+            "lag_samples": 681,
+            "normalized_correlation": 0.18925769437693551,
+            "apparent_played_midi_from_half_frequency_assumption": 47.82744400554617
+          },
+          {
+            "lag_samples": 735,
+            "normalized_correlation": 0.13621485932941346,
+            "apparent_played_midi_from_half_frequency_assumption": 46.50637058500631
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.16,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 535,
+            "normalized_correlation": 0.7679983594575557,
+            "apparent_played_midi_from_half_frequency_assumption": 52.00483488622892
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.18,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 535,
+            "normalized_correlation": 0.8739513180620949,
+            "apparent_played_midi_from_half_frequency_assumption": 52.00483488622892
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.2,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 535,
+            "normalized_correlation": 0.9006573071770734,
+            "apparent_played_midi_from_half_frequency_assumption": 52.00483488622892
+          },
+          {
+            "lag_samples": 795,
+            "normalized_correlation": -0.571652462800443,
+            "apparent_played_midi_from_half_frequency_assumption": 45.14784325963041
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.22,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 482,
+            "normalized_correlation": 0.503517349916457,
+            "apparent_played_midi_from_half_frequency_assumption": 53.81090382693149
+          },
+          {
+            "lag_samples": 532,
+            "normalized_correlation": 0.5000240861400461,
+            "apparent_played_midi_from_half_frequency_assumption": 52.10218663567675
+          },
+          {
+            "lag_samples": 984,
+            "normalized_correlation": 0.452799266970252,
+            "apparent_played_midi_from_half_frequency_assumption": 41.455401797620155
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.24,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 970,
+            "normalized_correlation": 0.3047922783591642,
+            "apparent_played_midi_from_half_frequency_assumption": 41.70348461679715
+          },
+          {
+            "lag_samples": 953,
+            "normalized_correlation": 0.2902237865372584,
+            "apparent_played_midi_from_half_frequency_assumption": 42.009587014771725
+          },
+          {
+            "lag_samples": 401,
+            "normalized_correlation": 0.2479648262338205,
+            "apparent_played_midi_from_half_frequency_assumption": 56.99607474423198
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.26,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 301,
+            "normalized_correlation": 0.41602457216010513,
+            "apparent_played_midi_from_half_frequency_assumption": 61.9621397405746
+          },
+          {
+            "lag_samples": 601,
+            "normalized_correlation": 0.3499709262488126,
+            "apparent_played_midi_from_half_frequency_assumption": 49.9909216931568
+          },
+          {
+            "lag_samples": 345,
+            "normalized_correlation": 0.3128304847139119,
+            "apparent_played_midi_from_half_frequency_assumption": 59.60014524170465
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.28,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 301,
+            "normalized_correlation": 0.6651556609023018,
+            "apparent_played_midi_from_half_frequency_assumption": 61.9621397405746
+          },
+          {
+            "lag_samples": 601,
+            "normalized_correlation": 0.570517819831296,
+            "apparent_played_midi_from_half_frequency_assumption": 49.9909216931568
+          },
+          {
+            "lag_samples": 901,
+            "normalized_correlation": 0.4577262285508531,
+            "apparent_played_midi_from_half_frequency_assumption": 42.980976311928565
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.3,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 300,
+            "normalized_correlation": 0.47269588074839924,
+            "apparent_played_midi_from_half_frequency_assumption": 62.01975157574046
+          },
+          {
+            "lag_samples": 599,
+            "normalized_correlation": 0.25391152054839283,
+            "apparent_played_midi_from_half_frequency_assumption": 50.0486295482256
+          },
+          {
+            "lag_samples": 997,
+            "normalized_correlation": 0.24675175801625052,
+            "apparent_played_midi_from_half_frequency_assumption": 41.228179528912676
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.32,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 536,
+            "normalized_correlation": 0.5919347710410258,
+            "apparent_played_midi_from_half_frequency_assumption": 51.97250557619776
+          },
+          {
+            "lag_samples": 268,
+            "normalized_correlation": 0.5422990994689535,
+            "apparent_played_midi_from_half_frequency_assumption": 63.97250557619776
+          },
+          {
+            "lag_samples": 804,
+            "normalized_correlation": 0.46406110587278226,
+            "apparent_played_midi_from_half_frequency_assumption": 44.95295556754388
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.34,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 535,
+            "normalized_correlation": 0.9048697632789843,
+            "apparent_played_midi_from_half_frequency_assumption": 52.00483488622892
+          },
+          {
+            "lag_samples": 267,
+            "normalized_correlation": 0.7218162619116167,
+            "apparent_played_midi_from_half_frequency_assumption": 64.03722468144038
+          },
+          {
+            "lag_samples": 802,
+            "normalized_correlation": 0.711762813413886,
+            "apparent_played_midi_from_half_frequency_assumption": 44.99607474423198
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.36,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 266,
+            "normalized_correlation": 0.4205513060487065,
+            "apparent_played_midi_from_half_frequency_assumption": 64.10218663567676
+          },
+          {
+            "lag_samples": 534,
+            "normalized_correlation": 0.41902536339093843,
+            "apparent_played_midi_from_half_frequency_assumption": 52.03722468144038
+          },
+          {
+            "lag_samples": 227,
+            "normalized_correlation": 0.37903841676569866,
+            "apparent_played_midi_from_half_frequency_assumption": 66.84699401420005
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.38,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 451,
+            "normalized_correlation": 0.6319393111255139,
+            "apparent_played_midi_from_half_frequency_assumption": 54.96177238262646
+          },
+          {
+            "lag_samples": 901,
+            "normalized_correlation": 0.6018876345947668,
+            "apparent_played_midi_from_half_frequency_assumption": 42.980976311928565
+          },
+          {
+            "lag_samples": 226,
+            "normalized_correlation": 0.49798509024615956,
+            "apparent_played_midi_from_half_frequency_assumption": 66.92342831270878
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.4,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 450,
+            "normalized_correlation": 0.5231993795528171,
+            "apparent_played_midi_from_half_frequency_assumption": 55.000201567086584
+          },
+          {
+            "lag_samples": 899,
+            "normalized_correlation": 0.3852757719359619,
+            "apparent_played_midi_from_half_frequency_assumption": 43.01944819551766
+          },
+          {
+            "lag_samples": 405,
+            "normalized_correlation": 0.32621805681271865,
+            "apparent_played_midi_from_half_frequency_assumption": 56.82423868842718
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.42,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 803,
+            "normalized_correlation": 0.624310518601961,
+            "apparent_played_midi_from_half_frequency_assumption": 44.97450173148325
+          },
+          {
+            "lag_samples": 402,
+            "normalized_correlation": 0.5495080549814907,
+            "apparent_played_midi_from_half_frequency_assumption": 56.95295556754388
+          },
+          {
+            "lag_samples": 226,
+            "normalized_correlation": -0.24400368623916308,
+            "apparent_played_midi_from_half_frequency_assumption": 66.92342831270878
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.44,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 802,
+            "normalized_correlation": 0.9534203238632566,
+            "apparent_played_midi_from_half_frequency_assumption": 44.99607474423198
+          },
+          {
+            "lag_samples": 401,
+            "normalized_correlation": 0.6707134143317361,
+            "apparent_played_midi_from_half_frequency_assumption": 56.99607474423198
+          },
+          {
+            "lag_samples": 604,
+            "normalized_correlation": -0.4408831658111625,
+            "apparent_played_midi_from_half_frequency_assumption": 49.904718989790084
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.46,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 802,
+            "normalized_correlation": 0.9615691726265195,
+            "apparent_played_midi_from_half_frequency_assumption": 44.99607474423198
+          },
+          {
+            "lag_samples": 401,
+            "normalized_correlation": 0.55480344282133,
+            "apparent_played_midi_from_half_frequency_assumption": 56.99607474423198
+          },
+          {
+            "lag_samples": 562,
+            "normalized_correlation": -0.40242022953665835,
+            "apparent_played_midi_from_half_frequency_assumption": 51.152460019039914
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.48,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 802,
+            "normalized_correlation": 0.9679183763645175,
+            "apparent_played_midi_from_half_frequency_assumption": 44.99607474423198
+          },
+          {
+            "lag_samples": 401,
+            "normalized_correlation": 0.5360658296902604,
+            "apparent_played_midi_from_half_frequency_assumption": 56.99607474423198
+          },
+          {
+            "lag_samples": 998,
+            "normalized_correlation": -0.3498397645848735,
+            "apparent_played_midi_from_half_frequency_assumption": 41.210823797643904
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.5,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 802,
+            "normalized_correlation": 0.970417198170154,
+            "apparent_played_midi_from_half_frequency_assumption": 44.99607474423198
+          },
+          {
+            "lag_samples": 401,
+            "normalized_correlation": 0.5817888037715784,
+            "apparent_played_midi_from_half_frequency_assumption": 56.99607474423198
+          },
+          {
+            "lag_samples": 564,
+            "normalized_correlation": -0.3848337372668775,
+            "apparent_played_midi_from_half_frequency_assumption": 51.0909596329055
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.52,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 803,
+            "normalized_correlation": 0.5939046852945171,
+            "apparent_played_midi_from_half_frequency_assumption": 44.97450173148325
+          },
+          {
+            "lag_samples": 401,
+            "normalized_correlation": 0.2042879783485603,
+            "apparent_played_midi_from_half_frequency_assumption": 56.99607474423198
+          },
+          {
+            "lag_samples": 291,
+            "normalized_correlation": 0.02970087753340434,
+            "apparent_played_midi_from_half_frequency_assumption": 62.547071746791616
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.54,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 535,
+            "normalized_correlation": 0.5314655778540737,
+            "apparent_played_midi_from_half_frequency_assumption": 52.00483488622892
+          },
+          {
+            "lag_samples": 803,
+            "normalized_correlation": 0.49638467654574386,
+            "apparent_played_midi_from_half_frequency_assumption": 44.97450173148325
+          },
+          {
+            "lag_samples": 268,
+            "normalized_correlation": 0.37622731118905245,
+            "apparent_played_midi_from_half_frequency_assumption": 63.97250557619776
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.56,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 535,
+            "normalized_correlation": 0.9232782706478309,
+            "apparent_played_midi_from_half_frequency_assumption": 52.00483488622892
+          },
+          {
+            "lag_samples": 802,
+            "normalized_correlation": 0.7197229814739794,
+            "apparent_played_midi_from_half_frequency_assumption": 44.99607474423198
+          },
+          {
+            "lag_samples": 267,
+            "normalized_correlation": 0.6961212898058884,
+            "apparent_played_midi_from_half_frequency_assumption": 64.03722468144038
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.58,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 535,
+            "normalized_correlation": 0.9593926916124164,
+            "apparent_played_midi_from_half_frequency_assumption": 52.00483488622892
+          },
+          {
+            "lag_samples": 803,
+            "normalized_correlation": 0.6770781346566315,
+            "apparent_played_midi_from_half_frequency_assumption": 44.97450173148325
+          },
+          {
+            "lag_samples": 268,
+            "normalized_correlation": 0.6581935741664704,
+            "apparent_played_midi_from_half_frequency_assumption": 63.97250557619776
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.6,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 535,
+            "normalized_correlation": 0.6344730102909522,
+            "apparent_played_midi_from_half_frequency_assumption": 52.00483488622892
+          },
+          {
+            "lag_samples": 267,
+            "normalized_correlation": 0.41202046138841564,
+            "apparent_played_midi_from_half_frequency_assumption": 64.03722468144038
+          },
+          {
+            "lag_samples": 802,
+            "normalized_correlation": 0.3739765378614014,
+            "apparent_played_midi_from_half_frequency_assumption": 44.99607474423198
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.62,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 202,
+            "normalized_correlation": 0.2650584390335337,
+            "apparent_played_midi_from_half_frequency_assumption": 68.86703806866949
+          },
+          {
+            "lag_samples": 211,
+            "normalized_correlation": 0.2567716788838931,
+            "apparent_played_midi_from_half_frequency_assumption": 68.1123855972048
+          },
+          {
+            "lag_samples": 803,
+            "normalized_correlation": 0.2321352757786203,
+            "apparent_played_midi_from_half_frequency_assumption": 44.97450173148325
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.64,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 601,
+            "normalized_correlation": 0.4920779584096035,
+            "apparent_played_midi_from_half_frequency_assumption": 49.9909216931568
+          },
+          {
+            "lag_samples": 401,
+            "normalized_correlation": 0.3304150840001788,
+            "apparent_played_midi_from_half_frequency_assumption": 56.99607474423198
+          },
+          {
+            "lag_samples": 449,
+            "normalized_correlation": 0.2625084019599996,
+            "apparent_played_midi_from_half_frequency_assumption": 55.038716244797264
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.66,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 601,
+            "normalized_correlation": 0.6665875368708618,
+            "apparent_played_midi_from_half_frequency_assumption": 49.9909216931568
+          },
+          {
+            "lag_samples": 300,
+            "normalized_correlation": 0.660475378823302,
+            "apparent_played_midi_from_half_frequency_assumption": 62.01975157574046
+          },
+          {
+            "lag_samples": 901,
+            "normalized_correlation": 0.6527386856393529,
+            "apparent_played_midi_from_half_frequency_assumption": 42.980976311928565
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.68,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 901,
+            "normalized_correlation": 0.929828230943082,
+            "apparent_played_midi_from_half_frequency_assumption": 42.980976311928565
+          },
+          {
+            "lag_samples": 601,
+            "normalized_correlation": 0.9283708446630037,
+            "apparent_played_midi_from_half_frequency_assumption": 49.9909216931568
+          },
+          {
+            "lag_samples": 300,
+            "normalized_correlation": 0.9274479758582207,
+            "apparent_played_midi_from_half_frequency_assumption": 62.01975157574046
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.7,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 300,
+            "normalized_correlation": 0.6131893007707889,
+            "apparent_played_midi_from_half_frequency_assumption": 62.01975157574046
+          },
+          {
+            "lag_samples": 601,
+            "normalized_correlation": 0.5636958853694346,
+            "apparent_played_midi_from_half_frequency_assumption": 49.9909216931568
+          },
+          {
+            "lag_samples": 901,
+            "normalized_correlation": 0.4892383902623804,
+            "apparent_played_midi_from_half_frequency_assumption": 42.980976311928565
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.72,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 268,
+            "normalized_correlation": 0.6301482244287112,
+            "apparent_played_midi_from_half_frequency_assumption": 63.97250557619776
+          },
+          {
+            "lag_samples": 536,
+            "normalized_correlation": 0.5316012443450789,
+            "apparent_played_midi_from_half_frequency_assumption": 51.97250557619776
+          },
+          {
+            "lag_samples": 803,
+            "normalized_correlation": 0.4640876695615543,
+            "apparent_played_midi_from_half_frequency_assumption": 44.97450173148325
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.74,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 535,
+            "normalized_correlation": 0.9437711754063707,
+            "apparent_played_midi_from_half_frequency_assumption": 52.00483488622892
+          },
+          {
+            "lag_samples": 268,
+            "normalized_correlation": 0.9410574219923434,
+            "apparent_played_midi_from_half_frequency_assumption": 63.97250557619776
+          },
+          {
+            "lag_samples": 803,
+            "normalized_correlation": 0.9374761636209044,
+            "apparent_played_midi_from_half_frequency_assumption": 44.97450173148325
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.76,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 535,
+            "normalized_correlation": 0.9414711729245706,
+            "apparent_played_midi_from_half_frequency_assumption": 52.00483488622892
+          },
+          {
+            "lag_samples": 803,
+            "normalized_correlation": 0.9355173006831151,
+            "apparent_played_midi_from_half_frequency_assumption": 44.97450173148325
+          },
+          {
+            "lag_samples": 268,
+            "normalized_correlation": 0.9344260869661029,
+            "apparent_played_midi_from_half_frequency_assumption": 63.97250557619776
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.78,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 803,
+            "normalized_correlation": 0.9338026362631436,
+            "apparent_played_midi_from_half_frequency_assumption": 44.97450173148325
+          },
+          {
+            "lag_samples": 535,
+            "normalized_correlation": 0.9240384999478013,
+            "apparent_played_midi_from_half_frequency_assumption": 52.00483488622892
+          },
+          {
+            "lag_samples": 268,
+            "normalized_correlation": 0.9229783449011454,
+            "apparent_played_midi_from_half_frequency_assumption": 63.97250557619776
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.8,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 803,
+            "normalized_correlation": 0.945583893953553,
+            "apparent_played_midi_from_half_frequency_assumption": 44.97450173148325
+          },
+          {
+            "lag_samples": 268,
+            "normalized_correlation": 0.9140911910658034,
+            "apparent_played_midi_from_half_frequency_assumption": 63.97250557619776
+          },
+          {
+            "lag_samples": 535,
+            "normalized_correlation": 0.9103117997381345,
+            "apparent_played_midi_from_half_frequency_assumption": 52.00483488622892
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.82,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 267,
+            "normalized_correlation": 0.6240641077275394,
+            "apparent_played_midi_from_half_frequency_assumption": 64.03722468144038
+          },
+          {
+            "lag_samples": 802,
+            "normalized_correlation": 0.6229636251041833,
+            "apparent_played_midi_from_half_frequency_assumption": 44.99607474423198
+          },
+          {
+            "lag_samples": 535,
+            "normalized_correlation": 0.58782517261493,
+            "apparent_played_midi_from_half_frequency_assumption": 52.00483488622892
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.84,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 674,
+            "normalized_correlation": 0.44368807103438074,
+            "apparent_played_midi_from_half_frequency_assumption": 48.00631848750872
+          },
+          {
+            "lag_samples": 225,
+            "normalized_correlation": 0.41646817078068016,
+            "apparent_played_midi_from_half_frequency_assumption": 67.00020156708658
+          },
+          {
+            "lag_samples": 450,
+            "normalized_correlation": 0.4147142002231716,
+            "apparent_played_midi_from_half_frequency_assumption": 55.000201567086584
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.86,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 450,
+            "normalized_correlation": 0.8328021072421723,
+            "apparent_played_midi_from_half_frequency_assumption": 55.000201567086584
+          },
+          {
+            "lag_samples": 900,
+            "normalized_correlation": 0.7943072473462133,
+            "apparent_played_midi_from_half_frequency_assumption": 43.00020156708658
+          },
+          {
+            "lag_samples": 225,
+            "normalized_correlation": 0.77985539547441,
+            "apparent_played_midi_from_half_frequency_assumption": 67.00020156708658
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.88,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 900,
+            "normalized_correlation": 0.9275220648381127,
+            "apparent_played_midi_from_half_frequency_assumption": 43.00020156708658
+          },
+          {
+            "lag_samples": 450,
+            "normalized_correlation": 0.9206120640009358,
+            "apparent_played_midi_from_half_frequency_assumption": 55.000201567086584
+          },
+          {
+            "lag_samples": 675,
+            "normalized_correlation": 0.9117405016945855,
+            "apparent_played_midi_from_half_frequency_assumption": 47.98065155843271
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.9,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 900,
+            "normalized_correlation": 0.9487866014632902,
+            "apparent_played_midi_from_half_frequency_assumption": 43.00020156708658
+          },
+          {
+            "lag_samples": 675,
+            "normalized_correlation": 0.927465033515823,
+            "apparent_played_midi_from_half_frequency_assumption": 47.98065155843271
+          },
+          {
+            "lag_samples": 450,
+            "normalized_correlation": 0.9197918146674656,
+            "apparent_played_midi_from_half_frequency_assumption": 55.000201567086584
+          }
+        ]
+      },
+      {
+        "centre_seconds": 0.92,
+        "width_seconds": 0.06,
+        "peaks": [
+          {
+            "lag_samples": 900,
+            "normalized_correlation": 0.946532560416634,
+            "apparent_played_midi_from_half_frequency_assumption": 43.00020156708658
+          },
+          {
+            "lag_samples": 675,
+            "normalized_correlation": 0.9278975897053212,
+            "apparent_played_midi_from_half_frequency_assumption": 47.98065155843271
+          },
+          {
+            "lag_samples": 225,
+            "normalized_correlation": 0.9265457054280903,
+            "apparent_played_midi_from_half_frequency_assumption": 67.00020156708658
+          }
+        ]
+      }
+    ],
+    "periodicity_qualification": "Top three normalized stereo autocorrelation peaks,60mswindows,lags60\u2013999. Period multiples and old wet notes create octave/subharmonic ambiguities; not an automatic note selector. Source spectra and stored octave relation are also required.",
+    "onset_method": "Inspect changed low and upper harmonic families, retain nominal rounded onset plus conservative source bracket; 1024/2048 Hann positive-flux maxima are sensitivity evidence, not exact note-on estimators. Phase/beating and filter attack can move their maxima."
+  },
+  "bend_frequency_evidence": [
+    {
+      "centre_seconds": 1.1,
+      "width_seconds": 0.08,
+      "fundamental_from_harmonics_hz": [
+        392.1412833933065,
+        392.04052139617977,
+        392.05834533332626
+      ],
+      "median_frequency_hz": 392.05834533332626,
+      "cents_above_nominal_G4": 0.2778146455866829,
+      "harmonic_estimate_spread_cents": 0.4449034654267998
+    },
+    {
+      "centre_seconds": 1.2,
+      "width_seconds": 0.08,
+      "fundamental_from_harmonics_hz": [
+        391.94009373033964,
+        391.95964502109433,
+        392.08828626062535
+      ],
+      "median_frequency_hz": 391.95964502109433,
+      "cents_above_nominal_G4": -0.15807673495384722,
+      "harmonic_estimate_spread_cents": 0.6544557922920315
+    },
+    {
+      "centre_seconds": 1.3,
+      "width_seconds": 0.08,
+      "fundamental_from_harmonics_hz": [
+        395.68408598509006,
+        395.31450738531066,
+        395.8732585918919
+      ],
+      "median_frequency_hz": 395.68408598509006,
+      "cents_above_nominal_G4": 16.214622785383938,
+      "harmonic_estimate_spread_cents": 2.4452584233591783
+    },
+    {
+      "centre_seconds": 1.4,
+      "width_seconds": 0.08,
+      "fundamental_from_harmonics_hz": [
+        401.1222810314367,
+        400.9468619557845,
+        400.95321892054767
+      ],
+      "median_frequency_hz": 400.95321892054767,
+      "cents_above_nominal_G4": 39.11647615945997,
+      "harmonic_estimate_spread_cents": 0.757270078577053
+    },
+    {
+      "centre_seconds": 1.5,
+      "width_seconds": 0.08,
+      "fundamental_from_harmonics_hz": [
+        407.4007928181679,
+        408.2695572762645,
+        408.4480167819843
+      ],
+      "median_frequency_hz": 408.2695572762645,
+      "cents_above_nominal_G4": 70.42216747961803,
+      "harmonic_estimate_spread_cents": 4.4444283243105165
+    },
+    {
+      "centre_seconds": 1.6,
+      "width_seconds": 0.08,
+      "fundamental_from_harmonics_hz": [
+        414.4895341097085,
+        415.9756266353875,
+        416.0003944962313
+      ],
+      "median_frequency_hz": 415.9756266353875,
+      "cents_above_nominal_G4": 102.79456987894125,
+      "harmonic_estimate_spread_cents": 6.2990669484662085
+    },
+    {
+      "centre_seconds": 1.7,
+      "width_seconds": 0.08,
+      "fundamental_from_harmonics_hz": [
+        423.88339382243737,
+        423.3378217520476,
+        423.14198066817136
+      ],
+      "median_frequency_hz": 423.3378217520476,
+      "cents_above_nominal_G4": 133.16703631876499,
+      "harmonic_estimate_spread_cents": 3.0307475160908854
+    },
+    {
+      "centre_seconds": 1.8,
+      "width_seconds": 0.08,
+      "fundamental_from_harmonics_hz": [
+        430.9587269047941,
+        430.9767159765859,
+        430.71513920962593
+      ],
+      "median_frequency_hz": 430.9587269047941,
+      "cents_above_nominal_G4": 164.05542161657982,
+      "harmonic_estimate_spread_cents": 1.0510732266769716
+    },
+    {
+      "centre_seconds": 1.9,
+      "width_seconds": 0.08,
+      "fundamental_from_harmonics_hz": [
+        439.0165576632445,
+        439.52102294202,
+        440.11964677002555
+      ],
+      "median_frequency_hz": 439.52102294202,
+      "cents_above_nominal_G4": 198.11437941369746,
+      "harmonic_estimate_spread_cents": 4.344506376563478
+    },
+    {
+      "centre_seconds": 2.0,
+      "width_seconds": 0.08,
+      "fundamental_from_harmonics_hz": [
+        441.0013613803612,
+        439.8131986265906,
+        439.92463906501575
+      ],
+      "median_frequency_hz": 439.92463906501575,
+      "cents_above_nominal_G4": 199.70345774821854,
+      "harmonic_estimate_spread_cents": 4.670651817557073
+    },
+    {
+      "centre_seconds": 2.1,
+      "width_seconds": 0.08,
+      "fundamental_from_harmonics_hz": [
+        441.5974348640508,
+        440.00821310141123,
+        439.935469096447
+      ],
+      "median_frequency_hz": 440.00821310141123,
+      "cents_above_nominal_G4": 200.0323151547912,
+      "harmonic_estimate_spread_cents": 6.5278451236788895
+    }
+  ],
+  "bend_knots_seconds_cents": [
+    [
+      1.2,
+      0.0
+    ],
+    [
+      1.3,
+      16.214622785383938
+    ],
+    [
+      1.4,
+      39.11647615945997
+    ],
+    [
+      1.5,
+      70.42216747961803
+    ],
+    [
+      1.6,
+      102.79456987894125
+    ],
+    [
+      1.7,
+      133.16703631876499
+    ],
+    [
+      1.8,
+      164.05542161657982
+    ],
+    [
+      1.9,
+      198.11437941369746
+    ],
+    [
+      2.0,
+      200.0
+    ]
+  ],
+  "bend_mapping": "Nominal G4, range+2semitones; center8192, positive max16383. Median H1/H2/H3 frequency knots1.3\u20131.9s; fixed center1.2s and maximum2.0s; linear cents interpolation10ms, nearest14bit.",
+  "initial_and_endpoint_checks": [
+    {
+      "centre_seconds": 1.1,
+      "width_seconds": 0.08,
+      "fundamental_from_harmonics_hz": [
+        392.1412833933065,
+        392.04052139617977,
+        392.05834533332626
+      ],
+      "median_frequency_hz": 392.05834533332626,
+      "cents_above_nominal_G4": 0.2778146455866829,
+      "harmonic_estimate_spread_cents": 0.4449034654267998
+    },
+    {
+      "centre_seconds": 1.2,
+      "width_seconds": 0.08,
+      "fundamental_from_harmonics_hz": [
+        391.94009373033964,
+        391.95964502109433,
+        392.08828626062535
+      ],
+      "median_frequency_hz": 391.95964502109433,
+      "cents_above_nominal_G4": -0.15807673495384722,
+      "harmonic_estimate_spread_cents": 0.6544557922920315
+    },
+    {
+      "centre_seconds": 2.0,
+      "width_seconds": 0.08,
+      "fundamental_from_harmonics_hz": [
+        441.0013613803612,
+        439.8131986265906,
+        439.92463906501575
+      ],
+      "median_frequency_hz": 439.92463906501575,
+      "cents_above_nominal_G4": 199.70345774821854,
+      "harmonic_estimate_spread_cents": 4.670651817557073
+    },
+    {
+      "centre_seconds": 2.1,
+      "width_seconds": 0.08,
+      "fundamental_from_harmonics_hz": [
+        441.5974348640508,
+        440.00821310141123,
+        439.935469096447
+      ],
+      "median_frequency_hz": 440.00821310141123,
+      "cents_above_nominal_G4": 200.0323151547912,
+      "harmonic_estimate_spread_cents": 6.5278451236788895
+    }
+  ],
+  "cases": {
+    "nominal": {
+      "case_path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/class-a-reconstruction/run-04/class-a-nominal.json",
+      "case_sha256": "49dfc292d90acdb759edfa3e963017b992625a1265ea0f84ceebd3a737027aae",
+      "midi_path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/class-a-reconstruction/run-04/class-a-nominal.mid",
+      "midi_sha256": "dbf688772c203dd3201d711cac0b421f4b9fb2ae75aa9d48bd5dcf9e6e74e130",
+      "note_on_count": 12,
+      "note_off_count": 12,
+      "pitch_bend_count": 83,
+      "parsed_replay_events": [
+        {
+          "sample": 0,
+          "kind": "midi",
+          "value": "e00040"
+        },
+        {
+          "sample": 1544,
+          "kind": "midi",
+          "value": "902d64"
+        },
+        {
+          "sample": 5865,
+          "kind": "midi",
+          "value": "802d00"
+        },
+        {
+          "sample": 5865,
+          "kind": "midi",
+          "value": "903464"
+        },
+        {
+          "sample": 9834,
+          "kind": "midi",
+          "value": "803400"
+        },
+        {
+          "sample": 9834,
+          "kind": "midi",
+          "value": "903964"
+        },
+        {
+          "sample": 11113,
+          "kind": "midi",
+          "value": "803900"
+        },
+        {
+          "sample": 11113,
+          "kind": "midi",
+          "value": "903264"
+        },
+        {
+          "sample": 13495,
+          "kind": "midi",
+          "value": "803200"
+        },
+        {
+          "sample": 13495,
+          "kind": "midi",
+          "value": "903464"
+        },
+        {
+          "sample": 16052,
+          "kind": "midi",
+          "value": "803400"
+        },
+        {
+          "sample": 16052,
+          "kind": "midi",
+          "value": "903764"
+        },
+        {
+          "sample": 18081,
+          "kind": "midi",
+          "value": "803700"
+        },
+        {
+          "sample": 18081,
+          "kind": "midi",
+          "value": "902d64"
+        },
+        {
+          "sample": 23461,
+          "kind": "midi",
+          "value": "802d00"
+        },
+        {
+          "sample": 23461,
+          "kind": "midi",
+          "value": "903464"
+        },
+        {
+          "sample": 27033,
+          "kind": "midi",
+          "value": "803400"
+        },
+        {
+          "sample": 27033,
+          "kind": "midi",
+          "value": "903964"
+        },
+        {
+          "sample": 28048,
+          "kind": "midi",
+          "value": "803900"
+        },
+        {
+          "sample": 28048,
+          "kind": "midi",
+          "value": "903e64"
+        },
+        {
+          "sample": 31311,
+          "kind": "midi",
+          "value": "803e00"
+        },
+        {
+          "sample": 31311,
+          "kind": "midi",
+          "value": "904064"
+        },
+        {
+          "sample": 36779,
+          "kind": "midi",
+          "value": "804000"
+        },
+        {
+          "sample": 36779,
+          "kind": "midi",
+          "value": "904364"
+        },
+        {
+          "sample": 48510,
+          "kind": "midi",
+          "value": "e00040"
+        },
+        {
+          "sample": 52920,
+          "kind": "midi",
+          "value": "e00040"
+        },
+        {
+          "sample": 53361,
+          "kind": "midi",
+          "value": "e04240"
+        },
+        {
+          "sample": 53802,
+          "kind": "midi",
+          "value": "e00541"
+        },
+        {
+          "sample": 54243,
+          "kind": "midi",
+          "value": "e04741"
+        },
+        {
+          "sample": 54684,
+          "kind": "midi",
+          "value": "e00a42"
+        },
+        {
+          "sample": 55125,
+          "kind": "midi",
+          "value": "e04c42"
+        },
+        {
+          "sample": 55566,
+          "kind": "midi",
+          "value": "e00e43"
+        },
+        {
+          "sample": 56007,
+          "kind": "midi",
+          "value": "e05143"
+        },
+        {
+          "sample": 56448,
+          "kind": "midi",
+          "value": "e01344"
+        },
+        {
+          "sample": 56889,
+          "kind": "midi",
+          "value": "e05644"
+        },
+        {
+          "sample": 57330,
+          "kind": "midi",
+          "value": "e01845"
+        },
+        {
+          "sample": 57771,
+          "kind": "midi",
+          "value": "e07645"
+        },
+        {
+          "sample": 58212,
+          "kind": "midi",
+          "value": "e05446"
+        },
+        {
+          "sample": 58653,
+          "kind": "midi",
+          "value": "e03147"
+        },
+        {
+          "sample": 59094,
+          "kind": "midi",
+          "value": "e00f48"
+        },
+        {
+          "sample": 59535,
+          "kind": "midi",
+          "value": "e06d48"
+        },
+        {
+          "sample": 59976,
+          "kind": "midi",
+          "value": "e04b49"
+        },
+        {
+          "sample": 60417,
+          "kind": "midi",
+          "value": "e0294a"
+        },
+        {
+          "sample": 60858,
+          "kind": "midi",
+          "value": "e0064b"
+        },
+        {
+          "sample": 61299,
+          "kind": "midi",
+          "value": "e0644b"
+        },
+        {
+          "sample": 61740,
+          "kind": "midi",
+          "value": "e0424c"
+        },
+        {
+          "sample": 62181,
+          "kind": "midi",
+          "value": "e0424d"
+        },
+        {
+          "sample": 62622,
+          "kind": "midi",
+          "value": "e0424e"
+        },
+        {
+          "sample": 63063,
+          "kind": "midi",
+          "value": "e0434f"
+        },
+        {
+          "sample": 63504,
+          "kind": "midi",
+          "value": "e04350"
+        },
+        {
+          "sample": 63945,
+          "kind": "midi",
+          "value": "e04351"
+        },
+        {
+          "sample": 64386,
+          "kind": "midi",
+          "value": "e04352"
+        },
+        {
+          "sample": 64827,
+          "kind": "midi",
+          "value": "e04453"
+        },
+        {
+          "sample": 65268,
+          "kind": "midi",
+          "value": "e04454"
+        },
+        {
+          "sample": 65709,
+          "kind": "midi",
+          "value": "e04455"
+        },
+        {
+          "sample": 66150,
+          "kind": "midi",
+          "value": "e04456"
+        },
+        {
+          "sample": 66591,
+          "kind": "midi",
+          "value": "e04957"
+        },
+        {
+          "sample": 67032,
+          "kind": "midi",
+          "value": "e04d58"
+        },
+        {
+          "sample": 67473,
+          "kind": "midi",
+          "value": "e05259"
+        },
+        {
+          "sample": 67914,
+          "kind": "midi",
+          "value": "e0565a"
+        },
+        {
+          "sample": 68355,
+          "kind": "midi",
+          "value": "e05b5b"
+        },
+        {
+          "sample": 68796,
+          "kind": "midi",
+          "value": "e0605c"
+        },
+        {
+          "sample": 69237,
+          "kind": "midi",
+          "value": "e0645d"
+        },
+        {
+          "sample": 69678,
+          "kind": "midi",
+          "value": "e0695e"
+        },
+        {
+          "sample": 70119,
+          "kind": "midi",
+          "value": "e06d5f"
+        },
+        {
+          "sample": 70560,
+          "kind": "midi",
+          "value": "e07260"
+        },
+        {
+          "sample": 71001,
+          "kind": "midi",
+          "value": "e06e61"
+        },
+        {
+          "sample": 71442,
+          "kind": "midi",
+          "value": "e06b62"
+        },
+        {
+          "sample": 71883,
+          "kind": "midi",
+          "value": "e06763"
+        },
+        {
+          "sample": 72324,
+          "kind": "midi",
+          "value": "e06464"
+        },
+        {
+          "sample": 72765,
+          "kind": "midi",
+          "value": "e06065"
+        },
+        {
+          "sample": 73206,
+          "kind": "midi",
+          "value": "e05c66"
+        },
+        {
+          "sample": 73647,
+          "kind": "midi",
+          "value": "e05967"
+        },
+        {
+          "sample": 74088,
+          "kind": "midi",
+          "value": "e05568"
+        },
+        {
+          "sample": 74529,
+          "kind": "midi",
+          "value": "e05169"
+        },
+        {
+          "sample": 74970,
+          "kind": "midi",
+          "value": "e04e6a"
+        },
+        {
+          "sample": 75411,
+          "kind": "midi",
+          "value": "e04c6b"
+        },
+        {
+          "sample": 75852,
+          "kind": "midi",
+          "value": "e04b6c"
+        },
+        {
+          "sample": 76293,
+          "kind": "midi",
+          "value": "e0496d"
+        },
+        {
+          "sample": 76734,
+          "kind": "midi",
+          "value": "e0486e"
+        },
+        {
+          "sample": 77175,
+          "kind": "midi",
+          "value": "e0466f"
+        },
+        {
+          "sample": 77616,
+          "kind": "midi",
+          "value": "e04570"
+        },
+        {
+          "sample": 78057,
+          "kind": "midi",
+          "value": "e04371"
+        },
+        {
+          "sample": 78498,
+          "kind": "midi",
+          "value": "e04272"
+        },
+        {
+          "sample": 78939,
+          "kind": "midi",
+          "value": "e04073"
+        },
+        {
+          "sample": 79380,
+          "kind": "midi",
+          "value": "e03f74"
+        },
+        {
+          "sample": 79821,
+          "kind": "midi",
+          "value": "e04a75"
+        },
+        {
+          "sample": 80262,
+          "kind": "midi",
+          "value": "e05676"
+        },
+        {
+          "sample": 80703,
+          "kind": "midi",
+          "value": "e06177"
+        },
+        {
+          "sample": 81144,
+          "kind": "midi",
+          "value": "e06d78"
+        },
+        {
+          "sample": 81585,
+          "kind": "midi",
+          "value": "e07879"
+        },
+        {
+          "sample": 82026,
+          "kind": "midi",
+          "value": "e0047b"
+        },
+        {
+          "sample": 82467,
+          "kind": "midi",
+          "value": "e00f7c"
+        },
+        {
+          "sample": 82908,
+          "kind": "midi",
+          "value": "e01b7d"
+        },
+        {
+          "sample": 83349,
+          "kind": "midi",
+          "value": "e0267e"
+        },
+        {
+          "sample": 83790,
+          "kind": "midi",
+          "value": "e0327f"
+        },
+        {
+          "sample": 84231,
+          "kind": "midi",
+          "value": "e0397f"
+        },
+        {
+          "sample": 84672,
+          "kind": "midi",
+          "value": "e0417f"
+        },
+        {
+          "sample": 85113,
+          "kind": "midi",
+          "value": "e0497f"
+        },
+        {
+          "sample": 85554,
+          "kind": "midi",
+          "value": "e0517f"
+        },
+        {
+          "sample": 85995,
+          "kind": "midi",
+          "value": "e0587f"
+        },
+        {
+          "sample": 86436,
+          "kind": "midi",
+          "value": "e0607f"
+        },
+        {
+          "sample": 86877,
+          "kind": "midi",
+          "value": "e0687f"
+        },
+        {
+          "sample": 87318,
+          "kind": "midi",
+          "value": "e0707f"
+        },
+        {
+          "sample": 87759,
+          "kind": "midi",
+          "value": "e0777f"
+        },
+        {
+          "sample": 88200,
+          "kind": "midi",
+          "value": "e07f7f"
+        },
+        {
+          "sample": 132300,
+          "kind": "midi",
+          "value": "804300"
+        }
+      ]
+    },
+    "gap-10ms": {
+      "case_path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/class-a-reconstruction/run-04/class-a-gap-10ms.json",
+      "case_sha256": "54da5c323de0175a40bba4b6379ddd9969745b8f9d2c7f36ebd1ea690e8d90c2",
+      "midi_path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/class-a-reconstruction/run-04/class-a-gap-10ms.mid",
+      "midi_sha256": "60cb2ef071e3939181435a7776df1bbc392dbbece51ea4045a59c2542ec22265",
+      "note_on_count": 12,
+      "note_off_count": 12,
+      "pitch_bend_count": 83,
+      "parsed_replay_events": [
+        {
+          "sample": 0,
+          "kind": "midi",
+          "value": "e00040"
+        },
+        {
+          "sample": 1544,
+          "kind": "midi",
+          "value": "902d64"
+        },
+        {
+          "sample": 5424,
+          "kind": "midi",
+          "value": "802d00"
+        },
+        {
+          "sample": 5865,
+          "kind": "midi",
+          "value": "903464"
+        },
+        {
+          "sample": 9393,
+          "kind": "midi",
+          "value": "803400"
+        },
+        {
+          "sample": 9834,
+          "kind": "midi",
+          "value": "903964"
+        },
+        {
+          "sample": 10672,
+          "kind": "midi",
+          "value": "803900"
+        },
+        {
+          "sample": 11113,
+          "kind": "midi",
+          "value": "903264"
+        },
+        {
+          "sample": 13054,
+          "kind": "midi",
+          "value": "803200"
+        },
+        {
+          "sample": 13495,
+          "kind": "midi",
+          "value": "903464"
+        },
+        {
+          "sample": 15611,
+          "kind": "midi",
+          "value": "803400"
+        },
+        {
+          "sample": 16052,
+          "kind": "midi",
+          "value": "903764"
+        },
+        {
+          "sample": 17640,
+          "kind": "midi",
+          "value": "803700"
+        },
+        {
+          "sample": 18081,
+          "kind": "midi",
+          "value": "902d64"
+        },
+        {
+          "sample": 23020,
+          "kind": "midi",
+          "value": "802d00"
+        },
+        {
+          "sample": 23461,
+          "kind": "midi",
+          "value": "903464"
+        },
+        {
+          "sample": 26592,
+          "kind": "midi",
+          "value": "803400"
+        },
+        {
+          "sample": 27033,
+          "kind": "midi",
+          "value": "903964"
+        },
+        {
+          "sample": 27607,
+          "kind": "midi",
+          "value": "803900"
+        },
+        {
+          "sample": 28048,
+          "kind": "midi",
+          "value": "903e64"
+        },
+        {
+          "sample": 30870,
+          "kind": "midi",
+          "value": "803e00"
+        },
+        {
+          "sample": 31311,
+          "kind": "midi",
+          "value": "904064"
+        },
+        {
+          "sample": 36338,
+          "kind": "midi",
+          "value": "804000"
+        },
+        {
+          "sample": 36779,
+          "kind": "midi",
+          "value": "904364"
+        },
+        {
+          "sample": 48510,
+          "kind": "midi",
+          "value": "e00040"
+        },
+        {
+          "sample": 52920,
+          "kind": "midi",
+          "value": "e00040"
+        },
+        {
+          "sample": 53361,
+          "kind": "midi",
+          "value": "e04240"
+        },
+        {
+          "sample": 53802,
+          "kind": "midi",
+          "value": "e00541"
+        },
+        {
+          "sample": 54243,
+          "kind": "midi",
+          "value": "e04741"
+        },
+        {
+          "sample": 54684,
+          "kind": "midi",
+          "value": "e00a42"
+        },
+        {
+          "sample": 55125,
+          "kind": "midi",
+          "value": "e04c42"
+        },
+        {
+          "sample": 55566,
+          "kind": "midi",
+          "value": "e00e43"
+        },
+        {
+          "sample": 56007,
+          "kind": "midi",
+          "value": "e05143"
+        },
+        {
+          "sample": 56448,
+          "kind": "midi",
+          "value": "e01344"
+        },
+        {
+          "sample": 56889,
+          "kind": "midi",
+          "value": "e05644"
+        },
+        {
+          "sample": 57330,
+          "kind": "midi",
+          "value": "e01845"
+        },
+        {
+          "sample": 57771,
+          "kind": "midi",
+          "value": "e07645"
+        },
+        {
+          "sample": 58212,
+          "kind": "midi",
+          "value": "e05446"
+        },
+        {
+          "sample": 58653,
+          "kind": "midi",
+          "value": "e03147"
+        },
+        {
+          "sample": 59094,
+          "kind": "midi",
+          "value": "e00f48"
+        },
+        {
+          "sample": 59535,
+          "kind": "midi",
+          "value": "e06d48"
+        },
+        {
+          "sample": 59976,
+          "kind": "midi",
+          "value": "e04b49"
+        },
+        {
+          "sample": 60417,
+          "kind": "midi",
+          "value": "e0294a"
+        },
+        {
+          "sample": 60858,
+          "kind": "midi",
+          "value": "e0064b"
+        },
+        {
+          "sample": 61299,
+          "kind": "midi",
+          "value": "e0644b"
+        },
+        {
+          "sample": 61740,
+          "kind": "midi",
+          "value": "e0424c"
+        },
+        {
+          "sample": 62181,
+          "kind": "midi",
+          "value": "e0424d"
+        },
+        {
+          "sample": 62622,
+          "kind": "midi",
+          "value": "e0424e"
+        },
+        {
+          "sample": 63063,
+          "kind": "midi",
+          "value": "e0434f"
+        },
+        {
+          "sample": 63504,
+          "kind": "midi",
+          "value": "e04350"
+        },
+        {
+          "sample": 63945,
+          "kind": "midi",
+          "value": "e04351"
+        },
+        {
+          "sample": 64386,
+          "kind": "midi",
+          "value": "e04352"
+        },
+        {
+          "sample": 64827,
+          "kind": "midi",
+          "value": "e04453"
+        },
+        {
+          "sample": 65268,
+          "kind": "midi",
+          "value": "e04454"
+        },
+        {
+          "sample": 65709,
+          "kind": "midi",
+          "value": "e04455"
+        },
+        {
+          "sample": 66150,
+          "kind": "midi",
+          "value": "e04456"
+        },
+        {
+          "sample": 66591,
+          "kind": "midi",
+          "value": "e04957"
+        },
+        {
+          "sample": 67032,
+          "kind": "midi",
+          "value": "e04d58"
+        },
+        {
+          "sample": 67473,
+          "kind": "midi",
+          "value": "e05259"
+        },
+        {
+          "sample": 67914,
+          "kind": "midi",
+          "value": "e0565a"
+        },
+        {
+          "sample": 68355,
+          "kind": "midi",
+          "value": "e05b5b"
+        },
+        {
+          "sample": 68796,
+          "kind": "midi",
+          "value": "e0605c"
+        },
+        {
+          "sample": 69237,
+          "kind": "midi",
+          "value": "e0645d"
+        },
+        {
+          "sample": 69678,
+          "kind": "midi",
+          "value": "e0695e"
+        },
+        {
+          "sample": 70119,
+          "kind": "midi",
+          "value": "e06d5f"
+        },
+        {
+          "sample": 70560,
+          "kind": "midi",
+          "value": "e07260"
+        },
+        {
+          "sample": 71001,
+          "kind": "midi",
+          "value": "e06e61"
+        },
+        {
+          "sample": 71442,
+          "kind": "midi",
+          "value": "e06b62"
+        },
+        {
+          "sample": 71883,
+          "kind": "midi",
+          "value": "e06763"
+        },
+        {
+          "sample": 72324,
+          "kind": "midi",
+          "value": "e06464"
+        },
+        {
+          "sample": 72765,
+          "kind": "midi",
+          "value": "e06065"
+        },
+        {
+          "sample": 73206,
+          "kind": "midi",
+          "value": "e05c66"
+        },
+        {
+          "sample": 73647,
+          "kind": "midi",
+          "value": "e05967"
+        },
+        {
+          "sample": 74088,
+          "kind": "midi",
+          "value": "e05568"
+        },
+        {
+          "sample": 74529,
+          "kind": "midi",
+          "value": "e05169"
+        },
+        {
+          "sample": 74970,
+          "kind": "midi",
+          "value": "e04e6a"
+        },
+        {
+          "sample": 75411,
+          "kind": "midi",
+          "value": "e04c6b"
+        },
+        {
+          "sample": 75852,
+          "kind": "midi",
+          "value": "e04b6c"
+        },
+        {
+          "sample": 76293,
+          "kind": "midi",
+          "value": "e0496d"
+        },
+        {
+          "sample": 76734,
+          "kind": "midi",
+          "value": "e0486e"
+        },
+        {
+          "sample": 77175,
+          "kind": "midi",
+          "value": "e0466f"
+        },
+        {
+          "sample": 77616,
+          "kind": "midi",
+          "value": "e04570"
+        },
+        {
+          "sample": 78057,
+          "kind": "midi",
+          "value": "e04371"
+        },
+        {
+          "sample": 78498,
+          "kind": "midi",
+          "value": "e04272"
+        },
+        {
+          "sample": 78939,
+          "kind": "midi",
+          "value": "e04073"
+        },
+        {
+          "sample": 79380,
+          "kind": "midi",
+          "value": "e03f74"
+        },
+        {
+          "sample": 79821,
+          "kind": "midi",
+          "value": "e04a75"
+        },
+        {
+          "sample": 80262,
+          "kind": "midi",
+          "value": "e05676"
+        },
+        {
+          "sample": 80703,
+          "kind": "midi",
+          "value": "e06177"
+        },
+        {
+          "sample": 81144,
+          "kind": "midi",
+          "value": "e06d78"
+        },
+        {
+          "sample": 81585,
+          "kind": "midi",
+          "value": "e07879"
+        },
+        {
+          "sample": 82026,
+          "kind": "midi",
+          "value": "e0047b"
+        },
+        {
+          "sample": 82467,
+          "kind": "midi",
+          "value": "e00f7c"
+        },
+        {
+          "sample": 82908,
+          "kind": "midi",
+          "value": "e01b7d"
+        },
+        {
+          "sample": 83349,
+          "kind": "midi",
+          "value": "e0267e"
+        },
+        {
+          "sample": 83790,
+          "kind": "midi",
+          "value": "e0327f"
+        },
+        {
+          "sample": 84231,
+          "kind": "midi",
+          "value": "e0397f"
+        },
+        {
+          "sample": 84672,
+          "kind": "midi",
+          "value": "e0417f"
+        },
+        {
+          "sample": 85113,
+          "kind": "midi",
+          "value": "e0497f"
+        },
+        {
+          "sample": 85554,
+          "kind": "midi",
+          "value": "e0517f"
+        },
+        {
+          "sample": 85995,
+          "kind": "midi",
+          "value": "e0587f"
+        },
+        {
+          "sample": 86436,
+          "kind": "midi",
+          "value": "e0607f"
+        },
+        {
+          "sample": 86877,
+          "kind": "midi",
+          "value": "e0687f"
+        },
+        {
+          "sample": 87318,
+          "kind": "midi",
+          "value": "e0707f"
+        },
+        {
+          "sample": 87759,
+          "kind": "midi",
+          "value": "e0777f"
+        },
+        {
+          "sample": 88200,
+          "kind": "midi",
+          "value": "e07f7f"
+        },
+        {
+          "sample": 132300,
+          "kind": "midi",
+          "value": "804300"
+        }
+      ]
+    },
+    "overlap-20ms": {
+      "case_path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/class-a-reconstruction/run-04/class-a-overlap-20ms.json",
+      "case_sha256": "7167a3d76f408298dafbbee6d1c3e6e89f2da8aeb42857e921c990f0a4de0f89",
+      "midi_path": "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/class-a-reconstruction/run-04/class-a-overlap-20ms.mid",
+      "midi_sha256": "bfe72bef699327a4816d2a33dc2904fc8bce1aa0e8e942e333003d84d01a39e3",
+      "note_on_count": 12,
+      "note_off_count": 12,
+      "pitch_bend_count": 83,
+      "parsed_replay_events": [
+        {
+          "sample": 0,
+          "kind": "midi",
+          "value": "e00040"
+        },
+        {
+          "sample": 1544,
+          "kind": "midi",
+          "value": "902d64"
+        },
+        {
+          "sample": 5865,
+          "kind": "midi",
+          "value": "903464"
+        },
+        {
+          "sample": 6747,
+          "kind": "midi",
+          "value": "802d00"
+        },
+        {
+          "sample": 9834,
+          "kind": "midi",
+          "value": "903964"
+        },
+        {
+          "sample": 10716,
+          "kind": "midi",
+          "value": "803400"
+        },
+        {
+          "sample": 11113,
+          "kind": "midi",
+          "value": "903264"
+        },
+        {
+          "sample": 11995,
+          "kind": "midi",
+          "value": "803900"
+        },
+        {
+          "sample": 13495,
+          "kind": "midi",
+          "value": "903464"
+        },
+        {
+          "sample": 14377,
+          "kind": "midi",
+          "value": "803200"
+        },
+        {
+          "sample": 16052,
+          "kind": "midi",
+          "value": "903764"
+        },
+        {
+          "sample": 16934,
+          "kind": "midi",
+          "value": "803400"
+        },
+        {
+          "sample": 18081,
+          "kind": "midi",
+          "value": "902d64"
+        },
+        {
+          "sample": 18963,
+          "kind": "midi",
+          "value": "803700"
+        },
+        {
+          "sample": 23461,
+          "kind": "midi",
+          "value": "903464"
+        },
+        {
+          "sample": 24343,
+          "kind": "midi",
+          "value": "802d00"
+        },
+        {
+          "sample": 27033,
+          "kind": "midi",
+          "value": "903964"
+        },
+        {
+          "sample": 27915,
+          "kind": "midi",
+          "value": "803400"
+        },
+        {
+          "sample": 28048,
+          "kind": "midi",
+          "value": "903e64"
+        },
+        {
+          "sample": 28930,
+          "kind": "midi",
+          "value": "803900"
+        },
+        {
+          "sample": 31311,
+          "kind": "midi",
+          "value": "904064"
+        },
+        {
+          "sample": 32193,
+          "kind": "midi",
+          "value": "803e00"
+        },
+        {
+          "sample": 36779,
+          "kind": "midi",
+          "value": "904364"
+        },
+        {
+          "sample": 37661,
+          "kind": "midi",
+          "value": "804000"
+        },
+        {
+          "sample": 48510,
+          "kind": "midi",
+          "value": "e00040"
+        },
+        {
+          "sample": 52920,
+          "kind": "midi",
+          "value": "e00040"
+        },
+        {
+          "sample": 53361,
+          "kind": "midi",
+          "value": "e04240"
+        },
+        {
+          "sample": 53802,
+          "kind": "midi",
+          "value": "e00541"
+        },
+        {
+          "sample": 54243,
+          "kind": "midi",
+          "value": "e04741"
+        },
+        {
+          "sample": 54684,
+          "kind": "midi",
+          "value": "e00a42"
+        },
+        {
+          "sample": 55125,
+          "kind": "midi",
+          "value": "e04c42"
+        },
+        {
+          "sample": 55566,
+          "kind": "midi",
+          "value": "e00e43"
+        },
+        {
+          "sample": 56007,
+          "kind": "midi",
+          "value": "e05143"
+        },
+        {
+          "sample": 56448,
+          "kind": "midi",
+          "value": "e01344"
+        },
+        {
+          "sample": 56889,
+          "kind": "midi",
+          "value": "e05644"
+        },
+        {
+          "sample": 57330,
+          "kind": "midi",
+          "value": "e01845"
+        },
+        {
+          "sample": 57771,
+          "kind": "midi",
+          "value": "e07645"
+        },
+        {
+          "sample": 58212,
+          "kind": "midi",
+          "value": "e05446"
+        },
+        {
+          "sample": 58653,
+          "kind": "midi",
+          "value": "e03147"
+        },
+        {
+          "sample": 59094,
+          "kind": "midi",
+          "value": "e00f48"
+        },
+        {
+          "sample": 59535,
+          "kind": "midi",
+          "value": "e06d48"
+        },
+        {
+          "sample": 59976,
+          "kind": "midi",
+          "value": "e04b49"
+        },
+        {
+          "sample": 60417,
+          "kind": "midi",
+          "value": "e0294a"
+        },
+        {
+          "sample": 60858,
+          "kind": "midi",
+          "value": "e0064b"
+        },
+        {
+          "sample": 61299,
+          "kind": "midi",
+          "value": "e0644b"
+        },
+        {
+          "sample": 61740,
+          "kind": "midi",
+          "value": "e0424c"
+        },
+        {
+          "sample": 62181,
+          "kind": "midi",
+          "value": "e0424d"
+        },
+        {
+          "sample": 62622,
+          "kind": "midi",
+          "value": "e0424e"
+        },
+        {
+          "sample": 63063,
+          "kind": "midi",
+          "value": "e0434f"
+        },
+        {
+          "sample": 63504,
+          "kind": "midi",
+          "value": "e04350"
+        },
+        {
+          "sample": 63945,
+          "kind": "midi",
+          "value": "e04351"
+        },
+        {
+          "sample": 64386,
+          "kind": "midi",
+          "value": "e04352"
+        },
+        {
+          "sample": 64827,
+          "kind": "midi",
+          "value": "e04453"
+        },
+        {
+          "sample": 65268,
+          "kind": "midi",
+          "value": "e04454"
+        },
+        {
+          "sample": 65709,
+          "kind": "midi",
+          "value": "e04455"
+        },
+        {
+          "sample": 66150,
+          "kind": "midi",
+          "value": "e04456"
+        },
+        {
+          "sample": 66591,
+          "kind": "midi",
+          "value": "e04957"
+        },
+        {
+          "sample": 67032,
+          "kind": "midi",
+          "value": "e04d58"
+        },
+        {
+          "sample": 67473,
+          "kind": "midi",
+          "value": "e05259"
+        },
+        {
+          "sample": 67914,
+          "kind": "midi",
+          "value": "e0565a"
+        },
+        {
+          "sample": 68355,
+          "kind": "midi",
+          "value": "e05b5b"
+        },
+        {
+          "sample": 68796,
+          "kind": "midi",
+          "value": "e0605c"
+        },
+        {
+          "sample": 69237,
+          "kind": "midi",
+          "value": "e0645d"
+        },
+        {
+          "sample": 69678,
+          "kind": "midi",
+          "value": "e0695e"
+        },
+        {
+          "sample": 70119,
+          "kind": "midi",
+          "value": "e06d5f"
+        },
+        {
+          "sample": 70560,
+          "kind": "midi",
+          "value": "e07260"
+        },
+        {
+          "sample": 71001,
+          "kind": "midi",
+          "value": "e06e61"
+        },
+        {
+          "sample": 71442,
+          "kind": "midi",
+          "value": "e06b62"
+        },
+        {
+          "sample": 71883,
+          "kind": "midi",
+          "value": "e06763"
+        },
+        {
+          "sample": 72324,
+          "kind": "midi",
+          "value": "e06464"
+        },
+        {
+          "sample": 72765,
+          "kind": "midi",
+          "value": "e06065"
+        },
+        {
+          "sample": 73206,
+          "kind": "midi",
+          "value": "e05c66"
+        },
+        {
+          "sample": 73647,
+          "kind": "midi",
+          "value": "e05967"
+        },
+        {
+          "sample": 74088,
+          "kind": "midi",
+          "value": "e05568"
+        },
+        {
+          "sample": 74529,
+          "kind": "midi",
+          "value": "e05169"
+        },
+        {
+          "sample": 74970,
+          "kind": "midi",
+          "value": "e04e6a"
+        },
+        {
+          "sample": 75411,
+          "kind": "midi",
+          "value": "e04c6b"
+        },
+        {
+          "sample": 75852,
+          "kind": "midi",
+          "value": "e04b6c"
+        },
+        {
+          "sample": 76293,
+          "kind": "midi",
+          "value": "e0496d"
+        },
+        {
+          "sample": 76734,
+          "kind": "midi",
+          "value": "e0486e"
+        },
+        {
+          "sample": 77175,
+          "kind": "midi",
+          "value": "e0466f"
+        },
+        {
+          "sample": 77616,
+          "kind": "midi",
+          "value": "e04570"
+        },
+        {
+          "sample": 78057,
+          "kind": "midi",
+          "value": "e04371"
+        },
+        {
+          "sample": 78498,
+          "kind": "midi",
+          "value": "e04272"
+        },
+        {
+          "sample": 78939,
+          "kind": "midi",
+          "value": "e04073"
+        },
+        {
+          "sample": 79380,
+          "kind": "midi",
+          "value": "e03f74"
+        },
+        {
+          "sample": 79821,
+          "kind": "midi",
+          "value": "e04a75"
+        },
+        {
+          "sample": 80262,
+          "kind": "midi",
+          "value": "e05676"
+        },
+        {
+          "sample": 80703,
+          "kind": "midi",
+          "value": "e06177"
+        },
+        {
+          "sample": 81144,
+          "kind": "midi",
+          "value": "e06d78"
+        },
+        {
+          "sample": 81585,
+          "kind": "midi",
+          "value": "e07879"
+        },
+        {
+          "sample": 82026,
+          "kind": "midi",
+          "value": "e0047b"
+        },
+        {
+          "sample": 82467,
+          "kind": "midi",
+          "value": "e00f7c"
+        },
+        {
+          "sample": 82908,
+          "kind": "midi",
+          "value": "e01b7d"
+        },
+        {
+          "sample": 83349,
+          "kind": "midi",
+          "value": "e0267e"
+        },
+        {
+          "sample": 83790,
+          "kind": "midi",
+          "value": "e0327f"
+        },
+        {
+          "sample": 84231,
+          "kind": "midi",
+          "value": "e0397f"
+        },
+        {
+          "sample": 84672,
+          "kind": "midi",
+          "value": "e0417f"
+        },
+        {
+          "sample": 85113,
+          "kind": "midi",
+          "value": "e0497f"
+        },
+        {
+          "sample": 85554,
+          "kind": "midi",
+          "value": "e0517f"
+        },
+        {
+          "sample": 85995,
+          "kind": "midi",
+          "value": "e0587f"
+        },
+        {
+          "sample": 86436,
+          "kind": "midi",
+          "value": "e0607f"
+        },
+        {
+          "sample": 86877,
+          "kind": "midi",
+          "value": "e0687f"
+        },
+        {
+          "sample": 87318,
+          "kind": "midi",
+          "value": "e0707f"
+        },
+        {
+          "sample": 87759,
+          "kind": "midi",
+          "value": "e0777f"
+        },
+        {
+          "sample": 88200,
+          "kind": "midi",
+          "value": "e07f7f"
+        },
+        {
+          "sample": 132300,
+          "kind": "midi",
+          "value": "804300"
+        }
+      ]
+    }
+  },
+  "patch_sha256": "5ac5ab7f052f6f17c48cc342bf4493ee5919572fc66dabf7daaddd25178b95e9",
+  "original_mp3_sha256": "88dc73e66c854e6ea57d976a96cd884dddb85275d56f73719000806f1609b886",
+  "original_bank_sha256": "102c47ee393c09115779172b8cbbb2c2f2563e0b4fdb2f57e0c8fca2a23c3b29",
+  "decoded_sha256": "32c418c77f476d52427d5c01f6dea7316de91378323814982741cb50eead78f1",
+  "decode_command": [
+    "/opt/homebrew/bin/ffmpeg",
+    "-hide_banner",
+    "-loglevel",
+    "error",
+    "-nostdin",
+    "-i",
+    "build-fidelity/hardware-benchmark/sources/TOP8_ClassA.mp3",
+    "-ar",
+    "44100",
+    "-ac",
+    "2",
+    "-c:a",
+    "pcm_f32le",
+    "/Users/vojta/.codex/worktrees/527d/virtual-instrument-septum/build-fidelity/class-a-reconstruction/run-04/hardware-full.wav"
+  ],
+  "decoder_version": "ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers",
+  "decoder_sha256": "00d01197255300c02122c783dd0126a9e7f47d6c6a19faafae2e6610efd071d3",
+  "catalog_sha256": "32e356db740bd827792b6d98800aa7f923b34ceb3b7a164dd2cfcb5220119736",
+  "tool_sha256": {
+    "reconstruct_class_a_opening.py": "d31b4077a1f207b5ba6f455aba09d6100aa783ec62d88453ab67e76316a9cb05",
+    "compare_hardware.py": "98c1fad577e2cc13b5c20dff04d06a1414ae0332fe48e2696b690db03d87be86",
+    "render_midi.py": "ffb8899e5a4b3588d459e5de3e710c74a002dfc04e45d7691a03102e9b5093e3",
+    "extract_reference_patch.py": "461407495e9f5bfc99767a0146a750708c5cdb2fd34c0d029aaf5e5f5a80703b",
+    "assess_hardware_equivalence.py": "b6ca63fa02ff11f3154cf34c1233cfe460fd4447be403fe4c0695646ccb74631"
+  }
+}

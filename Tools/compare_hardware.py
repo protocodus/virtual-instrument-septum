@@ -57,10 +57,25 @@ def write_midi(path, case):
         on_tick, off_tick = round(on * 20000), round(off * 20000)
         if off_tick <= on_tick:
             raise ValueError('Note duration vanishes on the MIDI time grid')
-        events.extend([(on_tick, 1, bytes([0x90, int(note), int(velocity)])),
+        events.extend([(on_tick, 2, bytes([0x90, int(note), int(velocity)])),
                        (off_tick, 0, bytes([0x80, int(note), int(release_velocity)]))])
     if not events:
         raise ValueError('A reconstruction must contain notes')
+    # Optional source-derived continuous pitch gestures. Preserve the declared
+    # 14-bit values rather than converting a bend into new note-on events.
+    # At a shared tick release first, update bend, then start the next note.
+    bend_ticks = set()
+    for bend in case.get('pitch_bends', []):
+        time, value = bend['time'], bend['value']
+        if (type(time) not in (int, float) or not math.isfinite(time)
+                or not 0 <= time <= case['duration_seconds']
+                or type(value) is not int or not 0 <= value <= 16383):
+            raise ValueError('Invalid reconstructed pitch bend')
+        tick = round(time * 20000)
+        if tick in bend_ticks:
+            raise ValueError('Multiple pitch bends at the same MIDI tick')
+        bend_ticks.add(tick)
+        events.append((tick, 1, bytes([0xe0, value & 127, value >> 7])))
     name = ('RECONSTRUCTION: ' + case['title']).encode('utf-8')
     track = b'\0\xff\x03' + vlq(len(name)) + name + b'\0\xff\x51\x03\x07\xa1\x20'
     previous = 0
