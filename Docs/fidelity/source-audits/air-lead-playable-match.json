@@ -1,0 +1,140 @@
+{
+  "status": "experimental recording-derived preset, not original Roland preset or global engine correction",
+  "original_name": "Air Lead 1",
+  "source_bank_sha256": "102c47ee393c09115779172b8cbbb2c2f2563e0b4fdb2f57e0c8fca2a23c3b29",
+  "source_patch_sha256": "e7e911d9be986fcc4987c41d79836034ef60ea5f9c70308a7d5f57348f4c091e",
+  "conditional_target_hz": 1106.4472480433778,
+  "native_cutoff_raw": 74,
+  "native_cutoff_hz": 1135.1755833914476,
+  "parameter_changes": [
+    "display/wire name: Air Lead Cal",
+    "Upper cutoff:91->74"
+  ],
+  "byte_changes": [
+    {
+      "block": 0,
+      "offset": 9,
+      "before": 49,
+      "after": 67
+    },
+    {
+      "block": 0,
+      "offset": 10,
+      "before": 32,
+      "after": 97
+    },
+    {
+      "block": 0,
+      "offset": 11,
+      "before": 32,
+      "after": 108
+    },
+    {
+      "block": 1,
+      "offset": 19,
+      "before": 91,
+      "after": 74
+    }
+  ],
+  "conversion_command": [
+    "build-fidelity/SeptumConvertPresets",
+    "--input",
+    "build-fidelity/public-match-2026-09-20/playable-preset/Air Lead 1 - Experimental Match.syx",
+    "--output",
+    "build-fidelity/public-match-2026-09-20/playable-preset/Air Lead 1 - Experimental Match.septum"
+  ],
+  "converter_sha256": "cd72346c0f43a130e75d93800a35d69de11fce4faf099a0c0008fc3b1f12c749",
+  "files": {
+    "Air Lead 1 - Experimental Match.syx": "26e4f9693c8cadb0bf371846b48206c762e0e4653576fd9433ee4760a96af768",
+    "Air Lead 1 - Experimental Match.septum": "c3d97f75a28c9ede9b26f49052fb72b641d82780e17eef4c8ca57a2abbf2ce4b"
+  },
+  "validation": {
+    "native_roundtrip": "verified all native parameters and 22 sound blocks; zero unexpected source differences",
+    "input_source_analysis_sha256": "f98b655f1ca07be43f09b7465fd278a7c56f2fcdf29897a6816b3f90645f389f",
+    "render_manifest_sha256": "2df6b7781e9d3ee045cff213f989da211d07c95a559341eeb4b70e0a402148bc",
+    "raw_audio_sha256": "f6e52f14261b468a621ee650b19a93307dda1dc0c305da1956b1430675323888",
+    "statistics": {
+      "peak": 0.40423384308815,
+      "peak_dbfs": -7.867346589736771,
+      "rms_dbfs": -22.478679999584763,
+      "samples_at_or_above_full_scale": 0,
+      "power_spectral_centroid_20_16000_hz": 863.4345310710803,
+      "identical_stereo_channels": false,
+      "side_to_mid_db": -7.151414324154885
+    },
+    "whole_excerpt_spectral_residual": {
+      "band_shape_rmse_db": 3.055036918897612,
+      "included_band_count": 15,
+      "included_bands": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "difference_db": [
+        1.1757209784189657,
+        2.7674224452917646,
+        7.708819239289497,
+        5.973508260126219,
+        11.735146196208195,
+        9.454727478616766,
+        7.776787976115056,
+        6.724047254601051,
+        10.03247933546114,
+        7.934897870032973,
+        10.417870089253643,
+        4.102880161801894,
+        5.91211599687822,
+        4.637642184672485,
+        -0.11697281604237623,
+        3.7924967286926856,
+        -0.46737856490885754,
+        -3.863034789371689,
+        -0.6710353659962416,
+        2.7926351821726354,
+        0.7550656005849157,
+        -3.354927191073487,
+        -3.4711297073481,
+        -0.312346304953428,
+        2.037976576672972,
+        0.8897681775605836,
+        2.0706269668164796,
+        -0.1991180863718866,
+        -2.977522322749314,
+        -7.965382074569105,
+        -17.52404707463624,
+        -29.318335607761753
+      ]
+    },
+    "heldout_median_harmonic_error_db": 6.0894784324192015
+  },
+  "reproduction": "Import the unchanged published LEAD patch3 Air Lead1 into current Septum, set Upper cutoff to74, and save under a distinct experimental name. SysEx version changes only common name bytes9..11 and upper offset0x13. The native converter verifies every parameter after reload."
+}

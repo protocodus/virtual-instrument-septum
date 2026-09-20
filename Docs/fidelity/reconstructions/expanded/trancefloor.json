@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "id": "trancefloor",
+  "title": "Trancefloor — three repeated low notes",
+  "reference_id": "lead-04",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 13.1,
+  "duration_seconds": 1.22,
+  "method": "Hardware-only screening of the full recording found three separated repeated notes at 13.150, 13.554 and 13.954 seconds. Float 44.1 kHz audio, 4096-sample STFT and independent 0.18-0.25s Welch windows show low families around 38.9/77.8 Hz and odd lower-family harmonics around 116.7 Hz; the one-octave-lower family near 19.4 Hz is far weaker. The published single Upper tone has Super Saw OSC1 coarse 0 and OSC2 WIDE-off signed coarse -36, hence physical -12 semitones, with tone octave 0. These support played MIDI 39. No Septum render or candidate parameter search informed the notes or gates. Onsets come from 2 ms RMS transitions; note-offs estimate the start of sharp amplitude drops.",
+  "uncertainties": [
+    "Original MIDI, velocities, controllers and exact capture patch/system state are unavailable. This is an audio-derived reconstruction.",
+    "Velocity 100 is an unfitted placeholder. The published filter velocity sensitivity is zero, but amplifier velocity sensitivity and output processing may affect level.",
+    "The opening 13 seconds contain continuous pitch motion and were deliberately excluded. The selected notes settle around the same low pitch; two highly spread Super Saws limit precise central-frequency inference.",
+    "Onsets are estimated within approximately 3 ms and note-offs within approximately 15 ms. The gaps contain short effects/release tails, so exact physical key release is not known.",
+    "The crop begins after a preceding phrase; hardware retains a quiet wet tail while the software starts with empty effect buffers. Before the first onset, the hardware residual is roughly 0.002-0.004 RMS versus playing levels around 0.2-0.3. This is not an effects-isolated capture.",
+    "The original patch retains portamento and OSC1 pitch-envelope depth -30. Their physical response, Super Saw phase allocation and source spread remain model uncertainties.",
+    "The final note ends before the 1.22-second crop; the next onset near 14.332 seconds is excluded. No crop-edge note-on or artificial sustained note was added."
+  ],
+  "notes": [
+    {"on": 0.05, "off": 0.40, "note": 39, "velocity": 100},
+    {"on": 0.454, "off": 0.794, "note": 39, "velocity": 100},
+    {"on": 0.854, "off": 1.194, "note": 39, "velocity": 100}
+  ]
+}

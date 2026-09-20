@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "title": "Author-labelled RCS SH-201 bass demos",
+  "retrieved_date": "2026-09-20",
+  "original_midi_available": false,
+  "provenance_scope": "Author page links published bank and hardware demonstration. Actual decoded video frames identify patch labels; no exact recorded parameter revision or original musical performance MIDI is authenticated.",
+  "unknowns": [
+    "Original notes, velocity, gate lengths, pedal/controller events and oscillator phase history remain unknown.",
+    "Author SMF downloads contain SysEx patch data and zero note events.",
+    "Published patches and on-screen names do not prove the absence of live edits or external recording processing.",
+    "YouTube audio is lossy Opus; it is not an unprocessed hardware capture."
+  ],
+  "banks": [
+    {
+      "id": "rcs-basses",
+      "source_page_url": "https://www.rcssound.com/index.php?page=6",
+      "url": "https://www.rcssound.com/download.php?kod=6",
+      "local_filename": "RCS-Analog-Basses-SH201.zip",
+      "sha256": "203fde7b29ee2c377b06f61bfef10675fa50338b1509dc1a1bb39438a9e7b11f",
+      "size_bytes": 6928,
+      "archive_member": "Analog Basses patchbank for Roland SH-201 by RCS/Analog_basses_by_rcs.shl",
+      "bank_sha256": "fe26cb295c131a862f535466ee3dce7f7443c2c37003fed127e3d385119e4e70",
+      "patch_count": 8,
+      "contains_original_performance_midi": false
+    }
+  ],
+  "recordings": [
+    {
+      "id": "rcs-a01",
+      "bank_id": "rcs-basses",
+      "patch_number": 1,
+      "patch_name": "MoogBass",
+      "association_status": "named_patch_in_author_video",
+      "source_page_url": "https://www.rcssound.com/index.php?page=6",
+      "url": "https://www.youtube.com/watch?v=8LKRnrs8DcQ",
+      "local_filename": "youtube-8LKRnrs8DcQ.webm",
+      "sha256": "a11bb93f56e0dfa43c608d35b9ee0a1b6ca7fcd03d985c646ca19e184982657b",
+      "size_bytes": 2404788,
+      "association_evidence": {
+        "video_url": "https://www.youtube.com/watch?v=8LKRnrs8DcQ",
+        "author_page_links_bank_and_video": true,
+        "label_observations": [
+          {
+            "seconds": 8,
+            "visible_patch_label": "PATCH: A01 MOOG BASS",
+            "patch_number": 1
+          },
+          {
+            "seconds": 15,
+            "visible_patch_label": "PATCH: A01 MOOG BASS",
+            "patch_number": 1
+          }
+        ],
+        "method": "Root browser inspection of paused decoded main frames after seek; seek previews were not used. Times are point observations, not exact passage boundary measurements.",
+        "audit_path": "Docs/fidelity/source-audits/rcs-reference-screen-2026-09-20.md",
+        "accepted_excerpt_bounds_seconds": [
+          8,
+          15
+        ],
+        "bounds_qualification": "Conservative interior interval between observed same-patch labels; exact transitions are not claimed."
+      }
+    },
+    {
+      "id": "rcs-a02",
+      "bank_id": "rcs-basses",
+      "patch_number": 2,
+      "patch_name": "MoogBass PW",
+      "association_status": "named_patch_in_author_video",
+      "source_page_url": "https://www.rcssound.com/index.php?page=6",
+      "url": "https://www.youtube.com/watch?v=8LKRnrs8DcQ",
+      "local_filename": "youtube-8LKRnrs8DcQ.webm",
+      "sha256": "a11bb93f56e0dfa43c608d35b9ee0a1b6ca7fcd03d985c646ca19e184982657b",
+      "size_bytes": 2404788,
+      "association_evidence": {
+        "video_url": "https://www.youtube.com/watch?v=8LKRnrs8DcQ",
+        "author_page_links_bank_and_video": true,
+        "label_observations": [
+          {
+            "seconds": 20,
+            "visible_patch_label": "PATCH: A02 MOOG BASS PW",
+            "patch_number": 2
+          },
+          {
+            "seconds": 25,
+            "visible_patch_label": "PATCH: A02 MOOG BASS PW",
+            "patch_number": 2
+          },
+          {
+            "seconds": 30,
+            "visible_patch_label": "PATCH: A02 MOOG BASS PW",
+            "patch_number": 2
+          }
+        ],
+        "method": "Root browser inspection of paused decoded main frames after seek; seek previews were not used. Times are point observations, not exact passage boundary measurements.",
+        "audit_path": "Docs/fidelity/source-audits/rcs-reference-screen-2026-09-20.md",
+        "accepted_excerpt_bounds_seconds": [
+          20,
+          30
+        ],
+        "bounds_qualification": "Conservative interior interval between observed same-patch labels; exact transitions are not claimed."
+      }
+    }
+  ]
+}

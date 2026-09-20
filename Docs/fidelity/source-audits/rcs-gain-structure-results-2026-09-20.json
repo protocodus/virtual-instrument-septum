@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "status": "Complete fixed gain-structure diagnostic: no global change or joint A02 match supported.",
+  "date": "2026-09-20",
+  "production_source_changed": false,
+  "hardware_match_claim": false,
+  "winner": null,
+  "actual_new_render_count": 43,
+  "render_accounting": {
+    "pure_gain_original17": 34,
+    "additional_a02_interactions": 6,
+    "baseline_telemetry_controls": 3,
+    "interaction_cells": 8,
+    "interaction_cells_reusing_pure_gain_renders": 2
+  },
+  "probes": {
+    "halfInput": {
+      "preOD_factor": 0.5,
+      "post_shaper_factor": 2
+    },
+    "headroomInput": {
+      "preOD_factor": 0.22,
+      "post_shaper_factor": 4.545454545454546
+    }
+  },
+  "artifacts": {
+    "gain_protocol": {
+      "path": "build-fidelity/rcs-gain-structure-probes-2026-09-20/validation-protocol.json",
+      "sha256": "b60d0ec45cb7f010c4848b68da63c481c536cedd0af40cb6a96523c191d296d4"
+    },
+    "gain_builder_design": {
+      "path": "build-fidelity/rcs-gain-structure-probes-2026-09-20/builder-design.json",
+      "sha256": "fbafe485a723ebd3c5dda8b9a6735839ac0bf9f988a5e6b3afb007c520397401"
+    },
+    "gain_build_index": {
+      "path": "build-fidelity/rcs-gain-structure-probes-2026-09-20/build-index.json",
+      "sha256": "bba8bc6c41365b0272a7fa6fbeae4ec4db347197be10d039865f75da1bd997f5"
+    },
+    "validation_freeze": {
+      "path": "build-fidelity/rcs-gain-structure-probes-2026-09-20/validation/validation-freeze.json",
+      "sha256": "e117f7b81d01d9b69dfeb2de61526a28c17b198015fdcde3786640b89e65e1a6"
+    },
+    "validation_renders": {
+      "path": "build-fidelity/rcs-gain-structure-probes-2026-09-20/validation/renders.json",
+      "sha256": "18d4267cdeff8a211f03067dde93261ce33fbffa25e39e0369293451d00a1575"
+    },
+    "validation_analysis_design": {
+      "path": "build-fidelity/rcs-gain-structure-probes-2026-09-20/validation/analysis-design.json",
+      "sha256": "9ee07459a5ca4a3893b7ba249118ea7107e732aa85467afbb5622502123823bf"
+    },
+    "validation_analysis": {
+      "path": "build-fidelity/rcs-gain-structure-probes-2026-09-20/validation/analysis-complete/analysis.json",
+      "sha256": "2595d11b4b53a0964065f40bb2db974e7684ca9d87159bf603067f1ba7817c24"
+    },
+    "validation_summary": {
+      "path": "build-fidelity/rcs-gain-structure-probes-2026-09-20/validation/analysis-complete/summary.json",
+      "sha256": "f9e902302d5a65e4c14dc24507503680b47067bcfa7b7d5ef884c531a98ab0f8"
+    },
+    "validation_runner_qa": {
+      "path": "build-fidelity/rcs-gain-structure-probes-2026-09-20/validation/analysis-complete/runner-qa.json",
+      "sha256": "2c232738bd081ca55abdb2297d5cd142e0290235f26a3038c2405d36e1dd65ae"
+    },
+    "validation_runner": {
+      "path": "build-fidelity/rcs-gain-structure-probes-2026-09-20/validation/analyze_validation.py",
+      "sha256": "b8a515b8f0c503e01b23af8fd4718aed132c5db209e185db40ad0d8320142067"
+    },
+    "interaction_design": {
+      "path": "build-fidelity/rcs-gain-structure-probes-2026-09-20/interaction-design.json",
+      "sha256": "fe2c64f3341a4d26393eeb4c200d80e5bd61df9fdbd0e146b67684f0578a0b4d"
+    },
+    "interaction_renders": {
+      "path": "build-fidelity/rcs-gain-structure-probes-2026-09-20/interaction-renders.json",
+      "sha256": "4dfd3ff82a220cb08faedf4ecda3c785dc2416c3690d93f81d39604e13f9fba9"
+    },
+    "interaction_build_index": {
+      "path": "build-fidelity/rcs-gain-structure-probes-2026-09-20/interaction-build-index.json",
+      "sha256": "8410a676cce99f841d85479dd623713a3de70446be127d4a57d4c659fdd64170"
+    },
+    "telemetry_builder_design": {
+      "path": "build-fidelity/rcs-operating-level-probes-2026-09-20/builder-design.json",
+      "sha256": "d89fa993e69e3d22230b6cfd349d9f59992ae0ef2ba4ff0707c679d55d4d508c"
+    },
+    "telemetry_renders": {
+      "path": "build-fidelity/rcs-operating-level-probes-2026-09-20/renders.json",
+      "sha256": "1205140332e3b62c9e54391c841b870b8acf7308b0e4cb295f5c28e35a090118"
+    },
+    "telemetry_analysis": {
+      "path": "build-fidelity/rcs-operating-level-probes-2026-09-20/analysis.json",
+      "sha256": "ef7a652631b9b1ce277ba5763dbb45560d0ac6c602630b070e406cb3adbfdc32"
+    },
+    "telemetry_summary": {
+      "path": "build-fidelity/rcs-operating-level-probes-2026-09-20/summary.json",
+      "sha256": "3f21e9573230e9bb38cd0bc953be28f4fc69820b69074a74957b973d759e67e9"
+    },
+    "source_gain_audit": {
+      "path": "build-fidelity/rcs-linear-center-probes-2026-09-20/operating-level-audit.json",
+      "sha256": "19f13de540b6b68afe6897bbb311b570708c87c948becd7236b224fdff40debc"
+    },
+    "published_reference_catalog": {
+      "path": "Docs/fidelity/rcs-reference-catalog.json",
+      "sha256": "480e241955c7158a430ca92bc1700a47f5aaac35221852be6d69405551619c4b"
+    },
+    "interaction_analysis": {
+      "path": "build-fidelity/rcs-gain-structure-probes-2026-09-20/interaction-analysis/analysis.json",
+      "sha256": "b4edf8016fdb3a7fb2bfb3bf4c94da022af83e3c896908ba279f8bb9865a6e39"
+    },
+    "interaction_summary": {
+      "path": "build-fidelity/rcs-gain-structure-probes-2026-09-20/interaction-analysis/summary.json",
+      "sha256": "1d1eb6b306bc34df659d1cce1f68e50b39f972bb91bf8462b07993c43d1b6551"
+    },
+    "interaction_readme": {
+      "path": "build-fidelity/rcs-gain-structure-probes-2026-09-20/interaction-analysis/README.md",
+      "sha256": "abe7e0b783919e36b02ad2344d46eccd0f017744fe35c7a9c0d99dcf454036e7"
+    },
+    "interaction_runner": {
+      "path": "build-fidelity/rcs-gain-structure-probes-2026-09-20/analyze_interactions.py",
+      "sha256": "1a9bdeaa584a8a56cfd953da502829f1a61ffdd398db4a0d3c4343bf749a644e"
+    }
+  },
+  "completed_integrity": {
+    "byte_exact_telemetry_controls": 3,
+    "byte_exact_OD_off_controls": 20,
+    "pure_gain_render_count": 34,
+    "prior_hardware_and_baseline_metrics_exact": true,
+    "pure_gain_outputs_at_or_above_safety_knee": 0,
+    "safe_cli_and_output_refusal_verified": true,
+    "interaction_cells": 8,
+    "interaction_new_renders": 6,
+    "interaction_reused_renders": 2,
+    "a02_source_harmonic_observations_reproduced_exactly": 66,
+    "a02_source_closure_and_power_records_exact": true,
+    "matched_a02_controls_reused_with_recorded_provenance_checks": 8,
+    "matched_a02_controls_remeasured": false,
+    "interaction_outputs_at_or_above_safety_knee": 0
+  },
+  "metric_scope": "Fixed prior32band broad residual, dry A01/Dist harmonic groups, A03/A05 closure and supplemental wetA03 endpoint. A02 fixed first/fourth vectors and8late windows owned by separate interaction analysis. No scalar ranking.",
+  "telemetry_coordinate_limits": "Native engine input frame; warm replay excluded; no full93sample output latency subtraction. voice.age identifies trigger generation, not history clear. Primary8late windows ending<=21.877, originalextra9th separately labelled.",
+  "first_execution_note": "Initial17metric execution stopped before report serialization at redundantA02 first-note float32 bass early power comparison:0.007262321654707193 vs0.007262322120368481. PCM byteidentity and A02 harmonic/closure/fourth measurements exact. Initialscript/design/log retained by analysis-design execution_note. Parent delegatedA02 to8cellowner; unchanged17metrics rerun into unusedanalysis-complete.",
+  "limitations": [
+    "Public original MIDI unavailable: fixed reconstructed performance, assumed velocity, phase and capture gain remain conditional.",
+    "RCS YouTube and SoundCloud are two encodes of one performance.",
+    "Overlapping channel/window/onset settings are sensitivity observations, not independent hardware trials.",
+    "A02 interaction changes temporary preset depth and experimental full attack interpolation; diagnostic training, not unchanged-preset calibration.",
+    "No unseen validation or accepted global model."
+  ],
+  "reproduction_commands": {
+    "pure_gain_analysis": "python3 build-fidelity/rcs-gain-structure-probes-2026-09-20/validation/analyze_validation.py --output build-fidelity/rcs-gain-structure-probes-2026-09-20/validation/analysis-reproduced",
+    "telemetry_analysis": "See pinned telemetry analysis/script and renders manifest; telemetry is measured only after baseline WAV byteidentity.",
+    "interaction_analysis": "python3 build-fidelity/rcs-gain-structure-probes-2026-09-20/analyze_interactions.py --output build-fidelity/rcs-gain-structure-probes-2026-09-20/interaction-analysis-reproduced"
+  },
+  "decision": "Neither pure scale factor supports a global change; no interaction cell jointly matches fixed trajectory and harmonic body. No further gain/phase candidate selected.",
+  "a02_example_not_selected": {
+    "cell_id": "headroomInput__attack-100ms__upper-cutoff-120-depth-minus32",
+    "late_h2_h1_h3_h2_h4_h2_db": [
+      -12.726,
+      -9.721,
+      -25.165
+    ],
+    "hardware_late_h2_h1_h3_h2_h4_h2_db": [
+      -7.012,
+      -15.719,
+      -24.371
+    ],
+    "first_high_low_power_changes_db": [
+      -39.944,
+      -8.14
+    ],
+    "hardware_first_high_low_power_changes_db": [
+      -30.713,
+      -2.307
+    ],
+    "fourth_observed_counts_for_10_20_30db": [
+      3,
+      3,
+      3
+    ],
+    "hardware_fourth_observed_counts_for_10_20_30db": [
+      27,
+      27,
+      27
+    ],
+    "settings_per_threshold": 27,
+    "qualification": "Rounded descriptive medians/central powers; full raw values and separate original/common support retained in authoritative interaction analysis. Not a selected candidate."
+  }
+}

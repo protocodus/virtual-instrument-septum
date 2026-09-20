@@ -1,0 +1,281 @@
+{
+  "schema_version": 1,
+  "status": "unchanged-preset frozen baseline characterization after hardware-only lock; no candidate evaluated",
+  "inputs": {
+    "hardware_audit": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-a03-hardware-observations-2026-09-20/analysis/audit.json",
+      "sha256": "9792acc78f61b062e0e2bfa17ec83b72d3289641b41cb99438bd337dc5b4c323"
+    },
+    "case": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/Docs/fidelity/reconstructions/expanded/rcs-a03-jupiter8wide.json",
+      "sha256": "3a14622a07fcfac460b24a015d4a7a34492a225e98d97b7a21ccf409a42c3362"
+    },
+    "metric_helper": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/Tools/analyze_rcs_attack_probes.py",
+      "sha256": "c365684700011e9891928c4234a6bf12c5eeae79348147c9d5c981f787ffce64"
+    },
+    "script": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-a03-hardware-observations-2026-09-20/analyze_baseline.py",
+      "sha256": "55a382aee3e93b5cd4d35187d52dffc123064c910e8ddcdfde093e4362fec908"
+    },
+    "source_only_tracked_audit": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/Docs/fidelity/source-audits/rcs-a03-hardware-observations-2026-09-20.json",
+      "sha256": "3c00fd2dfb4481f0e0959654e4699e1c4d152ba7d3512c06c96f931a7b0f1396"
+    }
+  },
+  "method": {
+    "bands_hz": [
+      [
+        300,
+        1500
+      ],
+      [
+        1500,
+        12000
+      ]
+    ],
+    "windows_samples": [
+      512,
+      1024,
+      2048
+    ],
+    "hop_samples": 44,
+    "channels": [
+      "left",
+      "right",
+      "mid"
+    ],
+    "onset_shifts_seconds": [
+      -0.01,
+      0,
+      0.01
+    ],
+    "early_reference_elapsed_seconds": [
+      0.015,
+      0.035
+    ],
+    "sustained_threshold_seconds": 0.01,
+    "gate_guard_seconds": 0.03,
+    "source_grid_origin_seconds": 35,
+    "note_off_is_artificial": true,
+    "interpretation": "Unchanged A02 spectral-ratio mathematics applied only to A03 hardware; elapsed crossings are not filter attack durations. No software audio is read. Shorter/faster closure may make early-reference/onset uncertainty consequential.",
+    "hardware_source_grid_origin_seconds": 35,
+    "software_source_grid_origin_seconds": 36.717891156462585,
+    "latency_policy": "Known retained93sample latency removed from time coordinates only; no signal shift, EQ, gain or onset fit."
+  },
+  "hardware_remeasurement_exact": true,
+  "hardware_summary": {
+    "10": {
+      "observed_count": 27,
+      "censored_count": 0,
+      "elapsed_seconds_min_median_max": [
+        0.035705215419504555,
+        0.0437097505668973,
+        0.05271201814058912
+      ]
+    },
+    "20": {
+      "observed_count": 27,
+      "censored_count": 0,
+      "elapsed_seconds_min_median_max": [
+        0.04169160997732746,
+        0.0525079365079435,
+        0.06414058956916335
+      ]
+    },
+    "30": {
+      "observed_count": 27,
+      "censored_count": 0,
+      "elapsed_seconds_min_median_max": [
+        0.059469387755108016,
+        0.06511564625850497,
+        0.07960544217687726
+      ]
+    }
+  },
+  "baseline_summary_by_note": [
+    {
+      "note_index": 0,
+      "observations": 27,
+      "landmarks": {
+        "10": {
+          "observed_count": 0,
+          "censored_count": 27,
+          "elapsed_seconds_min_median_max": null,
+          "both_observed_count": 0,
+          "hardware_only_observed_count": 27,
+          "software_only_observed_count": 0,
+          "both_censored_count": 0,
+          "paired_mean_absolute_error_seconds": null,
+          "paired_signed_error_seconds_min_median_max": null
+        },
+        "20": {
+          "observed_count": 0,
+          "censored_count": 27,
+          "elapsed_seconds_min_median_max": null,
+          "both_observed_count": 0,
+          "hardware_only_observed_count": 27,
+          "software_only_observed_count": 0,
+          "both_censored_count": 0,
+          "paired_mean_absolute_error_seconds": null,
+          "paired_signed_error_seconds_min_median_max": null
+        },
+        "30": {
+          "observed_count": 0,
+          "censored_count": 27,
+          "elapsed_seconds_min_median_max": null,
+          "both_observed_count": 0,
+          "hardware_only_observed_count": 27,
+          "software_only_observed_count": 0,
+          "both_censored_count": 0,
+          "paired_mean_absolute_error_seconds": null,
+          "paired_signed_error_seconds_min_median_max": null
+        }
+      }
+    }
+  ],
+  "baseline_render_provenance": {
+    "audio": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/rcs-a03-baseline/rcs-a03-jupiter8wide/septum-raw.wav",
+      "sha256": "bd6c1046c9c5709834060397be76be149e8c151845c5e20c32313aa08d7620bf"
+    },
+    "render_manifest": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/rcs-a03-baseline/rcs-a03-jupiter8wide/septum-raw.render.json",
+      "sha256": "10e8a529d6a21a74b8875ed0c369fb00e1cd71e9f6570ec248b22f165e1ec72f"
+    },
+    "comparison_manifest": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/rcs-a03-baseline/rcs-a03-jupiter8wide/comparison.json",
+      "sha256": "c0a037484ddc767eea41d1bb8a836eb4a2c6f8732b6f367ec5a182729b0514c0"
+    },
+    "build_manifest": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/baseline/manifest.json",
+      "sha256": "cc0c53a3728bcdcc600a615869891e3dfccaf73ff97dd7edb4cf65ee859ff8ca"
+    },
+    "renderer": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/baseline/SeptumRenderMidi",
+      "sha256": "3672d8f6ddf99e1bddbe575c035a9ecae1429e11517e89cc48b8c93eb4b29a34"
+    },
+    "midi": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/rcs-a03-baseline/rcs-a03-jupiter8wide/reconstructed-performance.mid",
+      "sha256": "df5b432243220e59fcae7931e6ed5ddbef5e1eda3ef7c216d3ff825a51ed7957"
+    },
+    "sysex": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/rcs-a03-baseline/rcs-a03-jupiter8wide/original-patch.syx",
+      "sha256": "ac6e5f6c901903172b2b24b35c6a7d36b899818200304d7b8759d5dca1c901dc"
+    },
+    "original_source_sha256": {
+      "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+      "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+      "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+      "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+      "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+      "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+      "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+      "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+      "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+      "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+      "Source/DSP/SeptumEngine.h": "f442d854b37a0a330969187fe3c1c22df9300dceef449ff12a02a5f818d15dc7",
+      "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+      "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+      "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+      "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+      "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+      "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9",
+      "Tools/RenderMidi.cpp": "73fc5cd13bf635bbd95dc2a4e65301b06038cd96d2e684de1bb694b3e0066bfb"
+    },
+    "frozen_source_sha256": {
+      "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+      "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+      "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+      "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+      "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+      "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+      "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+      "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+      "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+      "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+      "Source/DSP/SeptumEngine.h": "f442d854b37a0a330969187fe3c1c22df9300dceef449ff12a02a5f818d15dc7",
+      "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+      "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+      "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+      "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+      "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+      "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9",
+      "Tools/RenderMidi.cpp": "74cd7047c47f905db43543ff9151c60667560fa0cef06238c7917ef93a68d03c",
+      "original/Tools/RenderMidi.cpp": "73fc5cd13bf635bbd95dc2a4e65301b06038cd96d2e684de1bb694b3e0066bfb",
+      "CandidateProfile.h": "60dad6449a2acd2d69600e2fe55b932af8bdb8b8f948d779fe02fbbf166abd28",
+      "profile.original.json": "a2c9990668579296687b56b734457e4d4b4d0a62f5d575237ee4a0600757934e",
+      "profile.json": "a2c9990668579296687b56b734457e4d4b4d0a62f5d575237ee4a0600757934e"
+    },
+    "profile": {
+      "original_path": "/Users/vojta/Dev/virtual-instrument-septum/Tools/timbre-profiles/diagnostic-baseline.json",
+      "original_sha256": "a2c9990668579296687b56b734457e4d4b4d0a62f5d575237ee4a0600757934e",
+      "canonical_sha256": "a2c9990668579296687b56b734457e4d4b4d0a62f5d575237ee4a0600757934e",
+      "enabled_sections": [],
+      "provided_fields": {},
+      "reference_rate_hz": null
+    },
+    "all_frozen_sources_verified": true,
+    "integrity": {
+      "sample_rate": 44100,
+      "frames": 99666,
+      "finite": true,
+      "nonzero": true,
+      "peak": 0.24403218924999237,
+      "samples_at_or_above_full_scale": 0,
+      "active_voices_at_end": 0,
+      "degraded_replay": false
+    },
+    "latency_samples": 93,
+    "latency_seconds": 0.002108843537414966
+  },
+  "baseline_central_trace_diagnostics": [
+    {
+      "note_index": 0,
+      "window_samples": 1024,
+      "channel": "mid",
+      "onset_shift_seconds": 0,
+      "early_ratio_db": -8.450016021728516,
+      "minimum_relative_ratio_change_db": -1.851658821105957,
+      "maximum_relative_ratio_change_db": 0.9048409461975098,
+      "high_band_min_power": 7.852970043131791e-07,
+      "low_band_min_power": 9.242961823474616e-06,
+      "high_band_floor_count": 0,
+      "low_band_floor_count": 0,
+      "longest_contiguous_below_10db_frame_count": 0,
+      "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+      "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+    }
+  ],
+  "limitations": [
+    "All performance MIDI is reconstructed; the author SMF contains patch SysEx only. Velocity100 is a placeholder, not an observed original velocity.",
+    "Parent independently inspected actual paused decoded A03-labelled frames at35 and40seconds. These bracket a conservative interior; they do not establish continuous patch-state identity, exact transitions or live numeric controls.",
+    "Played MIDI45 is conditional on the unchanged published upper square\u221212/upper saw0/lower sine\u221212 semitone tuning, zero fine tune and tone octave, and unknown system transpose/bend remaining neutral. Modulation delay can shift short-window local spectral peaks; harmonic-family estimates are not a tuning calibration.",
+    "The final note-off at0.260s is artificial and occurs at the crop boundary while the source note continues. Original key release and overlap are unknown. Comparisons should use an interior guard and should not infer release time or mono retrigger behavior from this crop.",
+    "The visible abrupt attack is near36.764s, with codec pre-echo detectable about2ms earlier. Use at least\u00b110ms onset sensitivity when interpreting closure; unknown common capture/codec latency remains.",
+    "Upper LP24 cutoff113, envelope depth\u221215, attack13, sustain127, zero resonance/keyfollow/filter velocity and drive33 act jointly. Upper amplitude ADSR0/53/60/16 and lower sine amplitude ADSR0/64/0/14 change layer balance after the attack; this is not an isolated filter transfer measurement.",
+    "Upper modulation delay is enabled at send127 with raw parameters[0,53,12,3,49] (time, feedback encoding, HF damping, modulation rate, modulation depth). Lower delay send0; reverb is globally off. Unknown delay phase/history, relative oscillator phase, output path, mastering and lossy encoding remain confounds.",
+    "A03 is a held-out patch in the same author recording as A02, not an independent hardware unit or recording session. Exact same-take patch edits/controllers are unverified. No published patch bytes may be changed to improve the match.",
+    "Case and hardware timing were fixed before this baseline render. This is now a baseline-characterized patch rather than an untouched holdout. No modified candidate or attack probe has been evaluated."
+  ],
+  "full_analysis": {
+    "path": "build-fidelity/public-match-2026-09-20/rcs-a03-baseline/closure/analysis.json",
+    "sha256": "3989ee3b2217939a964c9392faea0c3e3bb8df8b37a31352da6b65004d9ea27e"
+  },
+  "listening_page": {
+    "path": "build-fidelity/public-match-2026-09-20/rcs-a03-baseline/index.html",
+    "sha256": "3a5867abfd358fc32eb8890459933e36b5c886aa5554ced30ac628a9d2e0e215"
+  },
+  "validation": {
+    "hardware_comparison_tests": {
+      "passed": 14,
+      "run_count": 1
+    },
+    "timbre_matrix_tests": {
+      "passed": 13,
+      "run_count": 1
+    },
+    "baseline_page_local_references_verified": 7,
+    "closure_plot_visually_inspected": true
+  }
+}

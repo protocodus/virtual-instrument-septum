@@ -1,0 +1,412 @@
+{
+  "schema_version": 1,
+  "status": "hardware-only transcription audit; MIDI is estimated",
+  "source": {
+    "audio_url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_ClassA.mp3",
+    "audio_sha256": "88dc73e66c854e6ea57d976a96cd884dddb85275d56f73719000806f1609b886",
+    "bank_url": "https://www.rolandus.com/go/sh-201_patches/shl/SH-201_Patch_LEAD.zip",
+    "bank_archive_sha256": "102c47ee393c09115779172b8cbbb2c2f2563e0b4fdb2f57e0c8fca2a23c3b29",
+    "member": "SH-201_Patch_LEAD/100_LEAD.shl",
+    "bank_sha256": "d6649236cd89c1652480f9ae194bc20f0a3e33e147cb16828216871fba35b26c"
+  },
+  "case_sha256": "d50bb12be88e5df1b550ef41517581da7f923055256fe932d945a75ddc24033a",
+  "script_sha256": "feb78cf05c95c7d222b21d59524cd3055365657aac0fd7adfc20d343f0df30c9",
+  "decode_command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-loglevel",
+    "error",
+    "-nostdin",
+    "-i",
+    "build-fidelity/hardware-benchmark/sources/TOP8_ClassA.mp3",
+    "-ar",
+    "44100",
+    "-ac",
+    "2",
+    "-c:a",
+    "pcm_f32le",
+    "build-fidelity/hardware-benchmark/class-a-transcription-2026-09-20/hardware-decoded.wav"
+  ],
+  "patch": {
+    "active_part": "upper",
+    "oscillator_waveforms": [
+      "saw",
+      "saw"
+    ],
+    "raw_coarse_bytes": [
+      100,
+      64
+    ],
+    "signed_coarse": [
+      36,
+      0
+    ],
+    "wide": [
+      false,
+      false
+    ],
+    "current_codec_coarse_semitones": [
+      12,
+      0
+    ],
+    "tone_octave_shift": -1,
+    "net_oscillator_semitones": [
+      0,
+      -12
+    ],
+    "fine_cents": [
+      0,
+      0
+    ],
+    "pitch_envelope_depths": [
+      0,
+      0
+    ],
+    "lfo_depths": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "portamento": false,
+    "bend_range_semitones": 2,
+    "mono_mode_raw": 1,
+    "cutoff_velocity_sensitivity": 0,
+    "amp_velocity_sensitivity": 8,
+    "delay_send": 24,
+    "reverb_send": 48,
+    "mono_mode": "SOLO+LEGATO"
+  },
+  "method": "Six Hann-window FFT harmonic peaks per manually selected settled note window; median peak/harmonic estimates the primary frequency. Sub-octave peaks are reported separately. No engine audio, synthesis fitting or controller recovery.",
+  "windows": [
+    {
+      "estimated_played_midi": 33,
+      "window_seconds": [
+        0.035,
+        0.11
+      ],
+      "expected_primary_hz": 55.0,
+      "primary_harmonic_peak_hz": [
+        54.842376708984375,
+        109.0118408203125,
+        164.52713012695312,
+        219.70596313476562,
+        274.54833984375,
+        330.0636291503906
+      ],
+      "median_harmonic_implied_primary_hz": 54.87602233886719,
+      "median_primary_cents_error": -3.906847641470783,
+      "expected_lower_oscillator_hz": 27.5,
+      "nearby_lower_peak_hz": 29.608154296875,
+      "lower_peak_db_relative_primary_peak": -10.694973915740636
+    },
+    {
+      "estimated_played_midi": 40,
+      "window_seconds": [
+        0.14,
+        0.21
+      ],
+      "expected_primary_hz": 82.4068892282175,
+      "primary_harmonic_peak_hz": [
+        82.76824951171875,
+        164.52713012695312,
+        246.95892333984375,
+        329.05426025390625,
+        411.822509765625,
+        493.9178466796875
+      ],
+      "median_harmonic_implied_primary_hz": 82.31964111328125,
+      "median_primary_cents_error": -1.8339112844295014,
+      "expected_lower_oscillator_hz": 41.20344461410875,
+      "nearby_lower_peak_hz": 42.56172180175781,
+      "lower_peak_db_relative_primary_peak": -11.459707178118881
+    },
+    {
+      "estimated_played_midi": 50,
+      "window_seconds": [
+        0.258,
+        0.292
+      ],
+      "expected_primary_hz": 146.8323839587038,
+      "primary_harmonic_peak_hz": [
+        148.8819122314453,
+        294.90394592285156,
+        441.7671203613281,
+        588.7985229492188,
+        735.9981536865234,
+        881.8519592285156
+      ],
+      "median_harmonic_implied_primary_hz": 147.22766876220703,
+      "median_primary_cents_error": 4.654361697602156,
+      "expected_lower_oscillator_hz": 73.4161919793519,
+      "nearby_lower_peak_hz": 74.18861389160156,
+      "lower_peak_db_relative_primary_peak": -9.01294431887543
+    },
+    {
+      "estimated_played_midi": 52,
+      "window_seconds": [
+        0.315,
+        0.36
+      ],
+      "expected_primary_hz": 164.81377845643496,
+      "primary_harmonic_peak_hz": [
+        164.86358642578125,
+        328.7178039550781,
+        494.4225311279297,
+        660.4637145996094,
+        823.9814758300781,
+        989.1815185546875
+      ],
+      "median_harmonic_implied_primary_hz": 164.8355484008789,
+      "median_primary_cents_error": 0.22866037362631444,
+      "expected_lower_oscillator_hz": 82.40688922821748,
+      "nearby_lower_peak_hz": 76.88026428222656,
+      "lower_peak_db_relative_primary_peak": -8.036473580849009
+    },
+    {
+      "estimated_played_midi": 55,
+      "window_seconds": [
+        0.373,
+        0.403
+      ],
+      "expected_primary_hz": 195.99771799087463,
+      "primary_harmonic_peak_hz": [
+        198.00453186035156,
+        392.4762725830078,
+        587.9573822021484,
+        785.1207733154297,
+        980.6018829345703,
+        1175.5783081054688
+      ],
+      "median_harmonic_implied_primary_hz": 196.17925643920898,
+      "median_primary_cents_error": 1.6027741856892819,
+      "expected_lower_oscillator_hz": 97.99885899543732,
+      "nearby_lower_peak_hz": 99.25460815429688,
+      "lower_peak_db_relative_primary_peak": -8.114188697611125
+    },
+    {
+      "estimated_played_midi": 45,
+      "window_seconds": [
+        0.438,
+        0.5
+      ],
+      "expected_primary_hz": 110.0,
+      "primary_harmonic_peak_hz": [
+        110.02120971679688,
+        220.37887573242188,
+        328.8860321044922,
+        439.7483825683594,
+        549.7695922851562,
+        659.7908020019531
+      ],
+      "median_harmonic_implied_primary_hz": 109.95952606201172,
+      "median_primary_cents_error": -0.6371159421047315,
+      "expected_lower_oscillator_hz": 55.0,
+      "nearby_lower_peak_hz": 54.50592041015625,
+      "lower_peak_db_relative_primary_peak": -3.3270183312988904
+    },
+    {
+      "estimated_played_midi": 52,
+      "window_seconds": [
+        0.55,
+        0.605
+      ],
+      "expected_primary_hz": 164.81377845643496,
+      "primary_harmonic_peak_hz": [
+        165.5364990234375,
+        330.0636291503906,
+        493.74961853027344,
+        659.454345703125,
+        824.3179321289062,
+        989.1815185546875
+      ],
+      "median_harmonic_implied_primary_hz": 164.86358642578125,
+      "median_primary_cents_error": 0.5231129721874204,
+      "expected_lower_oscillator_hz": 82.40688922821748,
+      "nearby_lower_peak_hz": 82.60002136230469,
+      "lower_peak_db_relative_primary_peak": -6.384639368220784
+    },
+    {
+      "estimated_played_midi": 62,
+      "window_seconds": [
+        0.653,
+        0.702
+      ],
+      "expected_primary_hz": 293.6647679174076,
+      "primary_harmonic_peak_hz": [
+        293.389892578125,
+        586.6115570068359,
+        880.8425903320312,
+        1175.0736236572266,
+        1468.6317443847656,
+        1762.3580932617188
+      ],
+      "median_harmonic_implied_primary_hz": 293.67027282714844,
+      "median_primary_cents_error": 0.032452642936699694,
+      "expected_lower_oscillator_hz": 146.8323839587038,
+      "nearby_lower_peak_hz": 146.6949462890625,
+      "lower_peak_db_relative_primary_peak": -7.612935448980181
+    },
+    {
+      "estimated_played_midi": 64,
+      "window_seconds": [
+        0.753,
+        0.8
+      ],
+      "expected_primary_hz": 329.6275569128699,
+      "primary_harmonic_peak_hz": [
+        329.05426025390625,
+        658.7814331054688,
+        989.6862030029297,
+        1319.076919555664,
+        1648.4676361083984,
+        1976.3442993164062
+      ],
+      "median_harmonic_implied_primary_hz": 329.54212188720703,
+      "median_primary_cents_error": -0.4487707216992559,
+      "expected_lower_oscillator_hz": 164.81377845643496,
+      "nearby_lower_peak_hz": 163.51776123046875,
+      "lower_peak_db_relative_primary_peak": -5.498986859401319
+    },
+    {
+      "estimated_played_midi": 67,
+      "window_seconds": [
+        0.89,
+        1.09
+      ],
+      "expected_primary_hz": 391.99543598174927,
+      "primary_harmonic_peak_hz": [
+        391.9715881347656,
+        783.9431762695312,
+        1176.082992553711,
+        1567.8863525390625,
+        1959.8579406738281,
+        2351.997756958008
+      ],
+      "median_harmonic_implied_primary_hz": 391.9715881347656,
+      "median_primary_cents_error": -0.10532638092605709,
+      "expected_lower_oscillator_hz": 195.99771799087463,
+      "nearby_lower_peak_hz": 195.9857940673828,
+      "lower_peak_db_relative_primary_peak": -9.073354775904416
+    }
+  ],
+  "later_pitch_motion": [
+    {
+      "center_seconds": 1.1,
+      "primary_hz": 392.1398162841797,
+      "semitones_above_G4": 0.006375330431387957
+    },
+    {
+      "center_seconds": 1.15,
+      "primary_hz": 391.9715881347656,
+      "semitones_above_G4": -0.0010532646152968416
+    },
+    {
+      "center_seconds": 1.2,
+      "primary_hz": 391.9715881347656,
+      "semitones_above_G4": -0.0010532646152968416
+    },
+    {
+      "center_seconds": 1.25,
+      "primary_hz": 392.4762725830078,
+      "semitones_above_G4": 0.021222964695385496
+    },
+    {
+      "center_seconds": 1.3,
+      "primary_hz": 395.672607421875,
+      "semitones_above_G4": 0.16164399892136688
+    },
+    {
+      "center_seconds": 1.35,
+      "primary_hz": 397.69134521484375,
+      "semitones_above_G4": 0.24974770301538146
+    },
+    {
+      "center_seconds": 1.4,
+      "primary_hz": 401.3923645019531,
+      "semitones_above_G4": 0.4101157932277304
+    },
+    {
+      "center_seconds": 1.45,
+      "primary_hz": 404.5886993408203,
+      "semitones_above_G4": 0.5474300047738452
+    },
+    {
+      "center_seconds": 1.5,
+      "primary_hz": 407.4485778808594,
+      "semitones_above_G4": 0.6693736572169368
+    },
+    {
+      "center_seconds": 1.55,
+      "primary_hz": 411.3178253173828,
+      "semitones_above_G4": 0.8330008589601475
+    },
+    {
+      "center_seconds": 1.6,
+      "primary_hz": 415.0188446044922,
+      "semitones_above_G4": 0.9880798644864696
+    },
+    {
+      "center_seconds": 1.65,
+      "primary_hz": 419.5610046386719,
+      "semitones_above_G4": 1.1765248588410318
+    },
+    {
+      "center_seconds": 1.7,
+      "primary_hz": 423.9349365234375,
+      "semitones_above_G4": 1.3560720815323382
+    },
+    {
+      "center_seconds": 1.75,
+      "primary_hz": 425.7854461669922,
+      "semitones_above_G4": 1.431477366213203
+    },
+    {
+      "center_seconds": 1.8,
+      "primary_hz": 431.1687469482422,
+      "semitones_above_G4": 1.6489890203839215
+    },
+    {
+      "center_seconds": 1.85,
+      "primary_hz": 437.56141662597656,
+      "semitones_above_G4": 1.9037840682008853
+    },
+    {
+      "center_seconds": 1.9,
+      "primary_hz": 439.0754699707031,
+      "semitones_above_G4": 1.963584958371956
+    },
+    {
+      "center_seconds": 1.95,
+      "primary_hz": 440.9259796142578,
+      "semitones_above_G4": 2.036395520826001
+    },
+    {
+      "center_seconds": 2.0,
+      "primary_hz": 441.0942077636719,
+      "semitones_above_G4": 2.0429995035460466
+    },
+    {
+      "center_seconds": 2.05,
+      "primary_hz": 439.91661071777344,
+      "semitones_above_G4": 1.9967186344966388
+    },
+    {
+      "center_seconds": 2.1,
+      "primary_hz": 441.59889221191406,
+      "semitones_above_G4": 2.0627963501751623
+    }
+  ],
+  "limitations": [
+    "Original performance MIDI is unavailable. This is an audio-derived estimate, not an original MIDI file.",
+    "Velocity 100 is a placeholder; original velocities, controller states, system transpose and exact recorded patch revision are unknown.",
+    "The published patch has delay and reverb, which retain earlier pitch families. Short-window sub-octave peaks are less precise than upper harmonic families.",
+    "Pitch changes show short ramps despite the published portamento switch being off. Live controls, a different patch revision or performance gestures remain possible; the note-only reconstruction cannot reproduce undocumented pitch motion exactly.",
+    "The continuous line does not identify original note-offs or overlap. Adjoining gates are a neutral replay convention, not verified non-legato articulation. Onsets are approximate, generally within 10\u201330 ms; velocity and envelope retrigger conclusions are not justified from this case alone.",
+    "The first note's lower oscillator near 27.5 Hz is weak; the played A1 inference is conditional on the published oscillator mix/tuning and the later clear octave families.",
+    "The final note-off at 1.195 seconds is an artificial crop boundary during a held note, not a measured key release.",
+    "No Septum audio or synthesis parameter search was used to select notes. The published Roland preset must remain unmodified.",
+    "Sub-octave peaks in short windows are affected by frequency resolution and effects; some low peaks can contain delayed preceding notes.",
+    "The 1.25\u20131.9 s G4-to-A4 rise is consistent with the published two-semitone bend range, but the original bend messages or any live patch edits are unverified."
+  ]
+}

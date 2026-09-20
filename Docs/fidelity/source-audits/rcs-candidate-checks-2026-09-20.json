@@ -1,0 +1,669 @@
+{
+  "schema_version": 1,
+  "status": "Conditional experimental guards; no model promoted and no hardware-match claim",
+  "source_catalog": "Docs/fidelity/rcs-reference-catalog.json",
+  "artifacts": [
+    {
+      "path": "build-fidelity/public-match-2026-09-20/rcs-a01-listen/matrix.json",
+      "sha256": "72b3a82ee9c3944e848881648492777865d4f433d34436910dcfaab152a3cc82"
+    },
+    {
+      "path": "build-fidelity/public-match-2026-09-20/rcs-a02-listen/matrix.json",
+      "sha256": "307be1baec34ee213b0d79d85daa870cc9f43e5d093ea33fde66f9d412794e1c"
+    },
+    {
+      "path": "build-fidelity/rcs-candidate-validation-2026-09-20/triangle-harmonics.json",
+      "sha256": "c54880cc3a0cf326badf1c0fddfac6ef0ec26f613861bbc570bd71bcf5e332de"
+    },
+    {
+      "path": "build-fidelity/rcs-attack-probes-2026-09-20/results.json",
+      "sha256": "1c99f7f6e4a895d4f58d529c74eeab15e0a938f23d477cb46482cab01c9b40ed"
+    },
+    {
+      "path": "build-fidelity/rcs-attack-probes-2026-09-20/regression-results.json",
+      "sha256": "cc2f6cd25c57db50619614b24f323318fb7e78282d84d0c89b7441beafca4a3e"
+    },
+    {
+      "path": "build-fidelity/rcs-attack-probes-2026-09-20/closure-comparison-verified/analysis.json",
+      "sha256": "76cff910feab01d53b05c5dfbe082ad1fcc91ffbc1f87e818c1dd25726059235"
+    },
+    {
+      "path": "Docs/fidelity/source-audits/rcs-a02-terminal-model-2026-09-20.json",
+      "sha256": "fe8adcaeb5dcd2e0aa8133334a14bc2708aaa2b7c43de6f23c29c41384e91e99"
+    },
+    {
+      "path": "build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/results.json",
+      "sha256": "7ba87da04434fa0894d4859dcd3881bdd4fa6645e995538f30e415dec7c2097e"
+    },
+    {
+      "path": "build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/common-interval-closure-analysis/analysis.json",
+      "sha256": "ceb38db86b5a676cfe3da0ff61c70ed0b557f594aba058b5d4566d6097bbf29a"
+    }
+  ],
+  "new_patch_checks": [
+    {
+      "model": "pre-existing triangle−1.5",
+      "method": "Whole-excerpt stereo Welch power; 32 geometric bands, 25–12500 Hz; normalize band sums; floor normalized powers at 1e-12; unweighted dB RMSE on reference bands within 50 dB of peak.",
+      "cases": [
+        {
+          "id": "rcs-a01-moog-bass",
+          "title": "RCS A01 Moog BASS — three separated notes",
+          "qualification": "same published preset; reconstructed MIDI, not verified original MIDI",
+          "source_page": "https://www.rcssound.com/index.php?page=6",
+          "before": {
+            "band_shape_rmse_db": 3.4694318876173567,
+            "included_band_count": 32,
+            "included_bands": [
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ],
+            "difference_db": [
+              3.8773797483552914,
+              2.234288834697195,
+              0.5290837830150683,
+              -0.47371792938815377,
+              -1.0403137002273546,
+              -0.649837180319494,
+              0.30772748015065693,
+              0.8165845797967399,
+              0.21892664112719853,
+              0.870698335139501,
+              -7.4973865140609295,
+              -4.034497702626589,
+              2.642676383517937,
+              0.4489163333633358,
+              -0.9390243048488854,
+              -0.9046433811622037,
+              -1.1685696981836258,
+              -2.915431103088404,
+              -1.895757611143039,
+              -1.2744940250923833,
+              -3.031760836559185,
+              -2.507028226208987,
+              -2.879810976398268,
+              -3.5039884569951383,
+              -3.796019986909349,
+              -4.263510322127263,
+              -4.5220592005210385,
+              -4.784904110263469,
+              -5.470222648608618,
+              -5.804430255269683,
+              -6.208245172564664,
+              -7.140483236118774
+            ]
+          },
+          "candidate": {
+            "band_shape_rmse_db": 5.47034494100777,
+            "included_band_count": 32,
+            "included_bands": [
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ],
+            "difference_db": [
+              5.745033304278238,
+              4.601165904601017,
+              3.1835048666554933,
+              2.2557706394461214,
+              1.4954961854178452,
+              1.6120639110520854,
+              1.9912194959503005,
+              1.8044701085817283,
+              0.5587312968860885,
+              1.1396597241812592,
+              -7.376031763703765,
+              -5.877301809303308,
+              -0.764477654416999,
+              -2.295719162396441,
+              -7.132916912678684,
+              -7.511684715024957,
+              -6.546077527183987,
+              -8.22129200970491,
+              -8.218454602864094,
+              -7.21327794071245,
+              -7.912030793343545,
+              -6.944091796321307,
+              -6.402176206429029,
+              -6.663246377828383,
+              -6.730211930855221,
+              -6.6758152582159305,
+              -6.4490416237068215,
+              -5.8840223359518085,
+              -5.593396202161932,
+              -4.654302240938037,
+              -3.830136227434775,
+              -3.5356088267157877
+            ]
+          },
+          "raw_render_identical": false,
+          "comparison_sha256": {
+            "baseline": "b7fcc10b20550695487d4dd7ded3f7537146c777e487a44abd106558f5ac54dd",
+            "candidate": "ea706f1aa30dbbe9df832fc7c6d9b65a90cc7e1c85a131ab36f000bcd14d264d"
+          },
+          "delta_rmse_db": 2.0009130533904136,
+          "listening_gains": {
+            "hardware": 0.5295024318491609,
+            "baseline": 1.957922743107462,
+            "candidate": 1.774441128181751
+          },
+          "listening_sha256": {
+            "baseline.wav": "f513452db2d1f03d4dd5fcc841240222f6f9a2540aac911dc9dd9a6820c8ef96",
+            "hardware.wav": "535564cd28ef68cf61ee020f1eb9107fe7b353d8f2a3aa1c222d3f51d2c0b3f5",
+            "candidate.wav": "abd96e971e01c1499edafbb4deff6e8fa49c37b7731100d31e1d5216e0ae1b70"
+          }
+        }
+      ]
+    },
+    {
+      "model": "pre-existing Air Lead cutoff curve",
+      "method": "Whole-excerpt stereo Welch power; 32 geometric bands, 25–12500 Hz; normalize band sums; floor normalized powers at 1e-12; unweighted dB RMSE on reference bands within 50 dB of peak.",
+      "cases": [
+        {
+          "id": "rcs-a02-moogbass-pw",
+          "title": "RCS A02 MoogBass PW — five-note interior",
+          "qualification": "same published preset; reconstructed MIDI, not verified original MIDI",
+          "source_page": "https://www.rcssound.com/index.php?page=6",
+          "before": {
+            "band_shape_rmse_db": 10.695799982313753,
+            "included_band_count": 32,
+            "included_bands": [
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ],
+            "difference_db": [
+              5.398450478453136,
+              5.987115857538402,
+              2.868639710218667,
+              1.9256247029518117,
+              1.4276186007121652,
+              4.653503949842084,
+              0.8210641384138916,
+              -0.33481961404864624,
+              3.655692409830922,
+              -0.6763456601850582,
+              -3.92174889631052,
+              -4.463287225554144,
+              -5.168654220124739,
+              0.4131611739466875,
+              -4.7310315207247395,
+              -4.820772728146075,
+              -3.7849584374200824,
+              0.10631324552110787,
+              -0.4332151580438604,
+              -5.980290188296696,
+              -1.9344006067267019,
+              -5.059558952093745,
+              -4.6896668882582455,
+              -4.950694799931614,
+              -6.210675309625991,
+              -6.93382290819284,
+              -10.138017749814507,
+              -12.980675972197243,
+              -16.609999129138266,
+              -21.951085960990877,
+              -28.3499712000362,
+              -37.31280229480366
+            ]
+          },
+          "candidate": {
+            "band_shape_rmse_db": 15.593487447289117,
+            "included_band_count": 32,
+            "included_bands": [
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ],
+            "difference_db": [
+              5.008899759676058,
+              5.582032028934725,
+              2.4948943829200863,
+              1.6011139503251557,
+              1.173963807026397,
+              4.637500109908376,
+              1.1090169901376492,
+              0.020848465776608895,
+              3.796489590033903,
+              -0.5551392975152345,
+              -4.832645209801145,
+              -5.270632614731476,
+              -5.028928090213235,
+              0.9146609475384743,
+              -7.329643694364307,
+              -5.621493761228469,
+              -2.3160315596539336,
+              -1.6082173899140764,
+              -2.142293555087749,
+              -7.0916827787065415,
+              -4.051572004846634,
+              -6.927906546747726,
+              -8.159582677663856,
+              -8.55167756518858,
+              -11.078195954439085,
+              -13.447957449531245,
+              -18.57301145548432,
+              -23.79920750122892,
+              -30.116221615463804,
+              -37.44173198448827,
+              -42.03646310235996,
+              -44.235062085866296
+            ]
+          },
+          "raw_render_identical": false,
+          "comparison_sha256": {
+            "baseline": "222b7314e55d15451d1535bfbccc935f5e0ecf6211f87143909fe09b7f9ce695",
+            "candidate": "0c9d78877eb225f865991cfba62751d36092f260ffb1c43142a3430942e83096"
+          },
+          "delta_rmse_db": 4.897687464975364,
+          "listening_gains": {
+            "hardware": 0.423373090600289,
+            "baseline": 1.446057573822696,
+            "candidate": 1.3971242522937766
+          },
+          "listening_sha256": {
+            "baseline.wav": "4e5f76afabd856fec3ce29fbabc7f46f98620603ac3cb686d561855e03fc2e45",
+            "hardware.wav": "e8eff323af6961b0b1fb255592f2a393d7c7a6cad616f263ea9272243535f3b4",
+            "candidate.wav": "ed4f672f2265e7a0b0b2d716bb2fedcc0b6abb484e66c5e6d54284a30321739b"
+          }
+        }
+      ]
+    }
+  ],
+  "a01_harmonic_guard": {
+    "H2-H8/H1": {
+      "baseline_median": 2.502657025094364,
+      "candidate_median": 8.468229858429511,
+      "improved_groups": 0,
+      "groups": 27,
+      "delta_range": [
+        5.556567729470512,
+        6.5165495593745195
+      ]
+    },
+    "odd_H3_H5_H7/H1": {
+      "baseline_median": 2.4660930310304296,
+      "candidate_median": 9.093033895302428,
+      "improved_groups": 0,
+      "groups": 27,
+      "delta_range": [
+        5.799604598577397,
+        6.964423174993119
+      ]
+    },
+    "even_H4_H6_H8/H2": {
+      "baseline_median": 4.845985487676663,
+      "candidate_median": 7.609663431993286,
+      "improved_groups": 0,
+      "groups": 27,
+      "delta_range": [
+        2.5300735273459427,
+        3.812163513675845
+      ]
+    }
+  },
+  "attack_global_interpolation_regression": [
+    {
+      "trial": "attack-50ms",
+      "attack_raw24_seconds": 0.05,
+      "cases": [
+        {
+          "id": "moogie-1",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "so-juno-1",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "dist-bs-1",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "pedal-bs-1",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "club-bass",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "cotton-wool",
+          "delta_rmse_db": -0.43556852494686016,
+          "identical_raw": false
+        },
+        {
+          "id": "air-lead-1",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "vangelead",
+          "delta_rmse_db": -0.1013513955340537,
+          "identical_raw": false
+        },
+        {
+          "id": "supa-juce-1",
+          "delta_rmse_db": 0.029881492270507515,
+          "identical_raw": false
+        },
+        {
+          "id": "brassy-ld-1",
+          "delta_rmse_db": 0.23649834091508293,
+          "identical_raw": false
+        },
+        {
+          "id": "class-a",
+          "delta_rmse_db": -0.00226236138854663,
+          "identical_raw": false
+        },
+        {
+          "id": "sexy-back",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "trancefloor",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "rcs-a01-moog-bass",
+          "delta_rmse_db": -0.028486686889192647,
+          "identical_raw": false
+        },
+        {
+          "id": "rcs-a02-moogbass-pw",
+          "delta_rmse_db": -2.948085679088128,
+          "identical_raw": false
+        }
+      ]
+    },
+    {
+      "trial": "attack-100ms",
+      "attack_raw24_seconds": 0.1,
+      "cases": [
+        {
+          "id": "moogie-1",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "so-juno-1",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "dist-bs-1",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "pedal-bs-1",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "club-bass",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "cotton-wool",
+          "delta_rmse_db": -0.6243721395360007,
+          "identical_raw": false
+        },
+        {
+          "id": "air-lead-1",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "vangelead",
+          "delta_rmse_db": -0.154506640206157,
+          "identical_raw": false
+        },
+        {
+          "id": "supa-juce-1",
+          "delta_rmse_db": -0.22341332020010185,
+          "identical_raw": false
+        },
+        {
+          "id": "brassy-ld-1",
+          "delta_rmse_db": 0.548542195871998,
+          "identical_raw": false
+        },
+        {
+          "id": "class-a",
+          "delta_rmse_db": -0.0015385128485481125,
+          "identical_raw": false
+        },
+        {
+          "id": "sexy-back",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "trancefloor",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "rcs-a01-moog-bass",
+          "delta_rmse_db": -0.029466906459520548,
+          "identical_raw": false
+        },
+        {
+          "id": "rcs-a02-moogbass-pw",
+          "delta_rmse_db": -4.474407039655627,
+          "identical_raw": false
+        }
+      ]
+    },
+    {
+      "trial": "attack-150ms",
+      "attack_raw24_seconds": 0.15,
+      "cases": [
+        {
+          "id": "moogie-1",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "so-juno-1",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "dist-bs-1",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "pedal-bs-1",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "club-bass",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "cotton-wool",
+          "delta_rmse_db": -0.6986571014272158,
+          "identical_raw": false
+        },
+        {
+          "id": "air-lead-1",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "vangelead",
+          "delta_rmse_db": -0.20729648457523764,
+          "identical_raw": false
+        },
+        {
+          "id": "supa-juce-1",
+          "delta_rmse_db": -0.4432401264783241,
+          "identical_raw": false
+        },
+        {
+          "id": "brassy-ld-1",
+          "delta_rmse_db": 0.6983514716979657,
+          "identical_raw": false
+        },
+        {
+          "id": "class-a",
+          "delta_rmse_db": -0.042605394013502274,
+          "identical_raw": false
+        },
+        {
+          "id": "sexy-back",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "trancefloor",
+          "delta_rmse_db": 0.0,
+          "identical_raw": true
+        },
+        {
+          "id": "rcs-a01-moog-bass",
+          "delta_rmse_db": -0.0366634354670623,
+          "identical_raw": false
+        },
+        {
+          "id": "rcs-a02-moogbass-pw",
+          "delta_rmse_db": -5.210216493624293,
+          "identical_raw": false
+        }
+      ]
+    }
+  ],
+  "attack_temporal_result": "No fixed-gate software variant reaches any predeclared sustained10/20/30dB closure landmark; no first-note timing winner. Later notes additionally depend on reconstructed gate history.",
+  "production_dsp_changed": false,
+  "gate_sensitivity": "Six baseline/150ms variants with5/15ms gaps or15ms overlaps: all software landmarks censored under common uncontaminated guards. Hardware first-note10/20dB crossings remain observed; shortest common interval censors30dB."
+}

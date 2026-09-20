@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "id": "rcs-a02-moogbass-pw",
+  "title": "RCS A02 MoogBass PW — five-note interior",
+  "reference_id": "rcs-a02",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 21.18,
+  "duration_seconds": 0.96,
+  "method": "Hardware-only inspection of direct author-linked YouTube audio 8LKRnrs8DcQ. Five attack renewals at approximately 21.210, 21.347, 21.484, 21.621 and 21.892 seconds alternate lower fundamental families near 51.4 and 102.8 Hz. Sounding note labels are approximately G-sharp1/G-sharp2. Applying published A02 square/sine coarse -12 semitones and tone octave 0 gives played notes 44/56/44/56/44, conditional on unchanged system transpose and patch. The parent independently observed the video A02 label at 20, 25 and 30 seconds. No Septum rendering or parameter fitting was used to choose notes. Adjoining gates are a neutral convention because original overlap is unavailable; the last rapid amplitude release is near 22.04 seconds.",
+  "uncertainties": [
+    "Original performance MIDI is unavailable. The author .mid file contains patch SysEx, not note events.",
+    "Onsets are approximately within 10–15 ms. Adjoining gates do not identify exact key release, overlap or mono retrigger history; test +/-15 ms gate changes when drawing envelope conclusions.",
+    "Velocity 100 is a placeholder. The original velocities, controllers, system tuning/transpose and exact recorded patch revision remain unknown.",
+    "Short-window periodic fits measure approximately 13–26 cents below A=440 in this passage. Filter/overdrive phase and changing envelope can bias the estimate; this reconstruction does not add pitch bend or retune the patch to fit those measurements.",
+    "A02 has no enabled internal spatial send, but its Upper overdrive and moving filter couple oscillator families. This is a joint patch comparison, not a direct pulse-width or oscillator-gain calibration.",
+    "The comparison starts after silence preceding the first selected attack. Prior lower-part release or capture processing may remain; no unsupported controller history is invented.",
+    "All timestamps refer to the directly decoded YouTube source. SoundCloud is a separate lossy copy and is not the time origin of this reconstruction."
+  ],
+  "notes": [
+    {"on": 0.030, "off": 0.167, "note": 44, "velocity": 100},
+    {"on": 0.167, "off": 0.304, "note": 56, "velocity": 100},
+    {"on": 0.304, "off": 0.441, "note": 44, "velocity": 100},
+    {"on": 0.441, "off": 0.712, "note": 56, "velocity": 100},
+    {"on": 0.712, "off": 0.862, "note": 44, "velocity": 100}
+  ]
+}

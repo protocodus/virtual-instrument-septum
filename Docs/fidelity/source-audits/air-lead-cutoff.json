@@ -1,0 +1,1067 @@
+{
+  "schema_version": 1,
+  "status": "experimental; no production DSP change",
+  "reference": {
+    "name": "Air Lead 1",
+    "record": 3,
+    "page": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+    "audio_url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_AirLead1.mp3",
+    "bank_url": "https://www.rolandus.com/go/sh-201_patches/shl/SH-201_Patch_LEAD.zip",
+    "audio_sha256": "eda084781108d6de6961f6b6807fff283eac097173b5675dc52c678dc2ad3d3b",
+    "bank_sha256": "102c47ee393c09115779172b8cbbb2c2f2563e0b4fdb2f57e0c8fca2a23c3b29",
+    "member": "SH-201_Patch_LEAD/100_LEAD.shl",
+    "original_syx_sha256": "e7e911d9be986fcc4987c41d79836034ef60ea5f9c70308a7d5f57348f4c091e",
+    "decode_command": [
+      "ffmpeg",
+      "-hide_banner",
+      "-loglevel",
+      "error",
+      "-nostdin",
+      "-i",
+      "build-fidelity/hardware-benchmark/sources/TOP8_AirLead1.mp3",
+      "-ar",
+      "44100",
+      "-ac",
+      "2",
+      "-c:a",
+      "pcm_f32le",
+      "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/resonance-investigation/air-lead-independent-v2/hardware.wav"
+    ]
+  },
+  "inputs": {
+    "script_sha256": "1ec96c8c0adf999ca6a293fb0c7dbfbaf5b09732dc06ae6fa5e9cd0bca4c5eea",
+    "patch_sha256": "e7e911d9be986fcc4987c41d79836034ef60ea5f9c70308a7d5f57348f4c091e",
+    "midi_sha256": "8e7e693c3ae0940ebabace9629fc25e07aef73e90c1fe250e6dcda0fefefe228",
+    "reconstruction_sha256": "d71f3de9f26b5ab9bd02b6b5240bfe4d89bb00d37282bc21aedbe09cd45edc6c",
+    "profile_sha256": "a0d73c5a488539a179e05e87463d0b2480d3d99d377a15b30587435cdca23976",
+    "reconstruction": "/Users/vojta/Dev/virtual-instrument-septum/Docs/fidelity/reconstructions/expanded/air-lead-1.json",
+    "decode_command": [
+      "ffmpeg",
+      "-hide_banner",
+      "-loglevel",
+      "error",
+      "-nostdin",
+      "-i",
+      "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/sources/TOP8_AirLead1.mp3",
+      "-ar",
+      "44100",
+      "-ac",
+      "2",
+      "-c:a",
+      "pcm_f32le",
+      "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/air-cutoff-analysis-verified/hardware-decoded-full.wav"
+    ]
+  },
+  "training": {
+    "window": {
+      "center_seconds": 0.075,
+      "width_seconds": 0.05,
+      "saw_fundamental_hz": 308.7983490276009,
+      "harmonic_amplitudes": [
+        0.07731498669512032,
+        0.0696734347420931,
+        0.005140829160394522,
+        0.0009487818712276789,
+        0.00023887901889234838,
+        6.620169454742688e-05
+      ],
+      "saw_slope_removed_relative_h2_db": [
+        0.0,
+        5.116670619449563,
+        -14.002185181937714,
+        -26.180746326088588,
+        -36.222313489390636,
+        -45.78486657995512
+      ]
+    },
+    "channel": "mid",
+    "nominal_midi": 63,
+    "fit_harmonics": [
+      4,
+      6,
+      8
+    ],
+    "withheld_harmonics": [
+      10,
+      12
+    ],
+    "base_cutoff_raw91_hz": 1106.4472480433772,
+    "incumbent_raw91_hz": 2870.8901733640996,
+    "change_octaves": -1.3755634713588734,
+    "fixed_stage_damping": 0.5052477057310549
+  },
+  "limits": [
+    "Only raw91 has a recording-derived conditional anchor. The rest of the table is a design hypothesis.",
+    "Original performance MIDI, velocities/controllers/system state and recording chain are unavailable.",
+    "Triangle contributes no even harmonics in the assumed source model; isolated hardware triangle is unmeasured.",
+    "Current resonance topology, LOW FREQ shelf and output chain remain assumptions.",
+    "Overlapping windows and stereo channels are sensitivity checks, not independent hardware recordings.",
+    "Preserving low controls does not validate a global curve; independent presets above raw64 are required.",
+    "Full-engine render uses unchanged published effects and estimated gates; no post-render EQ or time warping."
+  ],
+  "analytic_summary": {
+    "opening_note": {
+      "window_count": 35,
+      "baseline_h4_to_h12_rmse_db": {
+        "median": 35.073407326203444,
+        "min": 34.2857230733831,
+        "max": 35.84092656539746
+      },
+      "candidate_h4_to_h12_rmse_db": {
+        "median": 1.502105704900565,
+        "min": 0.9470194461209105,
+        "max": 2.2109056651427257
+      },
+      "improved_windows_h4_to_h12_rmse_db": 35,
+      "baseline_withheld_h10_h12_rmse_db": {
+        "median": 48.42309124487261,
+        "min": 46.39293854909559,
+        "max": 49.78219689853357
+      },
+      "candidate_withheld_h10_h12_rmse_db": {
+        "median": 2.01924141686983,
+        "min": 0.5815364625947752,
+        "max": 3.161496270470528
+      },
+      "improved_windows_withheld_h10_h12_rmse_db": 35
+    },
+    "heldout_notes": {
+      "window_count": 108,
+      "baseline_h4_to_h12_rmse_db": {
+        "median": 39.62690242548155,
+        "min": 35.65721695071957,
+        "max": 54.05578612968885
+      },
+      "candidate_h4_to_h12_rmse_db": {
+        "median": 3.715825906824601,
+        "min": 1.4154611540253892,
+        "max": 12.091387292518245
+      },
+      "improved_windows_h4_to_h12_rmse_db": 108,
+      "baseline_withheld_h10_h12_rmse_db": {
+        "median": 46.60615151090596,
+        "min": 39.61425163723354,
+        "max": 63.63739365631447
+      },
+      "candidate_withheld_h10_h12_rmse_db": {
+        "median": 2.9031612985849264,
+        "min": 0.43861843241123155,
+        "max": 17.11554960682243
+      },
+      "improved_windows_withheld_h10_h12_rmse_db": 108
+    },
+    "all": {
+      "window_count": 143,
+      "baseline_h4_to_h12_rmse_db": {
+        "median": 39.32342784630997,
+        "min": 34.2857230733831,
+        "max": 54.05578612968885
+      },
+      "candidate_h4_to_h12_rmse_db": {
+        "median": 3.3474413651362847,
+        "min": 0.9470194461209105,
+        "max": 12.091387292518245
+      },
+      "improved_windows_h4_to_h12_rmse_db": 143,
+      "baseline_withheld_h10_h12_rmse_db": {
+        "median": 47.26395258496535,
+        "min": 39.61425163723354,
+        "max": 63.63739365631447
+      },
+      "candidate_withheld_h10_h12_rmse_db": {
+        "median": 2.447524183127332,
+        "min": 0.43861843241123155,
+        "max": 17.11554960682243
+      },
+      "improved_windows_withheld_h10_h12_rmse_db": 143
+    }
+  },
+  "rendered_summary": {
+    "opening_note": {
+      "window_count": 35,
+      "baseline_h4_to_h12_rmse_db": {
+        "median": 33.31173930742324,
+        "min": 30.847709923422418,
+        "max": 35.85462104312695
+      },
+      "candidate_h4_to_h12_rmse_db": {
+        "median": 2.20867546343939,
+        "min": 1.4666471528230058,
+        "max": 4.333037863825147
+      },
+      "improved_windows_h4_to_h12_rmse_db": 35,
+      "baseline_withheld_h10_h12_rmse_db": {
+        "median": 45.066226132059136,
+        "min": 41.38346416650012,
+        "max": 48.68935796884207
+      },
+      "candidate_withheld_h10_h12_rmse_db": {
+        "median": 2.922535493607846,
+        "min": 1.9493249238114423,
+        "max": 5.916856279373022
+      },
+      "improved_windows_withheld_h10_h12_rmse_db": 35
+    },
+    "heldout_notes": {
+      "window_count": 108,
+      "baseline_h4_to_h12_rmse_db": {
+        "median": 39.72450322090939,
+        "min": 26.24699582666945,
+        "max": 50.11666428044604
+      },
+      "candidate_h4_to_h12_rmse_db": {
+        "median": 6.0966960306296265,
+        "min": 2.1570525806338416,
+        "max": 26.22684501481809
+      },
+      "improved_windows_h4_to_h12_rmse_db": 108,
+      "baseline_withheld_h10_h12_rmse_db": {
+        "median": 46.287479332049685,
+        "min": 20.618178595549146,
+        "max": 55.86131747162049
+      },
+      "candidate_withheld_h10_h12_rmse_db": {
+        "median": 4.248598439996433,
+        "min": 0.064566532387633,
+        "max": 17.644380837513808
+      },
+      "improved_windows_withheld_h10_h12_rmse_db": 108
+    },
+    "all": {
+      "window_count": 143,
+      "baseline_h4_to_h12_rmse_db": {
+        "median": 38.76682482368885,
+        "min": 26.24699582666945,
+        "max": 50.11666428044604
+      },
+      "candidate_h4_to_h12_rmse_db": {
+        "median": 4.612087546753983,
+        "min": 1.4666471528230058,
+        "max": 26.22684501481809
+      },
+      "improved_windows_h4_to_h12_rmse_db": 143,
+      "baseline_withheld_h10_h12_rmse_db": {
+        "median": 46.04173299434975,
+        "min": 20.618178595549146,
+        "max": 55.86131747162049
+      },
+      "candidate_withheld_h10_h12_rmse_db": {
+        "median": 3.894976523782568,
+        "min": 0.064566532387633,
+        "max": 17.644380837513808
+      },
+      "improved_windows_withheld_h10_h12_rmse_db": 143
+    }
+  },
+  "full_analysis": {
+    "path": "build-fidelity/public-match-2026-09-20/air-cutoff-analysis-verified/analysis.json",
+    "sha256": "f98b655f1ca07be43f09b7465fd278a7c56f2fcdf29897a6816b3f90645f389f"
+  },
+  "renders": {
+    "baseline": {
+      "renderer_sha256": "3672d8f6ddf99e1bddbe575c035a9ecae1429e11517e89cc48b8c93eb4b29a34",
+      "audio_sha256": "0abc37d1ddd8f09b8173a9158d0588e786e15107d68981c6d0b19ff3adc4d44a",
+      "build_manifest_sha256": "cc0c53a3728bcdcc600a615869891e3dfccaf73ff97dd7edb4cf65ee859ff8ca",
+      "original_source_sha256": {
+        "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+        "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+        "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+        "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+        "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+        "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+        "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+        "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+        "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+        "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+        "Source/DSP/SeptumEngine.h": "f442d854b37a0a330969187fe3c1c22df9300dceef449ff12a02a5f818d15dc7",
+        "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+        "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+        "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+        "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+        "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+        "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9",
+        "Tools/RenderMidi.cpp": "73fc5cd13bf635bbd95dc2a4e65301b06038cd96d2e684de1bb694b3e0066bfb"
+      },
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+        "--renderer",
+        "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/baseline/SeptumRenderMidi",
+        "--midi",
+        "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/air-cutoff-analysis-verified/reconstructed-performance.mid",
+        "--syx",
+        "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/air-cutoff-analysis-verified/original-patch.syx",
+        "--output",
+        "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/air-cutoff-analysis-verified/baseline-raw.wav",
+        "--sample-rate",
+        "44100",
+        "--tail",
+        "2",
+        "--master-level",
+        "100",
+        "--tempo-policy",
+        "preserve-patch",
+        "--strict"
+      ],
+      "latency_seconds": 0.002108843537414966,
+      "stats": {
+        "peak": 0.36208975315093994,
+        "peak_dbfs": -8.823675303879094,
+        "rms_dbfs": -24.118499426193686,
+        "samples_at_or_above_full_scale": 0,
+        "power_spectral_centroid_20_16000_hz": 1340.2771689908334,
+        "identical_stereo_channels": false,
+        "side_to_mid_db": -7.40631219754862
+      }
+    },
+    "candidate": {
+      "renderer_sha256": "ba2232faad3037da9414a89d58db2246385c36cac02ea3753688d4acb0434e13",
+      "audio_sha256": "ed2a83fbb2a39e8d312b4194615f5c1699f941a4c0bf7aada299031a5362fc31",
+      "build_manifest_sha256": "4b3f9597cd9baf13e787e61656510c2914b32f1f1582428115603a1aea847078",
+      "original_source_sha256": {
+        "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+        "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+        "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+        "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+        "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+        "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+        "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+        "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+        "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+        "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+        "Source/DSP/SeptumEngine.h": "f442d854b37a0a330969187fe3c1c22df9300dceef449ff12a02a5f818d15dc7",
+        "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+        "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+        "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+        "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+        "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+        "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9",
+        "Tools/RenderMidi.cpp": "73fc5cd13bf635bbd95dc2a4e65301b06038cd96d2e684de1bb694b3e0066bfb"
+      },
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+        "/Users/vojta/Dev/virtual-instrument-septum/Tools/render_midi.py",
+        "--renderer",
+        "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/air-cutoff/SeptumRenderMidi",
+        "--midi",
+        "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/air-cutoff-analysis-verified/reconstructed-performance.mid",
+        "--syx",
+        "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/air-cutoff-analysis-verified/original-patch.syx",
+        "--output",
+        "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/air-cutoff-analysis-verified/candidate-raw.wav",
+        "--sample-rate",
+        "44100",
+        "--tail",
+        "2",
+        "--master-level",
+        "100",
+        "--tempo-policy",
+        "preserve-patch",
+        "--strict"
+      ],
+      "latency_seconds": 0.002108843537414966,
+      "stats": {
+        "peak": 0.4025770425796509,
+        "peak_dbfs": -7.903019897703089,
+        "rms_dbfs": -22.428535486907908,
+        "samples_at_or_above_full_scale": 0,
+        "power_spectral_centroid_20_16000_hz": 844.4837374946126,
+        "identical_stereo_channels": false,
+        "side_to_mid_db": -7.094124748071931
+      }
+    }
+  },
+  "candidate_table": {
+    "interpolation": "log2-frequency PCHIP through raw64,91,127; preserve raw0..64; all but91 are chosen anchors, not measured hardware data",
+    "selected_values_hz": {
+      "0": 20.0,
+      "27": 87.30015721655064,
+      "47": 260.06266645674197,
+      "64": 657.7056135747317,
+      "69": 673.7414120592865,
+      "75": 732.9639231074467,
+      "85": 928.4260071276624,
+      "91": 1106.4472480433778,
+      "95": 1285.1088863215627,
+      "101": 1778.676318239172,
+      "103": 2031.3735333428322,
+      "110": 3521.28879935136,
+      "121": 10418.433491141353,
+      "127": 20480.00000000002
+    }
+  },
+  "by_center": [
+    {
+      "center_seconds": 0.065,
+      "nominal_midi": 63,
+      "widths_seconds": [
+        0.03,
+        0.04,
+        0.05
+      ],
+      "channels": [
+        "left",
+        "right",
+        "mid"
+      ],
+      "conditional_base_cutoff_range_hz": [
+        1069.0667488461263,
+        1128.3769336157095
+      ],
+      "baseline": {
+        "h4_to_h12_rmse_db": {
+          "min": 32.912148049038215,
+          "median": 33.80167087808709,
+          "max": 34.25624763007999
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 44.444027596451484,
+          "median": 45.87638362364826,
+          "max": 46.45316843117597
+        }
+      },
+      "candidate": {
+        "h4_to_h12_rmse_db": {
+          "min": 1.4666471528230058,
+          "median": 1.8080690472727188,
+          "max": 2.7896711787199573
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 1.9884550437364148,
+          "median": 2.2640205669771722,
+          "max": 3.62643566539603
+        }
+      }
+    },
+    {
+      "center_seconds": 0.075,
+      "nominal_midi": 63,
+      "widths_seconds": [
+        0.03,
+        0.04,
+        0.05
+      ],
+      "channels": [
+        "left",
+        "right",
+        "mid"
+      ],
+      "conditional_base_cutoff_range_hz": [
+        1087.6301374441887,
+        1132.3196908653256
+      ],
+      "baseline": {
+        "h4_to_h12_rmse_db": {
+          "min": 30.847709923422418,
+          "median": 33.114056758566754,
+          "max": 35.03095719090816
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 41.41348219041897,
+          "median": 44.77037817441671,
+          "max": 47.40456883284063
+        }
+      },
+      "candidate": {
+        "h4_to_h12_rmse_db": {
+          "min": 2.098286608913679,
+          "median": 2.371878036669758,
+          "max": 4.333037863825147
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 2.858222602516612,
+          "median": 3.2399738317957265,
+          "max": 5.916856279373022
+        }
+      }
+    },
+    {
+      "center_seconds": 0.085,
+      "nominal_midi": 63,
+      "widths_seconds": [
+        0.03,
+        0.04,
+        0.05
+      ],
+      "channels": [
+        "left",
+        "right",
+        "mid"
+      ],
+      "conditional_base_cutoff_range_hz": [
+        1085.4268259625749,
+        1123.044269405432
+      ],
+      "baseline": {
+        "h4_to_h12_rmse_db": {
+          "min": 30.893801558224467,
+          "median": 33.26242803930831,
+          "max": 35.85462104312695
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 41.38346416650012,
+          "median": 44.971697444981,
+          "max": 48.68935796884207
+        }
+      },
+      "candidate": {
+        "h4_to_h12_rmse_db": {
+          "min": 2.063305005736225,
+          "median": 2.256130980509234,
+          "max": 4.117744043266409
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 2.5955964297178955,
+          "median": 3.1543683005685534,
+          "max": 5.662320556197552
+        }
+      }
+    },
+    {
+      "center_seconds": 0.095,
+      "nominal_midi": 63,
+      "widths_seconds": [
+        0.03,
+        0.04,
+        0.05
+      ],
+      "channels": [
+        "left",
+        "right",
+        "mid"
+      ],
+      "conditional_base_cutoff_range_hz": [
+        1076.807518619756,
+        1125.1675951670115
+      ],
+      "baseline": {
+        "h4_to_h12_rmse_db": {
+          "min": 31.411718843319925,
+          "median": 33.24561246792017,
+          "max": 35.10492542798002
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 42.18128731709295,
+          "median": 45.066226132059136,
+          "max": 47.82887801216364
+        }
+      },
+      "candidate": {
+        "h4_to_h12_rmse_db": {
+          "min": 2.0361246600781233,
+          "median": 2.186553935673347,
+          "max": 3.7438841017136117
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 1.9493249238114423,
+          "median": 2.462964063809241,
+          "max": 5.099934473901847
+        }
+      }
+    },
+    {
+      "center_seconds": 0.175,
+      "nominal_midi": 68,
+      "widths_seconds": [
+        0.03,
+        0.04,
+        0.05
+      ],
+      "channels": [
+        "left",
+        "right",
+        "mid"
+      ],
+      "conditional_base_cutoff_range_hz": [
+        1126.6859652422936,
+        1132.6745568984452
+      ],
+      "baseline": {
+        "h4_to_h12_rmse_db": {
+          "min": 37.985422905638465,
+          "median": 39.49141411235677,
+          "max": 40.70001733085752
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 45.9233759080201,
+          "median": 49.00716200909173,
+          "max": 51.456287161181486
+        }
+      },
+      "candidate": {
+        "h4_to_h12_rmse_db": {
+          "min": 2.553326806414147,
+          "median": 2.6352054780281216,
+          "max": 4.093112721575108
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 1.2478271156336849,
+          "median": 2.013871966636562,
+          "max": 3.685087796886005
+        }
+      }
+    },
+    {
+      "center_seconds": 0.27,
+      "nominal_midi": 70,
+      "widths_seconds": [
+        0.03,
+        0.04,
+        0.05
+      ],
+      "channels": [
+        "left",
+        "right",
+        "mid"
+      ],
+      "conditional_base_cutoff_range_hz": [
+        1073.7166875138773,
+        1155.4590618265831
+      ],
+      "baseline": {
+        "h4_to_h12_rmse_db": {
+          "min": 36.01038379171896,
+          "median": 40.11584455956156,
+          "max": 44.21536657252277
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 41.475705200419135,
+          "median": 46.259108431182426,
+          "max": 51.517927914480694
+        }
+      },
+      "candidate": {
+        "h4_to_h12_rmse_db": {
+          "min": 2.1570525806338416,
+          "median": 3.8633403196836316,
+          "max": 4.969548091325454
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 0.064566532387633,
+          "median": 4.133596437668456,
+          "max": 5.281093513213051
+        }
+      }
+    },
+    {
+      "center_seconds": 0.5,
+      "nominal_midi": 75,
+      "widths_seconds": [
+        0.03,
+        0.04,
+        0.05
+      ],
+      "channels": [
+        "left",
+        "right",
+        "mid"
+      ],
+      "conditional_base_cutoff_range_hz": [
+        1051.1186097568652,
+        1242.8113824555373
+      ],
+      "baseline": {
+        "h4_to_h12_rmse_db": {
+          "min": 26.24699582666945,
+          "median": 37.810594570070585,
+          "max": 46.865992326001646
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 20.618178595549146,
+          "median": 44.28039229856943,
+          "max": 55.032580327007615
+        }
+      },
+      "candidate": {
+        "h4_to_h12_rmse_db": {
+          "min": 6.0904865866916325,
+          "median": 7.790351812976436,
+          "max": 11.149278832354188
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 4.304939456132447,
+          "median": 7.01556026094685,
+          "max": 11.802355452878125
+        }
+      }
+    },
+    {
+      "center_seconds": 0.6,
+      "nominal_midi": 75,
+      "widths_seconds": [
+        0.03,
+        0.04,
+        0.05
+      ],
+      "channels": [
+        "left",
+        "right",
+        "mid"
+      ],
+      "conditional_base_cutoff_range_hz": [
+        1264.6003830410639,
+        1297.454926620672
+      ],
+      "baseline": {
+        "h4_to_h12_rmse_db": {
+          "min": 35.240553529095266,
+          "median": 35.82082537464928,
+          "max": 38.602364344412855
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 37.04448131105395,
+          "median": 38.89031879118366,
+          "max": 41.50663016568354
+        }
+      },
+      "candidate": {
+        "h4_to_h12_rmse_db": {
+          "min": 8.917088677609165,
+          "median": 13.438068414604565,
+          "max": 26.22684501481809
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 10.115716083934286,
+          "median": 14.528934680814078,
+          "max": 17.644380837513808
+        }
+      }
+    },
+    {
+      "center_seconds": 0.7,
+      "nominal_midi": 75,
+      "widths_seconds": [
+        0.03,
+        0.04,
+        0.05
+      ],
+      "channels": [
+        "left",
+        "right",
+        "mid"
+      ],
+      "conditional_base_cutoff_range_hz": [
+        1140.0082934753484,
+        1215.2777475901776
+      ],
+      "baseline": {
+        "h4_to_h12_rmse_db": {
+          "min": 34.39184725135901,
+          "median": 37.34971025375133,
+          "max": 41.43646453064768
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 37.388885438531524,
+          "median": 42.09449116779153,
+          "max": 47.132834835239684
+        }
+      },
+      "candidate": {
+        "h4_to_h12_rmse_db": {
+          "min": 3.6438954179143237,
+          "median": 6.655020216948546,
+          "max": 9.288937843155052
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 1.8883219036223169,
+          "median": 3.4265950198329405,
+          "max": 8.568472296101872
+        }
+      }
+    },
+    {
+      "center_seconds": 1.245,
+      "nominal_midi": 73,
+      "widths_seconds": [
+        0.03,
+        0.04,
+        0.05
+      ],
+      "channels": [
+        "left",
+        "right",
+        "mid"
+      ],
+      "conditional_base_cutoff_range_hz": [
+        1170.8873721258733,
+        1192.65665228137
+      ],
+      "baseline": {
+        "h4_to_h12_rmse_db": {
+          "min": 40.013655179244005,
+          "median": 40.708857800961084,
+          "max": 41.04296498761263
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 46.13701172262641,
+          "median": 46.541283776568655,
+          "max": 46.78086494356256
+        }
+      },
+      "candidate": {
+        "h4_to_h12_rmse_db": {
+          "min": 3.467067208341094,
+          "median": 3.9343014292312843,
+          "max": 4.554814118024386
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 1.7530680516018655,
+          "median": 3.377460840394266,
+          "max": 4.347745187035416
+        }
+      }
+    },
+    {
+      "center_seconds": 1.37,
+      "nominal_midi": 70,
+      "widths_seconds": [
+        0.03,
+        0.04,
+        0.05
+      ],
+      "channels": [
+        "left",
+        "right",
+        "mid"
+      ],
+      "conditional_base_cutoff_range_hz": [
+        1073.7587847072693,
+        1123.8817602880406
+      ],
+      "baseline": {
+        "h4_to_h12_rmse_db": {
+          "min": 38.90658399235406,
+          "median": 41.91162196724646,
+          "max": 44.49180191247182
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 42.16193063522733,
+          "median": 47.26647950062464,
+          "max": 51.26983927851325
+        }
+      },
+      "candidate": {
+        "h4_to_h12_rmse_db": {
+          "min": 5.1515340857101775,
+          "median": 5.727924236969959,
+          "max": 6.532290733501362
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 0.8608555308870026,
+          "median": 2.8850916397763284,
+          "max": 4.254271949457151
+        }
+      }
+    },
+    {
+      "center_seconds": 1.55,
+      "nominal_midi": 73,
+      "widths_seconds": [
+        0.03,
+        0.04,
+        0.05
+      ],
+      "channels": [
+        "left",
+        "right",
+        "mid"
+      ],
+      "conditional_base_cutoff_range_hz": [
+        1145.012118573592,
+        1189.423026908585
+      ],
+      "baseline": {
+        "h4_to_h12_rmse_db": {
+          "min": 37.97259787282915,
+          "median": 39.37004210768365,
+          "max": 39.673280380784156
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 41.43115457991312,
+          "median": 43.19530073396206,
+          "max": 43.55360736215912
+        }
+      },
+      "candidate": {
+        "h4_to_h12_rmse_db": {
+          "min": 3.7898860867238393,
+          "median": 5.504593764281037,
+          "max": 8.826932194783366
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 4.1410831700089155,
+          "median": 4.520897796854215,
+          "max": 6.254521495497256
+        }
+      }
+    },
+    {
+      "center_seconds": 1.85,
+      "nominal_midi": 75,
+      "widths_seconds": [
+        0.03,
+        0.04,
+        0.05
+      ],
+      "channels": [
+        "left",
+        "right",
+        "mid"
+      ],
+      "conditional_base_cutoff_range_hz": [
+        1188.8038714887264,
+        1210.1848295058262
+      ],
+      "baseline": {
+        "h4_to_h12_rmse_db": {
+          "min": 38.05714075189873,
+          "median": 38.84681228303412,
+          "max": 42.600838364041344
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 41.228103523925455,
+          "median": 42.70161733165289,
+          "max": 47.729005428649934
+        }
+      },
+      "candidate": {
+        "h4_to_h12_rmse_db": {
+          "min": 2.432497424625043,
+          "median": 5.592847381070312,
+          "max": 7.058088266653827
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 2.1397883612284065,
+          "median": 5.347471265256547,
+          "max": 6.667244030472107
+        }
+      }
+    },
+    {
+      "center_seconds": 2.2,
+      "nominal_midi": 68,
+      "widths_seconds": [
+        0.03,
+        0.04,
+        0.05
+      ],
+      "channels": [
+        "left",
+        "right",
+        "mid"
+      ],
+      "conditional_base_cutoff_range_hz": [
+        1123.186081658031,
+        1172.3357381302415
+      ],
+      "baseline": {
+        "h4_to_h12_rmse_db": {
+          "min": 37.057294894179286,
+          "median": 42.21582382369555,
+          "max": 45.52419450647273
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 42.50831912137219,
+          "median": 50.693778024645326,
+          "max": 55.86131747162049
+        }
+      },
+      "candidate": {
+        "h4_to_h12_rmse_db": {
+          "min": 6.10290547456762,
+          "median": 8.761588497182478,
+          "max": 9.909009347118063
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 2.3268386857541357,
+          "median": 4.388909802635247,
+          "max": 8.7232999065113
+        }
+      }
+    },
+    {
+      "center_seconds": 2.75,
+      "nominal_midi": 70,
+      "widths_seconds": [
+        0.03,
+        0.04,
+        0.05
+      ],
+      "channels": [
+        "left",
+        "right",
+        "mid"
+      ],
+      "conditional_base_cutoff_range_hz": [
+        1065.373457311473,
+        1207.305539527361
+      ],
+      "baseline": {
+        "h4_to_h12_rmse_db": {
+          "min": 38.01857942432211,
+          "median": 39.0652366679225,
+          "max": 41.835084802027446
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 45.867960716739475,
+          "median": 48.49318938162636,
+          "max": 51.76080566820833
+        }
+      },
+      "candidate": {
+        "h4_to_h12_rmse_db": {
+          "min": 3.142837061164556,
+          "median": 5.37719527452149,
+          "max": 9.47235751943404
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 1.0571169387595394,
+          "median": 2.3288005508399587,
+          "max": 4.444767411278597
+        }
+      }
+    },
+    {
+      "center_seconds": 3.2,
+      "nominal_midi": 70,
+      "widths_seconds": [
+        0.03,
+        0.04,
+        0.05
+      ],
+      "channels": [
+        "left",
+        "right",
+        "mid"
+      ],
+      "conditional_base_cutoff_range_hz": [
+        1001.3024977255071,
+        1111.0609540844705
+      ],
+      "baseline": {
+        "h4_to_h12_rmse_db": {
+          "min": 42.40829449419163,
+          "median": 44.13165640768075,
+          "max": 50.11666428044604
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 44.99719398772419,
+          "median": 47.51853334344903,
+          "max": 49.81696111575085
+        }
+      },
+      "candidate": {
+        "h4_to_h12_rmse_db": {
+          "min": 6.333586788760953,
+          "median": 7.586849579041935,
+          "max": 15.479106621109441
+        },
+        "withheld_h10_h12_rmse_db": {
+          "min": 3.4825946957413376,
+          "median": 5.461770402275161,
+          "max": 6.707410134241597
+        }
+      }
+    }
+  ]
+}

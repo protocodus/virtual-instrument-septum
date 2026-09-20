@@ -1,0 +1,377 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-20",
+  "status": "hardware-only estimated performance; no original MIDI",
+  "reference": {
+    "id": "lead-04",
+    "name": "Trancefloor",
+    "audio_url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_Trancefloor.mp3",
+    "association_page": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+    "audio_sha256": "e9d9a0a8385a9a9d51b4463339f69c3d46f9fec7905238a39c3a903b574e20e8",
+    "bank_sha256": "102c47ee393c09115779172b8cbbb2c2f2563e0b4fdb2f57e0c8fca2a23c3b29",
+    "original_patch_sha256": "5b385c185d00759227a219bdbcfbfecdb7cf6e05aaaca8ff42163b463649a649"
+  },
+  "reconstruction": {
+    "path": "Docs/fidelity/reconstructions/expanded/trancefloor.json",
+    "sha256": "8ff6f7eb3bafa6d63ecff1965eb9eee19e63118598bb4c0e659c3b53e5ddbd1a",
+    "source_start_seconds": 13.1,
+    "duration_seconds": 1.22,
+    "source_onsets_seconds": [
+      13.15,
+      13.554,
+      13.954
+    ],
+    "source_estimated_note_offs_seconds": [
+      13.5,
+      13.894,
+      14.294
+    ],
+    "estimated_midi_note": 39,
+    "velocity": 100,
+    "renderer_or_parameter_fit_used": false
+  },
+  "method": "Float 44.1 kHz stereo decode. Inspect full 4096-sample Hann STFT with 75% overlap. Refine onsets using nonoverlapping 88-sample (1.995 ms) RMS frames. Verify pitch families by independent 0.18-0.25 s Welch spectra with whole-window Hann, 131072-point FFT. Peaks 20..600 Hz listed. Band energy trapezoid-integrated in \u00b18% bands around 19.445/38.89/77.78/155.56 Hz. Spectral detuning means individual strongest peaks need not equal the nominal center. No software audio used.",
+  "patch": {
+    "single": "upper",
+    "octave_shift": 0,
+    "waves": [
+      "Super Saw",
+      "Super Saw"
+    ],
+    "wide": [
+      false,
+      false
+    ],
+    "coarse_wire": [
+      64,
+      28
+    ],
+    "physical_coarse_semitones": [
+      0,
+      -12
+    ],
+    "spread": [
+      107,
+      108
+    ],
+    "pitch_envelope_depth": [
+      -30,
+      0
+    ],
+    "pitch_envelope_attack": 0,
+    "pitch_envelope_decay": 8,
+    "mono_mode_wire": 1,
+    "portamento_on": true,
+    "portamento_time": 20,
+    "filter": "LP24",
+    "cutoff": 121,
+    "resonance": 0,
+    "keyfollow": 0,
+    "filter_env_depth": 0,
+    "filter_velocity": 0,
+    "filter_lfo_depths": [
+      0,
+      0
+    ],
+    "low_freq": "FLAT",
+    "overdrive": false,
+    "delay_send": 40,
+    "reverb_send": 20,
+    "amp_velocity_sensitivity": 8
+  },
+  "windows": [
+    {
+      "source_start_seconds": 13.2,
+      "source_end_seconds": 13.45,
+      "strongest_spectral_lines": [
+        {
+          "hz": 40.374755859375,
+          "psd_db": -27.804291248321533
+        },
+        {
+          "hz": 76.37557983398438,
+          "psd_db": -25.839478969573975
+        },
+        {
+          "hz": 113.04931640625,
+          "psd_db": -40.213189125061035
+        },
+        {
+          "hz": 120.78781127929688,
+          "psd_db": -43.3121919631958
+        },
+        {
+          "hz": 149.3865966796875,
+          "psd_db": -34.448914527893066
+        },
+        {
+          "hz": 158.807373046875,
+          "psd_db": -26.951265335083008
+        },
+        {
+          "hz": 198.17276000976562,
+          "psd_db": -42.33675956726074
+        },
+        {
+          "hz": 227.78091430664062,
+          "psd_db": -34.46340799331665
+        },
+        {
+          "hz": 239.556884765625,
+          "psd_db": -34.7726845741272
+        },
+        {
+          "hz": 267.8192138671875,
+          "psd_db": -45.56495666503906
+        },
+        {
+          "hz": 300.79193115234375,
+          "psd_db": -39.446682929992676
+        },
+        {
+          "hz": 305.5023193359375,
+          "psd_db": -39.79032516479492
+        },
+        {
+          "hz": 320.97930908203125,
+          "psd_db": -40.074615478515625
+        },
+        {
+          "hz": 377.8404235839844,
+          "psd_db": -42.732038497924805
+        },
+        {
+          "hz": 387.59765625,
+          "psd_db": -41.80794715881348
+        },
+        {
+          "hz": 396.34552001953125,
+          "psd_db": -44.027628898620605
+        },
+        {
+          "hz": 402.7381896972656,
+          "psd_db": -43.98602485656738
+        },
+        {
+          "hz": 469.3565368652344,
+          "psd_db": -41.8894100189209
+        },
+        {
+          "hz": 483.82415771484375,
+          "psd_db": -45.2927827835083
+        },
+        {
+          "hz": 563.9007568359375,
+          "psd_db": -44.98443126678467
+        }
+      ],
+      "band_energy_dbfs": {
+        "19.445": -64.77741592615163,
+        "38.89": -21.74197544306464,
+        "77.78": -17.0151545971016,
+        "155.56": -18.417503268605874
+      }
+    },
+    {
+      "source_start_seconds": 13.6,
+      "source_end_seconds": 13.78,
+      "strongest_spectral_lines": [
+        {
+          "hz": 39.70184326171875,
+          "psd_db": -33.52943420410156
+        },
+        {
+          "hz": 63.590240478515625,
+          "psd_db": -47.91548728942871
+        },
+        {
+          "hz": 76.37557983398438,
+          "psd_db": -25.87305784225464
+        },
+        {
+          "hz": 116.75033569335938,
+          "psd_db": -37.32966899871826
+        },
+        {
+          "hz": 149.72305297851562,
+          "psd_db": -34.26545858383179
+        },
+        {
+          "hz": 156.45217895507812,
+          "psd_db": -35.23469686508179
+        },
+        {
+          "hz": 191.78009033203125,
+          "psd_db": -44.34521675109863
+        },
+        {
+          "hz": 231.48193359375,
+          "psd_db": -33.825979232788086
+        },
+        {
+          "hz": 269.1650390625,
+          "psd_db": -44.44894313812256
+        },
+        {
+          "hz": 299.44610595703125,
+          "psd_db": -46.26942157745361
+        },
+        {
+          "hz": 312.90435791015625,
+          "psd_db": -37.497477531433105
+        },
+        {
+          "hz": 340.8302307128906,
+          "psd_db": -50.03805160522461
+        },
+        {
+          "hz": 376.8310546875,
+          "psd_db": -44.14907932281494
+        },
+        {
+          "hz": 392.98095703125,
+          "psd_db": -40.361390113830566
+        },
+        {
+          "hz": 447.8233337402344,
+          "psd_db": -47.53781795501709
+        },
+        {
+          "hz": 469.02008056640625,
+          "psd_db": -44.03008460998535
+        },
+        {
+          "hz": 480.1231384277344,
+          "psd_db": -43.51804733276367
+        },
+        {
+          "hz": 545.7321166992188,
+          "psd_db": -45.41306972503662
+        },
+        {
+          "hz": 565.5830383300781,
+          "psd_db": -46.4034366607666
+        },
+        {
+          "hz": 598.8922119140625,
+          "psd_db": -50.34630298614502
+        }
+      ],
+      "band_energy_dbfs": {
+        "19.445": -59.46343553146957,
+        "38.89": -26.510806306948325,
+        "77.78": -16.757461924493363,
+        "155.56": -22.941771261962842
+      }
+    },
+    {
+      "source_start_seconds": 14,
+      "source_end_seconds": 14.2,
+      "strongest_spectral_lines": [
+        {
+          "hz": 40.711212158203125,
+          "psd_db": -33.442044258117676
+        },
+        {
+          "hz": 78.73077392578125,
+          "psd_db": -18.169777393341064
+        },
+        {
+          "hz": 118.4326171875,
+          "psd_db": -38.79380702972412
+        },
+        {
+          "hz": 147.36785888671875,
+          "psd_db": -36.9688606262207
+        },
+        {
+          "hz": 156.45217895507812,
+          "psd_db": -31.035645008087158
+        },
+        {
+          "hz": 192.11654663085938,
+          "psd_db": -45.33650875091553
+        },
+        {
+          "hz": 201.53732299804688,
+          "psd_db": -45.55367946624756
+        },
+        {
+          "hz": 225.08926391601562,
+          "psd_db": -40.501179695129395
+        },
+        {
+          "hz": 234.173583984375,
+          "psd_db": -41.93891525268555
+        },
+        {
+          "hz": 241.57562255859375,
+          "psd_db": -43.490233421325684
+        },
+        {
+          "hz": 302.8106689453125,
+          "psd_db": -37.86115646362305
+        },
+        {
+          "hz": 311.8949890136719,
+          "psd_db": -35.0117826461792
+        },
+        {
+          "hz": 377.8404235839844,
+          "psd_db": -45.243988037109375
+        },
+        {
+          "hz": 391.2986755371094,
+          "psd_db": -38.401334285736084
+        },
+        {
+          "hz": 451.52435302734375,
+          "psd_db": -43.04248332977295
+        },
+        {
+          "hz": 461.2815856933594,
+          "psd_db": -43.32454204559326
+        },
+        {
+          "hz": 482.47833251953125,
+          "psd_db": -43.45048427581787
+        },
+        {
+          "hz": 532.6103210449219,
+          "psd_db": -44.601149559020996
+        },
+        {
+          "hz": 544.0498352050781,
+          "psd_db": -40.695343017578125
+        },
+        {
+          "hz": 563.5643005371094,
+          "psd_db": -45.459818840026855
+        }
+      ],
+      "band_energy_dbfs": {
+        "19.445": -62.537855886150155,
+        "38.89": -27.381594277921423,
+        "77.78": -9.370798984740675,
+        "155.56": -21.40071697635523
+      }
+    }
+  ],
+  "limits": [
+    "Original MIDI, velocities, controllers and exact capture patch/system state are unavailable. This is an audio-derived reconstruction.",
+    "Velocity 100 is an unfitted placeholder. The published filter velocity sensitivity is zero, but amplifier velocity sensitivity and output processing may affect level.",
+    "The opening 13 seconds contain continuous pitch motion and were deliberately excluded. The selected notes settle around the same low pitch; two highly spread Super Saws limit precise central-frequency inference.",
+    "Onsets are estimated within approximately 3 ms and note-offs within approximately 15 ms. The gaps contain short effects/release tails, so exact physical key release is not known.",
+    "The crop begins after a preceding phrase; hardware retains a quiet wet tail while the software starts with empty effect buffers. Before the first onset, the hardware residual is roughly 0.002-0.004 RMS versus playing levels around 0.2-0.3. This is not an effects-isolated capture.",
+    "The original patch retains portamento and OSC1 pitch-envelope depth -30. Their physical response, Super Saw phase allocation and source spread remain model uncertainties.",
+    "The final note ends before the 1.22-second crop; the next onset near 14.332 seconds is excluded. No crop-edge note-on or artificial sustained note was added."
+  ],
+  "subsequent_independent_comparison": {
+    "path": "build-fidelity/public-match-2026-09-20/trancefloor-listen/matrix.json",
+    "sha256": "0087eb9f09e3a2a06532c06ac5abdd9ee645c879aa44c00254adf78ea7835f31",
+    "method": "Whole-excerpt stereo Welch power; 32 geometric bands, 25\u201312500 Hz; normalize band sums; floor normalized powers at 1e-12; unweighted dB RMSE on reference bands within 50 dB of peak.",
+    "before_band_shape_rmse_db": 2.8918353317873846,
+    "candidate_band_shape_rmse_db": 3.357953604267006,
+    "decision": "Candidate worsens this independently transcribed high-control reference; retain global cutoff profile as experimental."
+  }
+}

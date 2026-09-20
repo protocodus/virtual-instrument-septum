@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-20",
+  "status": "conditional shared attack-trajectory evidence; no recovered filter-attack law",
+  "main_source_url": "https://www.youtube.com/watch?v=8LKRnrs8DcQ",
+  "inputs": {
+    "audio_sha256": "f7e825e283d98dc07c61fe1d78d87c5bacc670394e6ead41fc009d7d729fefca",
+    "case_sha256": "f773722d61fa1c0e503ff4932027b81bf81646d5fc3d4e035c69493577e95937",
+    "script_sha256": "46d16f50ca964d9a39d423c67aed8ad5b0fef0685f8743e7efe6462a64eeea71"
+  },
+  "reconstruction": "Docs/fidelity/reconstructions/expanded/rcs-a02-moogbass-pw.json",
+  "method": {
+    "bands_hz": [
+      [
+        300,
+        1500
+      ],
+      [
+        1500,
+        12000
+      ]
+    ],
+    "windows_samples": [
+      512,
+      1024,
+      2048
+    ],
+    "hop_samples": 44,
+    "channels": [
+      "left",
+      "right",
+      "mid"
+    ],
+    "onset_shifts_seconds": [
+      -0.01,
+      0,
+      0.01
+    ],
+    "early_reference_elapsed_seconds": [
+      0.015,
+      0.035
+    ],
+    "sustained_threshold_seconds": 0.01,
+    "gate_guard_seconds": 0.03,
+    "interpretation": "Each landmark is a relative spectral-ratio drop. Filter cutoff, overdrive and changing layer balance can alter this trajectory; elapsed time is not the filter attack duration."
+  },
+  "summary_by_note": [
+    {
+      "note_index": 0,
+      "observations": 27,
+      "landmarks": {
+        "10": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.053469387755100684,
+            0.060476190476190794,
+            0.07310657596372039
+          ]
+        },
+        "20": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.0656235827664382,
+            0.07643990929705069,
+            0.08807256235827765
+          ]
+        },
+        "30": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.0774149659863923,
+            0.08641723356009123,
+            0.1010430839002261
+          ]
+        }
+      }
+    },
+    {
+      "note_index": 1,
+      "observations": 27,
+      "landmarks": {
+        "10": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.056333333333331126,
+            0.06615192743764098,
+            0.07678684807256175
+          ]
+        },
+        "20": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.06930385487527957,
+            0.07912244897958942,
+            0.09175283446711902
+          ]
+        },
+        "30": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.08109523809523367,
+            0.09027891156462431,
+            0.10372562358276483
+          ]
+        }
+      }
+    },
+    {
+      "note_index": 2,
+      "observations": 27,
+      "landmarks": {
+        "10": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.05983219954648433,
+            0.06883446712018326,
+            0.08046712018141022
+          ]
+        },
+        "20": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.07298412698412804,
+            0.08380045351474052,
+            0.0944353741496613
+          ]
+        },
+        "30": {
+          "observed_count": 18,
+          "censored_count": 9,
+          "elapsed_seconds_min_median_max": [
+            0.0819637188208624,
+            0.0918730158730181,
+            0.10278004535147645
+          ]
+        }
+      }
+    },
+    {
+      "note_index": 3,
+      "observations": 27,
+      "landmarks": {
+        "10": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.052718820861677784,
+            0.06253741496598764,
+            0.0741700680272146
+          ]
+        },
+        "20": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.06369387755102096,
+            0.07550793650793608,
+            0.08813832199546923
+          ]
+        },
+        "30": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.07947619047618915,
+            0.0906553287981886,
+            0.10065532879819017
+          ]
+        }
+      }
+    },
+    {
+      "note_index": 4,
+      "observations": 27,
+      "landmarks": {
+        "10": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.05310204081632719,
+            0.06491609977324231,
+            0.07555102040816664
+          ]
+        },
+        "20": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.0710612244897959,
+            0.08006349206349128,
+            0.09087981859410732
+          ]
+        },
+        "30": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.0844852607709754,
+            0.09348752834467078,
+            0.10902040816326775
+          ]
+        }
+      }
+    }
+  ],
+  "full_analysis": {
+    "path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/hardware-closure/analysis.json",
+    "sha256": "9b68db6b2a24c42cfba2d795338c78df7a2323862fe6a7f3ab37133ffa6109a8"
+  },
+  "figure": {
+    "path": "Docs/fidelity/source-audits/rcs-a02-closure-2026-09-20.png",
+    "sha256": "3b733c60e7418b9c4e6710ac9134c5762cce350d95d6172624ccf13179a7f385"
+  },
+  "findings": {
+    "all_observations": 135,
+    "10db_crossings": 135,
+    "20db_crossings": 135,
+    "30db_crossings": 126,
+    "long_note_index": 3,
+    "long_note_nominal_gate_seconds": 0.27099999999999996,
+    "first_note_role": "primary hardware-only landmark selection",
+    "other_four_notes_role": "same-source held-out attack renewals; not independent recordings"
+  },
+  "conclusion": "The repeated high/low spectral ratio remains near its early level, then loses 10/20/30 dB at roughly60/80/90ms after each attack. The long note shows this far before its next event, supporting a slow shared spectral trajectory for a conditional negative-filter-attack experiment. These are ratio-crossing times, not directly measured filter attack duration.",
+  "limits": [
+    "Three widths, channels and onset shifts are sensitivity observations, not135 independent notes.",
+    "Short-note windows are censored30ms before estimated release; the long fourth note provides the strongest evidence against a gate explanation.",
+    "Both layers and active Upper overdrive remain. Layer-amplitude changes, cutoff trajectory, nonlinear harmonics and any external capture processing contribute to the measured ratio.",
+    "Unknown true MIDI, velocities, exact key state and live edits remain. The published preset association does not authenticate identical recorded bytes.",
+    "The settled high-frequency floor is not a cutoff or resonance measurement. No full control curve, tau or attack completion time is inferred.",
+    "Promote an attack-anchor hypothesis only if an unchanged-patch full-engine candidate improves several attacks and independent presets without merely shifting the cutoff/overdrive floor."
+  ]
+}

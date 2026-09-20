@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-20",
+  "qualification": "Bounded software sensitivity audit; reconstructed MIDI remains estimated. No production DSP, published preset or authoritative reconstruction changed.",
+  "gate_audits": {
+    "class-a": {
+      "qualification": "Software sensitivity to unknown original note overlap; no original MIDI recovery or waveform correction claim",
+      "cases": [
+        {
+          "gate": "adjoining_published_reconstruction",
+          "spectral_residual": 2.069394893107664
+        },
+        {
+          "overlap_seconds": 0.002,
+          "spectral_residual": 2.540875149371885,
+          "normalized_spectral_difference_from_adjoining_db": 0.8161923640557405,
+          "raw_rms_ratio": 0.9995247358267818
+        },
+        {
+          "overlap_seconds": 0.01,
+          "spectral_residual": 2.5408751794164712,
+          "normalized_spectral_difference_from_adjoining_db": 0.8161923407922048,
+          "raw_rms_ratio": 0.9995247349049722
+        },
+        {
+          "overlap_seconds": 0.025,
+          "spectral_residual": 2.540875084021082,
+          "normalized_spectral_difference_from_adjoining_db": 0.8161922314265669,
+          "raw_rms_ratio": 0.9995247351261377
+        }
+      ],
+      "inputs": {
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/baseline/SeptumRenderMidi",
+          "sha256": "3672d8f6ddf99e1bddbe575c035a9ecae1429e11517e89cc48b8c93eb4b29a34"
+        },
+        "renderer_build": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/baseline/manifest.json",
+          "sha256": "cc0c53a3728bcdcc600a615869891e3dfccaf73ff97dd7edb4cf65ee859ff8ca"
+        },
+        "hardware": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/class-a-comparison/class-a/hardware-excerpt-raw.wav",
+          "sha256": "217ba88b7d01a5be4c2b47d901406b580651e81efa82cc9d945aa9d21fa8a16c"
+        },
+        "original_patch": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/class-a-comparison/class-a/original-patch.syx",
+          "sha256": "5ac5ab7f052f6f17c48cc342bf4493ee5919572fc66dabf7daaddd25178b95e9"
+        },
+        "reconstruction": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/Docs/fidelity/reconstructions/expanded/class-a.json",
+          "sha256": "d50bb12be88e5df1b550ef41517581da7f923055256fe932d945a75ddc24033a"
+        },
+        "comparison_tool": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/Tools/compare_hardware.py",
+          "sha256": "fa8f48f53da90b7635d69808538c25c0d339b6d08a94b3b6c00a6249ab852d6e"
+        },
+        "metric_tool": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/Tools/evaluate_timbre_matrix.py",
+          "sha256": "100b3599d7221f67d616ccc93d5b6e0804cebbdc79688b9c6c76bbe2e52a9a57"
+        }
+      },
+      "method": "Replayed only stated note timing perturbations through the frozen baseline renderer, retained 93-sample latency and unchanged SysEx/master100/preserved-patch tempo. Welch stereo-power 32-band residual uses evaluate_timbre_matrix.band_shape and spectral_residual. Full raw WAV and .render.json files are retained adjacent."
+    },
+    "sexy-back": {
+      "qualification": "Software sensitivity within stated +/-10ms note timing uncertainty; not MIDI recovery or a synthesis correction",
+      "cases": [
+        {
+          "variant": "published_reconstruction",
+          "spectral_residual": 5.679952329510507
+        },
+        {
+          "variant": "all-early",
+          "on_delta_seconds": -0.01,
+          "off_delta_seconds": -0.01,
+          "spectral_residual": 5.723724845652369,
+          "normalized_spectral_difference_from_reconstruction_db": 0.19512562753081647
+        },
+        {
+          "variant": "all-late",
+          "on_delta_seconds": 0.01,
+          "off_delta_seconds": 0.01,
+          "spectral_residual": 5.680185166738038,
+          "normalized_spectral_difference_from_reconstruction_db": 0.13380883176289776
+        },
+        {
+          "variant": "short-gate",
+          "on_delta_seconds": 0,
+          "off_delta_seconds": -0.01,
+          "spectral_residual": 5.755896330340827,
+          "normalized_spectral_difference_from_reconstruction_db": 0.8816959101335099
+        },
+        {
+          "variant": "long-gate",
+          "on_delta_seconds": 0,
+          "off_delta_seconds": 0.01,
+          "spectral_residual": 5.728419652203397,
+          "normalized_spectral_difference_from_reconstruction_db": 0.5369377259229599
+        }
+      ],
+      "inputs": {
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/baseline/SeptumRenderMidi",
+          "sha256": "3672d8f6ddf99e1bddbe575c035a9ecae1429e11517e89cc48b8c93eb4b29a34"
+        },
+        "renderer_build": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/baseline/manifest.json",
+          "sha256": "cc0c53a3728bcdcc600a615869891e3dfccaf73ff97dd7edb4cf65ee859ff8ca"
+        },
+        "hardware": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/sexy-back-baseline/sexy-back/hardware-excerpt-raw.wav",
+          "sha256": "3e39a44537f7aa72f0a9e8a2be67a5d42584b9a4c5f1db6495c8211f4b272daf"
+        },
+        "original_patch": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/sexy-back-baseline/sexy-back/original-patch.syx",
+          "sha256": "46a1c9a9df54d9c5ebc761dae5b87471d1408b704ea46b4728d31a7c2b5b427b"
+        },
+        "reconstruction": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/Docs/fidelity/reconstructions/expanded/sexy-back.json",
+          "sha256": "c0419d80e1952f08867b9ded019c58d9c102ed07ee414a917870a2a248822e7e"
+        },
+        "comparison_tool": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/Tools/compare_hardware.py",
+          "sha256": "fa8f48f53da90b7635d69808538c25c0d339b6d08a94b3b6c00a6249ab852d6e"
+        },
+        "metric_tool": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/Tools/evaluate_timbre_matrix.py",
+          "sha256": "100b3599d7221f67d616ccc93d5b6e0804cebbdc79688b9c6c76bbe2e52a9a57"
+        }
+      },
+      "method": "Replayed only stated note timing perturbations through the frozen baseline renderer, retained 93-sample latency and unchanged SysEx/master100/preserved-patch tempo. Welch stereo-power 32-band residual uses evaluate_timbre_matrix.band_shape and spectral_residual. Full raw WAV and .render.json files are retained adjacent."
+    },
+    "trancefloor": {
+      "qualification": "Software sensitivity within stated note timing uncertainty, no original MIDI recovery",
+      "cases": [
+        {
+          "variant": "published_reconstruction",
+          "spectral_residual": 2.8918353317873846
+        },
+        {
+          "variant": "on-early",
+          "on_delta_seconds": -0.003,
+          "off_delta_seconds": 0,
+          "spectral_residual": 2.9340347296039355,
+          "normalized_spectral_difference_from_reconstruction_db": 0.2816601241451954
+        },
+        {
+          "variant": "on-late",
+          "on_delta_seconds": 0.003,
+          "off_delta_seconds": 0,
+          "spectral_residual": 2.9070902040609,
+          "normalized_spectral_difference_from_reconstruction_db": 0.10765137195152087
+        },
+        {
+          "variant": "short-gate",
+          "on_delta_seconds": 0,
+          "off_delta_seconds": -0.015,
+          "spectral_residual": 2.7452128315820983,
+          "normalized_spectral_difference_from_reconstruction_db": 0.3357604704326681
+        },
+        {
+          "variant": "long-gate",
+          "on_delta_seconds": 0,
+          "off_delta_seconds": 0.015,
+          "spectral_residual": 2.8503135595390208,
+          "normalized_spectral_difference_from_reconstruction_db": 0.24050500730426672
+        }
+      ],
+      "inputs": {
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/baseline/SeptumRenderMidi",
+          "sha256": "3672d8f6ddf99e1bddbe575c035a9ecae1429e11517e89cc48b8c93eb4b29a34"
+        },
+        "renderer_build": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/baseline/manifest.json",
+          "sha256": "cc0c53a3728bcdcc600a615869891e3dfccaf73ff97dd7edb4cf65ee859ff8ca"
+        },
+        "hardware": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/trancefloor-baseline/trancefloor/hardware-excerpt-raw.wav",
+          "sha256": "7d2b8879a90c57f3270e2cccd34a7105db5347ec4e9e079cdc215cb3ddeca1e3"
+        },
+        "original_patch": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/trancefloor-baseline/trancefloor/original-patch.syx",
+          "sha256": "5b385c185d00759227a219bdbcfbfecdb7cf6e05aaaca8ff42163b463649a649"
+        },
+        "reconstruction": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/Docs/fidelity/reconstructions/expanded/trancefloor.json",
+          "sha256": "8ff6f7eb3bafa6d63ecff1965eb9eee19e63118598bb4c0e659c3b53e5ddbd1a"
+        },
+        "comparison_tool": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/Tools/compare_hardware.py",
+          "sha256": "fa8f48f53da90b7635d69808538c25c0d339b6d08a94b3b6c00a6249ab852d6e"
+        },
+        "metric_tool": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/Tools/evaluate_timbre_matrix.py",
+          "sha256": "100b3599d7221f67d616ccc93d5b6e0804cebbdc79688b9c6c76bbe2e52a9a57"
+        }
+      },
+      "method": "Same frozen renderer/patch/44.1kHz/master100/preserved patch tempo. Perturb onsets +/-3ms separately from note-offs +/-15ms; no sound fitting. Score first 1.22s with unchanged matrix metric."
+    }
+  },
+  "waveform_coverage": {
+    "triangle_affected_cases": [
+      "moogie-1",
+      "dist-bs-1",
+      "air-lead-1",
+      "club-bass",
+      "sexy-back"
+    ],
+    "triangle_unaffected_count": 8,
+    "new_cases": {
+      "class-a": {
+        "active_routing": "single Upper",
+        "waves": [
+          "saw",
+          "saw"
+        ],
+        "triangle_affected": false,
+        "net_oscillator_semitones": [
+          0,
+          -12
+        ],
+        "mono_mode": "SOLO+LEGATO"
+      },
+      "sexy-back": {
+        "active_routing": "dual Upper+Lower",
+        "waves": {
+          "upper": [
+            "super_saw",
+            "super_saw"
+          ],
+          "lower": [
+            "triangle",
+            "saw"
+          ]
+        },
+        "triangle_affected": true,
+        "settled_triangle_hz_at_midi39": 19.15558322744299,
+        "note_off_uncertainty_seconds": 0.01
+      },
+      "trancefloor": {
+        "active_routing": "single Upper",
+        "waves": [
+          "super_saw",
+          "super_saw"
+        ],
+        "triangle_affected": false,
+        "net_oscillator_semitones": [
+          0,
+          -12
+        ],
+        "onset_uncertainty_seconds": 0.003,
+        "note_off_uncertainty_seconds": 0.015
+      }
+    }
+  },
+  "balance_law_audit": {
+    "sources": [
+      {
+        "url": "https://static.roland.com/assets/media/pdf/SH-201_OM.pdf",
+        "pages": [
+          33,
+          60,
+          64
+        ],
+        "sha256": "b4a2968d429c7f3e907a6243723d5e803ae2e0014e8e9107c85bd966deea8e79"
+      },
+      {
+        "url": "https://static.roland.com/assets/media/pdf/SH-201_MI.pdf",
+        "pages": [
+          5
+        ],
+        "sha256": "71a8fe00a8d232c494a5aba6885756d99e6650fc14671115260d9446c3009546"
+      }
+    ],
+    "established": "Direction, endpoint oscillator isolation and signed -63..+63 control range. No numerical center level or crossfade curve was found in these passages.",
+    "current_weaker_leg": "1-abs(balance)/63 with stronger leg=1",
+    "proposed_weaker_leg": "(63-abs(balance))/(63+abs(balance)) with stronger leg=1",
+    "proposed_normalization": "Peak-normalized linear constant-sum crossfade; final applied gains are constant maximum, not constant sum.",
+    "at_minus26": {
+      "current_weaker_leg": 0.5873015873015873,
+      "proposed_weaker_leg": 0.4157303370786517,
+      "relative_weaker_leg_change_db": -3.0009891438266223
+    },
+    "scope_warning": "The incumbent helper is shared by oscillator balance and tone balance. Oscillator evidence alone does not justify changing tone balance.",
+    "identifiability": "Scalar-normalized captures do not identify absolute gain normalization. Relative spectral families can constrain a mix ratio only conditionally on waveform/phase, filter response and capture processing."
+  },
+  "promotion_criteria": [
+    "Predeclare diagnostic/training and validation roles; after all candidate scores are inspected, these same references are no longer untouched heldouts.",
+    "Report the five triangle-affected patches separately; eight unchanged cases are regression controls, not independent supporting improvements.",
+    "Require useful improvement in multiple affected patches and no material regression in withheld harmonic ratios or temporal trajectories; whole-excerpt band residual alone is insufficient.",
+    "Keep candidate ranking stable across plausible note gates, onset shifts and note-window choices; preserve unchanged source/MIDI/preset identity for every paired comparison.",
+    "Separate waveform convention from initial/retained voice phase policy; current classic voices begin at phase zero and advance only while active.",
+    "Inspect raw levels and nonlinear downstream changes alongside RMS-matched listening. A balance-ratio experiment cannot identify absolute normalization from processed recordings."
+  ]
+}

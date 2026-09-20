@@ -1,0 +1,558 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-20",
+  "status": "Hardware-only A03 settled harmonic characterization; no software render or parameter fitting.",
+  "sources_sha256": {
+    "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/youtube-8LKRnrs8DcQ-44100.wav": "3f55200e611c9f01c3d7cbedba5c089bc021b232e39abd6c2c06a651aee5ecd3",
+    "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/hardware-observations/soundcloud-full.wav": "f89dc9122113bcd1a5c45bc1d97cb1fd957abfc75466db13e789b4f97d82d535",
+    "/Users/vojta/Dev/virtual-instrument-septum/Docs/fidelity/reconstructions/expanded/rcs-a03-jupiter8wide.json": "3a14622a07fcfac460b24a015d4a7a34492a225e98d97b7a21ccf409a42c3362",
+    "/Users/vojta/Dev/virtual-instrument-septum/Docs/fidelity/source-audits/rcs-reference-screen-2026-09-20.json": "1f4f3b76f21c24e33c51ee157c6c7b9a5d1ebcd85d2a1341646bababec041bfa",
+    "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/RCS-Analog-Basses-SH201.zip": "203fde7b29ee2c377b06f61bfef10675fa50338b1509dc1a1bb39438a9e7b11f",
+    "/Users/vojta/Dev/virtual-instrument-septum/Docs/fidelity/source-audits/rcs-a03-hardware-observations-2026-09-20.json": "3c00fd2dfb4481f0e0959654e4699e1c4d152ba7d3512c06c96f931a7b0f1396",
+    "/Users/vojta/Dev/virtual-instrument-septum/Docs/fidelity/source-audits/rcs-a02-hardware-observations-2026-09-20.json": "1c21f8d3d75972c0f3d26410f88dd2df76b4487f8c02e65263709625cd0f393a",
+    "/Users/vojta/Dev/virtual-instrument-septum/Docs/fidelity/rcs-a03-reference-catalog.json": "0de2b7f4d273b06bee20bf1d07168b0d1ae1a7e35556b89d6b6612a7983eb280",
+    "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/cross-platform-timing.json": "5a79ec4fcff28208251cb606d617fe71077bfc348cf7fe7fafbeb224e986daea",
+    "/Users/vojta/Dev/virtual-instrument-septum/Tools/analyze_rcs_a02_endpoint.py": "6ea2b7d297543bcf082b1cb1ae66c8e0b503726c4296fd4045925e492dde43e0",
+    "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-a03-endpoint-2026-09-20/analyze_hardware_harmonics.py": "bcef2c92e014733d39f5a061c104e7ffccef08a06c14f027a5b00b55054bb44a"
+  },
+  "provenance": {
+    "script": "build-fidelity/rcs-a03-endpoint-2026-09-20/analyze_hardware_harmonics.py",
+    "full_analysis": "build-fidelity/rcs-a03-endpoint-2026-09-20/analysis.json",
+    "full_analysis_sha256": "534e6e8f24dfca70ddee8b8e6aa1d7c2b7bc7262824bfa23070485c75c98245c"
+  },
+  "method": "Fixed60ms rectangular windows at YouTube36.900/36.930s; L/R/mid, two encodes of one performance. Joint DC/trend plus40-harmonic least squares with independent49\u201361Hz frequency nuisance search. Relative phase is phi_n minus n*phi_1. About3.3 periods per window.",
+  "fixed_soundcloud_minus_youtube_seconds": -1.4925170068027214,
+  "summary": {
+    "observation_count": 12,
+    "frequency_hz": {
+      "min": 54.8002704670711,
+      "median": 55.05593473330741,
+      "max": 55.212439154201284
+    },
+    "h2_h8_db_relative_h1": {
+      "2": {
+        "min": 1.1095371441026525,
+        "median": 5.8069705637062174,
+        "max": 10.576227573670764
+      },
+      "3": {
+        "min": -4.257993029629591,
+        "median": -2.2485006360600797,
+        "max": -1.4503353520620799
+      },
+      "4": {
+        "min": -27.135911851178477,
+        "median": -3.6559203271315255,
+        "max": 4.944053761836632
+      },
+      "5": {
+        "min": -7.225102812490776,
+        "median": -4.98034121413626,
+        "max": -3.8487049963636495
+      },
+      "6": {
+        "min": -12.463122573872285,
+        "median": -7.2618477215900405,
+        "max": 0.8032977168528996
+      },
+      "7": {
+        "min": -17.57222115593793,
+        "median": -10.7239689381789,
+        "max": -5.9507760944863275
+      },
+      "8": {
+        "min": -11.26709623924242,
+        "median": -8.48635870000245,
+        "max": -4.581805607658153
+      }
+    },
+    "harmonic_model_residual_fraction": {
+      "min": 0.006059562491486455,
+      "median": 0.009717206839606043,
+      "max": 0.014781854073829174
+    },
+    "best_sine_model_residual_fraction": {
+      "min": 0.7033750868879552,
+      "median": 0.8283184707009373,
+      "max": 0.9370828882615766
+    },
+    "nonfundamental_fraction_of_periodic_power": {
+      "min": 0.7274397262022573,
+      "median": 0.8436892545633781,
+      "max": 0.9442768182383345
+    },
+    "mid_pcm_cross_encode_correlation_at_fixed_offset": 0.9974834897920669
+  },
+  "observations": [
+    {
+      "platform": "youtube",
+      "youtube_center_seconds": 36.9,
+      "width_seconds": 0.06,
+      "channel": "left",
+      "frequency_hz": 54.838356380139416,
+      "harmonic_peak_amplitude_h1_h8": [
+        0.07756908737895123,
+        0.0881384764513519,
+        0.06466323417723199,
+        0.0034110893018378537,
+        0.04469060962738422,
+        0.03099304660813286,
+        0.01711935510447014,
+        0.027459529967366048
+      ],
+      "h2_h8_db_relative_h1": [
+        1.1095371441026525,
+        -1.5806251904040058,
+        -27.135911851178477,
+        -4.7894480588955055,
+        -7.968488250306107,
+        -13.124025626929551,
+        -9.019911657243174
+      ],
+      "h2_h8_phase_minus_n_times_h1_degrees": [
+        -63.181274714669215,
+        148.28465857282606,
+        137.06307581646007,
+        1.9712988196353622,
+        112.82631044456262,
+        -155.58758758059446,
+        -71.53260494233385
+      ],
+      "harmonic_model_residual_fraction": 0.014781854073829174,
+      "best_sine_model_residual_fraction": 0.7038017516452085,
+      "nonfundamental_fraction_of_periodic_power": 0.7282687339668031
+    },
+    {
+      "platform": "youtube",
+      "youtube_center_seconds": 36.9,
+      "width_seconds": 0.06,
+      "channel": "right",
+      "frequency_hz": 55.17910938407493,
+      "harmonic_peak_amplitude_h1_h8": [
+        0.039771848086468,
+        0.12990260478954976,
+        0.024419351598026454,
+        0.06947269779151166,
+        0.017525203191044645,
+        0.0436255241305173,
+        0.01362735616493068,
+        0.023053778940658014
+      ],
+      "h2_h8_db_relative_h1": [
+        10.28084175341812,
+        -4.23683287746395,
+        4.844767839888474,
+        -7.118254198613972,
+        0.8032977168528996,
+        -9.303283302097785,
+        -4.736672948937636
+      ],
+      "h2_h8_phase_minus_n_times_h1_degrees": [
+        -173.5771206317591,
+        -27.313339764817474,
+        -103.72149923107033,
+        79.09953098655619,
+        -39.08589519489732,
+        162.60231904830857,
+        25.84524896132097
+      ],
+      "harmonic_model_residual_fraction": 0.00670193973048963,
+      "best_sine_model_residual_fraction": 0.9154170196246716,
+      "nonfundamental_fraction_of_periodic_power": 0.9414976849221293
+    },
+    {
+      "platform": "youtube",
+      "youtube_center_seconds": 36.9,
+      "width_seconds": 0.06,
+      "channel": "mid",
+      "frequency_hz": 55.08001245122313,
+      "harmonic_peak_amplitude_h1_h8": [
+        0.05547192100586123,
+        0.10509761297607922,
+        0.04027036576157048,
+        0.035296371744419616,
+        0.024517190736943705,
+        0.02829299708221898,
+        0.007336047726178624,
+        0.022204086918604312
+      ],
+      "h2_h8_db_relative_h1": [
+        5.550392927784777,
+        -2.7817526338279768,
+        -3.926862820996356,
+        -7.092050002033474,
+        -5.847885021503573,
+        -17.57222115593793,
+        -7.952805742761726
+      ],
+      "h2_h8_phase_minus_n_times_h1_degrees": [
+        -108.2413797672976,
+        94.42809905523102,
+        4.038132420292116,
+        -84.90762413686485,
+        85.69797132068275,
+        58.583293006697154,
+        -151.64051063287002
+      ],
+      "harmonic_model_residual_fraction": 0.011487921187375565,
+      "best_sine_model_residual_fraction": 0.8042588874094794,
+      "nonfundamental_fraction_of_periodic_power": 0.8388238455014969
+    },
+    {
+      "platform": "youtube",
+      "youtube_center_seconds": 36.93,
+      "width_seconds": 0.06,
+      "channel": "left",
+      "frequency_hz": 54.83829732625106,
+      "harmonic_peak_amplitude_h1_h8": [
+        0.06544628460179587,
+        0.08771629041744912,
+        0.05497045853032342,
+        0.014576294965433983,
+        0.04002095456502835,
+        0.015585791707207067,
+        0.019060549450062223,
+        0.021957933220655135
+      ],
+      "h2_h8_db_relative_h1": [
+        2.5439052034993876,
+        -1.5151127400453896,
+        -13.04475697036204,
+        -4.271951070994525,
+        -12.463122573872285,
+        -10.714991618131757,
+        -9.485870733030016
+      ],
+      "h2_h8_phase_minus_n_times_h1_degrees": [
+        -71.21238938503738,
+        135.90985815678584,
+        106.67633433361699,
+        -21.99555456157024,
+        83.21175808486197,
+        168.86004300509654,
+        -111.8850125108379
+      ],
+      "harmonic_model_residual_fraction": 0.013344042298298713,
+      "best_sine_model_residual_fraction": 0.7545462221292661,
+      "nonfundamental_fraction_of_periodic_power": 0.763142297098212
+    },
+    {
+      "platform": "youtube",
+      "youtube_center_seconds": 36.93,
+      "width_seconds": 0.06,
+      "channel": "right",
+      "frequency_hz": 55.19523330090148,
+      "harmonic_peak_amplitude_h1_h8": [
+        0.03869134020201569,
+        0.11859428095207947,
+        0.029038777640190985,
+        0.05941016537906576,
+        0.023363709280303468,
+        0.03486561850397791,
+        0.019272124894408032,
+        0.016626354056250958
+      ],
+      "h2_h8_db_relative_h1": [
+        9.728999461414112,
+        -2.492708840066127,
+        3.7249397622961444,
+        -4.381439592415419,
+        -0.904327987179697,
+        -6.05368343450623,
+        -7.336334973750796
+      ],
+      "h2_h8_phase_minus_n_times_h1_degrees": [
+        -142.67550894475025,
+        23.39117549381428,
+        -40.7062638336281,
+        159.40514102154265,
+        56.5317081254156,
+        -78.69314601397,
+        150.67294443162217
+      ],
+      "harmonic_model_residual_fraction": 0.011455989807099934,
+      "best_sine_model_residual_fraction": 0.93589457963894,
+      "nonfundamental_fraction_of_periodic_power": 0.9336885807511033
+    },
+    {
+      "platform": "youtube",
+      "youtube_center_seconds": 36.93,
+      "width_seconds": 0.06,
+      "channel": "mid",
+      "frequency_hz": 55.04838670023288,
+      "harmonic_peak_amplitude_h1_h8": [
+        0.05098242140524308,
+        0.1011101814621814,
+        0.03936420305496386,
+        0.03452801142721777,
+        0.0275176185024546,
+        0.01583813111191675,
+        0.014719643080895586,
+        0.013933674035748387
+      ],
+      "h2_h8_db_relative_h1": [
+        5.9474886283698725,
+        -2.2463799001518754,
+        -3.3849778332666953,
+        -5.356192259829612,
+        -10.154330491158834,
+        -10.790463579178125,
+        -11.26709623924242
+      ],
+      "h2_h8_phase_minus_n_times_h1_degrees": [
+        -102.70550360661332,
+        95.20590041419679,
+        28.554150214204103,
+        -87.99097245574542,
+        118.23444172561754,
+        64.56057842204433,
+        -145.58526887669086
+      ],
+      "harmonic_model_residual_fraction": 0.009041512801073234,
+      "best_sine_model_residual_fraction": 0.8513724316765122,
+      "nonfundamental_fraction_of_periodic_power": 0.8482013086021075
+    },
+    {
+      "platform": "soundcloud",
+      "youtube_center_seconds": 36.9,
+      "width_seconds": 0.06,
+      "channel": "left",
+      "frequency_hz": 54.8002704670711,
+      "harmonic_peak_amplitude_h1_h8": [
+        0.07450289612859569,
+        0.08661569943008979,
+        0.061062022903479674,
+        0.00717510414761666,
+        0.042079187244218934,
+        0.02573943676861049,
+        0.015858275438524732,
+        0.025845757370032297
+      ],
+      "h2_h8_db_relative_h1": [
+        1.3084692285953974,
+        -1.7280393495221802,
+        -20.326898919585016,
+        -4.962116248151563,
+        -9.231482317034231,
+        -13.438343970775602,
+        -9.195677845100487
+      ],
+      "h2_h8_phase_minus_n_times_h1_degrees": [
+        -56.70232517284259,
+        159.14499470693636,
+        163.09411561331055,
+        17.854661604074792,
+        131.06883180270597,
+        -132.18499173049725,
+        -43.72954946770218
+      ],
+      "harmonic_model_residual_fraction": 0.009579638618400567,
+      "best_sine_model_residual_fraction": 0.7033750868879552,
+      "nonfundamental_fraction_of_periodic_power": 0.7274397262022573
+    },
+    {
+      "platform": "soundcloud",
+      "youtube_center_seconds": 36.9,
+      "width_seconds": 0.06,
+      "channel": "right",
+      "frequency_hz": 55.19024419113409,
+      "harmonic_peak_amplitude_h1_h8": [
+        0.03727190743160628,
+        0.12594849940089023,
+        0.022828741338584042,
+        0.06585432564943668,
+        0.01684339028649469,
+        0.040823456776228874,
+        0.01331800453185157,
+        0.021993347612044377
+      ],
+      "h2_h8_db_relative_h1": [
+        10.576227573670764,
+        -4.257993029629591,
+        4.944053761836632,
+        -6.8990421362494665,
+        0.7905631505095383,
+        -8.93884920981532,
+        -4.581805607658153
+      ],
+      "h2_h8_phase_minus_n_times_h1_degrees": [
+        -169.1915344682907,
+        -19.131272074281217,
+        -90.23944953699532,
+        95.31933169762749,
+        -16.244903419804714,
+        -169.3634014294951,
+        53.962861462655674
+      ],
+      "harmonic_model_residual_fraction": 0.006059562491486455,
+      "best_sine_model_residual_fraction": 0.9192731837509446,
+      "nonfundamental_fraction_of_periodic_power": 0.9442768182383345
+    },
+    {
+      "platform": "soundcloud",
+      "youtube_center_seconds": 36.9,
+      "width_seconds": 0.06,
+      "channel": "mid",
+      "frequency_hz": 55.06348276638194,
+      "harmonic_peak_amplitude_h1_h8": [
+        0.05295467012656161,
+        0.10167797585621054,
+        0.03744830585205075,
+        0.032853168729957014,
+        0.02304884282564585,
+        0.024896821600829143,
+        0.007319790882143727,
+        0.021250658558571778
+      ],
+      "h2_h8_db_relative_h1": [
+        5.666452499042562,
+        -3.0094418370874747,
+        -4.146540056711885,
+        -7.225102812490776,
+        -6.555207192873974,
+        -17.188111861133912,
+        -7.9306374722593755
+      ],
+      "h2_h8_phase_minus_n_times_h1_degrees": [
+        -102.64246859086018,
+        105.66174732373172,
+        20.856603014328872,
+        -67.90167676435739,
+        110.88063337051462,
+        82.49405701335394,
+        -122.06824549830893
+      ],
+      "harmonic_model_residual_fraction": 0.009352773021775215,
+      "best_sine_model_residual_fraction": 0.8052645097253625,
+      "nonfundamental_fraction_of_periodic_power": 0.8391772005246485
+    },
+    {
+      "platform": "soundcloud",
+      "youtube_center_seconds": 36.93,
+      "width_seconds": 0.06,
+      "channel": "left",
+      "frequency_hz": 54.80496807227553,
+      "harmonic_peak_amplitude_h1_h8": [
+        0.061865609728957646,
+        0.08719565949440157,
+        0.05235190986879605,
+        0.016436764128544456,
+        0.03870341425750557,
+        0.015064626824176367,
+        0.01863245455013226,
+        0.020573796576558362
+      ],
+      "h2_h8_db_relative_h1": [
+        2.980911384029193,
+        -1.4503353520620799,
+        -11.512659491784191,
+        -4.07400038322413,
+        -12.26981839225203,
+        -10.42358454048295,
+        -9.562697122543138
+      ],
+      "h2_h8_phase_minus_n_times_h1_degrees": [
+        -66.33695328030907,
+        146.93399358459234,
+        122.41076264200429,
+        -4.511441085718463,
+        100.86512348980482,
+        -164.77444256267987,
+        -81.41823758176601
+      ],
+      "harmonic_model_residual_fraction": 0.009854775060811522,
+      "best_sine_model_residual_fraction": 0.7705159280390789,
+      "nonfundamental_fraction_of_periodic_power": 0.7764889035400376
+    },
+    {
+      "platform": "soundcloud",
+      "youtube_center_seconds": 36.93,
+      "width_seconds": 0.06,
+      "channel": "right",
+      "frequency_hz": 55.212439154201284,
+      "harmonic_peak_amplitude_h1_h8": [
+        0.035828817120130085,
+        0.11229975511775431,
+        0.02765039893923732,
+        0.0562614118329334,
+        0.02300367485571964,
+        0.03204353321579872,
+        0.018058998650706617,
+        0.015226736199549668
+      ],
+      "h2_h8_db_relative_h1": [
+        9.922926779213944,
+        -2.250621371968284,
+        3.9195631189559066,
+        -3.8487049963636495,
+        -0.9698414722608811,
+        -5.9507760944863275,
+        -7.43251293091296
+      ],
+      "h2_h8_phase_minus_n_times_h1_degrees": [
+        -135.73936047659802,
+        36.735984847121536,
+        -24.084116057287428,
+        -179.688814648098,
+        81.72508838054885,
+        -50.1147936422838,
+        -175.805895695258
+      ],
+      "harmonic_model_residual_fraction": 0.010623848170637343,
+      "best_sine_model_residual_fraction": 0.9370828882615766,
+      "nonfundamental_fraction_of_periodic_power": 0.9362953428074182
+    },
+    {
+      "platform": "soundcloud",
+      "youtube_center_seconds": 36.93,
+      "width_seconds": 0.06,
+      "channel": "mid",
+      "frequency_hz": 55.01960649727239,
+      "harmonic_peak_amplitude_h1_h8": [
+        0.047850155771778494,
+        0.09780519947273852,
+        0.03756576615382641,
+        0.03347140087568927,
+        0.02691256222142788,
+        0.013915993892655973,
+        0.013907082884727657,
+        0.01323741626473188
+      ],
+      "h2_h8_db_relative_h1": [
+        6.209571744675095,
+        -2.1018221043704934,
+        -3.1041893338554543,
+        -4.9985661801209575,
+        -10.727382528901995,
+        -10.73294625822604,
+        -11.161602599834703
+      ],
+      "h2_h8_phase_minus_n_times_h1_degrees": [
+        -96.40982785038109,
+        107.33930668261067,
+        45.73795800123513,
+        -69.02591194760352,
+        139.0944715071809,
+        93.08077823843486,
+        -114.62311007026041
+      ],
+      "harmonic_model_residual_fraction": 0.008259166737112328,
+      "best_sine_model_residual_fraction": 0.8582050269163861,
+      "nonfundamental_fraction_of_periodic_power": 0.8552103842485225
+    }
+  ],
+  "interpretation": [
+    "Upper-rich harmonic output is clearly present, but the active modulation delay causes substantial channel/time-dependent interference; these windows do not isolate the dry Upper filter or oscillators.",
+    "At36.900s the YouTube H4/H2 ratio differs22.81dB between left and right, even after removing mixed H1 as denominator. At36.930s that difference is9.58dB.",
+    "Lower sustain0 does not prove that its raw64 decay has completed; neither its remaining fundamental nor relative Upper/Lower phase is identified.",
+    "A stable periodic approximation is useful as an observed wet-output target, not as a unique static cutoff or envelope-depth constraint."
+  ],
+  "limits": [
+    "Lower sine has sustain0 but decay64; raw sustain0 does not establish that Lower is already silent in either finite window.",
+    "Upper modulation delay is enabled at send127 with raw parameters0/53/12/3/49; dry/wet interference and modulation can shape harmonics and phase.",
+    "Square is one octave below the played key and saw at key pitch, but Upper overdrive and filter mix their harmonic families.",
+    "H2+ excludes an ideal linear Lower sine contribution but does not isolate the dry Upper oscillators or a unique filter endpoint.",
+    "Same author performance and two lossy encodes; no independent hardware unit/session evidence.",
+    "Descriptive local frequency is not a tuning or MIDI fit. Published patch identity does not verify unshown live controls or exact same-take revision."
+  ]
+}

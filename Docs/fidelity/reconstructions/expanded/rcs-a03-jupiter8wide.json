@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "id": "rcs-a03-jupiter8wide",
+  "title": "RCS A03 Jupiter8wide \u2014 isolated first attack",
+  "reference_id": "rcs-a03",
+  "status": "hardware_only_reconstruction",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 36.72,
+  "duration_seconds": 0.26,
+  "method": "Hardware-only inspection of the directly decoded author-linked YouTube source. An isolated attack near36.764s follows approximately0.4s of near-silence. Stable families near55 and110Hz support played MIDI45: published upper square and lower sine are physically\u221212 semitones while upper saw is unshifted, with zero fine/tone octave. The crop ends36.980s before the next attack/pitch change around37.01s. The final note-off is an artificial crop boundary during a held note, not a measured key release. No software audio, candidate output, or synthesis parameter fitting was used to select the note or crop.",
+  "uncertainties": [
+    "All performance MIDI is reconstructed; the author SMF contains patch SysEx only. Velocity100 is a placeholder, not an observed original velocity.",
+    "Parent independently inspected actual paused decoded A03-labelled frames at35 and40seconds. These bracket a conservative interior; they do not establish continuous patch-state identity, exact transitions or live numeric controls.",
+    "Played MIDI45 is conditional on the unchanged published upper square\u221212/upper saw0/lower sine\u221212 semitone tuning, zero fine tune and tone octave, and unknown system transpose/bend remaining neutral. Modulation delay can shift short-window local spectral peaks; harmonic-family estimates are not a tuning calibration.",
+    "The final note-off at0.260s is artificial and occurs at the crop boundary while the source note continues. Original key release and overlap are unknown. Comparisons should use an interior guard and should not infer release time or mono retrigger behavior from this crop.",
+    "The visible abrupt attack is near36.764s, with codec pre-echo detectable about2ms earlier. Use at least\u00b110ms onset sensitivity when interpreting closure; unknown common capture/codec latency remains.",
+    "Upper LP24 cutoff113, envelope depth\u221215, attack13, sustain127, zero resonance/keyfollow/filter velocity and drive33 act jointly. Upper amplitude ADSR0/53/60/16 and lower sine amplitude ADSR0/64/0/14 change layer balance after the attack; this is not an isolated filter transfer measurement.",
+    "Upper modulation delay is enabled at send127 with raw parameters[0,53,12,3,49] (time, feedback encoding, HF damping, modulation rate, modulation depth). Lower delay send0; reverb is globally off. Unknown delay phase/history, relative oscillator phase, output path, mastering and lossy encoding remain confounds.",
+    "A03 is a held-out patch in the same author recording as A02, not an independent hardware unit or recording session. Exact same-take patch edits/controllers are unverified. No published patch bytes may be changed to improve the match."
+  ],
+  "notes": [
+    {
+      "on": 0.044,
+      "off": 0.26,
+      "note": 45,
+      "velocity": 100
+    }
+  ]
+}

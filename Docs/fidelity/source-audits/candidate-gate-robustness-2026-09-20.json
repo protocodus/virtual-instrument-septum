@@ -1,0 +1,513 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-20",
+  "qualification": "Paired software robustness to estimated input uncertainty; no MIDI recovery or verified hardware calibration",
+  "full_ignored_report": {
+    "path": "build-fidelity/candidate-gate-robustness-2026-09-20/results.json",
+    "sha256": "eaf2882e6bd31c7d74b5b20a69a10dec8503a4c2deb95fbeffc9d96f8ff2d768"
+  },
+  "reproduction_script": {
+    "path": "build-fidelity/candidate-gate-robustness-2026-09-20/run_audit.py",
+    "sha256": "b4604e2905135740aa4fd6c11d711b4f4dcec91392d6f10a1f657bd5040cef53"
+  },
+  "reproduction_commands": [
+    "mkdir build-fidelity/candidate-gate-robustness-reproduction",
+    "cp build-fidelity/candidate-gate-robustness-2026-09-20/run_audit.py build-fidelity/candidate-gate-robustness-reproduction/run_audit.py",
+    "python3 build-fidelity/candidate-gate-robustness-reproduction/run_audit.py"
+  ],
+  "models": {
+    "baseline": {
+      "renderer_path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/baseline/SeptumRenderMidi",
+      "renderer_sha256": "3672d8f6ddf99e1bddbe575c035a9ecae1429e11517e89cc48b8c93eb4b29a34",
+      "build_manifest_path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/baseline/manifest.json",
+      "build_manifest_sha256": "cc0c53a3728bcdcc600a615869891e3dfccaf73ff97dd7edb4cf65ee859ff8ca",
+      "profile_sha256": "a2c9990668579296687b56b734457e4d4b4d0a62f5d575237ee4a0600757934e",
+      "source_input_set_sha256": "90006ef80cfda06fdbbd8cc99296644549c64622cfab38fb0675a2058d0fe516",
+      "source_inputs_identical_to_baseline": true,
+      "source_differences_from_baseline": {}
+    },
+    "triangle-invert-one-half": {
+      "renderer_path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/waveform-crosscheck-2026-09-20/triangle-invert-one-half/SeptumRenderMidi",
+      "renderer_sha256": "89899cdaee3d68af8f8c81e545fdb65c260d2c12dfd6031782d74b49a8f48a42",
+      "build_manifest_path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/waveform-crosscheck-2026-09-20/triangle-invert-one-half/manifest.json",
+      "build_manifest_sha256": "aa2e6f6a62a2b062293088f250dd21528174255750b7990a362858342fb9d19e",
+      "profile_sha256": "ffe06d1fe8559c7f9bc9d6b40d00c62597799b99c3645670b0bc8c1ac8f6b635",
+      "source_input_set_sha256": "90006ef80cfda06fdbbd8cc99296644549c64622cfab38fb0675a2058d0fe516",
+      "source_inputs_identical_to_baseline": true,
+      "source_differences_from_baseline": {}
+    },
+    "balance-linear": {
+      "renderer_path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/balance-linear/renderer/SeptumRenderMidi",
+      "renderer_sha256": "29762aed8ad432e96964b7a6e0df0788297ebc643eed2dd04110ff5a896158f0",
+      "build_manifest_path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/balance-linear/renderer/manifest.json",
+      "build_manifest_sha256": "76e363fada114cd2f8f83c12d976a052a2440b857ad096335ec5471747e2a7c1",
+      "profile_sha256": "c18b361364249868b660adc1b6884f5aab3091dd14e9af8857ce669f61beaf1f",
+      "source_input_set_sha256": "d779198af03dbab1bc38d92acefa2ad6a825e298dd2a8198032c734edf21bd49",
+      "source_inputs_identical_to_baseline": false,
+      "source_differences_from_baseline": {
+        "Source/DSP/SeptumEngine.cpp": {
+          "baseline": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+          "candidate": "2ff7f08513f65cff29abcd1db48e6d91aa693f939f4ca009be1a61be8cada8b7"
+        }
+      }
+    }
+  },
+  "baseline_source_input_sha256": {
+    "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+    "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+    "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+    "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+    "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+    "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+    "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+    "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+    "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+    "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+    "Source/DSP/SeptumEngine.h": "f442d854b37a0a330969187fe3c1c22df9300dceef449ff12a02a5f818d15dc7",
+    "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+    "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+    "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+    "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+    "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+    "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9",
+    "Tools/RenderMidi.cpp": "73fc5cd13bf635bbd95dc2a4e65301b06038cd96d2e684de1bb694b3e0066bfb"
+  },
+  "window_method": "Per-note windows use fixed nominal note onset+30ms through note-off-20ms, before the next onset-20ms. Software windows add exactly reported93-sample latency, with no fitted alignment. All scoring uses stereo-power 32 logarithmic bands normalized25\u201312500Hz. Short note-window residuals are diagnostic and have lower frequency resolution than whole-excerpt residuals.",
+  "cases": {
+    "sexy-back": {
+      "original_reconstruction_sha256": "c0419d80e1952f08867b9ded019c58d9c102ed07ee414a917870a2a248822e7e",
+      "hardware_sha256": "3e39a44537f7aa72f0a9e8a2be67a5d42584b9a4c5f1db6495c8211f4b272daf",
+      "published_patch_sha256": "46a1c9a9df54d9c5ebc761dae5b87471d1408b704ea46b4728d31a7c2b5b427b",
+      "summary": {
+        "variant_count": 5,
+        "whole_excerpt_all_improve": true,
+        "whole_excerpt_delta_db_range": [
+          -0.44645556279719134,
+          -0.17390070023149207
+        ],
+        "note_window_count": 15,
+        "note_window_regressions": 4,
+        "note_window_delta_db_range": [
+          -0.43162898438194386,
+          0.966510924987702
+        ]
+      },
+      "whole_excerpt_variants": [
+        {
+          "variant": "nominal",
+          "baseline": 5.679952329510507,
+          "candidate": 5.459865770313582,
+          "delta_db": -0.22008655919692544,
+          "midi_sha256": "3b692b941fb6e63436f5d9332de4ce566fd1792e9358a0c01f512c5cd593fca4"
+        },
+        {
+          "variant": "all-early10ms",
+          "baseline": 5.723724845652369,
+          "candidate": 5.549824145420877,
+          "delta_db": -0.17390070023149207,
+          "midi_sha256": "73475517250dfd17751a367a5c9fe1ea32ffcc4d35753cdc39395bd71f9d4fc1"
+        },
+        {
+          "variant": "all-late10ms",
+          "baseline": 5.680185166738038,
+          "candidate": 5.3767802776404565,
+          "delta_db": -0.3034048890975818,
+          "midi_sha256": "538d0016987876a2120836bb171f6c2bd646fe43295b070a9f7871b20b274ce6"
+        },
+        {
+          "variant": "off-early10ms",
+          "baseline": 5.755896330340827,
+          "candidate": 5.309440767543635,
+          "delta_db": -0.44645556279719134,
+          "midi_sha256": "6053d4981c3718aa5a4536698dc757c237b8952d959f9633a524ab5f80b016ce"
+        },
+        {
+          "variant": "off-late10ms",
+          "baseline": 5.728419652203397,
+          "candidate": 5.3957143527544575,
+          "delta_db": -0.33270529944893923,
+          "midi_sha256": "3da28b868e242e7d6c1789c8593bf9ac42ded38694d9de645ac9155ea895eebc"
+        }
+      ],
+      "note_window_regressions": [
+        {
+          "variant": "nominal",
+          "note_index": 2,
+          "hardware_window_seconds": [
+            0.45501133786848075,
+            0.5449886621315193
+          ],
+          "baseline": 9.21263025611268,
+          "candidate": 9.910744532994187,
+          "delta_db": 0.6981142768815065
+        },
+        {
+          "variant": "all-early10ms",
+          "note_index": 2,
+          "hardware_window_seconds": [
+            0.45501133786848075,
+            0.5449886621315193
+          ],
+          "baseline": 9.062279234904224,
+          "candidate": 10.028790159891926,
+          "delta_db": 0.966510924987702
+        },
+        {
+          "variant": "off-early10ms",
+          "note_index": 2,
+          "hardware_window_seconds": [
+            0.45501133786848075,
+            0.5449886621315193
+          ],
+          "baseline": 9.35374112561776,
+          "candidate": 9.601788393348281,
+          "delta_db": 0.24804726773052188
+        },
+        {
+          "variant": "off-late10ms",
+          "note_index": 2,
+          "hardware_window_seconds": [
+            0.45501133786848075,
+            0.5449886621315193
+          ],
+          "baseline": 8.56352158626521,
+          "candidate": 8.714367432087109,
+          "delta_db": 0.1508458458218982
+        }
+      ]
+    },
+    "club-bass": {
+      "original_reconstruction_sha256": "0f653fbd130e37cc94e349139e235975ff4d9fb029fac950f22e429ef1524a22",
+      "hardware_sha256": "e5d5a628c59003732a17927b4690984627dd8427caca51c5f527df915424a6cd",
+      "published_patch_sha256": "1db074dd01883c578cda8eef19aacf28be2b13c4a2b9ab21e829ba915f9a194b",
+      "summary": {
+        "variant_count": 8,
+        "whole_excerpt_all_improve": true,
+        "whole_excerpt_delta_db_range": [
+          -0.8745622099197679,
+          -0.7137540555251185
+        ],
+        "note_window_count": 48,
+        "note_window_regressions": 0,
+        "note_window_delta_db_range": [
+          -2.2636123331164137,
+          -0.9696491560344898
+        ]
+      },
+      "whole_excerpt_variants": [
+        {
+          "variant": "nominal",
+          "baseline": 7.734215792668925,
+          "candidate": 6.91381059738029,
+          "delta_db": -0.8204051952886351,
+          "midi_sha256": "c86bc2a60af8086ae69c30886b50334da0c8799fc52bcc2a7a0495c39f893a3a"
+        },
+        {
+          "variant": "all-early20ms",
+          "baseline": 7.805336274592261,
+          "candidate": 6.971226263058824,
+          "delta_db": -0.8341100115334372,
+          "midi_sha256": "e6e55f1ac585d30f4a96ef4a7303977ba973da3922d0889c7cf085fd46ae70f5"
+        },
+        {
+          "variant": "all-late20ms",
+          "baseline": 7.816245638856168,
+          "candidate": 6.9416834289364004,
+          "delta_db": -0.8745622099197679,
+          "midi_sha256": "b02e4268159bb5c60660abd6e6b6a7ab2de79fcf02f4d8b4c9f4015a49bc684a"
+        },
+        {
+          "variant": "off-early20ms",
+          "baseline": 7.648729616506647,
+          "candidate": 6.894784434117628,
+          "delta_db": -0.7539451823890193,
+          "midi_sha256": "9ad2e9dcd794e2b93b7b062cf61e0ce33340a41ac953818829fdbf1249cbf94e"
+        },
+        {
+          "variant": "off-late20ms",
+          "baseline": 7.903832330870918,
+          "candidate": 7.040507664265542,
+          "delta_db": -0.8633246666053758,
+          "midi_sha256": "f5738eb3cd172f93f667453cce4ef3d67423c4e6adfe136cf4955db0ca0e3b56"
+        },
+        {
+          "variant": "transition-gap10ms",
+          "baseline": 7.563417869072953,
+          "candidate": 6.825851107935962,
+          "delta_db": -0.7375667611369918,
+          "midi_sha256": "3c184d96c587a7fa178c67ca03af8a616391ae1163d78376ed6b081be877ef71"
+        },
+        {
+          "variant": "transition-overlap10ms",
+          "baseline": 7.625744191855229,
+          "candidate": 6.91199013633011,
+          "delta_db": -0.7137540555251185,
+          "midi_sha256": "670754fe02f715c6f70e14eb13441e19b9d3c42a1a1792fa06db15b74f2ae05f"
+        },
+        {
+          "variant": "transition-overlap20ms",
+          "baseline": 7.713441472940459,
+          "candidate": 6.886403892275714,
+          "delta_db": -0.8270375806647445,
+          "midi_sha256": "7c5f5db36eee1f8d448db7f64745f9ce5882f99eda83fe41518d4e2062a792ea"
+        }
+      ],
+      "note_window_regressions": []
+    },
+    "air-lead-1": {
+      "original_reconstruction_sha256": "d71f3de9f26b5ab9bd02b6b5240bfe4d89bb00d37282bc21aedbe09cd45edc6c",
+      "hardware_sha256": "4968acb7c5f4d71eab9d163ea3caad2eb5b082cd249ba757d13f70bc691c5f01",
+      "published_patch_sha256": "e7e911d9be986fcc4987c41d79836034ef60ea5f9c70308a7d5f57348f4c091e",
+      "summary": {
+        "variant_count": 5,
+        "whole_excerpt_all_improve": true,
+        "whole_excerpt_delta_db_range": [
+          -1.3562557760304106,
+          -0.9568819734987066
+        ],
+        "note_window_count": 50,
+        "note_window_regressions": 3,
+        "note_window_delta_db_range": [
+          -2.6950413763445393,
+          0.017313684199901758
+        ]
+      },
+      "whole_excerpt_variants": [
+        {
+          "variant": "nominal",
+          "baseline": 13.403697493877829,
+          "candidate": 12.358269734949479,
+          "delta_db": -1.0454277589283496,
+          "midi_sha256": "8e7e693c3ae0940ebabace9629fc25e07aef73e90c1fe250e6dcda0fefefe228"
+        },
+        {
+          "variant": "on-early10ms",
+          "baseline": 13.334747951817087,
+          "candidate": 12.360440201805574,
+          "delta_db": -0.9743077500115138,
+          "midi_sha256": "9f140fb00165d0fca750cd07834afd933d0d9bc9cf828fef1ba93bbdc401bf3c"
+        },
+        {
+          "variant": "on-late10ms",
+          "baseline": 13.699637827398988,
+          "candidate": 12.343382051368577,
+          "delta_db": -1.3562557760304106,
+          "midi_sha256": "e658becc3b51960fc96a098c30260fcbeccf98be4ea53b7e4b0b780dd1960da6"
+        },
+        {
+          "variant": "off-early20ms",
+          "baseline": 13.443577630174294,
+          "candidate": 12.486695656675588,
+          "delta_db": -0.9568819734987066,
+          "midi_sha256": "957a5fbf69574fb67f46795cdf07f522a7f534d95aa794832b4c63f6b776263c"
+        },
+        {
+          "variant": "off-late20ms",
+          "baseline": 13.4036985924637,
+          "candidate": 12.358270843525071,
+          "delta_db": -1.0454277489386286,
+          "midi_sha256": "fb04a4050e318816bc5b8da1e4c5eece722df064a263218730e103f738963ea7"
+        }
+      ],
+      "note_window_regressions": [
+        {
+          "variant": "nominal",
+          "note_index": 1,
+          "hardware_window_seconds": [
+            0.08,
+            0.12
+          ],
+          "baseline": 16.003215849208075,
+          "candidate": 16.020529533407977,
+          "delta_db": 0.017313684199901758
+        },
+        {
+          "variant": "off-early20ms",
+          "note_index": 1,
+          "hardware_window_seconds": [
+            0.08,
+            0.12
+          ],
+          "baseline": 16.003224385757225,
+          "candidate": 16.020523091869165,
+          "delta_db": 0.01729870611194073
+        },
+        {
+          "variant": "off-late20ms",
+          "note_index": 1,
+          "hardware_window_seconds": [
+            0.08,
+            0.12
+          ],
+          "baseline": 16.003215849208075,
+          "candidate": 16.020529533407977,
+          "delta_db": 0.017313684199901758
+        }
+      ]
+    },
+    "class-a": {
+      "original_reconstruction_sha256": "d50bb12be88e5df1b550ef41517581da7f923055256fe932d945a75ddc24033a",
+      "hardware_sha256": "217ba88b7d01a5be4c2b47d901406b580651e81efa82cc9d945aa9d21fa8a16c",
+      "published_patch_sha256": "5ac5ab7f052f6f17c48cc342bf4493ee5919572fc66dabf7daaddd25178b95e9",
+      "summary": {
+        "variant_count": 4,
+        "whole_excerpt_all_improve": true,
+        "whole_excerpt_delta_db_range": [
+          -0.16611748904083856,
+          -0.13715699315525898
+        ],
+        "note_window_count": 32,
+        "note_window_regressions": 9,
+        "note_window_delta_db_range": [
+          -0.37640782908504455,
+          0.29070698767151537
+        ]
+      },
+      "whole_excerpt_variants": [
+        {
+          "variant": "nominal",
+          "baseline": 2.069394893107664,
+          "candidate": 1.9032774040668252,
+          "delta_db": -0.16611748904083856,
+          "midi_sha256": "52ab409ed92ffcfaa5b750e5dd4148c0d34e37a4af2c33c4d9f062850dd7c997"
+        },
+        {
+          "variant": "overlap2ms",
+          "baseline": 2.540875149371885,
+          "candidate": 2.403718071379795,
+          "delta_db": -0.13715707799208987,
+          "midi_sha256": "0b80038ac406729627b4801e2f1e1e73c901e0786c93b43c9d13bc3db8dc90cf"
+        },
+        {
+          "variant": "overlap10ms",
+          "baseline": 2.5408751794164712,
+          "candidate": 2.403718163195253,
+          "delta_db": -0.13715701622121834,
+          "midi_sha256": "fd690940dfcc99fbec4221564e2b07d38924656a69d323f08f3b80804e78b2bc"
+        },
+        {
+          "variant": "overlap25ms",
+          "baseline": 2.540875084021082,
+          "candidate": 2.403718090865823,
+          "delta_db": -0.13715699315525898,
+          "midi_sha256": "31b3e1c200ffff15f7ad65d97b455cf6b2f83860f9ddba68ded57369e5b661d3"
+        }
+      ],
+      "note_window_regressions": [
+        {
+          "variant": "nominal",
+          "note_index": 2,
+          "hardware_window_seconds": [
+            0.14900226757369614,
+            0.2
+          ],
+          "baseline": 2.631713783783649,
+          "candidate": 2.672788859280147,
+          "delta_db": 0.04107507549649814
+        },
+        {
+          "variant": "nominal",
+          "note_index": 6,
+          "hardware_window_seconds": [
+            0.43900226757369615,
+            0.5049886621315193
+          ],
+          "baseline": 4.522501803673133,
+          "candidate": 4.811097301881276,
+          "delta_db": 0.2885954982081431
+        },
+        {
+          "variant": "nominal",
+          "note_index": 7,
+          "hardware_window_seconds": [
+            0.5550113378684808,
+            0.6009977324263038
+          ],
+          "baseline": 3.510929772649036,
+          "candidate": 3.5771956107857115,
+          "delta_db": 0.06626583813667564
+        },
+        {
+          "variant": "overlap2ms",
+          "note_index": 6,
+          "hardware_window_seconds": [
+            0.43900226757369615,
+            0.5049886621315193
+          ],
+          "baseline": 4.823303898604836,
+          "candidate": 5.114006653392066,
+          "delta_db": 0.2907027547872296
+        },
+        {
+          "variant": "overlap2ms",
+          "note_index": 7,
+          "hardware_window_seconds": [
+            0.5550113378684808,
+            0.6009977324263038
+          ],
+          "baseline": 3.5017505486766036,
+          "candidate": 3.542519067117261,
+          "delta_db": 0.04076851844065743
+        },
+        {
+          "variant": "overlap10ms",
+          "note_index": 6,
+          "hardware_window_seconds": [
+            0.43900226757369615,
+            0.5049886621315193
+          ],
+          "baseline": 4.823300403031846,
+          "candidate": 5.114007390703361,
+          "delta_db": 0.29070698767151537
+        },
+        {
+          "variant": "overlap10ms",
+          "note_index": 7,
+          "hardware_window_seconds": [
+            0.5550113378684808,
+            0.6009977324263038
+          ],
+          "baseline": 3.5017504481623924,
+          "candidate": 3.542518977962556,
+          "delta_db": 0.040768529800163655
+        },
+        {
+          "variant": "overlap25ms",
+          "note_index": 6,
+          "hardware_window_seconds": [
+            0.43900226757369615,
+            0.5049886621315193
+          ],
+          "baseline": 4.8233060736564735,
+          "candidate": 5.114010542949748,
+          "delta_db": 0.2907044692932743
+        },
+        {
+          "variant": "overlap25ms",
+          "note_index": 7,
+          "hardware_window_seconds": [
+            0.5550113378684808,
+            0.6009977324263038
+          ],
+          "baseline": 3.501750600294268,
+          "candidate": 3.5425191912502445,
+          "delta_db": 0.040768590955976514
+        }
+      ]
+    }
+  },
+  "validation": {
+    "render_count": 44,
+    "no_degraded_replay": true,
+    "all_93_sample_latency": true,
+    "highest_reported_absolute_peak": 0.551155328751,
+    "all_zero_tail_voices": true
+  },
+  "limitations": [
+    "Gate scenarios are deterministic uncertainty probes, not a probability model or confidence intervals.",
+    "All cases use reconstructed MIDI and unknown placeholder velocities. No original performance MIDI was found.",
+    "Whole-excerpt and short-window residuals depend on normalization and frequency resolution; short-window metrics are not isolated oscillator harmonic measurements.",
+    "Candidate triangle gain changes polarity and relative level together, so success does not isolate either mechanism.",
+    "Moogie and Dist harmonic validation is a separate root audit; this report does not replace its evidence."
+  ]
+}

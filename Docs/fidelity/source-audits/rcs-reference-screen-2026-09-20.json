@@ -1,0 +1,1542 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-09-20",
+  "status": "Published-patch structural screen; this is not measured waveform evidence.",
+  "sources": {
+    "author_url": "https://www.rcssound.com/index.php?page=6",
+    "author_page": {
+      "path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/author-page.html",
+      "sha256": "182f3fb49a1199cfc49226f019585c9534cf34927a4954cb51f78df791e684d8",
+      "bytes": 5978
+    },
+    "archive_url": "https://www.rcssound.com/download.php?kod=6",
+    "archive": {
+      "path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/RCS-Analog-Basses-SH201.zip",
+      "sha256": "203fde7b29ee2c377b06f61bfef10675fa50338b1509dc1a1bb39438a9e7b11f",
+      "bytes": 6928
+    },
+    "bank_member": "Analog Basses patchbank for Roland SH-201 by RCS/Analog_basses_by_rcs.shl",
+    "bank_sha256": "fe26cb295c131a862f535466ee3dce7f7443c2c37003fed127e3d385119e4e70",
+    "archive_identical_to_prior_audit": true,
+    "author_linked_video_url": "https://www.youtube.com/watch?v=8LKRnrs8DcQ",
+    "parameter_map_url": "https://static.roland.com/assets/media/pdf/SH-201_MI.pdf",
+    "parameter_map": {
+      "path": "build-fidelity/hardware-benchmark/factory-bank-research/SH-201_MI.pdf",
+      "sha256": "71a8fe00a8d232c494a5aba6885756d99e6650fc14671115260d9446c3009546",
+      "bytes": 182623
+    },
+    "prior_byte_audit": {
+      "path": "Docs/fidelity/source-audits/rcs-shl-smf-byte-audit.json",
+      "sha256": "db25b8e610546ba22b31fe8eaacfd78c0b8145149e4c46de4488358feefb92f0",
+      "bytes": 64274
+    }
+  },
+  "tools": [
+    {
+      "path": "Tools/extract_reference_patch.py",
+      "sha256": "461407495e9f5bfc99767a0146a750708c5cdb2fd34c0d029aaf5e5f5a80703b",
+      "bytes": 6495
+    },
+    {
+      "path": "Tools/render_midi.py",
+      "sha256": "ffb8899e5a4b3588d459e5de3e710c74a002dfc04e45d7691a03102e9b5093e3",
+      "bytes": 18868
+    }
+  ],
+  "interpretation": {
+    "parameter_map": "Patch Common and Patch Tone, MIDI Implementation p. 5; raw signed controls decoded by subtracting 64 where documented.",
+    "pitch": "Coarse values retained as signed wire bytes plus WIDE flag. No sounding-pitch or note-number inference was required for this structural screen.",
+    "spatial_effects": "A nonzero send contributes only when its global effect switch is on. An off switch does not prove absence of external capture processing.",
+    "live_controls": "Published settings do not establish that the author left all controls unchanged throughout the demo.",
+    "active_oscillators": "Count configured oscillators not suppressed by OSC balance, in active keyboard parts. This does not assert that every oscillator remains audible through an entire note; amplitude envelopes can remove a layer."
+  },
+  "counts": {
+    "patches": 8,
+    "total_note_events": 0,
+    "single_part_patches": 1,
+    "dual_part_patches": 7,
+    "single_active_oscillator_patches": 0,
+    "patches_with_enabled_spatial_send": 6,
+    "patches_without_spatial_send_or_overdrive": 0,
+    "upper_filter_envelope_nonzero": 8
+  },
+  "patches": [
+    {
+      "patch_number": 1,
+      "patch_name": "MoogBass",
+      "generated_syx_sha256": "f0dd2c0f662d7e5d466888f01b0b4339ccdd6565bb5441e65dd9efdbedf24a87",
+      "author_smf_member": "Analog Basses patchbank for Roland SH-201 by RCS/SH-201 Editor patches/A01 MoogBASS.mid",
+      "author_smf_sha256": "80db95a784aaeb3943d1d01795fea7c5b28428775ed60a20195ecb96a3cafbb3",
+      "note_event_count": 0,
+      "dt1_frame_count": 22,
+      "shl_smf_wire_bytes_equal": true,
+      "keyboard_mode": "single",
+      "tone_balance": 0,
+      "delay_on": false,
+      "reverb_on": false,
+      "delay_parameters_raw": [
+        80,
+        66,
+        12,
+        2,
+        23
+      ],
+      "has_enabled_spatial_effect_send": false,
+      "active_oscillator_count": 2,
+      "tones": [
+        {
+          "part": "upper",
+          "block_sha256": "0fb8452de3efea4be1847083c7d933ad0e5f5ce8bbd917a05ec64770657177c6",
+          "oscillators": [
+            {
+              "index": 1,
+              "waveform": "saw",
+              "wide": false,
+              "coarse_signed_wire": -36,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            },
+            {
+              "index": 2,
+              "waveform": "triangle",
+              "wide": false,
+              "coarse_signed_wire": -36,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            }
+          ],
+          "mix_type": "mix",
+          "balance": 0,
+          "low_frequency_mode": "flat",
+          "filter": {
+            "type": "lowpass",
+            "slope_db_per_octave": 24,
+            "cutoff_raw": 39,
+            "keyfollow_percent": 30,
+            "velocity_sensitivity": 9,
+            "resonance_raw": 10,
+            "envelope_ADSR_raw": [
+              8,
+              39,
+              43,
+              47
+            ],
+            "envelope_depth": 32
+          },
+          "overdrive": {
+            "on": true,
+            "drive_raw": 8
+          },
+          "amp": {
+            "level_raw": 127,
+            "velocity_sensitivity": 8,
+            "pan": 0,
+            "envelope_ADSR_raw": [
+              0,
+              127,
+              127,
+              0
+            ]
+          },
+          "delay_send_raw": 11,
+          "reverb_send_raw": 104,
+          "lfo_depths": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "bend_range_semitones": 2,
+          "octave_shift": 0,
+          "portamento_on": true,
+          "portamento_time_raw": 20,
+          "mono_mode": "solo"
+        }
+      ]
+    },
+    {
+      "patch_number": 2,
+      "patch_name": "MoogBass PW",
+      "generated_syx_sha256": "1d8852b039a22559f388d1af0567c2805b8315b9e76eb8fdc604d6bf16444ac3",
+      "author_smf_member": "Analog Basses patchbank for Roland SH-201 by RCS/SH-201 Editor patches/A02 MoogBASS PW.mid",
+      "author_smf_sha256": "d03da60f724c03bdf8dd0a85216a71445f9899d87f75216145a7ef8fa6fa4c9c",
+      "note_event_count": 0,
+      "dt1_frame_count": 22,
+      "shl_smf_wire_bytes_equal": true,
+      "keyboard_mode": "dual",
+      "tone_balance": 0,
+      "delay_on": true,
+      "reverb_on": false,
+      "delay_parameters_raw": [
+        0,
+        53,
+        12,
+        3,
+        49
+      ],
+      "has_enabled_spatial_effect_send": false,
+      "active_oscillator_count": 3,
+      "tones": [
+        {
+          "part": "upper",
+          "block_sha256": "1b58e3912bdea0ca0a3cbef2d72d1b82c90b603c99c91b02989064585101a1d4",
+          "oscillators": [
+            {
+              "index": 1,
+              "waveform": "square",
+              "wide": false,
+              "coarse_signed_wire": -36,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            },
+            {
+              "index": 2,
+              "waveform": "pulse_square",
+              "wide": false,
+              "coarse_signed_wire": 0,
+              "fine_cents": 0,
+              "pulse_width_raw": 56,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            }
+          ],
+          "mix_type": "mix",
+          "balance": 0,
+          "low_frequency_mode": "flat",
+          "filter": {
+            "type": "lowpass",
+            "slope_db_per_octave": 24,
+            "cutoff_raw": 120,
+            "keyfollow_percent": 0,
+            "velocity_sensitivity": 0,
+            "resonance_raw": 0,
+            "envelope_ADSR_raw": [
+              24,
+              127,
+              127,
+              127
+            ],
+            "envelope_depth": -22
+          },
+          "overdrive": {
+            "on": true,
+            "drive_raw": 33
+          },
+          "amp": {
+            "level_raw": 127,
+            "velocity_sensitivity": 8,
+            "pan": 0,
+            "envelope_ADSR_raw": [
+              0,
+              46,
+              84,
+              0
+            ]
+          },
+          "delay_send_raw": 0,
+          "reverb_send_raw": 104,
+          "lfo_depths": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "bend_range_semitones": 2,
+          "octave_shift": 0,
+          "portamento_on": false,
+          "portamento_time_raw": 20,
+          "mono_mode": "solo"
+        },
+        {
+          "part": "lower",
+          "block_sha256": "7724a50934823b6777bd615323d4f660179f5f37142347d444b608d47db66bda",
+          "oscillators": [
+            {
+              "index": 1,
+              "waveform": "sine",
+              "wide": false,
+              "coarse_signed_wire": -36,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            },
+            {
+              "index": 2,
+              "waveform": "square",
+              "wide": false,
+              "coarse_signed_wire": 0,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": true
+            }
+          ],
+          "mix_type": "mix",
+          "balance": -63,
+          "low_frequency_mode": "flat",
+          "filter": {
+            "type": "lowpass",
+            "slope_db_per_octave": 24,
+            "cutoff_raw": 64,
+            "keyfollow_percent": 0,
+            "velocity_sensitivity": 0,
+            "resonance_raw": 9,
+            "envelope_ADSR_raw": [
+              0,
+              0,
+              127,
+              0
+            ],
+            "envelope_depth": 0
+          },
+          "overdrive": {
+            "on": false,
+            "drive_raw": 100
+          },
+          "amp": {
+            "level_raw": 127,
+            "velocity_sensitivity": 8,
+            "pan": 0,
+            "envelope_ADSR_raw": [
+              0,
+              64,
+              83,
+              14
+            ]
+          },
+          "delay_send_raw": 0,
+          "reverb_send_raw": 20,
+          "lfo_depths": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "bend_range_semitones": 2,
+          "octave_shift": 0,
+          "portamento_on": false,
+          "portamento_time_raw": 20,
+          "mono_mode": "poly"
+        }
+      ]
+    },
+    {
+      "patch_number": 3,
+      "patch_name": "Jupiter8wide",
+      "generated_syx_sha256": "ac6e5f6c901903172b2b24b35c6a7d36b899818200304d7b8759d5dca1c901dc",
+      "author_smf_member": "Analog Basses patchbank for Roland SH-201 by RCS/SH-201 Editor patches/A03 Jupiter-8 BASS wide.mid",
+      "author_smf_sha256": "fd4f177fc8314e1e0c92a1e6c6ee016fefdaaa7a01df802f895daee4d680c44f",
+      "note_event_count": 0,
+      "dt1_frame_count": 22,
+      "shl_smf_wire_bytes_equal": true,
+      "keyboard_mode": "dual",
+      "tone_balance": 0,
+      "delay_on": true,
+      "reverb_on": false,
+      "delay_parameters_raw": [
+        0,
+        53,
+        12,
+        3,
+        49
+      ],
+      "has_enabled_spatial_effect_send": true,
+      "active_oscillator_count": 3,
+      "tones": [
+        {
+          "part": "upper",
+          "block_sha256": "94fb959e90a158ef72e3834ffb1b74bde0a71212942778370a9a7bd28ba51b7a",
+          "oscillators": [
+            {
+              "index": 1,
+              "waveform": "square",
+              "wide": false,
+              "coarse_signed_wire": -36,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            },
+            {
+              "index": 2,
+              "waveform": "saw",
+              "wide": false,
+              "coarse_signed_wire": 0,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            }
+          ],
+          "mix_type": "mix",
+          "balance": 0,
+          "low_frequency_mode": "flat",
+          "filter": {
+            "type": "lowpass",
+            "slope_db_per_octave": 24,
+            "cutoff_raw": 113,
+            "keyfollow_percent": 0,
+            "velocity_sensitivity": 0,
+            "resonance_raw": 0,
+            "envelope_ADSR_raw": [
+              13,
+              127,
+              127,
+              127
+            ],
+            "envelope_depth": -15
+          },
+          "overdrive": {
+            "on": true,
+            "drive_raw": 33
+          },
+          "amp": {
+            "level_raw": 127,
+            "velocity_sensitivity": 8,
+            "pan": 0,
+            "envelope_ADSR_raw": [
+              0,
+              53,
+              60,
+              16
+            ]
+          },
+          "delay_send_raw": 127,
+          "reverb_send_raw": 104,
+          "lfo_depths": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "bend_range_semitones": 2,
+          "octave_shift": 0,
+          "portamento_on": false,
+          "portamento_time_raw": 20,
+          "mono_mode": "solo"
+        },
+        {
+          "part": "lower",
+          "block_sha256": "593105cf770747f6f1e7f15c2a9fda67629056ea05112e89e0723179159d2de1",
+          "oscillators": [
+            {
+              "index": 1,
+              "waveform": "sine",
+              "wide": false,
+              "coarse_signed_wire": -36,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            },
+            {
+              "index": 2,
+              "waveform": "square",
+              "wide": false,
+              "coarse_signed_wire": 0,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": true
+            }
+          ],
+          "mix_type": "mix",
+          "balance": -63,
+          "low_frequency_mode": "flat",
+          "filter": {
+            "type": "lowpass",
+            "slope_db_per_octave": 24,
+            "cutoff_raw": 64,
+            "keyfollow_percent": 0,
+            "velocity_sensitivity": 0,
+            "resonance_raw": 9,
+            "envelope_ADSR_raw": [
+              0,
+              0,
+              127,
+              0
+            ],
+            "envelope_depth": 0
+          },
+          "overdrive": {
+            "on": false,
+            "drive_raw": 100
+          },
+          "amp": {
+            "level_raw": 127,
+            "velocity_sensitivity": 8,
+            "pan": 0,
+            "envelope_ADSR_raw": [
+              0,
+              64,
+              0,
+              14
+            ]
+          },
+          "delay_send_raw": 0,
+          "reverb_send_raw": 20,
+          "lfo_depths": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "bend_range_semitones": 2,
+          "octave_shift": 0,
+          "portamento_on": false,
+          "portamento_time_raw": 20,
+          "mono_mode": "poly"
+        }
+      ]
+    },
+    {
+      "patch_number": 4,
+      "patch_name": "Jupiter8reso",
+      "generated_syx_sha256": "2faa981f99e5a992c532ca8398b268be7ffa01be0f3c74d1b3b6db9252d597ee",
+      "author_smf_member": "Analog Basses patchbank for Roland SH-201 by RCS/SH-201 Editor patches/A04 Jupiter-8 BASS Reso.mid",
+      "author_smf_sha256": "1f86696e6105c09b39407fd04db0243737fa281404b8a9d34c6b213540c88556",
+      "note_event_count": 0,
+      "dt1_frame_count": 22,
+      "shl_smf_wire_bytes_equal": true,
+      "keyboard_mode": "dual",
+      "tone_balance": 0,
+      "delay_on": true,
+      "reverb_on": false,
+      "delay_parameters_raw": [
+        0,
+        53,
+        12,
+        3,
+        49
+      ],
+      "has_enabled_spatial_effect_send": true,
+      "active_oscillator_count": 3,
+      "tones": [
+        {
+          "part": "upper",
+          "block_sha256": "b66fa99bf460fefb979d899c3f99c0416a91a040086bdfef0b4e9711adec5a3a",
+          "oscillators": [
+            {
+              "index": 1,
+              "waveform": "square",
+              "wide": false,
+              "coarse_signed_wire": -36,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            },
+            {
+              "index": 2,
+              "waveform": "saw",
+              "wide": false,
+              "coarse_signed_wire": 0,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            }
+          ],
+          "mix_type": "mix",
+          "balance": 0,
+          "low_frequency_mode": "flat",
+          "filter": {
+            "type": "lowpass",
+            "slope_db_per_octave": 24,
+            "cutoff_raw": 123,
+            "keyfollow_percent": 0,
+            "velocity_sensitivity": 0,
+            "resonance_raw": 39,
+            "envelope_ADSR_raw": [
+              13,
+              127,
+              127,
+              127
+            ],
+            "envelope_depth": -15
+          },
+          "overdrive": {
+            "on": false,
+            "drive_raw": 33
+          },
+          "amp": {
+            "level_raw": 127,
+            "velocity_sensitivity": 8,
+            "pan": 0,
+            "envelope_ADSR_raw": [
+              0,
+              46,
+              84,
+              0
+            ]
+          },
+          "delay_send_raw": 127,
+          "reverb_send_raw": 104,
+          "lfo_depths": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "bend_range_semitones": 2,
+          "octave_shift": 0,
+          "portamento_on": false,
+          "portamento_time_raw": 20,
+          "mono_mode": "solo"
+        },
+        {
+          "part": "lower",
+          "block_sha256": "7724a50934823b6777bd615323d4f660179f5f37142347d444b608d47db66bda",
+          "oscillators": [
+            {
+              "index": 1,
+              "waveform": "sine",
+              "wide": false,
+              "coarse_signed_wire": -36,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            },
+            {
+              "index": 2,
+              "waveform": "square",
+              "wide": false,
+              "coarse_signed_wire": 0,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": true
+            }
+          ],
+          "mix_type": "mix",
+          "balance": -63,
+          "low_frequency_mode": "flat",
+          "filter": {
+            "type": "lowpass",
+            "slope_db_per_octave": 24,
+            "cutoff_raw": 64,
+            "keyfollow_percent": 0,
+            "velocity_sensitivity": 0,
+            "resonance_raw": 9,
+            "envelope_ADSR_raw": [
+              0,
+              0,
+              127,
+              0
+            ],
+            "envelope_depth": 0
+          },
+          "overdrive": {
+            "on": false,
+            "drive_raw": 100
+          },
+          "amp": {
+            "level_raw": 127,
+            "velocity_sensitivity": 8,
+            "pan": 0,
+            "envelope_ADSR_raw": [
+              0,
+              64,
+              83,
+              14
+            ]
+          },
+          "delay_send_raw": 0,
+          "reverb_send_raw": 20,
+          "lfo_depths": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "bend_range_semitones": 2,
+          "octave_shift": 0,
+          "portamento_on": false,
+          "portamento_time_raw": 20,
+          "mono_mode": "poly"
+        }
+      ]
+    },
+    {
+      "patch_number": 5,
+      "patch_name": "Jupiter8Perc",
+      "generated_syx_sha256": "584a1e75e2cfb735cab9bd3f26c56429f9cbcf655f1486e941ba0112bdf9dd7d",
+      "author_smf_member": "Analog Basses patchbank for Roland SH-201 by RCS/SH-201 Editor patches/A05 Jupiter-8 BASS perc.mid",
+      "author_smf_sha256": "b0f050e84efffe09ed20e25bcd0956d3c7af308baad5fc4ee21c7ff65d22970a",
+      "note_event_count": 0,
+      "dt1_frame_count": 22,
+      "shl_smf_wire_bytes_equal": true,
+      "keyboard_mode": "dual",
+      "tone_balance": 0,
+      "delay_on": true,
+      "reverb_on": false,
+      "delay_parameters_raw": [
+        0,
+        49,
+        12,
+        65,
+        4
+      ],
+      "has_enabled_spatial_effect_send": true,
+      "active_oscillator_count": 3,
+      "tones": [
+        {
+          "part": "upper",
+          "block_sha256": "3a783fce5301393f857008a522b34f1593e0858da85aa9c6d1034f8791d62f73",
+          "oscillators": [
+            {
+              "index": 1,
+              "waveform": "square",
+              "wide": false,
+              "coarse_signed_wire": -36,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            },
+            {
+              "index": 2,
+              "waveform": "pulse_square",
+              "wide": false,
+              "coarse_signed_wire": 0,
+              "fine_cents": 0,
+              "pulse_width_raw": 56,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            }
+          ],
+          "mix_type": "mix",
+          "balance": 0,
+          "low_frequency_mode": "flat",
+          "filter": {
+            "type": "lowpass",
+            "slope_db_per_octave": 24,
+            "cutoff_raw": 106,
+            "keyfollow_percent": 0,
+            "velocity_sensitivity": 0,
+            "resonance_raw": 0,
+            "envelope_ADSR_raw": [
+              24,
+              127,
+              127,
+              127
+            ],
+            "envelope_depth": -22
+          },
+          "overdrive": {
+            "on": true,
+            "drive_raw": 33
+          },
+          "amp": {
+            "level_raw": 127,
+            "velocity_sensitivity": 8,
+            "pan": 0,
+            "envelope_ADSR_raw": [
+              0,
+              42,
+              12,
+              0
+            ]
+          },
+          "delay_send_raw": 127,
+          "reverb_send_raw": 104,
+          "lfo_depths": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "bend_range_semitones": 2,
+          "octave_shift": 0,
+          "portamento_on": false,
+          "portamento_time_raw": 20,
+          "mono_mode": "solo"
+        },
+        {
+          "part": "lower",
+          "block_sha256": "c210a72251c3d3c8060535908ba1abf1a9c38d08502c740f32d6c02436f88bdc",
+          "oscillators": [
+            {
+              "index": 1,
+              "waveform": "sine",
+              "wide": false,
+              "coarse_signed_wire": -36,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            },
+            {
+              "index": 2,
+              "waveform": "square",
+              "wide": false,
+              "coarse_signed_wire": 0,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": true
+            }
+          ],
+          "mix_type": "mix",
+          "balance": -63,
+          "low_frequency_mode": "flat",
+          "filter": {
+            "type": "lowpass",
+            "slope_db_per_octave": 24,
+            "cutoff_raw": 64,
+            "keyfollow_percent": 0,
+            "velocity_sensitivity": 0,
+            "resonance_raw": 9,
+            "envelope_ADSR_raw": [
+              0,
+              0,
+              127,
+              0
+            ],
+            "envelope_depth": 0
+          },
+          "overdrive": {
+            "on": false,
+            "drive_raw": 100
+          },
+          "amp": {
+            "level_raw": 127,
+            "velocity_sensitivity": 8,
+            "pan": 0,
+            "envelope_ADSR_raw": [
+              0,
+              64,
+              0,
+              14
+            ]
+          },
+          "delay_send_raw": 0,
+          "reverb_send_raw": 20,
+          "lfo_depths": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "bend_range_semitones": 2,
+          "octave_shift": 0,
+          "portamento_on": false,
+          "portamento_time_raw": 20,
+          "mono_mode": "solo_legato"
+        }
+      ]
+    },
+    {
+      "patch_number": 6,
+      "patch_name": "Jupiter8wet",
+      "generated_syx_sha256": "8262c4756e08ceb4d669490ed147f1e49a15b62ddebec9b6c552801ddbd6f548",
+      "author_smf_member": "Analog Basses patchbank for Roland SH-201 by RCS/SH-201 Editor patches/A06 Jupiter-8 BASS wet reso.mid",
+      "author_smf_sha256": "2d0ee7363f582ea6981104d9bb48e8c7a88bff4a36d7f4762e33b7d3d2ebc935",
+      "note_event_count": 0,
+      "dt1_frame_count": 22,
+      "shl_smf_wire_bytes_equal": true,
+      "keyboard_mode": "dual",
+      "tone_balance": 0,
+      "delay_on": true,
+      "reverb_on": false,
+      "delay_parameters_raw": [
+        0,
+        49,
+        12,
+        2,
+        56
+      ],
+      "has_enabled_spatial_effect_send": true,
+      "active_oscillator_count": 3,
+      "tones": [
+        {
+          "part": "upper",
+          "block_sha256": "c60fbed951b42aba73e58217592f8cb5326d13b73d7207a18335efbe5e7d51d1",
+          "oscillators": [
+            {
+              "index": 1,
+              "waveform": "square",
+              "wide": false,
+              "coarse_signed_wire": -36,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            },
+            {
+              "index": 2,
+              "waveform": "pulse_square",
+              "wide": false,
+              "coarse_signed_wire": 0,
+              "fine_cents": 0,
+              "pulse_width_raw": 56,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            }
+          ],
+          "mix_type": "mix",
+          "balance": 0,
+          "low_frequency_mode": "cut",
+          "filter": {
+            "type": "lowpass",
+            "slope_db_per_octave": 12,
+            "cutoff_raw": 64,
+            "keyfollow_percent": 0,
+            "velocity_sensitivity": 32,
+            "resonance_raw": 50,
+            "envelope_ADSR_raw": [
+              0,
+              23,
+              0,
+              0
+            ],
+            "envelope_depth": 20
+          },
+          "overdrive": {
+            "on": false,
+            "drive_raw": 33
+          },
+          "amp": {
+            "level_raw": 127,
+            "velocity_sensitivity": 8,
+            "pan": 0,
+            "envelope_ADSR_raw": [
+              0,
+              46,
+              84,
+              0
+            ]
+          },
+          "delay_send_raw": 127,
+          "reverb_send_raw": 104,
+          "lfo_depths": [
+            0,
+            0,
+            -1,
+            0
+          ],
+          "bend_range_semitones": 2,
+          "octave_shift": 0,
+          "portamento_on": false,
+          "portamento_time_raw": 20,
+          "mono_mode": "solo"
+        },
+        {
+          "part": "lower",
+          "block_sha256": "4832519f4de1aae5aaa2b55d918d34ddbf154398cf078d7e717b26d84d067a93",
+          "oscillators": [
+            {
+              "index": 1,
+              "waveform": "sine",
+              "wide": false,
+              "coarse_signed_wire": -36,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            },
+            {
+              "index": 2,
+              "waveform": "square",
+              "wide": false,
+              "coarse_signed_wire": 0,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": true
+            }
+          ],
+          "mix_type": "mix",
+          "balance": -63,
+          "low_frequency_mode": "flat",
+          "filter": {
+            "type": "lowpass",
+            "slope_db_per_octave": 24,
+            "cutoff_raw": 64,
+            "keyfollow_percent": 0,
+            "velocity_sensitivity": 0,
+            "resonance_raw": 9,
+            "envelope_ADSR_raw": [
+              0,
+              0,
+              127,
+              0
+            ],
+            "envelope_depth": 0
+          },
+          "overdrive": {
+            "on": false,
+            "drive_raw": 100
+          },
+          "amp": {
+            "level_raw": 127,
+            "velocity_sensitivity": 8,
+            "pan": 0,
+            "envelope_ADSR_raw": [
+              0,
+              64,
+              83,
+              14
+            ]
+          },
+          "delay_send_raw": 0,
+          "reverb_send_raw": 20,
+          "lfo_depths": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "bend_range_semitones": 2,
+          "octave_shift": 0,
+          "portamento_on": false,
+          "portamento_time_raw": 20,
+          "mono_mode": "solo_legato"
+        }
+      ]
+    },
+    {
+      "patch_number": 7,
+      "patch_name": "SmoothClicky",
+      "generated_syx_sha256": "5895d5d5cf2baa84053b88cc4ea74d341c0eb7315c9853ab8e9e68d22275a40b",
+      "author_smf_member": "Analog Basses patchbank for Roland SH-201 by RCS/SH-201 Editor patches/A07 SmoothClicky BASS.mid",
+      "author_smf_sha256": "20ea2a73e62699c0361b82182a902bda9c2530771435e01b9470927300868ac0",
+      "note_event_count": 0,
+      "dt1_frame_count": 22,
+      "shl_smf_wire_bytes_equal": true,
+      "keyboard_mode": "dual",
+      "tone_balance": 0,
+      "delay_on": true,
+      "reverb_on": false,
+      "delay_parameters_raw": [
+        0,
+        53,
+        16,
+        3,
+        49
+      ],
+      "has_enabled_spatial_effect_send": true,
+      "active_oscillator_count": 3,
+      "tones": [
+        {
+          "part": "upper",
+          "block_sha256": "c53c7808f9bf465f2419fcf0c3f64b6267f95168aa1920f56197809bccaab94c",
+          "oscillators": [
+            {
+              "index": 1,
+              "waveform": "square",
+              "wide": false,
+              "coarse_signed_wire": -36,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            },
+            {
+              "index": 2,
+              "waveform": "saw",
+              "wide": false,
+              "coarse_signed_wire": 0,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            }
+          ],
+          "mix_type": "mix",
+          "balance": 0,
+          "low_frequency_mode": "flat",
+          "filter": {
+            "type": "lowpass",
+            "slope_db_per_octave": 12,
+            "cutoff_raw": 89,
+            "keyfollow_percent": 70,
+            "velocity_sensitivity": 0,
+            "resonance_raw": 0,
+            "envelope_ADSR_raw": [
+              48,
+              127,
+              127,
+              127
+            ],
+            "envelope_depth": -37
+          },
+          "overdrive": {
+            "on": false,
+            "drive_raw": 100
+          },
+          "amp": {
+            "level_raw": 127,
+            "velocity_sensitivity": 8,
+            "pan": 0,
+            "envelope_ADSR_raw": [
+              0,
+              127,
+              127,
+              12
+            ]
+          },
+          "delay_send_raw": 127,
+          "reverb_send_raw": 104,
+          "lfo_depths": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "bend_range_semitones": 2,
+          "octave_shift": 0,
+          "portamento_on": false,
+          "portamento_time_raw": 20,
+          "mono_mode": "solo"
+        },
+        {
+          "part": "lower",
+          "block_sha256": "19fd30ed8278a3d283b9852c142815eb77c208a1a1cca5368fb36ae6ea30a579",
+          "oscillators": [
+            {
+              "index": 1,
+              "waveform": "pulse_square",
+              "wide": true,
+              "coarse_signed_wire": 0,
+              "fine_cents": 0,
+              "pulse_width_raw": 127,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            },
+            {
+              "index": 2,
+              "waveform": "square",
+              "wide": false,
+              "coarse_signed_wire": 0,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": true
+            }
+          ],
+          "mix_type": "mix",
+          "balance": -63,
+          "low_frequency_mode": "cut",
+          "filter": {
+            "type": "lowpass",
+            "slope_db_per_octave": 12,
+            "cutoff_raw": 127,
+            "keyfollow_percent": 0,
+            "velocity_sensitivity": 0,
+            "resonance_raw": 0,
+            "envelope_ADSR_raw": [
+              0,
+              0,
+              127,
+              0
+            ],
+            "envelope_depth": 0
+          },
+          "overdrive": {
+            "on": false,
+            "drive_raw": 100
+          },
+          "amp": {
+            "level_raw": 46,
+            "velocity_sensitivity": 8,
+            "pan": 0,
+            "envelope_ADSR_raw": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "delay_send_raw": 0,
+          "reverb_send_raw": 20,
+          "lfo_depths": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "bend_range_semitones": 2,
+          "octave_shift": 0,
+          "portamento_on": false,
+          "portamento_time_raw": 20,
+          "mono_mode": "solo_legato"
+        }
+      ]
+    },
+    {
+      "patch_number": 8,
+      "patch_name": "HouseBASS",
+      "generated_syx_sha256": "c38abf68553cb8b1cd8a392fdf04bc4f608ec26c95b95392cdfcb9fc581349e8",
+      "author_smf_member": "Analog Basses patchbank for Roland SH-201 by RCS/SH-201 Editor patches/A08 House BASS.mid",
+      "author_smf_sha256": "583c60490b455a495fa1b1aef750449fb2f17203b244d3c769c3a0ba2e03c42b",
+      "note_event_count": 0,
+      "dt1_frame_count": 22,
+      "shl_smf_wire_bytes_equal": true,
+      "keyboard_mode": "dual",
+      "tone_balance": 0,
+      "delay_on": true,
+      "reverb_on": true,
+      "delay_parameters_raw": [
+        0,
+        53,
+        16,
+        3,
+        49
+      ],
+      "has_enabled_spatial_effect_send": true,
+      "active_oscillator_count": 3,
+      "tones": [
+        {
+          "part": "upper",
+          "block_sha256": "9f0a77cea25a2cf49ece40032113a87caa7223c7602087af8b39ff132d4ee47b",
+          "oscillators": [
+            {
+              "index": 1,
+              "waveform": "square",
+              "wide": false,
+              "coarse_signed_wire": -36,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            },
+            {
+              "index": 2,
+              "waveform": "saw",
+              "wide": false,
+              "coarse_signed_wire": 0,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            }
+          ],
+          "mix_type": "mix",
+          "balance": 0,
+          "low_frequency_mode": "flat",
+          "filter": {
+            "type": "lowpass",
+            "slope_db_per_octave": 12,
+            "cutoff_raw": 90,
+            "keyfollow_percent": 70,
+            "velocity_sensitivity": 0,
+            "resonance_raw": 0,
+            "envelope_ADSR_raw": [
+              57,
+              127,
+              127,
+              127
+            ],
+            "envelope_depth": -36
+          },
+          "overdrive": {
+            "on": false,
+            "drive_raw": 100
+          },
+          "amp": {
+            "level_raw": 127,
+            "velocity_sensitivity": 8,
+            "pan": 0,
+            "envelope_ADSR_raw": [
+              0,
+              127,
+              127,
+              23
+            ]
+          },
+          "delay_send_raw": 127,
+          "reverb_send_raw": 32,
+          "lfo_depths": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "bend_range_semitones": 2,
+          "octave_shift": 0,
+          "portamento_on": false,
+          "portamento_time_raw": 20,
+          "mono_mode": "solo"
+        },
+        {
+          "part": "lower",
+          "block_sha256": "19fd30ed8278a3d283b9852c142815eb77c208a1a1cca5368fb36ae6ea30a579",
+          "oscillators": [
+            {
+              "index": 1,
+              "waveform": "pulse_square",
+              "wide": true,
+              "coarse_signed_wire": 0,
+              "fine_cents": 0,
+              "pulse_width_raw": 127,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            },
+            {
+              "index": 2,
+              "waveform": "square",
+              "wide": false,
+              "coarse_signed_wire": 0,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": true
+            }
+          ],
+          "mix_type": "mix",
+          "balance": -63,
+          "low_frequency_mode": "cut",
+          "filter": {
+            "type": "lowpass",
+            "slope_db_per_octave": 12,
+            "cutoff_raw": 127,
+            "keyfollow_percent": 0,
+            "velocity_sensitivity": 0,
+            "resonance_raw": 0,
+            "envelope_ADSR_raw": [
+              0,
+              0,
+              127,
+              0
+            ],
+            "envelope_depth": 0
+          },
+          "overdrive": {
+            "on": false,
+            "drive_raw": 100
+          },
+          "amp": {
+            "level_raw": 46,
+            "velocity_sensitivity": 8,
+            "pan": 0,
+            "envelope_ADSR_raw": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "delay_send_raw": 0,
+          "reverb_send_raw": 20,
+          "lfo_depths": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "bend_range_semitones": 2,
+          "octave_shift": 0,
+          "portamento_on": false,
+          "portamento_time_raw": 20,
+          "mono_mode": "solo_legato"
+        }
+      ]
+    }
+  ],
+  "candidate": {
+    "patch_number": 2,
+    "reason": "The parent task verified separately decoded paused author-video frames at 20, 25 and 30 seconds labelled A02 MOOG BASS PW. Published A02 internal spatial-effect sends are inactive and oscillator pitch/PW LFO depths are zero. Exact patch-change boundaries and any live control edits are unverified.",
+    "direct_pwm_shape_bound_supported": false,
+    "reasons": [
+      "Upper square and pulse waves are mixed through active overdrive drive33, which couples their harmonics.",
+      "Lower sine layer contributes to the fundamental and affects H1-normalized ratios.",
+      "Upper lowpass24 has cutoff120 and filter envelope depth-22; lower lowpass24 cutoff64/resonance9.",
+      "Unknown note velocity, gate history, live controls and capture processing still require qualification.",
+      "Relative oscillator phase is not supplied; overdrive makes harmonic-family amplitudes depend on the joint waveform."
+    ],
+    "useful_next_test": "Select a visibly labelled stable single-pitch A02 passage, retain hardware source and timestamps, estimate pitch from hardware alone, then compare higher-harmonic ratios excluding H1 over a declared gate, velocity and relative-phase range using the original patch. Treat the result as a joint oscillator/filter/overdrive patch check, not a direct pulse-width calibration.",
+    "advantages": [
+      "Both parts have zero cutoff velocity sensitivity.",
+      "All oscillator pitch-envelope and LFO depths are zero.",
+      "Upper filter sustain127 permits a static held-note stage after its attack settles."
+    ],
+    "video_patch_association_verified": true,
+    "video_observations": {
+      "observer": "parent task using CUA browser playback and separately decoded paused screenshots",
+      "retained_filesystem_screenshots": false,
+      "tool_images_retained_in_conversation": true,
+      "observations": [
+        {
+          "seconds": 8,
+          "label": "A01 MOOG BASS"
+        },
+        {
+          "seconds": 15,
+          "label": "A01 MOOG BASS"
+        },
+        {
+          "seconds": 20,
+          "label": "A02 MOOG BASS PW"
+        },
+        {
+          "seconds": 25,
+          "label": "A02 MOOG BASS PW"
+        },
+        {
+          "seconds": 30,
+          "label": "A02 MOOG BASS PW"
+        },
+        {
+          "seconds": 34,
+          "label": "A03 JUPITER-8 WIDE"
+        }
+      ],
+      "controls": "Slideshow labels; no live panel footage or parameter readout.",
+      "rejected_observation": "An immediate early seek suggested A02 at 0:02; rejected because it could be a stale frame.",
+      "soundcloud_synchronization": "Parent numerical check matches six one-second passages at a common SoundCloud-minus-YouTube offset of -1.4925170068027214 seconds, correlations 0.9970425401545192 to 0.9983488301853711. This corroborates two encodes of the same sampled performance, not independent hardware evidence. See cross_platform_alignment."
+    }
+  },
+  "audio_acquisition": {
+    "report_path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/audio-acquisition.json",
+    "report_sha256": "8eca673d4eb513de6a5ab62e451aab94f3f6d45204e4bc0b9e897669c95a2c60",
+    "recordings": [
+      {
+        "platform": "soundcloud",
+        "canonical_url": "https://soundcloud.com/user-495684465/roland-sh-201-fresh-analog-basses-free-soundset-2020-demo",
+        "id": "932592580",
+        "uploader": "RCS",
+        "upload_date": "20201120",
+        "source_path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/soundcloud-932592580.mp3",
+        "source_bytes": 1878725,
+        "source_sha256": "6b982a13ec0f27f89ab0722ea54ebe5d88d2a5df8b0ba271cea3d94da7dc0139",
+        "codec": "mp3",
+        "source_sample_rate": 44100,
+        "source_channels": 2,
+        "source_stream_start_seconds": "0.025057",
+        "source_duration_seconds": "117.368163",
+        "source_bitrate": "128000",
+        "extractor_format_id": "http_mp3_0_1",
+        "extractor_protocol": "http",
+        "metadata_path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/soundcloud-932592580.info.json",
+        "metadata_sha256": "1b3ec63d9ad45e491611107466694132e91473cb1806610a3e39aa1bd418ee77",
+        "ffprobe_path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/soundcloud-932592580.ffprobe.json",
+        "ffprobe_sha256": "a0158181f1ac822f78fbeb0cb7a2a173383565c68d05304fbd34665819131e20",
+        "full_decode_succeeded": true,
+        "analysis_wav": {
+          "path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/soundcloud-932592580-44100.wav",
+          "sha256": "f89dc9122113bcd1a5c45bc1d97cb1fd957abfc75466db13e789b4f97d82d535",
+          "sample_rate": 44100,
+          "channels": 2,
+          "codec": "pcm_f32le",
+          "bytes": 41407580,
+          "decode_command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-loglevel",
+            "error",
+            "-nostdin",
+            "-y",
+            "-i",
+            "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/soundcloud-932592580.mp3",
+            "-ar",
+            "44100",
+            "-ac",
+            "2",
+            "-c:a",
+            "pcm_f32le",
+            "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/soundcloud-932592580-44100.wav"
+          ],
+          "frames": 5175936,
+          "duration_seconds": 117.36816326530612,
+          "absolute_peak": 0.7663174271583557,
+          "rms": 0.17353053543944397,
+          "finite_nonempty_nonzero_stereo_verified": true
+        }
+      },
+      {
+        "platform": "youtube",
+        "canonical_url": "https://www.youtube.com/watch?v=8LKRnrs8DcQ",
+        "id": "8LKRnrs8DcQ",
+        "uploader": "RCS",
+        "upload_date": "20201129",
+        "source_path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/youtube-8LKRnrs8DcQ.webm",
+        "source_bytes": 2404788,
+        "source_sha256": "a11bb93f56e0dfa43c608d35b9ee0a1b6ca7fcd03d985c646ca19e184982657b",
+        "codec": "opus",
+        "source_sample_rate": 48000,
+        "source_channels": 2,
+        "source_stream_start_seconds": "0.000000",
+        "source_duration_seconds": "121.901000",
+        "source_bitrate": null,
+        "extractor_format_id": "251",
+        "extractor_protocol": "https",
+        "metadata_path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/youtube-8LKRnrs8DcQ.info.json",
+        "metadata_sha256": "ef528324ec6a240e14e266b2bc0564d3b69ccf12eb0c2b5392f8662f0e59cd0e",
+        "ffprobe_path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/youtube-8LKRnrs8DcQ.ffprobe.json",
+        "ffprobe_sha256": "67d42abc50dc45d967fe107120506c919f529632969634387234aa68984c888a",
+        "full_decode_succeeded": true,
+        "analysis_wav": {
+          "path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/youtube-8LKRnrs8DcQ-44100.wav",
+          "sha256": "3f55200e611c9f01c3d7cbedba5c089bc021b232e39abd6c2c06a651aee5ecd3",
+          "sample_rate": 44100,
+          "channels": 2,
+          "codec": "pcm_f32le",
+          "bytes": 43004004,
+          "decode_command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-loglevel",
+            "error",
+            "-nostdin",
+            "-y",
+            "-i",
+            "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/youtube-8LKRnrs8DcQ.webm",
+            "-ar",
+            "44100",
+            "-ac",
+            "2",
+            "-c:a",
+            "pcm_f32le",
+            "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/youtube-8LKRnrs8DcQ-44100.wav"
+          ],
+          "frames": 5375489,
+          "duration_seconds": 121.8931746031746,
+          "absolute_peak": 0.8160734176635742,
+          "rms": 0.17899115975045432,
+          "finite_nonempty_nonzero_stereo_verified": true
+        }
+      }
+    ],
+    "cookies_used": false,
+    "authentication_used": false,
+    "protection_bypass_used": false,
+    "directly_labelled_source": "youtube",
+    "labelled_candidate_interval_seconds": [
+      20,
+      25
+    ],
+    "soundcloud_timing_qualification": "Different source durations prevent assuming equal timestamps. The subsequent cross_platform_alignment screen establishes one shared offset for six sampled passages; the primary comparison still uses directly labelled YouTube audio.",
+    "status": "Both public sources acquired and fully decoded; analysis WAVs finite, nonempty and nonzero. Media/downloader remain ignored. No audio/source similarity was used to choose the patch."
+  },
+  "cross_platform_alignment": {
+    "path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/cross-platform-timing.json",
+    "sha256": "5a79ec4fcff28208251cb606d617fe71077bfc348cf7fe7fafbeb224e986daea",
+    "method": "mono polyphase downsample to4410Hz; whole SoundCloud normalized positive correlation against six1s YouTube snippets; no time stretch/EQ",
+    "source_hashes": {
+      "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/youtube-8LKRnrs8DcQ-44100.wav": "3f55200e611c9f01c3d7cbedba5c089bc021b232e39abd6c2c06a651aee5ecd3",
+      "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/soundcloud-932592580-44100.wav": "f89dc9122113bcd1a5c45bc1d97cb1fd957abfc75466db13e789b4f97d82d535"
+    },
+    "youtube_window_starts_seconds": [
+      8.0,
+      10.0,
+      20.0,
+      23.0,
+      25.0,
+      29.0
+    ],
+    "window_duration_seconds": 1,
+    "soundcloud_minus_youtube_seconds": -1.4925170068027214,
+    "correlation_min": 0.9970425401545192,
+    "correlation_max": 0.9983488301853711,
+    "qualification": "High correlation at one common offset supports that the sampled passages are two lossy copies of the same performance. This is not a second independent hardware reference. No alignment is applied to the primary YouTube comparison."
+  }
+}

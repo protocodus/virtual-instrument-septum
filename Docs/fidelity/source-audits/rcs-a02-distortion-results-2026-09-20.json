@@ -1,0 +1,2554 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-20",
+  "status": "Diagnostic findings only; no shipping candidate, phase or global law selected.",
+  "scope": "Synthesis of the completed 24-cell A02 distortion screen and separate eight-angle original-patch pulse-phase screen. All A02 observations were already inspected and are diagnostic training, not unseen validation.",
+  "source_identity": {
+    "reference": "RCS A02 MoogBass PW",
+    "author_page_url": "https://www.rcssound.com/index.php?page=6",
+    "author_video_url": "https://www.youtube.com/watch?v=8LKRnrs8DcQ",
+    "patch_association": "Author page links bank/video; decoded video labels identify A02 at20,25,30s. No live controls or original performance MIDI are shown.",
+    "performance": "Reconstructed MIDI; velocity100 and adjacent gates are assumptions. Author SMF contains SysEx, not note events.",
+    "audio": "YouTube and SoundCloud are two lossy encodes of one correlated performance, not independent references."
+  },
+  "artifacts": {
+    "distortion_final_design": {
+      "path": "build-fidelity/rcs-distortion-probes-2026-09-20/design.json",
+      "sha256": "92e24e6552098fd051984e4698f6dca5bb6b30f0f2508f15605464b41890a197",
+      "bytes": 21546
+    },
+    "distortion_superseded_draft": {
+      "path": "build-fidelity/rcs-distortion-probes-2026-09-20/design-preflight-superseded.json",
+      "sha256": "abbdd56d54acd829c1b02c8b27662bbae79ca1f4c611ba45e729c94f51eac65e",
+      "bytes": 20722
+    },
+    "distortion_builder_design": {
+      "path": "build-fidelity/rcs-distortion-probes-2026-09-20/builder-design.json",
+      "sha256": "49a10e27be40b538992def80f5ce1fefff3ff07f0e06e866649075476aadb9f2",
+      "bytes": 25340
+    },
+    "distortion_build_index": {
+      "path": "build-fidelity/rcs-distortion-probes-2026-09-20/build-index.json",
+      "sha256": "8630b76366611f820458f155d4d57b584b0bfb1cab015769b7337b3d26d8e9e0",
+      "bytes": 15751
+    },
+    "distortion_render_manifest": {
+      "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders.json",
+      "sha256": "762f771f69b192a399ab989cb2dc10e838a5200eb3998da9424640d9c01e526d",
+      "bytes": 95736
+    },
+    "distortion_analysis": {
+      "path": "build-fidelity/rcs-distortion-probes-2026-09-20/analysis-verified/analysis.json",
+      "sha256": "c09683a3b85f787581813acad1f0a0cd67efa1e7c56827a4800b6d15db443d6b",
+      "bytes": 9845443
+    },
+    "distortion_summary": {
+      "path": "build-fidelity/rcs-distortion-probes-2026-09-20/analysis-verified/summary.json",
+      "sha256": "9961ecc3b21bc3c1af367c61831863d327c094eb5d07c8942d564ec1e372f923",
+      "bytes": 491913
+    },
+    "distortion_qa": {
+      "path": "build-fidelity/rcs-distortion-probes-2026-09-20/analysis-verified/qa.json",
+      "sha256": "f9b6d60d801764de8df6ea51bfbcab0fa8e96b5f0d989abbefc86b6c344c6c7d",
+      "bytes": 3229
+    },
+    "distortion_analyzer": {
+      "path": "build-fidelity/rcs-distortion-probes-2026-09-20/analyze_probes.py",
+      "sha256": "a1109f20804c218f4093e7a35207812038dbf84c132295b097cade7455635c81",
+      "bytes": 33294
+    },
+    "distortion_full_plot": {
+      "path": "build-fidelity/rcs-distortion-probes-2026-09-20/analysis-verified/closure-traces.png",
+      "sha256": "12744757afa912ea9274e209eb9d8b5eedc1a6a8780b7ffc62c394a82bee9564",
+      "bytes": 836639
+    },
+    "phase_render_design": {
+      "path": "build-fidelity/rcs-pulse-phase-probes-2026-09-20/design.json",
+      "sha256": "d6ae81fd6a2b0c070188bbe7ab4f0dcffdf5ec3c80bfd72e1ac412d2da794e4c",
+      "bytes": 17790
+    },
+    "phase_render_manifest": {
+      "path": "build-fidelity/rcs-pulse-phase-probes-2026-09-20/results.json",
+      "sha256": "434bfbe31006754e810949bb03534e671bbf53133021dca00bc22bfc88986110",
+      "bytes": 86965
+    },
+    "phase_analysis_design": {
+      "path": "build-fidelity/rcs-pulse-phase-probes-2026-09-20/analysis-design.json",
+      "sha256": "9292c5532628f2fb51bf32c6833e672e0c912563df366fb3fb105bec25ee370c",
+      "bytes": 3865
+    },
+    "phase_superseded_exact_assertion_design": {
+      "path": "build-fidelity/rcs-pulse-phase-probes-2026-09-20/analysis-design-exact-assertion-superseded.json",
+      "sha256": "3dd2aae81f7d6c878f049e5ae301759074131ba38207dd1d7e8b528d97b1d2c3",
+      "bytes": 2928
+    },
+    "phase_analysis": {
+      "path": "build-fidelity/rcs-pulse-phase-probes-2026-09-20/analysis.json",
+      "sha256": "391488dce759e5cfbd4ae654dccd93aa0418e415c2661ee02c9fe0d31be3a646",
+      "bytes": 653409
+    },
+    "phase_analyzer": {
+      "path": "build-fidelity/rcs-pulse-phase-probes-2026-09-20/analyze.py",
+      "sha256": "5d402c0eac4481bdffa738ca801d6242bd4027618674082a2bb84a4c7c7ba27f",
+      "bytes": 13463
+    },
+    "phase_summary": {
+      "path": "build-fidelity/rcs-pulse-phase-probes-2026-09-20/summary.md",
+      "sha256": "ebaa5c145929a13daa5edef04640d58767c617a9bf7de6120280f2c6c2e80ece",
+      "bytes": 1756
+    },
+    "hardware_endpoint": {
+      "path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/hardware-endpoint/analysis.json",
+      "sha256": "2662337287d6dd30d4b549c8a3ee14c8a0bcaef7919f7e739c925fe42fe838d1",
+      "bytes": 237490
+    },
+    "hardware_closure": {
+      "path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/hardware-closure/analysis.json",
+      "sha256": "9b68db6b2a24c42cfba2d795338c78df7a2323862fe6a7f3ab37133ffa6109a8",
+      "bytes": 138678
+    },
+    "original_case": {
+      "path": "Docs/fidelity/reconstructions/expanded/rcs-a02-moogbass-pw.json",
+      "sha256": "f773722d61fa1c0e503ff4932027b81bf81646d5fc3d4e035c69493577e95937",
+      "bytes": 2615
+    },
+    "original_midi": {
+      "path": "build-fidelity/public-match-2026-09-20/rcs-a02-baseline/rcs-a02-moogbass-pw/reconstructed-performance.mid",
+      "sha256": "cf6b33f65d0949dab3786c277b6a0334bced6567a421e2e6108c20fa28807d94",
+      "bytes": 142
+    },
+    "original_sysex": {
+      "path": "build-fidelity/public-match-2026-09-20/rcs-a02-baseline/rcs-a02-moogbass-pw/original-patch.syx",
+      "sha256": "1d8852b039a22559f388d1af0567c2805b8315b9e76eb8fdc604d6bf16444ac3",
+      "bytes": 1526
+    },
+    "original_recording": {
+      "path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/youtube-8LKRnrs8DcQ.webm",
+      "sha256": "a11bb93f56e0dfa43c608d35b9ee0a1b6ca7fcd03d985c646ca19e184982657b",
+      "bytes": 2404788
+    },
+    "decoded_recording": {
+      "path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/youtube-8LKRnrs8DcQ-44100.wav",
+      "sha256": "3f55200e611c9f01c3d7cbedba5c089bc021b232e39abd6c2c06a651aee5ecd3",
+      "bytes": 43004004
+    },
+    "original_baseline_wav": {
+      "path": "build-fidelity/public-match-2026-09-20/rcs-a02-baseline/rcs-a02-moogbass-pw/septum-raw.wav",
+      "sha256": "7139e0379d5adc7809c10af8771dad0e454ac091d6670d91beccff1eca8c151e",
+      "bytes": 1044344
+    }
+  },
+  "design_provenance": {
+    "final_design_sha256": "92e24e6552098fd051984e4698f6dca5bb6b30f0f2508f15605464b41890a197",
+    "preflight_correction": {
+      "superseded_design_sha256": "abbdd56d54acd829c1b02c8b27662bbae79ca1f4c611ba45e729c94f51eac65e",
+      "reason": "Audit draft misread pregain16 as raw16 with fixed compensation. Root resolves to originally requested maximum16dB law with same compensation formula; no candidate compilation or render output existed when corrected.",
+      "requested_before_outputs": true
+    },
+    "control_execution": "Four existing control sounds will also be rerendered with independently compiled control binaries and required to reproduce previous WAVs byte for byte. These four reproduction runs accompany20new experimental renders.",
+    "builder_plan": "Separate builder-design.json prevents schema collision with analysis design.json.",
+    "phase_numeric_correction": "Phase analysis retained the prior baseline fixed PCM pre-crop/local-origin arithmetic to satisfy exact equality. Physical samples/windows are unchanged; the initial full-array result differed only by floating-point last bits, at most4.2e-13dB on the tested first window. Superseded declaration/script remain ignored and pinned by final phase declaration."
+  },
+  "experiments": {
+    "distortion": {
+      "cells": 24,
+      "mechanisms": [
+        {
+          "id": "baseline",
+          "operation": "Unchanged frozen engine, raw drive33 and published Pulse output. Reuse exact earlier raw WAV for this depth/attack context.",
+          "reuse": true
+        },
+        {
+          "id": "pregain16",
+          "operation": "Replace the global overdrive pre-gain maximum law32dB with16dB: pow(10,(drive/127)*(16/20)). Retain the same compensation formula preGain^-0.4, recomputed from this experimental preGain. No SysEx drive mutation; all enabled overdrive uses this diagnostic mapping.",
+          "reuse": false,
+          "caveat": "This changes both nonlinear curvature and small-signal gain; at drive33 pre-gain changes8.315 to4.157dB and compensation is recomputed. This is not raw drive16 and not a gain-matched linearization."
+        },
+        {
+          "id": "linearizedADAA",
+          "operation": "Replace enabled tanh transfer by identity while retaining preGain(raw33), compensation(raw33), oversampling filters, history handling, latency and ADAA half-sample averaging. Identity ADAA output is (current_input+previous_input)/2 at the existing internal rate, then previous_input=current_input.",
+          "reuse": false,
+          "caveat": "Do not substitute OD-off delayed bypass: that would also remove small-signal gain and resampling/ADAA response."
+        },
+        {
+          "id": "zeroMeanPulse",
+          "operation": "For PulseSquare only, subtract analytic mean 2*duty-1 from corrected oscillator output before mixing/filtering; preserve duty, BLEP, phase, waveform AC scale, Square, and every other waveform.",
+          "reuse": false,
+          "caveat": "Subtraction changes startup/DC transients as well as the nonlinear operating point. The paired linearizedADAA control distinguishes these effects."
+        },
+        {
+          "id": "linearizedADAA+zeroMeanPulse",
+          "operation": "Apply the preceding identity-ADAA and analytic Pulse-mean subtraction together, with all other operations unchanged.",
+          "reuse": false
+        },
+        {
+          "id": "env-beforeOD",
+          "operation": "Advance AMP envelope exactly once/sample at the original time; multiply filtered input by envelopeNow before the enabled OD chain and remove its delayed post-OD multiplication. Preserve level/velocity/pan, compensation, envelope law and note lifecycle/transport bookkeeping.",
+          "reuse": false,
+          "caveat": "AMP-envelope order only, not all AMP gains. Lower is OD-bypassed; preserve its output exactly or verify its matched-delay linear equivalence if the transformation is applied generically."
+        }
+      ],
+      "attack_profiles": [
+        "current",
+        "raw24=100ms experimental"
+      ],
+      "depths": [
+        -22,
+        -32
+      ],
+      "cutoff": 120,
+      "control_reproductions_byte_exact": 4,
+      "new_diagnostic_renders": 20
+    },
+    "phase": {
+      "cells": 8,
+      "pulse_offsets_cycles": [
+        0.0,
+        0.125,
+        0.25,
+        0.375,
+        0.5,
+        0.625,
+        0.75,
+        0.875
+      ],
+      "otherwise": "Original depth\u221222 patch, current attack/nonlinearity/duty/DC and fixed Square/Lower Sine phases. Phase0 audio and eight old endpoint measurements reproduce exactly."
+    }
+  },
+  "method": {
+    "fixed_late_windows": [
+      [
+        21.83,
+        0.03
+      ],
+      [
+        21.83,
+        0.04
+      ],
+      [
+        21.83,
+        0.06
+      ],
+      [
+        21.84,
+        0.03
+      ],
+      [
+        21.84,
+        0.04
+      ],
+      [
+        21.84,
+        0.06
+      ],
+      [
+        21.85,
+        0.03
+      ],
+      [
+        21.85,
+        0.04
+      ]
+    ],
+    "latest_late_window_end_seconds": 21.877,
+    "harmonic_fit": "Joint DC/trend plus16 harmonics;95\u2013110Hz nuisance-frequency fit; unchanged hardware helper. Ratios are amplitude dB; raw amplitudes/powers and residuals retained.",
+    "time_mapping": "Software absolute time=21.18 + sample_index/44100 \u221293/44100. No fitted gain, EQ, alignment or retune.",
+    "first_note": "Existing Hann1024/hop44 mid primary ratio of1500\u201312000Hz to300\u20131500Hz power;5-frame median;early15\u201335ms andlate75\u201395ms;\u00b110ms,512/2048/L/R sensitivity. Original sustained10/20/30dB landmarks retain censoring.",
+    "fourth_note_levels": "Early15\u201335ms andlate175\u2013225ms, same band/RMS definitions. Common support before original off\u221215ms.",
+    "closure_guards": "Original observations retained. Separate common closure interval ends30ms before original off\u221215ms; hardware and software share it. Do not mix the shorter first-note censoring counts with original primary counts."
+  },
+  "measured_findings": {
+    "hardware_late": {
+      "h2_h1_db": {
+        "min": -7.121646019164301,
+        "median": -7.011823193196604,
+        "max": -6.898454509773272
+      },
+      "h3_h2_db": {
+        "min": -15.89448601233032,
+        "median": -15.718890154971202,
+        "max": -15.18937206085024
+      },
+      "h4_h2_db": {
+        "min": -24.687236017854694,
+        "median": -24.371394506507645,
+        "max": -23.839690271438695
+      },
+      "harmonic_model_residual_fraction": {
+        "min": 0.0003200628529576021,
+        "median": 0.0006006061804865901,
+        "max": 0.0022283377556553924
+      },
+      "raw_h2_peak_amplitude": {
+        "min": 0.07958201465521306,
+        "median": 0.08455719006724366,
+        "max": 0.08917063546636352
+      }
+    },
+    "dc_nonlinearity_contrasts": [
+      {
+        "attack_model_id": "baseline",
+        "upper_depth_signed": -22,
+        "nonlinear_centering_delta": {
+          "h3_h2_db": -5.7692209139895985,
+          "h4_h2_db": 1.4039854400832557,
+          "first_late_ratio_db": -0.5422687530517578,
+          "fourth_late_ratio_db": 0.6915493011474609
+        },
+        "linear_centering_delta": {
+          "h3_h2_db": -1.770129952483046e-05,
+          "h4_h2_db": 3.794948345170468e-05,
+          "first_late_ratio_db": 9.1552734375e-05,
+          "fourth_late_ratio_db": 0.0
+        },
+        "dc_by_nonlinearity_interaction": {
+          "h3_h2_db": -5.769203212690074,
+          "h4_h2_db": 1.403947490599804,
+          "first_late_ratio_db": -0.5423603057861328,
+          "fourth_late_ratio_db": 0.6915493011474609
+        }
+      },
+      {
+        "attack_model_id": "baseline",
+        "upper_depth_signed": -32,
+        "nonlinear_centering_delta": {
+          "h3_h2_db": 0.9118483171904468,
+          "h4_h2_db": 10.493271832636575,
+          "first_late_ratio_db": -0.8391265869140625,
+          "fourth_late_ratio_db": 0.13612747192382812
+        },
+        "linear_centering_delta": {
+          "h3_h2_db": -4.736042349762215e-05,
+          "h4_h2_db": -0.0003241294888098878,
+          "first_late_ratio_db": -0.020099639892578125,
+          "fourth_late_ratio_db": -0.006458282470703125
+        },
+        "dc_by_nonlinearity_interaction": {
+          "h3_h2_db": 0.9118956776139444,
+          "h4_h2_db": 10.493595962125385,
+          "first_late_ratio_db": -0.8190269470214844,
+          "fourth_late_ratio_db": 0.14258575439453125
+        }
+      },
+      {
+        "attack_model_id": "attack-100ms",
+        "upper_depth_signed": -22,
+        "nonlinear_centering_delta": {
+          "h3_h2_db": -5.769221772560325,
+          "h4_h2_db": 1.4039853690720898,
+          "first_late_ratio_db": -0.13190937042236328,
+          "fourth_late_ratio_db": 0.6915493011474609
+        },
+        "linear_centering_delta": {
+          "h3_h2_db": -1.772544398548348e-05,
+          "h4_h2_db": 3.79132246717262e-05,
+          "first_late_ratio_db": 3.4332275390625e-05,
+          "fourth_late_ratio_db": 0.0
+        },
+        "dc_by_nonlinearity_interaction": {
+          "h3_h2_db": -5.7692040471163395,
+          "h4_h2_db": 1.403947455847418,
+          "first_late_ratio_db": -0.1319437026977539,
+          "fourth_late_ratio_db": 0.6915493011474609
+        }
+      },
+      {
+        "attack_model_id": "attack-100ms",
+        "upper_depth_signed": -32,
+        "nonlinear_centering_delta": {
+          "h3_h2_db": 0.91185289538803,
+          "h4_h2_db": 10.493278684640611,
+          "first_late_ratio_db": -3.009469985961914,
+          "fourth_late_ratio_db": 0.13613128662109375
+        },
+        "linear_centering_delta": {
+          "h3_h2_db": -4.450157901558782e-05,
+          "h4_h2_db": -0.000327207684239994,
+          "first_late_ratio_db": -3.0517578125e-05,
+          "fourth_late_ratio_db": -0.006618499755859375
+        },
+        "dc_by_nonlinearity_interaction": {
+          "h3_h2_db": 0.9118973969670456,
+          "h4_h2_db": 10.493605892324851,
+          "first_late_ratio_db": -3.009439468383789,
+          "fourth_late_ratio_db": 0.14274978637695312
+        }
+      }
+    ],
+    "phase_ranges": {
+      "h2_h1_db": {
+        "hardware": {
+          "min": -7.121646019164301,
+          "median": -7.011823193196604,
+          "max": -6.898454509773272
+        },
+        "phase_and_window": {
+          "min": -10.015873873894556,
+          "median": -8.210602331163031,
+          "max": -7.611900257333426
+        },
+        "intervals_overlap": false
+      },
+      "h3_h2_db": {
+        "hardware": {
+          "min": -15.89448601233032,
+          "median": -15.718890154971202,
+          "max": -15.18937206085024
+        },
+        "phase_and_window": {
+          "min": -13.136173279547286,
+          "median": -7.705645113213253,
+          "max": -3.164705491118869
+        },
+        "intervals_overlap": false
+      },
+      "h4_h2_db": {
+        "hardware": {
+          "min": -24.687236017854694,
+          "median": -24.371394506507645,
+          "max": -23.839690271438695
+        },
+        "phase_and_window": {
+          "min": -16.981203550861036,
+          "median": -6.24086906959621,
+          "max": -3.7920019478031475
+        },
+        "intervals_overlap": false
+      }
+    },
+    "linearized_depth32_100ms_trajectory_example": {
+      "id": "linearizedADAA__attack-100ms__upper-cutoff-120-depth-minus32",
+      "mechanism": "linearizedADAA",
+      "attack_profile": "attack-100ms",
+      "depth": -32,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/linearizedADAA__attack-100ms__upper-cutoff-120-depth-minus32/septum-raw.wav",
+        "sha256": "df966db90c6bb5f7243975155a23b222d27a5b0af19562c11096c3c2770a02f8"
+      },
+      "first_note_central": {
+        "early_ratio_db": -8.54206657409668,
+        "late_ratio_db": -49.57459259033203,
+        "high_change_db": -50.080436388769186,
+        "low_change_db": -9.753506579009013,
+        "bass_change_db": -0.47372420850215136,
+        "rms_change_db": -0.770406956187097
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -59.949378967285156,
+        "late_ratio_db": -60.11463928222656,
+        "high_change_db": -0.36836858882494994,
+        "low_change_db": -0.13236241161957452,
+        "bass_change_db": -0.6144563041086855,
+        "rms_change_db": -0.8398781712083316
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 27,
+          "20": 27,
+          "30": 27
+        },
+        "4": {
+          "10": 3,
+          "20": 3,
+          "30": 3
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 27,
+          "20": 27,
+          "30": 27
+        },
+        "4": {
+          "10": 3,
+          "20": 3,
+          "30": 3
+        }
+      },
+      "first_note_paired_timing_error_seconds": {
+        "10": {
+          "min_median_max": [
+            -0.010136054421767682,
+            -0.009138321995465049,
+            -0.007142857142856229
+          ],
+          "observations": 27
+        },
+        "20": {
+          "min_median_max": [
+            -0.012131519274376501,
+            -0.010136054421771235,
+            -0.006145124716553596
+          ],
+          "observations": 27
+        },
+        "30": {
+          "min_median_max": [
+            -0.015124716553287954,
+            -0.013129251700679134,
+            -0.011133786848070315
+          ],
+          "observations": 27
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -11.249690017732647,
+        "h3_h2_db": -17.34584815543082,
+        "h4_h2_db": -22.958308493572375
+      },
+      "late_raw_h2_peak_amplitude_median": 0.06013515774495104,
+      "late_fit_residual_fraction_max": 3.1528409237189867e-09
+    },
+    "first_note_hardware_central": {
+      "early_ratio_db": -6.376792907714844,
+      "late_ratio_db": -34.96432876586914,
+      "high_change_db": -30.713239958786517,
+      "low_change_db": -2.306841519947767,
+      "bass_change_db": -1.1701898074526387,
+      "rms_change_db": -1.180272722008123
+    },
+    "fourth_note_hardware_central": {
+      "early_ratio_db": -7.855883598327637,
+      "late_ratio_db": -58.841773986816406,
+      "high_change_db": -71.8234155384389,
+      "low_change_db": -20.86056620994075,
+      "bass_change_db": -6.479968649331532,
+      "rms_change_db": -6.909667699645677
+    },
+    "hardware_original_closure": {
+      "1": {
+        "10": 27,
+        "20": 27,
+        "30": 27
+      },
+      "4": {
+        "10": 27,
+        "20": 27,
+        "30": 27
+      }
+    }
+  },
+  "inferences": [
+    "Within the frozen software topology, changing pulse mean has large late-shape effects with nonlinear OD and almost none with matched linearized OD; this is evidence of DC-dependent nonlinear regeneration in this model, not proof of the hardware topology.",
+    "Matched linearized OD at temporary depth\u221232 approaches late H3/H2/H4/H2, but misses H2/H1, first-note powers and closure times; the adjoining-gate fourth note starts already dark. Endpoint proximity does not establish a match.",
+    "No one of the eight sampled original-patch phases overlaps the hardware marginal H3/H2 or H4/H2 ranges. This bounded check does not exclude unsampled phases, other reset/history behavior or interactions with altered mechanisms."
+  ],
+  "limitations": [
+    "Linearizing OD removes its level-dependent compression as well as harmonics; it is an identity-transfer diagnostic with matched small-signal gain/resampling/ADAA delay, not a measured hardware algorithm.",
+    "Pulse centering subtracts an instantaneous analytic mean; it is not an analog DC blocker and also changes startup/RMS. The paired linearized control helps expose that confound.",
+    "The16dB maximum drive law recomputes the existing pre^-0.4 compensation and changes Upper gain relative to Lower. Moving AMP envelope changes nonlinear excitation, but leaves other gain stages fixed.",
+    "H1 combines Upper and Lower and can cancel with phase. H3/H2 and H4/H2 avoid that denominator only under clean approximately stationary Lower sine, linear unclipped summation/output and reliable finite-window fitting.",
+    "Upper Square/Pulse relative phase, unknown hardware control edits, capture processing, velocity and gate history remain unresolved. First-note windows are time-varying periodic projections, not steady spectra.",
+    "Raw amplitudes and powers use uncalibrated capture gain. Window/channel/encode observations are sensitivity checks on one performance, not independent samples or confidence intervals.",
+    "No different-patch confirmation or unseen validation was performed for these mechanisms. No production code was changed or shipping candidate selected."
+  ],
+  "validation": {
+    "distortion_hardware_harmonic_rows_exact": 66,
+    "phase_hardware_harmonic_rows_exact": 48,
+    "phase0_prior_endpoint_rows_exact": 8,
+    "distortion_four_control_WAV_and_original_closure_exact": true,
+    "all_outputs": "Finite, below output safety knee, fixed frames/settings/MIDI,93-sample retained latency, zero active voices at end; exact frozen source interventions and profile identities verified.",
+    "extended_metric_numerics": "Small STFT power reductions differ in last bits for eight extended control quantities; all within relative1e-6/absolute1e-9. Retained QA lists them; control WAVs and original closure rows remain exact."
+  },
+  "distortion_cells": [
+    {
+      "id": "baseline__baseline__upper-cutoff-120-depth-minus22",
+      "mechanism": "baseline",
+      "attack_profile": "baseline",
+      "depth": -22,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/baseline__baseline__upper-cutoff-120-depth-minus22/septum-raw.wav",
+        "sha256": "7139e0379d5adc7809c10af8771dad0e454ac091d6670d91beccff1eca8c151e"
+      },
+      "first_note_central": {
+        "early_ratio_db": -12.1116943359375,
+        "late_ratio_db": -12.135610580444336,
+        "high_change_db": -0.1476022287291272,
+        "low_change_db": -0.12573773413848244,
+        "bass_change_db": -0.9557366615290022,
+        "rms_change_db": -0.8892088520591237
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -13.328588485717773,
+        "late_ratio_db": -13.36195182800293,
+        "high_change_db": -0.21749503235290035,
+        "low_change_db": -0.18198666739557012,
+        "bass_change_db": -1.3961305160647477,
+        "rms_change_db": -1.559432698301741
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -9.790359916776485,
+        "h3_h2_db": -4.90325987736749,
+        "h4_h2_db": -5.859690375233633
+      },
+      "late_raw_h2_peak_amplitude_median": 0.02654178212325706,
+      "late_fit_residual_fraction_max": 0.002759417042069053
+    },
+    {
+      "id": "baseline__baseline__upper-cutoff-120-depth-minus32",
+      "mechanism": "baseline",
+      "attack_profile": "baseline",
+      "depth": -32,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/baseline__baseline__upper-cutoff-120-depth-minus32/septum-raw.wav",
+        "sha256": "5fc37f0078d8a38218f3cf071d2daa13a527a86ef436e15f5ff18df9c7717fb8"
+      },
+      "first_note_central": {
+        "early_ratio_db": -28.50674819946289,
+        "late_ratio_db": -28.49853515625,
+        "high_change_db": 0.39917953014769125,
+        "low_change_db": 0.24979617580122238,
+        "bass_change_db": -0.938297498144987,
+        "rms_change_db": -0.9622085502858155
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -35.290679931640625,
+        "late_ratio_db": -35.33505630493164,
+        "high_change_db": -0.1862053014113343,
+        "low_change_db": -0.13498459548191732,
+        "bass_change_db": -0.996944117548697,
+        "rms_change_db": -1.1731939108991654
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -18.261644430800622,
+        "h3_h2_db": -2.01129754211418,
+        "h4_h2_db": -14.429263180835296
+      },
+      "late_raw_h2_peak_amplitude_median": 0.015801526253922407,
+      "late_fit_residual_fraction_max": 1.018213581031952e-06
+    },
+    {
+      "id": "baseline__attack-100ms__upper-cutoff-120-depth-minus22",
+      "mechanism": "baseline",
+      "attack_profile": "attack-100ms",
+      "depth": -22,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/baseline__attack-100ms__upper-cutoff-120-depth-minus22/septum-raw.wav",
+        "sha256": "f08e18aec0fa5103754bbc7a683b185d38e7e20cffbc35964adbc82fba6b85b0"
+      },
+      "first_note_central": {
+        "early_ratio_db": -6.441007614135742,
+        "late_ratio_db": -10.954676628112793,
+        "high_change_db": -4.514275575672528,
+        "low_change_db": -0.3175622043368591,
+        "bass_change_db": -0.8764456898024306,
+        "rms_change_db": -0.8312888815572634
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -13.328588485717773,
+        "late_ratio_db": -13.36195182800293,
+        "high_change_db": -0.2174950122802244,
+        "low_change_db": -0.18198696023775085,
+        "bass_change_db": -1.3955957369500567,
+        "rms_change_db": -1.5590601393664194
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -9.790359834484164,
+        "h3_h2_db": -4.90326017034948,
+        "h4_h2_db": -5.859690588692727
+      },
+      "late_raw_h2_peak_amplitude_median": 0.026541782590715657,
+      "late_fit_residual_fraction_max": 0.002759411276433577
+    },
+    {
+      "id": "baseline__attack-100ms__upper-cutoff-120-depth-minus32",
+      "mechanism": "baseline",
+      "attack_profile": "attack-100ms",
+      "depth": -32,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/baseline__attack-100ms__upper-cutoff-120-depth-minus32/septum-raw.wav",
+        "sha256": "f620bf746ef19230947cff8d2419a8f718f41421d5b33f976344f66927b86a58"
+      },
+      "first_note_central": {
+        "early_ratio_db": -6.7190141677856445,
+        "late_ratio_db": -16.796125411987305,
+        "high_change_db": -13.279408147635174,
+        "low_change_db": -2.0256005268851283,
+        "bass_change_db": -0.7293331060680934,
+        "rms_change_db": -0.7578913235883746
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -35.29069519042969,
+        "late_ratio_db": -35.335060119628906,
+        "high_change_db": -0.18621290024044868,
+        "low_change_db": -0.13498580459527432,
+        "bass_change_db": -0.9956224798071638,
+        "rms_change_db": -1.1723408306472933
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 27,
+          "20": 9,
+          "30": 9
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 9,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -18.261645586415177,
+        "h3_h2_db": -2.01129713940104,
+        "h4_h2_db": -14.429265720762835
+      },
+      "late_raw_h2_peak_amplitude_median": 0.015801524021225984,
+      "late_fit_residual_fraction_max": 1.0182069783948888e-06
+    },
+    {
+      "id": "pregain16__baseline__upper-cutoff-120-depth-minus22",
+      "mechanism": "pregain16",
+      "attack_profile": "baseline",
+      "depth": -22,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/pregain16__baseline__upper-cutoff-120-depth-minus22/septum-raw.wav",
+        "sha256": "a1d3cc7bcfcfe3e223d1e6795689e528cf6f595ca5ec662fa3d4e51ece0d8c2e"
+      },
+      "first_note_central": {
+        "early_ratio_db": -15.15948486328125,
+        "late_ratio_db": -15.180428504943848,
+        "high_change_db": -0.14974532520717787,
+        "low_change_db": -0.1241572395831696,
+        "bass_change_db": -0.8575427952635195,
+        "rms_change_db": -0.8000717009857787
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -16.275482177734375,
+        "late_ratio_db": -16.310701370239258,
+        "high_change_db": -0.2133258228781898,
+        "low_change_db": -0.17341466399262373,
+        "bass_change_db": -1.3309453566829035,
+        "rms_change_db": -1.4965763668101637
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -8.201030440949246,
+        "h3_h2_db": -5.702787063252201,
+        "h4_h2_db": -5.645631948257559
+      },
+      "late_raw_h2_peak_amplitude_median": 0.032455304673554605,
+      "late_fit_residual_fraction_max": 0.001292962167764683
+    },
+    {
+      "id": "pregain16__baseline__upper-cutoff-120-depth-minus32",
+      "mechanism": "pregain16",
+      "attack_profile": "baseline",
+      "depth": -32,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/pregain16__baseline__upper-cutoff-120-depth-minus32/septum-raw.wav",
+        "sha256": "cb690d323200e96ace36031481be1787cf06ca9a80ad05313e3b75514f07362e"
+      },
+      "first_note_central": {
+        "early_ratio_db": -42.093013763427734,
+        "late_ratio_db": -42.080223083496094,
+        "high_change_db": 0.38993241581610505,
+        "low_change_db": 0.2795232720875447,
+        "bass_change_db": -0.9060603014709159,
+        "rms_change_db": -0.9240189803302918
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -52.81511688232422,
+        "late_ratio_db": -52.81004333496094,
+        "high_change_db": -0.16693095065880925,
+        "low_change_db": -0.1622189498462845,
+        "bass_change_db": -0.9533717669835227,
+        "rms_change_db": -1.160985071628673
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 3,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 3,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 3,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 3,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -17.78198810152319,
+        "h3_h2_db": -2.257446962929495,
+        "h4_h2_db": -16.744111059996456
+      },
+      "late_raw_h2_peak_amplitude_median": 0.01711408701757597,
+      "late_fit_residual_fraction_max": 8.743745083684172e-09
+    },
+    {
+      "id": "pregain16__attack-100ms__upper-cutoff-120-depth-minus22",
+      "mechanism": "pregain16",
+      "attack_profile": "attack-100ms",
+      "depth": -22,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/pregain16__attack-100ms__upper-cutoff-120-depth-minus22/septum-raw.wav",
+        "sha256": "d0bf1184329e027d3828c8c9439f5f14949ca1e5f78fbd59156e8f753eb41ee9"
+      },
+      "first_note_central": {
+        "early_ratio_db": -6.793676853179932,
+        "late_ratio_db": -13.470236778259277,
+        "high_change_db": -6.832873799020419,
+        "low_change_db": -0.6788966340494724,
+        "bass_change_db": -0.8299825793039339,
+        "rms_change_db": -0.7714728680948824
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -16.275480270385742,
+        "late_ratio_db": -16.31070327758789,
+        "high_change_db": -0.21332551368133323,
+        "low_change_db": -0.1734137520660255,
+        "bass_change_db": -1.3301815191426094,
+        "rms_change_db": -1.4962115662737823
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 3,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -8.20103038875275,
+        "h3_h2_db": -5.70278717460815,
+        "h4_h2_db": -5.645632235031436
+      },
+      "late_raw_h2_peak_amplitude_median": 0.03245530508455409,
+      "late_fit_residual_fraction_max": 0.0012929590242273846
+    },
+    {
+      "id": "pregain16__attack-100ms__upper-cutoff-120-depth-minus32",
+      "mechanism": "pregain16",
+      "attack_profile": "attack-100ms",
+      "depth": -32,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/pregain16__attack-100ms__upper-cutoff-120-depth-minus32/septum-raw.wav",
+        "sha256": "898e6121f309faabfae7572ca2941d2b007183d180702425a31ab5f1419565c0"
+      },
+      "first_note_central": {
+        "early_ratio_db": -7.157724380493164,
+        "late_ratio_db": -21.3226261138916,
+        "high_change_db": -18.45249559118021,
+        "low_change_db": -3.8360982949458347,
+        "bass_change_db": -0.6949629752813564,
+        "rms_change_db": -0.7563482076789327
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -52.815155029296875,
+        "late_ratio_db": -52.810028076171875,
+        "high_change_db": -0.1669227320705744,
+        "low_change_db": -0.16221806880208334,
+        "bass_change_db": -0.9519966488345268,
+        "rms_change_db": -1.1601786722548901
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 27,
+          "20": 27,
+          "30": 18
+        },
+        "4": {
+          "10": 3,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 27,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 3,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -17.78199072230947,
+        "h3_h2_db": -2.257446686794924,
+        "h4_h2_db": -16.744115711906908
+      },
+      "late_raw_h2_peak_amplitude_median": 0.017114084806818176,
+      "late_fit_residual_fraction_max": 8.780973254907181e-09
+    },
+    {
+      "id": "linearizedADAA__baseline__upper-cutoff-120-depth-minus22",
+      "mechanism": "linearizedADAA",
+      "attack_profile": "baseline",
+      "depth": -22,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/linearizedADAA__baseline__upper-cutoff-120-depth-minus22/septum-raw.wav",
+        "sha256": "97684c37732e459e33b49e13cef88a815d2851232d003789ba9d860710dadd88"
+      },
+      "first_note_central": {
+        "early_ratio_db": -35.6701545715332,
+        "late_ratio_db": -35.7017822265625,
+        "high_change_db": -0.14570394368425355,
+        "low_change_db": 0.006849283686172214,
+        "bass_change_db": -0.1819137033548337,
+        "rms_change_db": -0.19546135325660785
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -37.74461364746094,
+        "late_ratio_db": -37.751869201660156,
+        "high_change_db": -0.2358283329485218,
+        "low_change_db": -0.1659920319327668,
+        "bass_change_db": -0.30646567471774233,
+        "rms_change_db": -0.6941485461401182
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -1.9175370475621236,
+        "h3_h2_db": -8.308344976340829,
+        "h4_h2_db": -6.096609350049032
+      },
+      "late_raw_h2_peak_amplitude_median": 0.14132711002686102,
+      "late_fit_residual_fraction_max": 6.258354078857056e-06
+    },
+    {
+      "id": "linearizedADAA__baseline__upper-cutoff-120-depth-minus32",
+      "mechanism": "linearizedADAA",
+      "attack_profile": "baseline",
+      "depth": -32,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/linearizedADAA__baseline__upper-cutoff-120-depth-minus32/septum-raw.wav",
+        "sha256": "29db69301ce9b5037375b22fb49d9f579bbaab2fca78eb03a387b6c398aa6ee2"
+      },
+      "first_note_central": {
+        "early_ratio_db": -57.57236862182617,
+        "late_ratio_db": -57.3123893737793,
+        "high_change_db": -0.34820933966987866,
+        "low_change_db": -0.12907359787798356,
+        "bass_change_db": -0.4554278515057959,
+        "rms_change_db": -0.4863389536605265
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -59.94943618774414,
+        "late_ratio_db": -60.11495590209961,
+        "high_change_db": -0.3684224081031715,
+        "low_change_db": -0.132368924961618,
+        "bass_change_db": -0.6156262353172863,
+        "rms_change_db": -0.8400622457964761
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 3,
+          "20": 3,
+          "30": 3
+        },
+        "4": {
+          "10": 3,
+          "20": 3,
+          "30": 3
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 3,
+          "20": 3,
+          "30": 3
+        },
+        "4": {
+          "10": 3,
+          "20": 3,
+          "30": 3
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -11.249688168104797,
+        "h3_h2_db": -17.345842701168394,
+        "h4_h2_db": -22.958309541496348
+      },
+      "late_raw_h2_peak_amplitude_median": 0.06013517591927084,
+      "late_fit_residual_fraction_max": 3.014317733420113e-09
+    },
+    {
+      "id": "linearizedADAA__attack-100ms__upper-cutoff-120-depth-minus22",
+      "mechanism": "linearizedADAA",
+      "attack_profile": "attack-100ms",
+      "depth": -22,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/linearizedADAA__attack-100ms__upper-cutoff-120-depth-minus22/septum-raw.wav",
+        "sha256": "f99eb23091b1dec2b12805dde662d1aef61848fcbeab6a7af3828e1a64859124"
+      },
+      "first_note_central": {
+        "early_ratio_db": -7.815971851348877,
+        "late_ratio_db": -23.018095016479492,
+        "high_change_db": -18.83320114196981,
+        "low_change_db": -2.453059208488696,
+        "bass_change_db": -0.343209135765969,
+        "rms_change_db": -0.3957941870080983
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -37.74460983276367,
+        "late_ratio_db": -37.751869201660156,
+        "high_change_db": -0.23582511825833308,
+        "low_change_db": -0.1659920319327668,
+        "bass_change_db": -0.3067138855936058,
+        "rms_change_db": -0.6941694541159364
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 27,
+          "20": 27,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 27,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -1.9175369278607488,
+        "h3_h2_db": -8.308344851456038,
+        "h4_h2_db": -6.096609614665438
+      },
+      "late_raw_h2_peak_amplitude_median": 0.14132711182878793,
+      "late_fit_residual_fraction_max": 6.2583704870047665e-06
+    },
+    {
+      "id": "linearizedADAA__attack-100ms__upper-cutoff-120-depth-minus32",
+      "mechanism": "linearizedADAA",
+      "attack_profile": "attack-100ms",
+      "depth": -32,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/linearizedADAA__attack-100ms__upper-cutoff-120-depth-minus32/septum-raw.wav",
+        "sha256": "df966db90c6bb5f7243975155a23b222d27a5b0af19562c11096c3c2770a02f8"
+      },
+      "first_note_central": {
+        "early_ratio_db": -8.54206657409668,
+        "late_ratio_db": -49.57459259033203,
+        "high_change_db": -50.080436388769186,
+        "low_change_db": -9.753506579009013,
+        "bass_change_db": -0.47372420850215136,
+        "rms_change_db": -0.770406956187097
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -59.949378967285156,
+        "late_ratio_db": -60.11463928222656,
+        "high_change_db": -0.36836858882494994,
+        "low_change_db": -0.13236241161957452,
+        "bass_change_db": -0.6144563041086855,
+        "rms_change_db": -0.8398781712083316
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 27,
+          "20": 27,
+          "30": 27
+        },
+        "4": {
+          "10": 3,
+          "20": 3,
+          "30": 3
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 27,
+          "20": 27,
+          "30": 27
+        },
+        "4": {
+          "10": 3,
+          "20": 3,
+          "30": 3
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -11.249690017732647,
+        "h3_h2_db": -17.34584815543082,
+        "h4_h2_db": -22.958308493572375
+      },
+      "late_raw_h2_peak_amplitude_median": 0.06013515774495104,
+      "late_fit_residual_fraction_max": 3.1528409237189867e-09
+    },
+    {
+      "id": "zeroMeanPulse__baseline__upper-cutoff-120-depth-minus22",
+      "mechanism": "zeroMeanPulse",
+      "attack_profile": "baseline",
+      "depth": -22,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/zeroMeanPulse__baseline__upper-cutoff-120-depth-minus22/septum-raw.wav",
+        "sha256": "3528bc40b35d632d5f9a0c4a3ceb1cd6e011ea4c9afd9fe1b5a1430031d7bc55"
+      },
+      "first_note_central": {
+        "early_ratio_db": -12.686445236206055,
+        "late_ratio_db": -12.677879333496094,
+        "high_change_db": 0.22873221974213465,
+        "low_change_db": 0.01986687163065426,
+        "bass_change_db": -0.9674498931245452,
+        "rms_change_db": -0.9687193947758246
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -12.624507904052734,
+        "late_ratio_db": -12.670402526855469,
+        "high_change_db": -0.26176708632413437,
+        "low_change_db": -0.18380248002314659,
+        "bass_change_db": -1.38958033983495,
+        "rms_change_db": -1.746506722210544
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -8.145783919367446,
+        "h3_h2_db": -10.672480791357088,
+        "h4_h2_db": -4.4557049351503775
+      },
+      "late_raw_h2_peak_amplitude_median": 0.02622202233510578,
+      "late_fit_residual_fraction_max": 0.0036052317598697864
+    },
+    {
+      "id": "zeroMeanPulse__baseline__upper-cutoff-120-depth-minus32",
+      "mechanism": "zeroMeanPulse",
+      "attack_profile": "baseline",
+      "depth": -32,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/zeroMeanPulse__baseline__upper-cutoff-120-depth-minus32/septum-raw.wav",
+        "sha256": "d6de38ad7917f2240fab49c41e88a8463618aaf7929dd0e4ad34dd1132098404"
+      },
+      "first_note_central": {
+        "early_ratio_db": -29.579082489013672,
+        "late_ratio_db": -29.337661743164062,
+        "high_change_db": 0.39687125883830277,
+        "low_change_db": -0.06963212403994845,
+        "bass_change_db": -0.8864903486984161,
+        "rms_change_db": -0.9660697564107323
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -35.129173278808594,
+        "late_ratio_db": -35.19892883300781,
+        "high_change_db": -0.13537088339622017,
+        "low_change_db": -0.14219475427054817,
+        "bass_change_db": -0.939923593693269,
+        "rms_change_db": -1.1498444430027739
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -19.908723085989564,
+        "h3_h2_db": -1.0994492249237333,
+        "h4_h2_db": -3.935991348198721
+      },
+      "late_raw_h2_peak_amplitude_median": 0.013321963809218818,
+      "late_fit_residual_fraction_max": 1.2016516170611026e-06
+    },
+    {
+      "id": "zeroMeanPulse__attack-100ms__upper-cutoff-120-depth-minus22",
+      "mechanism": "zeroMeanPulse",
+      "attack_profile": "attack-100ms",
+      "depth": -22,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/zeroMeanPulse__attack-100ms__upper-cutoff-120-depth-minus22/septum-raw.wav",
+        "sha256": "7d6a01b8a3b2743da122f571b5e1b878815b672976edd83fb57e86569e86a4a6"
+      },
+      "first_note_central": {
+        "early_ratio_db": -7.021921157836914,
+        "late_ratio_db": -11.086585998535156,
+        "high_change_db": -4.973167872308871,
+        "low_change_db": -0.4078322709875266,
+        "bass_change_db": -0.6435687385804947,
+        "rms_change_db": -0.8441054691661201
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -12.624507904052734,
+        "late_ratio_db": -12.670402526855469,
+        "high_change_db": -0.2617682139835935,
+        "low_change_db": -0.18380246621614305,
+        "bass_change_db": -1.3899834272307352,
+        "rms_change_db": -1.7453025911925124
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -8.145783434770026,
+        "h3_h2_db": -10.672481942909805,
+        "h4_h2_db": -4.455705219620637
+      },
+      "late_raw_h2_peak_amplitude_median": 0.026222023765288163,
+      "late_fit_residual_fraction_max": 0.003605203701643153
+    },
+    {
+      "id": "zeroMeanPulse__attack-100ms__upper-cutoff-120-depth-minus32",
+      "mechanism": "zeroMeanPulse",
+      "attack_profile": "attack-100ms",
+      "depth": -32,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/zeroMeanPulse__attack-100ms__upper-cutoff-120-depth-minus32/septum-raw.wav",
+        "sha256": "8acf29f3c426c767836eabeb016cf7135f097dba1eb29025dbc5fe47906c3762"
+      },
+      "first_note_central": {
+        "early_ratio_db": -7.358485221862793,
+        "late_ratio_db": -19.80559539794922,
+        "high_change_db": -14.670262236744811,
+        "low_change_db": -2.4591788647311006,
+        "bass_change_db": -0.2788491616539659,
+        "rms_change_db": -0.6329837456753289
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -35.12916946411133,
+        "late_ratio_db": -35.19892883300781,
+        "high_change_db": -0.13538393977107432,
+        "low_change_db": -0.14219580223262795,
+        "bass_change_db": -0.9370496616543598,
+        "rms_change_db": -1.1477945522083743
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 27,
+          "20": 12,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -19.908726689086237,
+        "h3_h2_db": -1.0994442440130099,
+        "h4_h2_db": -3.9359870361222233
+      },
+      "late_raw_h2_peak_amplitude_median": 0.013321954321606112,
+      "late_fit_residual_fraction_max": 1.20164551756268e-06
+    },
+    {
+      "id": "linearizedADAA+zeroMeanPulse__baseline__upper-cutoff-120-depth-minus22",
+      "mechanism": "linearizedADAA+zeroMeanPulse",
+      "attack_profile": "baseline",
+      "depth": -22,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/linearizedADAA+zeroMeanPulse__baseline__upper-cutoff-120-depth-minus22/septum-raw.wav",
+        "sha256": "ff0e4e619bee29060be06a33c08f25c81e852790a448c98fe143d9f239f6a6a9"
+      },
+      "first_note_central": {
+        "early_ratio_db": -35.67027282714844,
+        "late_ratio_db": -35.701690673828125,
+        "high_change_db": -0.14572288199705952,
+        "low_change_db": 0.006979324194720249,
+        "bass_change_db": -0.30465316126774766,
+        "rms_change_db": -0.11734474912317516
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -37.74458312988281,
+        "late_ratio_db": -37.751869201660156,
+        "high_change_db": -0.2358220948579941,
+        "low_change_db": -0.16602961427983942,
+        "bass_change_db": -0.3292035720837987,
+        "rms_change_db": -0.7139203285468128
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -1.9175545805291014,
+        "h3_h2_db": -8.308362677640353,
+        "h4_h2_db": -6.096571400565581
+      },
+      "late_raw_h2_peak_amplitude_median": 0.14132685596485123,
+      "late_fit_residual_fraction_max": 6.255744494444736e-06
+    },
+    {
+      "id": "linearizedADAA+zeroMeanPulse__baseline__upper-cutoff-120-depth-minus32",
+      "mechanism": "linearizedADAA+zeroMeanPulse",
+      "attack_profile": "baseline",
+      "depth": -32,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/linearizedADAA+zeroMeanPulse__baseline__upper-cutoff-120-depth-minus32/septum-raw.wav",
+        "sha256": "6cf15792caa9123c3643eb15c551729abb60df3223ed0865bc0ad552a1deaff7"
+      },
+      "first_note_central": {
+        "early_ratio_db": -57.705223083496094,
+        "late_ratio_db": -57.332489013671875,
+        "high_change_db": -0.2767204522523201,
+        "low_change_db": -0.1284384872431943,
+        "bass_change_db": -0.48457770410898426,
+        "rms_change_db": -0.4833259155484342
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -59.9384765625,
+        "late_ratio_db": -60.12141418457031,
+        "high_change_db": -0.324309551094629,
+        "low_change_db": -0.13423448614281597,
+        "bass_change_db": -0.626849655155528,
+        "rms_change_db": -0.886373717380021
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 3,
+          "20": 3,
+          "30": 3
+        },
+        "4": {
+          "10": 3,
+          "20": 3,
+          "30": 3
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 3,
+          "20": 3,
+          "30": 3
+        },
+        "4": {
+          "10": 3,
+          "20": 3,
+          "30": 3
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -11.249625180305072,
+        "h3_h2_db": -17.34589006159189,
+        "h4_h2_db": -22.958633670985158
+      },
+      "late_raw_h2_peak_amplitude_median": 0.060135549192363025,
+      "late_fit_residual_fraction_max": 9.653309471713278e-10
+    },
+    {
+      "id": "linearizedADAA+zeroMeanPulse__attack-100ms__upper-cutoff-120-depth-minus22",
+      "mechanism": "linearizedADAA+zeroMeanPulse",
+      "attack_profile": "attack-100ms",
+      "depth": -22,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/linearizedADAA+zeroMeanPulse__attack-100ms__upper-cutoff-120-depth-minus22/septum-raw.wav",
+        "sha256": "8465f6ba5388ca7c19055335ec2b42cc27e47ac04ee896c3f3d4c6c119f31808"
+      },
+      "first_note_central": {
+        "early_ratio_db": -7.816022872924805,
+        "late_ratio_db": -23.0180606842041,
+        "high_change_db": -18.83320210568118,
+        "low_change_db": -2.453077274003938,
+        "bass_change_db": -0.41098903043519996,
+        "rms_change_db": -0.35014230775121824
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -37.74458312988281,
+        "late_ratio_db": -37.751869201660156,
+        "high_change_db": -0.23582428517253362,
+        "low_change_db": -0.16602961427983942,
+        "bass_change_db": -0.32909504271797374,
+        "rms_change_db": -0.7135109965136941
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 27,
+          "20": 27,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 27,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -1.9175544206116846,
+        "h3_h2_db": -8.308362576900024,
+        "h4_h2_db": -6.096571701440766
+      },
+      "late_raw_h2_peak_amplitude_median": 0.14132685782311105,
+      "late_fit_residual_fraction_max": 6.255771637181362e-06
+    },
+    {
+      "id": "linearizedADAA+zeroMeanPulse__attack-100ms__upper-cutoff-120-depth-minus32",
+      "mechanism": "linearizedADAA+zeroMeanPulse",
+      "attack_profile": "attack-100ms",
+      "depth": -32,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/linearizedADAA+zeroMeanPulse__attack-100ms__upper-cutoff-120-depth-minus32/septum-raw.wav",
+        "sha256": "e8b7185a6dd4f2d58500a1b36c0f8e53be657104b92c3c64ad47ea14138baa50"
+      },
+      "first_note_central": {
+        "early_ratio_db": -8.542115211486816,
+        "late_ratio_db": -49.574623107910156,
+        "high_change_db": -50.080616746413504,
+        "low_change_db": -9.753537320796564,
+        "bass_change_db": -0.8728383357495684,
+        "rms_change_db": -0.8029429863412254
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -59.93886947631836,
+        "late_ratio_db": -60.12125778198242,
+        "high_change_db": -0.3244644879446099,
+        "low_change_db": -0.13422647975031055,
+        "bass_change_db": -0.6262804970278957,
+        "rms_change_db": -0.8843812546011698
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 27,
+          "20": 27,
+          "30": 27
+        },
+        "4": {
+          "10": 3,
+          "20": 3,
+          "30": 3
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 27,
+          "20": 27,
+          "30": 27
+        },
+        "4": {
+          "10": 3,
+          "20": 3,
+          "30": 3
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -11.24962689278182,
+        "h3_h2_db": -17.345892657009834,
+        "h4_h2_db": -22.958635701256615
+      },
+      "late_raw_h2_peak_amplitude_median": 0.06013553566977292,
+      "late_fit_residual_fraction_max": 9.482633164086402e-10
+    },
+    {
+      "id": "env-beforeOD__baseline__upper-cutoff-120-depth-minus22",
+      "mechanism": "env-beforeOD",
+      "attack_profile": "baseline",
+      "depth": -22,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/env-beforeOD__baseline__upper-cutoff-120-depth-minus22/septum-raw.wav",
+        "sha256": "d3f846b3991d2b490717bcaa7d48ec634fab38a5f399148a7c6f419a058e38ca"
+      },
+      "first_note_central": {
+        "early_ratio_db": -14.541406631469727,
+        "late_ratio_db": -14.67045783996582,
+        "high_change_db": -0.15555113200465343,
+        "low_change_db": 0.03355406110163983,
+        "bass_change_db": -0.6833841076081271,
+        "rms_change_db": -0.5974047646880152
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -15.644805908203125,
+        "late_ratio_db": -15.818277359008789,
+        "high_change_db": -0.2055055111401316,
+        "low_change_db": -0.0582886454107836,
+        "bass_change_db": -1.1466204396411968,
+        "rms_change_db": -1.3080619827123314
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -6.831718701013642,
+        "h3_h2_db": -5.580062090473222,
+        "h4_h2_db": -5.664924835498418
+      },
+      "late_raw_h2_peak_amplitude_median": 0.04050370069616903,
+      "late_fit_residual_fraction_max": 0.001967079633869121
+    },
+    {
+      "id": "env-beforeOD__baseline__upper-cutoff-120-depth-minus32",
+      "mechanism": "env-beforeOD",
+      "attack_profile": "baseline",
+      "depth": -32,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/env-beforeOD__baseline__upper-cutoff-120-depth-minus32/septum-raw.wav",
+        "sha256": "8d6397164ddfecb56e09630fdc153a66c5c83342787e2c995a904e61ce33f9c7"
+      },
+      "first_note_central": {
+        "early_ratio_db": -39.13242721557617,
+        "late_ratio_db": -39.89586639404297,
+        "high_change_db": -0.3421807067554994,
+        "low_change_db": 0.3020410023201876,
+        "bass_change_db": -0.7505700840849236,
+        "rms_change_db": -0.753202509992807
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -49.41986083984375,
+        "late_ratio_db": -50.133270263671875,
+        "high_change_db": -0.8118746606601235,
+        "low_change_db": -0.12169148372554872,
+        "bass_change_db": -0.823732580966098,
+        "rms_change_db": -1.0224451926266056
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 3,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 3,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 3,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 3,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -16.682198369012283,
+        "h3_h2_db": -2.0837328569522606,
+        "h4_h2_db": -16.429862848276798
+      },
+      "late_raw_h2_peak_amplitude_median": 0.021686508880953574,
+      "late_fit_residual_fraction_max": 2.0061846779004897e-08
+    },
+    {
+      "id": "env-beforeOD__attack-100ms__upper-cutoff-120-depth-minus22",
+      "mechanism": "env-beforeOD",
+      "attack_profile": "attack-100ms",
+      "depth": -22,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/env-beforeOD__attack-100ms__upper-cutoff-120-depth-minus22/septum-raw.wav",
+        "sha256": "ae06575e4bf65c308d9cc57faa7cbd41b40474253ee3e3462e3de5dcc20f62b5"
+      },
+      "first_note_central": {
+        "early_ratio_db": -6.732337951660156,
+        "late_ratio_db": -13.108501434326172,
+        "high_change_db": -6.356290945317198,
+        "low_change_db": -0.5031172788977614,
+        "bass_change_db": -0.6015173980187889,
+        "rms_change_db": -0.5496549722290816
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -15.644807815551758,
+        "late_ratio_db": -15.818277359008789,
+        "high_change_db": -0.20550418667222914,
+        "low_change_db": -0.05828864151497015,
+        "bass_change_db": -1.1466951547679045,
+        "rms_change_db": -1.3077323941022136
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 0,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -6.8317186427586005,
+        "h3_h2_db": -5.580062241706456,
+        "h4_h2_db": -5.664925092657688
+      },
+      "late_raw_h2_peak_amplitude_median": 0.04050370131007919,
+      "late_fit_residual_fraction_max": 0.0019670748178789977
+    },
+    {
+      "id": "env-beforeOD__attack-100ms__upper-cutoff-120-depth-minus32",
+      "mechanism": "env-beforeOD",
+      "attack_profile": "attack-100ms",
+      "depth": -32,
+      "audio": {
+        "path": "build-fidelity/rcs-distortion-probes-2026-09-20/renders/env-beforeOD__attack-100ms__upper-cutoff-120-depth-minus32/septum-raw.wav",
+        "sha256": "8b0c8e7058bc412c27d56ee4cef276f0a2b06901facf58148b80e670c9784ba3"
+      },
+      "first_note_central": {
+        "early_ratio_db": -7.082191467285156,
+        "late_ratio_db": -20.5491886138916,
+        "high_change_db": -17.46148690971809,
+        "low_change_db": -3.41443777238176,
+        "bass_change_db": -0.4599684290565875,
+        "rms_change_db": -0.5286847908905976
+      },
+      "fourth_note_central": {
+        "early_ratio_db": -49.41986846923828,
+        "late_ratio_db": -50.133270263671875,
+        "high_change_db": -0.8118752669198557,
+        "low_change_db": -0.12169120027971303,
+        "bass_change_db": -0.8223867146736445,
+        "rms_change_db": -1.0217300237518963
+      },
+      "original_closure_observed_out_of27": {
+        "1": {
+          "10": 27,
+          "20": 27,
+          "30": 9
+        },
+        "4": {
+          "10": 3,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "common_closure_observed_out_of27": {
+        "1": {
+          "10": 27,
+          "20": 0,
+          "30": 0
+        },
+        "4": {
+          "10": 3,
+          "20": 0,
+          "30": 0
+        }
+      },
+      "late_harmonic_medians_db": {
+        "h2_h1_db": -16.682199343015974,
+        "h3_h2_db": -2.083732432081784,
+        "h4_h2_db": -16.429866265530016
+      },
+      "late_raw_h2_peak_amplitude_median": 0.02168650625899477,
+      "late_fit_residual_fraction_max": 2.0106886418530688e-08
+    }
+  ],
+  "phase_cells": [
+    {
+      "id": "pulse-phase-0-of-8",
+      "phase_cycles": 0.0,
+      "audio_sha256": "7139e0379d5adc7809c10af8771dad0e454ac091d6670d91beccff1eca8c151e",
+      "summary": {
+        "h2_h1_db": {
+          "min": -9.798940636819607,
+          "median": -9.79034421325874,
+          "max": -9.786764618527203
+        },
+        "h3_h2_db": {
+          "min": -4.908439728725915,
+          "median": -4.903259877367518,
+          "max": -4.860401486249396
+        },
+        "h4_h2_db": {
+          "min": -5.86667866441965,
+          "median": -5.859662771357508,
+          "max": -5.84113302538706
+        },
+        "raw_h2_peak_amplitude": {
+          "min": 0.026495327801889977,
+          "median": 0.02654191064571666,
+          "max": 0.02654811229288408
+        },
+        "harmonic_model_residual_fraction": {
+          "min": 0.002414954342490145,
+          "median": 0.0025108977173582867,
+          "max": 0.002759417042068961
+        }
+      }
+    },
+    {
+      "id": "pulse-phase-1-of-8",
+      "phase_cycles": 0.125,
+      "audio_sha256": "84290d68270e4bccdbae0232f7601ef1f281ac83f5fe705231c60fcbf94eaa8a",
+      "summary": {
+        "h2_h1_db": {
+          "min": -10.015873873894556,
+          "median": -10.012195995271604,
+          "max": -10.009626950918129
+        },
+        "h3_h2_db": {
+          "min": -8.629392719587583,
+          "median": -8.609966964427308,
+          "max": -8.599924199298526
+        },
+        "h4_h2_db": {
+          "min": -4.299003057543663,
+          "median": -4.293831224614676,
+          "max": -4.285471345505386
+        },
+        "raw_h2_peak_amplitude": {
+          "min": 0.027496500037793067,
+          "median": 0.02750549189866241,
+          "max": 0.027514671556414936
+        },
+        "harmonic_model_residual_fraction": {
+          "min": 0.0008767523454984012,
+          "median": 0.0009012576780759874,
+          "max": 0.0009533904297355225
+        }
+      }
+    },
+    {
+      "id": "pulse-phase-2-of-8",
+      "phase_cycles": 0.25,
+      "audio_sha256": "cfbbada1b660658d4708fc4ac6d574e6bc201b7a2149bd8cb2ce27b9ecc1c21e",
+      "summary": {
+        "h2_h1_db": {
+          "min": -8.48606646813479,
+          "median": -8.483450968460852,
+          "max": -8.480284501868972
+        },
+        "h3_h2_db": {
+          "min": -11.816649879228061,
+          "median": -11.794993241068944,
+          "max": -11.785985417847737
+        },
+        "h4_h2_db": {
+          "min": -9.56515499970074,
+          "median": -9.547932121417574,
+          "max": -9.543690867746115
+        },
+        "raw_h2_peak_amplitude": {
+          "min": 0.031413250638099785,
+          "median": 0.031420687590894864,
+          "max": 0.03143544923237469
+        },
+        "harmonic_model_residual_fraction": {
+          "min": 0.0003112527766643648,
+          "median": 0.0003140035120634063,
+          "max": 0.00032592923928482755
+        }
+      }
+    },
+    {
+      "id": "pulse-phase-3-of-8",
+      "phase_cycles": 0.375,
+      "audio_sha256": "3eaa42ca766fadb04a3c22dde34ec90ec4dc363433a422752c17d8c6ba237eaf",
+      "summary": {
+        "h2_h1_db": {
+          "min": -7.682274817125862,
+          "median": -7.6795002471311715,
+          "max": -7.677982305128096
+        },
+        "h3_h2_db": {
+          "min": -13.136173279547286,
+          "median": -13.123422562788132,
+          "max": -13.116943129147636
+        },
+        "h4_h2_db": {
+          "min": -16.981203550861036,
+          "median": -16.958973392494315,
+          "max": -16.954694789319248
+        },
+        "raw_h2_peak_amplitude": {
+          "min": 0.03254856394512417,
+          "median": 0.032556704497589184,
+          "max": 0.03256337413141962
+        },
+        "harmonic_model_residual_fraction": {
+          "min": 0.0003058217197506401,
+          "median": 0.0003087540042830957,
+          "max": 0.0003177615458824577
+        }
+      }
+    },
+    {
+      "id": "pulse-phase-4-of-8",
+      "phase_cycles": 0.5,
+      "audio_sha256": "08849556fde515c37ce7a6cbd112c48918209aa3ec846abdf32101d9af6371ed",
+      "summary": {
+        "h2_h1_db": {
+          "min": -7.7722058675319445,
+          "median": -7.769249718404835,
+          "max": -7.7677182985151205
+        },
+        "h3_h2_db": {
+          "min": -10.574057454574948,
+          "median": -10.568903808241686,
+          "max": -10.564578285923332
+        },
+        "h4_h2_db": {
+          "min": -6.82198048804714,
+          "median": -6.8186534688296,
+          "max": -6.815538776270959
+        },
+        "raw_h2_peak_amplitude": {
+          "min": 0.0302265767510168,
+          "median": 0.030234129746093397,
+          "max": 0.03024023736933094
+        },
+        "harmonic_model_residual_fraction": {
+          "min": 0.00025488933733860183,
+          "median": 0.0002567824490836711,
+          "max": 0.0002662250455546234
+        }
+      }
+    },
+    {
+      "id": "pulse-phase-5-of-8",
+      "phase_cycles": 0.625,
+      "audio_sha256": "cbbdf761611d91bc99f32aa6fb909d3bbdb206c185b5579f2983fa1f503cdf7e",
+      "summary": {
+        "h2_h1_db": {
+          "min": -8.593264588275112,
+          "median": -8.586677231288391,
+          "max": -8.57359524184479
+        },
+        "h3_h2_db": {
+          "min": -6.8113660271279795,
+          "median": -6.804978127534808,
+          "max": -6.795823587603087
+        },
+        "h4_h2_db": {
+          "min": -3.8577861183303943,
+          "median": -3.797999811808527,
+          "max": -3.7920019478031475
+        },
+        "raw_h2_peak_amplitude": {
+          "min": 0.02565107996417284,
+          "median": 0.02566602373330104,
+          "max": 0.02567563068354616
+        },
+        "harmonic_model_residual_fraction": {
+          "min": 0.002619066021728784,
+          "median": 0.0026721040898416426,
+          "max": 0.0029853377350700402
+        }
+      }
+    },
+    {
+      "id": "pulse-phase-6-of-8",
+      "phase_cycles": 0.75,
+      "audio_sha256": "1b513ea6de4913dc75604ef66392a5bf2affc25565fd9e4ae2c2b1de4ec5df64",
+      "summary": {
+        "h2_h1_db": {
+          "min": -7.94092016045709,
+          "median": -7.930390018663031,
+          "max": -7.926183955869527
+        },
+        "h3_h2_db": {
+          "min": -3.972411812831819,
+          "median": -3.969682802081424,
+          "max": -3.962890093220718
+        },
+        "h4_h2_db": {
+          "min": -6.531327154156856,
+          "median": -6.5273873774992115,
+          "max": -6.525525035550387
+        },
+        "raw_h2_peak_amplitude": {
+          "min": 0.031861336061993324,
+          "median": 0.03189032545337947,
+          "max": 0.03190069366111051
+        },
+        "harmonic_model_residual_fraction": {
+          "min": 0.00201500453663347,
+          "median": 0.0021152141462168644,
+          "max": 0.00221026720284856
+        }
+      }
+    },
+    {
+      "id": "pulse-phase-7-of-8",
+      "phase_cycles": 0.875,
+      "audio_sha256": "c00351037f07c4b679b5d8394579b6a295ec96950dd88a22b8aec72d5e65ed77",
+      "summary": {
+        "h2_h1_db": {
+          "min": -7.62285651674596,
+          "median": -7.614052718846365,
+          "max": -7.611900257333426
+        },
+        "h3_h2_db": {
+          "min": -3.190196809018432,
+          "median": -3.18408861382182,
+          "max": -3.164705491118869
+        },
+        "h4_h2_db": {
+          "min": -5.956213103642032,
+          "median": -5.952890857811854,
+          "max": -5.951446515644108
+        },
+        "raw_h2_peak_amplitude": {
+          "min": 0.03234321156434066,
+          "median": 0.032380879212249546,
+          "max": 0.032391065799031844
+        },
+        "harmonic_model_residual_fraction": {
+          "min": 0.0011644563689514973,
+          "median": 0.001240373903609023,
+          "max": 0.0013283435254475555
+        }
+      }
+    }
+  ],
+  "figure_data": {
+    "hardware": {
+      "h3_h2_db": {
+        "min": -15.89448601233032,
+        "median": -15.718890154971202,
+        "max": -15.18937206085024
+      },
+      "h4_h2_db": {
+        "min": -24.687236017854694,
+        "median": -24.371394506507645,
+        "max": -23.839690271438695
+      }
+    },
+    "rows": [
+      {
+        "label": "Original nonlinear model \u00b7 depth -22",
+        "group": "mechanism",
+        "depth": -22,
+        "mechanism": "baseline",
+        "render_count": 2,
+        "h3_h2_db": {
+          "min": -4.908439728725935,
+          "median": -4.903260012096423,
+          "max": -4.860401149032586
+        },
+        "h4_h2_db": {
+          "min": -5.866678872770138,
+          "median": -5.859690588692727,
+          "max": -5.841132947929405
+        }
+      },
+      {
+        "label": "Original nonlinear model \u00b7 depth -32",
+        "group": "mechanism",
+        "depth": -32,
+        "mechanism": "baseline",
+        "render_count": 2,
+        "h3_h2_db": {
+          "min": -2.0116780603852495,
+          "median": -2.011297497042868,
+          "max": -2.010999656590264
+        },
+        "h4_h2_db": {
+          "min": -14.430379241254652,
+          "median": -14.429264881721723,
+          "max": -14.428431367042032
+        }
+      },
+      {
+        "label": "Drive law: 16 dB maximum \u00b7 depth -22",
+        "group": "mechanism",
+        "depth": -22,
+        "mechanism": "pregain16",
+        "render_count": 2,
+        "h3_h2_db": {
+          "min": -5.706915725827645,
+          "median": -5.702787063252201,
+          "max": -5.67843843129703
+        },
+        "h4_h2_db": {
+          "min": -5.650712787967586,
+          "median": -5.645632058476857,
+          "max": -5.633703367128002
+        }
+      },
+      {
+        "label": "Drive law: 16 dB maximum \u00b7 depth -32",
+        "group": "mechanism",
+        "depth": -32,
+        "mechanism": "pregain16",
+        "render_count": 2,
+        "h3_h2_db": {
+          "min": -2.2574697360077405,
+          "median": -2.2574469307618554,
+          "max": -2.2573402490244385
+        },
+        "h4_h2_db": {
+          "min": -16.74430209918566,
+          "median": -16.744112409188347,
+          "max": -16.743934665670793
+        }
+      },
+      {
+        "label": "Linearized overdrive \u00b7 depth -22",
+        "group": "mechanism",
+        "depth": -22,
+        "mechanism": "linearizedADAA",
+        "render_count": 2,
+        "h3_h2_db": {
+          "min": -8.308634584355284,
+          "median": -8.308344976340829,
+          "max": -8.307851165247074
+        },
+        "h4_h2_db": {
+          "min": -6.096891246436184,
+          "median": -6.096609403069943,
+          "max": -6.096183628778152
+        }
+      },
+      {
+        "label": "Linearized overdrive \u00b7 depth -32",
+        "group": "mechanism",
+        "depth": -32,
+        "mechanism": "linearizedADAA",
+        "render_count": 2,
+        "h3_h2_db": {
+          "min": -17.346137255722255,
+          "median": -17.345842701168394,
+          "max": -17.345631193447414
+        },
+        "h4_h2_db": {
+          "min": -22.958893176584656,
+          "median": -22.958309541496348,
+          "max": -22.95801552127843
+        }
+      },
+      {
+        "label": "Zero-mean pulse \u00b7 depth -22",
+        "group": "mechanism",
+        "depth": -22,
+        "mechanism": "zeroMeanPulse",
+        "render_count": 2,
+        "h3_h2_db": {
+          "min": -10.693998839979795,
+          "median": -10.672481182444141,
+          "max": -10.597780835796026
+        },
+        "h4_h2_db": {
+          "min": -4.463948934913557,
+          "median": -4.4557049351503775,
+          "max": -4.438574089798519
+        }
+      },
+      {
+        "label": "Zero-mean pulse \u00b7 depth -32",
+        "group": "mechanism",
+        "depth": -32,
+        "mechanism": "zeroMeanPulse",
+        "render_count": 2,
+        "h3_h2_db": {
+          "min": -1.1001588926429071,
+          "median": -1.0994471277735995,
+          "max": -1.098497295885227
+        },
+        "h4_h2_db": {
+          "min": -3.9363901121928118,
+          "median": -3.9359872307965507,
+          "max": -3.935382493946884
+        }
+      },
+      {
+        "label": "Linearized + zero-mean \u00b7 depth -22",
+        "group": "mechanism",
+        "depth": -22,
+        "mechanism": "linearizedADAA+zeroMeanPulse",
+        "render_count": 2,
+        "h3_h2_db": {
+          "min": -8.30868083324853,
+          "median": -8.308362677640353,
+          "max": -8.30782645959608
+        },
+        "h4_h2_db": {
+          "min": -6.096879687703884,
+          "median": -6.096571626279488,
+          "max": -6.096195160979072
+        }
+      },
+      {
+        "label": "Linearized + zero-mean \u00b7 depth -32",
+        "group": "mechanism",
+        "depth": -32,
+        "mechanism": "linearizedADAA+zeroMeanPulse",
+        "render_count": 2,
+        "h3_h2_db": {
+          "min": -17.34593090466742,
+          "median": -17.345890461202128,
+          "max": -17.34539849042789
+        },
+        "h4_h2_db": {
+          "min": -22.95869163333954,
+          "median": -22.958633670985158,
+          "max": -22.95798205474115
+        }
+      },
+      {
+        "label": "AMP envelope before drive \u00b7 depth -22",
+        "group": "mechanism",
+        "depth": -22,
+        "mechanism": "env-beforeOD",
+        "render_count": 2,
+        "h3_h2_db": {
+          "min": -5.584402272927049,
+          "median": -5.580062106964503,
+          "max": -5.553189503769213
+        },
+        "h4_h2_db": {
+          "min": -5.670395044980891,
+          "median": -5.664924942229366,
+          "max": -5.652258274254162
+        }
+      },
+      {
+        "label": "AMP envelope before drive \u00b7 depth -32",
+        "group": "mechanism",
+        "depth": -32,
+        "mechanism": "env-beforeOD",
+        "render_count": 2,
+        "h3_h2_db": {
+          "min": -2.08376472486467,
+          "median": -2.0837328569522606,
+          "max": -2.08361323235658
+        },
+        "h4_h2_db": {
+          "min": -16.43010075309647,
+          "median": -16.429863622022808,
+          "max": -16.429694319720486
+        }
+      },
+      {
+        "label": "Pulse phase 0 cycles",
+        "group": "phase",
+        "phase_cycles": 0.0,
+        "render_count": 1,
+        "h3_h2_db": {
+          "min": -4.908439728725915,
+          "median": -4.903259877367518,
+          "max": -4.860401486249396
+        },
+        "h4_h2_db": {
+          "min": -5.86667866441965,
+          "median": -5.859662771357508,
+          "max": -5.84113302538706
+        }
+      },
+      {
+        "label": "Pulse phase 0.125 cycles",
+        "group": "phase",
+        "phase_cycles": 0.125,
+        "render_count": 1,
+        "h3_h2_db": {
+          "min": -8.629392719587583,
+          "median": -8.609966964427308,
+          "max": -8.599924199298526
+        },
+        "h4_h2_db": {
+          "min": -4.299003057543663,
+          "median": -4.293831224614676,
+          "max": -4.285471345505386
+        }
+      },
+      {
+        "label": "Pulse phase 0.25 cycles",
+        "group": "phase",
+        "phase_cycles": 0.25,
+        "render_count": 1,
+        "h3_h2_db": {
+          "min": -11.816649879228061,
+          "median": -11.794993241068944,
+          "max": -11.785985417847737
+        },
+        "h4_h2_db": {
+          "min": -9.56515499970074,
+          "median": -9.547932121417574,
+          "max": -9.543690867746115
+        }
+      },
+      {
+        "label": "Pulse phase 0.375 cycles",
+        "group": "phase",
+        "phase_cycles": 0.375,
+        "render_count": 1,
+        "h3_h2_db": {
+          "min": -13.136173279547286,
+          "median": -13.123422562788132,
+          "max": -13.116943129147636
+        },
+        "h4_h2_db": {
+          "min": -16.981203550861036,
+          "median": -16.958973392494315,
+          "max": -16.954694789319248
+        }
+      },
+      {
+        "label": "Pulse phase 0.5 cycles",
+        "group": "phase",
+        "phase_cycles": 0.5,
+        "render_count": 1,
+        "h3_h2_db": {
+          "min": -10.574057454574948,
+          "median": -10.568903808241686,
+          "max": -10.564578285923332
+        },
+        "h4_h2_db": {
+          "min": -6.82198048804714,
+          "median": -6.8186534688296,
+          "max": -6.815538776270959
+        }
+      },
+      {
+        "label": "Pulse phase 0.625 cycles",
+        "group": "phase",
+        "phase_cycles": 0.625,
+        "render_count": 1,
+        "h3_h2_db": {
+          "min": -6.8113660271279795,
+          "median": -6.804978127534808,
+          "max": -6.795823587603087
+        },
+        "h4_h2_db": {
+          "min": -3.8577861183303943,
+          "median": -3.797999811808527,
+          "max": -3.7920019478031475
+        }
+      },
+      {
+        "label": "Pulse phase 0.75 cycles",
+        "group": "phase",
+        "phase_cycles": 0.75,
+        "render_count": 1,
+        "h3_h2_db": {
+          "min": -3.972411812831819,
+          "median": -3.969682802081424,
+          "max": -3.962890093220718
+        },
+        "h4_h2_db": {
+          "min": -6.531327154156856,
+          "median": -6.5273873774992115,
+          "max": -6.525525035550387
+        }
+      },
+      {
+        "label": "Pulse phase 0.875 cycles",
+        "group": "phase",
+        "phase_cycles": 0.875,
+        "render_count": 1,
+        "h3_h2_db": {
+          "min": -3.190196809018432,
+          "median": -3.18408861382182,
+          "max": -3.164705491118869
+        },
+        "h4_h2_db": {
+          "min": -5.956213103642032,
+          "median": -5.952890857811854,
+          "max": -5.951446515644108
+        }
+      }
+    ],
+    "definition": "Rows aggregate both attack models for each mechanism/depth,16 window observations per row; phase rows contain8 windows. Bars are min/max and dots medians, not confidence intervals."
+  },
+  "reproduction": {
+    "distortion": "python3 build-fidelity/rcs-distortion-probes-2026-09-20/analyze_probes.py --output build-fidelity/rcs-distortion-probes-2026-09-20/analysis-reproduced",
+    "phase": "python3 build-fidelity/rcs-pulse-phase-probes-2026-09-20/analyze.py",
+    "figure": "python3 Docs/fidelity/source-audits/rcs-a02-distortion-results-2026-09-20-figure.py",
+    "note": "Third-party media, binaries and full study outputs remain ignored. Exact identities are retained here; reacquisition/builds must verify them before analysis."
+  },
+  "figure": {
+    "png": {
+      "path": "Docs/fidelity/source-audits/rcs-a02-distortion-results-2026-09-20.png",
+      "sha256": "f84067c04f2dd9be74b6e86a579254c68fb40392c62695b5203f0bca843db87e",
+      "bytes": 369311
+    },
+    "svg": {
+      "path": "Docs/fidelity/source-audits/rcs-a02-distortion-results-2026-09-20.svg",
+      "sha256": "6d6cb8706a2c3ab0e9a3fd9ac103ec4258f32bb68ce366267c05d76f2537a487",
+      "bytes": 162957
+    },
+    "generator": {
+      "path": "Docs/fidelity/source-audits/rcs-a02-distortion-results-2026-09-20-figure.py",
+      "sha256": "ad97a6a0ecb90f478b86bc69c874f4b5fd202c05cf8e24bd262a63120b43b06c",
+      "bytes": 4332
+    },
+    "visual_review": "Rendered and inspected; final footer spacing corrected before pinning. Both axes,20 rows, hardware spans, labels, legend and all footer lines are legible without overlap."
+  }
+}

@@ -40,11 +40,11 @@ class CaptureTests(unittest.TestCase):
 
     def test_all_suites_complete_ranges_hashes_and_gate_timing(self):
         manifest = capture.generate(self.folder / "all", "all", init_syx=self.init, channel=16, device_id=23)
-        self.assertEqual(manifest["fixture_count"], 91)
-        self.assertAlmostEqual(manifest["total_midi_duration_seconds"], 502.6)
+        self.assertEqual(manifest["fixture_count"], 95)
+        self.assertAlmostEqual(manifest["total_midi_duration_seconds"], 517.0)
         self.assertLess(manifest["total_midi_duration_seconds"], 600)
         self.assertEqual(manifest["system_requirements"]["device_id_panel_display"], 24)
-        self.assertEqual(len({f["id"] for f in manifest["fixtures"]}), 91)
+        self.assertEqual(len({f["id"] for f in manifest["fixtures"]}), 95)
         durations = 0
         for fixture in manifest["fixtures"]:
             with self.subTest(fixture=fixture["id"]):
@@ -127,6 +127,32 @@ class CaptureTests(unittest.TestCase):
         (self.folder / "occupied").mkdir()
         with self.assertRaises(FileExistsError):
             capture.generate(self.folder / "occupied", init_syx=self.init)
+
+    def test_negative_attack_encoded_controls_and_exact_midi(self):
+        directory = self.folder / "negative-attack"
+        manifest = capture.generate(directory, "negative-attack", init_syx=self.init)
+        self.assertEqual(manifest["fixture_count"], 4)
+        self.assertEqual(manifest["total_midi_duration_seconds"], 14.4)
+        for attack, fixture in zip((0, 13, 24, 36), manifest["fixtures"]):
+            with self.subTest(attack=attack):
+                blocks = capture.decode_syx((directory / fixture["patch"]).read_bytes())
+                common, upper = blocks[0], blocks[1]
+                self.assertEqual(common[0x11:0x13], bytes((0, 0)))  # SINGLE UPPER
+                self.assertEqual(common[0x19:0x1E], bytes(5))
+                self.assertEqual(upper[0x00:0x06], bytes((0, 0, 64, 64, 64, 64)))
+                self.assertEqual(upper[0x0F:0x17], bytes((1, 0, 1, 1, 120, 64, 64, 0)))
+                self.assertEqual(upper[0x17:0x1E], bytes((attack, 127, 127, 0, 42, 0, 0)))
+                self.assertEqual(upper[0x1F], 64)  # neutral AMP velocity
+                self.assertEqual(upper[0x21:0x27], bytes((0, 0, 127, 0, 0, 0)))
+                for offset in (0x2E, 0x30, 0x38, 0x3A):
+                    self.assertEqual(upper[offset], 64)
+                self.assertEqual(fixture["capture"]["status"], "not-recorded")
+                self.assertIsNone(fixture["capture"]["audio_file"])
+                parsed = render_midi.parse_smf((directory / fixture["midi"]).read_bytes(), 96000)
+                note_events = [(e["sample"], e["hex"]) for e in parsed["events"]
+                               if e["kind"] == "midi" and int(e["hex"][:2], 16) & 0xF0 in (0x80, 0x90)]
+                self.assertEqual(note_events, [(48000, "903064"), (288000, "803000")])
+                self.assertEqual(parsed["end_sample"], 345600)
 
     def test_rejects_corrupt_partial_duplicate_and_out_of_range_sysex(self):
         valid = synthetic_init()

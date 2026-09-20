@@ -1,0 +1,707 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-20",
+  "status": "hardware-only transcription and candidate steady-pitch windows; original performance MIDI unavailable",
+  "association": {
+    "main_source_url": "https://www.youtube.com/watch?v=8LKRnrs8DcQ",
+    "video_labels": "Parent independently read A02 MOOG BASS PW at 20, 25 and 30 seconds; slideshow does not expose live control state.",
+    "soundcloud": "Initially screened separately. Parent subsequently found strong cross-platform correlation at six times, with SoundCloud time=YouTube time-1.492517 seconds. One performance and two lossy copies, not independent hardware evidence.",
+    "scope": "All note/window/crop times in this report refer to YouTube audio, not SoundCloud."
+  },
+  "sources": {
+    "youtube_webm": {
+      "path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/youtube-8LKRnrs8DcQ.webm",
+      "sha256": "a11bb93f56e0dfa43c608d35b9ee0a1b6ca7fcd03d985c646ca19e184982657b"
+    },
+    "youtube_crop_float_wav": {
+      "path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/hardware-observations/youtube-19-26.wav",
+      "sha256": "f7e825e283d98dc07c61fe1d78d87c5bacc670394e6ead41fc009d7d729fefca"
+    },
+    "soundcloud_mp3": {
+      "path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/soundcloud-932592580.mp3",
+      "sha256": "6b982a13ec0f27f89ab0722ea54ebe5d88d2a5df8b0ba271cea3d94da7dc0139"
+    },
+    "soundcloud_decoded_wav": {
+      "path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/hardware-observations/soundcloud-full.wav",
+      "sha256": "f89dc9122113bcd1a5c45bc1d97cb1fd957abfc75466db13e789b4f97d82d535"
+    },
+    "patch_archive": {
+      "path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/RCS-Analog-Basses-SH201.zip",
+      "sha256": "203fde7b29ee2c377b06f61bfef10675fa50338b1509dc1a1bb39438a9e7b11f"
+    },
+    "patch_settings_audit": {
+      "path": "Docs/fidelity/source-audits/rcs-reference-screen-2026-09-20.json",
+      "sha256": "1f4f3b76f21c24e33c51ee157c6c7b9a5d1ebcd85d2a1341646bababec041bfa"
+    },
+    "selected_reconstruction": {
+      "path": "Docs/fidelity/reconstructions/expanded/rcs-a02-moogbass-pw.json",
+      "sha256": "f773722d61fa1c0e503ff4932027b81bf81646d5fc3d4e035c69493577e95937"
+    },
+    "exploratory_refinement_script": {
+      "path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/hardware-observations/refine_youtube.py",
+      "sha256": "b16d3e17cf862da33373d3c4bf12e4e6db0e6c13ad8a1a7ae0292ce8109b7ed5"
+    },
+    "full_refined_observations": {
+      "path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/hardware-observations/refined-youtube.json",
+      "sha256": "6068fb98f64169f4ed5af82025b64954efee4f2795fabaf981d1a3a4d7e25e24"
+    },
+    "parent_cross_platform_timing": {
+      "path": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/cross-platform-timing.json",
+      "sha256": "5a79ec4fcff28208251cb606d617fe71077bfc348cf7fe7fafbeb224e986daea"
+    }
+  },
+  "decode_command": [
+    "ffmpeg",
+    "-v",
+    "error",
+    "-i",
+    "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/youtube-8LKRnrs8DcQ.webm",
+    "-ss",
+    "19",
+    "-t",
+    "7",
+    "-ar",
+    "44100",
+    "-ac",
+    "2",
+    "-c:a",
+    "pcm_f32le",
+    "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/hardware-observations/youtube-19-26.wav"
+  ],
+  "method": {
+    "sample_rate": 44100,
+    "channels": 2,
+    "crop_start_seconds": 19,
+    "crop_duration_seconds": 7,
+    "note_selection": "Spectrogram and periodicity of hardware audio only; no software spectrum, render or DSP fit viewed.",
+    "pitch_screen": "Normalized autocorrelation over 100 ms windows every25ms locates pitch groups, followed by joint DC/trend and 40-harmonic sinusoidal least squares over 60ms interiors using pivoted QR. Frequency search +/-1.5% around the nearest sounding note.",
+    "attack_candidates": "STFT1024/hop44; sum1.5-12kHz power, smooth logpower with 11-frame quadratic Savitzky-Golay, peak positive difference with >=80ms spacing. Strong spectral rise selects attack renewal; weaker clicks can be release boundaries. Spectral-rise times may precede physical key events due window centering.",
+    "timing_uncertainty_seconds": [
+      0.01,
+      0.015
+    ],
+    "gate_policy": "Selected five-note reconstruction uses adjoining gates as neutral convention; final release near22.042s. Exact overlap/key-up unavailable.",
+    "velocity": "Fixed100 placeholder; not measured.",
+    "tuning": "Do not infer hardware master tune from short-window fitted frequency. Filter phase, dynamic waveform shape, residual detuning and capture processing can bias the estimate. No tuning or pitch bend was added to the case."
+  },
+  "pitch_sequence_observations": [
+    {
+      "spectral_rise_seconds": 19.97043083900227,
+      "window_center_seconds": 20.05,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 48.5304968681089,
+      "nearest_sounding_midi_note": 31,
+      "cents_from_A440": -16.64798531775313,
+      "periodic_model_residual_power": 0.0081588042587646
+    },
+    {
+      "spectral_rise_seconds": 20.114104308390022,
+      "window_center_seconds": 20.2,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 96.98663600115299,
+      "nearest_sounding_midi_note": 43,
+      "cents_from_A440": -17.9747796643857,
+      "periodic_model_residual_power": 0.01386817504568375
+    },
+    {
+      "spectral_rise_seconds": 20.25079365079365,
+      "window_center_seconds": 20.325,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 48.57853973378154,
+      "nearest_sounding_midi_note": 31,
+      "cents_from_A440": -14.934994342587542,
+      "periodic_model_residual_power": 0.00837183261397903
+    },
+    {
+      "spectral_rise_seconds": 20.387482993197278,
+      "window_center_seconds": 20.45,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 48.638212994169685,
+      "nearest_sounding_midi_note": 31,
+      "cents_from_A440": -12.809673545946417,
+      "periodic_model_residual_power": 0.010381459486131317
+    },
+    {
+      "spectral_rise_seconds": 20.523174603174603,
+      "window_center_seconds": 20.6,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 97.19744767127641,
+      "nearest_sounding_midi_note": 43,
+      "cents_from_A440": -14.215826018576882,
+      "periodic_model_residual_power": 0.011995382954946768
+    },
+    {
+      "spectral_rise_seconds": 20.658866213151928,
+      "window_center_seconds": 20.75,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 48.3692476481024,
+      "nearest_sounding_midi_note": 31,
+      "cents_from_A440": -22.409825024054406,
+      "periodic_model_residual_power": 0.008517622925247902
+    },
+    {
+      "spectral_rise_seconds": 20.927256235827663,
+      "window_center_seconds": 21.0,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 97.20723128798582,
+      "nearest_sounding_midi_note": 43,
+      "cents_from_A440": -14.04157372716771,
+      "periodic_model_residual_power": 0.012571321567216498
+    },
+    {
+      "spectral_rise_seconds": 21.200634920634922,
+      "window_center_seconds": 21.275,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 51.42414700509835,
+      "nearest_sounding_midi_note": 32,
+      "cents_from_A440": -16.38279236552589,
+      "periodic_model_residual_power": 0.009084248468016873
+    },
+    {
+      "spectral_rise_seconds": 21.338321995464852,
+      "window_center_seconds": 21.425,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 102.79932406880333,
+      "nearest_sounding_midi_note": 44,
+      "cents_from_A440": -17.207294320037793,
+      "periodic_model_residual_power": 0.013876269117805564
+    },
+    {
+      "spectral_rise_seconds": 21.47501133786848,
+      "window_center_seconds": 21.55,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 51.48728792803112,
+      "nearest_sounding_midi_note": 32,
+      "cents_from_A440": -14.258407850663302,
+      "periodic_model_residual_power": 0.007528245229111183
+    },
+    {
+      "spectral_rise_seconds": 21.610702947845805,
+      "window_center_seconds": 21.725,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 102.27728271836575,
+      "nearest_sounding_midi_note": 44,
+      "cents_from_A440": -26.021344125445236,
+      "periodic_model_residual_power": 0.022284578605394064
+    },
+    {
+      "spectral_rise_seconds": 21.882086167800452,
+      "window_center_seconds": 21.975,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 51.270605090037165,
+      "nearest_sounding_midi_note": 32,
+      "cents_from_A440": -21.55963312827362,
+      "periodic_model_residual_power": 0.009237509435036387
+    },
+    {
+      "spectral_rise_seconds": 22.1524716553288,
+      "window_center_seconds": 22.2375,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 32.3317241896148,
+      "nearest_sounding_midi_note": 24,
+      "cents_from_A440": -19.77740751327154,
+      "periodic_model_residual_power": 0.007703459982140215
+    },
+    {
+      "spectral_rise_seconds": 22.29015873015873,
+      "window_center_seconds": 22.375,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 64.74766652259986,
+      "nearest_sounding_midi_note": 36,
+      "cents_from_A440": -17.524102794502078,
+      "periodic_model_residual_power": 0.011710413257558514
+    },
+    {
+      "spectral_rise_seconds": 22.426848072562358,
+      "window_center_seconds": 22.5125,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 32.30936652027042,
+      "nearest_sounding_midi_note": 24,
+      "cents_from_A440": -20.974985077176033,
+      "periodic_model_residual_power": 0.007190811246223963
+    },
+    {
+      "spectral_rise_seconds": 22.569523809523808,
+      "window_center_seconds": 22.6375,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 32.43471740677133,
+      "nearest_sounding_midi_note": 24,
+      "cents_from_A440": -14.271299403267202,
+      "periodic_model_residual_power": 0.007782995391555723
+    },
+    {
+      "spectral_rise_seconds": 22.705215419501133,
+      "window_center_seconds": 22.7875,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 64.75248639830625,
+      "nearest_sounding_midi_note": 36,
+      "cents_from_A440": -17.395232939898754,
+      "periodic_model_residual_power": 0.010913117875143664
+    },
+    {
+      "spectral_rise_seconds": 22.84090702947846,
+      "window_center_seconds": 22.925,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 32.310534880584036,
+      "nearest_sounding_midi_note": 24,
+      "cents_from_A440": -20.912381912736635,
+      "periodic_model_residual_power": 0.004306496017747516
+    },
+    {
+      "spectral_rise_seconds": 23.111292517006802,
+      "window_center_seconds": 23.1875,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 32.365456378847654,
+      "nearest_sounding_midi_note": 24,
+      "cents_from_A440": -17.972125758237432,
+      "periodic_model_residual_power": 0.007993969581629845
+    },
+    {
+      "spectral_rise_seconds": 23.248979591836736,
+      "window_center_seconds": 23.3375,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 64.66565972919781,
+      "nearest_sounding_midi_note": 36,
+      "cents_from_A440": -19.718204068421084,
+      "periodic_model_residual_power": 0.010378186271881026
+    },
+    {
+      "spectral_rise_seconds": 23.384671201814058,
+      "window_center_seconds": 23.4625,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 38.52276933954421,
+      "nearest_sounding_midi_note": 27,
+      "cents_from_A440": -16.46423845940731,
+      "periodic_model_residual_power": 0.00750616574218107
+    },
+    {
+      "spectral_rise_seconds": 23.521360544217686,
+      "window_center_seconds": 23.6,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 77.09039660783019,
+      "nearest_sounding_midi_note": 39,
+      "cents_from_A440": -15.456562012557836,
+      "periodic_model_residual_power": 0.012445086554373957
+    },
+    {
+      "spectral_rise_seconds": 23.65705215419501,
+      "window_center_seconds": 23.7375,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 38.51625924839418,
+      "nearest_sounding_midi_note": 27,
+      "cents_from_A440": -16.75683019361972,
+      "periodic_model_residual_power": 0.008374328452348536
+    },
+    {
+      "spectral_rise_seconds": 23.792743764172336,
+      "window_center_seconds": 23.9,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 76.62502839867014,
+      "nearest_sounding_midi_note": 39,
+      "cents_from_A440": -25.939098172783254,
+      "periodic_model_residual_power": 0.01613258766089072
+    },
+    {
+      "spectral_rise_seconds": 24.064126984126986,
+      "window_center_seconds": 24.15,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 38.45451856618333,
+      "nearest_sounding_midi_note": 27,
+      "cents_from_A440": -19.534185372175436,
+      "periodic_model_residual_power": 0.007254631191335014
+    },
+    {
+      "spectral_rise_seconds": 24.33451247165533,
+      "window_center_seconds": 24.4125,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 48.53097194888539,
+      "nearest_sounding_midi_note": 31,
+      "cents_from_A440": -16.63103778900988,
+      "periodic_model_residual_power": 0.009989277490969745
+    },
+    {
+      "spectral_rise_seconds": 24.473197278911563,
+      "window_center_seconds": 24.55,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 97.19877065393547,
+      "nearest_sounding_midi_note": 43,
+      "cents_from_A440": -14.192261850040525,
+      "periodic_model_residual_power": 0.0120877470598619
+    },
+    {
+      "spectral_rise_seconds": 24.608888888888888,
+      "window_center_seconds": 24.6875,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 48.535224916544614,
+      "nearest_sounding_midi_note": 31,
+      "cents_from_A440": -16.479329312450265,
+      "periodic_model_residual_power": 0.007474930335243272
+    },
+    {
+      "spectral_rise_seconds": 24.745578231292516,
+      "window_center_seconds": 24.825,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 48.54037178866375,
+      "nearest_sounding_midi_note": 31,
+      "cents_from_A440": -16.295751965112455,
+      "periodic_model_residual_power": 0.009454617149874413
+    },
+    {
+      "spectral_rise_seconds": 24.887256235827664,
+      "window_center_seconds": 24.9625,
+      "window_width_seconds": 0.06,
+      "periodic_fit_frequency_hz": 97.14503131748789,
+      "nearest_sounding_midi_note": 43,
+      "cents_from_A440": -15.149692655239893,
+      "periodic_model_residual_power": 0.012200008308062619
+    }
+  ],
+  "selected_case_windows": [
+    {
+      "center_seconds": 21.275,
+      "width_seconds": 0.06,
+      "frequency_hz": 51.42414700509835,
+      "nearest_sounding_note": 32,
+      "cents_from_A440": -16.38279236552589,
+      "amplitudes": [
+        0.2566362300331154,
+        0.14379468981862573,
+        0.056403999093241515,
+        0.08655534297505137,
+        0.039455926006286265,
+        0.024670304636507955,
+        0.027058955432606818,
+        0.020706009184406703,
+        0.02050325231580408,
+        0.03564814982494147,
+        0.01753989023808598,
+        0.021541961575910984,
+        0.01242503384141175,
+        0.0021844255935956768,
+        0.011448557658751739,
+        0.01537460547206553,
+        0.00815548855240755,
+        0.014859099752830613,
+        0.006702524863381121,
+        0.005072157921611667,
+        0.00593326228244737,
+        0.005629663898097501,
+        0.004617509690786462,
+        0.008979679019615805,
+        0.00382153167356623,
+        0.005736356900794627,
+        0.003917052724674072,
+        0.00015496673327432096,
+        0.002923302421053542,
+        0.004580106582114347,
+        0.002973506924447672,
+        0.005374199503581243,
+        0.0028425473942475647,
+        0.002188331407911917,
+        0.0025396150212575034,
+        0.0019385584935803358,
+        0.0022620631358877636,
+        0.003931313595934142,
+        0.0024526592314709317,
+        0.0027674778777511204
+      ],
+      "residual_power": 0.009084248468016873
+    },
+    {
+      "center_seconds": 21.425,
+      "width_seconds": 0.06,
+      "frequency_hz": 102.79932406880333,
+      "nearest_sounding_note": 44,
+      "cents_from_A440": -17.207294320037793,
+      "amplitudes": [
+        0.37355116768954993,
+        0.16629232326095805,
+        0.07442603824097517,
+        0.1059700851353368,
+        0.040222036947413005,
+        0.026783205507715704,
+        0.026194535914283373,
+        0.019503143610570445,
+        0.015621875087826382,
+        0.026263446833734543,
+        0.01203326652650838,
+        0.014679382708520528,
+        0.0068112072298128976,
+        0.0011257481915759589,
+        0.005740891544109061,
+        0.006841505980939351,
+        0.0031070937279951906,
+        0.0059092606784702404,
+        0.00362036910954103,
+        0.0018188983596309776,
+        0.0017276248099057534,
+        0.0014086601072473446,
+        0.0016850157699746582,
+        0.0024235156782308896,
+        0.0006127342266883635,
+        0.0007542044021399174,
+        0.0007493459289467162,
+        0.00012068303565760736,
+        0.0005033577035371238,
+        0.0006287285246296585,
+        0.0004957130432366683,
+        0.00048560196216879267,
+        0.0002434484973272751,
+        0.00033616325656932633,
+        0.00021910179119990003,
+        0.00033562962429466923,
+        0.0001603397528453191,
+        5.273972474676823e-05,
+        0.00024246279776161833,
+        0.00022160130273886583
+      ],
+      "residual_power": 0.013876269117805564
+    },
+    {
+      "center_seconds": 21.55,
+      "width_seconds": 0.06,
+      "frequency_hz": 51.48728792803112,
+      "nearest_sounding_note": 32,
+      "cents_from_A440": -14.258407850663302,
+      "amplitudes": [
+        0.25961916510266764,
+        0.14759869344121165,
+        0.05374157067441156,
+        0.08934931344708583,
+        0.03932484817207082,
+        0.02602278983024089,
+        0.02653035377165553,
+        0.022582462877130133,
+        0.021386525977832062,
+        0.03847221385336095,
+        0.01695241928114527,
+        0.023905982526704984,
+        0.014416598901924,
+        0.000989555171661425,
+        0.012231671429178989,
+        0.019398884094854543,
+        0.00914673190761507,
+        0.018236529648826987,
+        0.009630068704432134,
+        0.006714078869438877,
+        0.0069193953947407905,
+        0.007595156298132038,
+        0.0055542153373501196,
+        0.012609994793174557,
+        0.006392095984478069,
+        0.007951082314113171,
+        0.0036825619855402956,
+        0.0010623415423484186,
+        0.003483793238742729,
+        0.00767042299571756,
+        0.004380016042768596,
+        0.0067755525580032675,
+        0.002545092795131636,
+        0.0027459614125024093,
+        0.0024712992269049655,
+        0.003758354927462525,
+        0.002689619621418448,
+        0.004887451794723775,
+        0.002147576691559502,
+        0.0036092269001512974
+      ],
+      "residual_power": 0.007528245229111183
+    },
+    {
+      "center_seconds": 21.725,
+      "width_seconds": 0.06,
+      "frequency_hz": 102.27728271836575,
+      "nearest_sounding_note": 44,
+      "cents_from_A440": -26.021344125445236,
+      "amplitudes": [
+        0.3362583808971641,
+        0.1680111947585705,
+        0.05996660873599359,
+        0.08691113169488042,
+        0.029461190418233252,
+        0.017119144704712496,
+        0.01211884935248444,
+        0.0074674530571746675,
+        0.006537770306052767,
+        0.007053665605696001,
+        0.0008691183502509363,
+        0.0018502507120225016,
+        0.0005822935109575074,
+        0.00045228647492763193,
+        0.00011476183171052076,
+        0.0008243548074861485,
+        0.00045059474338243413,
+        0.0002124505475361499,
+        0.0003257091477213771,
+        0.00023701204990092434,
+        0.00023689541336754637,
+        0.00018751227062754905,
+        0.00020629190046402276,
+        0.00019822817682340295,
+        0.00017650424250650415,
+        0.00018180178772327012,
+        0.00018048493964185005,
+        0.00012839100127567143,
+        0.0001266761176904063,
+        0.00014600131434733482,
+        0.0001404389762505325,
+        0.00014047918610416826,
+        0.00016983986876825604,
+        0.00012969692795314727,
+        0.00011202302408374278,
+        9.832154540482374e-05,
+        9.381616518176422e-05,
+        0.00011039230104644065,
+        0.0001199939023649808,
+        0.0001297035667638625
+      ],
+      "residual_power": 0.022284578605394064
+    },
+    {
+      "center_seconds": 21.975,
+      "width_seconds": 0.06,
+      "frequency_hz": 51.270605090037165,
+      "nearest_sounding_note": 32,
+      "cents_from_A440": -21.55963312827362,
+      "amplitudes": [
+        0.25038366941433643,
+        0.14745055822732558,
+        0.05853248116370857,
+        0.09221667678277334,
+        0.03976419043599081,
+        0.025716371262385084,
+        0.02595239285397217,
+        0.02269825897699611,
+        0.019220447515258907,
+        0.03487554631270544,
+        0.016681627631643457,
+        0.022105596909869515,
+        0.011936255942464924,
+        0.0011179799652152737,
+        0.010067465878126331,
+        0.014739183217111599,
+        0.00863068692817768,
+        0.013022938629287122,
+        0.004641934503237463,
+        0.0035897561307155126,
+        0.004517235513607161,
+        0.003935691028983944,
+        0.0026403334154146544,
+        0.005962734060086372,
+        0.0023935195968983326,
+        0.004847717245755973,
+        0.002695737744184355,
+        0.0002253315228612131,
+        0.0016196552797374374,
+        0.0033609097296890926,
+        0.002317642015762406,
+        0.0026591535260473784,
+        0.0010690817634646471,
+        0.0005634962363214242,
+        0.0008058262510036709,
+        0.000901243752496153,
+        0.0007522187273613206,
+        0.0010796473572802065,
+        0.00035414451597054795,
+        0.0009372611153292282
+      ],
+      "residual_power": 0.009237509435036387
+    }
+  ],
+  "long_note_spectral_closure": {
+    "onset_estimate_seconds": 21.621,
+    "next_attack_seconds": 21.892,
+    "measurement": "Hann STFT1024/hop44, summed power in specified open frequency bands; dB relative to raw normalized STFT units. Only the band ratio is gain independent.",
+    "rows": [
+      {
+        "center_seconds": 21.639637188208617,
+        "band_power_db": {
+          "300-1500": -19.758408069610596,
+          "1500-12000": -27.072067260742188
+        },
+        "high_to_low_ratio_db": -7.313659191131592
+      },
+      {
+        "center_seconds": 21.659591836734695,
+        "band_power_db": {
+          "300-1500": -19.69187617301941,
+          "1500-12000": -28.564341068267822
+        },
+        "high_to_low_ratio_db": -8.872464895248413
+      },
+      {
+        "center_seconds": 21.679546485260772,
+        "band_power_db": {
+          "300-1500": -20.229358673095703,
+          "1500-12000": -35.442962646484375
+        },
+        "high_to_low_ratio_db": -15.213603973388672
+      },
+      {
+        "center_seconds": 21.699501133786846,
+        "band_power_db": {
+          "300-1500": -20.755372047424316,
+          "1500-12000": -51.03678226470947
+        },
+        "high_to_low_ratio_db": -30.281410217285156
+      },
+      {
+        "center_seconds": 21.72045351473923,
+        "band_power_db": {
+          "300-1500": -22.226293087005615,
+          "1500-12000": -69.11196708679199
+        },
+        "high_to_low_ratio_db": -46.88567399978638
+      },
+      {
+        "center_seconds": 21.740408163265307,
+        "band_power_db": {
+          "300-1500": -25.731396675109863,
+          "1500-12000": -82.86923408508301
+        },
+        "high_to_low_ratio_db": -57.137837409973145
+      },
+      {
+        "center_seconds": 21.76036281179138,
+        "band_power_db": {
+          "300-1500": -31.63555383682251,
+          "1500-12000": -91.52401924133301
+        },
+        "high_to_low_ratio_db": -59.8884654045105
+      },
+      {
+        "center_seconds": 21.78031746031746,
+        "band_power_db": {
+          "300-1500": -36.66614055633545,
+          "1500-12000": -96.96188926696777
+        },
+        "high_to_low_ratio_db": -60.295748710632324
+      },
+      {
+        "center_seconds": 21.800272108843537,
+        "band_power_db": {
+          "300-1500": -39.671640396118164,
+          "1500-12000": -98.29090118408203
+        },
+        "high_to_low_ratio_db": -58.61926078796387
+      },
+      {
+        "center_seconds": 21.84018140589569,
+        "band_power_db": {
+          "300-1500": -40.83890914916992,
+          "1500-12000": -99.55306053161621
+        },
+        "high_to_low_ratio_db": -58.71415138244629
+      }
+    ],
+    "interpretation": "Low waveform persists as upper-band energy closes over roughly0.1-0.15s. A stable-pitch window is not necessarily a stationary spectrum; high harmonics are weak in the late settled stage."
+  },
+  "limitations": [
+    "Published A02 Upper square and pulse pass through overdrive33 and a negative-depth moving LP24 filter, so simple oscillator harmonic families do not remain independent.",
+    "Lower sine contributes to H1; avoid treating H1-normalized ratios as isolated pulse/square evidence.",
+    "No original velocities, exact gates, overlap, controller state, relative oscillator phases, system tuning/transpose, capture chain or exact recorded patch revision is available.",
+    "Frequency search reaches its lower bound in some late high-note windows; these values are descriptive and not reliable tuning estimates.",
+    "The author MIDI archive is a SysEx preset export, not performance MIDI.",
+    "These observations support a joint original-patch comparison with gate/velocity/phase uncertainty, not a direct global waveform or control-law calibration."
+  ]
+}

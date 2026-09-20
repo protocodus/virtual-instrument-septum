@@ -1,0 +1,2180 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-20",
+  "status": "Hardware-only A05 source/case and fixed closure locked before production baseline rendering; no modified A05 candidate evaluated.",
+  "sources": {
+    "author_page_url": "https://www.rcssound.com/index.php?page=6",
+    "video_url": "https://www.youtube.com/watch?v=8LKRnrs8DcQ",
+    "bank_url": "https://www.rcssound.com/download.php?kod=6",
+    "unchanged_temporary_syx_sha256": "584a1e75e2cfb735cab9bd3f26c56429f9cbcf655f1486e941ba0112bdf9dd7d",
+    "original_performance_midi_available": false
+  },
+  "inputs": {
+    "case": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/Docs/fidelity/reconstructions/expanded/rcs-a05-jupiter8perc.json",
+      "sha256": "0b0743e1b98210710edec60ef1e01d4046286ab0324e724d87f437d3b8979a66"
+    },
+    "catalog": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/Docs/fidelity/rcs-a05-reference-catalog.json",
+      "sha256": "2937bba4b1d5d68ff5a4999768f354273461b6e23efc80af40f176c924ea169c"
+    },
+    "source_only_screen": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-a05-hardware-screen-2026-09-20/accepted-interior-observations.json",
+      "sha256": "2c834d04e4bc44040c5376dbdc5edcd6e6d0fe94ef7593bc43407fe692f93b1e"
+    },
+    "source_only_script": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-a05-hardware-screen-2026-09-20/analyze_accepted_interior.py",
+      "sha256": "5c46d2bca907434093df03cca9e9aad1a2564760775a37d21bd32d3ae988c406"
+    },
+    "hardware_audio": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/youtube-8LKRnrs8DcQ-44100.wav",
+      "sha256": "3f55200e611c9f01c3d7cbedba5c089bc021b232e39abd6c2c06a651aee5ecd3"
+    },
+    "hardware_crop": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-a05-baseline-2026-09-20/source-analysis/hardware-63-63p5.wav",
+      "sha256": "7ad3328fb8836d6f9f23e0acfba213bae023c867a689427977edaa7efa1c03d5"
+    },
+    "closure_math_helper": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/Tools/analyze_rcs_attack_probes.py",
+      "sha256": "c365684700011e9891928c4234a6bf12c5eeae79348147c9d5c981f787ffce64"
+    }
+  },
+  "source_observations": {
+    "status": "Usable short whole-patch attack reference with explicit wet/dynamic limits; rejected as an isolated dry/filter endpoint. Hardware-only selection locked before any A05 software render.",
+    "association": {
+      "parent_observations": [
+        {
+          "ui_clock_seconds": 61,
+          "precision_seconds": 1,
+          "label": "A05",
+          "method": "Parent decoded paused frame after45 frame-forward keys from60s."
+        },
+        {
+          "seek_seconds": 65,
+          "label": "A05",
+          "method": "Parent exact5-second seek and decoded paused frame."
+        }
+      ],
+      "conservative_accepted_bounds_seconds": [
+        62,
+        65
+      ],
+      "excluded_first_attack_seconds": 60.52,
+      "A06_observed_seconds": 70,
+      "scope": "Slideshow labels do not establish live numeric controls or exact patch revisions."
+    },
+    "source_pins": {
+      "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/youtube-8LKRnrs8DcQ-44100.wav": "3f55200e611c9f01c3d7cbedba5c089bc021b232e39abd6c2c06a651aee5ecd3",
+      "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/RCS-Analog-Basses-SH201.zip": "203fde7b29ee2c377b06f61bfef10675fa50338b1509dc1a1bb39438a9e7b11f",
+      "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-a05-hardware-screen-2026-09-20/original-patch.syx": "584a1e75e2cfb735cab9bd3f26c56429f9cbcf655f1486e941ba0112bdf9dd7d",
+      "/Users/vojta/Dev/virtual-instrument-septum/Docs/fidelity/source-audits/rcs-reference-screen-2026-09-20.json": "1f4f3b76f21c24e33c51ee157c6c7b9a5d1ebcd85d2a1341646bababec041bfa",
+      "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/factory-bank-research/SH-201_MI.pdf": "71a8fe00a8d232c494a5aba6885756d99e6650fc14671115260d9446c3009546",
+      "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/factory-bank-research/SH-201_MI.txt": "dc4b53eed31130f8bdaf5d75fbb058213b409cf32b345d75915ffed5712e2229",
+      "/Users/vojta/Dev/virtual-instrument-septum/Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+      "/Users/vojta/Dev/virtual-instrument-septum/Tools/extract_reference_patch.py": "461407495e9f5bfc99767a0146a750708c5cdb2fd34c0d029aaf5e5f5a80703b",
+      "/Users/vojta/Dev/virtual-instrument-septum/Tools/analyze_rcs_a02_endpoint.py": "6ea2b7d297543bcf082b1cb1ae66c8e0b503726c4296fd4045925e492dde43e0",
+      "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-a05-hardware-screen-2026-09-20/analyze_hardware.py": "d8fc801444a71d3d04aeee35c7be74e4f0a8b53efd22483bdfa15151c6074e78"
+    },
+    "screen_sha256": "8e64344ada41d26ccd4e02338b686cecda4a2f560251a49f2dbe2793ba415514",
+    "script_sha256": "5c46d2bca907434093df03cca9e9aad1a2564760775a37d21bd32d3ae988c406",
+    "case_path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-a05-hardware-screen-2026-09-20/selected-case.json",
+    "case_sha256": "0b0743e1b98210710edec60ef1e01d4046286ab0324e724d87f437d3b8979a66",
+    "crop_path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-a05-hardware-screen-2026-09-20/selected-hardware-raw.wav",
+    "crop_sha256": "9102d5dcae5a3f0f0133ff2e15bab846d48d80e04da08c76ab8f05082e98d4ce",
+    "patch": {
+      "patch_number": 5,
+      "patch_name": "Jupiter8Perc",
+      "generated_syx_sha256": "584a1e75e2cfb735cab9bd3f26c56429f9cbcf655f1486e941ba0112bdf9dd7d",
+      "author_smf_member": "Analog Basses patchbank for Roland SH-201 by RCS/SH-201 Editor patches/A05 Jupiter-8 BASS perc.mid",
+      "author_smf_sha256": "b0f050e84efffe09ed20e25bcd0956d3c7af308baad5fc4ee21c7ff65d22970a",
+      "note_event_count": 0,
+      "dt1_frame_count": 22,
+      "shl_smf_wire_bytes_equal": true,
+      "keyboard_mode": "dual",
+      "tone_balance": 0,
+      "delay_on": true,
+      "reverb_on": false,
+      "delay_parameters_raw": [
+        0,
+        49,
+        12,
+        65,
+        4
+      ],
+      "has_enabled_spatial_effect_send": true,
+      "active_oscillator_count": 3,
+      "tones": [
+        {
+          "part": "upper",
+          "block_sha256": "3a783fce5301393f857008a522b34f1593e0858da85aa9c6d1034f8791d62f73",
+          "oscillators": [
+            {
+              "index": 1,
+              "waveform": "square",
+              "wide": false,
+              "coarse_signed_wire": -36,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            },
+            {
+              "index": 2,
+              "waveform": "pulse_square",
+              "wide": false,
+              "coarse_signed_wire": 0,
+              "fine_cents": 0,
+              "pulse_width_raw": 56,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            }
+          ],
+          "mix_type": "mix",
+          "balance": 0,
+          "low_frequency_mode": "flat",
+          "filter": {
+            "type": "lowpass",
+            "slope_db_per_octave": 24,
+            "cutoff_raw": 106,
+            "keyfollow_percent": 0,
+            "velocity_sensitivity": 0,
+            "resonance_raw": 0,
+            "envelope_ADSR_raw": [
+              24,
+              127,
+              127,
+              127
+            ],
+            "envelope_depth": -22
+          },
+          "overdrive": {
+            "on": true,
+            "drive_raw": 33
+          },
+          "amp": {
+            "level_raw": 127,
+            "velocity_sensitivity": 8,
+            "pan": 0,
+            "envelope_ADSR_raw": [
+              0,
+              42,
+              12,
+              0
+            ]
+          },
+          "delay_send_raw": 127,
+          "reverb_send_raw": 104,
+          "lfo_depths": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "bend_range_semitones": 2,
+          "octave_shift": 0,
+          "portamento_on": false,
+          "portamento_time_raw": 20,
+          "mono_mode": "solo"
+        },
+        {
+          "part": "lower",
+          "block_sha256": "c210a72251c3d3c8060535908ba1abf1a9c38d08502c740f32d6c02436f88bdc",
+          "oscillators": [
+            {
+              "index": 1,
+              "waveform": "sine",
+              "wide": false,
+              "coarse_signed_wire": -36,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": false
+            },
+            {
+              "index": 2,
+              "waveform": "square",
+              "wide": false,
+              "coarse_signed_wire": 0,
+              "fine_cents": 0,
+              "pulse_width_raw": 64,
+              "pitch_env_depth": 0,
+              "muted_by_balance": true
+            }
+          ],
+          "mix_type": "mix",
+          "balance": -63,
+          "low_frequency_mode": "flat",
+          "filter": {
+            "type": "lowpass",
+            "slope_db_per_octave": 24,
+            "cutoff_raw": 64,
+            "keyfollow_percent": 0,
+            "velocity_sensitivity": 0,
+            "resonance_raw": 9,
+            "envelope_ADSR_raw": [
+              0,
+              0,
+              127,
+              0
+            ],
+            "envelope_depth": 0
+          },
+          "overdrive": {
+            "on": false,
+            "drive_raw": 100
+          },
+          "amp": {
+            "level_raw": 127,
+            "velocity_sensitivity": 8,
+            "pan": 0,
+            "envelope_ADSR_raw": [
+              0,
+              64,
+              0,
+              14
+            ]
+          },
+          "delay_send_raw": 0,
+          "reverb_send_raw": 20,
+          "lfo_depths": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "bend_range_semitones": 2,
+          "octave_shift": 0,
+          "portamento_on": false,
+          "portamento_time_raw": 20,
+          "mono_mode": "solo_legato"
+        }
+      ]
+    },
+    "verified_wire_checks": {
+      "delay_block_address_hex": "10 00 03 00",
+      "bytes": [
+        0,
+        49,
+        12,
+        65,
+        4
+      ],
+      "feedback_percent": 0,
+      "feedback_evidence": "Roland MIDI Implementation p6: encoded0..98 maps to-98..+98percent; engine wire decoder uses(encoded-49)*2. Byte49 therefore decodes to0percent, independently checked against actual original block.",
+      "hf_damp_index": 12,
+      "hf_damp_hz": 3150,
+      "modulation_rate_raw": 65,
+      "modulation_depth_raw": 4,
+      "upper_send_raw": 127,
+      "lower_send_raw": 0,
+      "interpretation": "Zero feedback does not disable the single modulated wet tap. Time0 is a raw parameter, not an observed zero-second delay."
+    },
+    "source_onset_abs_gt_0_01_seconds": 63.16367346938775,
+    "next_attack_diff_gt_0_025_seconds": 63.40482993197279,
+    "pre_interval_seconds": [
+      63.05,
+      63.15
+    ],
+    "active_interval_seconds": [
+      63.18,
+      63.29
+    ],
+    "pre_to_active_rms_db": -52.807881117280495,
+    "lr_pcm_correlation_63_18_to63_30": 0.9656739227077179,
+    "spectral_peak_method": "Hann on each independent early source window, zero-padded FFT131072. Padding interpolates a short-window peak, not independent resolution.",
+    "fundamental_peaks": [
+      {
+        "start_seconds": 63.175,
+        "end_seconds": 63.265,
+        "fundamental_region_peak_hz": 36.673736572265625
+      },
+      {
+        "start_seconds": 63.18,
+        "end_seconds": 63.3,
+        "fundamental_region_peak_hz": 36.673736572265625
+      }
+    ],
+    "harmonic_method": "Joint DC/trend plus40harmonic least squares in60ms windows; independent33\u201339Hz nuisance frequency search, three channels. No software read or parameter fit.",
+    "harmonic_observations": [
+      {
+        "center_seconds": 63.205,
+        "width_seconds": 0.06,
+        "channel": "left",
+        "frequency_hz": 36.33374933659044,
+        "residual_power_fraction": 0.020748235501999696,
+        "h1_h8_peak_amplitude": [
+          0.22272419619003786,
+          0.1618325800127783,
+          0.06831382063451744,
+          0.09317113650102382,
+          0.031837842721612115,
+          0.024363702973261032,
+          0.018082905201693908,
+          0.013375818407226216
+        ],
+        "h2_h8_relative_h1_db": [
+          -2.7740288465852814,
+          -10.265176502826206,
+          -7.569720144032597,
+          -16.89647534483651,
+          -19.220482080490243,
+          -21.809983893935932,
+          -24.42894072356048
+        ]
+      },
+      {
+        "center_seconds": 63.205,
+        "width_seconds": 0.06,
+        "channel": "right",
+        "frequency_hz": 36.34727902286968,
+        "residual_power_fraction": 0.023544037770893433,
+        "h1_h8_peak_amplitude": [
+          0.22516479178125953,
+          0.16210947053681313,
+          0.07245187876087433,
+          0.10492341236060734,
+          0.037213906372591504,
+          0.03173773676969057,
+          0.029932569771238957,
+          0.02455547370792885
+        ],
+        "h2_h8_relative_h1_db": [
+          -2.8538419011436984,
+          -9.849016613838476,
+          -6.632561519161129,
+          -15.635904435195418,
+          -17.01849057174662,
+          -17.527129578162377,
+          -19.247043314653812
+        ]
+      },
+      {
+        "center_seconds": 63.205,
+        "width_seconds": 0.06,
+        "channel": "mid",
+        "frequency_hz": 36.36076324241647,
+        "residual_power_fraction": 0.01988825812135673,
+        "h1_h8_peak_amplitude": [
+          0.22386141858463784,
+          0.1613310031219301,
+          0.06953441626675584,
+          0.09784749573922914,
+          0.0334841639144642,
+          0.02721189124514913,
+          0.022977829988841354,
+          0.01759225703565409
+        ],
+        "h2_h8_relative_h1_db": [
+          -2.845228346872652,
+          -10.155588767101634,
+          -7.188590729840055,
+          -16.502795845041142,
+          -18.30441049829456,
+          -19.77340479410048,
+          -22.093153795031093
+        ]
+      },
+      {
+        "center_seconds": 63.235,
+        "width_seconds": 0.06,
+        "channel": "left",
+        "frequency_hz": 36.11104585277759,
+        "residual_power_fraction": 0.021059049396183957,
+        "h1_h8_peak_amplitude": [
+          0.1729672307323064,
+          0.129509236839023,
+          0.05632781373476225,
+          0.07620566082834378,
+          0.02899466884635276,
+          0.017960106118047804,
+          0.017997170544094884,
+          0.01153319481592128
+        ],
+        "h2_h8_relative_h1_db": [
+          -2.5132617610165386,
+          -9.744818741530507,
+          -7.119531975590548,
+          -15.512913586169121,
+          -19.673098677492643,
+          -19.65519200279139,
+          -23.520284083481073
+        ]
+      },
+      {
+        "center_seconds": 63.235,
+        "width_seconds": 0.06,
+        "channel": "right",
+        "frequency_hz": 35.678130692337675,
+        "residual_power_fraction": 0.02960245436734449,
+        "h1_h8_peak_amplitude": [
+          0.17166237037184146,
+          0.13150803841452313,
+          0.05767203973427606,
+          0.07775160011135718,
+          0.0339691908602431,
+          0.022780250115565562,
+          0.024826524275996017,
+          0.01975160155229893
+        ],
+        "h2_h8_relative_h1_db": [
+          -2.3144561054959976,
+          -9.474195867671341,
+          -6.879315392722319,
+          -14.071798058694412,
+          -17.542332340258728,
+          -16.795183654350684,
+          -18.781455781906573
+        ]
+      },
+      {
+        "center_seconds": 63.235,
+        "width_seconds": 0.06,
+        "channel": "mid",
+        "frequency_hz": 35.85397786846191,
+        "residual_power_fraction": 0.02207919038603925,
+        "h1_h8_peak_amplitude": [
+          0.171726720720621,
+          0.13070772647741813,
+          0.056768748368477145,
+          0.0765258483240009,
+          0.031348732950492536,
+          0.019961929377933434,
+          0.021017015499959362,
+          0.014905249411007968
+        ],
+        "h2_h8_relative_h1_db": [
+          -2.370732322410789,
+          -9.614571153956199,
+          -7.020594481997339,
+          -14.7723576898406,
+          -18.69270723913881,
+          -18.245336644540085,
+          -21.229972584537855
+        ]
+      },
+      {
+        "center_seconds": 63.275,
+        "width_seconds": 0.06,
+        "channel": "left",
+        "frequency_hz": 35.516073101848676,
+        "residual_power_fraction": 0.04465906062262995,
+        "h1_h8_peak_amplitude": [
+          0.12407289540557427,
+          0.09584168850150439,
+          0.04265048422647859,
+          0.05810817170250703,
+          0.02018958888714859,
+          0.009500089158070994,
+          0.0064130208767922275,
+          0.004479901711079739
+        ],
+        "h2_h8_relative_h1_db": [
+          -2.242449216807965,
+          -9.275059018979473,
+          -6.588794120741166,
+          -15.770988830442409,
+          -22.318984720687393,
+          -25.732285269453406,
+          -28.848168629804398
+        ]
+      },
+      {
+        "center_seconds": 63.275,
+        "width_seconds": 0.06,
+        "channel": "right",
+        "frequency_hz": 35.14109116012613,
+        "residual_power_fraction": 0.048883282808386504,
+        "h1_h8_peak_amplitude": [
+          0.1215080886790508,
+          0.09666931570578328,
+          0.04129513618138216,
+          0.05629713373194009,
+          0.02030414216484359,
+          0.009148499091714907,
+          0.0053231092532153605,
+          0.00411909007598318
+        ],
+        "h2_h8_relative_h1_db": [
+          -1.9863309022607858,
+          -9.374125736434541,
+          -6.6823781077078745,
+          -15.540410877638966,
+          -22.465106803515923,
+          -27.16879619213571,
+          -29.396078005775177
+        ]
+      },
+      {
+        "center_seconds": 63.275,
+        "width_seconds": 0.06,
+        "channel": "mid",
+        "frequency_hz": 35.338811911944724,
+        "residual_power_fraction": 0.04727077582412406,
+        "h1_h8_peak_amplitude": [
+          0.12281068949395017,
+          0.09604657936904004,
+          0.04183023636665572,
+          0.056833747280998055,
+          0.020029015528605584,
+          0.009156731877915209,
+          0.005830123261988052,
+          0.00429156679789357
+        ],
+        "h2_h8_relative_h1_db": [
+          -2.135085344836812,
+          -9.354917020097052,
+          -6.6925975565442855,
+          -15.751531327235352,
+          -22.54991344018384,
+          -26.47116865601835,
+          -29.132405859038503
+        ]
+      },
+      {
+        "center_seconds": 63.315,
+        "width_seconds": 0.06,
+        "channel": "left",
+        "frequency_hz": 35.37999841927798,
+        "residual_power_fraction": 0.07600366844397635,
+        "h1_h8_peak_amplitude": [
+          0.07217347189504242,
+          0.06642752876424693,
+          0.029006583830210896,
+          0.023483160428759222,
+          0.004278964536945615,
+          0.0032239878244215018,
+          0.00022083573589878682,
+          0.0012393050845753246
+        ],
+        "h2_h8_relative_h1_db": [
+          -0.7205900270162015,
+          -7.917620269768456,
+          -9.752421048284138,
+          -24.54077820618351,
+          -26.999684089591565,
+          -50.28616489377663,
+          -35.30398731939791
+        ]
+      },
+      {
+        "center_seconds": 63.315,
+        "width_seconds": 0.06,
+        "channel": "right",
+        "frequency_hz": 35.58126357922399,
+        "residual_power_fraction": 0.07383248560783906,
+        "h1_h8_peak_amplitude": [
+          0.06864820811123203,
+          0.06775864321351747,
+          0.02819576577030665,
+          0.02148963857324189,
+          0.0047874528412291395,
+          0.0018605803206203388,
+          0.0007616117546729545,
+          0.0011321889877058241
+        ],
+        "h2_h8_relative_h1_db": [
+          -0.11329008756337536,
+          -7.728906228886416,
+          -10.088001885017322,
+          -23.130493931457742,
+          -31.339615648967687,
+          -39.09791134502268,
+          -35.65420558348542
+        ]
+      },
+      {
+        "center_seconds": 63.315,
+        "width_seconds": 0.06,
+        "channel": "mid",
+        "frequency_hz": 35.4830897891266,
+        "residual_power_fraction": 0.07404148892760158,
+        "h1_h8_peak_amplitude": [
+          0.07038769038640771,
+          0.06680529934614281,
+          0.028410704652574375,
+          0.022217971852650148,
+          0.004509160464345907,
+          0.002481903538185737,
+          0.0004712140286848966,
+          0.0011849799283232992
+        ],
+        "h2_h8_relative_h1_db": [
+          -0.45371601374084886,
+          -7.880294193120081,
+          -10.0158460560782,
+          -23.868020490504456,
+          -29.054236337329332,
+          -43.48557007060529,
+          -35.4757144178249
+        ]
+      }
+    ],
+    "band_method": "Hann STFT1024/hop44, low300\u20131500Hz/high1500\u201312000Hz, normalized raw STFT power; source-grid origin63s.",
+    "band_observations": [
+      {
+        "center_seconds": 63.18421768707483,
+        "low_band_db": -30.257358088406487,
+        "high_band_db": -37.17064165104601,
+        "high_low_ratio_db": -6.913283562639525
+      },
+      {
+        "center_seconds": 63.20417233560091,
+        "low_band_db": -29.193583157997345,
+        "high_band_db": -49.98865068339023,
+        "high_low_ratio_db": -20.795067525392884
+      },
+      {
+        "center_seconds": 63.22412698412698,
+        "low_band_db": -33.32795276193438,
+        "high_band_db": -70.2729677381686,
+        "high_low_ratio_db": -36.94501497623423
+      },
+      {
+        "center_seconds": 63.244081632653064,
+        "low_band_db": -36.59821893664555,
+        "high_band_db": -93.52131837524298,
+        "high_low_ratio_db": -56.92309943859745
+      },
+      {
+        "center_seconds": 63.26403628117914,
+        "low_band_db": -44.17188652139274,
+        "high_band_db": -101.4874393236577,
+        "high_low_ratio_db": -57.31555280226495
+      },
+      {
+        "center_seconds": 63.28399092970522,
+        "low_band_db": -61.617975109286164,
+        "high_band_db": -101.0622440482384,
+        "high_low_ratio_db": -39.44426893895222
+      }
+    ],
+    "recommendation": "Use only as a qualified joint original-patch attack check. Do not use its late band ratios or mixed H1 harmonics to identify a unique cutoff, envelope order or oscillator DC law. Original gates, phase and small active modulation delay remain confounds."
+  },
+  "closure_method": {
+    "bands_hz": [
+      [
+        300,
+        1500
+      ],
+      [
+        1500,
+        12000
+      ]
+    ],
+    "windows_samples": [
+      512,
+      1024,
+      2048
+    ],
+    "hop_samples": 44,
+    "channels": [
+      "left",
+      "right",
+      "mid"
+    ],
+    "onset_shifts_seconds": [
+      -0.01,
+      0,
+      0.01
+    ],
+    "early_reference_elapsed_seconds": [
+      0.015,
+      0.035
+    ],
+    "sustained_threshold_seconds": 0.01,
+    "gate_guard_seconds": 0.03,
+    "source_grid_origin_seconds": 63,
+    "note_off_is_artificial": true,
+    "interpretation": "Existing fixed spectral-ratio mathematics; landmark elapsed times are not filter attack durations. Late high-band power reaches recording/codec floor before the synthetic note-off."
+  },
+  "closure_summary": {
+    "10": {
+      "observed_count": 27,
+      "censored_count": 0,
+      "elapsed_seconds_min_median_max": [
+        0.03516099773242587,
+        0.04080725623582282,
+        0.05479818594103847
+      ]
+    },
+    "20": {
+      "observed_count": 27,
+      "censored_count": 0,
+      "elapsed_seconds_min_median_max": [
+        0.04035374149659532,
+        0.05230385487528366,
+        0.06677097505668428
+      ]
+    },
+    "30": {
+      "observed_count": 26,
+      "censored_count": 1,
+      "elapsed_seconds_min_median_max": [
+        0.05711111111111222,
+        0.06393650793650707,
+        0.07674829931972482
+      ]
+    }
+  },
+  "closure_observations": [
+    {
+      "note_index": 0,
+      "window_samples": 512,
+      "channel": "left",
+      "onset_shift_seconds": -0.01,
+      "early_ratio_db": -6.3671369552612305,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.2053514739229,
+          "elapsed_seconds": 0.051351473922899515
+        },
+        "20": {
+          "absolute_seconds": 63.21433106575964,
+          "elapsed_seconds": 0.06033106575963387
+        },
+        "30": {
+          "absolute_seconds": 63.22530612244898,
+          "elapsed_seconds": 0.0713061224489735
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 512,
+      "channel": "left",
+      "onset_shift_seconds": 0,
+      "early_ratio_db": -7.513250350952148,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.2053514739229,
+          "elapsed_seconds": 0.041351473922901505
+        },
+        "20": {
+          "absolute_seconds": 63.21532879818594,
+          "elapsed_seconds": 0.05132879818594205
+        },
+        "30": {
+          "absolute_seconds": 63.22730158730159,
+          "elapsed_seconds": 0.06330158730158786
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 512,
+      "channel": "left",
+      "onset_shift_seconds": 0.01,
+      "early_ratio_db": -13.590288162231445,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.21233560090703,
+          "elapsed_seconds": 0.038335600907032585
+        },
+        "20": {
+          "absolute_seconds": 63.22430839002268,
+          "elapsed_seconds": 0.050308390022678395
+        },
+        "30": {
+          "absolute_seconds": 63.23328798185941,
+          "elapsed_seconds": 0.05928798185941275
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 512,
+      "channel": "right",
+      "onset_shift_seconds": -0.01,
+      "early_ratio_db": -7.462545394897461,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.19337868480726,
+          "elapsed_seconds": 0.039378684807253705
+        },
+        "20": {
+          "absolute_seconds": 63.19936507936508,
+          "elapsed_seconds": 0.04536507936507661
+        },
+        "30": {
+          "absolute_seconds": 63.218321995464855,
+          "elapsed_seconds": 0.06432199546485151
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 512,
+      "channel": "right",
+      "onset_shift_seconds": 0,
+      "early_ratio_db": -11.021890640258789,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.19936507936508,
+          "elapsed_seconds": 0.0353650793650786
+        },
+        "20": {
+          "absolute_seconds": 63.2043537414966,
+          "elapsed_seconds": 0.04035374149659532
+        },
+        "30": {
+          "absolute_seconds": 63.22331065759637,
+          "elapsed_seconds": 0.05931065759637022
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 512,
+      "channel": "right",
+      "onset_shift_seconds": 0.01,
+      "early_ratio_db": -27.49848175048828,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.218321995464855,
+          "elapsed_seconds": 0.04432199546485549
+        },
+        "20": {
+          "absolute_seconds": 63.23328798185941,
+          "elapsed_seconds": 0.05928798185941275
+        },
+        "30": null
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 512,
+      "channel": "mid",
+      "onset_shift_seconds": -0.01,
+      "early_ratio_db": -5.628037452697754,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.197369614512475,
+          "elapsed_seconds": 0.043369614512471344
+        },
+        "20": {
+          "absolute_seconds": 63.211337868480726,
+          "elapsed_seconds": 0.05733786848072242
+        },
+        "30": {
+          "absolute_seconds": 63.222312925170066,
+          "elapsed_seconds": 0.06831292517006204
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 512,
+      "channel": "mid",
+      "onset_shift_seconds": 0,
+      "early_ratio_db": -8.688505172729492,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.19936507936508,
+          "elapsed_seconds": 0.0353650793650786
+        },
+        "20": {
+          "absolute_seconds": 63.21233560090703,
+          "elapsed_seconds": 0.048335600907030596
+        },
+        "30": {
+          "absolute_seconds": 63.22530612244898,
+          "elapsed_seconds": 0.061306122448975486
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 512,
+      "channel": "mid",
+      "onset_shift_seconds": 0.01,
+      "early_ratio_db": -19.039104461669922,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.21233560090703,
+          "elapsed_seconds": 0.038335600907032585
+        },
+        "20": {
+          "absolute_seconds": 63.22630385487528,
+          "elapsed_seconds": 0.05230385487528366
+        },
+        "30": {
+          "absolute_seconds": 63.23428571428571,
+          "elapsed_seconds": 0.06028571428571183
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 1024,
+      "channel": "left",
+      "onset_shift_seconds": -0.01,
+      "early_ratio_db": -6.452241897583008,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.206167800453514,
+          "elapsed_seconds": 0.05216780045351044
+        },
+        "20": {
+          "absolute_seconds": 63.216145124716554,
+          "elapsed_seconds": 0.06214512471655098
+        },
+        "30": {
+          "absolute_seconds": 63.227120181405894,
+          "elapsed_seconds": 0.0731201814058906
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 1024,
+      "channel": "left",
+      "onset_shift_seconds": 0,
+      "early_ratio_db": -7.773385047912598,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.20716553287982,
+          "elapsed_seconds": 0.04316553287981861
+        },
+        "20": {
+          "absolute_seconds": 63.21714285714286,
+          "elapsed_seconds": 0.05314285714285916
+        },
+        "30": {
+          "absolute_seconds": 63.2281179138322,
+          "elapsed_seconds": 0.06411791383219878
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 1024,
+      "channel": "left",
+      "onset_shift_seconds": 0.01,
+      "early_ratio_db": -12.196325302124023,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.21215419501134,
+          "elapsed_seconds": 0.03815419501133732
+        },
+        "20": {
+          "absolute_seconds": 63.22312925170068,
+          "elapsed_seconds": 0.04912925170068405
+        },
+        "30": {
+          "absolute_seconds": 63.23111111111111,
+          "elapsed_seconds": 0.05711111111111222
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 1024,
+      "channel": "right",
+      "onset_shift_seconds": -0.01,
+      "early_ratio_db": -7.716128349304199,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.195192743764174,
+          "elapsed_seconds": 0.041192743764170814
+        },
+        "20": {
+          "absolute_seconds": 63.202176870748296,
+          "elapsed_seconds": 0.0481768707482928
+        },
+        "30": {
+          "absolute_seconds": 63.216145124716554,
+          "elapsed_seconds": 0.06214512471655098
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 1024,
+      "channel": "right",
+      "onset_shift_seconds": 0,
+      "early_ratio_db": -11.767244338989258,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.199183673469385,
+          "elapsed_seconds": 0.035183673469383336
+        },
+        "20": {
+          "absolute_seconds": 63.206167800453514,
+          "elapsed_seconds": 0.04216780045351243
+        },
+        "30": {
+          "absolute_seconds": 63.22512471655329,
+          "elapsed_seconds": 0.06112471655328733
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 1024,
+      "channel": "right",
+      "onset_shift_seconds": 0.01,
+      "early_ratio_db": -23.448654174804688,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.209160997732425,
+          "elapsed_seconds": 0.03516099773242587
+        },
+        "20": {
+          "absolute_seconds": 63.2281179138322,
+          "elapsed_seconds": 0.05411791383220077
+        },
+        "30": {
+          "absolute_seconds": 63.24507936507936,
+          "elapsed_seconds": 0.0710793650793633
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 1024,
+      "channel": "mid",
+      "onset_shift_seconds": -0.01,
+      "early_ratio_db": -6.1270856857299805,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.198185941043086,
+          "elapsed_seconds": 0.044185941043082266
+        },
+        "20": {
+          "absolute_seconds": 63.21115646258503,
+          "elapsed_seconds": 0.05715646258502716
+        },
+        "30": {
+          "absolute_seconds": 63.22412698412698,
+          "elapsed_seconds": 0.07012698412697915
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 1024,
+      "channel": "mid",
+      "onset_shift_seconds": 0,
+      "early_ratio_db": -9.361186981201172,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.202176870748296,
+          "elapsed_seconds": 0.03817687074829479
+        },
+        "20": {
+          "absolute_seconds": 63.21514739229025,
+          "elapsed_seconds": 0.051147392290246785
+        },
+        "30": {
+          "absolute_seconds": 63.227120181405894,
+          "elapsed_seconds": 0.0631201814058926
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 1024,
+      "channel": "mid",
+      "onset_shift_seconds": 0.01,
+      "early_ratio_db": -17.333759307861328,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.21315192743764,
+          "elapsed_seconds": 0.03915192743764351
+        },
+        "20": {
+          "absolute_seconds": 63.22512471655329,
+          "elapsed_seconds": 0.05112471655328932
+        },
+        "30": {
+          "absolute_seconds": 63.23410430839002,
+          "elapsed_seconds": 0.060104308390023675
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 2048,
+      "channel": "left",
+      "onset_shift_seconds": -0.01,
+      "early_ratio_db": -6.4762187004089355,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.20879818594104,
+          "elapsed_seconds": 0.05479818594103847
+        },
+        "20": {
+          "absolute_seconds": 63.22077097505669,
+          "elapsed_seconds": 0.06677097505668428
+        },
+        "30": {
+          "absolute_seconds": 63.23074829931973,
+          "elapsed_seconds": 0.07674829931972482
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 2048,
+      "channel": "left",
+      "onset_shift_seconds": 0,
+      "early_ratio_db": -7.8044538497924805,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.210793650793654,
+          "elapsed_seconds": 0.04679365079365283
+        },
+        "20": {
+          "absolute_seconds": 63.2227664399093,
+          "elapsed_seconds": 0.05876643990929864
+        },
+        "30": {
+          "absolute_seconds": 63.232743764172334,
+          "elapsed_seconds": 0.06874376417233208
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 2048,
+      "channel": "left",
+      "onset_shift_seconds": 0.01,
+      "early_ratio_db": -11.534139633178711,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.21578231292517,
+          "elapsed_seconds": 0.04178231292517154
+        },
+        "20": {
+          "absolute_seconds": 63.22675736961451,
+          "elapsed_seconds": 0.05275736961451116
+        },
+        "30": {
+          "absolute_seconds": 63.235736961451245,
+          "elapsed_seconds": 0.06173696145124552
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 2048,
+      "channel": "right",
+      "onset_shift_seconds": -0.01,
+      "early_ratio_db": -7.900846004486084,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.198820861678,
+          "elapsed_seconds": 0.044820861677997925
+        },
+        "20": {
+          "absolute_seconds": 63.207800453514736,
+          "elapsed_seconds": 0.05380045351473228
+        },
+        "30": {
+          "absolute_seconds": 63.21977324263039,
+          "elapsed_seconds": 0.0657732426303852
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 2048,
+      "channel": "right",
+      "onset_shift_seconds": 0,
+      "early_ratio_db": -11.459062576293945,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.20181405895691,
+          "elapsed_seconds": 0.03781405895691137
+        },
+        "20": {
+          "absolute_seconds": 63.210793650793654,
+          "elapsed_seconds": 0.04679365079365283
+        },
+        "30": {
+          "absolute_seconds": 63.22775510204082,
+          "elapsed_seconds": 0.06375510204081536
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 2048,
+      "channel": "right",
+      "onset_shift_seconds": 0.01,
+      "early_ratio_db": -19.343482971191406,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.20979591836735,
+          "elapsed_seconds": 0.035795918367348634
+        },
+        "20": {
+          "absolute_seconds": 63.2227664399093,
+          "elapsed_seconds": 0.04876643990930063
+        },
+        "30": {
+          "absolute_seconds": 63.242721088435374,
+          "elapsed_seconds": 0.06872108843537461
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 2048,
+      "channel": "mid",
+      "onset_shift_seconds": -0.01,
+      "early_ratio_db": -6.208364486694336,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.200816326530614,
+          "elapsed_seconds": 0.0468163265306103
+        },
+        "20": {
+          "absolute_seconds": 63.214784580498865,
+          "elapsed_seconds": 0.060784580498861374
+        },
+        "30": {
+          "absolute_seconds": 63.22675736961451,
+          "elapsed_seconds": 0.07275736961450718
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 2048,
+      "channel": "mid",
+      "onset_shift_seconds": 0,
+      "early_ratio_db": -8.964555740356445,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.204807256235824,
+          "elapsed_seconds": 0.04080725623582282
+        },
+        "20": {
+          "absolute_seconds": 63.21877551020408,
+          "elapsed_seconds": 0.054775510204081
+        },
+        "30": {
+          "absolute_seconds": 63.22975056689342,
+          "elapsed_seconds": 0.06575056689342063
+        }
+      }
+    },
+    {
+      "note_index": 0,
+      "window_samples": 2048,
+      "channel": "mid",
+      "onset_shift_seconds": 0.01,
+      "early_ratio_db": -15.275164604187012,
+      "last_allowed_time_seconds": 63.34,
+      "ratio_drop_landmarks_db": {
+        "10": {
+          "absolute_seconds": 63.213786848072566,
+          "elapsed_seconds": 0.03978684807256627
+        },
+        "20": {
+          "absolute_seconds": 63.22575963718821,
+          "elapsed_seconds": 0.05175963718821208
+        },
+        "30": {
+          "absolute_seconds": 63.23773242630386,
+          "elapsed_seconds": 0.06373242630385789
+        }
+      }
+    }
+  ],
+  "central_trace_diagnostics": [
+    {
+      "note_index": 0,
+      "window_samples": 1024,
+      "channel": "mid",
+      "onset_shift_seconds": 0,
+      "early_ratio_db": -9.361186981201172,
+      "minimum_relative_ratio_change_db": -50.20199203491211,
+      "maximum_relative_ratio_change_db": -8.425712585449219,
+      "high_band_min_power": 4.7640075911958846e-11,
+      "low_band_min_power": 5.618190801470746e-09,
+      "high_band_floor_count": 0,
+      "low_band_floor_count": 0,
+      "longest_contiguous_below_10db_frame_count": 139,
+      "longest_contiguous_below_10db_grid_coverage_seconds": 0.13868480725623583,
+      "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+    }
+  ],
+  "mid_traces": [
+    {
+      "note_index": 0,
+      "elapsed_seconds": [
+        0.00026303854875209254,
+        0.0012607709750582785,
+        0.002258503401357359,
+        0.003256235827663545,
+        0.004253968253969731,
+        0.0052517006802688115,
+        0.0062494331065749975,
+        0.0072471655328811835,
+        0.008244897959180264,
+        0.00924263038548645,
+        0.010240362811792636,
+        0.011238095238091717,
+        0.012235827664397902,
+        0.013233560090704088,
+        0.014231292517003169,
+        0.015229024943309355,
+        0.01622675736961554,
+        0.01722448979591462,
+        0.018222222222220807,
+        0.019219954648526993,
+        0.020217687074826074,
+        0.02121541950113226,
+        0.022213151927438446,
+        0.023210884353737526,
+        0.024208616780043712,
+        0.0252063492063499,
+        0.02620408163264898,
+        0.027201814058955165,
+        0.02819954648526135,
+        0.02919727891156043,
+        0.030195011337866617,
+        0.031192743764172803,
+        0.032190476190471884,
+        0.03318820861677807,
+        0.034185941043084256,
+        0.035183673469383336,
+        0.03618140589568952,
+        0.03717913832199571,
+        0.03817687074829479,
+        0.039174603174600975,
+        0.04017233560090716,
+        0.04117006802720624,
+        0.04216780045351243,
+        0.04316553287981861,
+        0.044163265306117694,
+        0.04516099773242388,
+        0.046158730158730066,
+        0.047156462585029146,
+        0.04815419501133533,
+        0.04915192743764152,
+        0.0501496598639406,
+        0.051147392290246785,
+        0.05214512471655297,
+        0.05314285714285916,
+        0.05414058956915824,
+        0.05513832199546442,
+        0.05613605442177061,
+        0.05713378684806969,
+        0.058131519274375876,
+        0.05912925170068206,
+        0.06012698412698114,
+        0.06112471655328733,
+        0.062122448979593514,
+        0.0631201814058926,
+        0.06411791383219878,
+        0.06511564625850497,
+        0.06611337868480405,
+        0.06711111111111023,
+        0.06810884353741642,
+        0.0691065759637155,
+        0.07010430839002169,
+        0.07110204081632787,
+        0.07209977324262695,
+        0.07309750566893314,
+        0.07409523809523932,
+        0.0750929705215384,
+        0.07609070294784459,
+        0.07708843537415078,
+        0.07808616780044986,
+        0.07908390022675604,
+        0.08008163265306223,
+        0.08107936507936131,
+        0.0820770975056675,
+        0.08307482993197368,
+        0.08407256235827276,
+        0.08507029478457895,
+        0.08606802721088513,
+        0.08706575963718421,
+        0.0880634920634904,
+        0.08906122448979659,
+        0.09005895691609567,
+        0.09105668934240185,
+        0.09205442176870804,
+        0.09305215419500712,
+        0.0940498866213133,
+        0.09504761904761949,
+        0.09604535147391857,
+        0.09704308390022476,
+        0.09804081632653094,
+        0.09903854875283002,
+        0.10003628117913621,
+        0.1010340136054424,
+        0.10203174603174148,
+        0.10302947845804766,
+        0.10402721088435385,
+        0.10502494331065293,
+        0.10602267573695912,
+        0.1070204081632653,
+        0.10801814058956438,
+        0.10901587301587057,
+        0.11001360544217675,
+        0.11101133786847583,
+        0.11200907029478202,
+        0.1130068027210882,
+        0.11400453514738729,
+        0.11500226757369347,
+        0.11599999999999966,
+        0.11699773242630584,
+        0.11799546485260493,
+        0.11899319727891111,
+        0.1199909297052173,
+        0.12098866213151638,
+        0.12198639455782256,
+        0.12298412698412875,
+        0.12398185941042783,
+        0.12497959183673402,
+        0.1259773242630402,
+        0.12697505668933928,
+        0.12797278911564547,
+        0.12897052154195165,
+        0.12996825396825074,
+        0.13096598639455692,
+        0.1319637188208631,
+        0.1329614512471622,
+        0.13395918367346837,
+        0.13495691609977456,
+        0.13595464852607364,
+        0.13695238095237983,
+        0.137950113378686,
+        0.1389478458049851,
+        0.13994557823129128,
+        0.14094331065759746,
+        0.14194104308389655,
+        0.14293877551020273,
+        0.14393650793650892,
+        0.144934240362808,
+        0.14593197278911418,
+        0.14692970521542037,
+        0.14792743764171945,
+        0.14892517006802564,
+        0.14992290249433182,
+        0.1509206349206309,
+        0.1519183673469371,
+        0.15291609977324327,
+        0.15391383219954236,
+        0.15491156462584854,
+        0.15590929705215473,
+        0.1569070294784538,
+        0.15790476190476,
+        0.15890249433106618,
+        0.15990022675736526,
+        0.16089795918367145,
+        0.16189569160997763,
+        0.1628934240362767,
+        0.1638911564625829,
+        0.16488888888888908,
+        0.16588662131518817,
+        0.16688435374149435,
+        0.16788208616780054,
+        0.16887981859409962,
+        0.1698775510204058,
+        0.170875283446712,
+        0.17187301587301107,
+        0.17287074829931726,
+        0.17386848072562344,
+        0.17486621315192252,
+        0.1758639455782287,
+        0.1768616780045349,
+        0.17785941043084108,
+        0.17885714285714016,
+        0.17985487528344635,
+        0.18085260770975253,
+        0.1818503401360516,
+        0.1828480725623578,
+        0.18384580498866399,
+        0.18484353741496307,
+        0.18584126984126925,
+        0.18683900226757544,
+        0.18783673469387452,
+        0.1888344671201807,
+        0.1898321995464869,
+        0.19082993197278597,
+        0.19182766439909216,
+        0.19282539682539834,
+        0.19382312925169742,
+        0.1948208616780036,
+        0.1958185941043098,
+        0.19681632653060888,
+        0.19781405895691506,
+        0.19881179138322125,
+        0.19980952380952033,
+        0.20080725623582651,
+        0.2018049886621327,
+        0.20280272108843178,
+        0.20380045351473797,
+        0.20479818594104415,
+        0.20579591836734323
+      ],
+      "ratio_db": [
+        -7.14341926574707,
+        -7.016939163208008,
+        -6.8498711585998535,
+        -6.646106243133545,
+        -6.439594745635986,
+        -6.249722480773926,
+        -6.090511798858643,
+        -5.9680986404418945,
+        -5.8834333419799805,
+        -5.837120056152344,
+        -5.817965507507324,
+        -5.817965507507324,
+        -5.817965507507324,
+        -5.827756881713867,
+        -5.875763416290283,
+        -5.981474876403809,
+        -6.163659572601318,
+        -6.354315280914307,
+        -6.506133556365967,
+        -6.680286407470703,
+        -6.913284778594971,
+        -7.211742401123047,
+        -7.6644792556762695,
+        -8.300159454345703,
+        -9.0128173828125,
+        -9.709555625915527,
+        -10.324044227600098,
+        -10.922420501708984,
+        -11.586715698242188,
+        -12.321524620056152,
+        -13.131778717041016,
+        -14.003902435302734,
+        -14.931057929992676,
+        -15.90667724609375,
+        -16.880617141723633,
+        -17.78689956665039,
+        -18.555892944335938,
+        -19.18712043762207,
+        -19.733428955078125,
+        -20.249256134033203,
+        -20.79507064819336,
+        -21.437580108642578,
+        -22.222736358642578,
+        -23.15384864807129,
+        -24.142972946166992,
+        -25.069894790649414,
+        -25.86514663696289,
+        -26.594032287597656,
+        -27.307416915893555,
+        -28.106189727783203,
+        -29.093338012695312,
+        -30.27239227294922,
+        -31.480876922607422,
+        -32.497684478759766,
+        -33.21943283081055,
+        -33.75503158569336,
+        -34.255706787109375,
+        -34.771583557128906,
+        -35.3550910949707,
+        -36.05982971191406,
+        -36.94501876831055,
+        -38.01367950439453,
+        -39.19206619262695,
+        -40.36933517456055,
+        -41.49303436279297,
+        -42.517032623291016,
+        -43.48870086669922,
+        -44.40925216674805,
+        -45.37194061279297,
+        -46.40660858154297,
+        -47.47052764892578,
+        -48.669132232666016,
+        -49.733856201171875,
+        -50.652587890625,
+        -51.40789031982422,
+        -52.09330749511719,
+        -52.80674743652344,
+        -53.451725006103516,
+        -54.61509704589844,
+        -55.95289611816406,
+        -56.92321014404297,
+        -58.12462615966797,
+        -58.59967041015625,
+        -59.23016357421875,
+        -59.56317901611328,
+        -59.56317901611328,
+        -59.56317901611328,
+        -59.23705291748047,
+        -58.32861328125,
+        -57.11833572387695,
+        -56.60834503173828,
+        -56.20244598388672,
+        -56.20244598388672,
+        -56.20244598388672,
+        -56.39645004272461,
+        -56.88144302368164,
+        -57.178810119628906,
+        -57.178810119628906,
+        -57.31573486328125,
+        -57.31573486328125,
+        -57.02116012573242,
+        -56.89000701904297,
+        -56.89000701904297,
+        -56.22478103637695,
+        -55.58503723144531,
+        -54.66949462890625,
+        -53.96504211425781,
+        -53.492950439453125,
+        -53.00212860107422,
+        -52.65862274169922,
+        -51.88141632080078,
+        -50.784156799316406,
+        -49.61541748046875,
+        -48.192108154296875,
+        -47.04016876220703,
+        -45.90074920654297,
+        -44.21308135986328,
+        -42.441253662109375,
+        -40.84121322631836,
+        -39.77226638793945,
+        -39.44419860839844,
+        -39.06204605102539,
+        -38.560264587402344,
+        -37.92237854003906,
+        -37.455963134765625,
+        -37.08858871459961,
+        -37.08858871459961,
+        -37.08858871459961,
+        -37.987274169921875,
+        -38.40895080566406,
+        -38.50059127807617,
+        -38.40895080566406,
+        -37.987274169921875,
+        -37.743736267089844,
+        -37.743736267089844,
+        -37.743736267089844,
+        -37.743736267089844,
+        -37.743736267089844,
+        -37.01340103149414,
+        -33.151649475097656,
+        -32.19880676269531,
+        -31.79507064819336,
+        -31.437206268310547,
+        -31.012359619140625,
+        -27.53969383239746,
+        -27.302059173583984,
+        -27.302059173583984,
+        -25.61254119873047,
+        -25.61254119873047,
+        -25.61254119873047,
+        -24.375648498535156,
+        -24.370431900024414,
+        -24.370431900024414,
+        -24.375648498535156,
+        -25.208690643310547,
+        -26.143264770507812,
+        -26.143264770507812,
+        -26.143264770507812,
+        -23.434314727783203,
+        -22.952301025390625,
+        -22.952301025390625,
+        -22.952301025390625,
+        -23.464141845703125,
+        -25.53790855407715,
+        -27.03517723083496,
+        -27.137298583984375,
+        -27.137298583984375,
+        -27.137298583984375,
+        -26.54726219177246,
+        -24.88992691040039,
+        -23.524301528930664,
+        -23.524301528930664,
+        -23.524301528930664,
+        -23.708744049072266,
+        -23.831298828125,
+        -23.831298828125,
+        -23.831298828125,
+        -23.831298828125,
+        -23.82327651977539,
+        -23.373376846313477,
+        -23.373376846313477,
+        -23.373376846313477,
+        -23.373376846313477,
+        -23.199052810668945,
+        -23.199052810668945,
+        -23.199052810668945,
+        -22.085189819335938,
+        -22.085189819335938,
+        -22.085189819335938,
+        -24.137954711914062,
+        -25.9683780670166,
+        -26.00889015197754,
+        -26.040199279785156,
+        -26.795921325683594,
+        -26.27300453186035,
+        -26.27300453186035,
+        -26.27300453186035,
+        -22.249645233154297,
+        -22.249645233154297,
+        -22.249645233154297,
+        -21.598011016845703,
+        -21.598011016845703,
+        -20.09764862060547,
+        -20.09764862060547,
+        -20.09764862060547,
+        -21.276714324951172,
+        -21.276714324951172
+      ],
+      "low_band_power": [
+        0.0007589425658807158,
+        0.00084125273860991,
+        0.0008939705439843237,
+        0.0009211190626956522,
+        0.0009372833301313221,
+        0.0009534613345749676,
+        0.0009763641864992678,
+        0.0010091247968375683,
+        0.001051342231221497,
+        0.0010997001081705093,
+        0.0011453063925728202,
+        0.001176593592390418,
+        0.0011862440733239055,
+        0.0011738494504243135,
+        0.0011461497051641345,
+        0.0011143990559503436,
+        0.001088071265257895,
+        0.0010549906874075532,
+        0.0010086694965139031,
+        0.0009678996284492314,
+        0.0009424628224223852,
+        0.0009338705567643046,
+        0.0009596682502888143,
+        0.0010243109427392483,
+        0.0011015452910214663,
+        0.0011633951216936111,
+        0.0011832955060526729,
+        0.0011710480321198702,
+        0.001146791153587401,
+        0.001116523751989007,
+        0.0010903353104367852,
+        0.0010733460076153278,
+        0.0010699479607865214,
+        0.0010835679713636637,
+        0.0011123217409476638,
+        0.001154317520558834,
+        0.0011981884017586708,
+        0.001231083762831986,
+        0.001245923456735909,
+        0.001237620017491281,
+        0.0012040419969707727,
+        0.001148981973528862,
+        0.0010805734200403094,
+        0.0010092289885506034,
+        0.0009355508955195546,
+        0.0008507870370522141,
+        0.0007639357936568558,
+        0.0006908726645633578,
+        0.0006370040937326849,
+        0.000606740009970963,
+        0.0006106889923103154,
+        0.0006396086537279189,
+        0.0006752621266059577,
+        0.0006954755517654121,
+        0.0006857997504994273,
+        0.0006578107713721693,
+        0.0006196037866175175,
+        0.0005748608964495361,
+        0.0005299675976857543,
+        0.0004910447751171887,
+        0.0004647342429962009,
+        0.0004535423358902335,
+        0.0004563505353871733,
+        0.0004714886599685997,
+        0.0004920511855743825,
+        0.0005111514474265277,
+        0.0005254580173641443,
+        0.0005327143589965999,
+        0.0005302652134560049,
+        0.0005171871744096279,
+        0.0004955426556989551,
+        0.0004713002999778837,
+        0.0004414656141307205,
+        0.0003962515329476446,
+        0.00034182489616796374,
+        0.00028873118571937084,
+        0.00024101305461954325,
+        0.000205411299248226,
+        0.0001924286043504253,
+        0.0001995232014451176,
+        0.00021886586910113692,
+        0.00023578573018312454,
+        0.0002372742019360885,
+        0.00022958133195061237,
+        0.00021587433002423495,
+        0.00019620389502961189,
+        0.00017235692939721048,
+        0.00014537610695697367,
+        0.00012006022734567523,
+        0.00010022694186773151,
+        8.674717537360266e-05,
+        7.959033973747864e-05,
+        7.601072866236791e-05,
+        7.313206879189238e-05,
+        6.937834405107424e-05,
+        6.459100404754281e-05,
+        5.911650805501267e-05,
+        5.3079995268490165e-05,
+        4.663189247366972e-05,
+        4.119739242014475e-05,
+        3.826584725175053e-05,
+        3.532454866217449e-05,
+        3.138545071124099e-05,
+        2.8050410037394613e-05,
+        2.4816157747409306e-05,
+        2.0984551156288944e-05,
+        1.8168355381931178e-05,
+        1.680967579886783e-05,
+        1.6528878404642455e-05,
+        1.6169036825885996e-05,
+        1.3290258721099235e-05,
+        9.479434083914384e-06,
+        6.776164809707552e-06,
+        4.905354671791429e-06,
+        3.77857759303879e-06,
+        2.8600900350284064e-06,
+        1.936617763931281e-06,
+        1.3159021818864858e-06,
+        9.569288295097067e-07,
+        7.717874836998817e-07,
+        6.889732162562723e-07,
+        6.18449519151909e-07,
+        5.280140840113745e-07,
+        4.3402272353887383e-07,
+        3.6469143083195377e-07,
+        3.063779843159864e-07,
+        2.631338134051475e-07,
+        3.136540271952981e-07,
+        4.382220879506349e-07,
+        4.203116930057149e-07,
+        3.401299295546778e-07,
+        3.6618570220525726e-07,
+        3.709194800194382e-07,
+        2.932105758191028e-07,
+        2.6420875087751483e-07,
+        3.0340544299178873e-07,
+        3.9935619611242146e-07,
+        4.490324272410362e-07,
+        2.8945467533958436e-07,
+        1.1367848173904349e-07,
+        7.375801658326964e-08,
+        8.060313660962493e-08,
+        9.150862467777188e-08,
+        7.162403647953397e-08,
+        3.242105606204859e-08,
+        1.7085833192709288e-08,
+        2.1466263433467248e-08,
+        3.305530427155645e-08,
+        3.395516401383247e-08,
+        2.3112580294082363e-08,
+        1.6525191881555656e-08,
+        1.72329954750694e-08,
+        1.7060221679798815e-08,
+        1.5757317228803913e-08,
+        2.030848023082399e-08,
+        3.355435040930388e-08,
+        3.9391416351008957e-08,
+        2.4357731831514684e-08,
+        1.2345539701641428e-08,
+        1.0556512997084155e-08,
+        6.3280394257958505e-09,
+        5.618190801470746e-09,
+        1.0653279147732064e-08,
+        1.705152463671311e-08,
+        2.4475140136814844e-08,
+        2.674518739809173e-08,
+        2.6884411141736564e-08,
+        2.8231504245468386e-08,
+        2.3667826809514736e-08,
+        1.6263225433021944e-08,
+        1.2145954464415354e-08,
+        8.927113270829068e-09,
+        9.422012503534916e-09,
+        1.345204481140172e-08,
+        1.5317960233574013e-08,
+        1.6646696465727473e-08,
+        1.4611414300702563e-08,
+        1.0940018668748053e-08,
+        1.5186715884851765e-08,
+        1.9227536895982666e-08,
+        1.3982002222689971e-08,
+        8.727684353004861e-09,
+        9.288860347567152e-09,
+        1.5279148612989957e-08,
+        1.8076072194617154e-08,
+        1.263789872751886e-08,
+        9.236994280570343e-09,
+        7.72510677649052e-09,
+        7.562825921070271e-09,
+        1.2171025964846649e-08,
+        1.7450204836677585e-08,
+        2.0159625080395926e-08,
+        1.6524273505069687e-08,
+        1.668893645501157e-08,
+        3.056856101579797e-08,
+        3.3397736132201317e-08,
+        1.8455484251944654e-08,
+        7.586446137963776e-09,
+        4.604476799840995e-09,
+        6.978385425071565e-09,
+        1.0667689842591699e-08,
+        8.860744138416976e-09,
+        5.01399588515028e-09,
+        3.784148550067812e-09,
+        4.11469347483262e-09,
+        6.015417497451381e-09,
+        8.363187475879386e-09
+      ],
+      "high_band_power": [
+        0.00014650990488007665,
+        0.00016719859559088945,
+        0.00018464436288923025,
+        0.0001993908081203699,
+        0.00021277052292134613,
+        0.00022611576423514634,
+        0.00024019318516366184,
+        0.0002553494996391237,
+        0.00027126941131427884,
+        0.0002867888833861798,
+        0.0003000026918016374,
+        0.00030869353213347495,
+        0.0003111431433353573,
+        0.0003067868237849325,
+        0.0002962545258924365,
+        0.00028112097061239183,
+        0.00026320331380702555,
+        0.0002442401892039925,
+        0.00022549428103957325,
+        0.00020787470566574484,
+        0.00019183848053216934,
+        0.0001774648844730109,
+        0.00016431350377388299,
+        0.00015150113904383034,
+        0.0001382676709908992,
+        0.00012438606063369662,
+        0.00010982187086483464,
+        9.469622455071658e-05,
+        7.958160131238401e-05,
+        6.542075425386429e-05,
+        5.3012983698863536e-05,
+        4.269229611963965e-05,
+        3.437612031120807e-05,
+        2.78091956715798e-05,
+        2.281227716594003e-05,
+        1.9214778149034828e-05,
+        1.670843812462408e-05,
+        1.4844843462924473e-05,
+        1.324794448009925e-05,
+        1.168588460132014e-05,
+        1.0026154996012338e-05,
+        8.251924555224832e-06,
+        6.4771024881338235e-06,
+        4.882079338131007e-06,
+        3.6038786674907897e-06,
+        2.6474726837477647e-06,
+        1.9794388208538294e-06,
+        1.5135425428525195e-06,
+        1.1841327705042204e-06,
+        9.383909400639823e-07,
+        7.524652687607158e-07,
+        6.007240926919621e-07,
+        4.801584623237432e-07,
+        3.9130324580582965e-07,
+        3.267790020800021e-07,
+        2.770754008452059e-07,
+        2.3256453118847276e-07,
+        1.9160384567840083e-07,
+        1.5443299616890727e-07,
+        1.2165735086000495e-07,
+        9.390804223130544e-08,
+        7.165558457700172e-08,
+        5.4965735074574695e-08,
+        4.3304979158165224e-08,
+        3.489046207505453e-08,
+        2.863163572897065e-08,
+        2.353248618192083e-08,
+        1.9300529174870462e-08,
+        1.539213556611685e-08,
+        1.183005604588061e-08,
+        8.87213502664963e-09,
+        6.403015895273256e-09,
+        4.693651689535727e-09,
+        3.4096665491034628e-09,
+        2.471807425408201e-09,
+        1.7830493748149934e-09,
+        1.262891013986689e-09,
+        9.277952295327907e-10,
+        6.649055750429511e-10,
+        5.066447261725671e-10,
+        4.444850598694927e-10,
+        3.6312383655534575e-10,
+        3.275542059810732e-10,
+        2.7410682057471547e-10,
+        2.354747230537413e-10,
+        2.0544679846246083e-10,
+        1.9059473443938657e-10,
+        1.7329571111446285e-10,
+        1.7641586802508158e-10,
+        1.946037081479446e-10,
+        1.8941793966664733e-10,
+        1.9505025372623663e-10,
+        1.8447221528106184e-10,
+        1.753327760756207e-10,
+        1.590664960859911e-10,
+        1.3244266794387727e-10,
+        1.1319509218843393e-10,
+        9.559249919410817e-11,
+        8.592845879284994e-11,
+        8.626597353122989e-11,
+        7.099665993992588e-11,
+        7.013919306464445e-11,
+        6.422849058163038e-11,
+        6.690541870524314e-11,
+        6.858531798048517e-11,
+        7.160615156376338e-11,
+        7.291402204234743e-11,
+        7.520804812255477e-11,
+        8.280003765959165e-11,
+        8.766411208060987e-11,
+        8.617703772806351e-11,
+        7.913459471042827e-11,
+        7.403590240873115e-11,
+        7.438055033004431e-11,
+        7.469843493757011e-11,
+        7.350289821239642e-11,
+        7.340674595956997e-11,
+        7.500640386570723e-11,
+        7.884211339348468e-11,
+        8.133384937769605e-11,
+        7.830371767658661e-11,
+        7.675379776195257e-11,
+        7.355611258974548e-11,
+        7.00284691346198e-11,
+        6.551328229909004e-11,
+        6.215113146357254e-11,
+        6.224782495012349e-11,
+        6.131860297298175e-11,
+        6.009139019713672e-11,
+        5.640161254705234e-11,
+        5.406515166117565e-11,
+        5.28209490036069e-11,
+        5.238665751194915e-11,
+        5.183908510786317e-11,
+        5.102436528847676e-11,
+        5.10093425831748e-11,
+        5.326454208254283e-11,
+        5.603338279480674e-11,
+        5.757588156241056e-11,
+        5.50190830395092e-11,
+        5.297716432206556e-11,
+        5.3314436199158877e-11,
+        5.515454065685432e-11,
+        5.67313279686843e-11,
+        5.7129145164536155e-11,
+        5.768078722989678e-11,
+        5.924172263860328e-11,
+        6.152266890380176e-11,
+        6.286801634836081e-11,
+        6.347377484727801e-11,
+        6.34504879193365e-11,
+        6.292103643668057e-11,
+        6.236507144041781e-11,
+        6.151308629132046e-11,
+        6.120803169862299e-11,
+        6.148442172060342e-11,
+        6.057193635555791e-11,
+        5.919846557400632e-11,
+        5.59858930049284e-11,
+        5.349217596650746e-11,
+        5.097906818907205e-11,
+        4.924280427864858e-11,
+        4.798100111669257e-11,
+        4.7640075911958846e-11,
+        4.844037670981294e-11,
+        5.048100479299045e-11,
+        5.197213839847059e-11,
+        5.2578087716970145e-11,
+        5.241217529428077e-11,
+        5.274897185714167e-11,
+        5.395124624829606e-11,
+        5.557382679044487e-11,
+        5.6373711254664727e-11,
+        5.7268252640074735e-11,
+        5.783135081927071e-11,
+        5.897599769655315e-11,
+        6.047314038415408e-11,
+        6.156884724273226e-11,
+        6.297037197233735e-11,
+        6.358287507612914e-11,
+        6.430304205773396e-11,
+        6.430486698683069e-11,
+        6.404864139053501e-11,
+        6.376237732252932e-11,
+        6.22551246665104e-11,
+        6.050197842721872e-11,
+        5.714941714307642e-11,
+        5.3941542205171444e-11,
+        5.0191760470053026e-11,
+        4.693876190509094e-11,
+        4.415325396966985e-11,
+        4.21589950450052e-11,
+        4.142221982084138e-11,
+        4.153448418531269e-11,
+        4.190019858851812e-11,
+        4.29672165902506e-11,
+        4.3533635030179596e-11,
+        4.519327273522222e-11,
+        4.6876270226592354e-11,
+        4.8300748817231565e-11,
+        4.95745874906639e-11,
+        4.938107908691869e-11,
+        4.902516587135253e-11,
+        4.779593734682841e-11,
+        4.63258216509832e-11,
+        4.4832644541248357e-11,
+        4.330109881767186e-11
+      ],
+      "early_ratio_db": -9.361186981201172
+    }
+  ],
+  "limitations": [
+    "Original performance MIDI, velocity, gate/overlap, controllers, tuning/transpose and exact recorded patch revision are unavailable; velocity100 is a placeholder.",
+    "The source contains enabled modulation delay at Upper send127 despite feedback0 and small modulationDepth4; treat this as a whole-patch comparison, not a dry reference.",
+    "Upper amp0/42/12/0 and Lower amp0/64/0/14 change layer balance. H1 includes both tones and unknown relative phase.",
+    "Joint short-window harmonic fits show apparent frequency drift and2\u20137percent mid-channel residual as the waveform changes; no pitch bend or tuning correction is inferred.",
+    "High-band power becomes recording/codec-floor limited about100ms after onset, so late high/low ratios do not identify a filter endpoint.",
+    "A05 at UIclock61s was independently observed by parent with1s precision; fresh65s was also observed. Acceptedbounds62\u201365s account for the earlier rounded clock. The first60.520s attack andA06at70s are excluded."
+  ]
+}

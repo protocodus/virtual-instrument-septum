@@ -1,0 +1,377 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-20",
+  "reference_id": "rcs-a05",
+  "case_id": "rcs-a05-jupiter8perc",
+  "status": "Production baseline only. The source-only case was locked before rendering; no A05 candidate was selected, tuned or rendered.",
+  "interpretation": "Under the locked reconstruction, the baseline does not reproduce the observed sustained spectral decay. The published patch has active modulation delay and changing layer envelopes, so this does not uniquely identify filter timing, cutoff, depth, oscillator phase, or distortion topology.",
+  "source_association": {
+    "video": "https://www.youtube.com/watch?v=8LKRnrs8DcQ",
+    "author": "https://www.rcssound.com/index.php?page=6",
+    "bank": "https://www.rcssound.com/download.php?kod=6",
+    "patch_number": 5,
+    "patch_name": "Jupiter8Perc",
+    "accepted_bounds_seconds": [
+      62,
+      65
+    ],
+    "label_evidence": "Parent observed decoded A05 at the rounded clock 1:01 after 45 frame-forward keys from 60 s, then at the 65 s seek target. The earlier observation has 1 s clock precision; it is not a precise 61.000 s observation. The conservative lower bound is 62 s."
+  },
+  "full_analysis": {
+    "path": "build-fidelity/rcs-a05-baseline-2026-09-20/closure/analysis.json",
+    "sha256": "cbdd5a6ac7488ce438ccc0ef7b501f58e6b6cc260f66806d044368da77677a9f"
+  },
+  "figure": {
+    "path": "build-fidelity/rcs-a05-baseline-2026-09-20/closure/baseline-closure.png",
+    "sha256": "33c94144f75d02b2ac94dfbcca081a237231677a10cd4c3d24b925b094415b39"
+  },
+  "inputs": {
+    "hardware_audit": {
+      "path": "Docs/fidelity/source-audits/rcs-a05-hardware-observations-2026-09-20.json",
+      "sha256": "f824243e2517a232e8ebdc6aca18977d4fd58a0e9b30f3ca2662075da2b9b9e8"
+    },
+    "case": {
+      "path": "Docs/fidelity/reconstructions/expanded/rcs-a05-jupiter8perc.json",
+      "sha256": "0b0743e1b98210710edec60ef1e01d4046286ab0324e724d87f437d3b8979a66"
+    },
+    "catalog": {
+      "path": "Docs/fidelity/rcs-a05-reference-catalog.json",
+      "sha256": "2937bba4b1d5d68ff5a4999768f354273461b6e23efc80af40f176c924ea169c"
+    },
+    "closure_math": {
+      "path": "Tools/analyze_rcs_attack_probes.py",
+      "sha256": "c365684700011e9891928c4234a6bf12c5eeae79348147c9d5c981f787ffce64"
+    },
+    "broad_metric": {
+      "path": "Tools/evaluate_timbre_matrix.py",
+      "sha256": "3ef11ae3352630d0d86e86d3b5eae849b0384d0b765fc1ab618c14570acf138b"
+    },
+    "script": {
+      "path": "build-fidelity/rcs-a05-baseline-2026-09-20/analyze_baseline.py",
+      "sha256": "45ed55e399bfa2ebf2bf89c5e76eb2a3c9a316617007fc2e86e3b6f1a59e3aab"
+    },
+    "comparison": {
+      "path": "build-fidelity/rcs-a05-baseline-2026-09-20/comparison/rcs-a05-jupiter8perc/comparison.json",
+      "sha256": "52051eed5f51dc4605b80c5456a39e0e5c22a85e66b0df053cb4e73c2580b028"
+    }
+  },
+  "case": {
+    "source_start_seconds": 63.13,
+    "duration_seconds": 0.24,
+    "note_on_seconds": 0.034,
+    "note_off_seconds": 0.24,
+    "midi_note": 38,
+    "velocity": 100,
+    "note_off_is_artificial": true,
+    "original_performance_midi_available": false
+  },
+  "hardware_remeasurement_exact": true,
+  "method": {
+    "bands_hz": [
+      [
+        300,
+        1500
+      ],
+      [
+        1500,
+        12000
+      ]
+    ],
+    "windows_samples": [
+      512,
+      1024,
+      2048
+    ],
+    "hop_samples": 44,
+    "channels": [
+      "left",
+      "right",
+      "mid"
+    ],
+    "onset_shifts_seconds": [
+      -0.01,
+      0,
+      0.01
+    ],
+    "early_reference_elapsed_seconds": [
+      0.015,
+      0.035
+    ],
+    "sustained_threshold_seconds": 0.01,
+    "gate_guard_seconds": 0.03,
+    "source_grid_origin_seconds": 63,
+    "note_off_is_artificial": true,
+    "interpretation": "Existing fixed spectral-ratio mathematics; landmark elapsed times are not filter attack durations. Late high-band power reaches recording/codec floor before the synthetic note-off.",
+    "software_source_grid_origin_seconds": 63.12789115646259,
+    "latency_policy": "Known retained 93-sample transport delay removed from time coordinates only; no onset, gain, EQ or time-warp fit.",
+    "strict_replay": "Unsupported events rejected, no ignored events, exactly 1 note-on and 1 note-off; original patch bytes unchanged.",
+    "broad_metric": "Existing 32-band, 25–12500 Hz stereo-power residual; normalize total band power and exclude reference bands below −50 dB of the strongest. Whole 240 ms excerpt, retaining normal rendering latency as in previous broad comparisons."
+  },
+  "hardware_closure_summary": {
+    "10": {
+      "observed_count": 27,
+      "censored_count": 0,
+      "elapsed_seconds_min_median_max": [
+        0.03516099773242587,
+        0.04080725623582282,
+        0.05479818594103847
+      ]
+    },
+    "20": {
+      "observed_count": 27,
+      "censored_count": 0,
+      "elapsed_seconds_min_median_max": [
+        0.04035374149659532,
+        0.05230385487528366,
+        0.06677097505668428
+      ]
+    },
+    "30": {
+      "observed_count": 26,
+      "censored_count": 1,
+      "elapsed_seconds_min_median_max": [
+        0.05711111111111222,
+        0.06393650793650707,
+        0.07674829931972482
+      ]
+    }
+  },
+  "baseline_closure_summary_by_note": [
+    {
+      "note_index": 0,
+      "observations": 27,
+      "landmarks": {
+        "10": {
+          "observed_count": 3,
+          "censored_count": 24,
+          "elapsed_seconds_min_median_max": [
+            0.035546485260773864,
+            0.035546485260773864,
+            0.035546485260773864
+          ],
+          "both_observed_count": 3,
+          "hardware_only_observed_count": 24,
+          "software_only_observed_count": 0,
+          "both_censored_count": 0,
+          "paired_mean_absolute_error_seconds": 0.002055933484506056,
+          "paired_signed_error_seconds_min_median_max": [
+            -0.005804988662127641,
+            0.00018140589569526355,
+            0.00018140589569526355
+          ]
+        },
+        "20": {
+          "observed_count": 0,
+          "censored_count": 27,
+          "elapsed_seconds_min_median_max": null,
+          "both_observed_count": 0,
+          "hardware_only_observed_count": 27,
+          "software_only_observed_count": 0,
+          "both_censored_count": 0,
+          "paired_mean_absolute_error_seconds": null,
+          "paired_signed_error_seconds_min_median_max": null
+        },
+        "30": {
+          "observed_count": 0,
+          "censored_count": 27,
+          "elapsed_seconds_min_median_max": null,
+          "both_observed_count": 0,
+          "hardware_only_observed_count": 26,
+          "software_only_observed_count": 0,
+          "both_censored_count": 1,
+          "paired_mean_absolute_error_seconds": null,
+          "paired_signed_error_seconds_min_median_max": null
+        }
+      }
+    }
+  ],
+  "hardware_central_trace_diagnostics": [
+    {
+      "note_index": 0,
+      "window_samples": 1024,
+      "channel": "mid",
+      "onset_shift_seconds": 0,
+      "early_ratio_db": -9.361186981201172,
+      "minimum_relative_ratio_change_db": -50.20199203491211,
+      "maximum_relative_ratio_change_db": -8.425712585449219,
+      "high_band_min_power": 4.7640075911958846e-11,
+      "low_band_min_power": 5.618190801470746e-09,
+      "high_band_floor_count": 0,
+      "low_band_floor_count": 0,
+      "longest_contiguous_below_10db_frame_count": 139,
+      "longest_contiguous_below_10db_grid_coverage_seconds": 0.13868480725623583,
+      "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+    }
+  ],
+  "baseline_central_trace_diagnostics": [
+    {
+      "note_index": 0,
+      "window_samples": 1024,
+      "channel": "mid",
+      "onset_shift_seconds": 0,
+      "early_ratio_db": -16.61431121826172,
+      "minimum_relative_ratio_change_db": -24.75188446044922,
+      "maximum_relative_ratio_change_db": 2.5433950424194336,
+      "high_band_min_power": 5.707656135917061e-12,
+      "low_band_min_power": 7.913473609733046e-08,
+      "high_band_floor_count": 0,
+      "low_band_floor_count": 0,
+      "longest_contiguous_below_10db_frame_count": 8,
+      "longest_contiguous_below_10db_grid_coverage_seconds": 0.00798185941043084,
+      "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+    }
+  ],
+  "baseline_render_provenance": {
+    "audio": {
+      "path": "build-fidelity/rcs-a05-baseline-2026-09-20/comparison/rcs-a05-jupiter8perc/septum-raw.wav",
+      "sha256": "fe1a43a7a545a46e85c74588a26a08d9a623bf1ff4758fe9f1853063b1b8bcda"
+    },
+    "render_manifest": {
+      "path": "build-fidelity/rcs-a05-baseline-2026-09-20/comparison/rcs-a05-jupiter8perc/septum-raw.render.json",
+      "sha256": "e830a64ce5bde8908d65cf989e8b83dd969d827f2a1651af11ff5dbe6b88eb48"
+    },
+    "comparison_manifest": {
+      "path": "build-fidelity/rcs-a05-baseline-2026-09-20/comparison/rcs-a05-jupiter8perc/comparison.json",
+      "sha256": "52051eed5f51dc4605b80c5456a39e0e5c22a85e66b0df053cb4e73c2580b028"
+    },
+    "build_manifest": {
+      "path": "build-fidelity/public-match-2026-09-20/baseline/manifest.json",
+      "sha256": "cc0c53a3728bcdcc600a615869891e3dfccaf73ff97dd7edb4cf65ee859ff8ca"
+    },
+    "renderer": {
+      "path": "build-fidelity/public-match-2026-09-20/baseline/SeptumRenderMidi",
+      "sha256": "3672d8f6ddf99e1bddbe575c035a9ecae1429e11517e89cc48b8c93eb4b29a34"
+    },
+    "midi": {
+      "path": "build-fidelity/rcs-a05-baseline-2026-09-20/comparison/rcs-a05-jupiter8perc/reconstructed-performance.mid",
+      "sha256": "61e1b63ed7eb1c94e9678f645ade27e205bb653edab37ca8640ad84f996ecaa9"
+    },
+    "sysex": {
+      "path": "build-fidelity/rcs-a05-baseline-2026-09-20/comparison/rcs-a05-jupiter8perc/original-patch.syx",
+      "sha256": "584a1e75e2cfb735cab9bd3f26c56429f9cbcf655f1486e941ba0112bdf9dd7d"
+    },
+    "profile": {
+      "original_path": "Tools/timbre-profiles/diagnostic-baseline.json",
+      "original_sha256": "a2c9990668579296687b56b734457e4d4b4d0a62f5d575237ee4a0600757934e",
+      "canonical_sha256": "a2c9990668579296687b56b734457e4d4b4d0a62f5d575237ee4a0600757934e",
+      "enabled_sections": [],
+      "provided_fields": {},
+      "reference_rate_hz": null
+    },
+    "all_frozen_sources_verified": true,
+    "integrity": {
+      "sample_rate": 44100,
+      "frames": 98784,
+      "finite": true,
+      "nonzero": true,
+      "peak": 0.1910007745027542,
+      "samples_at_or_above_full_scale": 0,
+      "active_voices_at_end": 0,
+      "degraded_replay": false
+    },
+    "latency_samples": 93,
+    "latency_seconds": 0.002108843537414966
+  },
+  "broad_band_spectral_residual": {
+    "band_shape_rmse_db": 11.827501794605991,
+    "included_band_count": 28,
+    "included_bands": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false
+    ],
+    "difference_db": [
+      11.529944678198616,
+      3.354083058724809,
+      1.0691304843587452,
+      9.927228289007173,
+      -1.1174694967638783,
+      -7.032055870816377,
+      -8.622167123436329,
+      -5.71482050538226,
+      -8.84395977520145,
+      -8.089476870828744,
+      -10.11626153975282,
+      -6.347417457953965,
+      -7.99358845285763,
+      -13.003234563358374,
+      -18.877203052829547,
+      -9.303413986656356,
+      -13.10244002442089,
+      -6.177200811823744,
+      -10.534387364139699,
+      -10.098471870751935,
+      -11.474604753268476,
+      -10.79268358823932,
+      -15.633786195459152,
+      -15.388100775053825,
+      -17.98828250048047,
+      -19.143586499013104,
+      -20.423956334743735,
+      -17.141470173098735,
+      -14.975185648407196,
+      -11.625002358252516,
+      -6.790686428383257,
+      -5.419567195148048
+    ]
+  },
+  "raw_excerpt_statistics": {
+    "hardware": {
+      "peak": 0.5457611680030823,
+      "peak_dbfs": -5.259947369729211,
+      "rms_dbfs": -16.714601748150802,
+      "samples_at_or_above_full_scale": 0,
+      "power_spectral_centroid_20_16000_hz": 83.3098697001452,
+      "identical_stereo_channels": false,
+      "side_to_mid_db": -18.104528594837742
+    },
+    "septum": {
+      "peak": 0.1910007745027542,
+      "peak_dbfs": -14.379297433936507,
+      "rms_dbfs": -28.877689914978074,
+      "samples_at_or_above_full_scale": 0,
+      "power_spectral_centroid_20_16000_hz": 40.94677445714429,
+      "identical_stereo_channels": false,
+      "side_to_mid_db": -34.47924987764897
+    }
+  },
+  "limitations": [
+    "Original performance MIDI, velocity, gate/overlap, controllers, tuning/transpose and the exact recorded patch revision are unavailable. Velocity 100 is a placeholder; the note-off is the crop boundary, not a measured release.",
+    "Upper modulation delay is active at send 127, with raw rate 65 and depth 4. Feedback byte 49 is independently decoded as 0%, which leaves a modulated wet tap. Lower send is 0; global reverb is off.",
+    "Upper amp ADSR 0/42/12/0 and Lower amp ADSR 0/64/0/14 change layer balance. The fundamental includes both tones and their unknown relative phase.",
+    "Short-window harmonic fits show changing apparent periodicity and approximately 2–7% mid-channel residual as the waveform decays. No pitch bend or tuning correction was fitted.",
+    "High-band power becomes limited by the recording/codec floor near 100 ms after onset. The later high/low-ratio rebound does not establish renewed filter opening.",
+    "Closure landmarks describe spectral change, not filter attack duration or a unique global parameter law. A darker broad average does not establish a matching envelope trajectory.",
+    "Raw recording and software levels have unknown capture gain and original velocity; their difference is not an identified gain error.",
+    "A05 shares the author montage with the earlier RCS cases. It is another named preset, not another hardware unit or independent recording session."
+  ]
+}

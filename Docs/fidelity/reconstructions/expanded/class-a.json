@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "id": "class-a",
+  "title": "Class A — opening before pitch bend",
+  "reference_id": "lead-01",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 0,
+  "duration_seconds": 1.2,
+  "method": "Hardware-only STFT and Hann-window FFT harmonic-family inspection of the official recording. Primary families near 55, 82.4, 146.8, 164.8, 196, 110, 164.8, 293.7, 329.6 and 392 Hz support played MIDI 33, 40, 50, 52, 55, 45, 52, 62, 64 and 67. Published upper OSC1 coarse byte 100 with WIDE off maps to +12 semitones in the current codec, cancelled by tone octave -1; OSC2 is one octave below the played note. Weak lower families support that spacing, with effects contamination and lower confidence on the very first note. Onsets mark approximate starts of pitch-family changes; exact gates and overlapping key states are unavailable. No software audio or patch fitting was used. The prefix ends before a sustained pitch rise beginning around 1.25 seconds, for which original controller data are unavailable.",
+  "uncertainties": [
+    "Original performance MIDI is unavailable. This is an audio-derived estimate, not an original MIDI file.",
+    "Velocity 100 is a placeholder; original velocities, controller states, system transpose and exact recorded patch revision are unknown.",
+    "The published patch has delay and reverb, which retain earlier pitch families. Short-window sub-octave peaks are less precise than upper harmonic families.",
+    "Pitch changes show short ramps despite the published portamento switch being off. Live controls, a different patch revision or performance gestures remain possible; the note-only reconstruction cannot reproduce undocumented pitch motion exactly.",
+    "The continuous line does not identify original note-offs or overlap. Adjoining gates are a neutral replay convention, not verified non-legato articulation. Onsets are approximate, generally within 10–30 ms; velocity and envelope retrigger conclusions are not justified from this case alone.",
+    "The first note's lower oscillator near 27.5 Hz is weak; the played A1 inference is conditional on the published oscillator mix/tuning and the later clear octave families.",
+    "The final note-off at 1.195 seconds is an artificial crop boundary during a held note, not a measured key release.",
+    "No Septum audio or synthesis parameter search was used to select notes. The published Roland preset must remain unmodified."
+  ],
+  "notes": [
+    {"on": 0.032, "off": 0.119, "note": 33, "velocity": 100},
+    {"on": 0.119, "off": 0.22, "note": 40, "velocity": 100},
+    {"on": 0.22, "off": 0.303, "note": 50, "velocity": 100},
+    {"on": 0.303, "off": 0.363, "note": 52, "velocity": 100},
+    {"on": 0.363, "off": 0.409, "note": 55, "velocity": 100},
+    {"on": 0.409, "off": 0.525, "note": 45, "velocity": 100},
+    {"on": 0.525, "off": 0.621, "note": 52, "velocity": 100},
+    {"on": 0.621, "off": 0.707, "note": 62, "velocity": 100},
+    {"on": 0.707, "off": 0.833, "note": 64, "velocity": 100},
+    {"on": 0.833, "off": 1.195, "note": 67, "velocity": 100}
+  ]
+}

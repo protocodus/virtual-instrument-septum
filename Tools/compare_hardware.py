@@ -28,10 +28,112 @@ import scipy
 from extract_reference_patch import read_bank, parse_bank, encode_syx
 
 ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_CATALOG = ROOT / 'Docs/fidelity/hardware-reference-catalog.json'
 
 
 def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def renderer_provenance(renderer):
+    """Identify the binary; verify frozen candidate inputs when available.
+
+    A hash of the current checkout cannot identify the sources that built an
+    arbitrary executable. Candidate builds supply that link explicitly.
+    """
+    renderer = Path(renderer).resolve()
+    result = {'path': str(renderer), 'sha256': digest(renderer),
+              'build_sources_verified': False,
+              'qualification': 'Binary identified; no frozen build manifest is available.'}
+    manifest_path = renderer.parent / 'manifest.json'
+    if not manifest_path.exists():
+        return result
+    raw_manifest = manifest_path.read_bytes()
+    manifest = json.loads(raw_manifest)
+    if not isinstance(manifest, dict) or not ('frozen_sha256' in manifest or 'experimental' in manifest):
+        result['qualification'] = 'Binary identified; adjacent manifest is not a timbre candidate build manifest.'
+        return result
+    if (manifest.get('version') != 1 or manifest.get('status') != 'complete'
+            or manifest.get('experimental') is not True
+            or manifest.get('hardware_match_claim') is not False
+            or manifest.get('frozen_inputs_verified') is not True):
+        raise ValueError('Candidate build manifest is incomplete or unverified')
+    identity = manifest.get('renderer', {})
+    if identity.get('path') != renderer.name or identity.get('sha256') != result['sha256']:
+        raise ValueError('Candidate renderer does not match its build manifest')
+    frozen = manifest.get('frozen_sha256')
+    required = {'CandidateProfile.h', 'profile.json', 'profile.original.json',
+                'Tools/RenderMidi.cpp', 'original/Tools/RenderMidi.cpp'}
+    if (not isinstance(frozen, dict) or not required <= frozen.keys()
+            or not any(name.startswith('Source/DSP/') for name in frozen)):
+        raise ValueError('Candidate manifest is missing frozen build inputs')
+    for name, expected in frozen.items():
+        relative = Path(name)
+        path = renderer.parent / relative
+        if (relative.is_absolute() or '..' in relative.parts or path.is_symlink()
+                or renderer.parent not in path.resolve().parents
+                or not path.is_file() or digest(path) != expected):
+            raise ValueError(f'Candidate frozen input does not match build manifest: {name}')
+    if (manifest.get('profile', {}).get('canonical_sha256') != frozen['profile.json']
+            or manifest['profile'].get('original_sha256') != frozen['profile.original.json']):
+        raise ValueError('Candidate profile identity does not match frozen inputs')
+    result.update(build_sources_verified=True,
+                  qualification='Experimental candidate; binary and frozen build inputs verified. No hardware-match claim.',
+                  build_manifest_path=str(manifest_path),
+                  build_manifest_sha256=hashlib.sha256(raw_manifest).hexdigest(),
+                  build_manifest=manifest)
+    return result
+
+
+def validate_audio(y):
+    """Require usable float stereo PCM before producing comparison metrics."""
+    if (not isinstance(y, np.ndarray) or y.ndim != 2 or y.shape[1] != 2
+            or len(y) < 2 or not np.issubdtype(y.dtype, np.floating)):
+        raise ValueError('Comparison audio must be nonempty floating-point stereo PCM')
+    if not np.isfinite(y).all():
+        raise ValueError('Comparison audio contains non-finite samples')
+    if not np.any(y):
+        raise ValueError('Comparison audio is silent; level matching is undefined')
+
+
+def validate_association(reference, start_seconds=None, duration_seconds=None):
+    """Require an independently named patch, never a name inferred from sound."""
+    status = reference.get('association_status')
+    if status == 'named_patch_on_official_page':
+        return
+    if status == 'named_patch_in_author_video':
+        evidence = reference.get('association_evidence', {})
+        if not isinstance(evidence, dict):
+            raise ValueError('Author video needs explicit independently observed patch labels')
+        observations = evidence.get('label_observations', [])
+        bounds = evidence.get('accepted_excerpt_bounds_seconds', [])
+        patch_number = reference.get('patch_number')
+        valid_time = lambda value: type(value) in (int, float) and math.isfinite(value)
+        if (evidence.get('video_url') != reference.get('url')
+                or evidence.get('author_page_links_bank_and_video') is not True
+                or type(patch_number) is not int or patch_number < 1
+                or not isinstance(bounds, list) or len(bounds) != 2
+                or any(not valid_time(t) for t in bounds)
+                or not 0 <= bounds[0] < bounds[1]
+                or not isinstance(observations, list) or len(observations) < 2
+                or any(not isinstance(item, dict)
+                       or not valid_time(item.get('seconds')) or item['seconds'] < 0
+                       or type(item.get('patch_number')) is not int
+                       or item['patch_number'] != patch_number
+                       or not isinstance(item.get('visible_patch_label'), str)
+                       or not item['visible_patch_label'].strip() for item in observations)):
+            raise ValueError('Author video needs explicit independently observed patch labels')
+        observed_times = [item['seconds'] for item in observations]
+        if not min(observed_times) <= bounds[0] < bounds[1] <= max(observed_times):
+            raise ValueError('Accepted passage must lie between observations of the same patch')
+        if ((start_seconds is None) != (duration_seconds is None)
+                or start_seconds is not None and (
+                    not valid_time(start_seconds) or not valid_time(duration_seconds)
+                    or duration_seconds <= 0 or start_seconds < bounds[0]
+                    or start_seconds + duration_seconds > bounds[1])):
+            raise ValueError('Excerpt extends outside the audited named-patch passage')
+        return
+    raise ValueError('Reference does not independently identify a single named preset')
 
 
 def vlq(value):
@@ -88,10 +190,11 @@ def write_midi(path, case):
 
 
 def audio_stats(y, sr):
+    validate_audio(y)
     peak = float(np.max(np.abs(y)))
     rms = float(np.sqrt(np.mean(y.astype(float) ** 2)))
     mid, side = (y[:, 0] + y[:, 1]) / 2, (y[:, 0] - y[:, 1]) / 2
-    f, psd = signal.welch(y, sr, nperseg=8192, axis=0)
+    f, psd = signal.welch(y, sr, nperseg=min(8192, len(y)), axis=0)
     spectrum = psd.mean(axis=1)
     band = (f >= 20) & (f <= 16000)
     centroid = float(np.sum(f[band] * spectrum[band]) / max(np.sum(spectrum[band]), 1e-30))
@@ -106,6 +209,7 @@ def audio_stats(y, sr):
 
 
 def listening_copy(y, target_db=-20):
+    validate_audio(y)
     rms = np.sqrt(np.mean(y.astype(float) ** 2))
     gain = 10 ** (target_db / 20) / max(rms, 1e-15)
     return y * gain, gain
@@ -156,6 +260,7 @@ def plot_comparison(hardware, rendered, sr, directory):
 
 
 def render_case(case_path, args, catalog):
+    renderer_identity = renderer_provenance(args.renderer)
     case = json.loads(case_path.read_text())
     if case.get('midi_status') != 'reconstructed_not_original':
         raise ValueError('This tool accepts explicitly labeled reconstructions only')
@@ -166,8 +271,7 @@ def render_case(case_path, args, catalog):
     if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', case['id']):
         raise ValueError('Case id must be a lowercase slug')
     ref = next(a for a in catalog['recordings'] if a['id'] == case['reference_id'])
-    if ref['association_status'] != 'named_patch_on_official_page':
-        raise ValueError('A category montage cannot identify a single preset')
+    validate_association(ref, start_seconds, duration)
     bank = next(a for a in catalog['banks'] if a['id'] == ref['bank_id'])
     for asset in (ref, bank):
         path = args.sources / asset['local_filename']
@@ -223,6 +327,10 @@ def render_case(case_path, args, catalog):
     ab = np.concatenate([a, np.zeros((sr // 2, 2)), b])
     wavfile.write(directory / 'hardware-then-septum.wav', sr, ab.astype(np.float32))
     plot_comparison(hm, sm, sr, directory)
+    render_manifest = json.loads(raw_render.with_suffix('.render.json').read_text())
+    if (render_manifest['inputs']['renderer']['sha256'] != renderer_identity['sha256']
+            or renderer_provenance(args.renderer) != renderer_identity):
+        raise ValueError('Renderer or frozen candidate build changed during comparison')
     stats = {'schema_version': 1, 'case': case,
              'qualification': 'same published preset; reconstructed MIDI, not verified original MIDI',
              'reference': ref, 'bank': bank, 'archive_member': member,
@@ -234,8 +342,10 @@ def render_case(case_path, args, catalog):
              'alignment': 'transcribed event times on decoded hardware timeline; no post-render alignment',
              'hardware_start_sample': start, 'comparison_frames': length,
              'decode_command': decode_command,
-             'retained_engine_latency_samples': json.loads(raw_render.with_suffix('.render.json').read_text())['output']['latency_samples'],
-             'catalog_sha256': digest(ROOT / 'Docs/fidelity/hardware-reference-catalog.json'),
+             'retained_engine_latency_samples': render_manifest['output']['latency_samples'],
+             'renderer_provenance': renderer_identity,
+             'catalog_path': str(args.catalog.resolve()),
+             'catalog_sha256': digest(args.catalog),
              'comparison_limits': catalog['unknowns'] + case['uncertainties'],
              'reconstruction_file_sha256': digest(case_path),
              'runtime': {'python': platform.python_version(), 'numpy': np.__version__,
@@ -243,10 +353,11 @@ def render_case(case_path, args, catalog):
                          'ffmpeg': subprocess.check_output(['ffmpeg', '-version'], text=True).splitlines()[0]},
              'source_code_sha256': {str(p.relative_to(ROOT)): digest(p)
                                     for p in sorted((ROOT / 'Source/DSP').glob('*')) if p.is_file()},
+             'source_code_scope': 'Current checkout only; not proof of renderer build inputs. See renderer_provenance for frozen candidate sources.',
              'tool_sha256': {p: digest(ROOT / 'Tools' / p) for p in
                             ('compare_hardware.py', 'render_midi.py', 'RenderMidi.cpp', 'extract_reference_patch.py')},
              'files': {p.name: digest(p) for p in directory.iterdir() if p.is_file()}}
-    (directory / 'comparison.json').write_text(json.dumps(stats, indent=2) + '\n')
+    (directory / 'comparison.json').write_text(json.dumps(stats, indent=2, allow_nan=False) + '\n')
     return stats
 
 
@@ -271,7 +382,7 @@ def write_html(results, output):
 <a href="{id_}/reconstructed-performance.mid">Download ESTIMATED MIDI</a> ·
 <a href="{id_}/septum-raw.wav">Raw Septum render</a> ·
 <a href="{id_}/comparison.json">Provenance and measurements</a> ·
-<a href="{result['reference']['source_page_url']}">Roland source page</a></p>
+<a href="{result['reference']['source_page_url']}">Reference source page</a></p>
 <img src="{id_}/comparison.png" alt="Level-matched envelope and spectral comparison"></section>''')
     page = '''<!doctype html><html lang="en"><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -283,8 +394,8 @@ button[aria-pressed=true]{background:#222;color:white}audio{display:block;width:
 label{font-size:14px}p{max-width:90ch}summary{cursor:pointer}details p{font-size:15px}</style><h1>SH-201 hardware comparison</h1>
 <p><strong>Performance MIDI: all estimated. Exact original MIDI files: 0.</strong>
 Every MIDI file below was reconstructed from the recording. None is a captured original performance.</p>
-<p>Official Roland hardware demos compared with Septum playing short audio-derived MIDI reconstructions
-and unmodified published Roland presets. No original performance MIDI was found for these official excerpts.
+<p>Public SH-201 hardware demos compared with Septum playing short audio-derived MIDI reconstructions
+and unmodified published presets. Source attribution is recorded for each case. No original performance MIDI was found in the audited sources.
 These are exploratory listening benchmarks. Timing, velocity, controllers and the recording chain
 remain possible causes of differences; the charts do not isolate synthesizer error.</p>
 <p>Listening copies match whole-excerpt RMS using scalar gain only. Raw audio and full provenance remain
@@ -309,14 +420,19 @@ def main():
     parser.add_argument('--sources', required=True, type=Path)
     parser.add_argument('--renderer', required=True, type=Path)
     parser.add_argument('--output', required=True, type=Path, help='new comparison directory')
+    parser.add_argument('--catalog', type=Path, default=DEFAULT_CATALOG,
+                        help='audited audio/preset source catalog (defaults to official Roland sources)')
     parser.add_argument('--case', action='append', type=Path)
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=False)
-    catalog = json.loads((ROOT / 'Docs/fidelity/hardware-reference-catalog.json').read_text())
+    catalog_hash = digest(args.catalog)
+    catalog = json.loads(args.catalog.read_text())
     cases = args.case or sorted((ROOT / 'Docs/fidelity/reconstructions/current').glob('*.json'))
     if not cases:
         parser.error('No reconstruction cases supplied')
     results = [render_case(p, args, catalog) for p in cases]
+    if digest(args.catalog) != catalog_hash:
+        raise ValueError('Source catalog changed during comparison')
     write_html(results, args.output)
     (args.output / 'summary.json').write_text(json.dumps(results, indent=2) + '\n')
     print(args.output / 'index.html')

@@ -52,6 +52,43 @@ presents original-MIDI hardware, current DSP and the retained envelope
 experiment with frozen gain and timing. Source and model uncertainties
 remain explicit; the experiment has not replaced production.
 
+The [20 September public-recording comparison](public-recording-match.md)
+adds a materially closer experimental Air Lead cutoff and playable fitted
+preset, checks the curve across twelve presets, adds a Class A reference,
+and verifies frozen renderer provenance.
+It also tests seven triangle hypotheses and an oscillator-only balance curve
+across all thirteen references. Detailed harmonic and note-gate checks expose
+regressions hidden by broad spectrum scores. All new model candidates remain
+experimental; production DSP is unchanged.
+
+Four author-labelled RCS patches expand the set to seventeen named
+presets. The first two independently reject the same triangle and cutoff candidates.
+Their [source audit](source-audits/rcs-reference-screen-2026-09-20.md) and
+[catalog](rcs-reference-catalog.json) preserve label observations, source hashes
+and the distinction between patch SysEx and played MIDI.
+
+The latest [distortion component checks](source-audits/rcs-linear-center-results-2026-09-20.md)
+add 16 diagnostics and 34 renders across the 17 original presets. Neither new
+shaper matches the closing trajectories, and both worsen the simpler dry
+bass reference. Production DSP remains unchanged. A validated 14.4-second
+[recording-input suite](source-audits/negative-attack-capture-inputs-2026-09-20.md)
+is ready to isolate the unresolved negative filter-envelope response on hardware.
+
+[Internal gain measurements and follow-up comparisons](source-audits/rcs-gain-structure-results-2026-09-20.md)
+confirm strong software saturation, but neither lower-drive probe generalizes
+across the 17 presets. Coupled gain/depth/attack diagnostics also fail the
+recorded harmonic and envelope behavior. The study has not established a
+full hardware match or a justified global change. Controlled recordings would
+help separate the remaining causes; the wet references also retain useful
+stereo-delay evidence for further analysis.
+
+The [stereo-delay comparison](source-audits/rcs-stereo-delay-results-2026-09-20.md)
+now uses that evidence: A03's stable channel gain/phase relationship lies far
+from the current stationary delay model, while an unchanged software control
+stays close. This is a conditional effects-model constraint, not a calibrated
+replacement. A05's smaller discrepancy does not survive its measurement
+variation. Production DSP remains unchanged.
+
 The [strict search for exact recording inputs](exact-reference-search.md) found no verified public set with both original performance MIDI and the exact preset used for a hardware recording. The estimated comparisons below do not qualify for that stricter requirement.
 
 The [ten-recording hardware A/B set](ten-recording-ab.md) pairs real official Roland recordings with unchanged published presets and explicitly reconstructed MIDI, including six new bass/lead transcriptions and current-engine renders.

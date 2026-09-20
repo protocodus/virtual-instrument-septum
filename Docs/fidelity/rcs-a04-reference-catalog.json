@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "title": "Supplementary RCS A04 author recording reference",
+  "retrieved_date": "2026-09-20",
+  "original_midi_available": false,
+  "provenance_scope": "Author page links published bank and hardware demonstration. Actual decoded video frames identify patch labels; no exact recorded parameter revision or original musical performance MIDI is authenticated.",
+  "unknowns": [
+    "Original notes, velocity, gate lengths, pedal/controller events and oscillator phase history remain unknown.",
+    "Author SMF downloads contain SysEx patch data and zero note events.",
+    "Published patches and on-screen names do not prove the absence of live edits or external recording processing.",
+    "YouTube audio is lossy Opus; it is not an unprocessed hardware capture."
+  ],
+  "banks": [
+    {
+      "id": "rcs-basses",
+      "source_page_url": "https://www.rcssound.com/index.php?page=6",
+      "url": "https://www.rcssound.com/download.php?kod=6",
+      "local_filename": "RCS-Analog-Basses-SH201.zip",
+      "sha256": "203fde7b29ee2c377b06f61bfef10675fa50338b1509dc1a1bb39438a9e7b11f",
+      "size_bytes": 6928,
+      "archive_member": "Analog Basses patchbank for Roland SH-201 by RCS/Analog_basses_by_rcs.shl",
+      "bank_sha256": "fe26cb295c131a862f535466ee3dce7f7443c2c37003fed127e3d385119e4e70",
+      "patch_count": 8,
+      "contains_original_performance_midi": false
+    }
+  ],
+  "recordings": [
+    {
+      "id": "rcs-a04",
+      "bank_id": "rcs-basses",
+      "patch_number": 4,
+      "patch_name": "Jupiter8reso",
+      "association_status": "named_patch_in_author_video",
+      "source_page_url": "https://www.rcssound.com/index.php?page=6",
+      "url": "https://www.youtube.com/watch?v=8LKRnrs8DcQ",
+      "local_filename": "youtube-8LKRnrs8DcQ.webm",
+      "sha256": "a11bb93f56e0dfa43c608d35b9ee0a1b6ca7fcd03d985c646ca19e184982657b",
+      "size_bytes": 2404788,
+      "association_evidence": {
+        "video_url": "https://www.youtube.com/watch?v=8LKRnrs8DcQ",
+        "author_page_links_bank_and_video": true,
+        "label_observations": [
+          {
+            "seconds": 48,
+            "time_precision": "integer player display; exact fraction not recorded",
+            "visible_patch_label": "PATCH: A04 JUPITER-8 RESO",
+            "patch_number": 4
+          },
+          {
+            "seconds": 58,
+            "time_precision": "integer player display; exact fraction not recorded",
+            "visible_patch_label": "PATCH: A04 JUPITER-8 RESO",
+            "patch_number": 4
+          }
+        ],
+        "method": "Root independently inspected actual paused decoded fullscreen main frames, using a frame step after each seek; no thumbnail preview labels. Integer player timestamps at48/58 were not treated as precise transition times. Read-only DOM currentTime supplied exact times for two captionless boundary samples. No numeric patch controls or continuous state observed.",
+        "audit_path": "Docs/fidelity/source-audits/rcs-a04-hardware-observations-2026-09-20.md",
+        "accepted_excerpt_bounds_seconds": [
+          49,
+          58
+        ],
+        "bounds_qualification": "Inset initial integer-labelled observation by1s; end58 is no later than the later integer-labelled observation. Conservative interior between A04 labels, not exact patch transition bounds.",
+        "additional_boundary_observations": [
+          {
+            "seconds": 45,
+            "time_precision": "integer player display; Home plus nine5s seeks, then one frame step",
+            "visible_patch_label": "PATCH: A03 JUPITER-8 WIDE",
+            "patch_number": 3
+          },
+          {
+            "seconds": 47.42192,
+            "time_precision": "read-only displayed video currentTime after frame step",
+            "visible_patch_label": null,
+            "qualification": "No patch caption visible; transition frame, not A04 evidence."
+          },
+          {
+            "seconds": 60.04,
+            "time_precision": "read-only displayed video currentTime after frame step",
+            "visible_patch_label": null,
+            "qualification": "No patch caption visible; transition frame, not A04 evidence."
+          }
+        ]
+      }
+    }
+  ],
+  "supplement_to": {
+    "path": "Docs/fidelity/rcs-reference-catalog.json",
+    "sha256": "480e241955c7158a430ca92bc1700a47f5aaac35221852be6d69405551619c4b",
+    "qualification": "Separate new reference; existing catalog and its pinned entries are unchanged."
+  }
+}

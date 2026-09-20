@@ -1,0 +1,3372 @@
+{
+  "schema_version": 1,
+  "status": "gate-sensitivity only; not independent hardware evidence",
+  "inputs": {
+    "gate_manifest": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/results.json",
+      "sha256": "7ba87da04434fa0894d4859dcd3881bdd4fa6645e995538f30e415dec7c2097e"
+    },
+    "primary_analysis": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/closure-comparison-verified/analysis.json",
+      "sha256": "76cff910feab01d53b05c5dfbe082ad1fcc91ffbc1f87e818c1dd25726059235"
+    },
+    "case": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/Docs/fidelity/reconstructions/expanded/rcs-a02-moogbass-pw.json",
+      "sha256": "f773722d61fa1c0e503ff4932027b81bf81646d5fc3d4e035c69493577e95937"
+    },
+    "hardware_analysis": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/hardware-closure/analysis.json",
+      "sha256": "9b68db6b2a24c42cfba2d795338c78df7a2323862fe6a7f3ab37133ffa6109a8"
+    },
+    "measurement_helper": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/Tools/analyze_rcs_attack_probes.py",
+      "sha256": "c365684700011e9891928c4234a6bf12c5eeae79348147c9d5c981f787ffce64"
+    },
+    "script": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/analyze_closure.py",
+      "sha256": "64e5d5e9f766f88ae3d32aa17c8bd878913c28b1bf1db8a5f6a2a8ba49e830a0"
+    }
+  },
+  "method": {
+    "bands_hz": [
+      [
+        300,
+        1500
+      ],
+      [
+        1500,
+        12000
+      ]
+    ],
+    "windows_samples": [
+      512,
+      1024,
+      2048
+    ],
+    "hop_samples": 44,
+    "channels": [
+      "left",
+      "right",
+      "mid"
+    ],
+    "onset_shifts_seconds": [
+      -0.01,
+      0,
+      0.01
+    ],
+    "early_reference_elapsed_seconds": [
+      0.015,
+      0.035
+    ],
+    "sustained_threshold_seconds": 0.01,
+    "gate_guard_seconds": 0.03,
+    "interpretation": "Each landmark is a relative spectral-ratio drop. Filter cutoff, overdrive and changing layer balance can alter this trajectory; elapsed time is not the filter attack duration.",
+    "hardware_time_origin_seconds": 19,
+    "software_time_mapping": "source_start + STFT time \u2212 93/44100 seconds",
+    "latency_compensation": "Subtract known retained renderer latency from time coordinates only; no signal shift, EQ, gain or timing fit.",
+    "frame_grid": "Each original PCM uses its own fixed44-sample hop; no interpolation to fit crossings.",
+    "selection": "Rank first-note probes only when every paired landmark is observed; censored timing remains unknown."
+  },
+  "analysis_guards": "Onsets and all metric constants stay fixed. For this separate sensitivity only, measure both hardware and software before min(original off, variant off)\u221230ms. The primary hardware metric and report remain untouched.",
+  "boundary_caveat": "Largest centered Hann plus median-filter half-support is25.215ms, below the30ms guard. Assertions verify all measurement windows remain before the earliest original/variant release. Shorter common intervals can censor additional hardware landmarks; they are reported separately.",
+  "unchanged_prefix_frames": 6703,
+  "variants": {
+    "shorten-5ms": {
+      "variant": "shorten-5ms",
+      "first_four_off_shift_seconds": -0.005,
+      "case_path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/cases/shorten-5ms.json",
+      "case_sha256": "5eb8c4075d4a53defaf09cad11accf4ebc0df7583483a5caf19745683ae1630e",
+      "midi_path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/cases/shorten-5ms.mid",
+      "midi_sha256": "36392d159bfa1d4b39ae6dddb9a8a173953b9e90070e84908d8b3250c7775bab",
+      "notes": [
+        {
+          "on": 0.03,
+          "off": 0.162,
+          "note": 44,
+          "velocity": 100
+        },
+        {
+          "on": 0.167,
+          "off": 0.299,
+          "note": 56,
+          "velocity": 100
+        },
+        {
+          "on": 0.304,
+          "off": 0.436,
+          "note": 44,
+          "velocity": 100
+        },
+        {
+          "on": 0.441,
+          "off": 0.707,
+          "note": 56,
+          "velocity": 100
+        },
+        {
+          "on": 0.712,
+          "off": 0.862,
+          "note": 44,
+          "velocity": 100
+        }
+      ]
+    },
+    "shorten-15ms": {
+      "variant": "shorten-15ms",
+      "first_four_off_shift_seconds": -0.015,
+      "case_path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/cases/shorten-15ms.json",
+      "case_sha256": "7a7846da4c439461849fd9771ee0feec8959c22ae4eec67b6d81f4a53f67301e",
+      "midi_path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/cases/shorten-15ms.mid",
+      "midi_sha256": "5e2e3dc397b82ab1d7176066d904ed6d3e6c6bcf8ee0dd3da21bd948f3cd490a",
+      "notes": [
+        {
+          "on": 0.03,
+          "off": 0.15200000000000002,
+          "note": 44,
+          "velocity": 100
+        },
+        {
+          "on": 0.167,
+          "off": 0.289,
+          "note": 56,
+          "velocity": 100
+        },
+        {
+          "on": 0.304,
+          "off": 0.426,
+          "note": 44,
+          "velocity": 100
+        },
+        {
+          "on": 0.441,
+          "off": 0.697,
+          "note": 56,
+          "velocity": 100
+        },
+        {
+          "on": 0.712,
+          "off": 0.862,
+          "note": 44,
+          "velocity": 100
+        }
+      ]
+    },
+    "extend-15ms": {
+      "variant": "extend-15ms",
+      "first_four_off_shift_seconds": 0.015,
+      "case_path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/cases/extend-15ms.json",
+      "case_sha256": "0ba1eba16cd80ff105afd86d711b0e99290521a5cb10068a24b367cfb030c23b",
+      "midi_path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/cases/extend-15ms.mid",
+      "midi_sha256": "b2cfd5d92184fecd35e69911694e4a6abe96346acb5d44e08dc3de9238d5d52f",
+      "notes": [
+        {
+          "on": 0.03,
+          "off": 0.182,
+          "note": 44,
+          "velocity": 100
+        },
+        {
+          "on": 0.167,
+          "off": 0.319,
+          "note": 56,
+          "velocity": 100
+        },
+        {
+          "on": 0.304,
+          "off": 0.456,
+          "note": 44,
+          "velocity": 100
+        },
+        {
+          "on": 0.441,
+          "off": 0.727,
+          "note": 56,
+          "velocity": 100
+        },
+        {
+          "on": 0.712,
+          "off": 0.862,
+          "note": 44,
+          "velocity": 100
+        }
+      ]
+    }
+  },
+  "common_analysis_notes_by_variant": {
+    "shorten-5ms": [
+      {
+        "on": 0.03,
+        "off": 0.162,
+        "note": 44,
+        "velocity": 100
+      },
+      {
+        "on": 0.167,
+        "off": 0.299,
+        "note": 56,
+        "velocity": 100
+      },
+      {
+        "on": 0.304,
+        "off": 0.436,
+        "note": 44,
+        "velocity": 100
+      },
+      {
+        "on": 0.441,
+        "off": 0.707,
+        "note": 56,
+        "velocity": 100
+      },
+      {
+        "on": 0.712,
+        "off": 0.862,
+        "note": 44,
+        "velocity": 100
+      }
+    ],
+    "shorten-15ms": [
+      {
+        "on": 0.03,
+        "off": 0.15200000000000002,
+        "note": 44,
+        "velocity": 100
+      },
+      {
+        "on": 0.167,
+        "off": 0.289,
+        "note": 56,
+        "velocity": 100
+      },
+      {
+        "on": 0.304,
+        "off": 0.426,
+        "note": 44,
+        "velocity": 100
+      },
+      {
+        "on": 0.441,
+        "off": 0.697,
+        "note": 56,
+        "velocity": 100
+      },
+      {
+        "on": 0.712,
+        "off": 0.862,
+        "note": 44,
+        "velocity": 100
+      }
+    ],
+    "extend-15ms": [
+      {
+        "on": 0.03,
+        "off": 0.167,
+        "note": 44,
+        "velocity": 100
+      },
+      {
+        "on": 0.167,
+        "off": 0.304,
+        "note": 56,
+        "velocity": 100
+      },
+      {
+        "on": 0.304,
+        "off": 0.441,
+        "note": 44,
+        "velocity": 100
+      },
+      {
+        "on": 0.441,
+        "off": 0.712,
+        "note": 56,
+        "velocity": 100
+      },
+      {
+        "on": 0.712,
+        "off": 0.862,
+        "note": 44,
+        "velocity": 100
+      }
+    ]
+  },
+  "winner": null,
+  "interpretation": "First-note primary failure is assessed separately. Later-note differences test sensitivity to invented gaps/overlaps only; no attack table is selected.",
+  "full_analysis": {
+    "path": "build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/common-interval-closure-analysis/analysis.json",
+    "sha256": "ceb38db86b5a676cfe3da0ff61c70ed0b557f594aba058b5d4566d6097bbf29a"
+  },
+  "common_interval_hardware": {
+    "shorten-5ms": {
+      "summary_by_note": [
+        {
+          "note_index": 0,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.053469387755100684,
+                0.060476190476190794,
+                0.07310657596372039
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "20": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.0656235827664382,
+                0.07643990929705069,
+                0.08807256235827765
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "30": {
+              "observed_count": 24,
+              "censored_count": 3,
+              "elapsed_seconds_min_median_max": [
+                0.0774149659863923,
+                0.08873015873015788,
+                0.1010430839002261
+              ],
+              "both_observed_count": 24,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 3,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "note_index": 1,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.056333333333331126,
+                0.06615192743764098,
+                0.07678684807256175
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "20": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.06930385487527957,
+                0.07912244897958942,
+                0.09175283446711902
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "30": {
+              "observed_count": 18,
+              "censored_count": 9,
+              "elapsed_seconds_min_median_max": [
+                0.08109523809523367,
+                0.09018820861677845,
+                0.10027891156462587
+              ],
+              "both_observed_count": 18,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 9,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "note_index": 2,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.05983219954648433,
+                0.06883446712018326,
+                0.08046712018141022
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "20": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.07298412698412804,
+                0.08380045351474052,
+                0.0944353741496613
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "30": {
+              "observed_count": 9,
+              "censored_count": 18,
+              "elapsed_seconds_min_median_max": [
+                0.0819637188208624,
+                0.09096598639456133,
+                0.10096598639456289
+              ],
+              "both_observed_count": 9,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 18,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "note_index": 3,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.052718820861677784,
+                0.06253741496598764,
+                0.0741700680272146
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "20": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.06369387755102096,
+                0.07550793650793608,
+                0.08813832199546923
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "30": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.07947619047618915,
+                0.0906553287981886,
+                0.10065532879819017
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "note_index": 4,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.05310204081632719,
+                0.06491609977324231,
+                0.07555102040816664
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "20": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.0710612244897959,
+                0.08006349206349128,
+                0.09087981859410732
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "30": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.0844852607709754,
+                0.09348752834467078,
+                0.10902040816326775
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        }
+      ],
+      "central_trace_diagnostics": [
+        {
+          "note_index": 0,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -6.376792907714844,
+          "minimum_relative_ratio_change_db": -40.67788314819336,
+          "maximum_relative_ratio_change_db": -0.9156022071838379,
+          "high_band_min_power": 2.6825887289305683e-08,
+          "low_band_min_power": 0.0012427665060386062,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 42,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0419047619047619,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 1,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -8.063644409179688,
+          "minimum_relative_ratio_change_db": -38.22557067871094,
+          "maximum_relative_ratio_change_db": -0.8080644607543945,
+          "high_band_min_power": 1.4778871104681457e-07,
+          "low_band_min_power": 0.005772524047642946,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 36,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.035918367346938776,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 2,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -6.0087738037109375,
+          "minimum_relative_ratio_change_db": -32.45406723022461,
+          "maximum_relative_ratio_change_db": -0.9078598022460938,
+          "high_band_min_power": 1.5307006151488167e-07,
+          "low_band_min_power": 0.001074420753866434,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 34,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.03392290249433107,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 3,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -7.855883598327637,
+          "minimum_relative_ratio_change_db": -54.30518054962158,
+          "maximum_relative_ratio_change_db": -1.0522241592407227,
+          "high_band_min_power": 1.0006809270102224e-10,
+          "low_band_min_power": 6.968239176785573e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 174,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.17360544217687074,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 4,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -6.370394229888916,
+          "minimum_relative_ratio_change_db": -46.934354305267334,
+          "maximum_relative_ratio_change_db": 0.2529435157775879,
+          "high_band_min_power": 7.734445084395247e-09,
+          "low_band_min_power": 0.00018440040003042668,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 56,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.05587301587301587,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        }
+      ]
+    },
+    "shorten-15ms": {
+      "summary_by_note": [
+        {
+          "note_index": 0,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.053469387755100684,
+                0.060476190476190794,
+                0.07310657596372039
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "20": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.0656235827664382,
+                0.07643990929705069,
+                0.08807256235827765
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 27,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 1,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.056333333333331126,
+                0.06615192743764098,
+                0.07678684807256175
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "20": {
+              "observed_count": 24,
+              "censored_count": 3,
+              "elapsed_seconds_min_median_max": [
+                0.06930385487527957,
+                0.08043764172335344,
+                0.09175283446711902
+              ],
+              "both_observed_count": 24,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 3,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 27,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 2,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.05983219954648433,
+                0.06883446712018326,
+                0.08046712018141022
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "20": {
+              "observed_count": 6,
+              "censored_count": 21,
+              "elapsed_seconds_min_median_max": [
+                0.08198639455782342,
+                0.0869863945578242,
+                0.09198639455782498
+              ],
+              "both_observed_count": 6,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 21,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 27,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 3,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.052718820861677784,
+                0.06253741496598764,
+                0.0741700680272146
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "20": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.06369387755102096,
+                0.07550793650793608,
+                0.08813832199546923
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "30": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.07947619047618915,
+                0.0906553287981886,
+                0.10065532879819017
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "note_index": 4,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.05310204081632719,
+                0.06491609977324231,
+                0.07555102040816664
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "20": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.0710612244897959,
+                0.08006349206349128,
+                0.09087981859410732
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "30": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.0844852607709754,
+                0.09348752834467078,
+                0.10902040816326775
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        }
+      ],
+      "central_trace_diagnostics": [
+        {
+          "note_index": 0,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -6.376792907714844,
+          "minimum_relative_ratio_change_db": -34.44813537597656,
+          "maximum_relative_ratio_change_db": -0.9156022071838379,
+          "high_band_min_power": 1.1888894135836381e-07,
+          "low_band_min_power": 0.0014375867322087288,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 32,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.03192743764172336,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 1,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -8.063644409179688,
+          "minimum_relative_ratio_change_db": -31.190940856933594,
+          "maximum_relative_ratio_change_db": -0.8080644607543945,
+          "high_band_min_power": 8.911530926525302e-07,
+          "low_band_min_power": 0.006874021142721176,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 26,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.025941043083900227,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 2,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -6.0087738037109375,
+          "minimum_relative_ratio_change_db": -29.22283935546875,
+          "maximum_relative_ratio_change_db": -0.9078598022460938,
+          "high_band_min_power": 6.968180628064147e-07,
+          "low_band_min_power": 0.001812219386920333,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 24,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.02394557823129252,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 3,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -7.855883598327637,
+          "minimum_relative_ratio_change_db": -54.30518054962158,
+          "maximum_relative_ratio_change_db": -1.0522241592407227,
+          "high_band_min_power": 1.0006809270102224e-10,
+          "low_band_min_power": 7.1723923610989e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 164,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.1636281179138322,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 4,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -6.370394229888916,
+          "minimum_relative_ratio_change_db": -46.934354305267334,
+          "maximum_relative_ratio_change_db": 0.2529435157775879,
+          "high_band_min_power": 7.734445084395247e-09,
+          "low_band_min_power": 0.00018440040003042668,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 56,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.05587301587301587,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        }
+      ]
+    },
+    "extend-15ms": {
+      "summary_by_note": [
+        {
+          "note_index": 0,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.053469387755100684,
+                0.060476190476190794,
+                0.07310657596372039
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "20": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.0656235827664382,
+                0.07643990929705069,
+                0.08807256235827765
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "30": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.0774149659863923,
+                0.08641723356009123,
+                0.1010430839002261
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "note_index": 1,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.056333333333331126,
+                0.06615192743764098,
+                0.07678684807256175
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "20": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.06930385487527957,
+                0.07912244897958942,
+                0.09175283446711902
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "30": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.08109523809523367,
+                0.09027891156462431,
+                0.10372562358276483
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "note_index": 2,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.05983219954648433,
+                0.06883446712018326,
+                0.08046712018141022
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "20": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.07298412698412804,
+                0.08380045351474052,
+                0.0944353741496613
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "30": {
+              "observed_count": 18,
+              "censored_count": 9,
+              "elapsed_seconds_min_median_max": [
+                0.0819637188208624,
+                0.0918730158730181,
+                0.10278004535147645
+              ],
+              "both_observed_count": 18,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 9,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "note_index": 3,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.052718820861677784,
+                0.06253741496598764,
+                0.0741700680272146
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "20": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.06369387755102096,
+                0.07550793650793608,
+                0.08813832199546923
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "30": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.07947619047618915,
+                0.0906553287981886,
+                0.10065532879819017
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        {
+          "note_index": 4,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.05310204081632719,
+                0.06491609977324231,
+                0.07555102040816664
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "20": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.0710612244897959,
+                0.08006349206349128,
+                0.09087981859410732
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "30": {
+              "observed_count": 27,
+              "censored_count": 0,
+              "elapsed_seconds_min_median_max": [
+                0.0844852607709754,
+                0.09348752834467078,
+                0.10902040816326775
+              ],
+              "both_observed_count": 27,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": 0.0,
+              "paired_signed_error_seconds_min_median_max": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        }
+      ],
+      "central_trace_diagnostics": [
+        {
+          "note_index": 0,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -6.376792907714844,
+          "minimum_relative_ratio_change_db": -40.82467269897461,
+          "maximum_relative_ratio_change_db": -0.9156022071838379,
+          "high_band_min_power": 1.7648053685093146e-08,
+          "low_band_min_power": 0.0008600899018347263,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 47,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.04689342403628118,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 1,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -8.063644409179688,
+          "minimum_relative_ratio_change_db": -40.23227310180664,
+          "maximum_relative_ratio_change_db": -0.8080644607543945,
+          "high_band_min_power": 7.471193441688229e-08,
+          "low_band_min_power": 0.005046401172876358,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 41,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.04090702947845805,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 2,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -6.0087738037109375,
+          "minimum_relative_ratio_change_db": -35.280357360839844,
+          "maximum_relative_ratio_change_db": -0.9078598022460938,
+          "high_band_min_power": 7.344358010641372e-08,
+          "low_band_min_power": 0.000976458250079304,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 39,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.03891156462585034,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 3,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -7.855883598327637,
+          "minimum_relative_ratio_change_db": -54.30518054962158,
+          "maximum_relative_ratio_change_db": -1.0522241592407227,
+          "high_band_min_power": 1.0006809270102224e-10,
+          "low_band_min_power": 6.903669418534264e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 179,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.17859410430839,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 4,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -6.370394229888916,
+          "minimum_relative_ratio_change_db": -46.934354305267334,
+          "maximum_relative_ratio_change_db": 0.2529435157775879,
+          "high_band_min_power": 7.734445084395247e-09,
+          "low_band_min_power": 0.00018440040003042668,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 56,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.05587301587301587,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        }
+      ]
+    }
+  },
+  "renders": [
+    {
+      "variant": "shorten-5ms",
+      "model": "baseline",
+      "case": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/cases/shorten-5ms.json",
+        "sha256": "5eb8c4075d4a53defaf09cad11accf4ebc0df7583483a5caf19745683ae1630e"
+      },
+      "midi": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/cases/shorten-5ms.mid",
+        "sha256": "36392d159bfa1d4b39ae6dddb9a8a173953b9e90070e84908d8b3250c7775bab"
+      },
+      "wav": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/renders/baseline-shorten-5ms.wav",
+        "sha256": "c59aba0be2035416b87a29581cbf640eba210265bee0217ee3dd167e6315b940"
+      },
+      "render_manifest": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/renders/baseline-shorten-5ms.render.json",
+        "sha256": "20e53499bb3b4f0887093e0e2c82818032a566718b1881c1666509df2a13758e"
+      },
+      "renderer": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/baseline/SeptumRenderMidi",
+        "sha256": "3672d8f6ddf99e1bddbe575c035a9ecae1429e11517e89cc48b8c93eb4b29a34"
+      },
+      "build_manifest": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/baseline/manifest.json",
+        "sha256": "cc0c53a3728bcdcc600a615869891e3dfccaf73ff97dd7edb4cf65ee859ff8ca"
+      },
+      "sysex": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/rcs-a02-baseline/rcs-a02-moogbass-pw/original-patch.syx",
+        "sha256": "1d8852b039a22559f388d1af0567c2805b8315b9e76eb8fdc604d6bf16444ac3"
+      },
+      "finite_unclipped_nondegraded": true,
+      "latency_samples": 93,
+      "initial_prefix_identical": true,
+      "summary_by_note": [
+        {
+          "note_index": 0,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 24,
+              "software_only_observed_count": 0,
+              "both_censored_count": 3,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 1,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 18,
+              "software_only_observed_count": 0,
+              "both_censored_count": 9,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 2,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 9,
+              "software_only_observed_count": 0,
+              "both_censored_count": 18,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 3,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 4,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        }
+      ],
+      "central_trace_diagnostics": [
+        {
+          "note_index": 0,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -12.1116943359375,
+          "minimum_relative_ratio_change_db": -6.284420013427734,
+          "maximum_relative_ratio_change_db": 0.8660011291503906,
+          "high_band_min_power": 2.790220321458037e-07,
+          "low_band_min_power": 3.026900958502665e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 1,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -13.400550842285156,
+          "minimum_relative_ratio_change_db": -0.2106952667236328,
+          "maximum_relative_ratio_change_db": 0.304656982421875,
+          "high_band_min_power": 8.427857210335787e-06,
+          "low_band_min_power": 0.0001948627468664199,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 2,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -12.094359397888184,
+          "minimum_relative_ratio_change_db": -6.207159996032715,
+          "maximum_relative_ratio_change_db": 0.8493614196777344,
+          "high_band_min_power": 2.800356639909296e-07,
+          "low_band_min_power": 3.0211269404389895e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 3,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -13.354719161987305,
+          "minimum_relative_ratio_change_db": -0.27116966247558594,
+          "maximum_relative_ratio_change_db": 0.26874256134033203,
+          "high_band_min_power": 8.422370228799991e-06,
+          "low_band_min_power": 0.00019584663095884025,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 4,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -12.1032133102417,
+          "minimum_relative_ratio_change_db": -6.448472023010254,
+          "maximum_relative_ratio_change_db": 0.8562517166137695,
+          "high_band_min_power": 2.811134720559494e-07,
+          "low_band_min_power": 3.0097209673840553e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        }
+      ],
+      "observed_crossing_release_support": []
+    },
+    {
+      "variant": "shorten-5ms",
+      "model": "attack-150ms",
+      "case": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/cases/shorten-5ms.json",
+        "sha256": "5eb8c4075d4a53defaf09cad11accf4ebc0df7583483a5caf19745683ae1630e"
+      },
+      "midi": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/cases/shorten-5ms.mid",
+        "sha256": "36392d159bfa1d4b39ae6dddb9a8a173953b9e90070e84908d8b3250c7775bab"
+      },
+      "wav": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/renders/attack-150ms-shorten-5ms.wav",
+        "sha256": "905feeebe3d13b8c4bd025534481d1bb48f888b3c6fef2007ebffae2918fae04"
+      },
+      "render_manifest": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/renders/attack-150ms-shorten-5ms.render.json",
+        "sha256": "91ed02f5c515fbab7ecf1092e108a25f4f597a87e33ed3be3a28f98379c8dfb5"
+      },
+      "renderer": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-150ms/SeptumRenderMidi",
+        "sha256": "8f05ae320f6f8d4b1e4a0927d90a3904fc955bc34ab00aec7eba3048f95486f0"
+      },
+      "build_manifest": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-150ms/manifest.json",
+        "sha256": "dd4462de0cce85c40edc396d2c80d27439304996776cef42fd8f59b579e68482"
+      },
+      "sysex": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-150ms/comparison/rcs-a02-moogbass-pw/original-patch.syx",
+        "sha256": "1d8852b039a22559f388d1af0567c2805b8315b9e76eb8fdc604d6bf16444ac3"
+      },
+      "finite_unclipped_nondegraded": true,
+      "latency_samples": 93,
+      "initial_prefix_identical": true,
+      "summary_by_note": [
+        {
+          "note_index": 0,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 24,
+              "software_only_observed_count": 0,
+              "both_censored_count": 3,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 1,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 18,
+              "software_only_observed_count": 0,
+              "both_censored_count": 9,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 2,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 9,
+              "software_only_observed_count": 0,
+              "both_censored_count": 18,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 3,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 4,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        }
+      ],
+      "central_trace_diagnostics": [
+        {
+          "note_index": 0,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -6.28546142578125,
+          "minimum_relative_ratio_change_db": -2.4534645080566406,
+          "maximum_relative_ratio_change_db": 0.004438877105712891,
+          "high_band_min_power": 4.4126250031695236e-06,
+          "low_band_min_power": 3.49867987097241e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 1,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -7.279258728027344,
+          "minimum_relative_ratio_change_db": -1.540945053100586,
+          "maximum_relative_ratio_change_db": -0.043581485748291016,
+          "high_band_min_power": 2.6785202862811275e-05,
+          "low_band_min_power": 0.00020413399033714086,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 2,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -6.2795209884643555,
+          "minimum_relative_ratio_change_db": -3.0460205078125,
+          "maximum_relative_ratio_change_db": -0.01806020736694336,
+          "high_band_min_power": 4.6402433326875325e-06,
+          "low_band_min_power": 3.498456135275774e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 3,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -7.269584655761719,
+          "minimum_relative_ratio_change_db": -6.356304168701172,
+          "maximum_relative_ratio_change_db": -0.039496421813964844,
+          "high_band_min_power": 8.422371138294693e-06,
+          "low_band_min_power": 0.00019510633137542754,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 4,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -6.272610664367676,
+          "minimum_relative_ratio_change_db": -4.59368896484375,
+          "maximum_relative_ratio_change_db": -0.04184579849243164,
+          "high_band_min_power": 3.18020806844288e-06,
+          "low_band_min_power": 3.43558713211678e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        }
+      ],
+      "observed_crossing_release_support": []
+    },
+    {
+      "variant": "shorten-15ms",
+      "model": "baseline",
+      "case": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/cases/shorten-15ms.json",
+        "sha256": "7a7846da4c439461849fd9771ee0feec8959c22ae4eec67b6d81f4a53f67301e"
+      },
+      "midi": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/cases/shorten-15ms.mid",
+        "sha256": "5e2e3dc397b82ab1d7176066d904ed6d3e6c6bcf8ee0dd3da21bd948f3cd490a"
+      },
+      "wav": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/renders/baseline-shorten-15ms.wav",
+        "sha256": "8ad45a5b34b1cd02c8e227f27722c6b8ec84be17fb61e4657828388cc6341386"
+      },
+      "render_manifest": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/renders/baseline-shorten-15ms.render.json",
+        "sha256": "250bc565a6a1ef7bf77ef87535ee0e49b06ce367f2fb71afbafc33d8d6a51cd8"
+      },
+      "renderer": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/baseline/SeptumRenderMidi",
+        "sha256": "3672d8f6ddf99e1bddbe575c035a9ecae1429e11517e89cc48b8c93eb4b29a34"
+      },
+      "build_manifest": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/baseline/manifest.json",
+        "sha256": "cc0c53a3728bcdcc600a615869891e3dfccaf73ff97dd7edb4cf65ee859ff8ca"
+      },
+      "sysex": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/rcs-a02-baseline/rcs-a02-moogbass-pw/original-patch.syx",
+        "sha256": "1d8852b039a22559f388d1af0567c2805b8315b9e76eb8fdc604d6bf16444ac3"
+      },
+      "finite_unclipped_nondegraded": true,
+      "latency_samples": 93,
+      "initial_prefix_identical": true,
+      "summary_by_note": [
+        {
+          "note_index": 0,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 27,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 1,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 24,
+              "software_only_observed_count": 0,
+              "both_censored_count": 3,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 27,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 2,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 6,
+              "software_only_observed_count": 0,
+              "both_censored_count": 21,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 27,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 3,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 4,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        }
+      ],
+      "central_trace_diagnostics": [
+        {
+          "note_index": 0,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -12.1116943359375,
+          "minimum_relative_ratio_change_db": -6.284420013427734,
+          "maximum_relative_ratio_change_db": 0.8660011291503906,
+          "high_band_min_power": 2.790220321458037e-07,
+          "low_band_min_power": 3.026900958502665e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 1,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -13.319039344787598,
+          "minimum_relative_ratio_change_db": -0.2945137023925781,
+          "maximum_relative_ratio_change_db": 0.23946189880371094,
+          "high_band_min_power": 8.428420187556185e-06,
+          "low_band_min_power": 0.00019483058713376522,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 2,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -12.355783462524414,
+          "minimum_relative_ratio_change_db": -6.333011627197266,
+          "maximum_relative_ratio_change_db": 1.1083126068115234,
+          "high_band_min_power": 2.8126569873165863e-07,
+          "low_band_min_power": 3.0267381589510478e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 3,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -13.390625953674316,
+          "minimum_relative_ratio_change_db": -0.22333145141601562,
+          "maximum_relative_ratio_change_db": 0.3119668960571289,
+          "high_band_min_power": 8.42346253193682e-06,
+          "low_band_min_power": 0.00019445110228843987,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 4,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -12.132040977478027,
+          "minimum_relative_ratio_change_db": -6.454981803894043,
+          "maximum_relative_ratio_change_db": 0.8881359100341797,
+          "high_band_min_power": 2.7910820676879666e-07,
+          "low_band_min_power": 3.0174041967256926e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        }
+      ],
+      "observed_crossing_release_support": []
+    },
+    {
+      "variant": "shorten-15ms",
+      "model": "attack-150ms",
+      "case": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/cases/shorten-15ms.json",
+        "sha256": "7a7846da4c439461849fd9771ee0feec8959c22ae4eec67b6d81f4a53f67301e"
+      },
+      "midi": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/cases/shorten-15ms.mid",
+        "sha256": "5e2e3dc397b82ab1d7176066d904ed6d3e6c6bcf8ee0dd3da21bd948f3cd490a"
+      },
+      "wav": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/renders/attack-150ms-shorten-15ms.wav",
+        "sha256": "11732ff636a1682cbe93efcf2199dc6e2df261ab1d89c06780a9a3fd2b278942"
+      },
+      "render_manifest": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/renders/attack-150ms-shorten-15ms.render.json",
+        "sha256": "e3430840a58f2a9e7a44050f4333afa3d62103391771443bf15f5d56aa1db1ae"
+      },
+      "renderer": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-150ms/SeptumRenderMidi",
+        "sha256": "8f05ae320f6f8d4b1e4a0927d90a3904fc955bc34ab00aec7eba3048f95486f0"
+      },
+      "build_manifest": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-150ms/manifest.json",
+        "sha256": "dd4462de0cce85c40edc396d2c80d27439304996776cef42fd8f59b579e68482"
+      },
+      "sysex": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-150ms/comparison/rcs-a02-moogbass-pw/original-patch.syx",
+        "sha256": "1d8852b039a22559f388d1af0567c2805b8315b9e76eb8fdc604d6bf16444ac3"
+      },
+      "finite_unclipped_nondegraded": true,
+      "latency_samples": 93,
+      "initial_prefix_identical": true,
+      "summary_by_note": [
+        {
+          "note_index": 0,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 27,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 1,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 24,
+              "software_only_observed_count": 0,
+              "both_censored_count": 3,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 27,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 2,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 6,
+              "software_only_observed_count": 0,
+              "both_censored_count": 21,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 0,
+              "software_only_observed_count": 0,
+              "both_censored_count": 27,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 3,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 4,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        }
+      ],
+      "central_trace_diagnostics": [
+        {
+          "note_index": 0,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -6.28546142578125,
+          "minimum_relative_ratio_change_db": -2.4534645080566406,
+          "maximum_relative_ratio_change_db": 0.004438877105712891,
+          "high_band_min_power": 4.4126250031695236e-06,
+          "low_band_min_power": 3.49867987097241e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 1,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -7.268398284912109,
+          "minimum_relative_ratio_change_db": -0.9811391830444336,
+          "maximum_relative_ratio_change_db": -0.06686162948608398,
+          "high_band_min_power": 3.075563290622085e-05,
+          "low_band_min_power": 0.0002055726945400238,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 2,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -6.34108829498291,
+          "minimum_relative_ratio_change_db": -1.7981986999511719,
+          "maximum_relative_ratio_change_db": -0.01190328598022461,
+          "high_band_min_power": 5.096971108287107e-06,
+          "low_band_min_power": 3.492507312330417e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 3,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -7.279881954193115,
+          "minimum_relative_ratio_change_db": -6.32603120803833,
+          "maximum_relative_ratio_change_db": -0.043517112731933594,
+          "high_band_min_power": 8.427969078184105e-06,
+          "low_band_min_power": 0.00019453115237411112,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 4,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -6.285808086395264,
+          "minimum_relative_ratio_change_db": -4.070789813995361,
+          "maximum_relative_ratio_change_db": 0.022475719451904297,
+          "high_band_min_power": 3.001611048603081e-06,
+          "low_band_min_power": 3.448934876359999e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        }
+      ],
+      "observed_crossing_release_support": []
+    },
+    {
+      "variant": "extend-15ms",
+      "model": "baseline",
+      "case": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/cases/extend-15ms.json",
+        "sha256": "0ba1eba16cd80ff105afd86d711b0e99290521a5cb10068a24b367cfb030c23b"
+      },
+      "midi": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/cases/extend-15ms.mid",
+        "sha256": "b2cfd5d92184fecd35e69911694e4a6abe96346acb5d44e08dc3de9238d5d52f"
+      },
+      "wav": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/renders/baseline-extend-15ms.wav",
+        "sha256": "cb4fc9d514df0a7485c603d8b273245c57a02a74d86c331d41202bf31e36a7d5"
+      },
+      "render_manifest": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/renders/baseline-extend-15ms.render.json",
+        "sha256": "1408db8869838d867d18744bcec9d7da16671b2f143235ca909753177d80d722"
+      },
+      "renderer": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/baseline/SeptumRenderMidi",
+        "sha256": "3672d8f6ddf99e1bddbe575c035a9ecae1429e11517e89cc48b8c93eb4b29a34"
+      },
+      "build_manifest": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/baseline/manifest.json",
+        "sha256": "cc0c53a3728bcdcc600a615869891e3dfccaf73ff97dd7edb4cf65ee859ff8ca"
+      },
+      "sysex": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/rcs-a02-baseline/rcs-a02-moogbass-pw/original-patch.syx",
+        "sha256": "1d8852b039a22559f388d1af0567c2805b8315b9e76eb8fdc604d6bf16444ac3"
+      },
+      "finite_unclipped_nondegraded": true,
+      "latency_samples": 93,
+      "initial_prefix_identical": true,
+      "summary_by_note": [
+        {
+          "note_index": 0,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 1,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 2,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 18,
+              "software_only_observed_count": 0,
+              "both_censored_count": 9,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 3,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 4,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        }
+      ],
+      "central_trace_diagnostics": [
+        {
+          "note_index": 0,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -12.1116943359375,
+          "minimum_relative_ratio_change_db": -6.284420013427734,
+          "maximum_relative_ratio_change_db": 0.8660011291503906,
+          "high_band_min_power": 2.790220321458037e-07,
+          "low_band_min_power": 3.026900958502665e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 1,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -13.553817749023438,
+          "minimum_relative_ratio_change_db": -0.04813194274902344,
+          "maximum_relative_ratio_change_db": 0.47593021392822266,
+          "high_band_min_power": 8.425654414168093e-06,
+          "low_band_min_power": 0.00019532704027369618,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 2,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -12.57684326171875,
+          "minimum_relative_ratio_change_db": -6.027980804443359,
+          "maximum_relative_ratio_change_db": 1.32452392578125,
+          "high_band_min_power": 2.802732694817678e-07,
+          "low_band_min_power": 3.0314404284581542e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 3,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -13.082432746887207,
+          "minimum_relative_ratio_change_db": -0.5403575897216797,
+          "maximum_relative_ratio_change_db": 0.0010433197021484375,
+          "high_band_min_power": 8.422786777373403e-06,
+          "low_band_min_power": 0.00019473380234558135,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 4,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -12.483222961425781,
+          "minimum_relative_ratio_change_db": -5.796316146850586,
+          "maximum_relative_ratio_change_db": 1.2355546951293945,
+          "high_band_min_power": 2.7989173645437404e-07,
+          "low_band_min_power": 3.0213173886295408e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        }
+      ],
+      "observed_crossing_release_support": []
+    },
+    {
+      "variant": "extend-15ms",
+      "model": "attack-150ms",
+      "case": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/cases/extend-15ms.json",
+        "sha256": "0ba1eba16cd80ff105afd86d711b0e99290521a5cb10068a24b367cfb030c23b"
+      },
+      "midi": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/cases/extend-15ms.mid",
+        "sha256": "b2cfd5d92184fecd35e69911694e4a6abe96346acb5d44e08dc3de9238d5d52f"
+      },
+      "wav": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/renders/attack-150ms-extend-15ms.wav",
+        "sha256": "3f1513253f510f7fd9a1fddd018bb1e046abe416a08ba58d790fd493078867de"
+      },
+      "render_manifest": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/gate-robustness/renders/attack-150ms-extend-15ms.render.json",
+        "sha256": "3e42711a8245340f83f1e640cf5a3a690b92ca9eb85367a56d796b3796f994f3"
+      },
+      "renderer": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-150ms/SeptumRenderMidi",
+        "sha256": "8f05ae320f6f8d4b1e4a0927d90a3904fc955bc34ab00aec7eba3048f95486f0"
+      },
+      "build_manifest": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-150ms/manifest.json",
+        "sha256": "dd4462de0cce85c40edc396d2c80d27439304996776cef42fd8f59b579e68482"
+      },
+      "sysex": {
+        "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-150ms/comparison/rcs-a02-moogbass-pw/original-patch.syx",
+        "sha256": "1d8852b039a22559f388d1af0567c2805b8315b9e76eb8fdc604d6bf16444ac3"
+      },
+      "finite_unclipped_nondegraded": true,
+      "latency_samples": 93,
+      "initial_prefix_identical": true,
+      "summary_by_note": [
+        {
+          "note_index": 0,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 1,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 2,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 18,
+              "software_only_observed_count": 0,
+              "both_censored_count": 9,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 3,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 4,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        }
+      ],
+      "central_trace_diagnostics": [
+        {
+          "note_index": 0,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -6.28546142578125,
+          "minimum_relative_ratio_change_db": -4.026145935058594,
+          "maximum_relative_ratio_change_db": 0.004438877105712891,
+          "high_band_min_power": 2.9863092549931025e-06,
+          "low_band_min_power": 3.49867987097241e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 1,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -13.539871215820312,
+          "minimum_relative_ratio_change_db": -0.062079429626464844,
+          "maximum_relative_ratio_change_db": 0.46198368072509766,
+          "high_band_min_power": 8.425653504673392e-06,
+          "low_band_min_power": 0.00019532701116986573,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 2,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -12.57684326171875,
+          "minimum_relative_ratio_change_db": -6.027982711791992,
+          "maximum_relative_ratio_change_db": 1.32452392578125,
+          "high_band_min_power": 2.802733547468961e-07,
+          "low_band_min_power": 3.0314400646602735e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 3,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -13.082432746887207,
+          "minimum_relative_ratio_change_db": -0.5403566360473633,
+          "maximum_relative_ratio_change_db": 0.0010423660278320312,
+          "high_band_min_power": 8.422787686868105e-06,
+          "low_band_min_power": 0.00019473381689749658,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 4,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -12.483221054077148,
+          "minimum_relative_ratio_change_db": -5.796318054199219,
+          "maximum_relative_ratio_change_db": 1.235548973083496,
+          "high_band_min_power": 2.798917080326646e-07,
+          "low_band_min_power": 3.0213172067306004e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        }
+      ],
+      "observed_crossing_release_support": []
+    }
+  ]
+}

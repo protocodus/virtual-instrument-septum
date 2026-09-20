@@ -258,6 +258,15 @@ def fixtures(suite):
                                        "Track nonharmonic components across register/fine tuning; separate aliases from noise and capture distortion.",
                                        {"osc1_wave": WAVES[wave], "osc1_fine": fine + 64, "osc1_pw": 96},
                                        note=note, gate=2000))
+    if suite in ("negative-attack", "all"):
+        for attack in (0, 13, 24, 36):
+            result.append(case(f"negative-attack-a{attack}", "negative-attack",
+                               "Isolated negative filter-envelope attack and held endpoint; no hardware timing law is assumed.",
+                               {"filter_type": 1, "filter_slope": 1, "cutoff": 120,
+                                "resonance": 0, "filter_depth": 42,
+                                "filter_attack": attack, "filter_decay": 127,
+                                "filter_sustain": 127, "filter_release": 0},
+                               note=48, gate=2500))
     return result
 
 
@@ -299,7 +308,7 @@ def generate(output, suite="quick", renderer=None, init_syx=None, channel=1, dev
     output = Path(output)
     if output.exists():
         raise FileExistsError(f"output already exists; choose a new directory: {output}")
-    if suite not in ("quick", "filter", "envelopes", "waveforms", "supersaw", "aliasing", "all"):
+    if suite not in ("quick", "filter", "envelopes", "negative-attack", "waveforms", "supersaw", "aliasing", "all"):
         raise ValueError("unknown capture suite")
     if not 1 <= channel <= 16 or not 16 <= device_id <= 23:
         raise ValueError("channel must be 1–16 and wire device ID 16–23")
@@ -380,7 +389,7 @@ def generate(output, suite="quick", renderer=None, init_syx=None, channel=1, dev
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument("--suite", choices=("quick", "filter", "envelopes", "waveforms", "supersaw", "aliasing", "all"), default="quick")
+    parser.add_argument("--suite", choices=("quick", "filter", "envelopes", "negative-attack", "waveforms", "supersaw", "aliasing", "all"), default="quick")
     source = parser.add_mutually_exclusive_group()
     source.add_argument("--renderer", type=Path, help="SeptumRenderMidi exporter; default build-fidelity/SeptumRenderMidi")
     source.add_argument("--init-syx", type=Path, help="complete caller-supplied INIT PATCH; provenance recorded as unauthenticated")

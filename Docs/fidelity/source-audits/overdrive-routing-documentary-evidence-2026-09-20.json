@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-09-20",
+  "status": "primary-document routing evidence; no hardware measurement or DSP change",
+  "finding": "Post-filter overdrive is the natural published block-level reading: the official specification assigns overdrive to AMP, and audio diagrams place AMP after FILTER. No inspected diagram labels a separate OD node or explicitly specifies its internal position relative to amp-envelope multiplication.",
+  "sources": {
+    "owners_manual": {
+      "url": "https://static.roland.com/assets/media/pdf/SH-201_OM.pdf",
+      "path": "build-fidelity/hardware-benchmark/factory-bank-research/SH-201_OM.pdf",
+      "sha256": "b4a2968d429c7f3e907a6243723d5e803ae2e0014e8e9107c85bd966deea8e79",
+      "size_bytes": 4249153,
+      "pdf_pages_equal_printed_pages": true,
+      "relevant_pages": [
+        27,
+        38,
+        39,
+        61,
+        74,
+        75
+      ]
+    },
+    "synthesis_101": {
+      "url": "https://cdn.roland.com/assets/media/pdf/sh_201_synthesis_101.pdf",
+      "path": "build-fidelity/hardware-benchmark/exact-source-search-2026-09-14/official-inspection/synthesis101.pdf",
+      "sha256": "3ffa5f7b52c87332ff3ff682b1addca36f5eb14513c298b7620cfc50bbb62d2f",
+      "size_bytes": 3319349,
+      "relevant_pdf_page": 8,
+      "relevant_printed_page": 13
+    }
+  },
+  "evidence": [
+    {
+      "source": "owners_manual",
+      "page": 27,
+      "type": "visually inspected basic audio-flow diagram",
+      "fact": "Grey audio arrows place MIX/MOD before FILTER before AMP before EFFECTS. OVERDRIVE is absent as a distinct node. Black arrows describe controls."
+    },
+    {
+      "source": "owners_manual",
+      "page": 75,
+      "type": "visually inspected full block diagram",
+      "fact": "Each Upper/Lower tone has FILTER feeding AMP; AMP ENV controls AMP. EFFECTS explicitly contains DELAY then REVERB. No separate OVERDRIVE node is shown."
+    },
+    {
+      "source": "owners_manual",
+      "page": 74,
+      "type": "visually inspected specification grouping",
+      "exact_quote": "AMP section / Insertion Effect: Overdrive",
+      "context": "The latter is an indented specification entry under AMP, alongside its Level knob and envelope. This is stronger than merely seeing a button in the AMP panel."
+    },
+    {
+      "source": "owners_manual",
+      "page": 61,
+      "type": "visually inspected parameter table",
+      "fact": "Overdrive switch and drive parameters belong to the AMP group; they specify on/off and distortion amount, not processing order."
+    },
+    {
+      "source": "owners_manual",
+      "pages": [
+        38,
+        39
+      ],
+      "type": "text plus visually inspected page39 control/waveform illustration",
+      "fact": "Overdrive control is pictured in the AMP panel. The text describes tube-like distortion, added harmonics and using the button plus LEVEL to change drive; its generic boost/clipping illustration contains no filter or envelope routing."
+    },
+    {
+      "source": "synthesis_101",
+      "printed_page": 13,
+      "pdf_page": 8,
+      "type": "visually inspected official course page",
+      "fact": "The AMP chapter explicitly says the oscillator signal processed through FILTER is amplified here. OVERDRIVE appears in the pictured AMP panel, but no separate distortion route is described."
+    }
+  ],
+  "classification": {
+    "filter_before_amp": "explicit diagram/text evidence",
+    "overdrive_in_amp_section": "explicit specification/parameter classification",
+    "overdrive_after_filter": "corroborated architectural inference from the two preceding facts; not a separately labelled OD routing statement",
+    "overdrive_before_filter": "not supported by the inspected sources",
+    "overdrive_before_or_after_amp_envelope_gain": "not resolved",
+    "hidden_internal_filtering_or_distortion_transfer_function": "not resolved"
+  },
+  "scope": "Cached official English Owner\u2019s Manual and Roland Synthesis101 were inspected. Relevant PDF diagrams/specification pages were rendered and visually checked. Cached Editor help search yielded no additional overdrive routing statement. No broad websearch, external contact, audio rerender or DSP edit.",
+  "local_model_caution": "Septum current code and its terminal-model audit establish only Septum routing. They are not independent evidence of Roland hardware internals.",
+  "inspected_page_renders": [
+    {
+      "path": "build-fidelity/overdrive-routing-documentary-evidence-2026-09-20/owner-p27.png",
+      "sha256": "d93380f7968478137282651d19fdf1c4708bd571d7aee1c61295e1f5edd2700b",
+      "size_bytes": 256753
+    },
+    {
+      "path": "build-fidelity/overdrive-routing-documentary-evidence-2026-09-20/owner-p39.png",
+      "sha256": "703bc4719c3a4e9d9af41ada2ad0e427d13a4d3f4f3ad649682460b299f49b68",
+      "size_bytes": 134565
+    },
+    {
+      "path": "build-fidelity/overdrive-routing-documentary-evidence-2026-09-20/owner-p61.png",
+      "sha256": "214d44953afefb7e52aad66e965b33962284c6982140e33dec4faac5b4fb9b53",
+      "size_bytes": 252134
+    },
+    {
+      "path": "build-fidelity/overdrive-routing-documentary-evidence-2026-09-20/owner-p74.png",
+      "sha256": "0bcb910fd77eee4b1100e146564283bf233117964e1a11136e0ff4fb59e405ef",
+      "size_bytes": 238446
+    },
+    {
+      "path": "build-fidelity/overdrive-routing-documentary-evidence-2026-09-20/owner-p75.png",
+      "sha256": "c403bab60776264d330ecbb2dc7db336024e74724df4d7070edd774956d0ce35",
+      "size_bytes": 98908
+    },
+    {
+      "path": "build-fidelity/overdrive-routing-documentary-evidence-2026-09-20/synthesis101-pdf8.png",
+      "sha256": "29706de4bbc832e8ba2b45a92299b46d60423eeca9a132c459be47d29c7147ab",
+      "size_bytes": 458001
+    }
+  ]
+}

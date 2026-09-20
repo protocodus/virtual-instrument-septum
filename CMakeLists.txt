@@ -355,6 +355,14 @@ if(BUILD_TESTING)
                  COMMAND "${Python3_EXECUTABLE}" -B
                          "${CMAKE_CURRENT_SOURCE_DIR}/Tests/TimbreCandidateTests.py")
         set_tests_properties(Septum.TimbreCandidate PROPERTIES TIMEOUT 180)
+        add_test(NAME Septum.HardwareComparison
+                 COMMAND "${Python3_EXECUTABLE}" -B
+                         "${CMAKE_CURRENT_SOURCE_DIR}/Tests/HardwareComparisonTests.py")
+        set_tests_properties(Septum.HardwareComparison PROPERTIES TIMEOUT 120 SKIP_RETURN_CODE 77)
+        add_test(NAME Septum.TimbreMatrix
+                 COMMAND "${Python3_EXECUTABLE}" -B
+                         "${CMAKE_CURRENT_SOURCE_DIR}/Tests/TimbreMatrixTests.py")
+        set_tests_properties(Septum.TimbreMatrix PROPERTIES TIMEOUT 120 SKIP_RETURN_CODE 77)
         add_test(NAME Septum.ReferencePatchExtraction
                  COMMAND "${Python3_EXECUTABLE}" -B
                          "${CMAKE_CURRENT_SOURCE_DIR}/Tests/ReferencePatchExtractionTests.py")

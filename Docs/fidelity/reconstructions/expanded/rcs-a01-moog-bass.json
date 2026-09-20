@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "id": "rcs-a01-moog-bass",
+  "title": "RCS A01 Moog BASS — three separated notes",
+  "reference_id": "rcs-a01",
+  "status": "hardware_only_reconstruction",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 9.25,
+  "duration_seconds": 0.82,
+  "method": "Hardware-only STFT plus Hann FFT harmonic-family peaks establish sounding C3, Eb3 and F3. Published saw and triangle are both physically −12 semitones, so played notes are MIDI60,63,65. Source-only two-ms RMS thresholds estimate separated gates. No software audio, parameter search, controller fitting or DSP edits were used.",
+  "uncertainties": [
+    "All performance MIDI is reconstructed. No original note or controller events are available; the author SMF contains patch SysEx only.",
+    "Velocity 100 is a placeholder. Published filter velocity +9 and amp velocity +8 make actual velocity a timbre and gain confound.",
+    "The visible A01 label was verified by the parent at source 8 and 15 seconds, not continuously. The selected 9.25–10.07-second interior is conditional on no intervening undocumented patch change.",
+    "Played MIDI 60,63,65 is conditional on unchanged published tuning, zero master/system transpose and no pitch bend. Both upper oscillator raw coarse values −36 with WIDE off map to physical −12 semitones, not −36; tone octave is zero.",
+    "Two-ms source energy boundaries support separate notes and silence, but transport/codec delay and the shortest amp release prevent exact original MIDI gate recovery. Use roughly ±5 ms local onset/release uncertainty, plus unknown common recording alignment.",
+    "Portamento is enabled at raw time20 in SOLO mode. Earlier state before the crop is unavailable. Settled windows begin 25–33 ms after measured attacks; attacks should not be used to fit portamento or oscillator phase reset.",
+    "The published patch is dry saw+triangle with balance0, drive8, resonant LP24 cutoff39 and positive filter envelope/keyfollow. It is an independent patch-level candidate guard, not an isolated waveform/triangle measurement.",
+    "Same-take patch edits, live controls, output path/gain, mastering and lossy YouTube encoding remain unknown. No synthesis output or parameter fitting was used to select this excerpt, notes or gates."
+  ],
+  "notes": [
+    {
+      "on": 0.065,
+      "off": 0.203,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 0.343,
+      "off": 0.485,
+      "note": 63,
+      "velocity": 100
+    },
+    {
+      "on": 0.615,
+      "off": 0.756,
+      "note": 65,
+      "velocity": 100
+    }
+  ]
+}

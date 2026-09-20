@@ -291,6 +291,25 @@ the other 170 retain exact lag and gain. The corrected 201 run preserves
 all six original rendered WAVs byte-for-byte. This fixes measurement
 reliability and does not change the instrument's DSP.
 
+## Public-recording round: 2026-09-20
+
+The [expanded public-recording comparison](public-recording-match.md) adds
+seventeen named-preset cases, four author-labelled RCS patches, independent
+transcriptions, source hashes and renderer-provenance checks. The new Air Lead
+cutoff, triangle, oscillator-balance, distortion, gain-structure and
+stereo-delay candidates are retained as diagnostics. Cross-preset harmonic and
+timing checks reject each as a justified global replacement; production DSP
+therefore remains the calibrated implementation above. The RCS A03 delay
+observation is a conditional stereo-transfer mismatch, while A05 remains inside
+the current model's measurement variation.
+
+The [negative-attack capture suite](timbre-calibration/README.md) adds four
+exact SysEx/MIDI inputs for a future hardware recording. It supplies no
+recording or recovered attack law, so it is an evidence-gathering fixture rather
+than a shipping parameter change. The comparison runner now validates named
+patch association, floating-point stereo audio, frozen experimental renderer
+manifests and catalog identity before writing metrics.
+
 ## Next work
 
 The user has prioritized the output stage as a possible source of the

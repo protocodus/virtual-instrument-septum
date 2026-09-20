@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "sexy-back",
+  "title": "Sexy Back — three opening bass notes",
+  "reference_id": "bass-06",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 0,
+  "duration_seconds": 1.2,
+  "method": "Hardware-only spectral inspection of the three separated opening notes. Settled families near 19.2, 38.5, 154–157 and 311–314 Hz are consistent with played Eb2/MIDI39 given the published dual-tone tuning: upper supersaw OSC1 raw+36/WIDEoff maps to physical+12 with +13 cents; upper supersaw OSC2 WIDEon is -12 with -15 cents; lower triangle WIDEon is -24 with -26 cents; lower saw WIDEon is +24 with zero fine tuning. Both tone octaves are zero. Lower saw higher harmonics near 622, 934 and 1244 Hz independently support the pitch class/octave assignment. Supersaw detuning, strong initial pitch envelopes and overlapping oscillator harmonics prevent exact single-frequency attribution. Gates are estimated from isolated energy rises/falls, with onset allowance for the patch's pitch transients. No Septum audio or parameter fitting was used.",
+  "uncertainties": [
+    "Original performance MIDI is unavailable. All three notes and timings are reconstructed from the hardware audio.",
+    "Velocity 100 is a placeholder; both tones have amplifier velocity sensitivity +8. Original velocities, controllers, system transpose and exact recorded patch revision remain unknown.",
+    "Upper supersaws have detune controls 78 and 37, different fine tuning and strong negative pitch-envelope depths -35/-33; lower triangle pitch-envelope depth is -34. Early spectral peaks must not be interpreted as additional played notes.",
+    "Upper portamento is on with time 4 and SOLO+LEGATO mode; lower tone is polyphonic, has overdrive and LOW CUT, and both tones feed the enabled delay. This is not an isolated oscillator or dry filter measurement.",
+    "Onsets and releases are estimated to roughly 10 ms. The high-frequency energy onset can lag the low-frequency attack; published zero amplifier release does not remove recording/output-filter tails.",
+    "The 1.2-second excerpt includes the quiet tail after the third note and stops before the next event around 1.25 seconds. Final note-off is an observed energy boundary estimate, not an arbitrary crop release.",
+    "The unchanged preset has static LP24 cutoff111 in the upper tone and LP12 cutoff95 in the lower tone, both with resonance0, filter-envelope depth0, filter-velocity sensitivity0 and filter-LFO depths0. Its dual-tone, drive and effect complexity still limits attribution of a spectral mismatch to cutoff alone.",
+    "No software audio or DSP parameter search was used to select notes. Preserve the published Roland preset unchanged."
+  ],
+  "notes": [
+    {"on": 0.087, "off": 0.356, "note": 39, "velocity": 100},
+    {"on": 0.425, "off": 0.565, "note": 39, "velocity": 100},
+    {"on": 0.806, "off": 1.008, "note": 39, "velocity": 100}
+  ]
+}

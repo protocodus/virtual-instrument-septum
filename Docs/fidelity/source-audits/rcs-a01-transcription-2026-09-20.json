@@ -1,0 +1,355 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-09-20",
+  "status": "hardware_only_reconstructed_midi_not_original",
+  "source": {
+    "audio_url": "https://www.youtube.com/watch?v=8LKRnrs8DcQ",
+    "decoded_wav": "build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/youtube-8LKRnrs8DcQ-44100.wav",
+    "decoded_wav_sha256": "3f55200e611c9f01c3d7cbedba5c089bc021b232e39abd6c2c06a651aee5ecd3",
+    "sample_rate": 44100,
+    "frames": 5375489,
+    "bank_url": "https://www.rcssound.com/download.php?kod=6",
+    "bank_archive_sha256": "203fde7b29ee2c377b06f61bfef10675fa50338b1509dc1a1bb39438a9e7b11f",
+    "bank_member": "Analog Basses patchbank for Roland SH-201 by RCS/Analog_basses_by_rcs.shl",
+    "bank_sha256": "fe26cb295c131a862f535466ee3dce7f7443c2c37003fed127e3d385119e4e70",
+    "unchanged_temporary_syx_sha256": "f0dd2c0f662d7e5d466888f01b0b4339ccdd6565bb5441e65dd9efdbedf24a87",
+    "source_audit": "Docs/fidelity/source-audits/rcs-reference-screen-2026-09-20.json",
+    "source_audit_sha256": "1f4f3b76f21c24e33c51ee157c6c7b9a5d1ebcd85d2a1341646bababec041bfa"
+  },
+  "case": {
+    "path": "Docs/fidelity/reconstructions/expanded/rcs-a01-moog-bass.json",
+    "sha256": "ecc290da8d6e2bbb9b8e1cd14790f34f5010b49f06aa707e3915878ccf7550c3"
+  },
+  "case_source_start_seconds": 9.25,
+  "case_duration_seconds": 0.82,
+  "notes": [
+    {
+      "on": 0.065,
+      "off": 0.203,
+      "note": 60,
+      "velocity": 100
+    },
+    {
+      "on": 0.343,
+      "off": 0.485,
+      "note": 63,
+      "velocity": 100
+    },
+    {
+      "on": 0.615,
+      "off": 0.756,
+      "note": 65,
+      "velocity": 100
+    }
+  ],
+  "original_proposal": {
+    "path": "build-fidelity/rcs-a01-hardware-observations-2026-09-20/proposed-case.json",
+    "sha256": "1df1b60213827f1a5874d96e5cd6b69cd318dc0988cbc278a450e0048cbd1597"
+  },
+  "full_ignored_audit": {
+    "path": "build-fidelity/rcs-a01-hardware-observations-2026-09-20/audit.json",
+    "sha256": "ecfd06f7eb75f2fe61b03a0821ee436be8a7f9d706fefa48026f59f758018f45"
+  },
+  "hardware_only_script": {
+    "path": "build-fidelity/rcs-a01-hardware-observations-2026-09-20/analyze_hardware.py",
+    "sha256": "7829f113efe2d962262322bf95af4675222d30124ebc01b3a8a5a8c31403888b"
+  },
+  "evidence_plot": {
+    "path": "build-fidelity/rcs-a01-hardware-observations-2026-09-20/three-note-evidence.png",
+    "sha256": "fe2756948d81d4a047a2055c427dca6b5d0ca350ce06d9544356cbbb4632d8cf"
+  },
+  "oscillator_tuning_runtime_semantics": {
+    "wide": false,
+    "signed_wire_coarse": -36,
+    "physical_coarse_semitones": -12,
+    "tone_octave": 0,
+    "fine_cents": 0
+  },
+  "settled_note_windows": [
+    {
+      "source_window_seconds": [
+        9.34,
+        9.44
+      ],
+      "played_midi_hypothesis": 60,
+      "physical_oscillator_coarse_semitones": -12,
+      "expected_sounding_fundamental_hz": 130.8127826502993,
+      "median_harmonic_implied_fundamental_hz": 130.77735900878906,
+      "harmonic_peaks": [
+        {
+          "harmonic": 1,
+          "peak_hz": 130.71327209472656,
+          "db_relative_h1": 0.0
+        },
+        {
+          "harmonic": 2,
+          "peak_hz": 261.5947723388672,
+          "db_relative_h1": -12.878062057758104
+        },
+        {
+          "harmonic": 3,
+          "peak_hz": 392.4762725830078,
+          "db_relative_h1": -20.948645809023063
+        },
+        {
+          "harmonic": 4,
+          "peak_hz": 523.1895446777344,
+          "db_relative_h1": -18.994374599412957
+        },
+        {
+          "harmonic": 5,
+          "peak_hz": 653.7345886230469,
+          "db_relative_h1": -19.002865904125446
+        },
+        {
+          "harmonic": 6,
+          "peak_hz": 784.6160888671875,
+          "db_relative_h1": -22.4419190253668
+        },
+        {
+          "harmonic": 7,
+          "peak_hz": 915.4975891113281,
+          "db_relative_h1": -25.14070140722261
+        },
+        {
+          "harmonic": 8,
+          "peak_hz": 1046.0426330566406,
+          "db_relative_h1": -24.7704968238059
+        }
+      ]
+    },
+    {
+      "source_window_seconds": [
+        9.62,
+        9.73
+      ],
+      "played_midi_hypothesis": 63,
+      "physical_oscillator_coarse_semitones": -12,
+      "expected_sounding_fundamental_hz": 155.56349186104046,
+      "median_harmonic_implied_fundamental_hz": 155.44281005859375,
+      "harmonic_peaks": [
+        {
+          "harmonic": 1,
+          "peak_hz": 155.44281005859375,
+          "db_relative_h1": 0.0
+        },
+        {
+          "harmonic": 2,
+          "peak_hz": 310.8856201171875,
+          "db_relative_h1": -13.036860199638763
+        },
+        {
+          "harmonic": 3,
+          "peak_hz": 466.4966583251953,
+          "db_relative_h1": -21.07078273473742
+        },
+        {
+          "harmonic": 4,
+          "peak_hz": 621.771240234375,
+          "db_relative_h1": -18.769484255805605
+        },
+        {
+          "harmonic": 5,
+          "peak_hz": 777.2140502929688,
+          "db_relative_h1": -18.841454489041965
+        },
+        {
+          "harmonic": 6,
+          "peak_hz": 932.8250885009766,
+          "db_relative_h1": -22.14565147359017
+        },
+        {
+          "harmonic": 7,
+          "peak_hz": 1088.0996704101562,
+          "db_relative_h1": -24.934613625348675
+        },
+        {
+          "harmonic": 8,
+          "peak_hz": 1243.54248046875,
+          "db_relative_h1": -24.446215360093294
+        }
+      ]
+    },
+    {
+      "source_window_seconds": [
+        9.9,
+        10.0
+      ],
+      "played_midi_hypothesis": 65,
+      "physical_oscillator_coarse_semitones": -12,
+      "expected_sounding_fundamental_hz": 174.61411571650194,
+      "median_harmonic_implied_fundamental_hz": 174.4834327697754,
+      "harmonic_peaks": [
+        {
+          "harmonic": 1,
+          "peak_hz": 174.4525909423828,
+          "db_relative_h1": 0.0
+        },
+        {
+          "harmonic": 2,
+          "peak_hz": 349.0734100341797,
+          "db_relative_h1": -13.18705896286572
+        },
+        {
+          "harmonic": 3,
+          "peak_hz": 523.5260009765625,
+          "db_relative_h1": -21.127782040770768
+        },
+        {
+          "harmonic": 4,
+          "peak_hz": 697.9785919189453,
+          "db_relative_h1": -19.182759396509923
+        },
+        {
+          "harmonic": 5,
+          "peak_hz": 872.4311828613281,
+          "db_relative_h1": -19.123750422945314
+        },
+        {
+          "harmonic": 6,
+          "peak_hz": 1046.883773803711,
+          "db_relative_h1": -22.453627983018674
+        },
+        {
+          "harmonic": 7,
+          "peak_hz": 1221.3363647460938,
+          "db_relative_h1": -25.037515569225942
+        },
+        {
+          "harmonic": 8,
+          "peak_hz": 1395.7889556884766,
+          "db_relative_h1": -24.615799860827508
+        }
+      ]
+    }
+  ],
+  "gate_energy_boundaries": [
+    {
+      "search_region_seconds": [
+        9.29,
+        9.48
+      ],
+      "region_rms90": 0.3367985501919674,
+      "threshold_sensitivity": [
+        {
+          "threshold_fraction_of_region_rms90": 0.05,
+          "first_above_seconds": 9.31500000000003,
+          "last_above_seconds": 9.453000000000198
+        },
+        {
+          "threshold_fraction_of_region_rms90": 0.1,
+          "first_above_seconds": 9.316000000000031,
+          "last_above_seconds": 9.453000000000198
+        },
+        {
+          "threshold_fraction_of_region_rms90": 0.2,
+          "first_above_seconds": 9.318000000000033,
+          "last_above_seconds": 9.452500000000198
+        }
+      ]
+    },
+    {
+      "search_region_seconds": [
+        9.57,
+        9.76
+      ],
+      "region_rms90": 0.2911048598296297,
+      "threshold_sensitivity": [
+        {
+          "threshold_fraction_of_region_rms90": 0.05,
+          "first_above_seconds": 9.592500000000028,
+          "last_above_seconds": 9.734500000000201
+        },
+        {
+          "threshold_fraction_of_region_rms90": 0.1,
+          "first_above_seconds": 9.59400000000003,
+          "last_above_seconds": 9.734500000000201
+        },
+        {
+          "threshold_fraction_of_region_rms90": 0.2,
+          "first_above_seconds": 9.59450000000003,
+          "last_above_seconds": 9.7340000000002
+        }
+      ]
+    },
+    {
+      "search_region_seconds": [
+        9.84,
+        10.03
+      ],
+      "region_rms90": 0.3047292527143178,
+      "threshold_sensitivity": [
+        {
+          "threshold_fraction_of_region_rms90": 0.05,
+          "first_above_seconds": 9.86500000000003,
+          "last_above_seconds": 10.006000000000203
+        },
+        {
+          "threshold_fraction_of_region_rms90": 0.1,
+          "first_above_seconds": 9.865500000000031,
+          "last_above_seconds": 10.006000000000203
+        },
+        {
+          "threshold_fraction_of_region_rms90": 0.2,
+          "first_above_seconds": 9.866000000000032,
+          "last_above_seconds": 10.005000000000202
+        }
+      ]
+    }
+  ],
+  "held_note_supplement": {
+    "source_window_seconds": [
+      11.6,
+      11.9
+    ],
+    "played_midi_hypothesis": 67,
+    "physical_oscillator_coarse_semitones": -12,
+    "expected_sounding_fundamental_hz": 195.99771799087463,
+    "median_harmonic_implied_fundamental_hz": 195.9857940673828,
+    "harmonic_peaks": [
+      {
+        "harmonic": 1,
+        "peak_hz": 195.9857940673828,
+        "db_relative_h1": 0.0
+      },
+      {
+        "harmonic": 2,
+        "peak_hz": 391.9715881347656,
+        "db_relative_h1": -13.64756692402722
+      },
+      {
+        "harmonic": 3,
+        "peak_hz": 588.1256103515625,
+        "db_relative_h1": -35.84607815648182
+      },
+      {
+        "harmonic": 4,
+        "peak_hz": 783.9431762695312,
+        "db_relative_h1": -45.24358857775663
+      },
+      {
+        "harmonic": 5,
+        "peak_hz": 979.9289703369141,
+        "db_relative_h1": -53.71523897388295
+      },
+      {
+        "harmonic": 6,
+        "peak_hz": 1176.082992553711,
+        "db_relative_h1": -64.21838995613062
+      }
+    ],
+    "interpretation": "Supplement only: sounding G3 (~196 Hz), played MIDI67 conditionally. Strong post-attack harmonic attenuation is compatible with moving filter; this does not independently identify raw cutoff, envelope, drive or velocity. No note onset/gate proposed for this sustained observation."
+  },
+  "method": "Manually choose three separated notes in label-qualified interior before any synthesis comparison. Hann-window zero-padded FFT local peaks around eight expected harmonic families establish pitch; two-ms RMS at0.5-ms hops shows gate threshold sensitivity. Zero padding interpolates peaks and does not improve true resolution. Peak ratios are descriptive and are not a calibrated oscillator transfer measurement.",
+  "limitations": [
+    "All performance MIDI is reconstructed. No original note or controller events are available; the author SMF contains patch SysEx only.",
+    "Velocity 100 is a placeholder. Published filter velocity +9 and amp velocity +8 make actual velocity a timbre and gain confound.",
+    "The visible A01 label was verified by the parent at source 8 and 15 seconds, not continuously. The selected 9.25\u201310.07-second interior is conditional on no intervening undocumented patch change.",
+    "Played MIDI 60,63,65 is conditional on unchanged published tuning, zero master/system transpose and no pitch bend. Both upper oscillator raw coarse values \u221236 with WIDE off map to physical \u221212 semitones, not \u221236; tone octave is zero.",
+    "Two-ms source energy boundaries support separate notes and silence, but transport/codec delay and the shortest amp release prevent exact original MIDI gate recovery. Use roughly \u00b15 ms local onset/release uncertainty, plus unknown common recording alignment.",
+    "Portamento is enabled at raw time20 in SOLO mode. Earlier state before the crop is unavailable. Settled windows begin 25\u201333 ms after measured attacks; attacks should not be used to fit portamento or oscillator phase reset.",
+    "The published patch is dry saw+triangle with balance0, drive8, resonant LP24 cutoff39 and positive filter envelope/keyfollow. It is an independent patch-level candidate guard, not an isolated waveform/triangle measurement.",
+    "Same-take patch edits, live controls, output path/gain, mastering and lossy YouTube encoding remain unknown. No synthesis output or parameter fitting was used to select this excerpt, notes or gates."
+  ],
+  "qualification": "Useful independent saw+triangle patch-level candidate comparison, conditional on published patch/tuning and reconstructed notes. Not an isolated waveform, exact-MIDI triplet, or verification of the triangle coefficient by itself. No software audio or fitting used for transcription."
+}

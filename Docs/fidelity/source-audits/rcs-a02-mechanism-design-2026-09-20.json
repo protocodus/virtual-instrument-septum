@@ -1,0 +1,342 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-20",
+  "status": "predeclared_not_executed_by_this_audit",
+  "purpose": "Counterfactual Upper cutoff/depth and attack-duration mechanism screen. This modifies temporary experimental presets and is not an unchanged-preset comparison, recovered hardware patch, calibration or production recommendation.",
+  "approval": "Parent confirmed retaining the full7 patch states x4 models before this predeclaration. Parent will run the grid; this audit only validates proposed bytes and design.",
+  "cells": 28,
+  "new_render_cells_expected": 24,
+  "reuse_original_patch_cells": 4,
+  "source_inputs": {
+    "case_path": "Docs/fidelity/reconstructions/expanded/rcs-a02-moogbass-pw.json",
+    "case_sha256": "f773722d61fa1c0e503ff4932027b81bf81646d5fc3d4e035c69493577e95937",
+    "original_syx_path": "build-fidelity/public-match-2026-09-20/rcs-a02-baseline/rcs-a02-moogbass-pw/original-patch.syx",
+    "original_syx_sha256": "1d8852b039a22559f388d1af0567c2805b8315b9e76eb8fdc604d6bf16444ac3",
+    "midi_path": "build-fidelity/public-match-2026-09-20/rcs-a02-baseline/rcs-a02-moogbass-pw/reconstructed-performance.mid",
+    "midi_sha256": "cf6b33f65d0949dab3786c277b6a0334bced6567a421e2e6108c20fa28807d94",
+    "hardware_excerpt_path": "build-fidelity/public-match-2026-09-20/rcs-a02-baseline/rcs-a02-moogbass-pw/hardware-excerpt-raw.wav",
+    "hardware_excerpt_sha256": "316a79171722b69b7e7ffed53d4e63905fdeecd2df8c3c20056e7eadfb81857d",
+    "comparison_path": "build-fidelity/public-match-2026-09-20/rcs-a02-baseline/rcs-a02-moogbass-pw/comparison.json",
+    "comparison_sha256": "222b7314e55d15451d1535bfbccc935f5e0ecf6211f87143909fe09b7f9ce695",
+    "midi_implementation_url": "https://static.roland.com/assets/media/pdf/SH-201_MI.pdf",
+    "midi_implementation_sha256": "71a8fe00a8d232c494a5aba6885756d99e6650fc14671115260d9446c3009546",
+    "current_engine_h_sha256": "f442d854b37a0a330969187fe3c1c22df9300dceef449ff12a02a5f818d15dc7",
+    "current_engine_cpp_sha256": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae"
+  },
+  "patch_variants": [
+    {
+      "id": "upper-cutoff-120-depth-minus22",
+      "upper_cutoff_raw": 120,
+      "upper_depth_signed": -22,
+      "upper_depth_wire": 42,
+      "expected_upper_full_frame_checksum_hex": "52",
+      "expected_modified_syx_sha256": "1d8852b039a22559f388d1af0567c2805b8315b9e76eb8fdc604d6bf16444ac3",
+      "changed_absolute_file_offsets_zero_based": [],
+      "parameter_modifications": [],
+      "current_engine_analytical_cutoff_hz": {
+        "start": 13976.805044408666,
+        "attack_endpoint_before_clamp": 765.506491730298,
+        "attack_endpoint_after_clamp": 765.506491730298
+      },
+      "endpoint_interpretation": "Current model formula only, not measured hardware. First note cannot reach the150ms attack endpoint."
+    },
+    {
+      "id": "upper-cutoff-120-depth-minus32",
+      "upper_cutoff_raw": 120,
+      "upper_depth_signed": -32,
+      "upper_depth_wire": 32,
+      "expected_upper_full_frame_checksum_hex": "5C",
+      "expected_modified_syx_sha256": "7477a4e6620612b60fbf7bbf765074fc59fc3c256eb00e584298e777f0422d33",
+      "changed_absolute_file_offsets_zero_based": [
+        84,
+        121
+      ],
+      "parameter_modifications": [
+        {
+          "field": "upper.filter_env_depth",
+          "sysex_address_hex": "10 00 01 1B",
+          "absolute_file_offset_zero_based": 84,
+          "original_byte": 42,
+          "experimental_byte": 32
+        }
+      ],
+      "current_engine_analytical_cutoff_hz": {
+        "start": 13976.805044408666,
+        "attack_endpoint_before_clamp": 204.43648726384376,
+        "attack_endpoint_after_clamp": 204.43648726384376
+      },
+      "endpoint_interpretation": "Current model formula only, not measured hardware. First note cannot reach the150ms attack endpoint."
+    },
+    {
+      "id": "upper-cutoff-120-depth-minus42",
+      "upper_cutoff_raw": 120,
+      "upper_depth_signed": -42,
+      "upper_depth_wire": 22,
+      "expected_upper_full_frame_checksum_hex": "66",
+      "expected_modified_syx_sha256": "9ebe286da3b15049005213065f5d94139363b5d9c876cb73454c89f5b3a3f0bf",
+      "changed_absolute_file_offsets_zero_based": [
+        84,
+        121
+      ],
+      "parameter_modifications": [
+        {
+          "field": "upper.filter_env_depth",
+          "sysex_address_hex": "10 00 01 1B",
+          "absolute_file_offset_zero_based": 84,
+          "original_byte": 42,
+          "experimental_byte": 22
+        }
+      ],
+      "current_engine_analytical_cutoff_hz": {
+        "start": 13976.805044408666,
+        "attack_endpoint_before_clamp": 54.59689470472135,
+        "attack_endpoint_after_clamp": 54.59689470472135
+      },
+      "endpoint_interpretation": "Current model formula only, not measured hardware. First note cannot reach the150ms attack endpoint."
+    },
+    {
+      "id": "upper-cutoff-120-depth-minus52",
+      "upper_cutoff_raw": 120,
+      "upper_depth_signed": -52,
+      "upper_depth_wire": 12,
+      "expected_upper_full_frame_checksum_hex": "70",
+      "expected_modified_syx_sha256": "f85ecf310e33d73421d0ad42a47c7da786ad0947075a8c2272b462c78d95ff75",
+      "changed_absolute_file_offsets_zero_based": [
+        84,
+        121
+      ],
+      "parameter_modifications": [
+        {
+          "field": "upper.filter_env_depth",
+          "sysex_address_hex": "10 00 01 1B",
+          "absolute_file_offset_zero_based": 84,
+          "original_byte": 42,
+          "experimental_byte": 12
+        }
+      ],
+      "current_engine_analytical_cutoff_hz": {
+        "start": 13976.805044408666,
+        "attack_endpoint_before_clamp": 14.58066977814685,
+        "attack_endpoint_after_clamp": 14.58066977814685
+      },
+      "endpoint_interpretation": "Current model formula only, not measured hardware. First note cannot reach the150ms attack endpoint."
+    },
+    {
+      "id": "upper-cutoff-120-depth-minus63",
+      "upper_cutoff_raw": 120,
+      "upper_depth_signed": -63,
+      "upper_depth_wire": 1,
+      "expected_upper_full_frame_checksum_hex": "7B",
+      "expected_modified_syx_sha256": "cb2717ead956d80b466add20c126fa9cf5eb8752b227642bb49c8e36f82eeecd",
+      "changed_absolute_file_offsets_zero_based": [
+        84,
+        121
+      ],
+      "parameter_modifications": [
+        {
+          "field": "upper.filter_env_depth",
+          "sysex_address_hex": "10 00 01 1B",
+          "absolute_file_offset_zero_based": 84,
+          "original_byte": 42,
+          "experimental_byte": 1
+        }
+      ],
+      "current_engine_analytical_cutoff_hz": {
+        "start": 13976.805044408666,
+        "attack_endpoint_before_clamp": 3.4123059190450844,
+        "attack_endpoint_after_clamp": 5
+      },
+      "endpoint_interpretation": "Current model formula only, not measured hardware. First note cannot reach the150ms attack endpoint."
+    },
+    {
+      "id": "upper-cutoff-100-depth-minus22",
+      "upper_cutoff_raw": 100,
+      "upper_depth_signed": -22,
+      "upper_depth_wire": 42,
+      "expected_upper_full_frame_checksum_hex": "66",
+      "expected_modified_syx_sha256": "59e53e0cbfd5c7646ed4b963ad30434c8ab86c970f1f92ab6f4ee7cadae58fad",
+      "changed_absolute_file_offsets_zero_based": [
+        76,
+        121
+      ],
+      "parameter_modifications": [
+        {
+          "field": "upper.cutoff",
+          "sysex_address_hex": "10 00 01 13",
+          "absolute_file_offset_zero_based": 76,
+          "original_byte": 120,
+          "experimental_byte": 100
+        }
+      ],
+      "current_engine_analytical_cutoff_hz": {
+        "start": 4691.858675397056,
+        "attack_endpoint_before_clamp": 256.97205211675896,
+        "attack_endpoint_after_clamp": 256.97205211675896
+      },
+      "endpoint_interpretation": "Current model formula only, not measured hardware. First note cannot reach the150ms attack endpoint."
+    },
+    {
+      "id": "upper-cutoff-80-depth-minus22",
+      "upper_cutoff_raw": 80,
+      "upper_depth_signed": -22,
+      "upper_depth_wire": 42,
+      "expected_upper_full_frame_checksum_hex": "7A",
+      "expected_modified_syx_sha256": "4e6f111ef8fa4f7859aaedeaede106a92e3853ad8ee3cd840e3b1a84a51fbf29",
+      "changed_absolute_file_offsets_zero_based": [
+        76,
+        121
+      ],
+      "parameter_modifications": [
+        {
+          "field": "upper.cutoff",
+          "sysex_address_hex": "10 00 01 13",
+          "absolute_file_offset_zero_based": 76,
+          "original_byte": 120,
+          "experimental_byte": 80
+        }
+      ],
+      "current_engine_analytical_cutoff_hz": {
+        "start": 1575.0050000665194,
+        "attack_endpoint_before_clamp": 86.2626722078321,
+        "attack_endpoint_after_clamp": 86.2626722078321
+      },
+      "endpoint_interpretation": "Current model formula only, not measured hardware. First note cannot reach the150ms attack endpoint."
+    }
+  ],
+  "models": [
+    {
+      "id": "baseline",
+      "renderer_path": "build-fidelity/public-match-2026-09-20/baseline/SeptumRenderMidi",
+      "renderer_sha256": "3672d8f6ddf99e1bddbe575c035a9ecae1429e11517e89cc48b8c93eb4b29a34",
+      "manifest_path": "build-fidelity/public-match-2026-09-20/baseline/manifest.json",
+      "manifest_sha256": "cc0c53a3728bcdcc600a615869891e3dfccaf73ff97dd7edb4cf65ee859ff8ca",
+      "profile_path": "build-fidelity/public-match-2026-09-20/baseline/profile.json",
+      "profile_sha256": "a2c9990668579296687b56b734457e4d4b4d0a62f5d575237ee4a0600757934e",
+      "upper_raw24_attack_seconds": 0.005000552066493567,
+      "original_patch_comparison": "build-fidelity/public-match-2026-09-20/rcs-a02-baseline"
+    },
+    {
+      "id": "attack-50ms",
+      "renderer_path": "build-fidelity/rcs-attack-probes-2026-09-20/attack-50ms/SeptumRenderMidi",
+      "renderer_sha256": "8bf1d443883478977bcfd00517c6156ea20675b64de3699d35e7c593548e9dae",
+      "manifest_path": "build-fidelity/rcs-attack-probes-2026-09-20/attack-50ms/manifest.json",
+      "manifest_sha256": "2b00b0deaa6b9a21fdd036cb381af345666dfca595a58635331e1b759c616ea2",
+      "profile_path": "build-fidelity/rcs-attack-probes-2026-09-20/attack-50ms/profile.json",
+      "profile_sha256": "4f408e58f653132fbeb06fa60130ba56cd878df69a054c5e093fe5eaa0e2c3de",
+      "upper_raw24_attack_seconds": 0.05,
+      "original_patch_comparison": "build-fidelity/rcs-attack-probes-2026-09-20/attack-50ms/comparison"
+    },
+    {
+      "id": "attack-100ms",
+      "renderer_path": "build-fidelity/rcs-attack-probes-2026-09-20/attack-100ms/SeptumRenderMidi",
+      "renderer_sha256": "548faa51b030b12882a95192a49a64951953a1c60c32463851625beb0a47a258",
+      "manifest_path": "build-fidelity/rcs-attack-probes-2026-09-20/attack-100ms/manifest.json",
+      "manifest_sha256": "bb0f80dfa1deea9a30fd338eec0bc18e358793a393f4b0d826160a2802a366fd",
+      "profile_path": "build-fidelity/rcs-attack-probes-2026-09-20/attack-100ms/profile.json",
+      "profile_sha256": "2829c7299cc44d1d7f353eafc9fdb57714d068c63bc54b66911999b177e57474",
+      "upper_raw24_attack_seconds": 0.09999999999999996,
+      "original_patch_comparison": "build-fidelity/rcs-attack-probes-2026-09-20/attack-100ms/comparison"
+    },
+    {
+      "id": "attack-150ms",
+      "renderer_path": "build-fidelity/rcs-attack-probes-2026-09-20/attack-150ms/SeptumRenderMidi",
+      "renderer_sha256": "8f05ae320f6f8d4b1e4a0927d90a3904fc955bc34ab00aec7eba3048f95486f0",
+      "manifest_path": "build-fidelity/rcs-attack-probes-2026-09-20/attack-150ms/manifest.json",
+      "manifest_sha256": "dd4462de0cce85c40edc396d2c80d27439304996776cef42fd8f59b579e68482",
+      "profile_path": "build-fidelity/rcs-attack-probes-2026-09-20/attack-150ms/profile.json",
+      "profile_sha256": "4bfe07f81a306a5ae0bd4fd7520259d89ca1728e586f0c6dd44d0f05842cbf4b",
+      "upper_raw24_attack_seconds": 0.15000000000000005,
+      "original_patch_comparison": "build-fidelity/rcs-attack-probes-2026-09-20/attack-150ms/comparison"
+    }
+  ],
+  "fixed_inputs": [
+    "All original note-on times, pitches, velocity100 values and note-offs for the primary grid.",
+    "Original published Lower part, Upper oscillator/mix/overdrive/amp/filter type/slope/resonance/ADSR and every other SysEx parameter.",
+    "Baseline frozen production source map for all four renderers; only existing experimental filter attack tables differ.",
+    "44.1kHz stereo, tail2s, master100, preserve-patch tempo, channel1, strict MIDI replay, no output normalization or time warp."
+  ],
+  "patch_integrity": {
+    "frame_count": 22,
+    "upper_frame_address_hex": "10 00 01 00",
+    "upper_frame_file_start": 46,
+    "upper_frame_length": 77,
+    "payload_length": 64,
+    "cutoff_payload_offset_hex": "13",
+    "depth_payload_offset_hex": "1B",
+    "depth_encoding": "signed depth +64; expected bytes42,32,22,12,1",
+    "checksum_rule": "(-sum(address bytes + payload bytes)) &0x7f; excludes F0/header, checksum and F7. Recompute only the original full Upper frame checksum.",
+    "only_permitted_changed_file_offsets": [
+      76,
+      84,
+      121
+    ],
+    "must_remain_identical": "Every byte outside Upper cutoff, Upper filter-envelope depth and that full DT1 frame checksum, including all Lower bytes and all other21 complete frames.",
+    "experimental_reporting": "Record explicit parameter_modifications and original/modified SysEx hashes. Do not add mutated presets to official/author source catalogs or feed them through unchanged-preset compare_hardware claims."
+  },
+  "identifiability": {
+    "first_note_duration_seconds": 0.137,
+    "first_note_attack_model": "While level=t/T<1, log2(fc)=log2(fc0)+(12*depth/63)*t/T, ignoring the fixed filter state, modulation and clamping.",
+    "ridge": "An unfinished attack identifies a slope combination depth/T rather than depth and duration separately. The150ms model never settles during the137ms first note.",
+    "endpoint_limit": "Report late-in-note level, not measured endpoint/floor, for the first note. A low-pass clamp at5Hz affects the depth-63 endpoint in the current model.",
+    "confounds": [
+      "Upper overdrive follows filtering and can regenerate high harmonics.",
+      "Lower sine and its amplitude envelope change total level and the spectral denominator. Extreme negative depths can suppress Upper rather than reproduce its timbre.",
+      "Original capture EQ/processing, live patch edits, velocity, gate/overlap, master tuning and oscillator phase are unverified.",
+      "Lossy encoding and analysis-window temporal smear limit late weak-band estimates.",
+      "Adjacent-gate SOLO retrigger preserves envelope state; later-note behavior is gate-sensitive."
+    ],
+    "interpretation": "Report competing initial-cutoff, excursion-depth and duration explanations/ridges; no darkness-only or aggregate winner and no unique recovered law."
+  },
+  "metrics": {
+    "primary_analysis": {
+      "sample_rate_hz": 44100,
+      "channel": "mid",
+      "window": "Hann",
+      "window_samples": 1024,
+      "hop_samples": 44,
+      "bands_hz": {
+        "low": [
+          300,
+          1500
+        ],
+        "high": [
+          1500,
+          12000
+        ]
+      },
+      "ratio": "Use existing spectral-closure ratio and5-frame median smoothing; endpoints excluded as in existing tool.",
+      "engine_latency_samples": 93,
+      "onset_uncertainty_seconds": [
+        -0.01,
+        0,
+        0.01
+      ],
+      "early_window_relative_onset_seconds": [
+        0.015,
+        0.035
+      ],
+      "late_window_relative_onset_seconds": [
+        0.075,
+        0.095
+      ]
+    },
+    "first_note_report": [
+      "Median absolute high/low ratio in both fixed early and late windows, plus late-minus-early change. Do not use an early-centered ratio alone.",
+      "Raw early and late median low-band and high-band powers with analysis units/scaling stated.",
+      "Late high and late low powers each normalized by the same early low-band power within that source; also late/early high and low power changes separately. No separate per-band or late-window gain fitting.",
+      "Early/late broadband time-domain RMS and25\u2013200Hz power as layer-survival context; no attribution of that band uniquely to Lower.",
+      "Retain existing10/20/30dB sustained-drop landmarks, with explicit censoring and no replacement of absent landmarks by gate endpoints.",
+      "Plot complete first-note ratio and powers on fixed hardware time; no candidate-dependent alignment or threshold tuning."
+    ],
+    "support_and_sensitivity": "Primary early/late1024-frame windows with +/-10ms onset shifts fit before earliest declared5/15ms gap. Report512/2048 and L/R as secondary sensitivity; for long-window summaries exclude centers whose full support reaches an altered gate, using one common predeclared support mask for all models. Flag insufficient support rather than shifting the hardware gate or filling missing values.",
+    "selection_policy": "First-note exploratory mechanism screen reports a vector of onset brightness, late level, closure and layer survival, including Pareto/near-equivalent competing cells. Do not choose the darkest cell or optimize full-performance/broad spectral RMSE. Freeze any candidate(s) before evaluating later notes."
+  },
+  "validation": {
+    "later_notes": "Notes2\u20135 are within-performance validation; they were already inspected and are not an untouched holdout.",
+    "long_fourth_note_duration_seconds": 0.27099999999999996,
+    "long_note_role": "After fixing candidate(s), the longer fourth note can check late levels consistent with attack completion, conditional on its incoming envelope state and gate history.",
+    "gate_variants": "Retain independently declared first4 off shifts-5ms,-15ms,+15ms; all other performance inputs fixed. The existing baseline/150ms gate probes diagnose ambiguity. Further chosen-cell gate checks must be reported separately from primary adjacent-gate results.",
+    "first_note_invariance": "Its initial waveform is unchanged until the earliest altered note-off. A centered late STFT can still overlap that release; use explicit support checks."
+  },
+  "alternative_minimum_design_considered": "A12-cell first-pass mechanism contrast would use(120,-22),(120,-32),(100,-22)x4 attacks, pairing similar predicted endpoints with different initial cutoff. Parent explicitly retains the complete28 predeclared cells instead; depth-52/-63 serve extreme suppression/clamp controls rather than extra independent anchors."
+}

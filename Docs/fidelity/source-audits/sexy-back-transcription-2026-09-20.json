@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "status": "hardware-only transcription; original MIDI unavailable",
+  "source": {
+    "audio_url": "https://www.rolandus.com/go/sh-201_patches/mp3/BASS/TOP8_SexyBack.mp3",
+    "audio_sha256": "29c5dbeb11875ec69513291b3a4f699adaad418cf3fdfb96741990edaf4a0be7",
+    "bank_url": "https://www.rolandus.com/go/sh-201_patches/shl/SH-201_Patch_BASS.zip",
+    "bank_archive_sha256": "782e04766bec4dc8b8485e82499a0a7f12fe2408a8a04141a5e1db098c7f36fc",
+    "archive_member": "SH-201_Patch_BASS/100_BASS.shl",
+    "bank_sha256": "b69051b35e433f6a4ee879e28d76707dd9689bbc5199949fc38e19b9cdcca3bf"
+  },
+  "script_sha256": "6eb94c0e2b0a007a7aec8cba15503c52ec095aab14312e1ba76cd2841cbba38b",
+  "case_sha256": "c0419d80e1952f08867b9ded019c58d9c102ed07ee414a917870a2a248822e7e",
+  "decode_command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-loglevel",
+    "error",
+    "-nostdin",
+    "-i",
+    "build-fidelity/hardware-benchmark/sources/TOP8_SexyBack.mp3",
+    "-ar",
+    "44100",
+    "-ac",
+    "2",
+    "-c:a",
+    "pcm_f32le",
+    "build-fidelity/hardware-benchmark/sexy-back-transcription-2026-09-20/hardware-decoded.wav"
+  ],
+  "patch": [
+    {
+      "part": "upper",
+      "oscillators": [
+        {
+          "waveform_raw": 7,
+          "wide": false,
+          "raw_coarse_byte": 100,
+          "signed_raw_coarse": 36,
+          "current_codec_semitones": 12,
+          "fine_cents": 13,
+          "pitch_envelope_depth": -35
+        },
+        {
+          "waveform_raw": 7,
+          "wide": true,
+          "raw_coarse_byte": 52,
+          "signed_raw_coarse": -12,
+          "current_codec_semitones": -12,
+          "fine_cents": -15,
+          "pitch_envelope_depth": -33
+        }
+      ],
+      "tone_octave": 0,
+      "cutoff": 111,
+      "slope_db": 24,
+      "resonance": 0,
+      "filter_env_depth": 0,
+      "filter_velocity": 0,
+      "lfo_depths": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "amp_velocity": 8,
+      "portamento": true,
+      "portamento_time": 4,
+      "mono_raw": 1,
+      "overdrive": false,
+      "low_frequency_mode_raw": 0,
+      "delay_send": 36
+    },
+    {
+      "part": "lower",
+      "oscillators": [
+        {
+          "waveform_raw": 3,
+          "wide": true,
+          "raw_coarse_byte": 40,
+          "signed_raw_coarse": -24,
+          "current_codec_semitones": -24,
+          "fine_cents": -26,
+          "pitch_envelope_depth": -34
+        },
+        {
+          "waveform_raw": 0,
+          "wide": true,
+          "raw_coarse_byte": 88,
+          "signed_raw_coarse": 24,
+          "current_codec_semitones": 24,
+          "fine_cents": 0,
+          "pitch_envelope_depth": 0
+        }
+      ],
+      "tone_octave": 0,
+      "cutoff": 95,
+      "slope_db": 12,
+      "resonance": 0,
+      "filter_env_depth": 0,
+      "filter_velocity": 0,
+      "lfo_depths": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "amp_velocity": 8,
+      "portamento": false,
+      "portamento_time": 20,
+      "mono_raw": 0,
+      "overdrive": true,
+      "low_frequency_mode_raw": 2,
+      "delay_send": 20
+    }
+  ],
+  "settled_windows": [
+    {
+      "window_seconds": [
+        0.15,
+        0.325
+      ],
+      "estimated_midi": 39,
+      "expected_frequencies_upper1_upper2_lower1_lower2_hz": [
+        156.7360296542585,
+        38.5553648056881,
+        19.155583227442982,
+        311.1269837220809
+      ],
+      "nearby_oscillator_peak_hz": [
+        153.08761596679688,
+        38.692474365234375,
+        19.178009033203125,
+        318.9605712890625
+      ],
+      "nearby_oscillator_peak_db_relative_window_max": [
+        -16.29604105751364,
+        0.0,
+        -7.313591580710317,
+        -20.53113367326294
+      ],
+      "lower_saw_expected_hz": 311.1269837220809,
+      "lower_saw_harmonic_peak_hz": [
+        318.6241149902344,
+        623.4535217285156,
+        935.0120544433594,
+        1243.54248046875
+      ],
+      "lower_saw_median_harmonic_implied_hz": 311.69872283935547
+    },
+    {
+      "window_seconds": [
+        0.485,
+        0.555
+      ],
+      "estimated_midi": 39,
+      "expected_frequencies_upper1_upper2_lower1_lower2_hz": [
+        156.7360296542585,
+        38.5553648056881,
+        19.155583227442982,
+        311.1269837220809
+      ],
+      "nearby_oscillator_peak_hz": [
+        154.7698974609375,
+        41.384124755859375,
+        17.832183837890625,
+        313.9137268066406
+      ],
+      "nearby_oscillator_peak_db_relative_window_max": [
+        -4.4362583386068,
+        0.0,
+        -10.539201690732533,
+        -19.992839136590362
+      ],
+      "lower_saw_expected_hz": 311.1269837220809,
+      "lower_saw_harmonic_peak_hz": [
+        313.9137268066406,
+        617.3973083496094,
+        934.3391418457031,
+        1243.2060241699219
+      ],
+      "lower_saw_median_harmonic_implied_hz": 311.1239433288574
+    },
+    {
+      "window_seconds": [
+        0.86,
+        0.985
+      ],
+      "estimated_midi": 39,
+      "expected_frequencies_upper1_upper2_lower1_lower2_hz": [
+        156.7360296542585,
+        38.5553648056881,
+        19.155583227442982,
+        311.1269837220809
+      ],
+      "nearby_oscillator_peak_hz": [
+        154.7698974609375,
+        38.692474365234375,
+        19.178009033203125,
+        312.5679016113281
+      ],
+      "nearby_oscillator_peak_db_relative_window_max": [
+        -4.399361043044452,
+        0.0,
+        -4.476815147135861,
+        -13.539829822407361
+      ],
+      "lower_saw_expected_hz": 311.1269837220809,
+      "lower_saw_harmonic_peak_hz": [
+        312.5679016113281,
+        622.7806091308594,
+        934.3391418457031,
+        1245.2247619628906
+      ],
+      "lower_saw_median_harmonic_implied_hz": 311.41834259033203
+    }
+  ],
+  "bandpassed_energy_boundaries": [
+    {
+      "search_region_seconds": [
+        0.02,
+        0.39
+      ],
+      "threshold_rms": 0.013000604466375982,
+      "first_above_seconds": 0.09100000000000007,
+      "last_above_seconds": 0.3550000000000003
+    },
+    {
+      "search_region_seconds": [
+        0.39,
+        0.65
+      ],
+      "threshold_rms": 0.011316996452687716,
+      "first_above_seconds": 0.42800000000000005,
+      "last_above_seconds": 0.5640000000000002
+    },
+    {
+      "search_region_seconds": [
+        0.76,
+        1.15
+      ],
+      "threshold_rms": 0.012752221883711052,
+      "first_above_seconds": 0.809,
+      "last_above_seconds": 1.0070000000000001
+    }
+  ],
+  "method": "Manually selected settled hardware windows; Hann FFT local peaks around expected oscillator families and four lower-saw harmonics. Two-ms RMS at 1-ms hops in 300\u20135000 Hz supplies independent energy gate evidence. No engine audio or DSP fitting.",
+  "limitations": [
+    "Original performance MIDI is unavailable. All three notes and timings are reconstructed from the hardware audio.",
+    "Velocity 100 is a placeholder; both tones have amplifier velocity sensitivity +8. Original velocities, controllers, system transpose and exact recorded patch revision remain unknown.",
+    "Upper supersaws have detune controls 78 and 37, different fine tuning and strong negative pitch-envelope depths -35/-33; lower triangle pitch-envelope depth is -34. Early spectral peaks must not be interpreted as additional played notes.",
+    "Upper portamento is on with time 4 and SOLO+LEGATO mode; lower tone is polyphonic, has overdrive and LOW CUT, and both tones feed the enabled delay. This is not an isolated oscillator or dry filter measurement.",
+    "Onsets and releases are estimated to roughly 10 ms. The high-frequency energy onset can lag the low-frequency attack; published zero amplifier release does not remove recording/output-filter tails.",
+    "The 1.2-second excerpt includes the quiet tail after the third note and stops before the next event around 1.25 seconds. Final note-off is an observed energy boundary estimate, not an arbitrary crop release.",
+    "The unchanged preset has static LP24 cutoff111 in the upper tone and LP12 cutoff95 in the lower tone, both with resonance0, filter-envelope depth0, filter-velocity sensitivity0 and filter-LFO depths0. Its dual-tone, drive and effect complexity still limits attribution of a spectral mismatch to cutoff alone.",
+    "No software audio or DSP parameter search was used to select notes. Preserve the published Roland preset unchanged.",
+    "The lower saw and upper supersaw harmonics overlap; local peak positions are family evidence, not independently isolated oscillator frequencies. Short low-frequency windows have poor precision; the second note is too short to resolve the ~19-Hz oscillator."
+  ]
+}

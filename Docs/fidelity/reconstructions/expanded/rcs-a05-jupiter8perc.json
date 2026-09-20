@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "id": "rcs-a05-jupiter8perc",
+  "reference_id": "rcs-a05",
+  "title": "RCS A05 Jupiter8Perc \u2014 isolated interior attack",
+  "midi_status": "reconstructed_not_original",
+  "source_start_seconds": 63.13,
+  "duration_seconds": 0.24,
+  "method": "Hardware-only note selection within parent-confirmed conservative A05 label interior62\u201365s. Strong low-family spectral peak36.674Hz supports soundingD1, hence playedMIDI38 given the published square/sine-12semitones and neutral system transpose. Onset63.164s is reconstructed from the abrupt PCM attack. Crop ends63.370s, before next attack63.405s. The final off is an artificial crop boundary, not recovered key release. No software audio or candidate fit used.",
+  "uncertainties": [
+    "Original performance MIDI, velocity, gate/overlap, controllers, tuning/transpose and exact recorded patch revision are unavailable; velocity100 is a placeholder.",
+    "The source contains enabled modulation delay at Upper send127 despite feedback0 and small modulationDepth4; treat this as a whole-patch comparison, not a dry reference.",
+    "Upper amp0/42/12/0 and Lower amp0/64/0/14 change layer balance. H1 includes both tones and unknown relative phase.",
+    "Joint short-window harmonic fits show apparent frequency drift and2\u20137percent mid-channel residual as the waveform changes; no pitch bend or tuning correction is inferred.",
+    "High-band power becomes recording/codec-floor limited about100ms after onset, so late high/low ratios do not identify a filter endpoint.",
+    "A05 at UIclock61s was independently observed by parent with1s precision; fresh65s was also observed. Acceptedbounds62\u201365s account for the earlier rounded clock. The first60.520s attack andA06at70s are excluded."
+  ],
+  "notes": [
+    {
+      "on": 0.034,
+      "off": 0.24,
+      "note": 38,
+      "velocity": 100
+    }
+  ]
+}

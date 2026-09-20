@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-20",
+  "status": "read-only current-model diagnosis; no fitting or production change",
+  "conclusion": "No clear decoding, sign, sustain or routing implementation defect was found. Attack duration alone cannot identify the hardware spectral closure because the terminal cutoff and post-filter nonlinear source are unchanged, and active SOLO envelope reuse adds a gate/history confound.",
+  "sources": {
+    "manual_url": "https://static.roland.com/assets/media/pdf/SH-201_OM.pdf",
+    "manual_pages": [
+      27,
+      37,
+      38,
+      39
+    ],
+    "manual_scope": "High-level filter/envelope/amp behavior and added overtones; no numeric cutoff/depth/drive law or recovered internal signal algorithm.",
+    "baseline_renderer_sha256": "3672d8f6ddf99e1bddbe575c035a9ecae1429e11517e89cc48b8c93eb4b29a34",
+    "baseline_manifest_sha256": "cc0c53a3728bcdcc600a615869891e3dfccaf73ff97dd7edb4cf65ee859ff8ca",
+    "baseline_enabled_calibration_sections": [],
+    "all_18_original_source_inputs_match_current_checkout": true,
+    "baseline_render_metadata_sha256": "2511273de52ae1d572f9d2359894dfa212313a855c18aa81386188b175ca39cb",
+    "baseline_audio_sha256": "7139e0379d5adc7809c10af8771dad0e454ac091d6670d91beccff1eca8c151e",
+    "original_patch_sha256": "1d8852b039a22559f388d1af0567c2805b8315b9e76eb8fdc604d6bf16444ac3",
+    "original_midi_sha256": "cf6b33f65d0949dab3786c277b6a0334bced6567a421e2e6108c20fa28807d94",
+    "source_files": {
+      "Source/DSP/SeptumEngine.h": "f442d854b37a0a330969187fe3c1c22df9300dceef449ff12a02a5f818d15dc7",
+      "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+      "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+      "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77"
+    }
+  },
+  "upper_decoded": {
+    "cutoff_raw": 120,
+    "filter": "LP24",
+    "resonance_raw": 0,
+    "filter_ADSR_raw": [
+      24,
+      127,
+      127,
+      127
+    ],
+    "filter_depth_raw": -22,
+    "amp_ADSR_raw": [
+      0,
+      46,
+      84,
+      0
+    ],
+    "overdrive_on": true,
+    "drive_raw": 33,
+    "pw_raw": 56,
+    "key_follow": 0,
+    "cutoff_velocity": 0,
+    "lfo_depths": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "calculated_incumbent_values": {
+    "base_cutoff_hz": 13976.805044408666,
+    "envelope_depth_octaves": -4.190476190476191,
+    "sustain_envelope_level": 1,
+    "terminal_cutoff_hz": 765.506491730298,
+    "attack_seconds": 0.005000552066493567,
+    "overdrive_pre_gain": 2.6046419531848217,
+    "overdrive_pre_gain_db": 8.31496062992126,
+    "overdrive_compensation": 0.6818687502958416,
+    "pulse_duty": 0.6984251968503937,
+    "pulse_dc_component": 0.39685039370078745,
+    "dc_bias_at_overdrive_input": 1.0336531845709844,
+    "lower_static_cutoff_hz": 657.7056135747317,
+    "upper_amp_sustain_gain": 0.6614173228346457,
+    "lower_amp_sustain_gain": 0.6535433070866141,
+    "terminal_linear_filter_response": [
+      {
+        "frequency_hz": 300.0,
+        "gain_db": -0.9594311675547063
+      },
+      {
+        "frequency_hz": 765.506491730298,
+        "gain_db": -7.60422483423212
+      },
+      {
+        "frequency_hz": 1500.0,
+        "gain_db": -25.117384019717207
+      },
+      {
+        "frequency_hz": 3000.0,
+        "gain_db": -48.34813692028726
+      },
+      {
+        "frequency_hz": 6000.0,
+        "gain_db": -73.80233209484626
+      }
+    ]
+  },
+  "signal_path": [
+    "unity-gain square plus pulse at centered oscillator mix",
+    "LOW FREQ flat",
+    "two TPT lowpass stages; first damping2, second1.2 at resonance0",
+    "oversampled ADAA tanh(pre_gain*input), then scalar compensation",
+    "delayed amp envelope; tone level/velocity/pan; part mix",
+    "linear analog output coupling/reconstruction and final safety limit"
+  ],
+  "retrigger": {
+    "trigger_preserves_level": true,
+    "active_solo_reuses_voice": true,
+    "same_time_off_on_advances_zero_release_samples": true,
+    "filter_sustain127_consequence": "Later adjoining notes can enter Attack already at envelope1, immediately retaining terminal cutoff.",
+    "fresh_voice_consequence": "Once amplifier release finishes and the voice is freed, allocation kills/reset-triggers its filter envelope from0.",
+    "qualification": "This is explicit current behavior and an unverified hardware/reconstructed-gate interaction, not a proven bug. It cannot explain failure on the first fresh note."
+  },
+  "late_baseline_ratio": {
+    "method": "Existing baseline only; no new render. Hann STFT1024/hop44 at44.1kHz, high1.5\u201312kHz / low300\u20131500Hz, retained93sample engine latency removed from source-time labels.",
+    "observations": [
+      {
+        "source_seconds": 21.640476190476193,
+        "high_low_ratio_db": -13.64067792892456
+      },
+      {
+        "source_seconds": 21.70034013605442,
+        "high_low_ratio_db": -13.53821873664856
+      },
+      {
+        "source_seconds": 21.760204081632654,
+        "high_low_ratio_db": -13.063516616821289
+      },
+      {
+        "source_seconds": 21.80011337868481,
+        "high_low_ratio_db": -13.023172616958618
+      },
+      {
+        "source_seconds": 21.84002267573696,
+        "high_low_ratio_db": -13.21212887763977
+      }
+    ],
+    "hardware_reference_21_84_ratio_db": -58.71415138244629,
+    "qualification": "Hardware and baseline absolute spectral floors differ; slowing attack does not change the current static endpoint."
+  },
+  "unidentified_combinations": [
+    "Raw120 base-cutoff law and negative depth\u221222 scaling jointly set the terminal corner; the existing12-octave depth calibration was positive-depth conditional evidence.",
+    "Pulse duty, pulse DC handling, relative oscillator gain/phase, drive33 gain/transfer and nonlinear-stage placement determine regenerated harmonics.",
+    "Filter attack shape/time and lower/upper amplitude trajectories both influence changing spectral ratios; current amp envelope is after drive and does not reduce its input excitation.",
+    "SOLO retrigger-from-current versus reset behavior is coupled to unknown gap/overlap and very short amp release.",
+    "Recorded live controls, system settings and exact patch revision remain unverified."
+  ],
+  "recommendation": "Do not promote a global attack curve from broad-score improvement. Retain the published settings and explain the failed closure metric as joint trajectory/endpoint/nonlinearity evidence; controlled source isolation is required to identify a unique law."
+}

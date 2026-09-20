@@ -1,0 +1,1860 @@
+{
+  "schema_version": 1,
+  "status": "conditional spectral-closure comparison; not a calibrated attack law",
+  "inputs": {
+    "hardware_analysis": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/hardware-closure/analysis.json",
+      "sha256": "9b68db6b2a24c42cfba2d795338c78df7a2323862fe6a7f3ab37133ffa6109a8"
+    },
+    "hardware_audio": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/hardware-observations/youtube-19-26.wav",
+      "sha256": "f7e825e283d98dc07c61fe1d78d87c5bacc670394e6ead41fc009d7d729fefca"
+    },
+    "case": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/Docs/fidelity/reconstructions/expanded/rcs-a02-moogbass-pw.json",
+      "sha256": "f773722d61fa1c0e503ff4932027b81bf81646d5fc3d4e035c69493577e95937"
+    },
+    "hardware_metric_script": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/Tools/analyze_rcs_a02_closure.py",
+      "sha256": "46d16f50ca964d9a39d423c67aed8ad5b0fef0685f8743e7efe6462a64eeea71"
+    },
+    "comparison_script": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/Tools/analyze_rcs_attack_probes.py",
+      "sha256": "c365684700011e9891928c4234a6bf12c5eeae79348147c9d5c981f787ffce64"
+    }
+  },
+  "method": {
+    "bands_hz": [
+      [
+        300,
+        1500
+      ],
+      [
+        1500,
+        12000
+      ]
+    ],
+    "windows_samples": [
+      512,
+      1024,
+      2048
+    ],
+    "hop_samples": 44,
+    "channels": [
+      "left",
+      "right",
+      "mid"
+    ],
+    "onset_shifts_seconds": [
+      -0.01,
+      0,
+      0.01
+    ],
+    "early_reference_elapsed_seconds": [
+      0.015,
+      0.035
+    ],
+    "sustained_threshold_seconds": 0.01,
+    "gate_guard_seconds": 0.03,
+    "interpretation": "Each landmark is a relative spectral-ratio drop. Filter cutoff, overdrive and changing layer balance can alter this trajectory; elapsed time is not the filter attack duration.",
+    "hardware_time_origin_seconds": 19,
+    "software_time_mapping": "source_start + STFT time \u2212 93/44100 seconds",
+    "latency_compensation": "Subtract known retained renderer latency from time coordinates only; no signal shift, EQ, gain or timing fit.",
+    "frame_grid": "Each original PCM uses its own fixed44-sample hop; no interpolation to fit crossings.",
+    "selection": "Rank first-note probes only when every paired landmark is observed; censored timing remains unknown."
+  },
+  "hardware_metric_reproduced_exactly": true,
+  "hardware_summary_by_note": [
+    {
+      "note_index": 0,
+      "observations": 27,
+      "landmarks": {
+        "10": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.053469387755100684,
+            0.060476190476190794,
+            0.07310657596372039
+          ]
+        },
+        "20": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.0656235827664382,
+            0.07643990929705069,
+            0.08807256235827765
+          ]
+        },
+        "30": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.0774149659863923,
+            0.08641723356009123,
+            0.1010430839002261
+          ]
+        }
+      }
+    },
+    {
+      "note_index": 1,
+      "observations": 27,
+      "landmarks": {
+        "10": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.056333333333331126,
+            0.06615192743764098,
+            0.07678684807256175
+          ]
+        },
+        "20": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.06930385487527957,
+            0.07912244897958942,
+            0.09175283446711902
+          ]
+        },
+        "30": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.08109523809523367,
+            0.09027891156462431,
+            0.10372562358276483
+          ]
+        }
+      }
+    },
+    {
+      "note_index": 2,
+      "observations": 27,
+      "landmarks": {
+        "10": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.05983219954648433,
+            0.06883446712018326,
+            0.08046712018141022
+          ]
+        },
+        "20": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.07298412698412804,
+            0.08380045351474052,
+            0.0944353741496613
+          ]
+        },
+        "30": {
+          "observed_count": 18,
+          "censored_count": 9,
+          "elapsed_seconds_min_median_max": [
+            0.0819637188208624,
+            0.0918730158730181,
+            0.10278004535147645
+          ]
+        }
+      }
+    },
+    {
+      "note_index": 3,
+      "observations": 27,
+      "landmarks": {
+        "10": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.052718820861677784,
+            0.06253741496598764,
+            0.0741700680272146
+          ]
+        },
+        "20": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.06369387755102096,
+            0.07550793650793608,
+            0.08813832199546923
+          ]
+        },
+        "30": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.07947619047618915,
+            0.0906553287981886,
+            0.10065532879819017
+          ]
+        }
+      }
+    },
+    {
+      "note_index": 4,
+      "observations": 27,
+      "landmarks": {
+        "10": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.05310204081632719,
+            0.06491609977324231,
+            0.07555102040816664
+          ]
+        },
+        "20": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.0710612244897959,
+            0.08006349206349128,
+            0.09087981859410732
+          ]
+        },
+        "30": {
+          "observed_count": 27,
+          "censored_count": 0,
+          "elapsed_seconds_min_median_max": [
+            0.0844852607709754,
+            0.09348752834467078,
+            0.10902040816326775
+          ]
+        }
+      }
+    }
+  ],
+  "hardware_central_trace_diagnostics": [
+    {
+      "note_index": 0,
+      "window_samples": 1024,
+      "channel": "mid",
+      "onset_shift_seconds": 0,
+      "early_ratio_db": -6.376792907714844,
+      "minimum_relative_ratio_change_db": -40.82467269897461,
+      "maximum_relative_ratio_change_db": -0.9156022071838379,
+      "high_band_min_power": 1.7648053685093146e-08,
+      "low_band_min_power": 0.0008600899018347263,
+      "high_band_floor_count": 0,
+      "low_band_floor_count": 0,
+      "longest_contiguous_below_10db_frame_count": 47,
+      "longest_contiguous_below_10db_grid_coverage_seconds": 0.04689342403628118,
+      "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+    },
+    {
+      "note_index": 1,
+      "window_samples": 1024,
+      "channel": "mid",
+      "onset_shift_seconds": 0,
+      "early_ratio_db": -8.063644409179688,
+      "minimum_relative_ratio_change_db": -40.23227310180664,
+      "maximum_relative_ratio_change_db": -0.8080644607543945,
+      "high_band_min_power": 7.471193441688229e-08,
+      "low_band_min_power": 0.005046401172876358,
+      "high_band_floor_count": 0,
+      "low_band_floor_count": 0,
+      "longest_contiguous_below_10db_frame_count": 41,
+      "longest_contiguous_below_10db_grid_coverage_seconds": 0.04090702947845805,
+      "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+    },
+    {
+      "note_index": 2,
+      "window_samples": 1024,
+      "channel": "mid",
+      "onset_shift_seconds": 0,
+      "early_ratio_db": -6.0087738037109375,
+      "minimum_relative_ratio_change_db": -35.280357360839844,
+      "maximum_relative_ratio_change_db": -0.9078598022460938,
+      "high_band_min_power": 7.344358010641372e-08,
+      "low_band_min_power": 0.000976458250079304,
+      "high_band_floor_count": 0,
+      "low_band_floor_count": 0,
+      "longest_contiguous_below_10db_frame_count": 39,
+      "longest_contiguous_below_10db_grid_coverage_seconds": 0.03891156462585034,
+      "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+    },
+    {
+      "note_index": 3,
+      "window_samples": 1024,
+      "channel": "mid",
+      "onset_shift_seconds": 0,
+      "early_ratio_db": -7.855883598327637,
+      "minimum_relative_ratio_change_db": -54.30518054962158,
+      "maximum_relative_ratio_change_db": -1.0522241592407227,
+      "high_band_min_power": 1.0006809270102224e-10,
+      "low_band_min_power": 6.903669418534264e-05,
+      "high_band_floor_count": 0,
+      "low_band_floor_count": 0,
+      "longest_contiguous_below_10db_frame_count": 179,
+      "longest_contiguous_below_10db_grid_coverage_seconds": 0.17859410430839,
+      "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+    },
+    {
+      "note_index": 4,
+      "window_samples": 1024,
+      "channel": "mid",
+      "onset_shift_seconds": 0,
+      "early_ratio_db": -6.370394229888916,
+      "minimum_relative_ratio_change_db": -46.934354305267334,
+      "maximum_relative_ratio_change_db": 0.2529435157775879,
+      "high_band_min_power": 7.734445084395247e-09,
+      "low_band_min_power": 0.00018440040003042668,
+      "high_band_floor_count": 0,
+      "low_band_floor_count": 0,
+      "longest_contiguous_below_10db_frame_count": 56,
+      "longest_contiguous_below_10db_grid_coverage_seconds": 0.05587301587301587,
+      "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+    }
+  ],
+  "first_note_complete_landmark_ranking": [],
+  "first_note_winner": null,
+  "interpretation": "No probe has every first-note landmark observed; missing crossings are censored, not zero, so no complete-landmark timing winner is identified.",
+  "limitations": [
+    "Original performance MIDI is unavailable. The author .mid file contains patch SysEx, not note events.",
+    "Onsets are approximately within 10\u201315 ms. Adjoining gates do not identify exact key release, overlap or mono retrigger history; test +/-15 ms gate changes when drawing envelope conclusions.",
+    "Velocity 100 is a placeholder. The original velocities, controllers, system tuning/transpose and exact recorded patch revision remain unknown.",
+    "Short-window periodic fits measure approximately 13\u201326 cents below A=440 in this passage. Filter/overdrive phase and changing envelope can bias the estimate; this reconstruction does not add pitch bend or retune the patch to fit those measurements.",
+    "A02 has no enabled internal spatial send, but its Upper overdrive and moving filter couple oscillator families. This is a joint patch comparison, not a direct pulse-width or oscillator-gain calibration.",
+    "The comparison starts after silence preceding the first selected attack. Prior lower-part release or capture processing may remain; no unsupported controller history is invented.",
+    "All timestamps refer to the directly decoded YouTube source. SoundCloud is a separate lossy copy and is not the time origin of this reconstruction.",
+    "The other four notes are sensitivity observations from the same performance, not independent recordings.",
+    "Channels, windows and onset shifts are correlated analysis settings, not independent experimental trials.",
+    "Spectral-ratio closure reflects filter, drive and layer balance jointly. Crossing elapsed time is not filter attack duration.",
+    "The ratio metric cancels constant gain; raw unnormalised WAVs were used with no EQ or parameter fitting."
+  ],
+  "full_analysis": {
+    "path": "build-fidelity/rcs-attack-probes-2026-09-20/closure-comparison-verified/analysis.json",
+    "sha256": "76cff910feab01d53b05c5dfbe082ad1fcc91ffbc1f87e818c1dd25726059235"
+  },
+  "renders": {
+    "baseline": {
+      "provenance": {
+        "audio": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/rcs-a02-baseline/rcs-a02-moogbass-pw/septum-raw.wav",
+          "sha256": "7139e0379d5adc7809c10af8771dad0e454ac091d6670d91beccff1eca8c151e"
+        },
+        "render_manifest": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/rcs-a02-baseline/rcs-a02-moogbass-pw/septum-raw.render.json",
+          "sha256": "2511273de52ae1d572f9d2359894dfa212313a855c18aa81386188b175ca39cb"
+        },
+        "comparison_manifest": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/rcs-a02-baseline/rcs-a02-moogbass-pw/comparison.json",
+          "sha256": "222b7314e55d15451d1535bfbccc935f5e0ecf6211f87143909fe09b7f9ce695"
+        },
+        "build_manifest": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/baseline/manifest.json",
+          "sha256": "cc0c53a3728bcdcc600a615869891e3dfccaf73ff97dd7edb4cf65ee859ff8ca"
+        },
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/baseline/SeptumRenderMidi",
+          "sha256": "3672d8f6ddf99e1bddbe575c035a9ecae1429e11517e89cc48b8c93eb4b29a34"
+        },
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/rcs-a02-baseline/rcs-a02-moogbass-pw/reconstructed-performance.mid",
+          "sha256": "cf6b33f65d0949dab3786c277b6a0334bced6567a421e2e6108c20fa28807d94"
+        },
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/rcs-a02-baseline/rcs-a02-moogbass-pw/original-patch.syx",
+          "sha256": "1d8852b039a22559f388d1af0567c2805b8315b9e76eb8fdc604d6bf16444ac3"
+        },
+        "original_source_sha256": {
+          "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+          "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+          "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+          "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+          "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+          "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+          "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+          "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+          "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+          "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+          "Source/DSP/SeptumEngine.h": "f442d854b37a0a330969187fe3c1c22df9300dceef449ff12a02a5f818d15dc7",
+          "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+          "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+          "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+          "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+          "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+          "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9",
+          "Tools/RenderMidi.cpp": "73fc5cd13bf635bbd95dc2a4e65301b06038cd96d2e684de1bb694b3e0066bfb"
+        },
+        "frozen_source_sha256": {
+          "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+          "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+          "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+          "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+          "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+          "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+          "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+          "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+          "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+          "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+          "Source/DSP/SeptumEngine.h": "f442d854b37a0a330969187fe3c1c22df9300dceef449ff12a02a5f818d15dc7",
+          "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+          "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+          "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+          "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+          "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+          "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9",
+          "Tools/RenderMidi.cpp": "74cd7047c47f905db43543ff9151c60667560fa0cef06238c7917ef93a68d03c",
+          "original/Tools/RenderMidi.cpp": "73fc5cd13bf635bbd95dc2a4e65301b06038cd96d2e684de1bb694b3e0066bfb",
+          "CandidateProfile.h": "60dad6449a2acd2d69600e2fe55b932af8bdb8b8f948d779fe02fbbf166abd28",
+          "profile.original.json": "a2c9990668579296687b56b734457e4d4b4d0a62f5d575237ee4a0600757934e",
+          "profile.json": "a2c9990668579296687b56b734457e4d4b4d0a62f5d575237ee4a0600757934e"
+        },
+        "profile": {
+          "original_path": "/Users/vojta/Dev/virtual-instrument-septum/Tools/timbre-profiles/diagnostic-baseline.json",
+          "original_sha256": "a2c9990668579296687b56b734457e4d4b4d0a62f5d575237ee4a0600757934e",
+          "canonical_sha256": "a2c9990668579296687b56b734457e4d4b4d0a62f5d575237ee4a0600757934e",
+          "enabled_sections": [],
+          "provided_fields": {},
+          "reference_rate_hz": null
+        },
+        "all_frozen_sources_verified": true,
+        "integrity": {
+          "sample_rate": 44100,
+          "frames": 130536,
+          "finite": true,
+          "nonzero": true,
+          "peak": 0.18829438090324402,
+          "samples_at_or_above_full_scale": 0,
+          "active_voices_at_end": 0,
+          "degraded_replay": false
+        },
+        "latency_samples": 93,
+        "latency_seconds": 0.002108843537414966
+      },
+      "summary_by_note": [
+        {
+          "note_index": 0,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 1,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 2,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 18,
+              "software_only_observed_count": 0,
+              "both_censored_count": 9,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 3,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 4,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        }
+      ],
+      "central_trace_diagnostics": [
+        {
+          "note_index": 0,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -12.1116943359375,
+          "minimum_relative_ratio_change_db": -6.284420013427734,
+          "maximum_relative_ratio_change_db": 0.8660011291503906,
+          "high_band_min_power": 2.790220321458037e-07,
+          "low_band_min_power": 3.026900958502665e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 1,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -13.402460098266602,
+          "minimum_relative_ratio_change_db": -0.19948959350585938,
+          "maximum_relative_ratio_change_db": 0.3245725631713867,
+          "high_band_min_power": 8.425653504673392e-06,
+          "low_band_min_power": 0.00019532704027369618,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 2,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -12.079704284667969,
+          "minimum_relative_ratio_change_db": -6.524135589599609,
+          "maximum_relative_ratio_change_db": 0.8303756713867188,
+          "high_band_min_power": 2.803239453896822e-07,
+          "low_band_min_power": 3.0178887755027972e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 3,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -13.328588485717773,
+          "minimum_relative_ratio_change_db": -0.28827953338623047,
+          "maximum_relative_ratio_change_db": 0.2522850036621094,
+          "high_band_min_power": 8.422909559158143e-06,
+          "low_band_min_power": 0.00019660574616864324,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 4,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -12.349486351013184,
+          "minimum_relative_ratio_change_db": -5.930300712585449,
+          "maximum_relative_ratio_change_db": 1.1006441116333008,
+          "high_band_min_power": 2.79897875543611e-07,
+          "low_band_min_power": 3.011269473063294e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        }
+      ]
+    },
+    "attack-50ms": {
+      "provenance": {
+        "audio": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-50ms/comparison/rcs-a02-moogbass-pw/septum-raw.wav",
+          "sha256": "be6414738cd304f6d3d5c88ab67e546649ee89480e45f1d797ba48b956306249"
+        },
+        "render_manifest": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-50ms/comparison/rcs-a02-moogbass-pw/septum-raw.render.json",
+          "sha256": "99feb790d05c43f0d6ace1d96ca83b252f21df4b0d7a6233fffc8ed51fbb8dd0"
+        },
+        "comparison_manifest": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-50ms/comparison/rcs-a02-moogbass-pw/comparison.json",
+          "sha256": "22edbb205217cdb2ecb943396835107867de3526bf2da099bdf3139ca98ad50e"
+        },
+        "build_manifest": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-50ms/manifest.json",
+          "sha256": "2b00b0deaa6b9a21fdd036cb381af345666dfca595a58635331e1b759c616ea2"
+        },
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-50ms/SeptumRenderMidi",
+          "sha256": "8bf1d443883478977bcfd00517c6156ea20675b64de3699d35e7c593548e9dae"
+        },
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-50ms/comparison/rcs-a02-moogbass-pw/reconstructed-performance.mid",
+          "sha256": "cf6b33f65d0949dab3786c277b6a0334bced6567a421e2e6108c20fa28807d94"
+        },
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-50ms/comparison/rcs-a02-moogbass-pw/original-patch.syx",
+          "sha256": "1d8852b039a22559f388d1af0567c2805b8315b9e76eb8fdc604d6bf16444ac3"
+        },
+        "original_source_sha256": {
+          "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+          "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+          "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+          "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+          "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+          "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+          "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+          "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+          "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+          "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+          "Source/DSP/SeptumEngine.h": "f442d854b37a0a330969187fe3c1c22df9300dceef449ff12a02a5f818d15dc7",
+          "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+          "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+          "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+          "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+          "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+          "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9",
+          "Tools/RenderMidi.cpp": "73fc5cd13bf635bbd95dc2a4e65301b06038cd96d2e684de1bb694b3e0066bfb"
+        },
+        "frozen_source_sha256": {
+          "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+          "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+          "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+          "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+          "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+          "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+          "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+          "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+          "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+          "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+          "Source/DSP/SeptumEngine.h": "f442d854b37a0a330969187fe3c1c22df9300dceef449ff12a02a5f818d15dc7",
+          "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+          "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+          "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+          "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+          "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+          "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9",
+          "Tools/RenderMidi.cpp": "74cd7047c47f905db43543ff9151c60667560fa0cef06238c7917ef93a68d03c",
+          "original/Tools/RenderMidi.cpp": "73fc5cd13bf635bbd95dc2a4e65301b06038cd96d2e684de1bb694b3e0066bfb",
+          "CandidateProfile.h": "67a62105eb09dc7c6e6b8b255f55dcf259cbe75dbdd989cd0a239e9971714b8c",
+          "profile.original.json": "4f408e58f653132fbeb06fa60130ba56cd878df69a054c5e093fe5eaa0e2c3de",
+          "profile.json": "4f408e58f653132fbeb06fa60130ba56cd878df69a054c5e093fe5eaa0e2c3de"
+        },
+        "profile": {
+          "original_path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/profiles/attack-50ms.json",
+          "original_sha256": "4f408e58f653132fbeb06fa60130ba56cd878df69a054c5e093fe5eaa0e2c3de",
+          "canonical_sha256": "4f408e58f653132fbeb06fa60130ba56cd878df69a054c5e093fe5eaa0e2c3de",
+          "enabled_sections": [
+            "envelope"
+          ],
+          "provided_fields": {
+            "envelope": [
+              "attack_seconds"
+            ]
+          },
+          "reference_rate_hz": null
+        },
+        "all_frozen_sources_verified": true,
+        "integrity": {
+          "sample_rate": 44100,
+          "frames": 130536,
+          "finite": true,
+          "nonzero": true,
+          "peak": 0.18836791813373566,
+          "samples_at_or_above_full_scale": 0,
+          "active_voices_at_end": 0,
+          "degraded_replay": false
+        },
+        "latency_samples": 93,
+        "latency_seconds": 0.002108843537414966
+      },
+      "summary_by_note": [
+        {
+          "note_index": 0,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 1,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 2,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 18,
+              "software_only_observed_count": 0,
+              "both_censored_count": 9,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 3,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 4,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        }
+      ],
+      "central_trace_diagnostics": [
+        {
+          "note_index": 0,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -7.209791660308838,
+          "minimum_relative_ratio_change_db": -11.186322689056396,
+          "maximum_relative_ratio_change_db": -1.30415678024292,
+          "high_band_min_power": 2.7902217425435083e-07,
+          "low_band_min_power": 3.0269005947047845e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 3,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.002993197278911565,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 1,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -13.402460098266602,
+          "minimum_relative_ratio_change_db": -0.19949054718017578,
+          "maximum_relative_ratio_change_db": 0.3245735168457031,
+          "high_band_min_power": 8.425654414168093e-06,
+          "low_band_min_power": 0.00019532702572178096,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 2,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -12.079703330993652,
+          "minimum_relative_ratio_change_db": -6.524136543273926,
+          "maximum_relative_ratio_change_db": 0.8303756713867188,
+          "high_band_min_power": 2.803240306548105e-07,
+          "low_band_min_power": 3.017888593603857e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 3,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -13.328590393066406,
+          "minimum_relative_ratio_change_db": -0.28827571868896484,
+          "maximum_relative_ratio_change_db": 0.2522859573364258,
+          "high_band_min_power": 8.422909559158143e-06,
+          "low_band_min_power": 0.00019660574616864324,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 4,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -12.349485397338867,
+          "minimum_relative_ratio_change_db": -5.930301666259766,
+          "maximum_relative_ratio_change_db": 1.1006431579589844,
+          "high_band_min_power": 2.7989793238702987e-07,
+          "low_band_min_power": 3.0112692911643535e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        }
+      ]
+    },
+    "attack-100ms": {
+      "provenance": {
+        "audio": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-100ms/comparison/rcs-a02-moogbass-pw/septum-raw.wav",
+          "sha256": "f08e18aec0fa5103754bbc7a683b185d38e7e20cffbc35964adbc82fba6b85b0"
+        },
+        "render_manifest": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-100ms/comparison/rcs-a02-moogbass-pw/septum-raw.render.json",
+          "sha256": "f74da302abb50800f71f5d0add01adea605b8c07789722d278e85ba06d4c7608"
+        },
+        "comparison_manifest": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-100ms/comparison/rcs-a02-moogbass-pw/comparison.json",
+          "sha256": "1f79fd84fa1ca2dd32c8ad5a57b4b1d25a2d3f7c08376e210b47db8b5d680828"
+        },
+        "build_manifest": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-100ms/manifest.json",
+          "sha256": "bb0f80dfa1deea9a30fd338eec0bc18e358793a393f4b0d826160a2802a366fd"
+        },
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-100ms/SeptumRenderMidi",
+          "sha256": "548faa51b030b12882a95192a49a64951953a1c60c32463851625beb0a47a258"
+        },
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-100ms/comparison/rcs-a02-moogbass-pw/reconstructed-performance.mid",
+          "sha256": "cf6b33f65d0949dab3786c277b6a0334bced6567a421e2e6108c20fa28807d94"
+        },
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-100ms/comparison/rcs-a02-moogbass-pw/original-patch.syx",
+          "sha256": "1d8852b039a22559f388d1af0567c2805b8315b9e76eb8fdc604d6bf16444ac3"
+        },
+        "original_source_sha256": {
+          "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+          "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+          "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+          "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+          "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+          "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+          "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+          "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+          "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+          "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+          "Source/DSP/SeptumEngine.h": "f442d854b37a0a330969187fe3c1c22df9300dceef449ff12a02a5f818d15dc7",
+          "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+          "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+          "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+          "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+          "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+          "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9",
+          "Tools/RenderMidi.cpp": "73fc5cd13bf635bbd95dc2a4e65301b06038cd96d2e684de1bb694b3e0066bfb"
+        },
+        "frozen_source_sha256": {
+          "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+          "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+          "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+          "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+          "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+          "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+          "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+          "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+          "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+          "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+          "Source/DSP/SeptumEngine.h": "f442d854b37a0a330969187fe3c1c22df9300dceef449ff12a02a5f818d15dc7",
+          "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+          "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+          "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+          "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+          "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+          "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9",
+          "Tools/RenderMidi.cpp": "74cd7047c47f905db43543ff9151c60667560fa0cef06238c7917ef93a68d03c",
+          "original/Tools/RenderMidi.cpp": "73fc5cd13bf635bbd95dc2a4e65301b06038cd96d2e684de1bb694b3e0066bfb",
+          "CandidateProfile.h": "dc9025ee773fa23da5d5b7f933441a57703540d1045bca210565c6c3f1122951",
+          "profile.original.json": "2829c7299cc44d1d7f353eafc9fdb57714d068c63bc54b66911999b177e57474",
+          "profile.json": "2829c7299cc44d1d7f353eafc9fdb57714d068c63bc54b66911999b177e57474"
+        },
+        "profile": {
+          "original_path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/profiles/attack-100ms.json",
+          "original_sha256": "2829c7299cc44d1d7f353eafc9fdb57714d068c63bc54b66911999b177e57474",
+          "canonical_sha256": "2829c7299cc44d1d7f353eafc9fdb57714d068c63bc54b66911999b177e57474",
+          "enabled_sections": [
+            "envelope"
+          ],
+          "provided_fields": {
+            "envelope": [
+              "attack_seconds"
+            ]
+          },
+          "reference_rate_hz": null
+        },
+        "all_frozen_sources_verified": true,
+        "integrity": {
+          "sample_rate": 44100,
+          "frames": 130536,
+          "finite": true,
+          "nonzero": true,
+          "peak": 0.1883796751499176,
+          "samples_at_or_above_full_scale": 0,
+          "active_voices_at_end": 0,
+          "degraded_replay": false
+        },
+        "latency_samples": 93,
+        "latency_seconds": 0.002108843537414966
+      },
+      "summary_by_note": [
+        {
+          "note_index": 0,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 1,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 2,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 18,
+              "software_only_observed_count": 0,
+              "both_censored_count": 9,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 3,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 4,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        }
+      ],
+      "central_trace_diagnostics": [
+        {
+          "note_index": 0,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -6.441007614135742,
+          "minimum_relative_ratio_change_db": -11.670032501220703,
+          "maximum_relative_ratio_change_db": -0.033295631408691406,
+          "high_band_min_power": 2.8943168217665516e-07,
+          "low_band_min_power": 3.104652569163591e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 2,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.00199546485260771,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 1,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -13.402460098266602,
+          "minimum_relative_ratio_change_db": -0.19949054718017578,
+          "maximum_relative_ratio_change_db": 0.3245725631713867,
+          "high_band_min_power": 8.425653504673392e-06,
+          "low_band_min_power": 0.00019532702572178096,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 2,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -12.079703330993652,
+          "minimum_relative_ratio_change_db": -6.524134635925293,
+          "maximum_relative_ratio_change_db": 0.8303756713867188,
+          "high_band_min_power": 2.803241159199388e-07,
+          "low_band_min_power": 3.017888593603857e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 3,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -13.328588485717773,
+          "minimum_relative_ratio_change_db": -0.28827857971191406,
+          "maximum_relative_ratio_change_db": 0.2522850036621094,
+          "high_band_min_power": 8.422907740168739e-06,
+          "low_band_min_power": 0.000196605731616728,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 4,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -12.349485397338867,
+          "minimum_relative_ratio_change_db": -5.930299758911133,
+          "maximum_relative_ratio_change_db": 1.1006412506103516,
+          "high_band_min_power": 2.798979608087393e-07,
+          "low_band_min_power": 3.0112692911643535e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        }
+      ]
+    },
+    "attack-150ms": {
+      "provenance": {
+        "audio": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-150ms/comparison/rcs-a02-moogbass-pw/septum-raw.wav",
+          "sha256": "dc7439bddb462212bf57675291736e57894776db556fe92848d7e82fbab8a681"
+        },
+        "render_manifest": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-150ms/comparison/rcs-a02-moogbass-pw/septum-raw.render.json",
+          "sha256": "7a5f0555ffd452cde24d9b13c05a89021cf4fb9162df44a0ea103df26b095c69"
+        },
+        "comparison_manifest": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-150ms/comparison/rcs-a02-moogbass-pw/comparison.json",
+          "sha256": "e2e16e9a88e4d8595a2a31c6fdb515d68973db24933f4df7365049ae433fe305"
+        },
+        "build_manifest": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-150ms/manifest.json",
+          "sha256": "dd4462de0cce85c40edc396d2c80d27439304996776cef42fd8f59b579e68482"
+        },
+        "renderer": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-150ms/SeptumRenderMidi",
+          "sha256": "8f05ae320f6f8d4b1e4a0927d90a3904fc955bc34ab00aec7eba3048f95486f0"
+        },
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-150ms/comparison/rcs-a02-moogbass-pw/reconstructed-performance.mid",
+          "sha256": "cf6b33f65d0949dab3786c277b6a0334bced6567a421e2e6108c20fa28807d94"
+        },
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/attack-150ms/comparison/rcs-a02-moogbass-pw/original-patch.syx",
+          "sha256": "1d8852b039a22559f388d1af0567c2805b8315b9e76eb8fdc604d6bf16444ac3"
+        },
+        "original_source_sha256": {
+          "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+          "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+          "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+          "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+          "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+          "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+          "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+          "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+          "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+          "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+          "Source/DSP/SeptumEngine.h": "f442d854b37a0a330969187fe3c1c22df9300dceef449ff12a02a5f818d15dc7",
+          "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+          "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+          "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+          "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+          "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+          "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9",
+          "Tools/RenderMidi.cpp": "73fc5cd13bf635bbd95dc2a4e65301b06038cd96d2e684de1bb694b3e0066bfb"
+        },
+        "frozen_source_sha256": {
+          "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+          "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+          "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+          "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+          "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+          "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+          "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+          "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+          "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+          "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+          "Source/DSP/SeptumEngine.h": "f442d854b37a0a330969187fe3c1c22df9300dceef449ff12a02a5f818d15dc7",
+          "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+          "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+          "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+          "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+          "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+          "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9",
+          "Tools/RenderMidi.cpp": "74cd7047c47f905db43543ff9151c60667560fa0cef06238c7917ef93a68d03c",
+          "original/Tools/RenderMidi.cpp": "73fc5cd13bf635bbd95dc2a4e65301b06038cd96d2e684de1bb694b3e0066bfb",
+          "CandidateProfile.h": "d26ad711158b5722843673e502526d9998b5cf4c285042867b52c300765fbab6",
+          "profile.original.json": "4bfe07f81a306a5ae0bd4fd7520259d89ca1728e586f0c6dd44d0f05842cbf4b",
+          "profile.json": "4bfe07f81a306a5ae0bd4fd7520259d89ca1728e586f0c6dd44d0f05842cbf4b"
+        },
+        "profile": {
+          "original_path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-attack-probes-2026-09-20/profiles/attack-150ms.json",
+          "original_sha256": "4bfe07f81a306a5ae0bd4fd7520259d89ca1728e586f0c6dd44d0f05842cbf4b",
+          "canonical_sha256": "4bfe07f81a306a5ae0bd4fd7520259d89ca1728e586f0c6dd44d0f05842cbf4b",
+          "enabled_sections": [
+            "envelope"
+          ],
+          "provided_fields": {
+            "envelope": [
+              "attack_seconds"
+            ]
+          },
+          "reference_rate_hz": null
+        },
+        "all_frozen_sources_verified": true,
+        "integrity": {
+          "sample_rate": 44100,
+          "frames": 130536,
+          "finite": true,
+          "nonzero": true,
+          "peak": 0.18807590007781982,
+          "samples_at_or_above_full_scale": 0,
+          "active_voices_at_end": 0,
+          "degraded_replay": false
+        },
+        "latency_samples": 93,
+        "latency_seconds": 0.002108843537414966
+      },
+      "summary_by_note": [
+        {
+          "note_index": 0,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 1,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 2,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 18,
+              "software_only_observed_count": 0,
+              "both_censored_count": 9,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 3,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        },
+        {
+          "note_index": 4,
+          "observations": 27,
+          "landmarks": {
+            "10": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "20": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            },
+            "30": {
+              "observed_count": 0,
+              "censored_count": 27,
+              "elapsed_seconds_min_median_max": null,
+              "both_observed_count": 0,
+              "hardware_only_observed_count": 27,
+              "software_only_observed_count": 0,
+              "both_censored_count": 0,
+              "paired_mean_absolute_error_seconds": null,
+              "paired_signed_error_seconds_min_median_max": null
+            }
+          }
+        }
+      ],
+      "central_trace_diagnostics": [
+        {
+          "note_index": 0,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -6.28546142578125,
+          "minimum_relative_ratio_change_db": -4.026145935058594,
+          "maximum_relative_ratio_change_db": 0.004438877105712891,
+          "high_band_min_power": 2.9863092549931025e-06,
+          "low_band_min_power": 3.49867987097241e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 1,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -13.341586112976074,
+          "minimum_relative_ratio_change_db": -0.2603616714477539,
+          "maximum_relative_ratio_change_db": 0.2636985778808594,
+          "high_band_min_power": 8.425655323662795e-06,
+          "low_band_min_power": 0.00019532702572178096,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 2,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -12.079702377319336,
+          "minimum_relative_ratio_change_db": -6.524139404296875,
+          "maximum_relative_ratio_change_db": 0.8303747177124023,
+          "high_band_min_power": 2.8032400223310106e-07,
+          "low_band_min_power": 3.017888593603857e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 3,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -13.328588485717773,
+          "minimum_relative_ratio_change_db": -0.28827857971191406,
+          "maximum_relative_ratio_change_db": 0.2522850036621094,
+          "high_band_min_power": 8.422910468652844e-06,
+          "low_band_min_power": 0.00019660574616864324,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        },
+        {
+          "note_index": 4,
+          "window_samples": 1024,
+          "channel": "mid",
+          "onset_shift_seconds": 0,
+          "early_ratio_db": -12.349485397338867,
+          "minimum_relative_ratio_change_db": -5.930299758911133,
+          "maximum_relative_ratio_change_db": 1.1006412506103516,
+          "high_band_min_power": 2.798979608087393e-07,
+          "low_band_min_power": 3.0112692911643535e-05,
+          "high_band_floor_count": 0,
+          "low_band_floor_count": 0,
+          "longest_contiguous_below_10db_frame_count": 0,
+          "longest_contiguous_below_10db_grid_coverage_seconds": 0.0,
+          "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+        }
+      ]
+    }
+  }
+}

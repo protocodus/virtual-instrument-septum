@@ -1,0 +1,221 @@
+{
+  "date": "2026-09-20",
+  "status": "New generated recording inputs; no hardware recording supplied and no production DSP calibrated.",
+  "generator": {
+    "path": "/Users/vojta/Dev/virtual-instrument-septum/Tools/generate_timbre_capture.py",
+    "sha256": "6b63574c3c8622e0223802db4208b2b3c29e906156a8bfcb4aa0e9376a77cd0e",
+    "size_bytes": 24626
+  },
+  "capture_tests": {
+    "path": "/Users/vojta/Dev/virtual-instrument-septum/Tests/TimbreCaptureTests.py",
+    "sha256": "ad4d9df87635198840076e983964df5b24f2bedc0b13da6a8378a4010951eb48",
+    "size_bytes": 12741
+  },
+  "test_result": {
+    "command": "python3 Tests/TimbreCaptureTests.py --renderer build-fidelity/public-match-2026-09-20/baseline/SeptumRenderMidi",
+    "tests": 7,
+    "passed": true,
+    "skipped": 0
+  },
+  "input_manifest": {
+    "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/negative-attack-capture-inputs/manifest.json",
+    "sha256": "5fb688ed28f2c9432273b59d18268caba6a8b52745465d8852eda7d1231e950a",
+    "size_bytes": 72021
+  },
+  "readme": {
+    "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/negative-attack-capture-inputs/README.txt",
+    "sha256": "4ac18f4d29e2708e9331fb39b6d5201dee6cd6981ec726d151846d2bc6941feb",
+    "size_bytes": 2508
+  },
+  "package": {
+    "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/SH-201-negative-attack-capture-inputs.zip",
+    "sha256": "9739e406cc16e2e753a08ed9db0df5a23d8a13e8aff548bef99bc4bc2cbdd459",
+    "size_bytes": 9164
+  },
+  "full_software_validation": {
+    "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/negative-attack-capture-software-validation/validation.json",
+    "sha256": "6c700fb2ff3ac689d8a2f56ff691cea2700dbb4bea4cae9393e6979b054aac37",
+    "size_bytes": 27459
+  },
+  "fixture_count": 4,
+  "attack_raw_values": [
+    0,
+    13,
+    24,
+    36
+  ],
+  "filter": {
+    "type": "LP24",
+    "cutoff_raw": 120,
+    "resonance_raw": 0,
+    "depth_signed": -22,
+    "depth_wire": 42,
+    "decay_raw": 127,
+    "sustain_raw": 127,
+    "release_raw": 0
+  },
+  "oscillator": "Single Upper OSC1 saw, zero coarse/fine/octave, MIX balance-63 (wire1), LOW FREQ flat",
+  "amp": {
+    "adsr": [
+      0,
+      0,
+      127,
+      0
+    ],
+    "level_raw": 96,
+    "velocity_sensitivity_signed": 0
+  },
+  "disabled": [
+    "overdrive",
+    "delay",
+    "reverb",
+    "arpeggio",
+    "portamento",
+    "LFO modulation",
+    "pitch envelope",
+    "filter keyfollow",
+    "pitch/filter/amp velocity modulation"
+  ],
+  "midi": {
+    "channel": 1,
+    "note": 48,
+    "velocity": 100,
+    "on_seconds": 0.5,
+    "off_seconds": 3.0,
+    "gate_seconds": 2.5,
+    "all_sound_off_seconds": 3.5,
+    "duration_seconds_each": 3.6,
+    "total_duration_seconds": 14.4,
+    "total_excludes": "patch loads/waits and recording setup"
+  },
+  "sysex": {
+    "packet_count_each": 22,
+    "address_scope": "temporary patch10 00 only",
+    "checksums_verified": true,
+    "user_bank_write_present": false,
+    "current_edit_buffer_replaced_if_loaded": true,
+    "hardware_not_accessed": true
+  },
+  "backward_compatibility": {
+    "prior_suites_byte_identical_except_generator_hash": true,
+    "all_original91_fixture_payloads_preserved": true,
+    "all_new_count": 95,
+    "all_new_duration_seconds": 517.0,
+    "quick_count": 6,
+    "quick_unchanged": true
+  },
+  "software": {
+    "renderer_sha256": "3672d8f6ddf99e1bddbe575c035a9ecae1429e11517e89cc48b8c93eb4b29a34",
+    "sample_rate": 96000,
+    "frames_each": 345600,
+    "latency_samples_each": 90,
+    "finite_nonzero_unclipped": true,
+    "degraded_replay": false,
+    "zero_end_voices": true,
+    "fixtures": [
+      {
+        "id": "negative-attack-a0",
+        "peak": 0.059659384191036224,
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/negative-attack-capture-inputs/negative-attack-a0.syx",
+          "sha256": "cae0353a901eb27b923a8654b6ebb055f3b8cdaf0e9d3129e912c4343dabaa10",
+          "size_bytes": 1526
+        },
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/negative-attack-capture-inputs/negative-attack-a0.mid",
+          "sha256": "9bff4f5a3cdc87ea438241b5e7952ca36482236bc91d9530893591a3ca57057a",
+          "size_bytes": 88
+        },
+        "wav": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/negative-attack-capture-software-validation/negative-attack-a0.wav",
+          "sha256": "7279c8fce8bc75977ea63a15383dcb365d181e6457a4f842fd9942c48b6bb8b9",
+          "size_bytes": 2764856
+        },
+        "metadata": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/negative-attack-capture-software-validation/negative-attack-a0.render.json",
+          "sha256": "c6be8cf56fff2ffafbc1883860278be386bbcac6ca0a7c421ca8d77c740b7c4f",
+          "size_bytes": 5755
+        }
+      },
+      {
+        "id": "negative-attack-a13",
+        "peak": 0.05963749811053276,
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/negative-attack-capture-inputs/negative-attack-a13.syx",
+          "sha256": "8acfe9a912e678af58ef64f72da2884ed3bd7f32ae7b892e25bbf4d6a743f2a0",
+          "size_bytes": 1526
+        },
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/negative-attack-capture-inputs/negative-attack-a13.mid",
+          "sha256": "9bff4f5a3cdc87ea438241b5e7952ca36482236bc91d9530893591a3ca57057a",
+          "size_bytes": 88
+        },
+        "wav": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/negative-attack-capture-software-validation/negative-attack-a13.wav",
+          "sha256": "6a7c50e13d1dae0085cc916d67026f3132c78a250448524f7106db4bdc35ffb2",
+          "size_bytes": 2764856
+        },
+        "metadata": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/negative-attack-capture-software-validation/negative-attack-a13.render.json",
+          "sha256": "38d1fb4a0509a85d8605b490649b6cecc203b177bf3d2f687c65d7119f157edd",
+          "size_bytes": 5759
+        }
+      },
+      {
+        "id": "negative-attack-a24",
+        "peak": 0.05959394574165344,
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/negative-attack-capture-inputs/negative-attack-a24.syx",
+          "sha256": "9f021a9d770dfce27b61dc37cdf9552de72ab8195d0ddd25367b3ea874ef3127",
+          "size_bytes": 1526
+        },
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/negative-attack-capture-inputs/negative-attack-a24.mid",
+          "sha256": "9bff4f5a3cdc87ea438241b5e7952ca36482236bc91d9530893591a3ca57057a",
+          "size_bytes": 88
+        },
+        "wav": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/negative-attack-capture-software-validation/negative-attack-a24.wav",
+          "sha256": "6ad6c8883a4b5bd5baafd07bc73e78c54fe46c2f6eaddd4dda82b741a3917e75",
+          "size_bytes": 2764856
+        },
+        "metadata": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/negative-attack-capture-software-validation/negative-attack-a24.render.json",
+          "sha256": "8817fe2378739b63768dd7a550ae5554540f5755e8f517beaf1504daa9a62861",
+          "size_bytes": 5759
+        }
+      },
+      {
+        "id": "negative-attack-a36",
+        "peak": 0.0657574012875557,
+        "sysex": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/negative-attack-capture-inputs/negative-attack-a36.syx",
+          "sha256": "cc824ba6ac4dee23e23ddfb6217d4bfc899b54e015327757c22b1d36453b3e41",
+          "size_bytes": 1526
+        },
+        "midi": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/negative-attack-capture-inputs/negative-attack-a36.mid",
+          "sha256": "9bff4f5a3cdc87ea438241b5e7952ca36482236bc91d9530893591a3ca57057a",
+          "size_bytes": 88
+        },
+        "wav": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/negative-attack-capture-software-validation/negative-attack-a36.wav",
+          "sha256": "e0f51cef5d63506f3c6da60b9d0fc801262733e4fe28ff4b38f6617ed514fb5d",
+          "size_bytes": 2764856
+        },
+        "metadata": {
+          "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/public-match-2026-09-20/negative-attack-capture-software-validation/negative-attack-a36.render.json",
+          "sha256": "ed994a417eeca042bb9dca0fe3799b53b1254bce73eabe50baba35e479148828",
+          "size_bytes": 5759
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "This sparse four-control screen is not a complete attack-time table.",
+    "Generated input MIDI is not recovered performance MIDI.",
+    "Software validation is not a hardware measurement.",
+    "Actual hardware system settings and recording gain must be retained; patch SysEx does not set all system controls.",
+    "Published public A02/A03 demos still have nonlinear/layer/effect confounds, which these future captures are designed to remove."
+  ]
+}

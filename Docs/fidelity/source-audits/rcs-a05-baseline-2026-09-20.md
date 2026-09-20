@@ -1,0 +1,25 @@
+# RCS A05 Jupiter8Perc — production baseline characterization
+
+2026-09-20. The production baseline does not reproduce the sustained spectral decay in the locked A05 attack. This is a qualified **whole-patch** comparison: the original preset includes a modulated delay, two changing amp envelopes and overdrive. No A05 candidate was selected, tuned or rendered, and this result does not identify a unique DSP correction.
+
+The [source-only audit](rcs-a05-hardware-observations-2026-09-20.md) and [case](../reconstructions/expanded/rcs-a05-jupiter8perc.json) were fixed before rendering. The new [supplemental catalog](../rcs-a05-reference-catalog.json) preserves the earlier catalogs. The parent observed A05 in decoded paused frames at the rounded clock **1:01**, after 45 frame-forward keys from 60 seconds, and at the **65-second seek target**. The first timestamp has one-second clock precision, not precise 61.000-second timing; accepted source bounds are conservatively **62–65 seconds**. The comparison uses **63.130–63.370 seconds**, with reconstructed MIDI 38, velocity 100 and onset 0.034 seconds. The crop-end note-off is artificial; no original note-performance MIDI or velocity is available.
+
+The baseline uses the unchanged author patch bytes. Upper is square one octave down plus pulse, LP24 cutoff 106, depth −22, filter attack 24 and overdrive 33. Upper amp ADSR is 0/42/12/0; Lower sine amp ADSR is 0/64/0/14. Delay is enabled, with Upper send 127, Lower send 0, raw rate 65 and depth 4. Feedback byte 49 is verified as **0%**, which still leaves a modulated wet tap. Reverb is off. These values were decoded from the original bank, not chosen from the sound.
+
+The fixed closure measurement compares 1500–12000 Hz power with 300–1500 Hz power. Its 27 configurations cover 512/1024/2048-sample Hann windows, L/R/mid channels and onset shifts of −10/0/+10 ms. It uses 44-sample hops, a 15–35 ms early reference, a sustained 10 ms crossing requirement, and a 30 ms guard before the artificial note-off. Software time coordinates remove the known retained 93-sample transport delay; there is no fitted onset, EQ, gain or time warp. Hardware remeasurement exactly reproduces the source-only lock.
+
+| Relative ratio drop | Hardware crossings / 27 | Hardware elapsed range; median | Baseline crossings / 27 |
+| --- | ---: | --- | ---: |
+| 10 dB | 27 | 35.16–54.80 ms; 40.81 ms | 3 |
+| 20 dB | 27 | 40.35–66.77 ms; 52.30 ms | 0 |
+| 30 dB | 26 | 57.11–76.75 ms; 63.94 ms | 0 |
+
+The three baseline crossings occur only with the 512-sample window and zero onset shift, one per channel. In the central 1024-sample mid-channel trace, the baseline has narrow recurring dips: its longest run below −10 dB covers about **7.98 ms**, below the fixed 10 ms requirement. The hardware run covers about **138.68 ms**. These grid coverage values are descriptive, not interpolated crossing times or filter attack durations. Hardware high-band power approaches the recording/codec floor near 100 ms after onset; the later ratio rebound is not evidence that the filter reopens.
+
+The existing normalized 32-band whole-excerpt spectral residual is **11.8275 dB** across 28 included bands. The baseline's power centroid is lower than the hardware's, **40.95 versus 83.31 Hz**, while its time trajectory still differs. Average darkness therefore does not establish a temporal match. Raw level differences cannot identify a gain error because recording gain and the original velocity are unknown. Stereo side/mid power is −18.10 dB for hardware and −34.48 dB for this baseline, consistent with treating the active delay as a material uncertainty.
+
+The render is finite, non-silent and unclipped: 44.1 kHz stereo, 98,784 frames including the two-second tail, peak 0.1910 and zero active voices at the end. Strict MIDI replay rejected unsupported events and recorded no ignored events: exactly one note-on and one note-off. The frozen renderer's calibration profile has no enabled sections. Original patch, MIDI, renderer, manifests and frozen source files were verified before and after analysis. Production source was not edited.
+
+The [compact JSON audit](rcs-a05-baseline-2026-09-20.json) pins the complete analysis, plot and provenance. Raw baseline WAV SHA-256 is `fe1a43a7a545a46e85c74588a26a08d9a623bf1ff4758fe9f1853063b1b8bcda`; unchanged original SysEx SHA-256 is `584a1e75e2cfb735cab9bd3f26c56429f9cbcf655f1486e941ba0112bdf9dd7d`. Full local outputs are under `build-fidelity/rcs-a05-baseline-2026-09-20/`: `comparison/index.html`, `closure/analysis.json` and `closure/baseline-closure.png`. The frozen reproduction uses `analyze_baseline.py` in that directory and the existing closure and matrix metric helpers, all pinned by hash.
+
+This seventeenth public case adds an independently selected preset to the benchmark, but shares the same author montage as A02/A03. Unknown note gate, phase history, capture chain and exact recorded patch revision remain limitations. It supplies an additional attack trajectory to test a future hypothesis; it does not establish a global parameter law or justify a shipping change by itself.

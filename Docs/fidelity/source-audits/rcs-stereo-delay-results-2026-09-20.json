@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "status": "Conditional A03 stereo-transfer mismatch; no replacement delay calibrated and no production DSP change.",
+  "new_instrument_renders": 0,
+  "source_performances": 1,
+  "measurement_limits": [
+    "Local stationary Upper and negligible Lower higher-harmonic leakage are conditional assumptions.",
+    "Two encodes and overlapping windows are sensitivity checks, not independent hardware performances.",
+    "A03 joint-curve test was an explicitly exploratory follow-up after the initial A05 screen, with unchanged fitting/acceptance criteria and separately declared baseline control.",
+    "Output stationarity does not rigorously bound hidden source evolution across delay taps.",
+    "Complex-ratio distance is not a perceptual score or fidelity percentage."
+  ],
+  "a03_later_H2": {
+    "observations": 6,
+    "normalized_nearest_curve_distance_range": [
+      0.4079199680641937,
+      0.5173385897810633
+    ],
+    "nearest_model_gain_error_db_range": [
+      -5.593497154559625,
+      -4.207891523476937
+    ],
+    "baseline_H2_observations": 3,
+    "baseline_H2_distance_range": [
+      0.003193611769072468,
+      0.020245101759129448
+    ],
+    "all_strict_baseline_harmonics": 89,
+    "all_baseline_distance_range": [
+      2.223758145457176e-05,
+      0.08906468107975202
+    ]
+  },
+  "a05": {
+    "source_strict_observations_per_encode": 1,
+    "source_harmonic_window_observations_per_encode": 434,
+    "youtube_envelope_excess_db": 0.10612352245059098,
+    "soundcloud_envelope_excess_db": 0.03518907289905404,
+    "within_window_ratio_drift_approx_db": 0.23,
+    "baseline_strict_observations": 60,
+    "baseline_outside_envelope": 0,
+    "conclusion": "Insufficient robust discrepancy for correction."
+  },
+  "artifacts": [
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/remaining-rcs-stereo-candidates.json",
+      "sha256": "629c4cc41cce5f1b1cd20778b7acae9cfbceab53c1beed7f95f40c798fa9d5c9"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/analysis/interpretation.md",
+      "sha256": "4b78128f3d8f586a007cdda380f5e2af0a297abadf9488095a4ad7394e1fbff9"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/design-v2.json",
+      "sha256": "4269fe77d8a7f8db51ee040b6fb1be548434e665f94219d291a830e4d798c83c"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/analyze_sources.py",
+      "sha256": "b0ae41dad4685f88c2409fa8297bda704f42928a43aeeac68b2227f8e596cf7d"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/analysis/analysis.json",
+      "sha256": "2965e6a8ad1834831c4c7d36d8cf2c1e20d40a008210cf03dd79b36d0989ddeb"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/analysis/accepted-harmonics.json",
+      "sha256": "ad334d4fb4b97e63db813e7d2698e20bac8b6f94831381591dab7e2505296e26"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/analysis/platform-summary.json",
+      "sha256": "617be6e6b26bcc8a7c3310c737e07c315066f5ac4c39211c988e3314139de878"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/channel-controls.json",
+      "sha256": "2db6b2caf55c6a5d96495c8ac0742ecd3a1086f1165990f720a126b64ba2e116"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/channel_controls.py",
+      "sha256": "30083e69f0edf895c3c035e545e77c9b32d1f48a1e230f33e1f16f540713b596"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/cross-platform-controls.json",
+      "sha256": "172dd857570d4dd55e12390de87988308cbe7ab5c4aded052cdd5550952baf14"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/cross_platform_controls.py",
+      "sha256": "75e18779d9590cc6405858404eb417ef942ee3ed3b55e788760aab069f74bc16"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/implementation-audit.md",
+      "sha256": "aad3719774aba0a7a9703d41130362713a8a7538e03a0da0ab32af08d2aea328"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/phase_envelope.py",
+      "sha256": "9013c9a7955f0a72d1994545d5f6ad606c9ec4b29fc9c9af509e4081bd4c5103"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/a05-observed-frequency-envelope.json",
+      "sha256": "279d5f3dc17bfdf138a8422fc097b9c3a8d524a71a34f326234c2df47812d11f"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/analysis/bound-comparison.json",
+      "sha256": "771fce8eeb8329c029fec9cb8a32961b86c314e3ebc0c41d21cfaddc49458a15"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/compare_bound.py",
+      "sha256": "2086b10574219f73219f90a8a56fa65e3d1f6e38db3d5bcf2c58df7de647d430"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/a03-control-design.json",
+      "sha256": "f3d25a73e10a4b30dc28f65ca2121abc2c898d737e360b126a915074cb2194c9"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/analyze_a03_control.py",
+      "sha256": "1494bc1629bb84716fe8dcf06e8f689a9d31073af51e30f1b7b86f2d29ca5cda"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/analysis/a03-baseline-method-control.json",
+      "sha256": "c02dd48e3857a6334a41f5ffe83ca8705dac6c5be028970727dacff16d0e254e"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/a03-joint-phase-curve-with-control.json",
+      "sha256": "5fcca70ab4f44c49098550fc984c8ef39103dc4c68fd3002c27c18e186b553b7"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/a03_joint_phase_curve.py",
+      "sha256": "50f159d3bc16827d315dbce027983ce77a0e1509317ef577c3f40e10ad090d74"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/a03-joint-observations.json",
+      "sha256": "0d2bb1bd15e43b7bb97e9e98e262bb894cdc533d8611de4f02adc7c9964a5a3f"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/a03-110hz-curve-samples.json",
+      "sha256": "05cde7f25446790770480ad060294ae04402bc5ffb84a7db7e9822b9579a9daf"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/synthetic-method-control.json",
+      "sha256": "26be53ee8736eddce9b0a2fbe90e4fceaac3e7a184761ed1a6536fb99459286a"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/runner-qa.json",
+      "sha256": "12e9ab512f69c48f4f3fa4643bebfa06bba8a55ce6cdd2f4aea0fef96d01425c"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/plot-inputs.json",
+      "sha256": "60b96817def28d209a15ac22941e3655bc6e618a016fb0bf0a0372af89a1ac39"
+    },
+    {
+      "path": "build-fidelity/rcs-stereo-delay-audit-2026-09-20/plot_joint_curve.py",
+      "sha256": "ddf0279e1f0edf4a8e1191dc96c1b374b8c0bb151d5e999ba1ad4b1d04f44066"
+    }
+  ],
+  "figure": {
+    "path": "Docs/fidelity/figures/rcs-a03-stereo-relationship.png",
+    "sha256": "c15e5f76a8982b10191d37d7a22d081f481aa9b13dc4416c57e5fecf18c27baf"
+  }
+}

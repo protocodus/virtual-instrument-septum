@@ -1,0 +1,499 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-09-20",
+  "scope": "Bounded local catalog and cached archive inspection outside the 32 official named Patch 100 recordings. No new network retrieval, audio-based patch identification, reconstructed MIDI, or production changes.",
+  "result": "No newly usable passage with independently established recorded preset/control state or isolated dry waveform was admitted from the inspected local material.",
+  "reviewer_archive": {
+    "source_page_url": "https://www.calderan.info/downloads.asp?id=44",
+    "download_url": "https://www.calderan.info/download.asp?dl=44",
+    "primary_description_as_recorded_in_catalog": "MP3 demos: 32 presets with their arpeggios.",
+    "catalog": {
+      "path": "Docs/fidelity/reviewer-reference-catalog.json",
+      "sha256": "8b4bee986f70adaee0c3000080c91887124c501d0c9bc84d717413ee82ece4f6",
+      "bytes": 5824
+    },
+    "archive": {
+      "path": "build-fidelity/hardware-benchmark/sources/calderan-sh201-preset-demos.zip",
+      "sha256": "7cfb37cc81d59c20bd639bad6252e41bfeae189156c7c934b5a6c2b604f6a3c7",
+      "bytes": 10213735
+    },
+    "archive_comment": "",
+    "member_count": 32,
+    "inspection": "Read ZIP member inventory and comments; ffprobe -v error -show_entries format_tags:stream_tags -of json pipe:0 on every MP3; verify each member SHA against catalog.",
+    "members": [
+      {
+        "member": "sh-201-000.mp3",
+        "sha256": "b891f31c1de9d2fb45a2072b8be6ebb10047e96810117007c1b511f52a410883",
+        "bytes": 188209,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-001.mp3",
+        "sha256": "70e81db20e728d1ffe1a6d602f14906988806431b392769b929533d310da5419",
+        "bytes": 272637,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-002.mp3",
+        "sha256": "f9246bf94e5bbc87343400b03602c1225a42bcdb85af24910d0c2d65df84926e",
+        "bytes": 270547,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-003.mp3",
+        "sha256": "1c2c48b9e8928665bebdb04d77e49fd2e00286572f9690aff3ac290d6bae2fb7",
+        "bytes": 196568,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-004.mp3",
+        "sha256": "a5d54662832a8f9f347ec6a8a8e4c3adff07e8d609fa93fb9a2d402e613eb8fd",
+        "bytes": 234603,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-005.mp3",
+        "sha256": "9e417f487be12df8d52778f801c0e258529cd9ad83f2f74bc0b188dfe2d3bb54",
+        "bytes": 360826,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-006.mp3",
+        "sha256": "4d30116ebb473a9c62e83a34c1c49a487f24b746919883fbf284c43deed51ead",
+        "bytes": 273891,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-007.mp3",
+        "sha256": "997b0d1537d1783496749a43a27f4752cf03074b904e7ea4ef3991f5f26afa60",
+        "bytes": 227497,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-008.mp3",
+        "sha256": "c1cf95e771093af8c0a4ae34cae63a772075ae7efd79329f90cdc382902a45d1",
+        "bytes": 271801,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-009.mp3",
+        "sha256": "a4e27b941c9947cb9f241b6522b70c5041367c3297f7f9ab68844185ef494903",
+        "bytes": 314433,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-010.mp3",
+        "sha256": "f60fdd51dcd7645fe74868e76c486a5529e3238697849a80b1f960d75af8c0ee",
+        "bytes": 306910,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-011.mp3",
+        "sha256": "b26cfc4151e656cc380a23c99efd1d872c6086d0e7091a448db203f2c7b03e09",
+        "bytes": 357065,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-012.mp3",
+        "sha256": "489d51fb0c7ccbd1de1a7850e99ea8571dafffb61f6df181bff04a6f12125582",
+        "bytes": 345780,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-013.mp3",
+        "sha256": "02fec1dfc9ae1d6ebf3d8a3781da823a333afc7cd75e71ebab52feaffe80f85c",
+        "bytes": 276817,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-014.mp3",
+        "sha256": "90b68df0ee989c0affa9b4301a3dd5c633885e183201edbd630e31ead6e630bb",
+        "bytes": 395935,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-015.mp3",
+        "sha256": "611effb0c94ce8bd1bc715f23b5d0c443db80ac06b3c1924d7c89a7f34f1ae7b",
+        "bytes": 218720,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-016.mp3",
+        "sha256": "74fa9357501d6f27ec9c357d07fe79c8734d607d9efd1d8825e37482189f3de2",
+        "bytes": 262188,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-017.mp3",
+        "sha256": "259e3f7dc663da1a9fc029a2f687bc65c89b3587ed1f398d9e21b2c578cda251",
+        "bytes": 183612,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-018.mp3",
+        "sha256": "e58fe76e8c7ee3d843c8a516edb88c0bd6c5890018b6f0e0f3d146ff338214b9",
+        "bytes": 339928,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-019.mp3",
+        "sha256": "5a30e6827d38c8e7f953f75256cb1a3f05889881de3d46be7c5097c986de54ae",
+        "bytes": 213705,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-020.mp3",
+        "sha256": "ae4eb1935c5ca94cfbc8ca55ce8da27eed27f24500fd4b21bb123b116c7b2cbb",
+        "bytes": 266785,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-021.mp3",
+        "sha256": "1904fb6f0492499e12dfbcdc51a0d2204e70f98954c2be22e797214a9cca2c2e",
+        "bytes": 414743,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-022.mp3",
+        "sha256": "2c4cdc2f1afdfe0a72ba2a124b022e242b11bf423ebd54f4f61c334d3cb0321f",
+        "bytes": 336585,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-023.mp3",
+        "sha256": "860c6ed40a021b1653555ccb34fc77dec0d62419b956fe1b6cd6e69f45d4b102",
+        "bytes": 466988,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-024.mp3",
+        "sha256": "f37b0236b151ba5957bc8d6a093f4f444f617ff6d5efc28333286b3aae07c57e",
+        "bytes": 305656,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-025.mp3",
+        "sha256": "e0546d01c582d0a7669a75f871964dfc73db7aaf2923bd066a4c3ce648c03a10",
+        "bytes": 484542,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-026.mp3",
+        "sha256": "5b9c25eda0e503d182a2e4d6fa629bc75f5fd18068c377288729127283fc06fe",
+        "bytes": 376291,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-027.mp3",
+        "sha256": "720c4dbd23847e2af709d7ca98db5ed4e208284df9e9aa8d87363ec1723bcf8a",
+        "bytes": 395517,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-028.mp3",
+        "sha256": "24155038db276542e79a871a3260647053f5eb2a8ac778b420c5b36c10156523",
+        "bytes": 330315,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-029.mp3",
+        "sha256": "fb87af9f99f8f43a27d1e1e67d33d3a823fa011c770a8e5ff9c27b85397168c6",
+        "bytes": 664683,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-030.mp3",
+        "sha256": "eacd7e085484cc75ac229e3608eb743c4877861f341f1ea430d370a26e72bd0b",
+        "bytes": 429790,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      },
+      {
+        "member": "sh-201-031.mp3",
+        "sha256": "27b915a44a159b4b61e8957eb0597d94862ec200ec0d18c0f77fe38a57112c48",
+        "bytes": 612020,
+        "zip_comment": "",
+        "format_tags": {},
+        "stream_tags": [
+          {}
+        ]
+      }
+    ],
+    "classification": "Hardware preset demos; numbered files lack verified per-file patch association.",
+    "admit": false,
+    "reason": "No patch names, SysEx, performance MIDI, explanatory files, ZIP comments, format tags, or stream tags establish settings or a dry isolated waveform. sh-201-031.mp3 cannot be assigned to PRESET D-8 from numbering alone.",
+    "next_evidence_required": "A primary-source per-file preset map plus authenticated corresponding preset data or documented controls. Dry oscillator status also needs source confirmation."
+  },
+  "factory_case": {
+    "name": "Fat Bass",
+    "slot": "B-1",
+    "recording": {
+      "path": "build-fidelity/hardware-benchmark/factory-bank-research/recordings/sh_201_fat_bass.mp3",
+      "sha256": "b1b61f2c52f025aca1d2dbccad5943587eebcaa8629dcc0a3257caa0ebe2dd17",
+      "bytes": 575205
+    },
+    "recording_url": "https://static.roland.com/assets/media/mp3/sh_201_fat_bass.mp3",
+    "recording_catalog": {
+      "path": "Docs/fidelity/factory-recordings.json",
+      "sha256": "caad194d51ae3c4c13763c3301619b7441423679f7227d9521c472852e998075",
+      "bytes": 31727
+    },
+    "product_page": {
+      "id": "roland-product",
+      "title": "Roland SH-201 product page, Audio Library",
+      "url": "https://www.roland.com/global/products/sh-201/",
+      "local_path": "build-fidelity/hardware-benchmark/exact-source-search-2026-09-14/official-inspection/roland-product.html",
+      "sha256": "4c03d0953e6e37b2372e88d7ab3f97bd5247d0fc554d3a1681a12f4d3f7893bf"
+    },
+    "manual": {
+      "id": "source_owner_manual",
+      "title": "SH-201 Owner’s Manual, p. 84, Patch list",
+      "url": "https://static.roland.com/assets/media/pdf/SH-201_OM.pdf",
+      "local_path": "build-fidelity/hardware-benchmark/factory-bank-research/SH-201_OM.pdf",
+      "bytes": 4249153,
+      "sha256": "b4a2968d429c7f3e907a6243723d5e803ae2e0014e8e9107c85bd966deea8e79",
+      "pdf_page_one_based": 84
+    },
+    "fresh_checks": [
+      "Audio and source-page hashes equal recorded catalog identities.",
+      "Cached official product HTML explicitly pairs Fat Bass title with the recording URL.",
+      "Opened community ZIP and compared Fat Bass member bytes independently."
+    ],
+    "community_archive": {
+      "path": "build-fidelity/hardware-benchmark/factory-bank-research/Nutrient_collection.zip",
+      "sha256": "f3a6d22cf900c992b7f3d2e6d6b4cc699a57802e737799385e7d85b08341d533",
+      "bytes": 54345
+    },
+    "community_archive_url": "https://www.rolandclan.com/media/20/Nutrient_collection.zip",
+    "she_file_count": 123,
+    "other_nondirectory_files": [],
+    "fat_bass_members": [
+      {
+        "member": "Nutrient_collection/Bass/Fat Bass.she",
+        "sha256": "ede8df2e08016d33c9213b65f1bca1485d9f0365774e9b251142b5809a0e41e3",
+        "bytes": 1525,
+        "embedded_name": "Fat Bass",
+        "embedded_name_offset": 285,
+        "apparent_parameter_tail_bytes": 1240,
+        "apparent_parameter_tail_sha256": "2a147d68eb231f53bb3626937d039ad7c1173ca7f54761630ed771a5b498e2c0"
+      },
+      {
+        "member": "Nutrient_collection/Bass/SweepSFat Bass    she.she",
+        "sha256": "1a1c94727c166a9987a3703fa4e048098c3e6925a3a3d493859086529def114f",
+        "bytes": 1525,
+        "embedded_name": "Fat Bass",
+        "embedded_name_offset": 285,
+        "apparent_parameter_tail_bytes": 1240,
+        "apparent_parameter_tail_sha256": "2a147d68eb231f53bb3626937d039ad7c1173ca7f54761630ed771a5b498e2c0"
+      },
+      {
+        "member": "Nutrient_collection/FX/Fat Bass2.she",
+        "sha256": "276a195de969f271277e37e0bc9e4ad561ccacfaba80144c4c4f95a3c970922c",
+        "bytes": 1525,
+        "embedded_name": "Fat Bass",
+        "embedded_name_offset": 285,
+        "apparent_parameter_tail_bytes": 1240,
+        "apparent_parameter_tail_sha256": "15777a65c8f27839daa52bc422abd393c11e13384c809e58358b049052125ea2"
+      }
+    ],
+    "pairwise_apparent_parameter_tail_differences": [
+      {
+        "members": [
+          "Nutrient_collection/Bass/Fat Bass.she",
+          "Nutrient_collection/Bass/SweepSFat Bass    she.she"
+        ],
+        "different_apparent_parameter_tail_bytes": 0
+      },
+      {
+        "members": [
+          "Nutrient_collection/Bass/Fat Bass.she",
+          "Nutrient_collection/FX/Fat Bass2.she"
+        ],
+        "different_apparent_parameter_tail_bytes": 35
+      },
+      {
+        "members": [
+          "Nutrient_collection/Bass/SweepSFat Bass    she.she",
+          "Nutrient_collection/FX/Fat Bass2.she"
+        ],
+        "different_apparent_parameter_tail_bytes": 35
+      }
+    ],
+    "parameter_tail_qualification": "Observed 1,240-byte trailing region starting with the embedded patch name at offset 285, consistent with the earlier SHE audit. This comparison does not certify factory values or formally validate the SHE container.",
+    "classification": "Official recording name and factory slot association; recorded parameter bytes, performance MIDI and live controls unavailable. Community patch names do not authenticate an original factory state.",
+    "admit": false,
+    "reason": "Two distinct apparent patch payloads share Fat Bass. No community archive documentation links either to the official recording. Original performance MIDI and dry output status are unverified.",
+    "next_evidence_required": "An authenticated read-only PRESET B-1 parameter dump and source evidence linking the recorded take to that state; alternatively a new paired dry capture with the dump and MIDI. An authenticated factory dump alone would improve the hypothesis but would not verify the old recording revision."
+  },
+  "additional_catalog_leads": [
+    {
+      "name": "RCS Analog Basses",
+      "audit": {
+        "path": "Docs/fidelity/source-audits/rcs-shl-smf-byte-audit.json",
+        "sha256": "db25b8e610546ba22b31fe8eaacfd78c0b8145149e4c46de4488358feefb92f0",
+        "bytes": 64274
+      },
+      "primary_source": {
+        "author": "Csaba Rozgonyi / RCS",
+        "page_url": "https://www.rcssound.com/index.php?page=6",
+        "archive_url": "https://www.rcssound.com/download.php?kod=6",
+        "archive_filename": "RCS-Analog-Basses-SH201.zip",
+        "archive_sha256": "203fde7b29ee2c377b06f61bfef10675fa50338b1509dc1a1bb39438a9e7b11f",
+        "bank_archive_member": "Analog Basses patchbank for Roland SH-201 by RCS/Analog_basses_by_rcs.shl",
+        "bank_sha256": "fe26cb295c131a862f535466ee3dce7f7443c2c37003fed127e3d385119e4e70",
+        "author_association": "The archive information file identifies the SHL for Librarian and the MID files for Editor Import SMF, and expressly identifies the MID files as patch data rather than musical scores."
+      },
+      "patch_count": 8,
+      "original_performance_note_event_count": 0,
+      "status": "Author-paired SHL/SMF patch settings are strongest external setting provenance in existing audits, but SMFs are patch transfer data, not notes. No source-labelled recording passage was available in this inspected local cache.",
+      "next_evidence_required": "Inspect a primary author demo for an explicit patch-to-passage mapping, preserve its source identity, then reconstruct clearly-labelled notes if original performance MIDI remains absent."
+    },
+    {
+      "name": "Roland Synthesizer 101 course",
+      "pdf": {
+        "path": "build-fidelity/hardware-benchmark/exact-source-search-2026-09-14/official-inspection/synthesis101.pdf",
+        "sha256": "3ffa5f7b52c87332ff3ff682b1addca36f5eb14513c298b7620cfc50bbb62d2f",
+        "bytes": 3319349
+      },
+      "text": {
+        "path": "build-fidelity/hardware-benchmark/exact-source-search-2026-09-14/official-inspection/synthesis101.txt",
+        "sha256": "2244fcc531c8317e40a2b1dd5c0d4c1520062267de5d188058484efcdac20d85",
+        "bytes": 35277
+      },
+      "status": "Written exercise selects PRESET D-8 and an OSC 1 saw wave; no associated cached recording establishes a dry passage. Instructions alone are not measured hardware."
+    }
+  ],
+  "not_claimed": [
+    "This is not an exhaustive public-web search or proof that no usable recording exists.",
+    "No factory patch identity was inferred from sound similarity.",
+    "No dry-waveform or exact-performance reference was created."
+  ],
+  "reproduction": {
+    "working_directory": "repository root",
+    "reviewer_metadata_command": "python3 zipfile read each member; pipe bytes to ffprobe -v error -show_entries format_tags:stream_tags -of json pipe:0; compare SHA-256 with reviewer-reference-catalog.json.",
+    "factory_collision_method": "Read the three Fat Bass SHE ZIP members; compare whole-file identities and 1,240 trailing bytes [285:1525] pairwise; embedded name occupies [285:297]."
+  }
+}

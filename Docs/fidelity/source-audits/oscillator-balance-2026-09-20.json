@@ -1,0 +1,929 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-20",
+  "status": "experimental; rejected for global adoption",
+  "conclusion": "A stronger OSC1 at BALANCE -26 improves SupaJuce, but the independent Class A family metric does not confirm a global normalized-linear law. Shipping DSP is unchanged.",
+  "sources": {
+    "manual": {
+      "url": "https://static.roland.com/assets/media/pdf/SH-201_OM.pdf",
+      "pages": [
+        33,
+        60
+      ],
+      "scope": "Direction, solo endpoints and -63..63 control range; no numeric interior gain law or center absolute gain."
+    },
+    "supa-juce-1": {
+      "reference": {
+        "id": "lead-06",
+        "title": "SupaJuice 1",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_SupaJuce1.mp3",
+        "local_filename": "TOP8_SupaJuce1.mp3",
+        "sha256": "e9c1dbe5cddf241f69b0d7b044201bb18e212345dc080c35a09001cb9afe103f",
+        "size_bytes": 647026,
+        "bank_id": "lead",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 6,
+        "patch_name": "SupaJuce 1",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank.",
+        "name_note": "Official HTML spells the title SupaJuice 1; downloaded librarian record spells it SupaJuce 1."
+      },
+      "bank": {
+        "id": "lead",
+        "category": "LEAD",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/shl/SH-201_Patch_LEAD.zip",
+        "local_filename": "SH-201_Patch_LEAD.zip",
+        "sha256": "102c47ee393c09115779172b8cbbb2c2f2563e0b4fdb2f57e0c8fca2a23c3b29",
+        "size_bytes": 42223,
+        "archive_member": "SH-201_Patch_LEAD/100_LEAD.shl",
+        "bank_sha256": "d6649236cd89c1652480f9ae194bc20f0a3e33e147cb16828216871fba35b26c",
+        "patch_count": 100,
+        "parameter_blocks_per_patch": 22,
+        "contains_original_performance_midi": false
+      },
+      "decoded_audio_sha256": "152674cde45b99737c24382d8156331dc1060656d02d3250397e01018ed45878",
+      "reconstruction": {
+        "schema_version": 1,
+        "id": "supa-juce-1",
+        "title": "SupaJuce 1 \u2014 two-square oscillator octave check",
+        "reference_id": "lead-06",
+        "midi_status": "reconstructed_not_original",
+        "source_start_seconds": 0,
+        "duration_seconds": 1.8,
+        "method": "Hardware-only FFT/STFT inspection of the first phrase. Lower square fundamentals near 330, 220, 294 and 196 Hz identify sounding MIDI 64, 57, 62 and 55. Undo the published Upper tone octave shift -1 to infer played MIDI 76, 69, 74 and 67. Strong even-numbered families at twice those frequencies, including H6 but not H4, identify the second square one octave above; this is consistent with published OSC1 coarse raw 100/WIDE off and OSC2 raw 64/WIDE off. Onsets and gates estimated from spectral renewals; no synthesis parameter fitting.",
+        "uncertainties": [
+          "Original MIDI is unavailable; this is an estimated reconstruction.",
+          "Event boundaries are approximate within 10\u201320 ms; pitch envelope, filter release and delay obscure exact key-down/up times.",
+          "All velocities are placeholders at 100. Original velocity, controllers, system transpose, recording processing and exact patch revision are unverified.",
+          "Lower square note identification is stronger than exact gates. The first 1.8 seconds exclude the rest of the demo and use an artificial final crop."
+        ],
+        "notes": [
+          {
+            "on": 0.123,
+            "off": 0.249,
+            "note": 76,
+            "velocity": 100
+          },
+          {
+            "on": 0.249,
+            "off": 0.36,
+            "note": 69,
+            "velocity": 100
+          },
+          {
+            "on": 0.526,
+            "off": 0.654,
+            "note": 69,
+            "velocity": 100
+          },
+          {
+            "on": 0.804,
+            "off": 0.915,
+            "note": 69,
+            "velocity": 100
+          },
+          {
+            "on": 1.087,
+            "off": 1.606,
+            "note": 74,
+            "velocity": 100
+          },
+          {
+            "on": 1.606,
+            "off": 1.785,
+            "note": 67,
+            "velocity": 100
+          }
+        ]
+      }
+    },
+    "class-a": {
+      "reference": {
+        "id": "lead-01",
+        "title": "Class A",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_ClassA.mp3",
+        "local_filename": "TOP8_ClassA.mp3",
+        "sha256": "88dc73e66c854e6ea57d976a96cd884dddb85275d56f73719000806f1609b886",
+        "size_bytes": 670432,
+        "bank_id": "lead",
+        "original_midi_available": false,
+        "unknowns": [
+          "Original performance MIDI note events, velocities, release times, and controller automation were not found.",
+          "System settings and the recording output path, gain, processing, and MP3 encoding history are undocumented.",
+          "The page associates audio and downloadable patches by name/category, but does not authenticate the exact patch revision used in the recording."
+        ],
+        "association_status": "named_patch_on_official_page",
+        "patch_number": 1,
+        "patch_name": "Class A",
+        "association_evidence": "Official demo heading and patch list identify the same patch; patch number/name verified against downloaded SH2LibrarianFile0000 bank."
+      },
+      "bank": {
+        "id": "lead",
+        "category": "LEAD",
+        "source_page_url": "https://www.rolandus.com/go/sh-201_patches/patch_lead.html",
+        "url": "https://www.rolandus.com/go/sh-201_patches/shl/SH-201_Patch_LEAD.zip",
+        "local_filename": "SH-201_Patch_LEAD.zip",
+        "sha256": "102c47ee393c09115779172b8cbbb2c2f2563e0b4fdb2f57e0c8fca2a23c3b29",
+        "size_bytes": 42223,
+        "archive_member": "SH-201_Patch_LEAD/100_LEAD.shl",
+        "bank_sha256": "d6649236cd89c1652480f9ae194bc20f0a3e33e147cb16828216871fba35b26c",
+        "patch_count": 100,
+        "parameter_blocks_per_patch": 22,
+        "contains_original_performance_midi": false
+      },
+      "decoded_audio_sha256": "32c418c77f476d52427d5c01f6dea7316de91378323814982741cb50eead78f1",
+      "reconstruction": {
+        "schema_version": 1,
+        "id": "class-a",
+        "title": "Class A \u2014 opening before pitch bend",
+        "reference_id": "lead-01",
+        "midi_status": "reconstructed_not_original",
+        "source_start_seconds": 0,
+        "duration_seconds": 1.2,
+        "method": "Hardware-only STFT and Hann-window FFT harmonic-family inspection of the official recording. Primary families near 55, 82.4, 146.8, 164.8, 196, 110, 164.8, 293.7, 329.6 and 392 Hz support played MIDI 33, 40, 50, 52, 55, 45, 52, 62, 64 and 67. Published upper OSC1 coarse byte 100 with WIDE off maps to +12 semitones in the current codec, cancelled by tone octave -1; OSC2 is one octave below the played note. Weak lower families support that spacing, with effects contamination and lower confidence on the very first note. Onsets mark approximate starts of pitch-family changes; exact gates and overlapping key states are unavailable. No software audio or patch fitting was used. The prefix ends before a sustained pitch rise beginning around 1.25 seconds, for which original controller data are unavailable.",
+        "uncertainties": [
+          "Original performance MIDI is unavailable. This is an audio-derived estimate, not an original MIDI file.",
+          "Velocity 100 is a placeholder; original velocities, controller states, system transpose and exact recorded patch revision are unknown.",
+          "The published patch has delay and reverb, which retain earlier pitch families. Short-window sub-octave peaks are less precise than upper harmonic families.",
+          "Pitch changes show short ramps despite the published portamento switch being off. Live controls, a different patch revision or performance gestures remain possible; the note-only reconstruction cannot reproduce undocumented pitch motion exactly.",
+          "The continuous line does not identify original note-offs or overlap. Adjoining gates are a neutral replay convention, not verified non-legato articulation. Onsets are approximate, generally within 10\u201330 ms; velocity and envelope retrigger conclusions are not justified from this case alone.",
+          "The first note's lower oscillator near 27.5 Hz is weak; the played A1 inference is conditional on the published oscillator mix/tuning and the later clear octave families.",
+          "The final note-off at 1.195 seconds is an artificial crop boundary during a held note, not a measured key release.",
+          "No Septum audio or synthesis parameter search was used to select notes. The published Roland preset must remain unmodified."
+        ],
+        "notes": [
+          {
+            "on": 0.032,
+            "off": 0.119,
+            "note": 33,
+            "velocity": 100
+          },
+          {
+            "on": 0.119,
+            "off": 0.22,
+            "note": 40,
+            "velocity": 100
+          },
+          {
+            "on": 0.22,
+            "off": 0.303,
+            "note": 50,
+            "velocity": 100
+          },
+          {
+            "on": 0.303,
+            "off": 0.363,
+            "note": 52,
+            "velocity": 100
+          },
+          {
+            "on": 0.363,
+            "off": 0.409,
+            "note": 55,
+            "velocity": 100
+          },
+          {
+            "on": 0.409,
+            "off": 0.525,
+            "note": 45,
+            "velocity": 100
+          },
+          {
+            "on": 0.525,
+            "off": 0.621,
+            "note": 52,
+            "velocity": 100
+          },
+          {
+            "on": 0.621,
+            "off": 0.707,
+            "note": 62,
+            "velocity": 100
+          },
+          {
+            "on": 0.707,
+            "off": 0.833,
+            "note": 64,
+            "velocity": 100
+          },
+          {
+            "on": 0.833,
+            "off": 1.195,
+            "note": 67,
+            "velocity": 100
+          }
+        ]
+      }
+    }
+  },
+  "hypothesis": {
+    "scope": "oscillator mix only; shared part/tone mix unchanged",
+    "stronger_gain": 1,
+    "quieter_gain_incumbent": "(63-abs(balance))/63",
+    "quieter_gain_candidate": "(63-abs(balance))/(63+abs(balance))",
+    "at_balance_minus_26": {
+      "incumbent_upper_to_lower_ratio": 1.7027027027027026,
+      "candidate_upper_to_lower_ratio": 2.4054054054054053,
+      "dominance_increase_db": 3.0009891438266223
+    },
+    "center_endpoints": "Unchanged by design; not a hardware measurement."
+  },
+  "provenance": {
+    "baseline_head": "d343d047de54af037377a3559ff6dcdf7affcc77",
+    "baseline_manifest_sha256": "cc0c53a3728bcdcc600a615869891e3dfccaf73ff97dd7edb4cf65ee859ff8ca",
+    "baseline_renderer_sha256": "3672d8f6ddf99e1bddbe575c035a9ecae1429e11517e89cc48b8c93eb4b29a34",
+    "candidate_manifest_sha256": "76e363fada114cd2f8f83c12d976a052a2440b857ad096335ec5471747e2a7c1",
+    "candidate_renderer_sha256": "29762aed8ad432e96964b7a6e0df0788297ebc643eed2dd04110ff5a896158f0",
+    "common_original_source_sha256": {
+      "Source/DSP/AnalogInput.h": "735ecc7bdbf046b25e57ff782e43ade5d9d58799728d2e03fa8a8f076ab3e86b",
+      "Source/DSP/AnalogOutput.h": "e75cb41b49ea24784c0a51bcdc5bf02c8cc78a9b8bf24959ff0ae32f652d8f77",
+      "Source/DSP/DelayInterpolation.h": "8b59202104053987437be67b4e85e596d1ad187940d82e99cc4dc4acf2d4c8a1",
+      "Source/DSP/MidiBankSelect.h": "94a594a74d07dd40cc5e21efe4dad6469dc6a1cb841f123e021c58203952cdd2",
+      "Source/DSP/MidiTempoClock.h": "e4709a502695aeb63b202829224d663b5fa7b40e0091cc66dd254cc9dd123f71",
+      "Source/DSP/ReferenceRateEngine.cpp": "ab188a768b52afe343341d12bc5683699db4c1d3b7c0803f7aa0ee88b0d1546c",
+      "Source/DSP/ReferenceRateEngine.h": "6c8356486a01a9c68f67ae500403c1e3031ea50e489a20af0185f3597dd440ab",
+      "Source/DSP/ReverbDamping.h": "02ec2527125a9e4ffe3cbf360c8c549da44e9819138cee010114777492b44928",
+      "Source/DSP/ReverbReadHeads.h": "361e9a192c5cbf53f94735dca22ad18cc85157cd0963c31d6099230a45578b9a",
+      "Source/DSP/SeptumEngine.cpp": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+      "Source/DSP/SeptumEngine.h": "f442d854b37a0a330969187fe3c1c22df9300dceef449ff12a02a5f818d15dc7",
+      "Source/DSP/SeptumPatch.h": "f86aee61115d4cb149f51fc4d11d6ebe2b3cefa247568354a7d4598bf32dacdc",
+      "Source/DSP/SeptumPresets.cpp": "834db04ca9cca46fd1d82a9a63156215ea012a1843004f0c81aa45a64963515d",
+      "Source/DSP/SeptumPresets.h": "4f39e1b53646c437d94f63b30ae63d3de25f96da2e94dbbac6e6cbf49b3f496c",
+      "Source/DSP/SeptumSysEx.cpp": "5a7dcc329297896f606bc9a1a8450ab17de2074c4749b527ee66e1f4c989b264",
+      "Source/DSP/SeptumSysEx.h": "f7bb1b6e0c5e595f31ec34bd3bcaf3e6815bd87118498068ae31b6d8bd1f8496",
+      "Source/DSP/TimbreCalibration.h": "0fcf887a7646182449ac520ec51ea30021c4fe1111d05e7e70c22a20cf9136d9",
+      "Tools/RenderMidi.cpp": "73fc5cd13bf635bbd95dc2a4e65301b06038cd96d2e684de1bb694b3e0066bfb"
+    },
+    "candidate_changed_file": "Source/DSP/SeptumEngine.cpp",
+    "candidate_changed_file_before_sha256": "36eca5309a17c6877d77c6940d5cdd6f09bc54de5b4e43e988262fc5776074ae",
+    "candidate_changed_file_after_sha256": "2ff7f08513f65cff29abcd1db48e6d91aa693f939f4ca009be1a61be8cada8b7",
+    "builder_sha256": "27f20036e5207f605810c98a9b1ea38bfe6f2b85af3819d4f5b958f729378d8c",
+    "analyzer_sha256": "d4494c8bebe38a6de4ff68cd86d09abf1a54c4ceaacf134fad5f7ec3c837f71f",
+    "full_analysis_path": "build-fidelity/public-match-2026-09-20/balance-linear-comparison-verified/analysis.json",
+    "full_analysis_sha256": "8c04bc6461b903215a8ba68d441a701adfaf7a256a19ae1cee430ef27ea21650"
+  },
+  "broad_metric": {
+    "description": "32 logarithmic power bands, 25..12500 Hz; normalize total in-range power and include reference bands within 50 dB of peak; unweighted dB RMSE. Lower is better; not an overall fidelity score.",
+    "settings": {
+      "sample_rate": 44100,
+      "tail_seconds": 2,
+      "master_level": 100,
+      "tempo_policy": "preserve-patch",
+      "strict": true,
+      "engine_latency_retained_samples": 93
+    },
+    "cases": [
+      {
+        "id": "moogie-1",
+        "baseline_rmse_db": 4.738066290137177,
+        "candidate_rmse_db": 4.738066290137177,
+        "delta_rmse_db": 0.0,
+        "byte_identical_audio": true,
+        "active_oscillator_balances": {
+          "upper": 0,
+          "lower": 0
+        },
+        "candidate_audio_sha256": "7ce5ff6bab6880889406e7f3ab08a6233977e542973496c49eaddb022e37b6bc",
+        "baseline_audio_sha256": "7ce5ff6bab6880889406e7f3ab08a6233977e542973496c49eaddb022e37b6bc",
+        "original_comparison_sha256": "54113fa250f944da5147d9e8a4c6a044c342248323aaacff70db88ca455bcb67",
+        "midi_sha256": "354540c1ac357a80473d0d71e62a20ff2af79e125fcdf82166d20ec12cf71104",
+        "patch_sha256": "33d39a6b1cbf47abd830ecf879e1ef6774b50eb6a4eb4db6997749f4f7cffabc"
+      },
+      {
+        "id": "so-juno-1",
+        "baseline_rmse_db": 6.712207611309795,
+        "candidate_rmse_db": 6.755347482540219,
+        "delta_rmse_db": 0.04313987123042384,
+        "byte_identical_audio": false,
+        "active_oscillator_balances": {
+          "upper": -8,
+          "lower": -63
+        },
+        "candidate_audio_sha256": "35f8819c116dec144cbece99e6785532c4dc164d4590efa9389842232bd59304",
+        "baseline_audio_sha256": "f7904bd0e7ed29a0235af6f5a5a2269620ead6ee9c6e691dc0bbdc7c1102d0f6",
+        "original_comparison_sha256": "e4a7a2dcf0d200b51e0790e5c354b09532974e2159e5e1e4e5a0750712ef5878",
+        "midi_sha256": "0e23e6d891211413e421f5ac03a7c8dccd249d7b7a8c7d4e38855111eaa990d1",
+        "patch_sha256": "f1a7fc59b76392ec5edec8dfe506a8b031ac1d2382b3e8893734afd813b8ad17"
+      },
+      {
+        "id": "dist-bs-1",
+        "baseline_rmse_db": 5.708620507098021,
+        "candidate_rmse_db": 5.708620507098021,
+        "delta_rmse_db": 0.0,
+        "byte_identical_audio": true,
+        "active_oscillator_balances": {
+          "upper": 0,
+          "lower": 0
+        },
+        "candidate_audio_sha256": "767063f15801729067ccb760792ae4e772e8a4d0e1da84d76d0f92273a6e1be3",
+        "baseline_audio_sha256": "767063f15801729067ccb760792ae4e772e8a4d0e1da84d76d0f92273a6e1be3",
+        "original_comparison_sha256": "a09f5649298aee490d5221be1a760ec723a8c33192b3c520b10a50a77bfa5d67",
+        "midi_sha256": "66b5b06caddf07f908df34a9e8aef4bc65cf05872ef7f2b047622b879835e3e5",
+        "patch_sha256": "774bed5b7e3155c4c2efadcffc388c972e7fdd9a9ed82af08cb7333b14980060"
+      },
+      {
+        "id": "pedal-bs-1",
+        "baseline_rmse_db": 7.8132767120130096,
+        "candidate_rmse_db": 7.8132767120130096,
+        "delta_rmse_db": 0.0,
+        "byte_identical_audio": true,
+        "active_oscillator_balances": {
+          "upper": 0
+        },
+        "candidate_audio_sha256": "bb26c0432da9b4d02a92897ef55c7ee07b3e7ed9c5f0fabb9b973fb09bb60cd8",
+        "baseline_audio_sha256": "bb26c0432da9b4d02a92897ef55c7ee07b3e7ed9c5f0fabb9b973fb09bb60cd8",
+        "original_comparison_sha256": "04ab4a0592ce8459a7f68353be859ef3720d42cbc9b2674f1df59752f2df4c13",
+        "midi_sha256": "c2f510902fce16661641a50c6c53a1a32cbffb1ffaa647d0013a3b9a91315cf9",
+        "patch_sha256": "25b2203eb16206963e36fd2d7fd7b04610f6f6d90036eb2edb670b9d30f1bb5a"
+      },
+      {
+        "id": "club-bass",
+        "baseline_rmse_db": 7.734215792668925,
+        "candidate_rmse_db": 7.755616268360176,
+        "delta_rmse_db": 0.021400475691250698,
+        "byte_identical_audio": false,
+        "active_oscillator_balances": {
+          "upper": 6,
+          "lower": 0
+        },
+        "candidate_audio_sha256": "60e493796110051562793c76f6b16005cf74a7e96892b48a8bbe0d1b06c997d7",
+        "baseline_audio_sha256": "4ed8f841ea6d047eececcf18cf3edc9e6f581789f5bb866a1ec5c7d4e3bbed89",
+        "original_comparison_sha256": "1fd9175669700571b18d49187fb39e834aad36118c84605dee66d8411c256b64",
+        "midi_sha256": "c86bc2a60af8086ae69c30886b50334da0c8799fc52bcc2a7a0495c39f893a3a",
+        "patch_sha256": "1db074dd01883c578cda8eef19aacf28be2b13c4a2b9ab21e829ba915f9a194b"
+      },
+      {
+        "id": "cotton-wool",
+        "baseline_rmse_db": 6.347978413796285,
+        "candidate_rmse_db": 6.347978413796285,
+        "delta_rmse_db": 0.0,
+        "byte_identical_audio": true,
+        "active_oscillator_balances": {
+          "upper": 0
+        },
+        "candidate_audio_sha256": "4a1c06a9968e04f3c0aa0eb848450dcfd8812c5d5038c647bc452f5cb30fc099",
+        "baseline_audio_sha256": "4a1c06a9968e04f3c0aa0eb848450dcfd8812c5d5038c647bc452f5cb30fc099",
+        "original_comparison_sha256": "6e6df772055c7707e5d4691c906936273f60b25bfdbde93fa9aa65ab9cd1e2df",
+        "midi_sha256": "9794993003bca0f1af71f2a39d30e294c6bf862ab1d6aabdbea50d145d0ce69f",
+        "patch_sha256": "e7f23e39445895f2158482037b37a19dfe413e536869c0e6f78352de6e49fbef"
+      },
+      {
+        "id": "air-lead-1",
+        "baseline_rmse_db": 13.403697493877829,
+        "candidate_rmse_db": 13.403697493877829,
+        "delta_rmse_db": 0.0,
+        "byte_identical_audio": true,
+        "active_oscillator_balances": {
+          "upper": 0
+        },
+        "candidate_audio_sha256": "0abc37d1ddd8f09b8173a9158d0588e786e15107d68981c6d0b19ff3adc4d44a",
+        "baseline_audio_sha256": "0abc37d1ddd8f09b8173a9158d0588e786e15107d68981c6d0b19ff3adc4d44a",
+        "original_comparison_sha256": "a317e86165cee6c8b46eb4f5fa8c5a7119144befc20d24deffec03cd4a11ec87",
+        "midi_sha256": "8e7e693c3ae0940ebabace9629fc25e07aef73e90c1fe250e6dcda0fefefe228",
+        "patch_sha256": "e7e911d9be986fcc4987c41d79836034ef60ea5f9c70308a7d5f57348f4c091e"
+      },
+      {
+        "id": "vangelead",
+        "baseline_rmse_db": 3.6956586465853123,
+        "candidate_rmse_db": 3.6925909147699283,
+        "delta_rmse_db": -0.0030677318153840005,
+        "byte_identical_audio": false,
+        "active_oscillator_balances": {
+          "upper": -1,
+          "lower": -63
+        },
+        "candidate_audio_sha256": "92661d08a268ba5e534b8285f882c59107cdcd1d2f1c24f96b054af1dc84b55d",
+        "baseline_audio_sha256": "9538c20409ad6c082a4015eb5a6243e2ec947e346069061563cdb6c98c326551",
+        "original_comparison_sha256": "2de043db4d6fd6be52ccdfde1a475d98d0187b82864d9e6ffac9d0082d555eef",
+        "midi_sha256": "9b1a34a3b41d19f57f1882649094b91459dede9cc7628b7bfe4670cfce61f297",
+        "patch_sha256": "ae19b5e27dd1828815a6468fe4d0e3e49c1dea17f931cac02a4c452e204a7624"
+      },
+      {
+        "id": "supa-juce-1",
+        "baseline_rmse_db": 5.437395890620871,
+        "candidate_rmse_db": 4.617085499692931,
+        "delta_rmse_db": -0.8203103909279399,
+        "byte_identical_audio": false,
+        "active_oscillator_balances": {
+          "upper": -26
+        },
+        "candidate_audio_sha256": "d4a4098f52cf25f0901235b7690ba7f6a5ae142b678c1a0b202f25f16129872b",
+        "baseline_audio_sha256": "2b4c5f8cbdf83ecc895b19f7015fd15bd9f126723830375df564f52e5ac79bb1",
+        "original_comparison_sha256": "b973ab61dd708cc6dc1e784bced98742e76a83921c9107ea3553d8d94571cbc3",
+        "midi_sha256": "0df6bc4fa7ae91185c937d8ce770562aaa5ced55650bc5b4066951ba671a9498",
+        "patch_sha256": "9791c9e16ab0a6e4374791b8f47766cfa0ee725da0d4a14ee5d75a319bf6fad8"
+      },
+      {
+        "id": "brassy-ld-1",
+        "baseline_rmse_db": 6.5101101277954765,
+        "candidate_rmse_db": 6.5101101277954765,
+        "delta_rmse_db": 0.0,
+        "byte_identical_audio": true,
+        "active_oscillator_balances": {
+          "upper": 0
+        },
+        "candidate_audio_sha256": "69a86c5b8a19e42f0c0d5204e1c9840a4fd75f33ea317151bfa7e3f692d1f68c",
+        "baseline_audio_sha256": "69a86c5b8a19e42f0c0d5204e1c9840a4fd75f33ea317151bfa7e3f692d1f68c",
+        "original_comparison_sha256": "20b66c49989b77836bd0d4069a148cf74700d39fe6b5a0e7e7b546fd7c23ea43",
+        "midi_sha256": "fd78fd56cfa10d6ac15b71877b448a70ee161306953c64f528388d45c163f052",
+        "patch_sha256": "daba0b97a4b9e2674c4832050bbd0d8e869a3b61e9ce867c7055d21b0f4a6f5a"
+      },
+      {
+        "id": "class-a",
+        "baseline_rmse_db": 2.069394893107664,
+        "candidate_rmse_db": 1.9032774040668252,
+        "delta_rmse_db": -0.16611748904083856,
+        "byte_identical_audio": false,
+        "active_oscillator_balances": {
+          "upper": -26
+        },
+        "candidate_audio_sha256": "6d4aafedbe1c54d08f1f9626fb2c4223835bdecd27aa272fc6f7ad811ef9f0ee",
+        "baseline_audio_sha256": "4f56f6c656467428baeb73ceb90973543a870bab03a6f716157605bdd6bb3e58",
+        "original_comparison_sha256": "1387f7e217eb310d2fe2d5d563477502c2662c25b6a075f01d065ab3b82199f8",
+        "midi_sha256": "52ab409ed92ffcfaa5b750e5dd4148c0d34e37a4af2c33c4d9f062850dd7c997",
+        "patch_sha256": "5ac5ab7f052f6f17c48cc342bf4493ee5919572fc66dabf7daaddd25178b95e9"
+      },
+      {
+        "id": "sexy-back",
+        "baseline_rmse_db": 5.679952329510507,
+        "candidate_rmse_db": 5.030033046628237,
+        "delta_rmse_db": -0.6499192828822702,
+        "byte_identical_audio": false,
+        "active_oscillator_balances": {
+          "upper": 14,
+          "lower": -38
+        },
+        "candidate_audio_sha256": "d7065919997bb9d1270678070168a708b76ea591259d4a38d34c1e33c839a253",
+        "baseline_audio_sha256": "64b84e77812d1bff8ef4a7b993b8bab9b5ea47bb71de53dbcc3abcc69c6d7410",
+        "original_comparison_sha256": "fb8af0e9f96e7d3830d52a8b8f360d6ccd1c57ba7ecea4ff7294b73cdbfb510d",
+        "midi_sha256": "3b692b941fb6e63436f5d9332de4ce566fd1792e9358a0c01f512c5cd593fca4",
+        "patch_sha256": "46a1c9a9df54d9c5ebc761dae5b87471d1408b704ea46b4728d31a7c2b5b427b"
+      },
+      {
+        "id": "trancefloor",
+        "baseline_rmse_db": 2.8918353317873846,
+        "candidate_rmse_db": 3.0125370108452905,
+        "delta_rmse_db": 0.12070167905790585,
+        "byte_identical_audio": false,
+        "active_oscillator_balances": {
+          "upper": -14
+        },
+        "candidate_audio_sha256": "4e9fa9f713ec9b218a71f06bd9c4f5d04a369fb753dc4c71f3748073374aee81",
+        "baseline_audio_sha256": "1262c7b399b21975c99754bcccadaad5ef7333ac07cf090a7e39fe82895a1524",
+        "original_comparison_sha256": "0fe85e9bcd3e6d6a0df088de21cbe1e7626e43b3c0d1303583c775be6b6880ce",
+        "midi_sha256": "0f8c0762e81c46a59463ad291a709bb953456ac99d1af6f05d2080a6367386dd",
+        "patch_sha256": "5b385c185d00759227a219bdbcfbfecdb7cf6e05aaaca8ff42163b463649a649"
+      }
+    ]
+  },
+  "targeted_metrics": {
+    "supa-juce-1": {
+      "pairs": [
+        [
+          2,
+          3
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          10,
+          9
+        ],
+        [
+          10,
+          11
+        ]
+      ],
+      "all": {
+        "observations": 156,
+        "baseline_median_rmse_db": 6.357283058434003,
+        "candidate_median_rmse_db": 5.252230593131415,
+        "improved_observations": 140
+      },
+      "summary_by_note": [
+        {
+          "note_index": 0,
+          "observations": 27,
+          "baseline_error_db": {
+            "min": 4.4792280603447345,
+            "median": 5.460483568685725,
+            "max": 6.359655903892469
+          },
+          "candidate_error_db": {
+            "min": 2.066699993921502,
+            "median": 2.891005349493346,
+            "max": 3.6513582329009995
+          },
+          "improved_observations": 27,
+          "conditional_upper_to_lower_ratio": {
+            "hardware": {
+              "min": 2.56505400528776,
+              "median": 2.7694123307749487,
+              "max": 3.148269983302041
+            },
+            "baseline": {
+              "min": 1.4223871947551554,
+              "median": 1.551188956496683,
+              "max": 1.6320774881161637
+            },
+            "candidate": {
+              "min": 2.016009939077867,
+              "median": 2.1794365087365914,
+              "max": 2.3042598679589905
+            }
+          }
+        },
+        {
+          "note_index": 1,
+          "observations": 24,
+          "baseline_error_db": {
+            "min": 5.715609329433894,
+            "median": 6.574295360555413,
+            "max": 7.614802432973844
+          },
+          "candidate_error_db": {
+            "min": 3.5878289640097765,
+            "median": 5.829773378830609,
+            "max": 10.945669383126868
+          },
+          "improved_observations": 22,
+          "conditional_upper_to_lower_ratio": {
+            "hardware": {
+              "min": 1.561846073356659,
+              "median": 2.0940965053854734,
+              "max": 2.6334663469239947
+            },
+            "baseline": {
+              "min": 1.6059116081505127,
+              "median": 1.8266281987310682,
+              "max": 2.1418509446884193
+            },
+            "candidate": {
+              "min": 2.245684830062569,
+              "median": 2.541401767272097,
+              "max": 2.9684462574369053
+            }
+          }
+        },
+        {
+          "note_index": 2,
+          "observations": 27,
+          "baseline_error_db": {
+            "min": 6.635365030558818,
+            "median": 8.360172291948592,
+            "max": 14.79194087039465
+          },
+          "candidate_error_db": {
+            "min": 5.399477121891752,
+            "median": 8.361385663680087,
+            "max": 16.258946354075217
+          },
+          "improved_observations": 18,
+          "conditional_upper_to_lower_ratio": {
+            "hardware": {
+              "min": 2.034715711939082,
+              "median": 2.3768347206294482,
+              "max": 3.069975925392854
+            },
+            "baseline": {
+              "min": 1.6460305982145509,
+              "median": 1.8441077696087564,
+              "max": 1.99806962273063
+            },
+            "candidate": {
+              "min": 2.22077530164128,
+              "median": 2.4823068715622094,
+              "max": 2.7697033283866777
+            }
+          }
+        },
+        {
+          "note_index": 3,
+          "observations": 24,
+          "baseline_error_db": {
+            "min": 5.799998905101267,
+            "median": 7.041579318865809,
+            "max": 7.90297444710839
+          },
+          "candidate_error_db": {
+            "min": 4.991723067130231,
+            "median": 5.770195773989874,
+            "max": 6.264384065959506
+          },
+          "improved_observations": 24,
+          "conditional_upper_to_lower_ratio": {
+            "hardware": {
+              "min": 2.292697836973611,
+              "median": 2.5572747193033845,
+              "max": 2.774449826957526
+            },
+            "baseline": {
+              "min": 1.3723058066504243,
+              "median": 1.550878008685789,
+              "max": 1.8064971188242285
+            },
+            "candidate": {
+              "min": 1.9302553645379783,
+              "median": 2.1696111466522647,
+              "max": 2.54697453185769
+            }
+          }
+        },
+        {
+          "note_index": 4,
+          "observations": 27,
+          "baseline_error_db": {
+            "min": 3.715544851731365,
+            "median": 5.210505922409873,
+            "max": 6.899883614919738
+          },
+          "candidate_error_db": {
+            "min": 1.6814481732294264,
+            "median": 2.854123942291822,
+            "max": 4.530500658133598
+          },
+          "improved_observations": 27,
+          "conditional_upper_to_lower_ratio": {
+            "hardware": {
+              "min": 2.671730854422408,
+              "median": 2.7881852511629703,
+              "max": 3.154001866420489
+            },
+            "baseline": {
+              "min": 1.2775550720739746,
+              "median": 1.7595518605435139,
+              "max": 2.5521645376065085
+            },
+            "candidate": {
+              "min": 1.757976881266642,
+              "median": 2.435682413859234,
+              "max": 3.7902743382638127
+            }
+          }
+        },
+        {
+          "note_index": 5,
+          "observations": 27,
+          "baseline_error_db": {
+            "min": 3.4215537873981168,
+            "median": 5.657647371331208,
+            "max": 8.733807220353043
+          },
+          "candidate_error_db": {
+            "min": 3.502517307618821,
+            "median": 5.101616556117088,
+            "max": 7.296903675556779
+          },
+          "improved_observations": 22,
+          "conditional_upper_to_lower_ratio": {
+            "hardware": {
+              "min": 1.9164959211886103,
+              "median": 2.1826492994985336,
+              "max": 2.3263504160911253
+            },
+            "baseline": {
+              "min": 1.1948786572305998,
+              "median": 1.4786344246692094,
+              "max": 1.7177854699472992
+            },
+            "candidate": {
+              "min": 1.701545061474241,
+              "median": 2.0725513022060427,
+              "max": 2.519583999601597
+            }
+          }
+        }
+      ],
+      "heldout_notes": {
+        "observations": 129,
+        "baseline_median_rmse_db": 6.635365030558818,
+        "candidate_median_rmse_db": 5.657359975756588,
+        "improved_observations": 113
+      }
+    },
+    "class-a": {
+      "pairs": [
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          10,
+          9
+        ],
+        [
+          10,
+          11
+        ],
+        [
+          12,
+          11
+        ]
+      ],
+      "all": {
+        "observations": 72,
+        "baseline_median_rmse_db": 5.908499573618622,
+        "candidate_median_rmse_db": 6.080305224648374,
+        "improved_observations": 45
+      },
+      "summary_by_note": [
+        {
+          "note_index": 2,
+          "observations": 3,
+          "baseline_error_db": {
+            "min": 6.340598835253433,
+            "median": 8.66240330936092,
+            "max": 16.83262726870058
+          },
+          "candidate_error_db": {
+            "min": 7.653342912774591,
+            "median": 8.705247434410598,
+            "max": 16.15331900800789
+          },
+          "improved_observations": 2
+        },
+        {
+          "note_index": 3,
+          "observations": 6,
+          "baseline_error_db": {
+            "min": 4.836381691892251,
+            "median": 6.220091872292212,
+            "max": 9.703655629054545
+          },
+          "candidate_error_db": {
+            "min": 3.8653744555642233,
+            "median": 6.393053593148592,
+            "max": 10.639489167000526
+          },
+          "improved_observations": 4
+        },
+        {
+          "note_index": 4,
+          "observations": 3,
+          "baseline_error_db": {
+            "min": 3.569453837004037,
+            "median": 5.526276193665429,
+            "max": 5.736895455609455
+          },
+          "candidate_error_db": {
+            "min": 3.4119967930011015,
+            "median": 6.1535558444920815,
+            "max": 6.747779888083341
+          },
+          "improved_observations": 1
+        },
+        {
+          "note_index": 5,
+          "observations": 9,
+          "baseline_error_db": {
+            "min": 5.352541343456538,
+            "median": 6.159936326825339,
+            "max": 10.53468808296544
+          },
+          "candidate_error_db": {
+            "min": 4.855700876418607,
+            "median": 6.589659434893822,
+            "max": 9.851290552640739
+          },
+          "improved_observations": 6
+        },
+        {
+          "note_index": 6,
+          "observations": 9,
+          "baseline_error_db": {
+            "min": 5.071118680725934,
+            "median": 6.0023493311450276,
+            "max": 6.714701142281932
+          },
+          "candidate_error_db": {
+            "min": 3.7511975113147895,
+            "median": 5.192825609955204,
+            "max": 6.139183319979275
+          },
+          "improved_observations": 8
+        },
+        {
+          "note_index": 7,
+          "observations": 9,
+          "baseline_error_db": {
+            "min": 4.516356822314845,
+            "median": 5.915890801871597,
+            "max": 7.552039799332821
+          },
+          "candidate_error_db": {
+            "min": 5.102127288471761,
+            "median": 6.243675174109023,
+            "max": 7.415832764677949
+          },
+          "improved_observations": 3
+        },
+        {
+          "note_index": 8,
+          "observations": 9,
+          "baseline_error_db": {
+            "min": 3.524196540135646,
+            "median": 4.817879780614426,
+            "max": 8.050133065351146
+          },
+          "candidate_error_db": {
+            "min": 3.2647126706027265,
+            "median": 4.335903965540413,
+            "max": 8.806366637417742
+          },
+          "improved_observations": 6
+        },
+        {
+          "note_index": 9,
+          "observations": 24,
+          "baseline_error_db": {
+            "min": 4.4669651534102925,
+            "median": 6.207118633397654,
+            "max": 10.180709018669006
+          },
+          "candidate_error_db": {
+            "min": 4.318543405273392,
+            "median": 5.992790358482293,
+            "max": 12.343172912812175
+          },
+          "improved_observations": 15
+        }
+      ]
+    }
+  },
+  "validation": {
+    "all_13_rerendered_wav_hashes_identical_to_initial_experiment": true,
+    "rates_validated_in_broad_and_harmonic_analysis": true,
+    "finite_nonzero_float_stereo_required": true,
+    "render_inputs_outputs_and_frozen_renderer_reverified_after_render": true,
+    "nine_synthetic_harmonic_recovery_cases": {
+      "frequencies_hz": [
+        123.470825,
+        219.9509913,
+        329.62756
+      ],
+      "window_widths_seconds": [
+        0.025,
+        0.035,
+        0.045
+      ],
+      "max_absolute_amplitude_error": 5.433553594074299e-15
+    },
+    "python_compile": "both new tools passed"
+  },
+  "limitations": [
+    "Original performance MIDI, controller state, phase history and recording processing remain unknown.",
+    "Supa cutoff fits use upper-square harmonics only; lower harmonics estimate gain. The result is conditional on the current filter family and ideal square spectrum.",
+    "Class A and Supa have published effects. Neighboring harmonic ratios reduce smooth filter/recording coloration but do not remove comb notches.",
+    "Overlapping channels/windows are sensitivity checks, not independent recordings. Broad bands are not an overall fidelity score.",
+    "Class A overlapping saw families depend on relative oscillator phase and past effect state, which this experiment does not identify.",
+    "This is a normalized-linear hypothesis, not a fitted hardware BALANCE table. Only one interior balance has a relatively clean family separation.",
+    "Original MIDI is unavailable; velocity 100 and estimated gates remain fixed reconstruction assumptions.",
+    "A promotion needs independent interior balances and per-note improvement robust to gate, window, channel and phase uncertainty, with no material cross-preset regression."
+  ],
+  "centered_identity_controls": [
+    "moogie-1",
+    "dist-bs-1",
+    "pedal-bs-1",
+    "cotton-wool",
+    "air-lead-1",
+    "brassy-ld-1"
+  ]
+}

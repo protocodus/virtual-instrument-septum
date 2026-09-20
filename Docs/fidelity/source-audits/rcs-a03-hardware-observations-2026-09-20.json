@@ -1,0 +1,499 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-09-20",
+  "status": "hardware_only_transcription_and_relative_closure; no candidate comparison",
+  "inputs": {
+    "decoded_author_audio": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/youtube-8LKRnrs8DcQ-44100.wav",
+      "sha256": "3f55200e611c9f01c3d7cbedba5c089bc021b232e39abd6c2c06a651aee5ecd3"
+    },
+    "bank_archive": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/hardware-benchmark/rcs-reference-screen-2026-09-20/RCS-Analog-Basses-SH201.zip",
+      "sha256": "203fde7b29ee2c377b06f61bfef10675fa50338b1509dc1a1bb39438a9e7b11f"
+    },
+    "original_source_audit": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/Docs/fidelity/source-audits/rcs-reference-screen-2026-09-20.json",
+      "sha256": "1f4f3b76f21c24e33c51ee157c6c7b9a5d1ebcd85d2a1341646bababec041bfa"
+    },
+    "case": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/Docs/fidelity/reconstructions/expanded/rcs-a03-jupiter8wide.json",
+      "sha256": "3a14622a07fcfac460b24a015d4a7a34492a225e98d97b7a21ccf409a42c3362"
+    },
+    "script": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-a03-hardware-observations-2026-09-20/analyze_hardware.py",
+      "sha256": "8639a12acede3c0a49d930b9549750556085bcf87d547183f50585a1f93fff71"
+    },
+    "closure_math_helper": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/Tools/analyze_rcs_attack_probes.py",
+      "sha256": "c365684700011e9891928c4234a6bf12c5eeae79348147c9d5c981f787ffce64"
+    },
+    "hardware_crop": {
+      "path": "/Users/vojta/Dev/virtual-instrument-septum/build-fidelity/rcs-a03-hardware-observations-2026-09-20/analysis/hardware-35-40.wav",
+      "sha256": "12b1217fe1ccdd25a5ca5e2c65139b13dc487b5ba99db0a356f770c78684ca7b"
+    }
+  },
+  "sources": {
+    "author_page_url": "https://www.rcssound.com/index.php?page=6",
+    "video_url": "https://www.youtube.com/watch?v=8LKRnrs8DcQ",
+    "bank_url": "https://www.rcssound.com/download.php?kod=6",
+    "bank_member": "Analog Basses patchbank for Roland SH-201 by RCS/Analog_basses_by_rcs.shl",
+    "bank_sha256": "fe26cb295c131a862f535466ee3dce7f7443c2c37003fed127e3d385119e4e70",
+    "unchanged_temporary_syx_sha256": "ac6e5f6c901903172b2b24b35c6a7d36b899818200304d7b8759d5dca1c901dc",
+    "author_smf_contains_performance_notes": false
+  },
+  "label_evidence": {
+    "verified_source_times_seconds": [
+      35,
+      40
+    ],
+    "visible_label": "A03 JUPITER-8 WIDE",
+    "method": "Parent independently inspected actual paused decoded main frames, not seek previews. Slideshow, without live numeric controls.",
+    "accepted_interior_seconds": [
+      35,
+      40
+    ]
+  },
+  "patch": {
+    "patch_number": 3,
+    "patch_name": "Jupiter8wide",
+    "generated_syx_sha256": "ac6e5f6c901903172b2b24b35c6a7d36b899818200304d7b8759d5dca1c901dc",
+    "author_smf_member": "Analog Basses patchbank for Roland SH-201 by RCS/SH-201 Editor patches/A03 Jupiter-8 BASS wide.mid",
+    "author_smf_sha256": "fd4f177fc8314e1e0c92a1e6c6ee016fefdaaa7a01df802f895daee4d680c44f",
+    "note_event_count": 0,
+    "dt1_frame_count": 22,
+    "shl_smf_wire_bytes_equal": true,
+    "keyboard_mode": "dual",
+    "tone_balance": 0,
+    "delay_on": true,
+    "reverb_on": false,
+    "delay_parameters_raw": [
+      0,
+      53,
+      12,
+      3,
+      49
+    ],
+    "has_enabled_spatial_effect_send": true,
+    "active_oscillator_count": 3,
+    "tones": [
+      {
+        "part": "upper",
+        "block_sha256": "94fb959e90a158ef72e3834ffb1b74bde0a71212942778370a9a7bd28ba51b7a",
+        "oscillators": [
+          {
+            "index": 1,
+            "waveform": "square",
+            "wide": false,
+            "coarse_signed_wire": -36,
+            "fine_cents": 0,
+            "pulse_width_raw": 64,
+            "pitch_env_depth": 0,
+            "muted_by_balance": false
+          },
+          {
+            "index": 2,
+            "waveform": "saw",
+            "wide": false,
+            "coarse_signed_wire": 0,
+            "fine_cents": 0,
+            "pulse_width_raw": 64,
+            "pitch_env_depth": 0,
+            "muted_by_balance": false
+          }
+        ],
+        "mix_type": "mix",
+        "balance": 0,
+        "low_frequency_mode": "flat",
+        "filter": {
+          "type": "lowpass",
+          "slope_db_per_octave": 24,
+          "cutoff_raw": 113,
+          "keyfollow_percent": 0,
+          "velocity_sensitivity": 0,
+          "resonance_raw": 0,
+          "envelope_ADSR_raw": [
+            13,
+            127,
+            127,
+            127
+          ],
+          "envelope_depth": -15
+        },
+        "overdrive": {
+          "on": true,
+          "drive_raw": 33
+        },
+        "amp": {
+          "level_raw": 127,
+          "velocity_sensitivity": 8,
+          "pan": 0,
+          "envelope_ADSR_raw": [
+            0,
+            53,
+            60,
+            16
+          ]
+        },
+        "delay_send_raw": 127,
+        "reverb_send_raw": 104,
+        "lfo_depths": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "bend_range_semitones": 2,
+        "octave_shift": 0,
+        "portamento_on": false,
+        "portamento_time_raw": 20,
+        "mono_mode": "solo"
+      },
+      {
+        "part": "lower",
+        "block_sha256": "593105cf770747f6f1e7f15c2a9fda67629056ea05112e89e0723179159d2de1",
+        "oscillators": [
+          {
+            "index": 1,
+            "waveform": "sine",
+            "wide": false,
+            "coarse_signed_wire": -36,
+            "fine_cents": 0,
+            "pulse_width_raw": 64,
+            "pitch_env_depth": 0,
+            "muted_by_balance": false
+          },
+          {
+            "index": 2,
+            "waveform": "square",
+            "wide": false,
+            "coarse_signed_wire": 0,
+            "fine_cents": 0,
+            "pulse_width_raw": 64,
+            "pitch_env_depth": 0,
+            "muted_by_balance": true
+          }
+        ],
+        "mix_type": "mix",
+        "balance": -63,
+        "low_frequency_mode": "flat",
+        "filter": {
+          "type": "lowpass",
+          "slope_db_per_octave": 24,
+          "cutoff_raw": 64,
+          "keyfollow_percent": 0,
+          "velocity_sensitivity": 0,
+          "resonance_raw": 9,
+          "envelope_ADSR_raw": [
+            0,
+            0,
+            127,
+            0
+          ],
+          "envelope_depth": 0
+        },
+        "overdrive": {
+          "on": false,
+          "drive_raw": 100
+        },
+        "amp": {
+          "level_raw": 127,
+          "velocity_sensitivity": 8,
+          "pan": 0,
+          "envelope_ADSR_raw": [
+            0,
+            64,
+            0,
+            14
+          ]
+        },
+        "delay_send_raw": 0,
+        "reverb_send_raw": 20,
+        "lfo_depths": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "bend_range_semitones": 2,
+        "octave_shift": 0,
+        "portamento_on": false,
+        "portamento_time_raw": 20,
+        "mono_mode": "poly"
+      }
+    ]
+  },
+  "oscillator_runtime_tuning": [
+    {
+      "part": "upper",
+      "oscillator": 1,
+      "waveform_raw": 1,
+      "wide": false,
+      "coarse_wire": -36,
+      "coarse_physical_semitones": -12,
+      "fine_cents": 0,
+      "tone_octave": 0,
+      "muted_by_balance": false,
+      "expected_frequency_hz_at_midi45": 55.0
+    },
+    {
+      "part": "upper",
+      "oscillator": 2,
+      "waveform_raw": 0,
+      "wide": false,
+      "coarse_wire": 0,
+      "coarse_physical_semitones": 0,
+      "fine_cents": 0,
+      "tone_octave": 0,
+      "muted_by_balance": false,
+      "expected_frequency_hz_at_midi45": 110.0
+    },
+    {
+      "part": "lower",
+      "oscillator": 1,
+      "waveform_raw": 4,
+      "wide": false,
+      "coarse_wire": -36,
+      "coarse_physical_semitones": -12,
+      "fine_cents": 0,
+      "tone_octave": 0,
+      "muted_by_balance": false,
+      "expected_frequency_hz_at_midi45": 55.0
+    },
+    {
+      "part": "lower",
+      "oscillator": 2,
+      "waveform_raw": 1,
+      "wide": false,
+      "coarse_wire": 0,
+      "coarse_physical_semitones": 0,
+      "fine_cents": 0,
+      "tone_octave": 0,
+      "muted_by_balance": true,
+      "expected_frequency_hz_at_midi45": 110.0
+    }
+  ],
+  "pitch_windows": [
+    {
+      "source_window_seconds": [
+        36.805,
+        36.965
+      ],
+      "expected_square_and_sine_hz": 55,
+      "expected_saw_hz": 110,
+      "peaks": [
+        {
+          "harmonic_of_55hz": 1,
+          "peak_hz": 54.842376708984375,
+          "db_relative_window_peak": -5.07130167821095
+        },
+        {
+          "harmonic_of_55hz": 2,
+          "peak_hz": 110.02120971679688,
+          "db_relative_window_peak": 0.0
+        },
+        {
+          "harmonic_of_55hz": 3,
+          "peak_hz": 164.02244567871094,
+          "db_relative_window_peak": -8.56195039596787
+        },
+        {
+          "harmonic_of_55hz": 4,
+          "peak_hz": 221.2200164794922,
+          "db_relative_window_peak": -9.007369502756644
+        },
+        {
+          "harmonic_of_55hz": 5,
+          "peak_hz": 273.2025146484375,
+          "db_relative_window_peak": -13.414325104955314
+        },
+        {
+          "harmonic_of_55hz": 6,
+          "peak_hz": 330.0636291503906,
+          "db_relative_window_peak": -9.95190229831046
+        },
+        {
+          "harmonic_of_55hz": 7,
+          "peak_hz": 383.2237243652344,
+          "db_relative_window_peak": -26.148851255919897
+        },
+        {
+          "harmonic_of_55hz": 8,
+          "peak_hz": 439.0754699707031,
+          "db_relative_window_peak": -12.560479031471314
+        }
+      ],
+      "median_harmonic_implied_base_hz": 54.86340522766113
+    },
+    {
+      "source_window_seconds": [
+        36.865,
+        36.945
+      ],
+      "expected_square_and_sine_hz": 55,
+      "expected_saw_hz": 110,
+      "peaks": [
+        {
+          "harmonic_of_55hz": 1,
+          "peak_hz": 54.67414855957031,
+          "db_relative_window_peak": -5.484951976465325
+        },
+        {
+          "harmonic_of_55hz": 2,
+          "peak_hz": 110.18943786621094,
+          "db_relative_window_peak": 0.0
+        },
+        {
+          "harmonic_of_55hz": 3,
+          "peak_hz": 164.35890197753906,
+          "db_relative_window_peak": -8.114087571169557
+        },
+        {
+          "harmonic_of_55hz": 4,
+          "peak_hz": 221.72470092773438,
+          "db_relative_window_peak": -9.3107499263631
+        },
+        {
+          "harmonic_of_55hz": 5,
+          "peak_hz": 273.7071990966797,
+          "db_relative_window_peak": -12.201990689017208
+        },
+        {
+          "harmonic_of_55hz": 6,
+          "peak_hz": 331.74591064453125,
+          "db_relative_window_peak": -11.831493967189724
+        },
+        {
+          "harmonic_of_55hz": 7,
+          "peak_hz": 383.39195251464844,
+          "db_relative_window_peak": -21.568892386805814
+        },
+        {
+          "harmonic_of_55hz": 8,
+          "peak_hz": 439.5801544189453,
+          "db_relative_window_peak": -13.902675340185983
+        }
+      ],
+      "median_harmonic_implied_base_hz": 54.866909980773926
+    }
+  ],
+  "onset_absolute_sample_thresholds": {
+    "0.001": 36.76183673469388,
+    "0.01": 36.76387755102041,
+    "0.05": 36.76387755102041
+  },
+  "pre_attack_silence": {
+    "source_window_seconds": [
+      36.4,
+      36.75
+    ],
+    "rms": 2.3987713575479575e-05,
+    "settled_reference_window_seconds": [
+      36.85,
+      36.95
+    ],
+    "db_below_settled_rms": -72.58827209472656
+  },
+  "closure_method": {
+    "bands_hz": [
+      [
+        300,
+        1500
+      ],
+      [
+        1500,
+        12000
+      ]
+    ],
+    "windows_samples": [
+      512,
+      1024,
+      2048
+    ],
+    "hop_samples": 44,
+    "channels": [
+      "left",
+      "right",
+      "mid"
+    ],
+    "onset_shifts_seconds": [
+      -0.01,
+      0,
+      0.01
+    ],
+    "early_reference_elapsed_seconds": [
+      0.015,
+      0.035
+    ],
+    "sustained_threshold_seconds": 0.01,
+    "gate_guard_seconds": 0.03,
+    "source_grid_origin_seconds": 35,
+    "note_off_is_artificial": true,
+    "interpretation": "Unchanged A02 spectral-ratio mathematics applied only to A03 hardware; elapsed crossings are not filter attack durations. No software audio is read. Shorter/faster closure may make early-reference/onset uncertainty consequential."
+  },
+  "closure_summary": {
+    "10": {
+      "observed_count": 27,
+      "censored_count": 0,
+      "elapsed_seconds_min_median_max": [
+        0.035705215419504555,
+        0.0437097505668973,
+        0.05271201814058912
+      ]
+    },
+    "20": {
+      "observed_count": 27,
+      "censored_count": 0,
+      "elapsed_seconds_min_median_max": [
+        0.04169160997732746,
+        0.0525079365079435,
+        0.06414058956916335
+      ]
+    },
+    "30": {
+      "observed_count": 27,
+      "censored_count": 0,
+      "elapsed_seconds_min_median_max": [
+        0.059469387755108016,
+        0.06511564625850497,
+        0.07960544217687726
+      ]
+    }
+  },
+  "central_trace_diagnostics": [
+    {
+      "note_index": 0,
+      "window_samples": 1024,
+      "channel": "mid",
+      "onset_shift_seconds": 0,
+      "early_ratio_db": -14.375253677368164,
+      "minimum_relative_ratio_change_db": -43.46135139465332,
+      "maximum_relative_ratio_change_db": -4.884565353393555,
+      "high_band_min_power": 2.044631797204488e-09,
+      "low_band_min_power": 0.00024319194199051708,
+      "high_band_floor_count": 0,
+      "low_band_floor_count": 0,
+      "longest_contiguous_below_10db_frame_count": 143,
+      "longest_contiguous_below_10db_grid_coverage_seconds": 0.14267573696145125,
+      "interpretation": "Descriptive trace check only; no fallback winner selection. Frame-count coverage is not an interpolated crossing or attack duration."
+    }
+  ],
+  "limitations": [
+    "All performance MIDI is reconstructed; the author SMF contains patch SysEx only. Velocity100 is a placeholder, not an observed original velocity.",
+    "Parent independently inspected actual paused decoded A03-labelled frames at35 and40seconds. These bracket a conservative interior; they do not establish continuous patch-state identity, exact transitions or live numeric controls.",
+    "Played MIDI45 is conditional on the unchanged published upper square\u221212/upper saw0/lower sine\u221212 semitone tuning, zero fine tune and tone octave, and unknown system transpose/bend remaining neutral. Modulation delay can shift short-window local spectral peaks; harmonic-family estimates are not a tuning calibration.",
+    "The final note-off at0.260s is artificial and occurs at the crop boundary while the source note continues. Original key release and overlap are unknown. Comparisons should use an interior guard and should not infer release time or mono retrigger behavior from this crop.",
+    "The visible abrupt attack is near36.764s, with codec pre-echo detectable about2ms earlier. Use at least\u00b110ms onset sensitivity when interpreting closure; unknown common capture/codec latency remains.",
+    "Upper LP24 cutoff113, envelope depth\u221215, attack13, sustain127, zero resonance/keyfollow/filter velocity and drive33 act jointly. Upper amplitude ADSR0/53/60/16 and lower sine amplitude ADSR0/64/0/14 change layer balance after the attack; this is not an isolated filter transfer measurement.",
+    "Upper modulation delay is enabled at send127 with raw parameters[0,53,12,3,49] (time, feedback encoding, HF damping, modulation rate, modulation depth). Lower delay send0; reverb is globally off. Unknown delay phase/history, relative oscillator phase, output path, mastering and lossy encoding remain confounds.",
+    "A03 is a held-out patch in the same author recording as A02, not an independent hardware unit or recording session. Exact same-take patch edits/controllers are unverified. No published patch bytes may be changed to improve the match."
+  ],
+  "full_hardware_audit": {
+    "path": "build-fidelity/rcs-a03-hardware-observations-2026-09-20/analysis/audit.json",
+    "sha256": "9792acc78f61b062e0e2bfa17ec83b72d3289641b41cb99438bd337dc5b4c323"
+  },
+  "supplementary_catalog": {
+    "path": "Docs/fidelity/rcs-a03-reference-catalog.json",
+    "sha256": "0de2b7f4d273b06bee20bf1d07168b0d1ae1a7e35556b89d6b6612a7983eb280"
+  },
+  "qualification": "Hardware-only case and trajectory locked before any Septum A03 rendering. Subsequent baseline characterization may use this fixed case but does not leave it untouched by all model inspection."
+}

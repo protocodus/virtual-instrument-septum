@@ -94,8 +94,12 @@ python3 Tools/generate_timbre_capture.py \
 ```
 
 The quick package contains six fixtures totaling 29.1 seconds. `--suite all`
-creates 91 fixtures totaling 502.6 seconds. Individual suites are `filter`,
-`envelopes`, `waveforms`, `supersaw` and `aliasing`. Each fixture includes a
+creates 95 fixtures totaling 517.0 seconds. Individual suites are `filter`,
+`envelopes`, `negative-attack`, `waveforms`, `supersaw` and `aliasing`.
+The four-fixture `negative-attack` suite lasts 14.4 seconds and isolates
+raw filter attacks 0, 13, 24 and 36 with one dry saw and depth −22. It supplies
+new test inputs, not recordings or an established hardware timing curve.
+Each fixture includes a
 complete original INIT-derived patch, exact MIDI gates, parameter overrides,
 input hashes and explicit system/routing assumptions. The generator never
 sends MIDI or writes a hardware patch bank. These inputs can already be used
