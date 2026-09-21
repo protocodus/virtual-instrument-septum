@@ -220,6 +220,7 @@ private:
         Scope scope { Scope::Shared };
         juce::Rectangle<int> bounds;
         std::vector<Control*> controls;
+        std::vector<juce::Rectangle<int>> groupBounds;
         // How many of the section's grid controls go on each row. Sections
         // are sized to fit their contents rather than their contents scaled
         // to fit them, which is what keeps every knob the same size.
@@ -272,6 +273,8 @@ private:
     // resized(), but independent of the window: the window only sets the
     // canvas transform.
     void layoutPanel();
+    void layoutControl (Control&, juce::Rectangle<int>, bool inlineValue = false);
+    void layoutControlGroups (Section&);
     void paintPanel (juce::Graphics&);
     void paintControlGroups (juce::Graphics&, const Section&);
     void setToneParameter (const char* suffix, float natural);

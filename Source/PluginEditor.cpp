@@ -42,22 +42,25 @@ constexpr int toggleCell = 68;
 constexpr int actionCell = 60;
 constexpr int sliderCell = 40;
 
-constexpr int labelHeight = 20;
+// Fibonacci spacing: matching 8 px island padding/gaps, 13 px module
+// gutters, and 21 px headings/outer margins. Keep controls sized for text.
+constexpr int islandSpacing = 8;
+constexpr int labelHeight = 18;
 constexpr int valueHeight = 18;
-constexpr int knobDiameter = 36;
+constexpr int knobDiameter = 34;
 constexpr int comboHeight = 28;
 constexpr int toggleHeight = 28;
 constexpr int fieldInset = 4;
 constexpr int fieldTextInset = 6;
 
-constexpr int sectionTitleHeight = 26;
-constexpr int sectionPadding = 12;
-constexpr int panelTitleBarHeight = 26;
-constexpr int gridRowHeight = 74;      // label + control + value
-constexpr int controlRowGap = 8;
+constexpr int sectionTitleHeight = 21;
+constexpr int sectionPadding = islandSpacing;
+constexpr int panelTitleBarHeight = sectionTitleHeight;
+constexpr int gridRowHeight = 2 * islandSpacing + labelHeight + knobDiameter + valueHeight;
+constexpr int controlRowGap = islandSpacing;
 constexpr int extraRowHeight = gridRowHeight + controlRowGap;
-constexpr int sectionGap = 12;
-constexpr float panelRadius = 9.0f;
+constexpr int sectionGap = 13;
+constexpr float panelRadius = 8.0f;
 
 constexpr int keyZoneHeight = 28;
 constexpr int performanceHeight = sectionTitleHeight + gridRowHeight + 2 * sectionPadding;
@@ -67,19 +70,20 @@ constexpr float meterFloorDb = -48.0f;
 constexpr int bandHeight = performanceHeight + extraRowHeight;
 constexpr int windowChromeWidth = 32;
 constexpr int windowChromeHeight = 64;
-constexpr int editorWidth = 1760;
-constexpr int instrumentTopPadding = 20;
-constexpr int outerPadding = 24;
+constexpr int editorWidth = 1960;
+constexpr int instrumentTopPadding = 21;
+constexpr int outerPadding = 21;
 constexpr int presetPanelWidth = 540;
-constexpr int systemPanelWidth = 680 + 2 * sectionPadding;
-constexpr int performancePanelWidth = 850 + 2 * sectionPadding;
+constexpr int systemPanelWidth = 760 + 2 * sectionPadding;
+constexpr int performancePanelWidth = 920 + 2 * sectionPadding;
 // One contiguous part surface, followed by shared effects and performance.
 constexpr int partTop = instrumentTopPadding + headerHeight + 8;
-constexpr int partTabHeight = 88;
+constexpr int partTabHeight = sectionTitleHeight + 2 * sectionPadding
+                              + 2 * islandSpacing + labelHeight + knobDiameter;
 constexpr int partBodyTop = partTop + partTabHeight;
 constexpr int voiceTop = partBodyTop + sectionPadding;
 constexpr int modulationTop = voiceTop + bandHeight + sectionGap;
-constexpr int sharedTop = modulationTop + bandHeight + 32;
+constexpr int sharedTop = modulationTop + bandHeight + 34;
 constexpr int performanceTop = sharedTop + bandHeight + sectionGap;
 constexpr int keysTop = performanceTop + performanceHeight + sectionGap;
 constexpr int editorHeight = keysTop + keyboardHeight;
@@ -94,6 +98,7 @@ void layoutControlCell (juce::Component& component, juce::Label& caption,
                         juce::Label* value, juce::Rectangle<int> cell,
                         int width, int height)
 {
+    cell.reduce (0, islandSpacing);
     const int captionTop = cell.getY();
     caption.setBounds (cell.removeFromTop (labelHeight).reduced (4, 0));
     const auto valueBounds = cell.removeFromBottom (valueHeight).reduced (3, 0);
@@ -704,8 +709,8 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
         // Source and timing occupy the top row. Each target stays beside
         // its depth below, with matching widths for the two routing pairs.
         lfoSection->rowCounts = { 6, 4 };
-        lfoSection->fixedColumns = { comboCell, knobCell, toggleCell,
-                                     comboCell, knobCell, toggleCell };
+        lfoSection->fixedColumns = { comboCell, knobCell, toggleCell + islandSpacing,
+                                     comboCell, knobCell, toggleCell + islandSpacing };
         lfoSection->positions = { { { 0 }, { 1 }, { 2 }, { 3 }, { 4 }, { 5 } },
                                  { { 0, 2 }, { 2 }, { 3, 2 }, { 5 } } };
         addControl (*lfoSection, prefix + "shape", "SHAPE", Style::Combo);
@@ -935,7 +940,7 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
             "CHANNEL: keyboard through the arpeggiator on the receive channel (compatibility default).");
     systemSection = section ("SYSTEM / MIDI", Band::Perform);
     systemSection->rowCounts = { 8 };
-    systemSection->fixedColumns = { 84, 80, 80, 84, 96, 80, 80, 96 };
+    systemSection->fixedColumns = { 100, 88, 100, 92, 104, 92, 96, 88 };
     addControl (*systemSection, "system_master_tune", "TUNE", Style::Knob,
                 false);
     addControl (*systemSection, "system_key_shift", "KEY SHIFT", Style::Knob,
@@ -1782,6 +1787,37 @@ void SeptumAudioProcessorEditor::bindControls (bool perToneOnly)
     refreshValues();
 }
 
+void SeptumAudioProcessorEditor::layoutControl (Control& control,
+                                                juce::Rectangle<int> cell,
+                                                bool inlineValue)
+{
+    if (inlineValue)
+    {
+        cell.reduce (0, islandSpacing);
+        control.label->setBounds (cell.removeFromTop (labelHeight));
+        if (control.style == Style::Knob)
+        {
+            auto pair = cell.withSizeKeepingCentre (100, knobDiameter);
+            control.component->setBounds (pair.removeFromLeft (knobDiameter));
+            control.value->setBounds (pair.reduced (4, 0));
+            control.value->setJustificationType (juce::Justification::centredLeft);
+        }
+        else
+        {
+            const int width = control.style == Style::Combo ? 124 : 64;
+            control.component->setBounds (cell.withSizeKeepingCentre (width, comboHeight));
+        }
+        return;
+    }
+    const bool selector = control.style == Style::Combo || control.style == Style::WideCombo;
+    const bool button = control.style == Style::Toggle || control.style == Style::Action;
+    layoutControlCell (*control.component, *control.label, control.value.get(), cell,
+                       selector ? cell.getWidth() - 2 * fieldInset
+                                : button ? juce::jmin (cell.getWidth(), control.cellWidth() - 10)
+                                         : knobDiameter,
+                       selector ? comboHeight : button ? toggleHeight : knobDiameter);
+}
+
 void SeptumAudioProcessorEditor::layoutSection (Section& section,
                                                juce::Rectangle<int> bounds)
 {
@@ -1824,6 +1860,7 @@ void SeptumAudioProcessorEditor::layoutSection (Section& section,
         {
             auto cell = strip.removeFromLeft (sliderCell);
             sliders[i]->cellBounds = cell;
+            cell.reduce (0, islandSpacing);
             sliders[i]->label->setBounds (cell.removeFromTop (labelHeight));
             sliders[i]->value->setBounds (cell.removeFromBottom (valueHeight));
             sliders[i]->component->setBounds (cell.reduced (2, 2));
@@ -1873,12 +1910,7 @@ void SeptumAudioProcessorEditor::layoutSection (Section& section,
                 rowHeight * position.rowSpan + controlRowGap * (position.rowSpan - 1)
             };
             control->cellBounds = cell;
-            const bool selector = control->style == Style::Combo || control->style == Style::WideCombo;
-            const bool button = control->style == Style::Toggle || control->style == Style::Action;
-            layoutControlCell (*control->component, *control->label, control->value.get(), cell,
-                               selector ? cell.getWidth() - 2 * fieldInset
-                                        : button ? control->cellWidth() - 10 : knobDiameter,
-                               selector ? comboHeight : button ? toggleHeight : knobDiameter);
+            layoutControl (*control, cell);
             if (control->label->getText().isEmpty() && previous != nullptr)
             {
                 previous->label->setBounds (previous->label->getBounds().getUnion (
@@ -1956,7 +1988,7 @@ void SeptumAudioProcessorEditor::resized()
 void SeptumAudioProcessorEditor::layoutPanel()
 {
     titleLabel.setBorderSize (juce::BorderSize<int> (0));
-    titleLabel.setBounds (46, instrumentTopPadding + (headerHeight - 46) / 2, 180, 46);
+    titleLabel.setBounds (outerPadding + 21, instrumentTopPadding + (headerHeight - 46) / 2, 180, 46);
     const int presetRowTop = instrumentTopPadding + sectionPadding + sectionTitleHeight;
     layoutControlCell (programBox, programLabel, nullptr,
                        { 250, presetRowTop, 300, gridRowHeight }, 300, comboHeight);
@@ -1991,10 +2023,11 @@ void SeptumAudioProcessorEditor::layoutPanel()
 
     // The active tab joins the continuous part tray; the inactive tab sits
     // back from it. Play controls share that tray on the right of the tabs.
-    editToneSection->bounds = { 24, partTop, 744, partTabHeight };
+    editToneSection->bounds = { outerPadding, partTop, 2 * 366 + sectionGap, partTabHeight };
     for (std::size_t i = 0; i < 2; ++i)
     {
-        partTabBounds[i] = { 24 + (int) i * 378, partTop, 366, partTabHeight };
+        partTabBounds[i] = { outerPadding + (int) i * (366 + sectionGap), partTop,
+                            366, partTabHeight };
         auto area = partTabBounds[i].reduced (sectionPadding, 12);
         (i == 0 ? upperButton : lowerButton).setBounds (partTabBounds[i]);
         (i == 0 ? upperEnableButton : lowerEnableButton).setBounds (
@@ -2002,35 +2035,25 @@ void SeptumAudioProcessorEditor::layoutPanel()
         partRouteLabels[i].setBounds (area.getX(), area.getY() + 34, 142, 20);
         partActivityLabels[i].setBounds (area.getRight() - 186, area.getY() + 34, 186, 20);
     }
-    tonePlaySection->bounds = { 784, partTop, editorWidth - 808, partTabHeight };
+    const int tonePlayLeft = editToneSection->bounds.getRight() + sectionGap;
+    tonePlaySection->bounds = { tonePlayLeft, partTop,
+                               editorWidth - outerPadding - tonePlayLeft, partTabHeight };
     {
-        auto row = tonePlaySection->bounds.reduced (sectionPadding, 0);
-        const int width = row.getWidth() / (int) tonePlaySection->controls.size();
+        auto row = tonePlaySection->bounds.reduced (sectionPadding);
+        row.removeFromTop (sectionTitleHeight);
+        int remaining = (int) tonePlaySection->controls.size();
         for (auto* control : tonePlaySection->controls)
         {
-            auto cell = row.removeFromLeft (width);
-            control->cellBounds = cell.withY (partTop + 26).withHeight (56);
-            control->label->setBounds (cell.withY (partTop + 28).withHeight (labelHeight));
-            auto body = cell.withY (partTop + 48).withHeight (knobDiameter);
-            if (control->style == Style::Knob)
-            {
-                auto pair = body.withSizeKeepingCentre (100, knobDiameter);
-                control->component->setBounds (pair.removeFromLeft (knobDiameter));
-                control->value->setBounds (pair.reduced (4, 0));
-                control->value->setJustificationType (juce::Justification::centredLeft);
-            }
-            else
-            {
-                const int fieldWidth = control->style == Style::Combo ? 124 : 64;
-                control->component->setBounds (body.withSizeKeepingCentre (fieldWidth, comboHeight));
-            }
+            auto cell = row.removeFromLeft (row.getWidth() / remaining--);
+            control->cellBounds = cell;
+            layoutControl (*control, cell, true);
         }
     }
-    layoutBand ({ 1, 2, 3, 4, 5 }, { 24, voiceTop, editorWidth - 48, bandHeight });
-    layoutBand ({ 6, 7, 8, 9, 10 }, { 24, modulationTop, editorWidth - 48, bandHeight });
+    layoutBand ({ 1, 2, 3, 4, 5 }, { outerPadding, voiceTop, editorWidth - 2 * outerPadding, bandHeight });
+    layoutBand ({ 6, 7, 8, 9, 10 }, { outerPadding, modulationTop, editorWidth - 2 * outerPadding, bandHeight });
 
     // The lower faceplate is stable regardless of which part is selected.
-    layoutBand ({ 11, 12, 13, 14 }, { 24, sharedTop, editorWidth - 48, bandHeight });
+    layoutBand ({ 11, 12, 13, 14 }, { outerPadding, sharedTop, editorWidth - 2 * outerPadding, bandHeight });
     performSection->bounds = { outerPadding, performanceTop,
                                performancePanelWidth, performanceHeight };
     const int controlTop = performanceTop + sectionPadding + sectionTitleHeight;
@@ -2038,28 +2061,25 @@ void SeptumAudioProcessorEditor::layoutPanel()
                              .withY (controlTop).withHeight (gridRowHeight);
     layoutControlCell (masterSlider, masterLabel, &masterValueLabel,
                        performanceRow.removeFromLeft (86), knobDiameter, knobDiameter);
-    layoutControlCell (*tempoControl->component, *tempoControl->label, tempoControl->value.get(),
-                       performanceRow.removeFromLeft (86), knobDiameter, knobDiameter);
-    layoutControlCell (*systemTempoControl->component, *systemTempoControl->label,
-                       systemTempoControl->value.get(), performanceRow.removeFromLeft (86),
-                       knobDiameter, knobDiameter);
-    layoutControlCell (*clockSourceControl->component, *clockSourceControl->label, nullptr,
-                       performanceRow.removeFromLeft (134), 118, comboHeight);
-    layoutControlCell (*remoteKeyboardControl->component, *remoteKeyboardControl->label, nullptr,
-                       performanceRow.removeFromLeft (134), 118, comboHeight);
-    layoutControlCell (*patchRemainControl->component, *patchRemainControl->label, nullptr,
-                       performanceRow.removeFromLeft (96), 80, toggleHeight);
-    for (auto* control : performSection->controls)
-        control->cellBounds = control->label->getBounds()
-            .getUnion (control->component->getBounds())
-            .withY (controlTop).withHeight (gridRowHeight);
+    const auto place = [&] (Control* control, int width)
+    {
+        control->cellBounds = performanceRow.removeFromLeft (width);
+        layoutControl (*control, control->cellBounds);
+    };
+    place (tempoControl, 98);
+    place (systemTempoControl, 98);
+    place (clockSourceControl, 144);
+    place (remoteKeyboardControl, 144);
+    place (patchRemainControl, 104);
     auto octaveCell = performanceRow.removeFromLeft (118);
+    octaveCell.reduce (0, islandSpacing);
     octLabel.setBounds (octaveCell.removeFromTop (labelHeight));
     octaveCell.removeFromBottom (valueHeight);
     auto octaveButtons = octaveCell.withSizeKeepingCentre (118 - 2 * fieldInset, toggleHeight);
     octDownButton.setBounds (octaveButtons.removeFromLeft (36));
     octUpButton.setBounds (octaveButtons.removeFromRight (36));
     octValueLabel.setBounds (octaveButtons);
+    performanceRow.reduce (0, islandSpacing);
     performanceRow.removeFromTop (labelHeight);
     voiceLabel.setFont (juce::Font (juce::FontOptions (16.0f)));
     voiceLabel.setBorderSize (juce::BorderSize<int> (0));
@@ -2074,18 +2094,15 @@ void SeptumAudioProcessorEditor::layoutPanel()
     // Keep patch knobs at a readable fixed width. The remaining space
     // belongs to the controller fields, using the standard field insets.
     int selectorCount = 0;
-    int selectorSpace = stripContent.getWidth() - 2 * sectionGap;
+    int selectorSpace = stripContent.getWidth();
     for (const auto* control : stripSection->controls)
         if (control->style == Style::Combo)
             ++selectorCount;
         else
             selectorSpace -= comboCell;
     int x = stripContent.getX();
-    int index = 0;
     for (auto* control : stripSection->controls)
     {
-        if (index == 2 || index == 4)
-            x += sectionGap;
         const bool selector = control->style == Style::Combo;
         const int cellWidth = selector ? selectorSpace / selectorCount : comboCell;
         if (selector)
@@ -2097,13 +2114,11 @@ void SeptumAudioProcessorEditor::layoutPanel()
                                           stripContent.getHeight());
         control->cellBounds = cell;
         x += cellWidth;
-        layoutControlCell (*control->component, *control->label, control->value.get(), cell,
-                           selector ? cellWidth - 2 * fieldInset : knobDiameter,
-                           selector ? comboHeight : knobDiameter);
-        ++index;
+        layoutControl (*control, cell);
     }
 
-    auto keyboardRow = juce::Rectangle<int> (24, keysTop, editorWidth - 48, keyboardHeight);
+    auto keyboardRow = juce::Rectangle<int> (outerPadding, keysTop,
+                                            editorWidth - 2 * outerPadding, keyboardHeight);
     lever.setBounds (keyboardRow.removeFromLeft (66).reduced (0, 2));
     keyboardRow.removeFromLeft (sectionGap);
     keyZoneBounds = keyboardRow.removeFromTop (keyZoneHeight);
@@ -2111,6 +2126,9 @@ void SeptumAudioProcessorEditor::layoutPanel()
     // Leave one pixel for rounding so JUCE never adds an unnecessary scroll arrow.
     keyboard.setKeyWidth ((float) (keyboardRow.getWidth() - 1) / 36.0f);
     keyboard.setBounds (keyboardRow.withTrimmedTop (2));
+
+    for (auto& section : sections)
+        layoutControlGroups (*section);
 
     reconcileEditTarget();
     refreshToneTarget();
@@ -2132,24 +2150,34 @@ void SeptumAudioProcessorEditor::PanelCanvas::paint (juce::Graphics& g)
     owner.paintPanel (g);
 }
 
-void SeptumAudioProcessorEditor::paintControlGroups (juce::Graphics& g,
-                                                      const Section& section)
+void SeptumAudioProcessorEditor::layoutControlGroups (Section& section)
 {
-    const bool light = section.scope == Scope::PerTone;
+    section.groupBounds.clear();
+    const auto content = section.bounds.reduced (sectionPadding);
     const auto group = [&] (std::initializer_list<const char*> suffixes)
     {
         juce::Rectangle<int> bounds;
+        std::vector<Control*> members;
         for (const auto* suffix : suffixes)
-            for (const auto* control : section.controls)
+            for (auto* control : section.controls)
                 if (control->suffix == suffix)
+                {
                     bounds = bounds.getUnion (control->cellBounds);
+                    members.push_back (control);
+                }
         if (bounds.isEmpty())
             return;
-        const auto area = bounds.toFloat().reduced (3.0f, -3.0f);
-        // Darken the actual surface beneath each group, including the
-        // Tone Play tray and every shared panel colour.
-        g.setColour (juce::Colours::black.withAlpha (light ? 0.065f : 0.16f));
-        g.fillRoundedRectangle (area, 7.0f);
+        // Adjacent islands each reserve half the gap. The panel already
+        // supplies the full margin at its outer edges.
+        if (bounds.getX() > content.getX())
+            bounds.removeFromLeft (islandSpacing / 2);
+        if (bounds.getRight() < content.getRight())
+            bounds.removeFromRight (islandSpacing / 2);
+        section.groupBounds.push_back (bounds);
+        const auto inner = bounds.reduced (islandSpacing, 0);
+        for (auto* control : members)
+            layoutControl (*control, control->cellBounds.getIntersection (inner),
+                           &section == tonePlaySection);
     };
 
     if (section.title == "OSC 1")
@@ -2226,13 +2254,24 @@ void SeptumAudioProcessorEditor::paintControlGroups (juce::Graphics& g,
     }
 }
 
+void SeptumAudioProcessorEditor::paintControlGroups (juce::Graphics& g,
+                                                      const Section& section)
+{
+    // A dark overlay keeps every island below its actual surrounding colour.
+    g.setColour (juce::Colours::black.withAlpha (
+        section.scope == Scope::PerTone ? 0.065f : 0.16f));
+    for (const auto& bounds : section.groupBounds)
+        g.fillRoundedRectangle (bounds.toFloat(), (float) islandSpacing);
+}
+
 void SeptumAudioProcessorEditor::paintPanel (juce::Graphics& g)
 {
     g.fillAll (colours::surround);
     paintPanelSurface (g, { outerPadding, instrumentTopPadding, presetPanelWidth, headerHeight },
                        colours::sharedWell);
-    const auto partArea = juce::Rectangle<float> (12.0f, (float) partBodyTop,
-        editorWidth - 24.0f, (float) (modulationTop + bandHeight + sectionPadding - partBodyTop));
+    const auto partArea = juce::Rectangle<float> ((float) (outerPadding - sectionPadding),
+        (float) partBodyTop, (float) (editorWidth - 2 * (outerPadding - sectionPadding)),
+        (float) (modulationTop + bandHeight + sectionPadding - partBodyTop));
     g.setColour (colours::partTray);
     g.fillRoundedRectangle (partArea, panelRadius + 2.0f);
     // The play controls form the right shoulder of the selected part page.

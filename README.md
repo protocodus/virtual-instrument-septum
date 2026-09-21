@@ -137,6 +137,9 @@ hardware-style knobs and switches with clear on/off fills. Softly raised cards
 separate the modules, with smaller, darker background islands connecting related
 controls: oscillator tuning, LFO timing and target/depth pairs, drive and effect
 sends, input filtering, reverb damping, MIDI reception and controller routing.
+Islands share 8 px inner padding and 8 px gaps. The Fibonacci spacing scale
+continues with 13 px module gutters and 21 px outer margins; the wider panel
+leaves room for labels at both full and compact sizes.
 Program, keyboard routing and system settings occupy distinct header cards.
 Larger knobs, visible position arcs and aligned value rows make adjustments
 easy to read. Selector captions line up with their field text; knob and fader
