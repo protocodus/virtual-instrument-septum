@@ -132,32 +132,36 @@ render code. The open questions are listed under [Known gaps](#known-gaps).
 
 ### Reading the panel
 
-The SH-201-inspired panel combines a warm charcoal chassis, ivory part panels,
-hardware-style knobs and flat switches with clear on/off fills. A darker warm
-backing, wider gutters and lightly raised cards separate each module. Program, routing and
-system controls also occupy distinct cards. Larger labels, aligned value rows
-and explicit space between rows keep controls readable. Selector captions line
-up with their field text; knob and fader captions stay centred on their axes.
-Island titles are centred in their bars. The active Upper/Lower tab joins the
-part-control page; the inactive tab sits back on the charcoal chassis. Compact
-play controls share the page beside the tabs. Shorter control rows and fewer
-empty margins keep the full instrument visible without shrinking its labels.
-Each LFO places its source and timing controls above two matching target/depth
-pairs. Oscillator Wide sits below Pitch, beside the explicitly named Pitch env
-amount. Soft title
-bars follow the active part's colour, with the same silkscreen lettering at
-80% opacity. Shared headers use a quieter shade of their fixed panel colour.
-Space separates the modules without divider rules, tab stripes or decorative
-control ticks. The signal
+The SH-201-inspired panel combines blue charcoal, warm ivory part panels,
+hardware-style knobs and switches with clear on/off fills. Softly raised cards
+separate the modules, with smaller background islands connecting related
+controls: oscillator tuning, LFO timing and target/depth pairs, drive and effect
+sends, input filtering, reverb damping, MIDI reception and controller routing.
+Program, keyboard routing and system settings occupy distinct header cards.
+Larger knobs, visible position arcs and aligned value rows make adjustments
+easy to read. Selector captions line up with their field text; knob and fader
+captions stay centred on their axes. Menu choices spell out waveforms, filters
+and modulation destinations, while preserving the host's parameter values.
+The waveform shaping caption follows its function: Pulse width, Feedback or
+Spread. Long arpeggio choices have room to display in full.
+
+The active Upper/Lower tab joins the part-control page and carries an EDITING
+badge; the inactive tab sits back on the charcoal chassis. Compact play controls
+share the page beside the tabs. Each LFO places its source and timing controls
+above two matching target/depth pairs. Oscillator Wide sits below Pitch, beside
+Pitch env. Soft title bars follow the active part's colour, with crisp, centred
+lettering. Shared headers retain their fixed panel colours. The signal
 path reads left to right: OSC 1 + OSC 2 → MIX/MOD → FILTER → AMP, with envelopes
 and LFOs below. **TONE PLAY** sits beside the part selector above these panels,
 keeping portamento, glide time, voice mode, bend range and part octave with the
 part they edit. Terracotta identifies **UPPER** and teal identifies **LOWER**
-in the selected tab, panel headers and envelope sliders.
+in the selected tab, panel headers, knob arcs, envelope sliders and enabled
+switches. Keyboard focus outlines complement the pointer hover feedback.
 
 Shared controls keep fixed colours when the edit selection changes:
-**ARPEGGIO** has an olive panel, **EXT IN** has a muted plum panel, and the
-remaining shared sections use charcoal. These hues are distinct from the
+**ARPEGGIO** has a sage panel, **EXT IN** has a heather panel, **DELAY** uses
+slate blue and **REVERB** uses muted violet. The other shared sections use
+charcoal, with amber indicating enabled switches. These hues are distinct from the
 terracotta and teal part accents. Program selection, keyboard routing
 and system settings occupy the shared header. Arpeggio, external input,
 delay and reverb sit below the part panels;
@@ -168,7 +172,8 @@ controller destinations. The delay and reverb sends remain in each part's
 Their **Dly send** and **Rev send** labels distinguish them from the shared effects.
 In PATCH, the modulation target and part form a pair, separated from the level
 controls and the bend/expression destinations by wider gaps.
-The keyboard extends to the bottom edge of the panel.
+The keyboard extends to the bottom edge of the panel. The clearly named
+Key octave control uses large minus/plus buttons around its current value.
 
 **LOAD** and **SAVE** beside the preset selector open native file dialogs for
 `.septum` presets. Each file stores both parts, their on/off states, shared

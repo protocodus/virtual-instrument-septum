@@ -1158,6 +1158,68 @@ void testAllSharedControlsStayVisible()
             "shared controls remain attached to host automation across tab changes");
 }
 
+// Friendlier menu text must preserve the hardware/host choice indices,
+// including the different tone-filter and input-filter enumerations.
+void testReadableChoicesKeepTheirParameterMeaning()
+{
+    SeptumAudioProcessor processor;
+    std::unique_ptr<juce::AudioProcessorEditor> base (processor.createEditor());
+    auto* editor = dynamic_cast<SeptumAudioProcessorEditor*> (base.get());
+    expect (editor != nullptr, "choice mapping test has a Septum editor");
+    if (editor == nullptr)
+        return;
+
+    const auto check = [&] (const juce::String& componentId,
+                            const juce::String& parameterId,
+                            int index, const char* text)
+    {
+        auto* combo = dynamic_cast<juce::ComboBox*> (
+            findComponentById (editor->getPanel(), componentId));
+        auto* parameter = processor.parameters.getParameter (parameterId);
+        expect (combo != nullptr && parameter != nullptr,
+                "choice has a control and parameter: " + parameterId);
+        if (combo == nullptr || parameter == nullptr)
+            return;
+        const auto& range = processor.parameters.getParameterRange (parameterId);
+        parameter->setValueNotifyingHost (range.convertTo0to1 ((float) index));
+        expect (combo->getSelectedId() == index + 1 && combo->getText() == text,
+                "host choice has the correct visible meaning: " + parameterId);
+        parameter->setValueNotifyingHost (range.convertTo0to1 (
+            (float) ((index + 1) % combo->getNumItems())));
+        combo->setSelectedId (index + 1, juce::sendNotificationSync);
+        expect ((int) processor.parameters.getRawParameterValue (parameterId)->load() == index,
+                "visible choice writes the same host index: " + parameterId);
+    };
+
+    for (const bool upper : { true, false })
+    {
+        auto* tab = findButton (editor->getPanel(), upper ? "UPPER" : "LOWER");
+        if (tab != nullptr && tab->onClick)
+            tab->onClick();
+        const juce::String prefix = upper ? "up_" : "lo_";
+        check ("tone_osc1_wave", prefix + "osc1_wave", 2, "Pulse");
+        check ("tone_osc1_wave", prefix + "osc1_wave", 7, "Super saw");
+        check ("tone_osc2_wave", prefix + "osc2_wave", 6, "Feedback");
+        check ("tone_osc2_wave", prefix + "osc2_wave", 8, "Ext. input");
+        check ("tone_filter_type", prefix + "filter_type", 0, "Bypass");
+        check ("tone_filter_type", prefix + "filter_type", 1, "Low-pass");
+        check ("tone_filter_type", prefix + "filter_type", 3, "Band-pass");
+        check ("tone_lfo1_dest1", prefix + "lfo1_dest1", 1, "OSC 1 width");
+        check ("tone_lfo2_dest2", prefix + "lfo2_dest2", 0, "OSC 2 pitch");
+        check ("tone_mono_mode", prefix + "mono_mode", 1, "Solo legato");
+        check ("audio_filter_type", "audio_filter_type", 0, "Low-pass");
+        check ("audio_filter_type", "audio_filter_type", 3, "Notch");
+        check ("mod_assign", "mod_assign", 7, "Input filter");
+    }
+    for (const auto* id : { "system_clock_source", "system_remote_keyboard" })
+    {
+        auto* control = dynamic_cast<juce::SettableTooltipClient*> (
+            findComponentById (editor->getPanel(), id));
+        expect (control != nullptr && control->getTooltip().contains (":"),
+                juce::String ("mode explanations survive parameter binding: ") + id);
+    }
+}
+
 // A switch on the panel says which way it is thrown.
 void testTogglesShowTheirState()
 {
@@ -1410,8 +1472,10 @@ void testSystemCommonSettings()
     std::unique_ptr<juce::AudioProcessorEditor> editor (processor.createEditor());
     if (editor == nullptr)
         return;
-    auto* down = findButton (panelOf (*editor), "DOWN");
-    auto* up = findButton (panelOf (*editor), "UP");
+    auto* down = dynamic_cast<juce::Button*> (
+        findComponentById (panelOf (*editor), "keyboard_octave_down"));
+    auto* up = dynamic_cast<juce::Button*> (
+        findComponentById (panelOf (*editor), "keyboard_octave_up"));
     expect (down != nullptr && up != nullptr,
             "the panel carries the octave buttons");
     if (down == nullptr || up == nullptr)
@@ -1594,7 +1658,8 @@ void writeEditorReadabilityReport (SeptumAudioProcessorEditor& editor,
 {
     juce::String report = "text\tcomponent\tx\ty\twidth\theight\tfont_px"
                          "\ttext_width\tavailable_width\tfit_ratio\tinside_editor\n";
-    int labels = 0, condensed = 0, clipped = 0;
+    int labels = 0, condensed = 0, clipped = 0, condensedChoices = 0;
+    juce::String choiceReport = "component\tchoice\ttext_width\tavailable_width\n";
     float smallestFont = std::numeric_limits<float>::max();
     const auto clean = [] (juce::String value)
     {
@@ -1605,6 +1670,21 @@ void writeEditorReadabilityReport (SeptumAudioProcessorEditor& editor,
     {
         if (! component.isVisible())
             return;
+        if (auto* combo = dynamic_cast<juce::ComboBox*> (&component))
+        {
+            const auto font = combo->getLookAndFeel().getComboBoxFont (*combo);
+            const auto textWidth = (float) combo->getWidth() - 27.0f;
+            for (int index = 0; index < combo->getNumItems(); ++index)
+            {
+                const auto text = combo->getItemText (index);
+                const auto naturalWidth = juce::GlyphArrangement::getStringWidth (font, text);
+                choiceReport << combo->getComponentID() << '\t' << clean (text) << '\t'
+                             << juce::String (naturalWidth, 2) << '\t'
+                             << juce::String (textWidth, 2) << '\n';
+                if (naturalWidth > textWidth + 0.5f)
+                    ++condensedChoices;
+            }
+        }
         if (auto* label = dynamic_cast<juce::Label*> (&component))
         {
             const auto text = label->getText();
@@ -1655,10 +1735,13 @@ void writeEditorReadabilityReport (SeptumAudioProcessorEditor& editor,
     visit (editor.getPanel());
     expect (file.replaceWithText (report),
             "writes label readability report " + file.getFullPathName());
+    expect (file.getSiblingFile (file.getFileNameWithoutExtension() + "-choices.tsv")
+                .replaceWithText (choiceReport), "writes all selector-option widths");
     std::printf ("Label readability: %d labels, %d require condensation, "
                  "%d outside editor, minimum font %.2f px (%s)\n",
                  labels, condensed, clipped, smallestFont,
                  file.getFileName().toRawUTF8());
+    std::printf ("Selector readability: %d options require condensation\n", condensedChoices);
 }
 
 // Fast, repeatable visual QA of the actual JUCE editor. This path skips the
@@ -1751,6 +1834,37 @@ void renderEditorSnapshots (const juce::File& directory)
     set ("split_point", 60.0f);
     set ("lower_enabled", 1.0f);
     snapshot ("lower-editing-split", design);
+
+    // Exercise long choices, signed endpoints, and enabled effects in the
+    // same renderer. An INIT-only image misses crowded labels and ON states.
+    if (auto* upper = findButton (editor->getPanel(), "UPPER"))
+        if (upper->onClick)
+            upper->onClick();
+    set ("up_osc1_wave", 7.0f);
+    set ("up_osc2_wave", 6.0f);
+    set ("up_osc1_pitch", -36.0f);
+    set ("up_osc2_detune", -50.0f);
+    set ("up_mono_mode", 1.0f);
+    set ("up_lfo1_shape", 4.0f);
+    set ("up_lfo1_dest1", 1.0f);
+    set ("up_lfo1_depth1", -63.0f);
+    set ("up_lfo2_dest2", 1.0f);
+    set ("up_lfo1_sync", 1.0f);
+    set ("up_overdrive", 1.0f);
+    set ("up_portamento", 1.0f);
+    set ("delay_on", 1.0f);
+    set ("reverb_on", 1.0f);
+    set ("audio_filter_on", 1.0f);
+    set ("audio_filter_type", 3.0f);
+    set ("arp_on", 1.0f);
+    set ("arp_style", 4.0f); // Sixteenth Pulse is the longest style name.
+    set ("arp_motif", 7.0f); // UP&DN(L&H) is the longest motif name.
+    set ("system_patch_remain", 1.0f);
+    set ("reverb_hf_damp_freq", 5.0f);
+    set ("reverb_hf_damp_gain", -36.0f);
+    set ("system_octave", 1.0f);
+    snapshot ("upper-effects-and-long-values", design);
+    snapshot ("upper-effects-and-long-values-compact", compact);
     base.reset();
     processor.releaseResources();
 }
@@ -4250,6 +4364,7 @@ int main (int argc, char* argv[])
     testOscillatorPitchControlsRemainIndependent();
     testThePanelsInvariantsAreCheckedBySomethingThatRuns();
     testAllSharedControlsStayVisible();
+    testReadableChoicesKeepTheirParameterMeaning();
     testTogglesShowTheirState();
     testDBeamBytesAreStoredAndInert();
     testLeverModulationMovesByTheDrag();

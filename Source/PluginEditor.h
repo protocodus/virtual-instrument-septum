@@ -63,7 +63,7 @@ public:
     [[nodiscard]] float getModulation() const noexcept { return mod; }
 
 private:
-    static constexpr int captionHeight = 16;
+    static constexpr int captionHeight = 18;
 
     void applyFromEvent (const juce::MouseEvent&);
     [[nodiscard]] juce::Rectangle<float> leverBounds() const;
@@ -197,6 +197,7 @@ private:
         bool inHeader { false };
         Style style { Style::Knob };
         juce::String unit;        // printed after the value, e.g. "st", "%"
+        juce::Rectangle<int> cellBounds; // caption, control and value form one visual unit
         // Bipolar direction is included in the readable value below the knob,
         // e.g. OSC1 63 or Center, instead of miniature labels on the rim.
         juce::String leftEnd, rightEnd;
@@ -272,6 +273,7 @@ private:
     // canvas transform.
     void layoutPanel();
     void paintPanel (juce::Graphics&);
+    void paintControlGroups (juce::Graphics&, const Section&);
     void setToneParameter (const char* suffix, float natural);
     [[nodiscard]] float getToneParameter (const char* suffix) const;
     // What `setToneParameter` would actually store for this value. Snapping is
@@ -313,7 +315,7 @@ private:
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment>
         masterAttachment;
     juce::Label masterLabel, masterValueLabel, octLabel, octValueLabel, voiceLabel;
-    juce::TextButton octDownButton { "DOWN" }, octUpButton { "UP" };
+    juce::TextButton octDownButton { "-" }, octUpButton { "+" };
     Control* tempoControl { nullptr };
     Control* clockSourceControl { nullptr };
     Control* systemTempoControl { nullptr };
