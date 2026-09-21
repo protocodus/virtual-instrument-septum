@@ -134,7 +134,7 @@ render code. The open questions are listed under [Known gaps](#known-gaps).
 
 The SH-201-inspired panel combines blue charcoal, warm ivory part panels,
 hardware-style knobs and switches with clear on/off fills. Softly raised cards
-separate the modules, with smaller background islands connecting related
+separate the modules, with smaller, darker background islands connecting related
 controls: oscillator tuning, LFO timing and target/depth pairs, drive and effect
 sends, input filtering, reverb damping, MIDI reception and controller routing.
 Program, keyboard routing and system settings occupy distinct header cards.

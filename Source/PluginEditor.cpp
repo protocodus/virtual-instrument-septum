@@ -2136,7 +2136,6 @@ void SeptumAudioProcessorEditor::paintControlGroups (juce::Graphics& g,
                                                       const Section& section)
 {
     const bool light = section.scope == Scope::PerTone;
-    const auto accent = editingUpper ? colours::toneUpper : colours::toneLower;
     const auto group = [&] (std::initializer_list<const char*> suffixes)
     {
         juce::Rectangle<int> bounds;
@@ -2147,8 +2146,9 @@ void SeptumAudioProcessorEditor::paintControlGroups (juce::Graphics& g,
         if (bounds.isEmpty())
             return;
         const auto area = bounds.toFloat().reduced (3.0f, -3.0f);
-        g.setColour (light ? colours::paper.interpolatedWith (accent, 0.035f)
-                           : juce::Colours::white.withAlpha (0.045f));
+        // Darken the actual surface beneath each group, including the
+        // Tone Play tray and every shared panel colour.
+        g.setColour (juce::Colours::black.withAlpha (light ? 0.065f : 0.16f));
         g.fillRoundedRectangle (area, 7.0f);
     };
 
