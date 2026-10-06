@@ -13,6 +13,7 @@ import sys
 import tempfile
 import unittest
 import zipfile
+from ReleaseMetadataTests import write_fixture
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -81,6 +82,7 @@ class PackagingTests(unittest.TestCase):
         (self.project / 'scripts').mkdir(parents=True)
         self.script = self.project / 'scripts/sign-and-package-macos.sh'
         shutil.copy2(ROOT / 'scripts/sign-and-package-macos.sh', self.script)
+        shutil.copy2(ROOT / 'scripts/release_metadata.py', self.project / 'scripts/release_metadata.py')
         (self.project / 'ThirdParty').mkdir()
         for notice in ('LICENSE', 'THIRD_PARTY_NOTICES.md', 'ThirdParty/JUCE-LICENSE.md',
                        'ThirdParty/JUCE-DEPENDENCY-NOTICES.txt'):
@@ -94,12 +96,14 @@ class PackagingTests(unittest.TestCase):
             (bundle / 'MacOS/Septum').write_bytes(b'fixture')
             (bundle / 'Info.plist').write_bytes(plistlib.dumps({
                 'CFBundleShortVersionString': '1.2.3', 'CFBundlePackageType': package}))
+        write_fixture(self.build, 'macOS', '1.2.3', '42')
         self.staging = self.build / 'package-root'
         self.staging.mkdir()
         (self.staging / 'prior-staging').write_text('keep before preflight')
-        self.dist = self.build / 'dist'
-        self.dist.mkdir()
-        self.old = self.dist / 'Septum-old-macOS-universal.zip'
+        self.dist = self.project / 'dist/1.2.3/build.42/macOS-universal'
+        self.dist.mkdir(parents=True)
+        self.old = self.project / 'dist/1.2.3/build.41/macOS-universal/Septum-1.2.3-build.41-macOS-universal.zip'
+        self.old.parent.mkdir(parents=True)
         self.old.write_bytes(b'last good release')
         self.bin = self.path / 'bin'
         self.bin.mkdir()
@@ -113,7 +117,7 @@ class PackagingTests(unittest.TestCase):
                     'COMMERCIAL_RELEASE': '0', 'CONFIG': 'Release', 'VERSION': '',
                     'PLIST_BUDDY': str(self.bin / 'PlistBuddy'), 'MOCK_LOG': str(self.log),
                     'PATH': os.pathsep.join((str(self.bin), str(Path(sys.executable).parent), os.environ['PATH']))}
-        for variable in ('MOCK_NOTARY_STATUS', 'MOCK_REJECT_PKG', 'MOCK_STAPLE_FAIL', 'MOCK_SIGN_FAIL'):
+        for variable in ('MOCK_NOTARY_STATUS', 'MOCK_REJECT_PKG', 'MOCK_STAPLE_FAIL', 'MOCK_SIGN_FAIL', 'DIST_ROOT', 'GITHUB_RUN_ID', 'GITHUB_RUN_ATTEMPT'):
             self.env.pop(variable, None)
 
     def run_script(self, **changes):
@@ -149,7 +153,7 @@ class PackagingTests(unittest.TestCase):
     def test_adhoc_ci_packaging_remains_available(self):
         result = self.run_script()
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-        self.assertFalse(self.old.exists())
+        self.assertTrue(self.old.exists())
         self.assertEqual(len(list(self.dist.glob('*.zip'))), 1)
         self.assertEqual(len(list(self.dist.glob('*.pkg'))), 1)
         self.assertFalse(any(command[:2] == ['xcrun', 'notarytool'] for command in self.commands()))
@@ -181,7 +185,7 @@ class PackagingTests(unittest.TestCase):
                 self.assertEqual(result.returncode, 1)
                 self.assertIn('did not accept', result.stderr)
                 self.assertEqual(self.old.read_bytes(), b'last good release')
-                self.assertEqual(len(list(self.dist.iterdir())), 1)
+                self.assertEqual(len(list(self.old.parent.iterdir())), 1)
 
     def test_late_notarization_signing_and_stapling_failures_preserve_prior_release(self):
         for failure in ('MOCK_REJECT_PKG', 'MOCK_SIGN_FAIL', 'MOCK_STAPLE_FAIL'):
@@ -189,7 +193,7 @@ class PackagingTests(unittest.TestCase):
                 result = self.commercial(**{failure: '1'})
                 self.assertNotEqual(result.returncode, 0)
                 self.assertEqual(self.old.read_bytes(), b'last good release')
-                self.assertEqual(len(list(self.dist.iterdir())), 1)
+                self.assertEqual(len(list(self.old.parent.iterdir())), 1)
                 self.assertFalse(list(self.build.glob('package-release.*')))
 
 

@@ -6,13 +6,13 @@ PROJECT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 BUILD_DIR="${BUILD_DIR:-${PROJECT_DIR}/build-macos}"
 CONFIG="${CONFIG:-Release}"
 VERSION_OVERRIDE="${VERSION:-}"
-BUILD_NUMBER="${BUILD_NUMBER:-${GITHUB_RUN_NUMBER:-}}"
 APP_SIGN_IDENTITY="${APP_SIGN_IDENTITY:--}"
 INSTALLER_SIGN_IDENTITY="${INSTALLER_SIGN_IDENTITY:-}"
 NOTARY_PROFILE="${NOTARY_PROFILE:-}"
 COMMERCIAL_RELEASE="${COMMERCIAL_RELEASE:-0}"
 ARTIFACT_DIR="${BUILD_DIR}/Septum_artefacts/${CONFIG}"
-DIST_DIR="${BUILD_DIR}/dist"
+RELEASE_METADATA="${SCRIPT_DIR}/release_metadata.py"
+BUILD_NUMBER="$(python3 "${RELEASE_METADATA}" --build-dir "${BUILD_DIR}" --field build_number)"
 PACKAGE_ROOT="${BUILD_DIR}/package-root"
 
 if [[ "$(uname -s)" != "Darwin" ]]; then
@@ -20,10 +20,7 @@ if [[ "$(uname -s)" != "Darwin" ]]; then
     exit 1
 fi
 
-if [[ ! "${BUILD_NUMBER}" =~ ^[0-9]+$ ]]; then
-    echo "error: set BUILD_NUMBER to a numeric build number (or run in GitHub Actions)" >&2
-    exit 1
-fi
+
 
 # Fail before touching prior staging or release artifacts. CI can continue
 # making ad-hoc packages, while commercial runs must complete notarization.
@@ -127,6 +124,7 @@ if [[ "${APP_ARCHS}" == *arm64* && "${APP_ARCHS}" == *x86_64* ]]; then
     ARTIFACT_ARCH="universal"
 else
     ARTIFACT_ARCH="${APP_ARCHS// /-}"
+    [[ "${ARTIFACT_ARCH}" != "x86_64" ]] || ARTIFACT_ARCH="x64"
 fi
 
 if [[ -n "${NOTARY_PROFILE}" ]]; then
@@ -139,6 +137,10 @@ if [[ -n "${NOTARY_PROFILE}" ]]; then
         fi
     done
 fi
+
+python3 "${RELEASE_METADATA}" --build-dir "${BUILD_DIR}" --config "${CONFIG}" \
+    --platform macOS --arch "${ARTIFACT_ARCH}" --verify --require-empty >/dev/null
+DIST_DIR="$(python3 "${RELEASE_METADATA}" --build-dir "${BUILD_DIR}" --platform macOS --arch "${ARTIFACT_ARCH}" --dist)"
 
 case "${PACKAGE_ROOT}" in
     "${BUILD_DIR}"/*) ;;
@@ -199,8 +201,8 @@ sign_bundle "${PACKAGE_ROOT}/Applications/Septum.app"
 # must leave the last successful distributables intact.
 RELEASE_WORK_DIR="$(mktemp -d "${BUILD_DIR}/package-release.XXXXXX")"
 trap 'rm -rf "${RELEASE_WORK_DIR}"' EXIT
-ZIP_NAME="Septum-${VERSION}-build-${BUILD_NUMBER}-macOS-${ARTIFACT_ARCH}.zip"
-PKG_NAME="Septum-${VERSION}-build-${BUILD_NUMBER}-macOS-${ARTIFACT_ARCH}.pkg"
+ZIP_NAME="Septum-${VERSION}-build.${BUILD_NUMBER}-macOS-${ARTIFACT_ARCH}.zip"
+PKG_NAME="Septum-${VERSION}-build.${BUILD_NUMBER}-macOS-${ARTIFACT_ARCH}.pkg"
 ZIP_PATH="${RELEASE_WORK_DIR}/${ZIP_NAME}"
 PKG_UNSIGNED="${RELEASE_WORK_DIR}/unsigned.pkg"
 PKG_FINAL="${RELEASE_WORK_DIR}/${PKG_NAME}"
@@ -280,15 +282,12 @@ fi
 # Moves stay on the build filesystem so no partial archive is copied to dist.
 mv -f "${ZIP_PATH}" "${DIST_DIR}/${ZIP_NAME}"
 mv -f "${PKG_FINAL}" "${DIST_DIR}/${PKG_NAME}"
-for old in "${DIST_DIR}/Septum-"*-macOS-*.zip \
-           "${DIST_DIR}/Septum-"*-macOS-*.pkg \
-           "${DIST_DIR}/Septum-"*-unsigned.pkg; do
-    if [[ "${old}" != "${DIST_DIR}/${ZIP_NAME}" && "${old}" != "${DIST_DIR}/${PKG_NAME}" ]]; then
-        rm -f "${old}"
-    fi
-done
+
 
 echo
 echo "Packaging complete:"
 echo "  ${DIST_DIR}/${ZIP_NAME}"
 echo "  ${DIST_DIR}/${PKG_NAME}"
+
+python3 "${RELEASE_METADATA}" --build-dir "${BUILD_DIR}" --config "${CONFIG}" \
+    --platform macOS --arch "${ARTIFACT_ARCH}" --finalize "${DIST_DIR}/${PKG_NAME}" "${DIST_DIR}/${ZIP_NAME}"

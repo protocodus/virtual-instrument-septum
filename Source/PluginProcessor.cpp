@@ -3126,7 +3126,12 @@ juce::AudioProcessorEditor* SeptumAudioProcessor::createEditor()
 }
 
 // This creates new instances of the plugin.
+extern "C" const char* protocodusBuildIdentity();
+
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
+    // Keep the exact configured identity in each linked wrapper for packaging.
+    static const char* volatile compiledIdentity = protocodusBuildIdentity();
+    (void) compiledIdentity;
     return new SeptumAudioProcessor();
 }

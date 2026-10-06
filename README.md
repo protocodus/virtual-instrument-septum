@@ -33,9 +33,9 @@ artifacts are retained for seven days.
 
 | Platform | Artifact | Distributable files |
 | --- | --- | --- |
-| Linux x64 | `ci-linux-septum-build-<build>` | `Septum-build-<build>-Linux-x64.tar.gz` — VST3 and standalone |
-| Windows x64 | `ci-windows-septum-build-<build>` | `Septum-build-<build>-Windows-x64.zip` — VST3 and standalone |
-| macOS | `ci-macos-septum-build-<build>` | `Septum-<version>-build-<build>-macOS-<arch>.pkg` and `.zip` — VST3, Audio Unit and standalone |
+| Linux x64 | `Septum-<version>-build.<build>-Linux-x64` | `Septum-<version>-build.<build>-Linux-x64.tar.gz` — VST3 and standalone |
+| Windows x64 | `Septum-<version>-build.<build>-Windows-x64` | `Septum-<version>-build.<build>-Windows-x64.zip` — VST3 and standalone |
+| macOS | `Septum-<version>-build.<build>-macOS-<arch>` | `Septum-<version>-build.<build>-macOS-<arch>.pkg` and `.zip` — VST3, Audio Unit and standalone |
 
 `<build>` is the CI run number, also included in every package filename.
 macOS CI packages target the runner's native architecture, shown in the
@@ -707,16 +707,53 @@ To package a local macOS build as a distributable installer and ZIP, supply a
 numeric build number (CI uses its run number automatically):
 
 ```bash
+BUILD_NUMBER=42 ./scripts/build-macos.sh
 BUILD_NUMBER=42 ./scripts/sign-and-package-macos.sh
 ```
 
-The packages are written to `build-macos/dist/`, for example
-`Septum-0.9.0-build-42-macOS-universal.pkg` and the matching `.zip`.
+The packages are written to `dist/0.9.0/build.42/macOS-universal/`, for example
+`Septum-0.9.0-build.42-macOS-universal.pkg` and the matching `.zip`.
 
 The plug-in declares a stereo input bus for the modelled instrument's INPUT
 jacks. It is disabled by default, so a host that gives a synthesizer no input
 loads Septum unchanged; enable it to feed the AUDIO FILTER and the EXT-IN
 waveform.
+
+### Versioned distributable builds
+
+The compiled version and build number determine every distributable name:
+`Septum-<version>-build.<number>-<Platform>-<arch>`. The local build number
+is `1` by default. Set `-DSEPTUM_BUILD_NUMBER=42` when configuring another
+build, or supply `BUILD_NUMBER` on the first configure. CI uses the positive
+`GITHUB_RUN_ID.GITHUB_RUN_ATTEMPT` pair. The value is frozen in the CMake cache,
+JUCE bundle build version, and an identity compiled into every plugin. Packaging
+reads `build-release.json`, verifies that identity and the binary architecture,
+and rejects a mismatched build/version override; changing a label requires a rebuild.
+
+Build and package local macOS build 1 without rendering demos:
+
+```sh
+cmake -S . -B build-macos -DCMAKE_BUILD_TYPE=Release -DSEPTUM_BUILD_NUMBER=1
+cmake --build build-macos --config Release --parallel 3 --target Septum_VST3 Septum_AU Septum_Standalone
+BUILD_DIR=build-macos ./scripts/sign-and-package-macos.sh
+```
+
+Outputs are kept in `dist/<version>/build.<number>/<Platform>-<arch>/`. For the
+current universal macOS build 1, this is `dist/0.9.0/build.1/macOS-universal/`,
+containing `Septum-0.9.0-build.1-macOS-universal.pkg`, the matching `.zip`,
+`.manifest.json`, and `.sha256` checksum file. The manifest records the source
+revision, dirty-source flag, compiled identity, architectures, and hashes.
+Older versions/builds are retained; packaging refuses a populated destination, so a new package requires an unused build number. `DIST_ROOT` can override the distribution root.
+A linked Git worktree resolves `dist` beside the primary checkout (including the
+project's relative directory in a monorepo); a source export uses its own `dist`.
+
+Linux: `BUILD_DIR=build-linux bash scripts/package-linux.sh`. Windows:
+`python scripts/package-windows.py --build-dir build-win`. Both consume an already
+compiled Release build and use the same layout and identity checks. CI uploads
+only the selected version/build/platform directory and names its artifact with
+that version and build. The `*_artefacts` directories are compiler intermediates;
+installed plugin filenames and plugin IDs stay unchanged so existing sessions
+continue to resolve them.
 
 ## Licensing
 

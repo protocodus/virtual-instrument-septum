@@ -24,6 +24,8 @@ endif()
 # Standalone) compile C/Objective-C sources with non-Xcode generators too.
 project(Septum VERSION 0.9.0 LANGUAGES C CXX)
 
+include(cmake/BuildIdentity.cmake)
+
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -109,6 +111,7 @@ if(SEPTUM_BUILD_PLUGIN)
 
     juce_add_plugin(Septum
         VERSION ${PROJECT_VERSION}
+        BUILD_VERSION ${PROTOCODUS_BUILD_NUMBER}
         COMPANY_NAME "Protocodus"
         COMPANY_WEBSITE "https://protocodus.cz"
         COMPANY_EMAIL "protocodus@proton.me"
@@ -130,6 +133,7 @@ if(SEPTUM_BUILD_PLUGIN)
         COPY_PLUGIN_AFTER_BUILD FALSE)
 
     juce_generate_juce_header(Septum)
+    target_sources(Septum PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/BuildIdentity.cpp")
 
     target_sources(Septum PRIVATE
         Source/PluginProcessor.cpp
@@ -476,5 +480,13 @@ if(BUILD_TESTING)
         add_test(NAME Septum.PluginProcessor
                  COMMAND SeptumPluginProcessorTests)
         set_tests_properties(Septum.PluginProcessor PROPERTIES TIMEOUT 120)
+    endif()
+endif()
+
+if(BUILD_TESTING)
+    find_package(Python3 QUIET COMPONENTS Interpreter)
+    if(Python3_Interpreter_FOUND)
+        add_test(NAME Septum.ReleaseMetadata
+            COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/Tests/ReleaseMetadataTests.py")
     endif()
 endif()

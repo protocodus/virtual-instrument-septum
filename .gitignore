@@ -29,3 +29,6 @@ DerivedData/
 
 # Audio is generated locally and is not stored in this repository
 *.[wW][aA][vV]
+
+# Versioned distributable packages
+/dist/

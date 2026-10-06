@@ -10,7 +10,8 @@ permissions:
   contents: read
 
 env:
-  BUILD_NUMBER: ${{ github.run_number }}
+  DIST_ROOT: ${{ github.workspace }}/dist
+  BUILD_NUMBER: ${{ github.run_id }}.${{ github.run_attempt }}
 
 # A newer push to the same branch/PR cancels the older, still-running check.
 concurrency:
@@ -78,33 +79,21 @@ jobs:
             --target "Septum_VST3" "Septum_Standalone"
 
       - name: Package Linux VST3 and standalone
+        id: release
+        shell: bash
         run: |
           set -euo pipefail
-          artefacts="build-dsp/Septum_artefacts/Release"
-          test -d "$artefacts/VST3/Septum.vst3"
-          test -x "$artefacts/Standalone/Septum"
-          dist="build-dsp/dist"
-          mkdir -p "$dist"
-          archive="$dist/Septum-build-${BUILD_NUMBER}-Linux-x64.tar.gz"
-          # Licence and notice files ship inside the binary archive when the
-          # instrument carries them (the MIT licence requires the notice to
-          # accompany binaries).
-          contents=("VST3/Septum.vst3" "Standalone/Septum")
-          for notice in LICENSE THIRD_PARTY_NOTICES.md ThirdParty/JUCE-LICENSE.md ThirdParty/JUCE-DEPENDENCY-NOTICES.txt; do
-            if [[ -f "$notice" ]]; then
-              cp "$notice" "$artefacts/$(basename "$notice")"
-              contents+=("$(basename "$notice")")
-            fi
-          done
-          tar -czf "$archive" -C "$artefacts" "${contents[@]}"
-          test -s "$archive"
-          tar -tzf "$archive" >/dev/null
+          BUILD_DIR=build-dsp bash scripts/package-linux.sh
+          arch="x64"
+          echo "version=$(python scripts/release_metadata.py --build-dir build-dsp --field version)" >> "$GITHUB_OUTPUT"
+          echo "arch=$arch" >> "$GITHUB_OUTPUT"
+          echo "dist=$(python scripts/release_metadata.py --build-dir build-dsp --platform Linux --arch "$arch" --dist)" >> "$GITHUB_OUTPUT"
 
       - name: Upload Linux package
         uses: actions/upload-artifact@v4
         with:
-          name: ci-linux-septum-build-${{ github.run_number }}
-          path: build-dsp/dist/Septum-build-${{ github.run_number }}-Linux-x64.tar.gz
+          name: Septum-${{ steps.release.outputs.version }}-build.${{ env.BUILD_NUMBER }}-Linux-${{ steps.release.outputs.arch }}
+          path: ${{ steps.release.outputs.dist }}/*
           if-no-files-found: error
           retention-days: 7
 
@@ -148,15 +137,24 @@ jobs:
           echo "Rendered $screenshot ($(wc -c < "$screenshot") bytes)."
 
       - name: Package macOS VST3, Audio Unit and standalone
-        run: ./scripts/sign-and-package-macos.sh
+        id: release
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./scripts/sign-and-package-macos.sh
+          archs="$(lipo -archs build-macos/Septum_artefacts/Release/VST3/Septum.vst3/Contents/MacOS/Septum)"
+          arch="x64"
+          if [[ "$archs" == *arm64* && "$archs" == *x86_64* ]]; then arch="universal"
+          elif [[ "$archs" == *arm64* ]]; then arch="arm64"; fi
+          echo "version=$(python scripts/release_metadata.py --build-dir build-macos --field version)" >> "$GITHUB_OUTPUT"
+          echo "arch=$arch" >> "$GITHUB_OUTPUT"
+          echo "dist=$(python scripts/release_metadata.py --build-dir build-macos --platform macOS --arch "$arch" --dist)" >> "$GITHUB_OUTPUT"
 
       - name: Upload macOS packages
         uses: actions/upload-artifact@v4
         with:
-          name: ci-macos-septum-build-${{ github.run_number }}
-          path: |
-            build-macos/dist/Septum-*-build-${{ github.run_number }}-macOS-*.zip
-            build-macos/dist/Septum-*-build-${{ github.run_number }}-macOS-*.pkg
+          name: Septum-${{ steps.release.outputs.version }}-build.${{ env.BUILD_NUMBER }}-macOS-${{ steps.release.outputs.arch }}
+          path: ${{ steps.release.outputs.dist }}/*
           if-no-files-found: error
           retention-days: 7
 
@@ -186,40 +184,20 @@ jobs:
           cmake --build "build-win" --config Release --parallel --target "Septum_VST3" "Septum_Standalone"
 
       - name: Package Windows VST3 and standalone
-        shell: pwsh
+        id: release
+        shell: bash
         run: |
-          $artefacts = "build-win/Septum_artefacts/Release"
-          $vst3 = Join-Path $artefacts "VST3/Septum.vst3"
-          $standalone = Join-Path $artefacts "Standalone/Septum.exe"
-          if (-not (Test-Path -LiteralPath $vst3 -PathType Container)) {
-            throw "expected VST3 bundle at $vst3"
-          }
-          if (-not (Test-Path -LiteralPath $standalone -PathType Leaf)) {
-            throw "expected standalone executable at $standalone"
-          }
-          $dist = "build-win/dist"
-          New-Item -ItemType Directory -Force -Path $dist | Out-Null
-          $zip = Join-Path $dist "Septum-build-${env:BUILD_NUMBER}-Windows-x64.zip"
-          # Licence and notice files ship inside the binary archive when the
-          # instrument carries them (the MIT licence requires the notice to
-          # accompany binaries).
-          $contents = @((Join-Path $artefacts "VST3"), (Join-Path $artefacts "Standalone"))
-          foreach ($notice in @("LICENSE", "THIRD_PARTY_NOTICES.md", "ThirdParty/JUCE-LICENSE.md", "ThirdParty/JUCE-DEPENDENCY-NOTICES.txt")) {
-            $source = Join-Path "." $notice
-            if (Test-Path -LiteralPath $source -PathType Leaf) {
-              $contents += $source
-            }
-          }
-          Compress-Archive -LiteralPath $contents -DestinationPath $zip
-          if (-not (Test-Path -LiteralPath $zip -PathType Leaf) -or
-              (Get-Item -LiteralPath $zip).Length -eq 0) {
-            throw "expected package at $zip"
-          }
+          set -euo pipefail
+          python scripts/package-windows.py --build-dir build-win
+          arch="x64"
+          echo "version=$(python scripts/release_metadata.py --build-dir build-win --field version)" >> "$GITHUB_OUTPUT"
+          echo "arch=$arch" >> "$GITHUB_OUTPUT"
+          echo "dist=$(python scripts/release_metadata.py --build-dir build-win --platform Windows --arch "$arch" --dist)" >> "$GITHUB_OUTPUT"
 
       - name: Upload Windows package
         uses: actions/upload-artifact@v4
         with:
-          name: ci-windows-septum-build-${{ github.run_number }}
-          path: build-win/dist/Septum-build-${{ github.run_number }}-Windows-x64.zip
+          name: Septum-${{ steps.release.outputs.version }}-build.${{ env.BUILD_NUMBER }}-Windows-${{ steps.release.outputs.arch }}
+          path: ${{ steps.release.outputs.dist }}/*
           if-no-files-found: error
           retention-days: 7
