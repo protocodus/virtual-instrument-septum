@@ -37,7 +37,8 @@ artifacts are retained for seven days.
 | Windows x64 | `Septum-<version>-build.<build>-Windows-x64` | `Septum-<version>-build.<build>-Windows-x64.zip` — VST3 and standalone |
 | macOS | `Septum-<version>-build.<build>-macOS-<arch>` | `Septum-<version>-build.<build>-macOS-<arch>.pkg` and `.zip` — VST3, Audio Unit and standalone |
 
-`<build>` is the CI run number, also included in every package filename.
+`<build>` is the CI run ID and attempt (`GITHUB_RUN_ID.GITHUB_RUN_ATTEMPT`),
+also compiled into each product and included in every package filename.
 macOS CI packages target the runner's native architecture, shown in the
 filename; they are ad-hoc signed and are not notarized.
 
@@ -703,12 +704,13 @@ universal binary and renders the committed editor screenshot while the suite
 runs. VST3 + Standalone also build on Linux and Windows; CI exercises all
 three platforms.
 
-To package a local macOS build as a distributable installer and ZIP, supply a
-numeric build number (CI uses its run number automatically):
+To package local macOS build 42, configure that number before compiling
+(the same command also updates an existing CMake cache):
 
 ```bash
-BUILD_NUMBER=42 ./scripts/build-macos.sh
-BUILD_NUMBER=42 ./scripts/sign-and-package-macos.sh
+cmake -S . -B build-macos -DCMAKE_BUILD_TYPE=Release -DSEPTUM_BUILD_NUMBER=42
+cmake --build build-macos --config Release --parallel 3 --target Septum_VST3 Septum_AU Septum_Standalone
+BUILD_DIR=build-macos ./scripts/sign-and-package-macos.sh
 ```
 
 The packages are written to `dist/0.9.0/build.42/macOS-universal/`, for example
