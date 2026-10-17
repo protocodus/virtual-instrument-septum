@@ -205,7 +205,7 @@ def main():
     syx.write_bytes(encode_syx(blocks))
     if name != "Ambient SQR" or sha(syx) != SYX_SHA:
         raise ValueError("Published patch changed")
-    inventory = ROOT/"Docs/fidelity/source-audits/reverb-reference-openings-2026-09-15.json"
+    inventory = ROOT/"Docs/research/fidelity/source-audits/reverb-reference-openings-2026-09-15.json"
     raw = next(r for r in json.loads(inventory.read_text())["references"] if r["id"] == "lead-07")
     if raw["patch_sha256"] != SYX_SHA:
         raise ValueError("Native control inventory does not match patch")
@@ -240,7 +240,7 @@ def main():
         for w in result["windows"]:
             row = w["harmonics"][HARMONICS.index(h)]
             row["level_relative_to_first_window_db"] = ratio_db(row["band_power"], baseline)
-    canonical = ROOT/"Docs/fidelity/reconstructions/reverb-validation/ambient-sqr.json"
+    canonical = ROOT/"Docs/research/fidelity/reconstructions/reverb-validation/ambient-sqr.json"
     proposal = json.loads(canonical.read_text())
     if (proposal["source_start_seconds"] != 0 or proposal["calibration_end_seconds"] != .405 or proposal["duration_seconds"] != .775
             or proposal["original_mp3_sha256"] != MP3_SHA or proposal["unmodified_sysex_sha256"] != SYX_SHA

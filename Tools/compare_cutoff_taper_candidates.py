@@ -71,7 +71,7 @@ def main():
         source_hashes[name] = sha(path)
     for name in ("compare_cutoff_taper_candidates.py","compare_envelope_preset_holdouts.py"):
         shutil.copyfile(ROOT/"Tools"/name, out/name)
-    verification = ROOT/"Docs/fidelity/source-audits/final-production-verification-2026-09-15.json"
+    verification = ROOT/"Docs/research/fidelity/source-audits/final-production-verification-2026-09-15.json"
     guard = {r["id"]:r for r in json.loads(verification.read_text())["cases"]}
     if len(guard) != 10:
         raise ValueError("Unexpected production identity case count")

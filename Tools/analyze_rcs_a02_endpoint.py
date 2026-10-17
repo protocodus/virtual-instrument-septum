@@ -67,7 +67,7 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
-    audit_path = root / "Docs/fidelity/source-audits/rcs-a02-hardware-observations-2026-09-20.json"
+    audit_path = root / "Docs/research/fidelity/source-audits/rcs-a02-hardware-observations-2026-09-20.json"
     audit = json.loads(audit_path.read_text())
     timing_path = root / audit["sources"]["parent_cross_platform_timing"]["path"]
     if digest(timing_path) != audit["sources"]["parent_cross_platform_timing"]["sha256"]:

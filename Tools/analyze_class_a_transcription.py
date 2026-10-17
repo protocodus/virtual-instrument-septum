@@ -51,9 +51,9 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=False)
-    case_path = ROOT / 'Docs/fidelity/reconstructions/expanded/class-a.json'
+    case_path = ROOT / 'Docs/research/fidelity/reconstructions/expanded/class-a.json'
     case = json.loads(case_path.read_text())
-    catalog = json.loads((ROOT / 'Docs/fidelity/hardware-reference-catalog.json').read_text())
+    catalog = json.loads((ROOT / 'Docs/research/fidelity/hardware-reference-catalog.json').read_text())
     reference = next(row for row in catalog['recordings'] if row['id'] == 'lead-01')
     bank = next(row for row in catalog['banks'] if row['id'] == 'lead')
     audio_path = args.sources / reference['local_filename']

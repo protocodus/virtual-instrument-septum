@@ -189,7 +189,7 @@ def main():
     a=p.parse_args();protocol=json.loads(a.protocol.read_text())
     assert sha(a.protocol)=="ccf98d8bb77949c76906da94ecb134d4da032c6b6d83c08276d475148524a2b4"
     out=a.output.resolve();out.mkdir(parents=True,exist_ok=False);shutil.copyfile(a.protocol,out/"protocol-before-fit.json")
-    support=ROOT/"Docs/fidelity/source-audits/damped-reverb-tail-support-2026-09-15.json"
+    support=ROOT/"Docs/research/fidelity/source-audits/damped-reverb-tail-support-2026-09-15.json"
     assert sha(support)==protocol["source_support_sha256"]
     prior_path=ROOT/protocol["calibration_source_results"]["path"]
     assert sha(prior_path)==protocol["calibration_source_results"]["sha256"]
@@ -203,7 +203,7 @@ def main():
     receipt_path=shipping_path.with_suffix(".render.json");assert sha(receipt_path)==verified["receipt_sha256"]
     for name,key in [("original-patch.syx","sysex"),("reconstructed-performance.mid","midi")]:
         assert sha(shipping_path.parent/name)==verified["preserved_input_sha256"][key]
-    source_audit_path=ROOT/"Docs/fidelity/source-audits/damped-reverb-tail-feasibility-2026-09-15.json"
+    source_audit_path=ROOT/"Docs/research/fidelity/source-audits/damped-reverb-tail-feasibility-2026-09-15.json"
     source_audit=json.loads(source_audit_path.read_text());source=source_audit["cases"]["bass-05"]
     hardware_path=ROOT/"build-fidelity/reverb-damped-tail-feasibility/run-01/bass-05/hardware-full.wav"
     assert sha(hardware_path)==source["decoded_sha256"]

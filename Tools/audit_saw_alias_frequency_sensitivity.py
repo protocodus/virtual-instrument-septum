@@ -25,8 +25,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SR, SIZE = aliases.SR, 3528
 PPM = (-100., -50., 0., 50., 100.)
 PHASES = (.137, .713)
-BASELINE = ROOT/"Docs/fidelity/source-audits/deepsonic-saw-asymmetric-kernels-2026-09-15.json"
-INVARIANCE = ROOT/"Docs/fidelity/source-audits/deepsonic-high-note-invariance-2026-09-15.json"
+BASELINE = ROOT/"Docs/research/fidelity/source-audits/deepsonic-saw-asymmetric-kernels-2026-09-15.json"
+INVARIANCE = ROOT/"Docs/research/fidelity/source-audits/deepsonic-high-note-invariance-2026-09-15.json"
 
 
 def sha(path):
@@ -117,7 +117,7 @@ def main():
         raise ValueError('Frozen kernel fitter changed')
     for name,expected in previous['dependency_sha256'].items():
         if sha(ROOT/'Tools'/name)!=expected:raise ValueError('Frozen helper changed: '+name)
-    catalog_path=ROOT/'Docs/fidelity/source-audits/deepsonic-acquisition-2026-09-15.json'
+    catalog_path=ROOT/'Docs/research/fidelity/source-audits/deepsonic-acquisition-2026-09-15.json'
     catalog=json.loads(catalog_path.read_text())
     if sha(catalog_path)!=previous['catalog_sha256']:raise ValueError('Source catalog changed')
     out=a.output.resolve();out.mkdir(parents=True,exist_ok=False)

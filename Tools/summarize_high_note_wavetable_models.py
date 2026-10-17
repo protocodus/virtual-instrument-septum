@@ -36,7 +36,7 @@ def main():
     recovery_error = max(r["different_pitch"]["relative_error_power"] for r in recovery)
     if recovery_error > 1e-12:
         raise ValueError("Planted cross-pitch waveform not recovered")
-    old_path = ROOT/"Docs/fidelity/source-audits/high-note-saw-fir-aliases-2026-09-15.json"
+    old_path = ROOT/"Docs/research/fidelity/source-audits/high-note-saw-fir-aliases-2026-09-15.json"
     old = json.loads(old_path.read_text())
     old_control = next(m for m in old["results"] if m["fir_length"] == 13 and m["blep_correction"] == 1)
     new_control = next(m for m in models if m["model"]["id"] == "polyblep_control")

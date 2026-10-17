@@ -77,7 +77,7 @@ namespace mapping
     // A straight bridge joins 0 to 40; these interior values are unmeasured.
     // Keep the original power curve from 40 onward, including its autonomous
     // oscillation threshold. This is not a recovered Roland parameter table.
-    // Docs/fidelity/dry-filter-calibration.md
+    // Docs/research/fidelity/dry-filter-calibration.md
     [[nodiscard]] inline double voiceResonanceDamping (double value) noexcept
     {
         if (value < 40.0)
@@ -106,7 +106,7 @@ namespace mapping
     // control amount. Moogie 1's raw D=49 fits a 419 ms segment; its two other
     // opening low notes validate the temporal fit. Endpoints and interpolation
     // remain provisional, not a measured Roland time table. See
-    // Docs/fidelity/filter-darkness-investigation.md.
+    // Docs/research/fidelity/filter-darkness-investigation.md.
     [[nodiscard]] inline double filterDecaySeconds (int value) noexcept
     {
         constexpr double fittedDuration = 0.4189852819747085;
@@ -120,7 +120,7 @@ namespace mapping
     // periods of 20.59 s and 40.22 ms for the SH-201. Intermediate positions
     // retain provisional logarithmic interpolation; no full hardware rate
     // table or measurement tolerance was published. Tempo sync is separate.
-    // Docs/fidelity/source-audits/2026-09-15-new-sources.md
+    // Docs/research/fidelity/source-audits/2026-09-15-new-sources.md
     [[nodiscard]] inline double lfoRateHz (double value) noexcept
     {
         constexpr double slowPeriodSeconds = 20.59;
@@ -206,7 +206,7 @@ namespace mapping
     // The prior 10-octave range left its peak cutoff about an octave too low.
     // This is an empirical range/interpolation, not a recovered Roland table;
     // extreme/negative settings and other envelope shapes remain unmeasured.
-    // See Docs/fidelity/brightness-investigation.md. Depth 0 stays neutral.
+    // See Docs/research/fidelity/brightness-investigation.md. Depth 0 stays neutral.
     [[nodiscard]] inline double filterEnvOctaves (int depth) noexcept
     {
         return depth * (12.0 / 63.0);
@@ -524,12 +524,12 @@ namespace mapping
     // five neutral-damping public presets, including a prospective Class A
     // check. Damped presets retain tail regressions; this is current-model
     // voicing, not an identified Roland coefficient. Revisit with damping.
-    // See Docs/fidelity/source-audits/reverb-new-preset-validation-2026-09-15.md.
+    // See Docs/research/fidelity/source-audits/reverb-new-preset-validation-2026-09-15.md.
     inline constexpr double reverbWetReturn = 0.4;
 
     // [conditional recording fit, OQ-08] The dry LP24 response supports two
     // k=1.2 sections at resonance zero. The separate AUDIO FILTER has its own
-    // stage configuration. See Docs/fidelity/dry-filter-calibration.md.
+    // stage configuration. See Docs/research/fidelity/dry-filter-calibration.md.
     inline constexpr double filterSecondStageDamping = 1.2;
 
     // [empirical, OQ-08] A resonant second section better matches SupaJuce's
@@ -538,7 +538,7 @@ namespace mapping
     // oscillator, and extrapolating both stages to negative damping caused
     // HPF headroom and filter-modulation regressions. The second section stays
     // at k=1.2 at zero resonance. Exact hardware topology remains unverified; see
-    // Docs/fidelity/resonance-investigation.md.
+    // Docs/research/fidelity/resonance-investigation.md.
     [[nodiscard]] inline double voiceSecondStageDamping (double firstStage) noexcept
     {
         return std::clamp (firstStage, 0.5, filterSecondStageDamping);

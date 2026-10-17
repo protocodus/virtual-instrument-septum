@@ -56,7 +56,7 @@ def main():
     import analyze_deepsonic_chord_envelope as chords
     import render_midi
 
-    q0 = json.loads((ROOT / "Docs/fidelity/source-audits/dry-end-to-end-2026-09-15.json").read_text())
+    q0 = json.loads((ROOT / "Docs/research/fidelity/source-audits/dry-end-to-end-2026-09-15.json").read_text())
     train = q0["protocol"]["training_note"]
     isolated = q0["protocol"]["isolated_validation_notes"]
     midi = args.sources / "deepsonic_-_filter_demo_-_comparsion_sequence.mid"
@@ -103,7 +103,7 @@ def main():
     save(cache / "decode-manifest.json", decode)
 
     protocol = {"source_render_manifest_sha256": sha(args.renders), "definitions": manifest["definitions"],
-        "q0_protocol_source_sha256": sha(ROOT / "Docs/fidelity/source-audits/dry-end-to-end-2026-09-15.json"),
+        "q0_protocol_source_sha256": sha(ROOT / "Docs/research/fidelity/source-audits/dry-end-to-end-2026-09-15.json"),
         "midi_sha256": MIDI_HASH, "tool_sha256": tool_hashes, "script_sha256": sha(__file__),
         "training_note": train, "isolated_notes": isolated, "chords": chord_intervals,
         "alignment": "Lag=round(renderer latency93 + nominal attack44.1 - physical decay start delay*44100). Production uses35ms; each30/35/40ms fixture uses its paired physical delay. No delay is fitted from validation.",

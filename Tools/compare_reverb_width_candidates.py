@@ -55,7 +55,7 @@ def main():
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(subprocess.check_output(['git', 'show', f'{REVISION}:{name}'], cwd=ROOT))
         hashes[name] = sha(path)
-    guard_path = ROOT/'Docs/fidelity/source-audits/final-production-verification-2026-09-15.json'
+    guard_path = ROOT/'Docs/research/fidelity/source-audits/final-production-verification-2026-09-15.json'
     guard = {case['id']: case for case in json.loads(guard_path.read_text())['cases']}
     if len(guard) != 10:
         raise ValueError('Expected ten pinned production cases')

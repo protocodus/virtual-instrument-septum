@@ -21,7 +21,7 @@ from scipy.optimize import least_squares, minimize_scalar
 from render_midi import parse_smf
 
 ROOT = Path(__file__).resolve().parents[1]
-CATALOG = ROOT / 'Docs/fidelity/source-audits/deepsonic-acquisition-2026-09-15.json'
+CATALOG = ROOT / 'Docs/research/fidelity/source-audits/deepsonic-acquisition-2026-09-15.json'
 NOTES = ((.75, 24), (1.5, 36), (2., 29), (4.75, 24), (6., 31), (17.25, 57))
 # Keep every sensitivity window >=50 ms after MIDI onset and <=390 ms.
 # Earlier windows included the recording's attack transient; this exclusion

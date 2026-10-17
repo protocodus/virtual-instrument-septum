@@ -139,7 +139,7 @@ def main():
                     "tau49_seconds": tau, "T60_raw49_seconds": tau * math.log(1000),
                     "fields": {"envelope": {"decay_seconds": times}}})
     else:
-        source = ROOT / "Docs/fidelity/source-audits/deepsonic-envelope-shape-2026-09-15.json"
+        source = ROOT / "Docs/research/fidelity/source-audits/deepsonic-envelope-shape-2026-09-15.json"
         data = json.loads(source.read_text())
         for kind, model in (("hz", "exponential_hz_with_floor"), ("log", "exponential_log_cutoff")):
             a, b, tau = data["models"][model]["parameters"]
@@ -174,7 +174,7 @@ def main():
     q0_record = None
     if args.stage == "dry":
         q0_data = subprocess.check_output(["git", "show", REVISION +
-            ":Docs/fidelity/source-audits/dry-end-to-end-2026-09-15.json"], cwd=ROOT)
+            ":Docs/research/fidelity/source-audits/dry-end-to-end-2026-09-15.json"], cwd=ROOT)
         (out / "pinned-q0-record.json").write_bytes(q0_data)
         q0_record = json.loads(q0_data)
     renders = []

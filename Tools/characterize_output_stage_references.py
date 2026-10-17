@@ -95,7 +95,7 @@ def prepare(args):
     integration = json.loads(args.integration.read_text())
     factory_info = checked(integration["protocol"]["official_run"])
     factory = json.loads(Path(factory_info["path"]).read_text())
-    dry_info = pin(ROOT/"Docs/fidelity/source-audits/saw-w4-engine-dry-comparison-2026-09-15.json")
+    dry_info = pin(ROOT/"Docs/research/fidelity/source-audits/saw-w4-engine-dry-comparison-2026-09-15.json")
     dry = json.loads(Path(dry_info["path"]).read_text())
     original_masks = pin(ROOT/"build-fidelity/saw-w4-official-comparison/original-mask-01/results.json", MASK_SHA)
     masks = json.loads(Path(original_masks["path"]).read_text())

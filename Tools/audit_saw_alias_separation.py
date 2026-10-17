@@ -20,7 +20,7 @@ import analyze_deepsonic_saw_aliases as aliases
 import fit_high_note_saw_asymmetric_kernels as kernels
 
 ROOT = Path(__file__).resolve().parents[1]
-BASELINE = ROOT / "Docs/fidelity/source-audits/deepsonic-saw-asymmetric-kernels-2026-09-15.json"
+BASELINE = ROOT / "Docs/research/fidelity/source-audits/deepsonic-saw-asymmetric-kernels-2026-09-15.json"
 SR, SIZE = 44100, 3528
 
 

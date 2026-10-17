@@ -16,8 +16,8 @@ import fit_high_note_wavetable_models as prior
 import audit_saw_alias_separation as separation
 
 ROOT=Path(__file__).resolve().parents[1]
-PROTOCOL=ROOT/"Docs/fidelity/source-audits/windowed-sinc-interpolation-proposal-2026-09-15.json"
-BASELINE=ROOT/"Docs/fidelity/source-audits/high-note-wavetable-models-2026-09-15.json"
+PROTOCOL=ROOT/"Docs/research/fidelity/source-audits/windowed-sinc-interpolation-proposal-2026-09-15.json"
+BASELINE=ROOT/"Docs/research/fidelity/source-audits/high-note-wavetable-models-2026-09-15.json"
 SR,SIZE=44100,3528
 OFFSETS=np.arange(-6,7)
 SOURCE_OFFSETS=np.arange(-3,5)

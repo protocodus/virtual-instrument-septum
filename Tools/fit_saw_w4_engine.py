@@ -217,7 +217,7 @@ def independent_transfer(reference, candidate):
         raise ValueError("Planted full-performance output lengths differ")
     windows = [("full_performance", 0, len(a))]
     frozen = json.loads((Path(__file__).resolve().parents[1] /
-                         "Docs/fidelity/source-audits/production-high-note-saw-2026-09-15.json").read_text())
+                         "Docs/research/fidelity/source-audits/production-high-note-saw-2026-09-15.json").read_text())
     for row in frozen["slopes"][0]["windows"]:
         passage = row["passage"]
         windows.append((f"note{passage['note']}+{passage['offset_seconds']}", *row["engine_samples"]))
@@ -321,7 +321,7 @@ def main():
                 raise ValueError("Original decode format changed")
             x0, x1 = protocol()["hardware_samples"]
             target = audio[x0:x1].astype(float)
-            frozen = json.loads((root / "Docs/fidelity/source-audits/production-high-note-saw-2026-09-15.json").read_text())
+            frozen = json.loads((root / "Docs/research/fidelity/source-audits/production-high-note-saw-2026-09-15.json").read_text())
             expected_pcm = frozen["slopes"][0]["windows"][0]["hardware_float64_sample_sha256"]
             if hashlib.sha256(target.astype("<f8").tobytes()).hexdigest() != expected_pcm:
                 raise ValueError("Frozen original training samples changed")

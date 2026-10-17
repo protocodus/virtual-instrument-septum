@@ -88,7 +88,7 @@ def main():
     patch=a.out/"original-patch.syx";patch.write_bytes(encode_syx(blocks))
     assert sha(patch)==SYX_SHA
     # The tracked native inventory supplies decoded raw-control meaning only.
-    invpath=ROOT/"Docs/fidelity/source-audits/static-filter-reference-inventory-2026-09-15.json"
+    invpath=ROOT/"Docs/research/fidelity/source-audits/static-filter-reference-inventory-2026-09-15.json"
     inv=next(r for r in json.loads(invpath.read_text())["references"] if r["id"]=="lead-07")
     assert inv["unmodified_sysex_sha256"]==SYX_SHA
     decoded=inv["decoded"]

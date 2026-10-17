@@ -12,8 +12,8 @@ import numpy as np
 from scipy.io import wavfile
 
 ROOT = Path(__file__).resolve().parents[1]
-TAIL_RECEIPT = ROOT/"Docs/fidelity/source-audits/official-reverb-tails-2026-09-15.json"
-STEREO_RECEIPT = ROOT/"Docs/fidelity/source-audits/official-stereo-feasibility-2026-09-15.json"
+TAIL_RECEIPT = ROOT/"Docs/research/fidelity/source-audits/official-reverb-tails-2026-09-15.json"
+STEREO_RECEIPT = ROOT/"Docs/research/fidelity/source-audits/official-stereo-feasibility-2026-09-15.json"
 SR = 44100
 EDGES = np.array([80, 160, 320, 640, 1280, 2560, 5120, 10240])
 SPECS = ((.5, .5), (.5, .25), (.75, .25), (1., .25))

@@ -42,9 +42,9 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=False)
-    case_path = ROOT / 'Docs/fidelity/reconstructions/expanded/sexy-back.json'
+    case_path = ROOT / 'Docs/research/fidelity/reconstructions/expanded/sexy-back.json'
     case = json.loads(case_path.read_text())
-    catalog = json.loads((ROOT / 'Docs/fidelity/hardware-reference-catalog.json').read_text())
+    catalog = json.loads((ROOT / 'Docs/research/fidelity/hardware-reference-catalog.json').read_text())
     reference = next(row for row in catalog['recordings'] if row['id'] == 'bass-06')
     bank = next(row for row in catalog['banks'] if row['id'] == 'bass')
     audio_path, bank_path = (args.sources / row['local_filename'] for row in (reference, bank))

@@ -54,7 +54,7 @@ def main():
     args = parser.parse_args()
     out = args.output.resolve()
     out.mkdir(parents=True, exist_ok=False)
-    catalog_path = ROOT/'Docs/fidelity/hardware-reference-catalog.json'
+    catalog_path = ROOT/'Docs/research/fidelity/hardware-reference-catalog.json'
     catalog = json.loads(catalog_path.read_text())
     helper = ROOT/'Tools/inspect_named_reference_patch.cpp'
     binary = out/'inspect-patch'

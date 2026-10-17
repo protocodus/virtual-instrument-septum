@@ -112,7 +112,7 @@ def main():
         parser.error('--baseline and --candidate must be supplied together')
     out = args.output.resolve()
     out.mkdir(parents=True, exist_ok=False)
-    audit = json.loads((ROOT / 'Docs/fidelity/source-audits/air-lead-resonance.json').read_text())
+    audit = json.loads((ROOT / 'Docs/research/fidelity/source-audits/air-lead-resonance.json').read_text())
     audio = args.sources / 'TOP8_AirLead1.mp3'
     bank = args.sources / 'SH-201_Patch_LEAD.zip'
     if sha(audio) != audit['reference']['audio_sha256'] or sha(bank) != audit['reference']['bank_sha256']:
@@ -123,7 +123,7 @@ def main():
         raise ValueError('Original patch identity changed')
     patch_path = out / 'original-patch.syx'
     patch_path.write_bytes(syx)
-    case_path = ROOT / 'Docs/fidelity/reconstructions/expanded/air-lead-1.json'
+    case_path = ROOT / 'Docs/research/fidelity/reconstructions/expanded/air-lead-1.json'
     case = json.loads(case_path.read_text())
     midi = out / 'reconstructed-performance.mid'
     write_midi(midi, case)

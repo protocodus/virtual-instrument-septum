@@ -16,7 +16,7 @@ from render_midi import parse_smf
 
 ROOT, SR, SIZE = symmetric.ROOT, symmetric.SR, symmetric.SIZE
 WIDTHS = (4., 8.)
-BASELINE = ROOT/"Docs/fidelity/source-audits/deepsonic-saw-wrap-kernels-2026-09-15.json"
+BASELINE = ROOT/"Docs/research/fidelity/source-audits/deepsonic-saw-wrap-kernels-2026-09-15.json"
 
 
 def sha(path):

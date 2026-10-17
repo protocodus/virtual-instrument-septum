@@ -1,7 +1,7 @@
 // Roland SH-201 OM p. 32 documents OSC1 cycle restart under SYNC. Its
 // ReverseMetal and FB Harmonics patches select FB OSC as the slave. These
 // tests verify the chosen source-phase reset, not an identified Roland
-// feedback-loop topology. See Docs/fidelity/source-audits/feedback-sync.md.
+// feedback-loop topology. See Docs/research/fidelity/source-audits/feedback-sync.md.
 #include "DSP/SeptumEngine.h"
 
 #include <algorithm>

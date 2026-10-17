@@ -26,8 +26,8 @@ from extract_reference_patch import read_bank,parse_bank,encode_syx
 from render_midi import parse_smf
 
 ROOT=Path(__file__).resolve().parents[1]
-CATALOG=ROOT/'Docs/fidelity/hardware-reference-catalog.json'
-INVENTORY=ROOT/'Docs/fidelity/source-audits/reverb-reference-openings-2026-09-15.json'
+CATALOG=ROOT/'Docs/research/fidelity/hardware-reference-catalog.json'
+INVENTORY=ROOT/'Docs/research/fidelity/source-audits/reverb-reference-openings-2026-09-15.json'
 BANK_SHA='d00b19491c2cec27ee640147e0dfb6d1b8a47bcb70831a93a819a70d21a2a222'
 CONFIG={
     'pad-06':dict(mp3_sha256='0681718b242a89b23d350237e3f2aad2085e877ee5818256a004eca921d49e2c',

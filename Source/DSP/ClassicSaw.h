@@ -10,7 +10,7 @@ namespace septum::classic_saw
 // correction fitted through the complete engine to the original dry Saw
 // recording. This improves cross-pitch harmonic/alias agreement, with retained
 // counterexamples; it does not identify Roland's oscillator architecture.
-// See Docs/fidelity/source-audits/saw-w4-engine-comparison-2026-09-15.md.
+// See Docs/research/fidelity/source-audits/saw-w4-engine-comparison-2026-09-15.md.
 // The 4/44100-second support is fixed in time. Non-44.1 kHz folding has not
 // been measured against hardware; the host oscillator clock stays native.
 inline constexpr double referenceRate = 44100.0;

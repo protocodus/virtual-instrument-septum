@@ -170,9 +170,9 @@ def main():
     p.add_argument("--reuse-controls",type=Path,help="Reuse fully hash-verified controls from an earlier completed run of this protocol")
     a=p.parse_args();protocol=json.loads(a.protocol.read_text());assert sha(a.protocol)=="cd8f5cdded181e3c8b93534cb6a06a63681f334974c18fbd68b748dec3c78bc8"
     out=a.output.resolve();out.mkdir(parents=True,exist_ok=False);shutil.copyfile(a.protocol,out/"protocol-before-analysis.json")
-    catpath=ROOT/"Docs/fidelity/hardware-reference-catalog.json";cat=json.loads(catpath.read_text())
+    catpath=ROOT/"Docs/research/fidelity/hardware-reference-catalog.json";cat=json.loads(catpath.read_text())
     records={r["id"]:r for r in cat["recordings"]};banks={r["id"]:r for r in cat["banks"]}
-    invpath=ROOT/"Docs/fidelity/source-audits/static-filter-reference-inventory-2026-09-15.json";inv={r["id"]:r for r in json.loads(invpath.read_text())["references"]}
+    invpath=ROOT/"Docs/research/fidelity/source-audits/static-filter-reference-inventory-2026-09-15.json";inv={r["id"]:r for r in json.loads(invpath.read_text())["references"]}
     decoder=Path(shutil.which("ffmpeg")).resolve()
     decoder_receipt=dict(path=str(decoder),sha256=sha(decoder),
         version=subprocess.run([str(decoder),"-version"],check=True,capture_output=True,text=True).stdout.splitlines()[0],

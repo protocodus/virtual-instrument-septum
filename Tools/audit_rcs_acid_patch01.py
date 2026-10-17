@@ -121,7 +121,7 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     a = parser.parse_args()
     a.output.mkdir(parents=True, exist_ok=False)
-    catalog_path = ROOT/"Docs/fidelity/source-audits/rcs-acid-source-extraction-2026-09-15.json"
+    catalog_path = ROOT/"Docs/research/fidelity/source-audits/rcs-acid-source-extraction-2026-09-15.json"
     catalog = json.loads(catalog_path.read_text())
     for name, expected in catalog["original_media_sha256"].items():
         if sha(a.sources/name)!=expected:raise ValueError("Original media mismatch")

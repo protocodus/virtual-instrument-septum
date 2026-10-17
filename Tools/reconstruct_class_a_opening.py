@@ -149,7 +149,7 @@ def main():
     p.add_argument("--sources",type=Path,required=True)
     p.add_argument("--output",type=Path,required=True)
     a=p.parse_args();out=a.output.resolve();out.mkdir(parents=True,exist_ok=False)
-    catalog_path=ROOT/"Docs/fidelity/hardware-reference-catalog.json";catalog=json.loads(catalog_path.read_text())
+    catalog_path=ROOT/"Docs/research/fidelity/hardware-reference-catalog.json";catalog=json.loads(catalog_path.read_text())
     ref=next(r for r in catalog["recordings"] if r["id"]=="lead-01")
     bank=next(b for b in catalog["banks"] if b["id"]=="lead")
     mp3=a.sources/ref["local_filename"];archive=a.sources/bank["local_filename"]

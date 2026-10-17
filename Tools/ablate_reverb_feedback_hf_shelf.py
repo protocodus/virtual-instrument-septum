@@ -79,7 +79,7 @@ def main():
     assessed=json.loads(a.assessment.read_text());original=json.loads((run/'results.json').read_text())
     if assessed['protocol']['decomposition_result_sha256']!=sha(run/'results.json') or assessed['decomposition_receipt']!=original:
         raise ValueError('Decomposition identity changed')
-    prior_path=ROOT/'Docs/fidelity/source-audits/club-reverb-decay-protocol-2026-09-15.json'
+    prior_path=ROOT/'Docs/research/fidelity/source-audits/club-reverb-decay-protocol-2026-09-15.json'
     prior=json.loads(prior_path.read_text())
     if sha(prior_path)!='ccf98d8bb77949c76906da94ecb134d4da032c6b6d83c08276d475148524a2b4':raise ValueError('Old window protocol changed')
     for f,h in original['build']['files_sha256'].items():

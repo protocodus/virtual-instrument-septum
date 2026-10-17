@@ -47,7 +47,7 @@ def main():
     args = parser.parse_args()
     out = args.output.resolve()
     out.mkdir(parents=True, exist_ok=False)
-    catalog_path = ROOT/'Docs/fidelity/hardware-reference-catalog.json'
+    catalog_path = ROOT/'Docs/research/fidelity/hardware-reference-catalog.json'
     catalog = json.loads(catalog_path.read_text())
     model_result = json.loads((args.models/'results.json').read_text())
     if model_result['protocol']['mode'] != 'gain' or model_result['protocol']['source_revision'] != 'b0f6c03':

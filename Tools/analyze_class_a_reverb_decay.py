@@ -16,7 +16,7 @@ import numpy as np
 from scipy.io import wavfile
 
 ROOT = Path(__file__).resolve().parents[1]
-RECEIPT = ROOT/"Docs/fidelity/source-audits/reverb-reference-openings-2026-09-15.json"
+RECEIPT = ROOT/"Docs/research/fidelity/source-audits/reverb-reference-openings-2026-09-15.json"
 SR = 44100
 # One additional low octave is predeclared because the source inspection shows
 # a strong ~65 Hz ridge; existing Cotton bands remain unchanged above 80 Hz.

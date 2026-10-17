@@ -71,7 +71,7 @@ def main():
     assess = module(frozen/"Tools/assess_hardware_equivalence.py", "assess_hardware_equivalence")
     sys.modules["assess_hardware_equivalence"] = assess
     supplemental = module(frozen/"Tools/summarize_reverb_validation.py", "layer_phase_masks")
-    catalog_path = ROOT/"Docs/fidelity/hardware-reference-catalog.json"
+    catalog_path = ROOT/"Docs/research/fidelity/hardware-reference-catalog.json"
     catalog = json.loads(catalog_path.read_text())
     inputs = []
     for cohort, directory, identity in (("legacy", args.legacy_run.resolve(), "club-bass"),

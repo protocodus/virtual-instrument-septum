@@ -137,7 +137,7 @@ def build(catalog_path: Path, output: Path) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--catalog", type=Path, default=ROOT / "Docs/fidelity/factory-recordings.json")
+    parser.add_argument("--catalog", type=Path, default=ROOT / "Docs/research/fidelity/factory-recordings.json")
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT,
                         help="HTML output; cataloged MP3s must be under the same directory")
     args = parser.parse_args()

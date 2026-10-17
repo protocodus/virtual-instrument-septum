@@ -20,7 +20,7 @@ from scipy.optimize import minimize_scalar
 from render_midi import parse_smf
 
 ROOT = Path(__file__).resolve().parents[1]
-CATALOG = ROOT / "Docs/fidelity/source-audits/deepsonic-acquisition-2026-09-15.json"
+CATALOG = ROOT / "Docs/research/fidelity/source-audits/deepsonic-acquisition-2026-09-15.json"
 SR = 44100
 SIZE = 3528
 GRID = np.arange(256) / 256

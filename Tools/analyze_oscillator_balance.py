@@ -95,7 +95,7 @@ def analyze_families(key, directory, candidate_audio, metadata):
                         windows.append((index, note['on']+elapsed, width))
     else:
         # These hardware-selected stable intervals predate this experiment.
-        prior = json.loads((ROOT/'Docs/fidelity/source-audits/class-a-transcription-2026-09-20.json').read_text())
+        prior = json.loads((ROOT/'Docs/research/fidelity/source-audits/class-a-transcription-2026-09-20.json').read_text())
         for index, row in enumerate(prior['windows']):
             if index < 2:
                 continue  # insufficient lower-oscillator cycles; already weak in transcription

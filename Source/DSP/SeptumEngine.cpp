@@ -2342,7 +2342,7 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
             // patch and an owner's report support Super Saw sync. The exact
             // seven-phase behavior is unmeasured: this model restarts every
             // saw together, retaining its detuned rate and the downstream
-            // HPF's history. See Docs/fidelity/source-audits/oscillator-semantics.md.
+            // HPF's history. See Docs/research/fidelity/source-audits/oscillator-semantics.md.
             // superSaw() advances once below; subtract that advance so each
             // saw lands the correct fraction of a sample beyond the reset.
             for (std::size_t index = 0; index < voice.osc1.superPhases.size(); ++index)
@@ -2363,7 +2363,7 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
             // Keep the feedback delay/damping history: its internal reset
             // topology is unmeasured, and clearing it every master cycle
             // would suppress feedback whenever the tap outlasts that cycle.
-            // See Docs/fidelity/source-audits/feedback-sync.md.
+            // See Docs/research/fidelity/source-audits/feedback-sync.md.
             double newPhase = osc2WrapOffset * voice.inc1 - voice.inc1;
             while (newPhase < 0.0)
                 newPhase += 1.0;

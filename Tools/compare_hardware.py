@@ -28,7 +28,7 @@ import scipy
 from extract_reference_patch import read_bank, parse_bank, encode_syx
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_CATALOG = ROOT / 'Docs/fidelity/hardware-reference-catalog.json'
+DEFAULT_CATALOG = ROOT / 'Docs/research/fidelity/hardware-reference-catalog.json'
 
 
 def digest(path):
@@ -427,7 +427,7 @@ def main():
     args.output.mkdir(parents=True, exist_ok=False)
     catalog_hash = digest(args.catalog)
     catalog = json.loads(args.catalog.read_text())
-    cases = args.case or sorted((ROOT / 'Docs/fidelity/reconstructions/current').glob('*.json'))
+    cases = args.case or sorted((ROOT / 'Docs/research/fidelity/reconstructions/current').glob('*.json'))
     if not cases:
         parser.error('No reconstruction cases supplied')
     results = [render_case(p, args, catalog) for p in cases]

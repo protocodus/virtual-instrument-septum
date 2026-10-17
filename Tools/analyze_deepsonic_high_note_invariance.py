@@ -20,7 +20,7 @@ from scipy.signal import correlate
 from render_midi import parse_smf
 
 ROOT=Path(__file__).resolve().parents[1]
-CATALOG=ROOT/'Docs/fidelity/source-audits/deepsonic-acquisition-2026-09-15.json'
+CATALOG=ROOT/'Docs/research/fidelity/source-audits/deepsonic-acquisition-2026-09-15.json'
 SELECT=((8.5,69),(18.25,93),(18.75,91),(19.25,86),(19.75,88),(20.25,84))
 SR=44100
 FROZEN=(.9318832715,8.4984344071,.2140763348)

@@ -19,7 +19,7 @@ from scipy.signal import find_peaks
 from render_midi import parse_smf
 
 ROOT=Path(__file__).resolve().parents[1]
-CATALOG=ROOT/'Docs/fidelity/source-audits/deepsonic-acquisition-2026-09-15.json'
+CATALOG=ROOT/'Docs/research/fidelity/source-audits/deepsonic-acquisition-2026-09-15.json'
 SELECTION=((8.5,69),(12.5,76),(13.25,81),(18.25,93),(18.75,91),
            (19.25,86),(19.75,88),(20.25,84))
 RATES=(32000,44100,48000)

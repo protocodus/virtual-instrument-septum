@@ -24,8 +24,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
-    inputs_path = ROOT/"Docs/fidelity/source-audits/saw-w4-official-inputs-2026-09-15.json"
-    inventory_path = ROOT/"Docs/fidelity/source-audits/static-filter-reference-inventory-2026-09-15.json"
+    inputs_path = ROOT/"Docs/research/fidelity/source-audits/saw-w4-official-inputs-2026-09-15.json"
+    inventory_path = ROOT/"Docs/research/fidelity/source-audits/static-filter-reference-inventory-2026-09-15.json"
     if pin(inputs_path)["sha256"] != "9bf636d72ff15b00135258f5924798af9c2ecd81556534d485a0a0e4a700402e":
         raise ValueError("Frozen inputs changed")
     inputs = json.loads(inputs_path.read_text())

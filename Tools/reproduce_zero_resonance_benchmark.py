@@ -15,7 +15,7 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = ROOT / "Docs/fidelity/source-audits/zero-resonance-reproduction-2026-09-15.json"
+MANIFEST = ROOT / "Docs/research/fidelity/source-audits/zero-resonance-reproduction-2026-09-15.json"
 
 
 def digest(data):
@@ -115,7 +115,7 @@ def main():
         subprocess.run([sys.executable, "-B", str(output / "frozen-source/Tools/compare_hardware.py"),
                         "--sources", str(args.sources.resolve()), "--renderer", str(output / "linear-final/build/SeptumRenderMidi"),
                         "--output", str(output / "linear-final/comparisons"),
-                        "--case", str(output / "frozen-source/Docs/fidelity/cases/dist-bs-1.json")], check=True,
+                        "--case", str(output / "frozen-source/Docs/research/fidelity/cases/dist-bs-1.json")], check=True,
                        stdout=subprocess.DEVNULL)
         subprocess.run([sys.executable, "-B", str(output / "frozen-source/Tools/assess_hardware_equivalence.py"),
                         "--comparison", str(output / "linear-final/comparisons/dist-bs-1/comparison.json"),

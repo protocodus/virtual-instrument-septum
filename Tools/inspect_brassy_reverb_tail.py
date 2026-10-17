@@ -126,7 +126,7 @@ def duplication(y, sr):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--sources", type=Path, required=True)
-    p.add_argument("--inventory", type=Path, default=ROOT/"Docs/fidelity/source-audits/static-filter-reference-inventory-2026-09-15.json")
+    p.add_argument("--inventory", type=Path, default=ROOT/"Docs/research/fidelity/source-audits/static-filter-reference-inventory-2026-09-15.json")
     p.add_argument("--output", type=Path, required=True)
     a = p.parse_args()
     inv = json.loads(a.inventory.read_text())

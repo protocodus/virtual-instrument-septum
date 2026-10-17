@@ -20,7 +20,7 @@ override. The builder refuses an existing output directory. Use `--dsp-library`
 or `--compiler` to select another built archive or C++20 compiler.
 
 Defaults reproduce the conditional Moogie fits in
-`Docs/fidelity/source-audits/filter-envelope-conditional-fit.json`: raw decay 49
+`Docs/research/fidelity/source-audits/filter-envelope-conditional-fit.json`: raw decay 49
 uses a **0.4189852819747085 s linear duration** or a
 **0.26557632184918367 s exponential time constant**. The linear profile retains
 nominal 2 ms/12 s endpoints using the production provisional power curve; the

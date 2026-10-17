@@ -173,7 +173,7 @@ def main():
                                   no_profile_or_rate_override=True, renderer_sha256=sha(build/"SeptumRenderMidi")))
     controls = output_controls(frozen, out)
     parser_module = module(frozen/"Tools/render_midi.py", "frozen_midi")
-    guard_path = ROOT/"Docs/fidelity/source-audits/final-production-verification-2026-09-15.json"
+    guard_path = ROOT/"Docs/research/fidelity/source-audits/final-production-verification-2026-09-15.json"
     if sha(guard_path) != source_manifest["production_guard_sha256"]:
         raise ValueError("Production guard changed")
     guard = {r["id"]: r for r in json.loads(guard_path.read_text())["cases"]}

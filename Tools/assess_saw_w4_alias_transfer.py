@@ -15,7 +15,7 @@ from scipy.io import wavfile
 import analyze_deepsonic_saw_aliases as alias
 
 ROOT=Path(__file__).resolve().parents[1]
-PRIOR=ROOT/'Docs/fidelity/source-audits/deepsonic-saw-aliases-2026-09-15.json'
+PRIOR=ROOT/'Docs/research/fidelity/source-audits/deepsonic-saw-aliases-2026-09-15.json'
 SR=44100
 
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()

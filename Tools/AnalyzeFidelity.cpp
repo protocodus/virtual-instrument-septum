@@ -660,7 +660,7 @@ void selfTest()
 
 int run (int argc, char** argv)
 {
-    fs::path output, baseline, patchFile, references = "Docs/fidelity/reference-manifest.json";
+    fs::path output, baseline, patchFile, references = "Docs/research/fidelity/reference-manifest.json";
     std::string sourceId, variant;
     bool quick = false, listening = false, reference = false, dryImport = false;
     int requestedBlockSize = blockSize, note = 69, velocity = 127;

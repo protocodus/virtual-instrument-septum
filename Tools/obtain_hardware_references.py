@@ -21,7 +21,7 @@ def verify(path, asset):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--catalog', type=Path, default=Path(__file__).resolve().parents[1]
-                        / 'Docs/fidelity/hardware-reference-catalog.json')
+                        / 'Docs/research/fidelity/hardware-reference-catalog.json')
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--recording', action='append', help='catalog id; repeat to select; default all')
     args = parser.parse_args()

@@ -118,7 +118,7 @@ def main():
     assess = module(frozen/"Tools/assess_hardware_equivalence.py", "assess_hardware_equivalence")
     sys.modules["assess_hardware_equivalence"] = assess
     supplementary = module(extra, "phase_frozen_reference_masks")
-    catalog_path = ROOT/"Docs/fidelity/hardware-reference-catalog.json"
+    catalog_path = ROOT/"Docs/research/fidelity/hardware-reference-catalog.json"
     catalog = json.loads(catalog_path.read_text())
     inputs, previous_results = [], {}
     for cohort, directory, name in (("legacy", args.legacy_run.resolve(), "club-bass"),
@@ -126,7 +126,7 @@ def main():
         item, old = prepare_case(cohort, directory, name, out, args.sources.resolve(), catalog)
         inputs.append(item)
         previous_results[name] = old
-    inventory_path = ROOT/"Docs/fidelity/source-audits/static-filter-reference-inventory-2026-09-15.json"
+    inventory_path = ROOT/"Docs/research/fidelity/source-audits/static-filter-reference-inventory-2026-09-15.json"
     inventory = json.loads(inventory_path.read_text())
     structure = []
     for item, name in zip(inputs, ("Club Bass", "Ambient SQR")):

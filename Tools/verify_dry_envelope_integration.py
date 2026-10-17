@@ -93,7 +93,7 @@ def main():
     out.mkdir(parents=True, exist_ok=False)
     renders = json.loads((root / "renders.json").read_text())
     definitions = renders["definitions"]
-    trajectory = Path(__file__).resolve().parents[1] / "Docs/fidelity/source-audits/deepsonic-envelope-shape-2026-09-15.json"
+    trajectory = Path(__file__).resolve().parents[1] / "Docs/research/fidelity/source-audits/deepsonic-envelope-shape-2026-09-15.json"
     targets = json.loads(trajectory.read_text())["models"]
     compiler = shutil.which("c++")
     if compiler is None:

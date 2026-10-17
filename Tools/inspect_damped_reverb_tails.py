@@ -109,10 +109,10 @@ def main():
     parser.add_argument("--output",type=Path,required=True)
     a=parser.parse_args(); support=json.loads(a.support.read_text()); edges=support["band_edges_hz"]
     assert sha(a.support)=="1e3ce551394718f52082261d8f613bdc2be781c21142148fbcf57b9dfabecda1"
-    catalog_path=ROOT/"Docs/fidelity/hardware-reference-catalog.json"
+    catalog_path=ROOT/"Docs/research/fidelity/hardware-reference-catalog.json"
     catalog=json.loads(catalog_path.read_text()); records={r["id"]:r for r in catalog["recordings"]}
     banks_by_id={r["id"]:r for r in catalog["banks"]}
-    inv_path=ROOT/"Docs/fidelity/source-audits/static-filter-reference-inventory-2026-09-15.json"
+    inv_path=ROOT/"Docs/research/fidelity/source-audits/static-filter-reference-inventory-2026-09-15.json"
     inv=json.loads(inv_path.read_text()); refs={r["id"]:r for r in inv["references"]}
     out=a.output.resolve();out.mkdir(parents=True,exist_ok=False)
     shutil.copyfile(a.support,out/"predeclared-support.json")

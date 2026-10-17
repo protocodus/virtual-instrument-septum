@@ -27,5 +27,5 @@ DerivedData/
 .vscode/
 *~
 
-# Audio is generated locally and is not stored in this repository
+# Rendered WAVs stay local; the main build commits the demos as MP3s
 *.[wW][aA][vV]

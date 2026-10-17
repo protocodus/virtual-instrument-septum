@@ -23,7 +23,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_LINEAR = 0.4189852819747085
 DEFAULT_EXPONENTIAL = 0.26557632184918367
-FIT = ROOT / 'Docs/fidelity/source-audits/filter-envelope-conditional-fit.json'
+FIT = ROOT / 'Docs/research/fidelity/source-audits/filter-envelope-conditional-fit.json'
 
 
 def digest(data):

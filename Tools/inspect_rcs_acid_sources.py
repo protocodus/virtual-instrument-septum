@@ -204,7 +204,7 @@ def main():
             format_id='140', audio_sha256=sha(audio), metadata_sha256=sha(metadata),
             decode_command=command, decoded_sha256=sha(decoded), rate=rate, frames=len(stereo)),
         official_editor=dict(url='https://static.roland.com/assets/media/dmg/SH201_Editor110_osx.dmg',
-            xml_reading_copy_sha256=sha(a.editor_xml), provenance='Docs/fidelity/source-audits/oscillator-semantics.md'),
+            xml_reading_copy_sha256=sha(a.editor_xml), provenance='Docs/research/fidelity/source-audits/oscillator-semantics.md'),
         official_lfo_resources=dict(sha256=EDITOR_FILES, tables=lfo_tables,
             binding='PatchLfo destination combo controls bind raw fields directly to Resource enum tables; displayed depths use offset -64.'),
         presets=rows, arp_all_off=all(r['common']['arpeggioSwitch']==0 for r in rows),

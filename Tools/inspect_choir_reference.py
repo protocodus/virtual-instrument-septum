@@ -33,7 +33,7 @@ def main():
     args = parser.parse_args()
     out = args.output.resolve()
     out.mkdir(parents=True, exist_ok=False)
-    catalog_path = ROOT / "Docs/fidelity/hardware-reference-catalog.json"
+    catalog_path = ROOT / "Docs/research/fidelity/hardware-reference-catalog.json"
     catalog = json.loads(catalog_path.read_text())
     ref = next(r for r in catalog["recordings"] if r["id"] == "pad-03")
     bank = next(b for b in catalog["banks"] if b["id"] == ref["bank_id"])

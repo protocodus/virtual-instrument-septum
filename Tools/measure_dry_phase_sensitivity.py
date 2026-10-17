@@ -55,7 +55,7 @@ def main():
         path.write_bytes(subprocess.check_output(["git","show",f"{REVISION}:{name}"],cwd=ROOT))
         source_hashes[name]=sha(path)
     q0_path=out/"q0-recipe-source.json"
-    q0_path.write_bytes(subprocess.check_output(["git","show",f"{REVISION}:Docs/fidelity/source-audits/dry-end-to-end-2026-09-15.json"],cwd=ROOT))
+    q0_path.write_bytes(subprocess.check_output(["git","show",f"{REVISION}:Docs/research/fidelity/source-audits/dry-end-to-end-2026-09-15.json"],cwd=ROOT))
     q0=json.loads(q0_path.read_text())
     (out/"experiment-script.py").write_bytes(Path(__file__).read_bytes())
     save(out/"source-manifest.json",{"revision":REVISION,"input_sha256":source_hashes,"script_sha256":sha(__file__),"q0_recipe_sha256":sha(q0_path)})

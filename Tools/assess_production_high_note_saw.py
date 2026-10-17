@@ -25,7 +25,7 @@ from render_midi import parse_smf
 from generate_timbre_capture import decode_syx
 
 ROOT = Path(__file__).resolve().parents[1]
-AUDITS = ROOT / "Docs/fidelity/source-audits"
+AUDITS = ROOT / "Docs/research/fidelity/source-audits"
 W4 = AUDITS / "deepsonic-saw-asymmetric-kernels-2026-09-15.json"
 PHASE = AUDITS / "dry-phase-sensitivity-2026-09-15.json"
 CATALOG = AUDITS / "deepsonic-acquisition-2026-09-15.json"

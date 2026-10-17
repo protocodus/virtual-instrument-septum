@@ -143,7 +143,7 @@ def main():
     frames = args.source_webm.parent/"frames"
     frame_hashes = {p.name:sha(p) for p in sorted(frames.glob("part2-*.png"))
                     if p.stem in {"part2-000", "part2-004", "part2-005", "part2-010", "part2-020", "part2-030", "part2-040", "part2-049"}}
-    visual_report = ROOT/"Docs/fidelity/source-audits/synth-love-video-acquisition-2026-09-15.json"
+    visual_report = ROOT/"Docs/research/fidelity/source-audits/synth-love-video-acquisition-2026-09-15.json"
     result = dict(status="exploratory_clock_corroboration_only", source_url=SOURCE_URL,
         source_sha256=SOURCE_SHA, decoded_wav_sha256=sha(wav), tool_sha256=sha(__file__),
         decoder=dict(command=command, binary_sha256=sha(decoder),

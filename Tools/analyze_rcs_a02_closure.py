@@ -14,8 +14,8 @@ from scipy import signal
 from scipy.io import wavfile
 
 ROOT = Path(__file__).resolve().parents[1]
-CASE = ROOT / 'Docs/fidelity/reconstructions/expanded/rcs-a02-moogbass-pw.json'
-AUDIT = ROOT / 'Docs/fidelity/source-audits/rcs-a02-hardware-observations-2026-09-20.json'
+CASE = ROOT / 'Docs/research/fidelity/reconstructions/expanded/rcs-a02-moogbass-pw.json'
+AUDIT = ROOT / 'Docs/research/fidelity/source-audits/rcs-a02-hardware-observations-2026-09-20.json'
 
 
 def sha(path):

@@ -1,6 +1,6 @@
 // OM p. 38: AMP ENV controls the onset and release of the same sounding
 // note. The oversampler's transport must not advance that envelope relative
-// to its audio. See Docs/fidelity/source-audits/amp-envelope-latency.md.
+// to its audio. See Docs/research/fidelity/source-audits/amp-envelope-latency.md.
 #include "DSP/SeptumEngine.h"
 
 #include <algorithm>

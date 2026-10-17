@@ -124,7 +124,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, default=ROOT / 'out/presets/SH-201 Patch 100')
     parser.add_argument('--cache', type=Path, default=ROOT / 'out/preset-source-cache')
-    parser.add_argument('--catalog', type=Path, default=ROOT / 'Docs/presets/free-sh201-sources.json')
+    parser.add_argument('--catalog', type=Path, default=ROOT / 'Docs/guide/presets/free-sh201-sources.json')
     parser.add_argument('--converter', type=Path, default=ROOT / 'build-fidelity/SeptumConvertPresets')
     args = parser.parse_args()
     output, cache, converter = args.output.resolve(), args.cache.resolve(), args.converter.resolve()

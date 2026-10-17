@@ -26,7 +26,7 @@ import build_saw_w4_experiment as engine
 import score_moogie_envelope_candidates as moogie
 
 ROOT = Path(__file__).resolve().parents[1]
-INVENTORY = ROOT/"Docs/fidelity/source-audits/saw-w4-official-inputs-2026-09-15.json"
+INVENTORY = ROOT/"Docs/research/fidelity/source-audits/saw-w4-official-inputs-2026-09-15.json"
 INVENTORY_SHA = "9bf636d72ff15b00135258f5924798af9c2ecd81556534d485a0a0e4a700402e"
 SR = 44100
 
@@ -132,7 +132,7 @@ def prepare(args):
         "assess_hardware_equivalence.py","score_moogie_envelope_candidates.py")}
     harmonic_sources = {}
     for policy in ("estimated","nominal"):
-        path = ROOT/f"Docs/fidelity/source-audits/cutoff-taper-moogie-{policy}-2026-09-15.json"
+        path = ROOT/f"Docs/research/fidelity/source-audits/cutoff-taper-moogie-{policy}-2026-09-15.json"
         harmonic_sources[policy] = pin(path)
     protocol = dict(status="prepared_before_candidate_rendering",source_revision=engine.REVISION,
         inventory=inventory_pin,build_manifest=pin(build/"manifest.json"),dependencies=dependencies,

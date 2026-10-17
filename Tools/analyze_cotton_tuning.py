@@ -67,7 +67,7 @@ def main():
                         help='optional scratch directory from the explicitly modified octave-gap experiment')
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
-    catalog_path = ROOT / 'Docs/fidelity/hardware-reference-catalog.json'
+    catalog_path = ROOT / 'Docs/research/fidelity/hardware-reference-catalog.json'
     catalog = json.loads(catalog_path.read_text())
     corpus, retained = [], {}
     for record in catalog['recordings']:

@@ -43,11 +43,11 @@ def sha(path):
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument("--sources",type=Path,required=True)
-    p.add_argument("--inventory",type=Path,default=ROOT/"Docs/fidelity/source-audits/static-filter-reference-inventory-2026-09-15.json")
+    p.add_argument("--inventory",type=Path,default=ROOT/"Docs/research/fidelity/source-audits/static-filter-reference-inventory-2026-09-15.json")
     p.add_argument("--output",type=Path,required=True)
     a=p.parse_args();out=a.output.resolve();out.mkdir(parents=True,exist_ok=False)
     inv=json.loads(a.inventory.read_text())
-    catalog_path=ROOT/"Docs/fidelity/hardware-reference-catalog.json"
+    catalog_path=ROOT/"Docs/research/fidelity/hardware-reference-catalog.json"
     if sha(catalog_path)!=inv["catalog_sha256"]: raise ValueError("Catalog changed")
     catalog=json.loads(catalog_path.read_text());banks={}
     for b in catalog["banks"]:

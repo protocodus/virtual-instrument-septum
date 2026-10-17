@@ -1,5 +1,5 @@
 // Conditional hardware shape evidence:
-// Docs/fidelity/dry-filter-calibration.md
+// Docs/research/fidelity/dry-filter-calibration.md
 // Render the complete engine and measure sine gain relative to BYPASS. The
 // independent transfer expression checks that the fitted filter response
 // reaches the audio path. It does not establish the unknown raw cutoff table.

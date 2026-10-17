@@ -185,7 +185,7 @@ class ProvenanceTests(unittest.TestCase):
                 comparison.validate_association(invalid)
 
     def test_author_passage_must_be_bracketed_by_observations_of_that_patch(self):
-        catalog = json.loads((ROOT / 'Docs/fidelity/rcs-reference-catalog.json').read_text())
+        catalog = json.loads((ROOT / 'Docs/research/fidelity/rcs-reference-catalog.json').read_text())
         reference = deepcopy(catalog['recordings'][1])
         comparison.validate_association(reference, 20, 10)
         for bounds in ([19, 30], [20, 31]):
@@ -204,8 +204,8 @@ class ProvenanceTests(unittest.TestCase):
                 comparison.validate_association(invalid)
 
     def test_catalog_sources_and_bank_members_match_acquired_evidence(self):
-        catalog = json.loads((ROOT / 'Docs/fidelity/rcs-reference-catalog.json').read_text())
-        audit = json.loads((ROOT / 'Docs/fidelity/source-audits/rcs-reference-screen-2026-09-20.json').read_text())
+        catalog = json.loads((ROOT / 'Docs/research/fidelity/rcs-reference-catalog.json').read_text())
+        audit = json.loads((ROOT / 'Docs/research/fidelity/source-audits/rcs-reference-screen-2026-09-20.json').read_text())
         source = next(row for row in audit['audio_acquisition']['recordings'] if row['platform'] == 'youtube')
         for reference in catalog['recordings']:
             comparison.validate_association(reference)

@@ -50,7 +50,7 @@ def main():
         shutil.copyfile(ROOT/"Tools"/name,copied/name)
     sys.path.insert(0,str(copied))
     import analyze_public_lfo_clock as clock
-    clock_path = ROOT/"Docs/fidelity/source-audits/public-lfo-clock-2026-09-15.json"
+    clock_path = ROOT/"Docs/research/fidelity/source-audits/public-lfo-clock-2026-09-15.json"
     # The independently retained primary clock is the 1320 Hz record.
     recorded_clock = next(r for r in json.loads(clock_path.read_text())["tracks"] if r["center_hz"]==1320)
     period = 1/recorded_clock["training_frequency_hz"]

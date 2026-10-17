@@ -18,7 +18,7 @@ def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument("--run",type=Path,required=True);p.add_argument("--output",type=Path,required=True)
-    p.add_argument("--history",type=Path,default=ROOT/"Docs/fidelity/source-audits"/f"{PREFIX}.json",
+    p.add_argument("--history",type=Path,default=ROOT/"Docs/research/fidelity/source-audits"/f"{PREFIX}.json",
                    help="Retained audit supplies source-free failure receipts when original scratch runs are absent")
     a=p.parse_args();a.output.mkdir(parents=True,exist_ok=True)
     controls=json.loads((a.run/"controls.json").read_text())
@@ -42,7 +42,7 @@ def main():
             encoded=(json.dumps(entry["receipt"],indent=2,allow_nan=False)+"\n").encode()
             if hashlib.sha256(encoded).hexdigest()!=entry["sha256"]:raise ValueError("Historical failure receipt changed")
             retained.append(entry)
-    independent=ROOT/"Docs/fidelity/source-audits/windowed-sinc-math-independent-review-2026-09-15.json"
+    independent=ROOT/"Docs/research/fidelity/source-audits/windowed-sinc-math-independent-review-2026-09-15.json"
     review=dict(path=str(independent),sha256=sha(independent),receipt=json.loads(independent.read_text()))
     if run["tool_sha256"]!=sha(ROOT/"Tools/fit_high_note_sinc_models.py") or review["receipt"]["tested_tool_sha256"]!=run["tool_sha256"]:
         raise ValueError("Current/reviewed fitting tool mismatch")

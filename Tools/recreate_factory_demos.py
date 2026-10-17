@@ -259,7 +259,7 @@ def main():
     parser.add_argument('--dsp-library', type=Path, default=ROOT / 'build-fidelity/libSeptumDSP.a')
     parser.add_argument('--case', type=Path, action='append')
     args = parser.parse_args()
-    case_paths = args.case or sorted((ROOT / 'Docs/fidelity/reconstructions/factory').glob('*.json'))
+    case_paths = args.case or sorted((ROOT / 'Docs/research/fidelity/reconstructions/factory').glob('*.json'))
     if not case_paths or len(case_paths) > 32:
         parser.error('Provide 1–32 reviewed reconstruction cases')
     cases = [json.loads(path.read_text()) for path in case_paths]
@@ -276,7 +276,7 @@ def main():
     identities[str(renderer)] = digest(renderer)
     identities[str(library)] = digest(library)
     build = build_patches(cases, output, library)
-    catalog = json.loads((ROOT / 'Docs/fidelity/factory-recordings.json').read_text())
+    catalog = json.loads((ROOT / 'Docs/research/fidelity/factory-recordings.json').read_text())
     results = []
     ffmpeg = shutil.which('ffmpeg')
     if not ffmpeg:
@@ -294,7 +294,7 @@ def main():
                 'preset_classification': {'exact_factory': 0, 'approximate': len(results)},
                 'shipping_dsp_modified': False, 'build': build, 'source_sha256': identities,
                 'tool_sha256': {name: digest(ROOT / 'Tools' / name) for name in ['recreate_factory_demos.py', 'compare_hardware.py', 'render_midi.py']},
-                'catalog_sha256': digest(ROOT / 'Docs/fidelity/factory-recordings.json'),
+                'catalog_sha256': digest(ROOT / 'Docs/research/fidelity/factory-recordings.json'),
                 'cases': [{'id': r['case']['id'], 'name': r['reference']['name'], 'duration_seconds': r['case']['duration_seconds'],
                            'note_count': len(r['case']['notes']), 'report': r['case']['id'] + '/comparison.json'} for r in results],
                 'files': {str(p.relative_to(output)): digest(p) for p in sorted(output.rglob('*'))

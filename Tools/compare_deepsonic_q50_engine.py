@@ -20,7 +20,7 @@ from scipy.io import wavfile
 
 ROOT = Path(__file__).resolve().parents[1]
 REVISION = "b0f6c03"
-Q0_RECORD = "Docs/fidelity/source-audits/dry-end-to-end-2026-09-15.json"
+Q0_RECORD = "Docs/research/fidelity/source-audits/dry-end-to-end-2026-09-15.json"
 SOURCES = {
     "deepsonic_-_filter_demo_-_comparsion_sequence.mid": "21ea21b9ba3ba14cc205931134fb7a320b09e67821bd3a3c70f97fa2e8b5d99a",
     "roland_sh-201_-_filter_demo_-_lpf12_q050.mp3": "eada93d2d7330a573bf5166244d8b9cb6a4d55fb49f0c1d6bd18197b5a9529ca",
