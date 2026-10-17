@@ -1,3 +1,4 @@
 # Exact versions CI installs for the Python checks (portfolio rule L5).
 numpy==2.5.3
 scipy==1.18.1
+matplotlib==3.11.2

@@ -209,6 +209,82 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
+  # U4: the long libFuzzer run. Not a dependency of the media commit; a
+  # failure still fails the build and uploads its reproducers.
+  fuzz-long:
+    name: Fuzz the DSP for 20 minutes
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Build the libFuzzer target
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends ninja-build
+          cmake -S . -B build-fuzz -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ \
+            -DSEPTUM_BUILD_PLUGIN=OFF -DSEPTUM_BUILD_TOOLS=OFF -DSEPTUM_BUILD_LIBFUZZER=ON \
+            -DBUILD_TESTING=ON
+          cmake --build build-fuzz --parallel --target SeptumDspFuzz
+
+      - name: Fuzz
+        working-directory: build-fuzz
+        run: |
+          mkdir -p corpus
+          ./SeptumDspFuzz -seed=${{ github.run_number }} -max_total_time=1200 -max_len=4096 \
+            -timeout=30 -rss_limit_mb=2048 -jobs=4 -workers=4 corpus
+
+      - name: Upload fuzz reproducers
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: main-build-fuzz-reproducers-${{ github.run_number }}
+          path: |
+            build-fuzz/crash-*
+            build-fuzz/timeout-*
+            build-fuzz/oom-*
+            build-fuzz/fuzz-*.log
+          if-no-files-found: ignore
+          retention-days: 30
+
+  # U4: the full parameter-extremes matrix, every case at all nine rates and
+  # block sizes, nightly in sixteen shards. Pushes run the CTest sample instead.
+  parameter-matrix:
+    name: Parameter matrix shard ${{ matrix.shard }}/16
+    if: github.event_name != 'push'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Install JUCE Linux dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            ninja-build pkg-config \
+            libasound2-dev \
+            libfreetype-dev libfontconfig1-dev \
+            libx11-dev libxcomposite-dev libxcursor-dev libxext-dev \
+            libxinerama-dev libxrandr-dev libxrender-dev
+
+      - name: Build the processor
+        run: |
+          cmake -S . -B build-plugin -G Ninja -DCMAKE_BUILD_TYPE=Release \
+            -DSEPTUM_BUILD_PLUGIN=ON -DSEPTUM_BUILD_TOOLS=OFF -DBUILD_TESTING=ON
+          cmake --build build-plugin --parallel --target SeptumParameterMatrixTests
+
+      - name: Run the shard
+        run: ./build-plugin/SeptumParameterMatrixTests --shard ${{ matrix.shard }}/16 --jobs 4
+
   collect:
     name: Collect septum-main-build-${{ github.run_number }}
     needs: [render-audio-demos, build-macos, build-linux, build-windows]

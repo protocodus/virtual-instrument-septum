@@ -3019,6 +3019,9 @@ void SeptumAudioProcessor::getStateInformation (
                 state.getChild (indices[v])
                     .setProperty ("value", values[v], nullptr);
             state.setProperty ("program", program, nullptr);
+            // A restore stamps the version, so a save that left it out would
+            // not survive its own save-restore-save round trip.
+            state.setProperty ("preset_format_version", nativePresetVersion, nullptr);
             if (presetName.isNotEmpty())
                 state.setProperty ("preset_name", presetName, nullptr);
             else

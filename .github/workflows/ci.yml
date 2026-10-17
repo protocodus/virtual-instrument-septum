@@ -37,7 +37,7 @@ jobs:
             libxinerama-dev libxrandr-dev libxrender-dev \
             ffmpeg
 
-      # The hardware-comparison checks register only when NumPy and SciPy import.
+      # The hardware-comparison checks skip unless NumPy, SciPy and Matplotlib import.
       - name: Set up Python for the checks
         id: python
         uses: actions/setup-python@v5
@@ -193,3 +193,63 @@ jobs:
 
       - name: Unit and fuzz tiers
         run: ctest --test-dir build-sanitize -L '^(unit|fuzz)$' --no-tests=error --output-on-failure --parallel 2
+
+      # U4: a short fixed-seed libFuzzer run over coverage-instrumented DSP.
+      - name: Build the libFuzzer target
+        run: >-
+          cmake -S . -B build-fuzz -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo
+          -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+          -DSEPTUM_BUILD_PLUGIN=OFF -DSEPTUM_BUILD_TOOLS=OFF -DSEPTUM_BUILD_LIBFUZZER=ON
+          -DBUILD_TESTING=ON
+          && cmake --build build-fuzz --parallel --target SeptumDspFuzz
+
+      - name: Fuzz the DSP for two minutes
+        working-directory: build-fuzz
+        run: |
+          mkdir -p corpus
+          ./SeptumDspFuzz -seed=1 -max_total_time=120 -max_len=4096 -timeout=30 \
+            -rss_limit_mb=2048 corpus
+
+      - name: Upload fuzz reproducers
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-fuzz-reproducers-septum-build-${{ github.run_number }}
+          path: |
+            build-fuzz/crash-*
+            build-fuzz/timeout-*
+            build-fuzz/oom-*
+          if-no-files-found: ignore
+          retention-days: 7
+
+  parameter-matrix:
+    name: Parameter-extremes matrix sample under ASan + UBSan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      ASAN_OPTIONS: detect_leaks=1:halt_on_error=1
+      UBSAN_OPTIONS: print_stacktrace=1:halt_on_error=1
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Install JUCE Linux dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            ninja-build pkg-config \
+            libasound2-dev \
+            libfreetype-dev libfontconfig1-dev \
+            libx11-dev libxcomposite-dev libxcursor-dev libxext-dev \
+            libxinerama-dev libxrandr-dev libxrender-dev
+
+      - name: Configure and build the instrumented processor
+        run: >-
+          cmake -S . -B build-sanitize-plugin -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo
+          -DSEPTUM_BUILD_PLUGIN=ON -DSEPTUM_BUILD_TOOLS=OFF -DSEPTUM_ENABLE_SANITIZERS=ON
+          -DBUILD_TESTING=ON
+          && cmake --build build-sanitize-plugin --parallel --target SeptumParameterMatrixTests
+
+      - name: Parameter matrix sample
+        run: ctest --test-dir build-sanitize-plugin -R '^Septum[.]ParameterMatrix$' --no-tests=error --output-on-failure

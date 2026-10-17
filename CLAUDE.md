@@ -43,7 +43,7 @@ Everything else in `Docs/` has one home, and nothing sits loose there except
 | `audio/` | rendered demos, per-fix previews, committed listening tests |
 | `screenshots/` | editor images |
 | `guide/` | user, install and preset guides, parameter meaning |
-| `research/` | modelling research, references, design notes, experiments (`research/fidelity/` holds the hardware-fidelity work) |
+| `research/` | modelling research, references, design notes, experiments |
 | `validation/` | audits, test results, host validation |
 | `benchmarks/` | CPU and performance measurements |
 | `plans/` | improvement plans, requirements, open work |
@@ -52,8 +52,8 @@ Everything else in `Docs/` has one home, and nothing sits loose there except
 Name documents in lowercase kebab-case, `<topic>-YYYY-MM-DD.md` for dated
 work. Moving a document is a rename only: keep its content and date, and update
 every link to it in the same commit. Legal files (`LICENSE`,
-`THIRD_PARTY_NOTICES.md`) stay at the root; upstream licence texts live in
-`ThirdParty/`.
+`THIRD_PARTY_NOTICES.md`, `PRIVACY.md`) stay at the root; upstream licence
+texts live in `ThirdParty/`.
 
 Research the code depends on — a specific value, a manual page, a measurement,
 a derivation — belongs in a comment **beside the code that uses it**, not only
@@ -63,20 +63,15 @@ head of the tool that enforces it.
 These README parts are written by the build, never by hand:
 
 - The demo table between `<!-- audio-demos-begin -->` and
-  `<!-- audio-demos-end -->` is rewritten by `Tools/update_readme_blocks.py`
-  from the manifest `RenderSeptumPresetDemos` writes: one demo per factory
-  preset, played from its phrase in `Docs/audio/midi/<NN>-<preset-slug>.mid`
-  (written by `Tools/write_preset_midi.py`). The main build commits the demos
-  as `Docs/audio/<NN>-<preset-slug>.mp3`.
-- `Tools/PresetDemoRenderer.h`, `Tools/update_readme_blocks.py`,
-  `Tests/ParameterMatrix.h` and `Tests/FuzzHarness.h` are byte-identical copies
-  of the portfolio masters in `reason-rack-extensions/Tools/portfolio/`. Change
-  them there, never here.
+  `<!-- audio-demos-end -->`, rendered from one
+  `Docs/audio/midi/<NN>-<preset-slug>.mid` per factory preset (change a source
+  only on purpose, in its own commit) and committed by the main build as
+  `Docs/audio/<NN>-<preset-slug>.mp3`.
 - The block between `<!-- build-download-begin -->` and
-  `<!-- build-download-end -->` is rewritten by `main-build.yml`, which also
-  commits `Docs/screenshots/septum.png`.
+  `<!-- build-download-end -->`, rewritten by the main build, which also
+  commits the README screenshot under `Docs/screenshots/`.
 
-Version history is a ledger of what changed about the instrument — what it
+Version history is a ledger of what changed about the product — what it
 sounds like, what it exposes, what a session must know. Pure refactors,
 deduplications and test-coverage additions belong in git history, not in it.
 
@@ -143,6 +138,17 @@ defensible on their own physics. It does not license drawing a constant, fitting
 a curve, or keeping a formulation the measurements reject. If every candidate
 needs an invented number, the answer is still that none of them ships.
 
+## Shared portfolio tools
+
+`Tools/PresetDemoRenderer.h`, `Tools/update_readme_blocks.py`,
+`Tests/ParameterMatrix.h` and `Tests/FuzzHarness.h`, and the Documentation
+layout and A–Z listening tests sections above, are byte-identical copies of
+the portfolio masters in `reason-rack-extensions/Tools/portfolio/`. Change
+them there, never here. Septum's own parts are `Tools/RenderPresetDemos.cpp`
+(the demos play every preset at one MASTER LEVEL, unnormalised),
+`Tools/write_preset_midi.py` (the phrases in `Docs/audio/midi/`) and
+`Tests/ParameterMatrixTests.cpp` (the limits Septum's design implies).
+
 ## Build and verify
 
 ```sh
@@ -158,7 +164,8 @@ byte-identical), `render` (the editor screenshot renders at the committed
 size) or `fuzz` (seeded malformed-input stress, also run under ASan + UBSan).
 Select the suites that cover a change with `-R`, then run the full suite
 before a substantive DSP change is called done. The hardware-comparison Python
-checks register only when NumPy and SciPy are importable.
+checks skip unless NumPy, SciPy and Matplotlib are importable;
+CI installs them from `Tools/requirements-ci.txt`.
 
 A test is never skipped, disabled or loosened to get green. Diagnose a failed
 contract against the baseline before changing a fixture, and document why an
