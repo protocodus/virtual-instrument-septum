@@ -1,5 +1,7 @@
 # Five further improvements to SH-201 fidelity
 
+> The tools, receipts and figures this record names were removed from the tree on 2026-10-17 as obsolete evidence; they remain at [5852552](https://github.com/protocodus/virtual-instrument-septum/tree/5852552eca9ee4b764f27664317a42b61c275740).
+
 Septum benefits most from correcting audible behavior that can be specified and tested independently of unknown Roland DSP code. The selected changes are clock-source synchronization, continuous SOLO portamento, correct reverb damping gains, feedback-oscillator synchronization, and MIDI Portamento Control. Each has a separate implementation commit and regression coverage. The changes improve specific behaviors; they do not establish overall hardware audio identity.
 
 The audited starting point is commit `850bddf`. That version already contains substantial oscillator, envelope, filter, external-input, MIDI and output-circuit work. No new physical SH-201 recording was available for this investigation. Existing public-recording analyses were reviewed as evidence with their original performance and recording uncertainties preserved.
@@ -62,7 +64,7 @@ A three-note lead phrase exposes the original defect. Play a note, start a long 
 
 The correction preserves the sounding pitch of a reused mono voice, while retaining the normal SOLO envelope attack. Fresh polyphonic voices still use the part's preceding pitch as their ordinary glide source. This separates the two observable requirements without changing the unmeasured time-control curve. Roland describes smooth portamento and the SOLO/LEGATO articulation distinction on p. 19.[^1]
 
-The regression compares interrupted and return-to-held-key phrases with an independent continuous-pitch reference. It covers both parts, both oscillators, ascending and descending intervals, several sample rates and two block sizes. A positive test verifies that SOLO still retriggers its amplitude attack. The maximum waveform error in the distinguishing fixtures changed from approximately 0.024309 full scale to zero. Detailed reasoning and reproduction are in [the continuity audit](source-audits/portamento-continuity.md).
+The regression compares interrupted and return-to-held-key phrases with an independent continuous-pitch reference. It covers both parts, both oscillators, ascending and descending intervals, several sample rates and two block sizes. A positive test verifies that SOLO still retriggers its amplitude attack. The maximum waveform error in the distinguishing fixtures changed from approximately 0.024309 full scale to zero. Detailed reasoning and reproduction are in [the continuity audit](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/portamento-continuity.md).
 
 This correction is most relevant to quickly played leads and bass lines with long glide settings. It does not claim to calibrate Roland's exponential or linear glide law, exact duration table, velocity treatment, or every voice-stealing case.
 
@@ -74,7 +76,7 @@ The replacement realizes first-order complementary shelves with the requested en
 
 A full-engine 12 kHz burst probe illustrates the effect below Nyquist. With 4 kHz damping corners and the same neutral reference, LF −36 dB tail energy rises from 0.030617 to 0.628444 of neutral, while HF −6 dB falls from 0.015525 to 0.003286. Those are changes of +13.12 dB and −6.74 dB respectively in the measured 0.3–0.6 second window. They demonstrate a material change in the intended frequency region, not a measured reduction in distance to hardware.
 
-The tests inspect endpoints, complex response, passive gain, neutral behavior, full-engine tails, block partitioning and live frequency changes. The implementation also handles published corners that cannot be represented below Nyquist at a low host sample rate. See [the damping audit](source-audits/reverb-damping-shelves.md) for formulas, exact fixtures, automation handling and limitations.
+The tests inspect endpoints, complex response, passive gain, neutral behavior, full-engine tails, block partitioning and live frequency changes. The implementation also handles published corners that cannot be represented below Nyquist at a low host sample rate. See [the damping audit](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/reverb-damping-shelves.md) for formulas, exact fixtures, automation handling and limitations.
 
 ## Feedback-oscillator synchronization
 
@@ -94,13 +96,13 @@ The MIDI contract makes the command a source designation for one following note.
 
 Voice lookup is bounded by the existing voice pool and introduces no allocation. Pending control state is cleared by reset and panic paths, including the processor's controller-reset handling. Zero glide time remains immediate. The interaction between arpeggiator-transformed input and hardware MIDI remote-keyboard settings is not established by this work; generated arpeggio notes do not inherit a stale designation.
 
-Regression coverage includes switch-off operation, existing-source continuation, source and target note-off order, one-shot routing in Split and Dual, unrelated polyphonic voices, zero time, and reset behavior. See [the CC84 audit](source-audits/midi-portamento.md) for the exact source contract and final measurements.
+Regression coverage includes switch-off operation, existing-source continuation, source and target note-off order, one-shot routing in Split and Dual, unrelated polyphonic voices, zero time, and reset behavior. See [the CC84 audit](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/midi-portamento.md) for the exact source contract and final measurements.
 
 ## Why larger timbre changes remain deferred
 
-Changing more oscillator or filter constants would be easy to hear, but that alone does not make it a fidelity improvement. The existing [Moogie waveform investigation](source-audits/moogie-oscillator-shape.md) shows why: fitting a small subset of harmonics produces plausible-looking models that fail additional harmonics. The recordings cannot yet separate oscillator shape, phase, filter behavior and recording processing uniquely.
+Changing more oscillator or filter constants would be easy to hear, but that alone does not make it a fidelity improvement. The existing [Moogie waveform investigation](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/moogie-oscillator-shape.md) shows why: fitting a small subset of harmonics produces plausible-looking models that fail additional harmonics. The recordings cannot yet separate oscillator shape, phase, filter behavior and recording processing uniquely.
 
-Likewise, a global triangle inversion improves several Dist Bs 1 measurements but worsens some Moogie odd-harmonic ratios. Promoting it would encode one recording's ambiguity as a universal oscillator rule. The existing [distortion/phase audit](source-audits/dist-overdrive-phase.md) remains the appropriate record of that hypothesis.
+Likewise, a global triangle inversion improves several Dist Bs 1 measurements but worsens some Moogie odd-harmonic ratios. Promoting it would encode one recording's ambiguity as a universal oscillator rule. The existing [distortion/phase audit](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/dist-overdrive-phase.md) remains the appropriate record of that hypothesis.
 
 A new Super Saw mix or high-pass law has a stronger related-instrument foundation than an arbitrary guess, but the existing implementation already incorporates that literature.[^9] Additional reuse of JP-8000 evidence does not increase confidence that a specific SH-201 setting is correct. The next useful evidence is a dry SH-201 spread sweep with oscillator isolation, not another fit to a different model.
 
@@ -120,7 +122,7 @@ cmake --build build-fidelity --parallel
 ctest --test-dir build-fidelity --output-on-failure
 ```
 
-Enable `SEPTUM_BUILD_PLUGIN` to include the processor's host/MIDI timing, session migration and native preset tests. `SeptumPluginProcessorTests --editor-snapshots <directory>` produces editor views for visual inspection. The final integrated validation record is maintained in [the results file](five-further-validation.md).
+Enable `SEPTUM_BUILD_PLUGIN` to include the processor's host/MIDI timing, session migration and native preset tests. `SeptumPluginProcessorTests --editor-snapshots <directory>` produces editor views for visual inspection. The final integrated validation record is maintained in [the results file](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/five-further-validation.md).
 
 ## Sources
 

@@ -1,5 +1,7 @@
 # Ten SH-201 fidelity corrections
 
+> The tools, receipts and figures this record names were removed from the tree on 2026-10-17 as obsolete evidence; they remain at [5852552](https://github.com/protocodus/virtual-instrument-septum/tree/5852552eca9ee4b764f27664317a42b61c275740).
+
 Research date: 2026-09-12. Audited baseline: `0b80652324c5c8ad79cec38433173013bc45440e`.
 This round corrects observable synthesis, audio-input and performance behavior.
 It does not establish a bit-exact WSP DSP emulation. No firmware, ROM image,

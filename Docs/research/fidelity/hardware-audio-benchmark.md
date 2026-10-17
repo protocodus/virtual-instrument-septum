@@ -1,5 +1,7 @@
 # SH-201 hardware audio benchmark
 
+> The tools, receipts and figures this record names were removed from the tree on 2026-10-17 as obsolete evidence; they remain at [5852552](https://github.com/protocodus/virtual-instrument-septum/tree/5852552eca9ee4b764f27664317a42b61c275740).
+
 This report preserves the initial three-case benchmark. The [current WIDE pitch correction](wide-pitch-correction.md) adds a fourth case, fixes oscillator intervals and revises the explicitly reconstructed MIDI; original hardware preset bytes remain unchanged.
 
 The acquired reference corpus contains **64 recordings**: 32 official Roland demos and 32 numbered preset examples from Pier Calderan's contemporary review. Four official librarian banks supply **400 published patches**. Of the official recordings, **24 identify an individual patch by name**; eight demonstrate FX categories containing multiple sounds. Three short comparisons now render Septum with unmodified published presets and explicitly reconstructed note MIDI.
@@ -18,7 +20,7 @@ The [follow-up audit](hardware-benchmark-audit.md) preserves these three baselin
 | Dist Bs 1 | 1.94–3.20 s | Three separated notes: MIDI 63, 63, 65 | BASS bank, record 3 |
 | Cotton Wool | 0–5.00 s | 27 estimated note-ons, bass plus chords | PAD bank, record 1 |
 
-The [reference catalog](hardware-reference-catalog.json) contains original URLs, archive members, sizes, hashes and association evidence for all 36 official assets. The separate [reviewer catalog](reviewer-reference-catalog.json) identifies the 32-file review archive and hashes each contained recording. The [reconstruction files](reconstructions) retain note-level estimates, methods and uncertainty. Downloaded recordings, banks and generated audio remain under the ignored build directory; the repository carries analysis, metadata and tools.
+The [reference catalog](hardware-reference-catalog.json) contains original URLs, archive members, sizes, hashes and association evidence for all 36 official assets. The separate [reviewer catalog](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/reviewer-reference-catalog.json) identifies the 32-file review archive and hashes each contained recording. The [reconstruction files](reconstructions) retain note-level estimates, methods and uncertainty. Downloaded recordings, banks and generated audio remain under the ignored build directory; the repository carries analysis, metadata and tools.
 
 ## Source qualification
 
@@ -83,17 +85,17 @@ Plots show 50 ms RMS traces sampled every 10 ms, Welch power spectra using 8,192
 | Dist Bs 1 | 64.6 Hz | 48.8 Hz | −5.19 dBFS |
 | Cotton Wool | 316.3 Hz | 51.2 Hz | −16.29 dBFS |
 
-These figures describe the acquired and rendered excerpts. They do not identify the sole cause of the difference. All three renders are finite and below full scale; scalar matching brings their listening copies to the same RMS as their paired hardware excerpt. [Machine-readable results](hardware-benchmark-results.json) and [all chart data as CSV](hardware-benchmark-plot-data.csv) accompany the figures. In the CSV, `envelope` uses seconds and linear RMS, `spectrum` uses Hz and power density, and `log_band_difference` uses Hz and dB.
+These figures describe the acquired and rendered excerpts. They do not identify the sole cause of the difference. All three renders are finite and below full scale; scalar matching brings their listening copies to the same RMS as their paired hardware excerpt. [Machine-readable results](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/hardware-benchmark-results.json) and [all chart data as CSV](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/hardware-benchmark-plot-data.csv) accompany the figures. In the CSV, `envelope` uses seconds and linear RMS, `spectrum` uses Hz and power density, and `log_band_difference` uses Hz and dB.
 
-![Moogie 1 comparison](figures/hardware-benchmark-moogie-1.png)
+![Moogie 1 comparison](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/figures/hardware-benchmark-moogie-1.png)
 
 Moogie 1 shows less upper-harmonic energy in Septum across much of the excerpt after level matching. Its octave notes also change the amplitude envelope differently. That makes oscillator balance, filter/envelope scaling and note-dependent level behavior sensible targets for a controlled capture. Unknown performance velocity, undocumented knob movement or production processing remain alternative explanations; none is silently absorbed into fitted preset values here.
 
-![Dist Bs 1 comparison](figures/hardware-benchmark-dist-bs-1.png)
+![Dist Bs 1 comparison](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/figures/hardware-benchmark-dist-bs-1.png)
 
 Dist Bs 1 provides the clearest short gating comparison. The separated events are easier to time than the other examples, and the published preset disables time-based effects. Its upper tone includes overdrive, so oscillator mix, drive and filter behavior cannot be isolated from this patch alone. Slow offset tails dominate parts of the gaps; their RMS difference is not evidence of an amplifier-release error. The small stereo component in the hardware recording may come from capture or encoding; the effect-free Septum render has identical left and right channels. It would be premature to add stereo noise to the model on this basis.
 
-![Cotton Wool comparison](figures/hardware-benchmark-cotton-wool.png)
+![Cotton Wool comparison](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/figures/hardware-benchmark-cotton-wool.png)
 
 Cotton Wool has substantially more 20–40 Hz energy in Septum, which dominates the power-centroid difference. The preset's low sine oscillator, uncertain octave/voicing estimates and undocumented recording high-pass processing must all be considered before assigning a cause. The higher-frequency spectral balance and stereo distribution also differ. Unknown filter-sensitive velocities and uncertain note overlaps are further confounders. Retain this as a listening reference while a simpler, captured MIDI sequence establishes the oscillator, envelope and filter responses separately.
 

@@ -1,5 +1,7 @@
 # Sound-quality improvements, round 2
 
+> The tools, receipts and figures this record names were removed from the tree on 2026-10-17 as obsolete evidence; they remain at [5852552](https://github.com/protocodus/virtual-instrument-septum/tree/5852552eca9ee4b764f27664317a42b61c275740).
+
 This round fixes five audible implementation problems in the shipping native-rate
 engine. The baseline is `cd71244`. These are numerical and performance-control
 corrections; they do not establish an exact SH-201 match without hardware recordings.

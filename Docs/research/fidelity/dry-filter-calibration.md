@@ -1,5 +1,7 @@
 # Dry SH-201 filter calibration
 
+> The tools, receipts and figures this record names were removed from the tree on 2026-10-17 as obsolete evidence; they remain at [5852552](https://github.com/protocodus/virtual-instrument-septum/tree/5852552eca9ee4b764f27664317a42b61c275740).
+
 2026-09-15. **Adopt less damping at voice resonance zero. Overall hardware
 output equivalence remains unestablished.** The new dry recordings support this
 specific response correction more directly than the wet factory demos. The
@@ -66,14 +68,14 @@ harmonics above the measurement floor. The validation LP12 set contains 106
 upper-harmonic observations over 20 windows; LP24 contains only 25 observations
 over 10 windows. Exact window and observation counts
 are retained with each summary in the
-[complete numerical audit](source-audits/dry-filter-shape-2026-09-15.json).
+[complete numerical audit](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/dry-filter-shape-2026-09-15.json).
 All six notes were inspected during exploration; “excluded from fitting” does
 not mean the recordings were previously unexamined.
 
-![Response error on other notes](plots/dry-filter-shape.png)
+![Response error on other notes](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/plots/dry-filter-shape.png)
 
 Two independent reviewers checked the estimator. A
-[dynamic-filter negative control](source-audits/filter-estimator-bias-2026-09-15.md)
+[dynamic-filter negative control](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/filter-estimator-bias-2026-09-15.md)
 recovers the previous 2.0/1.2 model when that model actually generated a moving
 cutoff. It does not falsely infer 1.2 from envelope motion. A separate full-rate
 review confirms the result after correcting an exploratory subsampling error.
@@ -104,21 +106,21 @@ resonance table.
 An initial candidate instead subtracted a quadratic correction from the old
 curve below raw 40. That introduced a much steeper low-resonance response
 without additional hardware evidence. Its complete
-[ten-preset audit](source-audits/zero-resonance-candidate-2026-09-15.md) is retained.
+[ten-preset audit](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/zero-resonance-candidate-2026-09-15.md) is retained.
 All notable regressions there occur at raw zero, so choosing the straight
 bridge does not remove those conflicting results. Only Dist Bs 1 exercises
 the changed nonzero interior among the ten cases.
 
 ## Factory-demo conflict and limits
 
-The [full-engine dry replay](source-audits/dry-end-to-end-2026-09-15.md) also
+The [full-engine dry replay](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/dry-end-to-end-2026-09-15.md) also
 improves with one fixed, training-note recipe reconstruction: spectral distance
 falls 0.34231→0.28779 for LP12 and 0.34903→0.29495 for LP24. The nominal
 one-second envelope sensitivity worsens, demonstrating why damping and envelope
-claims must remain separate. The [fresh reproduction](source-audits/zero-resonance-reproduction-2026-09-15.md)
+claims must remain separate. The [fresh reproduction](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/zero-resonance-reproduction-2026-09-15.md)
 rebuilds three experimental binaries and reproduces all 37 audio renders exactly
 in the recorded environment. All ten actual production renders also
-[match their tested candidates](source-audits/final-production-verification-2026-09-15.json).
+[match their tested candidates](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/final-production-verification-2026-09-15.json).
 
 The factory comparisons keep the same published preset bytes and reconstructed
 MIDI. They have unknown original velocities, gates, recording gain, phase and
@@ -136,12 +138,12 @@ prove bit equality, perceptual transparency, complete patch equality, or
 superiority over other products. One owner's device and lossy recordings
 cannot establish an exact firmware topology or variation between units.
 
-The follow-up [envelope-shape audit](source-audits/deepsonic-envelope-shape-2026-09-15.md)
+The follow-up [envelope-shape audit](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/deepsonic-envelope-shape-2026-09-15.md)
 also detects a curved effective cutoff decay in the zero- and maximum-resonance
 recordings. Two different curved models fit the short held notes similarly,
 so this does not yet identify a replacement envelope-control law. Envelope
 timing and shape remain unchanged in this correction.
-The [longer chord follow-up](source-audits/deepsonic-chord-envelope-2026-09-15.md)
+The [longer chord follow-up](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/deepsonic-chord-envelope-2026-09-15.md)
 favors the frozen exponential-in-Hz model for this recipe. It still does not
 identify raw controls, initial peak or final floor well enough to promote a
 general envelope law.

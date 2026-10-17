@@ -1,32 +1,34 @@
 # SH-201 fidelity work
 
+> The tools, receipts and figures this record names were removed from the tree on 2026-10-17 as obsolete evidence; they remain at [5852552](https://github.com/protocodus/virtual-instrument-septum/tree/5852552eca9ee4b764f27664317a42b61c275740).
+
 The [2026-09-15 source audit](source-audits/2026-09-15-new-sources.md) adds
 published hardware LFO periods and six dry filter recordings with original
 performance MIDI. The [dry filter calibration](dry-filter-calibration.md)
 corrects the zero-resonance response, with measured improvements across notes
 and both slopes. The recorded patch remains a recipe rather than a SysEx dump.
-The [equivalence assessment](equivalence-assessment.md) measures spectrum,
+The [equivalence assessment](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/equivalence-assessment.md) measures spectrum,
 envelope and stereo differences and prevents missing evidence from becoming
 an output-equivalence claim. Whole-instrument equivalence remains open.
 
-The [current goal status](goal-status.md) records implemented corrections,
-rejected candidates and active investigations. [Phase-only controls](source-audits/dry-phase-sensitivity-2026-09-15.md)
+The [current goal status](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/goal-status.md) records implemented corrections,
+rejected candidates and active investigations. [Phase-only controls](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/dry-phase-sensitivity-2026-09-15.md)
 now quantify how strongly short-window metrics can vary without a parameter
 change other than waveform origin. Their distances cannot be subtracted from
 hardware errors or used as a perceptual acceptance margin.
 
-The [output-stage source audit](source-audits/output-stage-primary-sources-2026-09-15.md)
+The [output-stage source audit](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/output-stage-primary-sources-2026-09-15.md)
 checks the user's report that the original sounds more lively and powerful.
-The [existing limiter is inactive](source-audits/output-path-code-audit-2026-09-15.md)
+The [existing limiter is inactive](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/output-path-code-audit-2026-09-15.md)
 in all twelve current benchmark renders. A
-[level/dynamics characterization](source-audits/output-stage-reference-characterization-2026-09-15.md)
+[level/dynamics characterization](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/output-stage-reference-characterization-2026-09-15.md)
 finds preset-dependent differences in transient contrast and harmonic body,
 without identifying a common missing gain, compressor or tone tilt.
-The [omitted line circuitry](source-audits/output-stage-circuit-calculation-2026-09-15.md)
+The [omitted line circuitry](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/output-stage-circuit-calculation-2026-09-15.md)
 has very small calculated magnitude effects; its phase effects remain a
 separate full-engine experiment. Component data does not establish an audible
 normal-line saturation curve to install as a hardware correction.
-The [frozen full-engine line trial](source-audits/line-output-engine-trial-2026-09-15.md)
+The [frozen full-engine line trial](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/line-output-engine-trial-2026-09-15.md)
 passes exact disabled controls but leaves the priority-preset mismatches in
 place, so no output-stage variant is promoted. The AK4552 source audit also
 confirms de-emphasis is off and bounds its internal DAC response; no exact
@@ -40,19 +42,19 @@ timing, all counterexamples and independent verification remain available.
 The exact Roland return coefficient, decay law and damping topology are open.
 The [synchronized seven-preset player](http://127.0.0.1:58513/) compares original
 recordings, the previous return and the corrected return, with
-[verified audio provenance](source-audits/reverb-listening-player-2026-09-15.md).
-The [additional SINGLE/damped reference](source-audits/reverb-mode-damping-followup-2026-09-15.md)
+[verified audio provenance](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/reverb-listening-player-2026-09-15.md).
+The [additional SINGLE/damped reference](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/reverb-mode-damping-followup-2026-09-15.md)
 has small spectral gains and worse stereo spread; it does not resolve the
-tail mismatch. A [numerical alignment fix](source-audits/alignment-silence-regression-2026-09-15.md)
+tail mismatch. A [numerical alignment fix](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/alignment-silence-regression-2026-09-15.md)
 corrects one near-silent timing fit while preserving the lag/gain of the
 other 170 historical comparisons checked.
 
-The [synchronized dry listening comparison](source-audits/dry-listening-player-2026-09-15.md)
+The [synchronized dry listening comparison](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/dry-listening-player-2026-09-15.md)
 presents original-MIDI hardware, current DSP and the retained envelope
 experiment with frozen gain and timing. Source and model uncertainties
 remain explicit; the experiment has not replaced production.
 
-The [20 September public-recording comparison](public-recording-match.md)
+The [20 September public-recording comparison](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/public-recording-match.md)
 adds a materially closer experimental Air Lead cutoff and playable fitted
 preset, checks the curve across twelve presets, adds a Class A reference,
 and verifies frozen renderer provenance.
@@ -63,18 +65,18 @@ experimental; production DSP is unchanged.
 
 Four author-labelled RCS patches expand the set to seventeen named
 presets. The first two independently reject the same triangle and cutoff candidates.
-Their [source audit](source-audits/rcs-reference-screen-2026-09-20.md) and
+Their [source audit](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/rcs-reference-screen-2026-09-20.md) and
 [catalog](rcs-reference-catalog.json) preserve label observations, source hashes
 and the distinction between patch SysEx and played MIDI.
 
-The latest [distortion component checks](source-audits/rcs-linear-center-results-2026-09-20.md)
+The latest [distortion component checks](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/rcs-linear-center-results-2026-09-20.md)
 add 16 diagnostics and 34 renders across the 17 original presets. Neither new
 shaper matches the closing trajectories, and both worsen the simpler dry
 bass reference. Production DSP remains unchanged. A validated 14.4-second
-[recording-input suite](source-audits/negative-attack-capture-inputs-2026-09-20.md)
+[recording-input suite](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/negative-attack-capture-inputs-2026-09-20.md)
 is ready to isolate the unresolved negative filter-envelope response on hardware.
 
-[Internal gain measurements and follow-up comparisons](source-audits/rcs-gain-structure-results-2026-09-20.md)
+[Internal gain measurements and follow-up comparisons](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/rcs-gain-structure-results-2026-09-20.md)
 confirm strong software saturation, but neither lower-drive probe generalizes
 across the 17 presets. Coupled gain/depth/attack diagnostics also fail the
 recorded harmonic and envelope behavior. The study has not established a
@@ -82,20 +84,20 @@ full hardware match or a justified global change. Controlled recordings would
 help separate the remaining causes; the wet references also retain useful
 stereo-delay evidence for further analysis.
 
-The [stereo-delay comparison](source-audits/rcs-stereo-delay-results-2026-09-20.md)
+The [stereo-delay comparison](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/rcs-stereo-delay-results-2026-09-20.md)
 now uses that evidence: A03's stable channel gain/phase relationship lies far
 from the current stationary delay model, while an unchanged software control
 stays close. This is a conditional effects-model constraint, not a calibrated
 replacement. A05's smaller discrepancy does not survive its measurement
 variation. Production DSP remains unchanged.
 
-The [strict search for exact recording inputs](exact-reference-search.md) found no verified public set with both original performance MIDI and the exact preset used for a hardware recording. The estimated comparisons below do not qualify for that stricter requirement.
+The [strict search for exact recording inputs](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/exact-reference-search.md) found no verified public set with both original performance MIDI and the exact preset used for a hardware recording. The estimated comparisons below do not qualify for that stricter requirement.
 
-The [ten-recording hardware A/B set](ten-recording-ab.md) pairs real official Roland recordings with unchanged published presets and explicitly reconstructed MIDI, including six new bass/lead transcriptions and current-engine renders.
+The [ten-recording hardware A/B set](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/ten-recording-ab.md) pairs real official Roland recordings with unchanged published presets and explicitly reconstructed MIDI, including six new bass/lead transcriptions and current-engine renders.
 
-The [timbre calibration implementation](timbre-calibration/README.md) adds isolated filter, envelope, waveform and Super Saw models, plus causal configurable-rate comparison rendering. Its diagnostic profiles remain separate from the default plug-in sound.
+The [timbre calibration implementation](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/timbre-calibration/README.md) adds isolated filter, envelope, waveform and Super Saw models, plus causal configurable-rate comparison rendering. Its diagnostic profiles remain separate from the default plug-in sound.
 
-The latest [ten additional improvements](ten-more-improvements.md) include a ranked source review, per-candidate audits, and [combined validation](ten-more-validation.md).
+The latest [ten additional improvements](ten-more-improvements.md) include a ranked source review, per-candidate audits, and [combined validation](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/ten-more-validation.md).
 
 [Five further improvements](five-further-improvements.md) ranks the remaining
 behavioral and timbral candidates and documents the selected clock, portamento,
@@ -132,7 +134,7 @@ filter decay. Its selected production correction uses a dedicated linear filter
 decay, approximately 419 ms at raw 49, with provisional power interpolation
 between 2 ms and 12 s. Other slider values are unmeasured; cutoff, filter
 release, amplifier and pitch envelopes retain their existing behavior.
-Fresh [production renders](source-audits/filter-production-renders.json) for all
+Fresh [production renders](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/filter-production-renders.json) for all
 three comparisons are byte-identical to the accepted linear candidate; the
 [before/after/hardware player](http://127.0.0.1:8897/) is available while its
 local server runs. Historical candidate recordings retain their original labels.
@@ -161,7 +163,7 @@ across multiple notes; cutoff, resonance and envelope timing remain unchanged.
 The [latest comparison player](http://127.0.0.1:8900/) retains the same published
 presets and reconstructed MIDI, with before/after/hardware listening copies.
 
-The [Cotton Wool investigation](cotton-wool-investigation.md) independently
+The [Cotton Wool investigation](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/cotton-wool-investigation.md) independently
 verifies all 22 published preset blocks and native decoded values, then traces
 the actual filter envelope and tests reconstructed note gates. Preset identity
 is confirmed; envelope calibration, Super Saw phase and wet tails remain
@@ -188,7 +190,7 @@ The model normalises the nominal gain to preserve existing patch headroom. It
 uses an ideal op-amp and treats the first coupling stage independently; solving
 the complete loaded input node changes the 20 Hz–20 kHz magnitude by less than
 0.0002 dB. The remaining master-volume/load network and line stage now have an
-[independently verified circuit calculation](source-audits/output-stage-circuit-calculation-2026-09-15.md),
+[independently verified circuit calculation](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/output-stage-circuit-calculation-2026-09-15.md),
 including bounded amplifier-bandwidth sensitivities. They remain outside the
 production model. Headphones, L/MONO routing and nonlinearities require their
 own operating/load assumptions; they are not interchangeable line-output models.
@@ -211,7 +213,7 @@ removing only the known transport delay:
 | 96 kHz | 0.0078 dB | 0.087° | 90 samples |
 | 192 kHz | 0.0036 dB | 0.022° | 74 samples |
 
-![Circuit numerical error](plots/output-circuit-error.png)
+![Circuit numerical error](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/plots/output-circuit-error.png)
 
 The [AK4552 datasheet, page 5](https://www.rxelectronics.com.ua/datasheet/61/ak4552vt.pdf#page=5)
 assigns its 3.4 Hz digital high-pass to the **ADC**, not the synth output. It is
@@ -242,7 +244,7 @@ because their control cadences differ.
 | 88.2 kHz | −73.716 | −33.038 | −57.396 |
 | 96 kHz | −84.070 | −33.038 | −57.396 |
 
-![Cross-rate alias probes](plots/rate-consistency.png)
+![Cross-rate alias probes](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/plots/rate-consistency.png)
 
 The prototype is **not used by the plug-in**. It evaluates controls once per
 internal sample instead of the native engine's eight-sample ticks. Indicative

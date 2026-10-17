@@ -1,5 +1,7 @@
 # Resonance calibration against hardware recordings
 
+> The tools, receipts and figures this record names were removed from the tree on 2026-10-17 as obsolete evidence; they remain at [5852552](https://github.com/protocodus/virtual-instrument-septum/tree/5852552eca9ee4b764f27664317a42b61c275740).
+
 2026-09-13. **The previous voice filter had too little resonant emphasis at moderate settings.** The production correction strengthens its resonance curve and lets the second section of the 24 dB path contribute a bounded peak. It is an empirical calibration from recordings, not recovered Roland DSP code or a confirmed circuit topology.
 
 Subsequent work calibrates the filter-envelope range in the [brightness investigation](brightness-investigation.md). The renders and cutoff residuals below remain the historical resonance-stage results, before that envelope-range correction.
@@ -10,15 +12,15 @@ Subsequent work calibrates the filter-envelope range in the [brightness investig
 
 Resonance bytes were decoded correctly: tone offset `0x16` stores 0–127, and the Editor uses the same range. The [MIDI Implementation, p. 5](https://static.roland.com/assets/media/pdf/SH-201_MI.pdf), official Editor resources and [Owner's Manual, p. 36](https://static.roland.com/assets/media/pdf/SH-201_OM.pdf) establish the parameter and qualitative boost/self-oscillation behavior. They do not specify Q, a damping table or the internal filter topology. Roland's [Synthesis 101 course](https://cdn.roland.com/assets/media/pdf/sh_201_synthesis_101.pdf) likewise explains resonant emphasis without giving a numerical calibration.
 
-A new actual-engine input-sine probe agrees with the previous analytic transfer function within 0.000164 dB at moderate resonance. Neither state limiting nor output limiting explains its weak peak there. The mistake was in the assumed sound model: an ear-selected damping curve plus a second section fixed at `k=1.2`. At raw40 that combination peaks by only **2.24 dB**. See the [code/limiter audit](source-audits/resonance-code-audit.md) for the measurements, exact source identities and high-level limitations.
+A new actual-engine input-sine probe agrees with the previous analytic transfer function within 0.000164 dB at moderate resonance. Neither state limiting nor output limiting explains its weak peak there. The mistake was in the assumed sound model: an ear-selected damping curve plus a second section fixed at `k=1.2`. At raw40 that combination peaks by only **2.24 dB**. See the [code/limiter audit](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/resonance-code-audit.md) for the measurements, exact source identities and high-level limitations.
 
 ## Recording evidence
 
 [SupaJuce 1](https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_SupaJuce1.mp3), associated with its original patch on Roland's [LEAD page](https://www.rolandus.com/go/sh-201_patches/patch_lead.html), provides two square oscillators one octave apart. After correcting WIDE pitch interpretation, H2/H6/H10/H14/H18/H22/H26/H30 isolate the upper square's odd harmonics. Normalizing out its ideal `1/n` spectrum and common gain reveals a much stronger resonant peak than our filter produces at the published resonance40.
 
-Under the current TPT filter family, a shared damping near **0.513 per section (Q≈1.95)** fits the first note's early shape. A model with one variable section and a fixed `k=1.2` second section needs Q≈5.45 but fits less well. The shared-damping model improves the early shape fit on all six note groups. This is conditional on the waveform, recording and digital-frequency assumptions; an analog-frequency model makes the topology comparison much less decisive. Late notes develop effects-related comb notches and are explicitly retained as failures of a simple low-pass fit. [Detailed SupaJuce analysis and withheld harmonics](source-audits/supajuce-resonance-audit.md)
+Under the current TPT filter family, a shared damping near **0.513 per section (Q≈1.95)** fits the first note's early shape. A model with one variable section and a fixed `k=1.2` second section needs Q≈5.45 but fits less well. The shared-damping model improves the early shape fit on all six note groups. This is conditional on the waveform, recording and digital-frequency assumptions; an analog-frequency model makes the topology comparison much less decisive. Late notes develop effects-related comb notches and are explicitly retained as failures of a simple low-pass fit. [Detailed SupaJuce analysis and withheld harmonics](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/supajuce-resonance-audit.md)
 
-[Air Lead 1](https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_AirLead1.mp3) provides independent evidence at resonance44 with no filter-envelope modulation. Its measured even-harmonic contrast exceeds the previous filter-only model's possible contrast even with cutoff adjustable. With the existing LOW FREQ BOOST approximation included, early conditional equal-section fits give Q≈1.77–1.98. A conservative power1.5 mapping fits these early windows better than power1.6; later pitches favor somewhat stronger emphasis. Delay, reverb, oscillator assumptions, pitch LFO and unknown recording processing prevent identifying an exact hardware Q table. [Air Lead analysis](source-audits/air-lead-resonance.md)
+[Air Lead 1](https://www.rolandus.com/go/sh-201_patches/mp3/LEAD/TOP8_AirLead1.mp3) provides independent evidence at resonance44 with no filter-envelope modulation. Its measured even-harmonic contrast exceeds the previous filter-only model's possible contrast even with cutoff adjustable. With the existing LOW FREQ BOOST approximation included, early conditional equal-section fits give Q≈1.77–1.98. A conservative power1.5 mapping fits these early windows better than power1.6; later pitches favor somewhat stronger emphasis. Delay, reverb, oscillator assumptions, pitch LFO and unknown recording processing prevent identifying an exact hardware Q table. [Air Lead analysis](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/air-lead-resonance.md)
 
 Both sources, complete original patches and extracted MIDI/SysEx identities remain hash-pinned in the [hardware source catalog](hardware-reference-catalog.json) and the new audit JSON files. There was no new hardware capture by this project.
 
@@ -40,7 +42,7 @@ An unrestricted two-section candidate was finite in 1,536 static sine renders bu
 
 ## Production results
 
-![Previous and corrected modeled 24 dB resonance response at raw40](figures/production-resonance-response.png)
+![Previous and corrected modeled 24 dB resonance response at raw40](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/figures/production-resonance-response.png)
 
 | Measure | Previous | Corrected | Hardware/reference |
 |---|---:|---:|---:|
@@ -55,7 +57,7 @@ The harmonic metric samples 40–95 ms after the reconstructed onset and compare
 
 Moogie 1 and Cotton Wool use zero resonance in their active tones and are byte-identical before/after. Dist Bs 1 changes only slightly at its very low resonance setting. This round does not claim to resolve their oscillator-shape or phase residuals.
 
-All four fresh production WAVs are byte-identical to the accepted bounded candidate. [Production comparison identities/statistics](source-audits/production-resonance-comparison.json) and [response/error measurements](source-audits/production-resonance-measurements.json) preserve the exact audio/binary hashes and limits. Listening copies use whole-excerpt RMS matching without EQ, compression or time warping. Raw third-party recordings and preset payloads stay in ignored build directories.
+All four fresh production WAVs are byte-identical to the accepted bounded candidate. [Production comparison identities/statistics](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/production-resonance-comparison.json) and [response/error measurements](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/production-resonance-measurements.json) preserve the exact audio/binary hashes and limits. Listening copies use whole-excerpt RMS matching without EQ, compression or time warping. Raw third-party recordings and preset payloads stay in ignored build directories.
 
 ## Validation
 
@@ -76,7 +78,7 @@ python3 Tools/build_resonance_candidates.py \
   --output build-fidelity/hardware-benchmark/fresh-resonance-candidates
 ```
 
-The candidate builder reconstructs the historical base response even from the promoted source. Profiles distinguish the historical control, two unrestricted hypotheses and the selected `bounded-coupled` version. The independent [static transfer/sweep runner](../../../Tools/analyze_resonance.py) also accepts a frozen source directory. It covers 4,608 static candidate renders plus 56 transfer cases; it is not a replacement for the dynamic regression suite.
+The candidate builder reconstructs the historical base response even from the promoted source. Profiles distinguish the historical control, two unrestricted hypotheses and the selected `bounded-coupled` version. The independent [static transfer/sweep runner](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Tools/analyze_resonance.py) also accepts a frozen source directory. It covers 4,608 static candidate renders plus 56 transfer cases; it is not a replacement for the dynamic regression suite.
 
 To regenerate the current listening page from the retained paired runs:
 

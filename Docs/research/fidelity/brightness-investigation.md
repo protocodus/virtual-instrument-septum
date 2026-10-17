@@ -1,12 +1,14 @@
 # Filter-envelope brightness calibration
 
+> The tools, receipts and figures this record names were removed from the tree on 2026-10-17 as obsolete evidence; they remain at [5852552](https://github.com/protocodus/virtual-instrument-septum/tree/5852552eca9ee4b764f27664317a42b61c275740).
+
 The remaining SupaJuce brightness deficit came primarily from an envelope modulation range that was too small. With the previous resonance correction in place, the model produced the right sort of peak at roughly half the required frequency. Increasing the filter-envelope range from **±10 to ±12 octaves** restores much of the missing upper-harmonic energy without changing the original preset, cutoff knob or resonance curve.
 
 [Listen to hardware, corrected Septum and previous Septum](http://127.0.0.1:8900/). Each software pair receives identical reconstructed MIDI, unmodified published SysEx and identical replay settings. Original hardware performance MIDI remains unavailable. Listening copies use one scalar RMS adjustment per excerpt, without EQ, compression or time stretching.
 
 ## Evidence and interpretation
 
-Roland's [Owner's Manual, pp. 36–37 and 61](https://cdn.roland.com/assets/media/pdf/SH-201_OM.pdf) describes envelope depth as the direction and amount of cutoff movement. Its [MIDI Implementation, p. 5](https://cdn.roland.com/assets/media/pdf/SH-201_MI.pdf) gives signed depth −63…+63 encoded as raw 1…127. The public Editor agrees with those controls. None specifies the octave range, cutoff-to-Hz curve or sustain interpolation. The [parameter audit](source-audits/cutoff-parameter-audit.md) checks the actual imported fields and separates documented semantics from the numerical assumptions in the engine.
+Roland's [Owner's Manual, pp. 36–37 and 61](https://cdn.roland.com/assets/media/pdf/SH-201_OM.pdf) describes envelope depth as the direction and amount of cutoff movement. Its [MIDI Implementation, p. 5](https://cdn.roland.com/assets/media/pdf/SH-201_MI.pdf) gives signed depth −63…+63 encoded as raw 1…127. The public Editor agrees with those controls. None specifies the octave range, cutoff-to-Hz curve or sustain interpolation. The [parameter audit](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/cutoff-parameter-audit.md) checks the actual imported fields and separates documented semantics from the numerical assumptions in the engine.
 
 The correction is therefore an empirical calibration against recordings, not a recovered Roland table. It changes one existing mapping:
 
@@ -36,13 +38,13 @@ The selected round value is 12. A stronger 14-octave diagnostic overshoots the e
 
 These selected spectral errors are not an overall fidelity percentage. They use more harmonics than the previous resonance report's H6…H22 summary, so the two tables are not directly comparable. Five notes are withheld from first-note range estimation, but all belong to the same patch and recording.
 
-![Hardware and before/after upper-square harmonic ratios, including a later residual](figures/supajuce-brightness.png)
+![Hardware and before/after upper-square harmonic ratios, including a later residual](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/figures/supajuce-brightness.png)
 
-The long fifth note improves through roughly 200 ms, but not every later window improves. At 250 ms, a hardware spectrum with deep notches gives an error increase from about 11.48 to 20.73 dB. Delay/reverb interference and the remaining envelope trajectory both matter there. An independently fitted faster decay can reduce some residuals, but it is confounded with depth, sustain and the unknown performance. The production decay curve is unchanged. The [full SupaJuce analysis](source-audits/supajuce-brightness.md) preserves the late failures and exact input, renderer and audio identities.
+The long fifth note improves through roughly 200 ms, but not every later window improves. At 250 ms, a hardware spectrum with deep notches gives an error increase from about 11.48 to 20.73 dB. Delay/reverb interference and the remaining envelope trajectory both matter there. An independently fitted faster decay can reduce some residuals, but it is confounded with depth, sustain and the unknown performance. The production decay curve is unchanged. The [full SupaJuce analysis](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/supajuce-brightness.md) preserves the late failures and exact input, renderer and audio identities.
 
 ## Independent checks and remaining differences
 
-Cotton Wool provides an independent patch with a larger envelope depth, zero resonance and Super Saw plus sine. For its isolated opening note, the hardware's 900–2000 Hz energy relative to 110–155 Hz is about −1.76 dB. The old render is −7.30 dB; the 12-octave candidate is −1.61 dB. This supports restoring high-frequency energy, while the unknown original velocity, detuned oscillator phases, sustain response and recording effects limit precision. Individual Super Saw partials remain unreliable fitting targets, and later chord windows remain too dark. [Control-patch analysis](source-audits/brightness-controls.md)
+Cotton Wool provides an independent patch with a larger envelope depth, zero resonance and Super Saw plus sine. For its isolated opening note, the hardware's 900–2000 Hz energy relative to 110–155 Hz is about −1.76 dB. The old render is −7.30 dB; the 12-octave candidate is −1.61 dB. This supports restoring high-frequency energy, while the unknown original velocity, detuned oscillator phases, sustain response and recording effects limit precision. Individual Super Saw partials remain unreliable fitting targets, and later chord windows remain too dark. [Control-patch analysis](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/brightness-controls.md)
 
 Broader bands reduce sensitivity to individual detuned partials. The 700–3000 Hz / 200–700 Hz power ratio improves across the opening note, held chord and repeated bass passage. Testing all 127 uniform velocities in the old model cannot reach the corrected version's ratios in those passages:
 
@@ -73,7 +75,7 @@ The functional change is confined to `mapping::filterEnvOctaves` in `Source/DSP/
 
 The isolated 10-octave control reproduces all four previous production WAVs byte for byte. All four fresh production WAVs are byte-identical to the accepted 12-octave candidate. New quiet-input tests locate the sustained resonant corner through the full engine at positive, negative and zero envelope depths, at 44.1, 48 and 96 kHz.
 
-The final Release build passes all **12 CTest suites**, including 4,599 existing core-engine checks and 360 hardware-voice checks. The local arm64 AU, VST3 and standalone bundles pass strict deep ad-hoc signature verification. Browser checks confirm corrected audio playback, switching to the hardware reference and pausing. Final source, binary, test-log and comparison identities are recorded in the [production manifest](source-audits/production-brightness-comparison.json). The bundles are local development builds, not notarized distribution packages.
+The final Release build passes all **12 CTest suites**, including 4,599 existing core-engine checks and 360 hardware-voice checks. The local arm64 AU, VST3 and standalone bundles pass strict deep ad-hoc signature verification. Browser checks confirm corrected audio playback, switching to the hardware reference and pausing. Final source, binary, test-log and comparison identities are recorded in the [production manifest](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/production-brightness-comparison.json). The bundles are local development builds, not notarized distribution packages.
 
 ## Reproduction
 

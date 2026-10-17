@@ -1,5 +1,7 @@
 # AMP envelope and voice processing latency
 
+> The tools, receipts and figures this record names were removed from the tree on 2026-10-17 as obsolete evidence; they remain at [5852552](https://github.com/protocodus/virtual-instrument-septum/tree/5852552eca9ee4b764f27664317a42b61c275740).
+
 AMP ENV now reaches the voice output at the same time as the oscillator and filter audio it shapes. The oversampled overdrive path introduces numerical transport even when overdrive is off: its clean path uses a matched delay. Applying the current envelope after that delayed audio consumed part of the attack before the note arrived, and started its release too early relative to the same note.
 
 ## Evidence and scope

@@ -1,5 +1,7 @@
 # Feedback oscillator synchronization
 
+> The tools, receipts and figures this record names were removed from the tree on 2026-10-17 as obsolete evidence; they remain at [5852552](https://github.com/protocodus/virtual-instrument-septum/tree/5852552eca9ee4b764f27664317a42b61c275740).
+
 The FB OSC source now restarts when OSC2 starts a new cycle in SYNC mode. Previously, selecting SYNC with FB OSC as OSC1 produced exactly the same output as MIX when OSC2 was muted by BALANCE. The change removes that unconditional exclusion while preserving the existing feedback oscillator's waveform, delay, damping, gain and nonlinear processing.
 
 This is a **moderately grounded behavioral inference**, not a recovered SH-201 oscillator algorithm or a match to a hardware recording. Roland documents the general OSC1 restart contract and publishes patches that select this combination. The detailed interaction between synchronization and the hardware feedback loop remains unknown.

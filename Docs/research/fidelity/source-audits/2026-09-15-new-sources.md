@@ -1,5 +1,7 @@
 # Fresh SH-201 source audit
 
+> The tools, receipts and figures this record names were removed from the tree on 2026-10-17 as obsolete evidence; they remain at [5852552](https://github.com/protocodus/virtual-instrument-septum/tree/5852552eca9ee4b764f27664317a42b61c275740).
+
 2026-09-15. Existing manual, Editor, circuit, patch-bank and waveform audits were read first. This pass found a previously uncatalogued first-party measurement collection by an SH-201 owner. It supports a narrow LFO correction and a better dry-filter experiment. It does **not** establish whole-instrument equivalence.
 
 ## 1. Published hardware LFO and envelope measurements
@@ -41,7 +43,7 @@ The [Roland support listing](https://www.roland.com/us/products/sh-201/support/)
 
 The original [Roland service notes, printed pp.14–15](https://www.synthxl.com/wp-content/uploads/2020/01/Roland-SH-201-Service-Manual.pdf#page=14) describe a conditional future updater using numbered SMFs. That is a transport procedure, not available firmware. Fresh inspection of printed pp.32–33 (PDF page 28) identifies the WSP mode straps, `SYSCKO=384fs`, a slave sync setting and separate codec/USB audio links. These establish hardware connections, not oscillator code, envelope coefficients or every block's execution rate. No firmware binary was acquired or executed.
 
-The public [SH201Librarian](https://github.com/r-b-g-b/SH201Librarian) and [pdsh201](https://github.com/becks/pdsh201) remain backup/control projects; their inspected repository pages do not provide DSP firmware. Earlier official Editor payload inspections remain documented in [the previous audit](factory-bank-second-pass.md).
+The public [SH201Librarian](https://github.com/r-b-g-b/SH201Librarian) and [pdsh201](https://github.com/becks/pdsh201) remain backup/control projects; their inspected repository pages do not provide DSP firmware. Earlier official Editor payload inspections remain documented in [the previous audit](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/factory-bank-second-pass.md).
 
 ## Selected correction and limits
 

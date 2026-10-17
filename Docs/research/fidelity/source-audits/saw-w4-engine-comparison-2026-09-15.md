@@ -1,5 +1,7 @@
 # Classic Saw correction fitted through the complete engine
 
+> The tools, receipts and figures this record names were removed from the tree on 2026-10-17 as obsolete evidence; they remain at [5852552](https://github.com/protocodus/virtual-instrument-septum/tree/5852552eca9ee4b764f27664317a42b61c275740).
+
 **The frozen W4 source is a useful provisional improvement, with measured
 counterexamples.** It substantially improves the recorded alias pattern across
 eight pitches and both filter slopes, and improves Air Lead's spectral distance.
@@ -8,7 +10,7 @@ Neither complete SH-201 output agreement nor market-wide superiority is establis
 
 ## What was fitted
 
-The [proposal](asymmetric-w4-engine-test-proposal-2026-09-15.md) was executed
+The [proposal](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/asymmetric-w4-engine-test-proposal-2026-09-15.md) was executed
 against production revision `545b3d3`. One asymmetric, four-sample correction
 around the free-running classic Saw wrap replaces polyBLEP. Its 32 cubic-spline coefficients
 were learned **through the complete current engine**, including the voice filter,
@@ -42,10 +44,10 @@ uncertain. Sources and exact hashes are retained in the linked receipts.
   power is 0.0021433. All dry candidate renders remain below filter and output
   limiting thresholds. Training residual is not an equivalence or audibility score.
 
-See the [prerequisites](saw-w4-engine-prerequisites-2026-09-15.md),
-[independent review](asymmetric-w4-engine-independent-review-2026-09-15.md),
-[frozen vector](saw-w4-engine-candidate-2026-09-15.json) and
-[fit/phase-control receipt](saw-w4-engine-fit-2026-09-15.json).
+See the [prerequisites](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/saw-w4-engine-prerequisites-2026-09-15.md),
+[independent review](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/asymmetric-w4-engine-independent-review-2026-09-15.md),
+[frozen vector](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/saw-w4-engine-candidate-2026-09-15.json) and
+[fit/phase-control receipt](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/saw-w4-engine-fit-2026-09-15.json).
 
 ## Comparisons after freezing the coefficients
 
@@ -67,12 +69,12 @@ not blinded independent discovery data.
 | Air Lead spectral convergence | 0.85225 → 0.81364 |
 | Ten-preset mean spectral convergence | 0.53892 → 0.53471 |
 
-Lower is better. The [broader alias check](saw-w4-alias-transfer-2026-09-15.md)
+Lower is better. The [broader alias check](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/saw-w4-alias-transfer-2026-09-15.md)
 improves all 32 note/offset/slope windows. Individual contrary bins remain:
 147/182 LP12 and 123/150 LP24 line errors improve outside note 91. Unresolved
 peaks are search-maximum proxies, not precise physical-line estimates.
 
-![Every high-note harmonic comparison, including regressions](../plots/saw-w4-engine-high-note-harmonics.png)
+![Every high-note harmonic comparison, including regressions](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/plots/saw-w4-engine-high-note-harmonics.png)
 
 The five previously selected high-note windows all improve LP12 H2–H8 ratio
 RMS. LP24 improves in two and regresses in three. The first LP12 panel trained
@@ -92,10 +94,10 @@ negligibly. The ten-preset original-only mean log error increases about 0.144 dB
 The legacy union-mask scores are retained separately, without substituting
 candidate-dependent bins for this diagnostic.
 
-Full results: [dry comparison](saw-w4-engine-dry-comparison-2026-09-15.json),
-[independent numerical review](saw-w4-engine-dry-review-2026-09-15.json),
-[all ten presets](saw-w4-official-comparison-2026-09-15.md), and
-[common-mask diagnostic](saw-w4-official-original-mask-2026-09-15.md).
+Full results: [dry comparison](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/saw-w4-engine-dry-comparison-2026-09-15.json),
+[independent numerical review](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/saw-w4-engine-dry-review-2026-09-15.json),
+[all ten presets](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/saw-w4-official-comparison-2026-09-15.md), and
+[common-mask diagnostic](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/saw-w4-official-original-mask-2026-09-15.md).
 
 ## Decision and remaining uncertainty
 
@@ -128,10 +130,10 @@ This preserves the existing forced-reset behavior while its hardware response
 remains uncalibrated. No test threshold was relaxed. All twelve benchmark
 cases use MIX, so the forced-reset guard does not redefine their fitted model.
 
-The final [production replay](saw-w4-production-integration-2026-09-15.md)
+The final [production replay](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/saw-w4-production-integration-2026-09-15.md)
 matches all twelve candidate WAVs byte-for-byte across 4,966,322 stereo frames.
 All 35 CTests and universal AU/VST3/standalone builds pass; the
-[build receipt](saw-w4-production-build-2026-09-15.json) preserves the initial
+[build receipt](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/saw-w4-production-build-2026-09-15.json) preserves the initial
 Sync failure and final successful suite. The
-[independent source review](saw-w4-production-source-independent-review-2026-09-15.md)
+[independent source review](https://github.com/protocodus/virtual-instrument-septum/blob/5852552eca9ee4b764f27664317a42b61c275740/Docs/research/fidelity/source-audits/saw-w4-production-source-independent-review-2026-09-15.md)
 records 8,364 focused checks and the sample-rate limitations above.
