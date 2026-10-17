@@ -36,10 +36,21 @@ jobs:
             libx11-dev libxcomposite-dev libxcursor-dev libxext-dev \
             libxinerama-dev libxrandr-dev libxrender-dev
 
+      # The hardware-comparison checks register only when NumPy and SciPy import.
+      - name: Set up Python for the checks
+        id: python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install the pinned Python packages
+        run: python -m pip install -r Tools/requirements-ci.txt
+
       - name: Configure DSP build
         run: >-
           cmake -S . -B build-dsp -G Ninja -DCMAKE_BUILD_TYPE=Release
           -DSEPTUM_BUILD_PLUGIN=OFF -DBUILD_TESTING=ON
+          "-DPython3_EXECUTABLE=${{ steps.python.outputs.python-path }}"
 
       - name: Build DSP engine, tools and tests
         run: cmake --build build-dsp --parallel
