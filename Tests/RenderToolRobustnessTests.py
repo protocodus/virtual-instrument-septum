@@ -15,7 +15,6 @@ SPEC = importlib.util.spec_from_file_location("render_midi", ROOT / "Tools/rende
 midi = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(midi)
 RENDERER = None
-DEMOS = None
 
 
 def smf(*tracks, division=480):
@@ -148,31 +147,9 @@ class ReplayRobustnessTests(unittest.TestCase):
         self.assertEqual(first, second)
 
 
-class DemoParallelTests(unittest.TestCase):
-    def test_parallel_smoke_matches_serial_audio(self):
-        if DEMOS is None:
-            self.skipTest("Pass --demos to exercise independent rendering workers")
-        with tempfile.TemporaryDirectory(prefix="septum-parallel-smoke-") as folder:
-            result = subprocess.run([str(DEMOS), "--smoke", "--jobs", "4", folder],
-                                    capture_output=True, text=True, timeout=60)
-            self.assertEqual(result.returncode, 0, result.stderr)
-            self.assertIn("smoke test passed", result.stdout)
-            self.assertFalse(list(Path(folder).glob("*.wav")))
-
-    def test_invalid_worker_counts_and_options_fail_without_creating_directories(self):
-        if DEMOS is None:
-            self.skipTest("Pass --demos to exercise argument validation")
-        for arguments in (("--jobs", "0"), ("--jobs", "12"), ("--jobs", "-1"),
-                          ("--jobs", "1.5"), ("--jobs", "nan"), ("--jobs",), ("--unknown",)):
-            result = subprocess.run([str(DEMOS), *arguments], capture_output=True, timeout=10)
-            self.assertEqual(result.returncode, 1, result.stderr)
-
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--renderer", type=Path)
-    parser.add_argument("--demos", type=Path)
     args, remaining = parser.parse_known_args()
     RENDERER = args.renderer.resolve() if args.renderer else None
-    DEMOS = args.demos.resolve() if args.demos else None
     unittest.main(argv=[__file__, *remaining])

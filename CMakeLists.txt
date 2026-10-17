@@ -246,15 +246,17 @@ if(SEPTUM_BUILD_TOOLS)
     target_link_libraries(SeptumAnalyzeFidelity PRIVATE SeptumReferenceDSP)
     target_compile_features(SeptumAnalyzeFidelity PRIVATE cxx_std_20)
 
-    add_executable(SeptumRenderDemos Tools/RenderDemos.cpp)
+    # One README demo per factory preset from Docs/audio/midi (Tools/
+    # PresetDemoRenderer.h is the shared portfolio copy; do not edit it here).
+    add_executable(RenderSeptumPresetDemos Tools/RenderPresetDemos.cpp)
     find_package(Threads REQUIRED)
-    target_link_libraries(SeptumRenderDemos PRIVATE SeptumDSP Threads::Threads)
-    target_compile_features(SeptumRenderDemos PRIVATE cxx_std_20)
+    target_link_libraries(RenderSeptumPresetDemos PRIVATE SeptumDSP Threads::Threads)
+    target_compile_features(RenderSeptumPresetDemos PRIVATE cxx_std_20)
 
     if(MSVC)
-        target_compile_options(SeptumRenderDemos PRIVATE /W4 /permissive-)
+        target_compile_options(RenderSeptumPresetDemos PRIVATE /W4 /permissive-)
     else()
-        target_compile_options(SeptumRenderDemos PRIVATE
+        target_compile_options(RenderSeptumPresetDemos PRIVATE
             -Wall -Wextra -Wpedantic)
     endif()
 endif()
@@ -402,8 +404,7 @@ if(BUILD_TESTING)
             add_test(NAME Septum.RenderToolRobustness
                      COMMAND "${Python3_EXECUTABLE}" -B
                              "${CMAKE_CURRENT_SOURCE_DIR}/Tests/RenderToolRobustnessTests.py"
-                             --renderer "$<TARGET_FILE:SeptumRenderMidi>"
-                             --demos "$<TARGET_FILE:SeptumRenderDemos>")
+                             --renderer "$<TARGET_FILE:SeptumRenderMidi>")
             set_tests_properties(Septum.RenderToolRobustness PROPERTIES TIMEOUT 120)
             add_test(NAME Septum.TimbreCapture
                      COMMAND "${Python3_EXECUTABLE}" -B
@@ -458,21 +459,12 @@ if(BUILD_TESTING)
         add_test(NAME Septum.FidelityTool COMMAND SeptumAnalyzeFidelity --self-test)
         set_tests_properties(Septum.FidelityTool PROPERTIES TIMEOUT 120)
 
-        # Guards the renderer that produces the demonstration WAVs:
-        # it renders a short take to a temporary directory and checks that the
-        # audio is finite, audible and written as a readable WAV.
-        add_test(NAME Septum.RenderDemos
-                 COMMAND SeptumRenderDemos --smoke
-                         "${CMAKE_CURRENT_BINARY_DIR}/demo-smoke")
-        set_tests_properties(Septum.RenderDemos PROPERTIES TIMEOUT 60)
-
-        if(Python3_Interpreter_FOUND)
-            add_test(NAME Septum.AudioDemos
-                     COMMAND "${Python3_EXECUTABLE}" -B
-                             "${CMAKE_CURRENT_SOURCE_DIR}/Tests/AudioDemoTests.py"
-                             --demos "$<TARGET_FILE:SeptumRenderDemos>")
-            set_tests_properties(Septum.AudioDemos PROPERTIES TIMEOUT 300 LABELS audio)
-        endif()
+        # Every preset demo renders finite, audible, under the ceiling, 10-20 s
+        # long and bit-identical on a second render.
+        add_test(NAME Septum.AudioDemos
+                 COMMAND RenderSeptumPresetDemos --jobs 4 --check
+                         "${CMAKE_CURRENT_SOURCE_DIR}/Docs/audio/midi")
+        set_tests_properties(Septum.AudioDemos PROPERTIES TIMEOUT 300 LABELS audio)
     endif()
 
     if(SEPTUM_BUILD_PLUGIN)

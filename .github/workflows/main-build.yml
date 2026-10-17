@@ -43,23 +43,21 @@ jobs:
         run: |
           cmake -S . -B build-dsp -G Ninja -DCMAKE_BUILD_TYPE=Release \
             -DSEPTUM_BUILD_PLUGIN=OFF -DBUILD_TESTING=ON
-          cmake --build build-dsp --parallel --target SeptumRenderDemos
+          cmake --build build-dsp --parallel --target RenderSeptumPresetDemos
           ctest --test-dir build-dsp -L '^audio$' --no-tests=error --output-on-failure
 
-      - name: Render and encode the demos
+      # The renderer encodes with fixed settings and no metadata, so an
+      # unchanged engine gives identical MP3s and the commit job finds nothing.
+      - name: Render the preset demos and rewrite the demo table
         run: |
           set -euo pipefail
           generated="build-dsp/generated-media"
           mkdir -p "$generated/Docs/audio"
           cp README.md "$generated/README.md"
-          ./build-dsp/SeptumRenderDemos --jobs 4 "$generated/Docs/audio"
-          # Fixed encoder settings and no metadata keep an unchanged render
-          # byte-identical, so the commit job finds nothing to commit.
-          for wav in "$generated"/Docs/audio/[0-9][0-9]-*.wav; do
-            ffmpeg -nostdin -v error -y -i "$wav" -c:a libmp3lame -b:a 192k \
-              -bitexact -map_metadata -1 -id3v2_version 0 "${wav%.wav}.mp3"
-            rm "$wav"
-          done
+          ./build-dsp/RenderSeptumPresetDemos --jobs 4 Docs/audio/midi "$generated/Docs/audio"
+          python3 Tools/update_readme_blocks.py demos --readme "$generated/README.md" \
+            --manifest "$generated/Docs/audio/demos.json"
+          rm "$generated/Docs/audio/demos.json"
           ls -l "$generated/Docs/audio"
 
       - name: Upload demo audio and README copy

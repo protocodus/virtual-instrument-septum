@@ -464,7 +464,7 @@ PRESETS = [
     ("supersaw-pad", supersaw_pad), ("space-choir", space_choir),
     ("glass-bell", glass_bell), ("air-ethereal", air_ethereal),
     ("retro-brass", retro_brass), ("sweep-aurora", sweep_aurora),
-    ("club-split", club_split), ("s-and-h-robot", sh_robot),
+    ("club-split", club_split), ("s-h-robot", sh_robot),
     ("ion-wind", ion_wind), ("arp-chime", arp_chime),
     ("techno-pulse", techno_pulse), ("alien-signal", alien_signal),
     ("laser-sweep", laser_sweep), ("space-drone", space_drone),

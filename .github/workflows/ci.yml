@@ -34,7 +34,8 @@ jobs:
             libasound2-dev \
             libfreetype-dev libfontconfig1-dev \
             libx11-dev libxcomposite-dev libxcursor-dev libxext-dev \
-            libxinerama-dev libxrandr-dev libxrender-dev
+            libxinerama-dev libxrandr-dev libxrender-dev \
+            ffmpeg
 
       # The hardware-comparison checks register only when NumPy and SciPy import.
       - name: Set up Python for the checks
@@ -64,14 +65,13 @@ jobs:
       - name: Render the demos for review
         run: |
           set -euo pipefail
-          mkdir -p build-dsp/demo-audio
-          ./build-dsp/SeptumRenderDemos --jobs 4 build-dsp/demo-audio
+          ./build-dsp/RenderSeptumPresetDemos --jobs 4 Docs/audio/midi build-dsp/demo-audio
 
       - name: Upload demo audio
         uses: actions/upload-artifact@v4
         with:
           name: ci-audio-septum-build-${{ github.run_number }}
-          path: build-dsp/demo-audio/*.wav
+          path: build-dsp/demo-audio/*.mp3
           if-no-files-found: error
           retention-days: 7
 
