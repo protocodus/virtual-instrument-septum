@@ -26,6 +26,19 @@
 
 namespace
 {
+// Joins every worker on scope exit, including when a later thread fails to
+// start. std::jthread would do this, but Apple's libc++ still gates it behind
+// its experimental-library flag.
+struct JoiningThreads
+{
+    std::vector<std::thread> threads;
+    ~JoiningThreads()
+    {
+        for (auto& thread : threads)
+            if (thread.joinable()) thread.join();
+    }
+};
+
 using septum::Engine;
 using septum::Patch;
 
@@ -546,9 +559,9 @@ int runSmokeTest (const std::filesystem::path& directory, unsigned jobs)
     // audio against the serial reference, including independent random state.
     std::vector<std::string> failures (jobs);
     {
-        std::vector<std::jthread> workers;
+        JoiningThreads workers;
         for (unsigned job = 0; job < jobs; ++job)
-            workers.emplace_back ([&, job]
+            workers.threads.emplace_back ([&, job]
             {
                 try
                 {
@@ -826,9 +839,8 @@ int run (int argc, char** argv)
     if (jobs == 1) worker();
     else
     {
-        // jthread joins on every exit path, including failed thread creation.
-        std::vector<std::jthread> workers;
-        for (unsigned job = 0; job < jobs; ++job) workers.emplace_back (worker);
+        JoiningThreads workers;
+        for (unsigned job = 0; job < jobs; ++job) workers.threads.emplace_back (worker);
     }
     // Report in score order regardless of worker completion order.
     bool failed = false;
