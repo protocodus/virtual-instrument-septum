@@ -69,7 +69,7 @@ These README parts are written by the build, never by hand:
   `Docs/audio/<NN>-<name>.mp3`.
 - The block between `<!-- build-download-begin -->` and
   `<!-- build-download-end -->` is rewritten by `main-build.yml`, which also
-  commits `Docs/screenshots/septum-standalone.png`.
+  commits `Docs/screenshots/septum.png`.
 
 Version history is a ledger of what changed about the instrument — what it
 sounds like, what it exposes, what a session must know. Pure refactors,

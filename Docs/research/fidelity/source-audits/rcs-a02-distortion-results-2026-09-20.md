@@ -38,5 +38,5 @@ The [machine-readable audit](rcs-a02-distortion-results-2026-09-20.json) retains
 Regenerate the standalone [SVG](rcs-a02-distortion-results-2026-09-20.svg) and PNG from the retained JSON without media:
 
 ```sh
-python3 Docs/research/fidelity/source-audits/rcs-a02-distortion-results-2026-09-20-figure.py
+python3 Tools/plot_rcs_a02_distortion_results.py
 ```

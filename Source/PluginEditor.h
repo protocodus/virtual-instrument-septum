@@ -88,6 +88,11 @@ public:
 
     void paint (juce::Graphics&) override;
     void resized() override;
+    void mouseUp (const juce::MouseEvent&) override;
+
+    // "X.Y.Z-build.<run>": the package this binary ships in, as the About box
+    // shows it. A build outside CI reads "build.local".
+    [[nodiscard]] static juce::String getBuildIdentity();
 
     // The size to open at on a display with this much usable room. Public so
     // the suite can check the fit rule on screens no build machine has to
@@ -328,7 +333,7 @@ private:
     juce::Label programLabel;
     juce::TextButton loadPresetButton { "LOAD" }, savePresetButton { "SAVE" };
     std::unique_ptr<juce::FileChooser> presetChooser;
-    juce::ScopedMessageBox presetMessageBox;
+    juce::ScopedMessageBox presetMessageBox, aboutMessageBox;
     juce::File lastPresetFile;
     // The edit-target tabs, in the header above everything they govern.
     juce::TextButton upperButton { "UPPER" }, lowerButton { "LOWER" };

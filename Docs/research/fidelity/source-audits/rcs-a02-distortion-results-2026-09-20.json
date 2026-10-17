@@ -2530,7 +2530,7 @@
   "reproduction": {
     "distortion": "python3 build-fidelity/rcs-distortion-probes-2026-09-20/analyze_probes.py --output build-fidelity/rcs-distortion-probes-2026-09-20/analysis-reproduced",
     "phase": "python3 build-fidelity/rcs-pulse-phase-probes-2026-09-20/analyze.py",
-    "figure": "python3 Docs/research/fidelity/source-audits/rcs-a02-distortion-results-2026-09-20-figure.py",
+    "figure": "python3 Tools/plot_rcs_a02_distortion_results.py",
     "note": "Third-party media, binaries and full study outputs remain ignored. Exact identities are retained here; reacquisition/builds must verify them before analysis."
   },
   "figure": {
@@ -2545,9 +2545,9 @@
       "bytes": 162957
     },
     "generator": {
-      "path": "Docs/research/fidelity/source-audits/rcs-a02-distortion-results-2026-09-20-figure.py",
-      "sha256": "ad97a6a0ecb90f478b86bc69c874f4b5fd202c05cf8e24bd262a63120b43b06c",
-      "bytes": 4332
+      "path": "Tools/plot_rcs_a02_distortion_results.py",
+      "sha256": "675d41fd0ec6991cc2a138c382972bc0916bc1339eb70306e7dc0dd40f02e264",
+      "bytes": 4399
     },
     "visual_review": "Rendered and inspected; final footer spacing corrected before pinning. Both axes,20 rows, hardware spans, labels, legend and all footer lines are legible without overlap."
   }

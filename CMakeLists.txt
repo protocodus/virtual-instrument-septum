@@ -200,11 +200,23 @@ if(SEPTUM_BUILD_PLUGIN)
             juce::juce_recommended_lto_flags
             juce::juce_recommended_warning_flags)
 
+    # The About box names the package this binary ships in, with the build
+    # number read the way scripts/release_metadata.py reads it.
+    if(NOT "$ENV{BUILD_NUMBER}" STREQUAL "")
+        set(SEPTUM_BUILD_NUMBER "$ENV{BUILD_NUMBER}")
+    elseif(NOT "$ENV{GITHUB_RUN_NUMBER}" STREQUAL "")
+        set(SEPTUM_BUILD_NUMBER "$ENV{GITHUB_RUN_NUMBER}")
+    else()
+        set(SEPTUM_BUILD_NUMBER "local")
+    endif()
+
     target_compile_definitions(Septum
         PUBLIC
             JUCE_WEB_BROWSER=0
             JUCE_USE_CURL=0
-            JUCE_VST3_CAN_REPLACE_VST2=0)
+            JUCE_VST3_CAN_REPLACE_VST2=0
+        PRIVATE
+            SEPTUM_BUILD_IDENTITY="${PROJECT_VERSION}-build.${SEPTUM_BUILD_NUMBER}")
 endif()
 
 # The demonstration WAVs under Docs/audio are rendered by this tool

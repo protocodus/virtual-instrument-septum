@@ -107,14 +107,14 @@ jobs:
       - name: Build universal plug-in and run tests
         env:
           BUILD_UNIVERSAL: "ON"
-          SEPTUM_EDITOR_SNAPSHOT: "${{ runner.temp }}/septum-standalone.png"
+          SEPTUM_EDITOR_SNAPSHOT: "${{ runner.temp }}/septum.png"
         run: ./scripts/build-macos.sh
 
       - name: Upload the rendered editor screenshot
         uses: actions/upload-artifact@v4
         with:
           name: ci-screenshot-septum-build-${{ github.run_number }}
-          path: ${{ runner.temp }}/septum-standalone.png
+          path: ${{ runner.temp }}/septum.png
           if-no-files-found: error
           retention-days: 7
 

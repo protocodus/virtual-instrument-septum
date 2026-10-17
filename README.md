@@ -7,7 +7,7 @@ Unit on macOS. It is an independent original implementation, not affiliated
 with or licensed by Roland Corporation, and contains no firmware, ROM data,
 samples, captured audio, or factory patch data.
 
-![Septum](Docs/screenshots/septum-standalone.png)
+![Septum](Docs/screenshots/septum.png)
 
 ## Audio demos
 

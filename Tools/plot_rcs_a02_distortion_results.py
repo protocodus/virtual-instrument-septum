@@ -11,7 +11,8 @@ from matplotlib.patches import Patch
 
 
 def main():
-    stem = Path(__file__).with_name('rcs-a02-distortion-results-2026-09-20')
+    stem = (Path(__file__).resolve().parents[1] / 'Docs/research/fidelity/source-audits'
+            / 'rcs-a02-distortion-results-2026-09-20')
     data = json.loads(stem.with_suffix('.json').read_text())['figure_data']
     rows = data['rows']
     plt.rcParams.update({'font.family': 'DejaVu Sans', 'font.size': 10,

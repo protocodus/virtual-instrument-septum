@@ -15,7 +15,7 @@ BUILD_NUMBER="$5"
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 cd "${REPO_ROOT}"
 EXPECTED_DEMOS=11
-SCREENSHOT="Docs/screenshots/septum-standalone.png"
+SCREENSHOT="Docs/screenshots/septum.png"
 
 if [[ "$(git rev-parse HEAD)" != "${SOURCE_SHA}" ]]; then
     echo "error: checkout HEAD does not match source SHA ${SOURCE_SHA}" >&2

@@ -540,6 +540,11 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
     titleLabel.setText ("SEPTUM", juce::dontSendNotification);
     titleLabel.setFont (juce::Font (juce::FontOptions (34.0f, juce::Font::bold)));
     titleLabel.setColour (juce::Label::textColourId, colours::frame);
+    // The title is the About box: the build identity stays out of the panel
+    // itself so the committed screenshot does not change with every build.
+    titleLabel.setTooltip ("About Septum " + getBuildIdentity());
+    titleLabel.setMouseCursor (juce::MouseCursor::PointingHandCursor);
+    titleLabel.addMouseListener (this, false);
     canvas.addAndMakeVisible (titleLabel);
 
     voiceLabel.setFont (juce::Font (juce::FontOptions (16.0f)));
@@ -1021,9 +1026,27 @@ SeptumAudioProcessorEditor::SeptumAudioProcessorEditor (
 SeptumAudioProcessorEditor::~SeptumAudioProcessorEditor()
 {
     presetMessageBox = {};
+    aboutMessageBox = {};
     presetChooser.reset();
     keyboardState.removeListener (this);
     setLookAndFeel (nullptr);
+}
+
+juce::String SeptumAudioProcessorEditor::getBuildIdentity()
+{
+    return SEPTUM_BUILD_IDENTITY;
+}
+
+void SeptumAudioProcessorEditor::mouseUp (const juce::MouseEvent& event)
+{
+    if (event.eventComponent != &titleLabel || ! titleLabel.getLocalBounds().contains (event.getPosition()))
+        return;
+    aboutMessageBox = juce::AlertWindow::showScopedAsync (
+        juce::MessageBoxOptions().withTitle ("About Septum")
+            .withMessage ("Septum " + getBuildIdentity()
+                          + "\nModels the Roland SH-201. Not affiliated with or licensed by Roland Corporation.")
+            .withButton ("OK")
+            .withAssociatedComponent (this), nullptr);
 }
 
 void SeptumAudioProcessorEditor::refreshPresetDisplay()

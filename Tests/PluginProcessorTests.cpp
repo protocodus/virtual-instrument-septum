@@ -1581,6 +1581,15 @@ void testEditorAndSnapshot()
     if (editor == nullptr)
         return;
 
+    // The About box names the package the binary ships in: Septum-<X.Y.Z>-build.<run>.
+    {
+        const auto identity = SeptumAudioProcessorEditor::getBuildIdentity();
+        const auto build = identity.fromFirstOccurrenceOf (juce::String (JucePlugin_VersionString) + "-build.", false, false);
+        expect (identity.startsWith (juce::String (JucePlugin_VersionString) + "-build.")
+                    && (build == "local" || (build.containsOnly ("0123456789") && ! build.startsWith ("0") && build.isNotEmpty())),
+                "the About box shows X.Y.Z-build.<run> (got " + identity + ")");
+    }
+
     // The editor opens at whatever fits the display it is on, so the
     // documentation image is pinned to the panel's design size here rather
     // than taken from whatever the build machine happens to have.

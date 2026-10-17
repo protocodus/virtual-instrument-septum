@@ -16,7 +16,7 @@ import tempfile
 import zlib
 
 ROOT = Path(__file__).resolve().parents[1]
-COMMITTED = ROOT / "Docs/screenshots/septum-standalone.png"
+COMMITTED = ROOT / "Docs/screenshots/septum.png"
 
 
 def read_png(path: Path):
@@ -62,7 +62,7 @@ def main() -> int:
     parser.add_argument("--processor-tests", type=Path, required=True)
     args = parser.parse_args()
     with tempfile.TemporaryDirectory(prefix="septum-render-tier-") as folder:
-        snapshot = Path(folder, "septum-standalone.png")
+        snapshot = Path(folder, "septum.png")
         environment = {**os.environ, "SEPTUM_EDITOR_SNAPSHOT": str(snapshot)}
         subprocess.run([str(args.processor_tests)], env=environment, check=True,
                        stdout=subprocess.DEVNULL, timeout=600)
