@@ -30,8 +30,11 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 option(SEPTUM_BUILD_PLUGIN "Build the JUCE plug-in and standalone app" ON)
+option(SEPTUM_BUILD_CLAP "Build the CLAP format through clap-juce-extensions" ON)
 set(SEPTUM_JUCE_PATH "" CACHE PATH
     "Optional path to a local JUCE 8.0.14 checkout (avoids downloading JUCE)")
+set(SEPTUM_CLAP_JUCE_EXTENSIONS_PATH "" CACHE PATH
+    "Optional path to a local clap-juce-extensions checkout with submodules")
 
 include(CTest)
 
@@ -82,6 +85,19 @@ else()
     target_compile_options(SeptumDSP PRIVATE -Wall -Wextra -Wpedantic)
 endif()
 
+# The Rack Extension toolchain is C++17. Compiling the shipping engine at that
+# standard here keeps Source/DSP portable before any Rack adapter exists.
+if(NOT MSVC)
+    add_library(SeptumDSPCxx17 OBJECT ${SEPTUM_DSP_SOURCES})
+    target_include_directories(SeptumDSPCxx17
+        PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/Source")
+    set_target_properties(SeptumDSPCxx17 PROPERTIES
+        CXX_STANDARD 17
+        CXX_STANDARD_REQUIRED ON
+        CXX_EXTENSIONS OFF)
+    target_compile_options(SeptumDSPCxx17 PRIVATE -Wall -Wextra -Wpedantic)
+endif()
+
 if(SEPTUM_BUILD_PLUGIN)
     if(SEPTUM_JUCE_PATH)
         if(NOT EXISTS "${SEPTUM_JUCE_PATH}/CMakeLists.txt")
@@ -99,6 +115,34 @@ if(SEPTUM_BUILD_PLUGIN)
             URL https://github.com/juce-framework/JUCE/archive/2cdfca8feb300fb424002ba2c2751569e5bacb64.tar.gz
             URL_HASH SHA256=814019716960a16f8f850a1593eeb56e2f21910aff2d673f7d3513b4ebaf251d)
         FetchContent_MakeAvailable(JUCE)
+    endif()
+
+    if(SEPTUM_BUILD_CLAP)
+        if(SEPTUM_CLAP_JUCE_EXTENSIONS_PATH)
+            foreach(required_file IN ITEMS CMakeLists.txt
+                    clap-libs/clap/CMakeLists.txt
+                    clap-libs/clap-helpers/CMakeLists.txt)
+                if(NOT EXISTS "${SEPTUM_CLAP_JUCE_EXTENSIONS_PATH}/${required_file}")
+                    message(FATAL_ERROR
+                        "SEPTUM_CLAP_JUCE_EXTENSIONS_PATH is missing ${required_file}; "
+                        "use a checkout with git submodule update --init --recursive")
+                endif()
+            endforeach()
+            add_subdirectory("${SEPTUM_CLAP_JUCE_EXTENSIONS_PATH}"
+                             "${CMAKE_CURRENT_BINARY_DIR}/clap-juce-extensions"
+                             EXCLUDE_FROM_ALL)
+        else()
+            include(FetchContent)
+            FetchContent_Declare(
+                clap_juce_extensions
+                GIT_REPOSITORY https://github.com/free-audio/clap-juce-extensions.git
+                GIT_TAG c1a5ad025f95d01e03267857fa8276ebeed16500
+                # Archive downloads omit these gitlinks. Fetch both dependencies
+                # at the immutable revisions recorded by the wrapper commit.
+                GIT_SUBMODULES clap-libs/clap clap-libs/clap-helpers
+                GIT_SUBMODULES_RECURSE TRUE)
+            FetchContent_MakeAvailable(clap_juce_extensions)
+        endif()
     endif()
 
     if(APPLE)
@@ -128,6 +172,15 @@ if(SEPTUM_BUILD_PLUGIN)
         EDITOR_WANTS_KEYBOARD_FOCUS TRUE
         AU_SANDBOX_SAFE TRUE
         COPY_PLUGIN_AFTER_BUILD FALSE)
+
+    if(SEPTUM_BUILD_CLAP)
+        # CLAP is supplied by the JUCE extension, outside JUCE's FORMATS list.
+        # Its wrapper inherits Septum's product name, version and artefacts
+        # directory.
+        clap_juce_extensions_plugin(TARGET Septum
+            CLAP_ID "cz.protocodus.septum"
+            CLAP_FEATURES instrument synthesizer stereo)
+    endif()
 
     juce_generate_juce_header(Septum)
 
@@ -400,6 +453,14 @@ if(BUILD_TESTING)
                  COMMAND SeptumRenderDemos --smoke
                          "${CMAKE_CURRENT_BINARY_DIR}/demo-smoke")
         set_tests_properties(Septum.RenderDemos PROPERTIES TIMEOUT 60)
+
+        if(Python3_Interpreter_FOUND)
+            add_test(NAME Septum.AudioDemos
+                     COMMAND "${Python3_EXECUTABLE}" -B
+                             "${CMAKE_CURRENT_SOURCE_DIR}/Tests/AudioDemoTests.py"
+                             --demos "$<TARGET_FILE:SeptumRenderDemos>")
+            set_tests_properties(Septum.AudioDemos PROPERTIES TIMEOUT 300 LABELS audio)
+        endif()
     endif()
 
     if(SEPTUM_BUILD_PLUGIN)
@@ -476,5 +537,29 @@ if(BUILD_TESTING)
         add_test(NAME Septum.PluginProcessor
                  COMMAND SeptumPluginProcessorTests)
         set_tests_properties(Septum.PluginProcessor PROPERTIES TIMEOUT 120)
+
+        if(Python3_Interpreter_FOUND)
+            add_test(NAME Septum.EditorRender
+                     COMMAND "${Python3_EXECUTABLE}" -B
+                             "${CMAKE_CURRENT_SOURCE_DIR}/Tests/EditorRenderTests.py"
+                             --processor-tests "$<TARGET_FILE:SeptumPluginProcessorTests>")
+            set_tests_properties(Septum.EditorRender PROPERTIES TIMEOUT 600 LABELS render)
+        endif()
     endif()
+
+    # Every test carries exactly one tier label so CI selects tiers with
+    # `ctest -L`. The seeded malformed-input stress suites are the fuzz tier;
+    # tests not labelled above are unit contracts.
+    set_tests_properties(Septum.EngineRobustness Septum.ProtocolRobustness
+                         PROPERTIES LABELS fuzz)
+    if(SEPTUM_BUILD_PLUGIN)
+        set_tests_properties(Septum.ProcessorRobustness PROPERTIES LABELS fuzz)
+    endif()
+    get_property(SEPTUM_TESTS DIRECTORY PROPERTY TESTS)
+    foreach(test IN LISTS SEPTUM_TESTS)
+        get_test_property(${test} LABELS test_labels)
+        if(NOT test_labels)
+            set_tests_properties(${test} PROPERTIES LABELS unit)
+        endif()
+    endforeach()
 endif()

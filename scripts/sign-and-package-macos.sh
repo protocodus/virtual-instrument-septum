@@ -61,8 +61,10 @@ if [[ -n "${NOTARY_PROFILE}" ]]; then
     xcrun --find stapler >/dev/null
 fi
 
+# Every upstream licence text in ThirdParty/ ships beside Septum's own.
 JUCE_NOTICE="${PROJECT_DIR}/ThirdParty/JUCE-LICENSE.md"
 JUCE_DEPENDENCIES="${PROJECT_DIR}/ThirdParty/JUCE-DEPENDENCY-NOTICES.txt"
+THIRD_PARTY_LICENCES=("${PROJECT_DIR}"/ThirdParty/*)
 for notice in "${PROJECT_DIR}/LICENSE" "${PROJECT_DIR}/THIRD_PARTY_NOTICES.md" \
               "${JUCE_NOTICE}" "${JUCE_DEPENDENCIES}"; do
     if [[ ! -f "${notice}" ]]; then
@@ -74,8 +76,9 @@ done
 VST3="${ARTIFACT_DIR}/VST3/Septum.vst3"
 AU="${ARTIFACT_DIR}/AU/Septum.component"
 APP="${ARTIFACT_DIR}/Standalone/Septum.app"
+CLAP="${ARTIFACT_DIR}/CLAP/Septum.clap"
 
-for artifact in "${VST3}" "${AU}" "${APP}"; do
+for artifact in "${VST3}" "${AU}" "${APP}" "${CLAP}"; do
     if [[ ! -d "${artifact}" ]]; then
         echo "error: missing build artifact: ${artifact}" >&2
         echo "Run scripts/build-macos.sh first." >&2
@@ -115,11 +118,14 @@ fi
 VST3_ARCHS="$(lipo -archs "${VST3}/Contents/MacOS/Septum")"
 AU_ARCHS="$(lipo -archs "${AU}/Contents/MacOS/Septum")"
 APP_ARCHS="$(lipo -archs "${APP}/Contents/MacOS/Septum")"
-if [[ "${VST3_ARCHS}" != "${AU_ARCHS}" || "${VST3_ARCHS}" != "${APP_ARCHS}" ]]; then
+CLAP_ARCHS="$(lipo -archs "${CLAP}/Contents/MacOS/Septum")"
+if [[ "${VST3_ARCHS}" != "${AU_ARCHS}" || "${VST3_ARCHS}" != "${APP_ARCHS}" \
+      || "${VST3_ARCHS}" != "${CLAP_ARCHS}" ]]; then
     echo "error: build artifact architectures disagree" >&2
     echo "  VST3: ${VST3_ARCHS}" >&2
     echo "  AU: ${AU_ARCHS}" >&2
     echo "  App: ${APP_ARCHS}" >&2
+    echo "  CLAP: ${CLAP_ARCHS}" >&2
     exit 1
 fi
 
@@ -130,7 +136,7 @@ else
 fi
 
 if [[ -n "${NOTARY_PROFILE}" ]]; then
-    for artifact in "${VST3}" "${AU}" "${APP}"; do
+    for artifact in "${VST3}" "${AU}" "${APP}" "${CLAP}"; do
         bundle_type="$("${PLIST_BUDDY}" -c "Print :CFBundlePackageType" \
             "${artifact}/Contents/Info.plist")"
         if [[ "${bundle_type}" != "BNDL" && "${bundle_type}" != "APPL" ]]; then
@@ -149,12 +155,14 @@ rm -rf "${PACKAGE_ROOT}"
 mkdir -p \
     "${PACKAGE_ROOT}/Library/Audio/Plug-Ins/VST3" \
     "${PACKAGE_ROOT}/Library/Audio/Plug-Ins/Components" \
+    "${PACKAGE_ROOT}/Library/Audio/Plug-Ins/CLAP" \
     "${PACKAGE_ROOT}/Applications" \
     "${DIST_DIR}"
 
 ditto "${VST3}" "${PACKAGE_ROOT}/Library/Audio/Plug-Ins/VST3/Septum.vst3"
 ditto "${AU}" "${PACKAGE_ROOT}/Library/Audio/Plug-Ins/Components/Septum.component"
 ditto "${APP}" "${PACKAGE_ROOT}/Applications/Septum.app"
+ditto "${CLAP}" "${PACKAGE_ROOT}/Library/Audio/Plug-Ins/CLAP/Septum.clap"
 
 NOTICE_ROOT="${PACKAGE_ROOT}/Library/Application Support/Septum/Documentation"
 
@@ -162,22 +170,25 @@ mkdir -p "${NOTICE_ROOT}"
 ditto "${PROJECT_DIR}/LICENSE" "${NOTICE_ROOT}/Septum-LICENSE.txt"
 ditto "${PROJECT_DIR}/THIRD_PARTY_NOTICES.md" \
     "${NOTICE_ROOT}/THIRD_PARTY_NOTICES.md"
-ditto "${JUCE_NOTICE}" "${NOTICE_ROOT}/JUCE-LICENSE.md"
-ditto "${JUCE_DEPENDENCIES}" "${NOTICE_ROOT}/JUCE-DEPENDENCY-NOTICES.txt"
+for licence in "${THIRD_PARTY_LICENCES[@]}"; do
+    ditto "${licence}" "${NOTICE_ROOT}/${licence##*/}"
+done
 
 # Keep the same notices inside every independently copyable bundle. They are
 # installed before signing so the bundle signatures cover the documentation.
 for bundle in \
     "${PACKAGE_ROOT}/Library/Audio/Plug-Ins/VST3/Septum.vst3" \
     "${PACKAGE_ROOT}/Library/Audio/Plug-Ins/Components/Septum.component" \
+    "${PACKAGE_ROOT}/Library/Audio/Plug-Ins/CLAP/Septum.clap" \
     "${PACKAGE_ROOT}/Applications/Septum.app"; do
     bundle_notice_root="${bundle}/Contents/Resources/Documentation"
     mkdir -p "${bundle_notice_root}"
     ditto "${PROJECT_DIR}/LICENSE" "${bundle_notice_root}/Septum-LICENSE.txt"
     ditto "${PROJECT_DIR}/THIRD_PARTY_NOTICES.md" \
         "${bundle_notice_root}/THIRD_PARTY_NOTICES.md"
-    ditto "${JUCE_NOTICE}" "${bundle_notice_root}/JUCE-LICENSE.md"
-    ditto "${JUCE_DEPENDENCIES}" "${bundle_notice_root}/JUCE-DEPENDENCY-NOTICES.txt"
+    for licence in "${THIRD_PARTY_LICENCES[@]}"; do
+        ditto "${licence}" "${bundle_notice_root}/${licence##*/}"
+    done
 done
 
 sign_bundle() {
@@ -193,14 +204,15 @@ sign_bundle() {
 
 sign_bundle "${PACKAGE_ROOT}/Library/Audio/Plug-Ins/VST3/Septum.vst3"
 sign_bundle "${PACKAGE_ROOT}/Library/Audio/Plug-Ins/Components/Septum.component"
+sign_bundle "${PACKAGE_ROOT}/Library/Audio/Plug-Ins/CLAP/Septum.clap"
 sign_bundle "${PACKAGE_ROOT}/Applications/Septum.app"
 
 # Build the entire new release away from dist. A signing/notarization failure
 # must leave the last successful distributables intact.
 RELEASE_WORK_DIR="$(mktemp -d "${BUILD_DIR}/package-release.XXXXXX")"
 trap 'rm -rf "${RELEASE_WORK_DIR}"' EXIT
-ZIP_NAME="Septum-${VERSION}-build-${BUILD_NUMBER}-macOS-${ARTIFACT_ARCH}.zip"
-PKG_NAME="Septum-${VERSION}-build-${BUILD_NUMBER}-macOS-${ARTIFACT_ARCH}.pkg"
+ZIP_NAME="Septum-${VERSION}-build.${BUILD_NUMBER}-macOS-${ARTIFACT_ARCH}.zip"
+PKG_NAME="Septum-${VERSION}-build.${BUILD_NUMBER}-macOS-${ARTIFACT_ARCH}.pkg"
 ZIP_PATH="${RELEASE_WORK_DIR}/${ZIP_NAME}"
 PKG_UNSIGNED="${RELEASE_WORK_DIR}/unsigned.pkg"
 PKG_FINAL="${RELEASE_WORK_DIR}/${PKG_NAME}"
@@ -236,6 +248,7 @@ if [[ -n "${NOTARY_PROFILE}" ]]; then
     for bundle in \
         "${PACKAGE_ROOT}/Library/Audio/Plug-Ins/VST3/Septum.vst3" \
         "${PACKAGE_ROOT}/Library/Audio/Plug-Ins/Components/Septum.component" \
+        "${PACKAGE_ROOT}/Library/Audio/Plug-Ins/CLAP/Septum.clap" \
         "${PACKAGE_ROOT}/Applications/Septum.app"; do
         xcrun stapler staple "${bundle}"
         xcrun stapler validate "${bundle}"
@@ -267,6 +280,7 @@ if [[ -n "${NOTARY_PROFILE}" ]]; then
     ditto -x -k "${ZIP_PATH}" "${ZIP_CHECK_ROOT}"
     for relative_bundle in "Library/Audio/Plug-Ins/VST3/Septum.vst3" \
                            "Library/Audio/Plug-Ins/Components/Septum.component" \
+                           "Library/Audio/Plug-Ins/CLAP/Septum.clap" \
                            "Applications/Septum.app"; do
         codesign --verify --deep --strict --verbose=2 "${ZIP_CHECK_ROOT}/${relative_bundle}"
         xcrun stapler validate "${ZIP_CHECK_ROOT}/${relative_bundle}"

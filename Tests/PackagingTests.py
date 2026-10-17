@@ -88,7 +88,8 @@ class PackagingTests(unittest.TestCase):
         self.build = self.path / 'build'
         for kind, name, package in (('VST3', 'Septum.vst3', 'BNDL'),
                                     ('AU', 'Septum.component', 'BNDL'),
-                                    ('Standalone', 'Septum.app', 'APPL')):
+                                    ('Standalone', 'Septum.app', 'APPL'),
+                                    ('CLAP', 'Septum.clap', 'BNDL')):
             bundle = self.build / 'Septum_artefacts/Release' / kind / name / 'Contents'
             (bundle / 'MacOS').mkdir(parents=True)
             (bundle / 'MacOS/Septum').write_bytes(b'fixture')
@@ -150,13 +151,14 @@ class PackagingTests(unittest.TestCase):
         result = self.run_script()
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         self.assertFalse(self.old.exists())
-        self.assertEqual(len(list(self.dist.glob('*.zip'))), 1)
+        self.assertEqual([path.name for path in self.dist.glob('*.zip')],
+                         ['Septum-1.2.3-build.42-macOS-universal.zip'])
         self.assertEqual(len(list(self.dist.glob('*.pkg'))), 1)
         self.assertFalse(any(command[:2] == ['xcrun', 'notarytool'] for command in self.commands()))
         with zipfile.ZipFile(next(self.dist.glob('*.zip'))) as archive:
             self.assertIn('Applications/Septum.app/Contents/Resources/Documentation/Septum-LICENSE.txt', archive.namelist())
             self.assertEqual(sum(name.endswith('/JUCE-DEPENDENCY-NOTICES.txt')
-                                 for name in archive.namelist()), 4)
+                                 for name in archive.namelist()), 5)
 
     def test_commercial_staples_all_bundles_before_zip_and_installer(self):
         result = self.commercial()
@@ -165,11 +167,12 @@ class PackagingTests(unittest.TestCase):
         submissions = [command for command in commands if command[:3] == ['xcrun', 'notarytool', 'submit']]
         self.assertEqual([Path(command[3]).suffix for command in submissions], ['.zip', '.pkg'])
         staples = [command for command in commands if command[:3] == ['xcrun', 'stapler', 'staple']]
-        self.assertEqual([Path(command[-1]).suffix for command in staples], ['.vst3', '.component', '.app', '.pkg'])
+        self.assertEqual([Path(command[-1]).suffix for command in staples],
+                         ['.vst3', '.component', '.clap', '.app', '.pkg'])
         with zipfile.ZipFile(next(self.dist.glob('*.zip'))) as archive:
-            self.assertEqual(sum(name.endswith('/stapled-ticket') for name in archive.namelist()), 3)
+            self.assertEqual(sum(name.endswith('/stapled-ticket') for name in archive.namelist()), 4)
         package = next(self.dist.glob('*.pkg')).read_text()
-        self.assertEqual(package.count('/stapled-ticket'), 3)
+        self.assertEqual(package.count('/stapled-ticket'), 4)
         self.assertTrue(package.endswith('\nstapled-ticket'))
         self.assertFalse(list(self.build.glob('package-release.*')))
 
