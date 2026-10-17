@@ -86,9 +86,7 @@ The detailed change list is in
 ## Downloads
 
 <!-- build-download-begin -->
-Every push to `main` builds all three platforms; the latest successful run of
-the [main build](https://github.com/protocodus/virtual-instrument-septum/actions/workflows/main-build.yml?query=branch%3Amain+is%3Asuccess)
-holds the packages. Each main build rewrites this paragraph with a direct link.
+**[Download main build 2](https://github.com/protocodus/virtual-instrument-septum/actions/runs/39008875658/artifacts/12092640811)**, built from [`333731d5a9aa`](https://github.com/protocodus/virtual-instrument-septum/commit/333731d5a9aa760f70c646a5ecf81f1e5029f399). It holds the macOS, Windows and Linux packages, `SHA256SUMS` and `BUILD.txt`.
 <!-- build-download-end -->
 
 Downloads need a GitHub sign-in and are kept for 30 days. Each set holds the
