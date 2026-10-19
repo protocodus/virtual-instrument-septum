@@ -660,5 +660,11 @@ waveform.
 
 ## Licensing
 
-Original code under the MIT license (`LICENSE`). JUCE and the CLAP wrapper are
-used under their own terms; see `THIRD_PARTY_NOTICES.md`.
+Septum's source is available under the [PolyForm Noncommercial License
+1.0.0](LICENSE): you may read, study, change and share it for any non-commercial
+purpose, but not sell it or use it commercially. Official Protocodus builds
+carry an additional permission in the same file to use them for any purpose,
+including making music commercially. Commits made before this licence change
+were published under MIT and remain so. JUCE (under a JUCE 8 Starter licence in
+official builds) and the CLAP wrapper are used under their own terms; see
+`THIRD_PARTY_NOTICES.md`.
