@@ -90,7 +90,7 @@ trajectory, FB-OSC growl, resonance behaviour, envelope snap, effect texture
 
 ## Version history
 
-### 0.9.0 — unreleased — first complete SH-201 model
+### Unreleased — 0.9.0 — first complete SH-201 model
 
 - Both tones with every tone parameter, all nine waveforms, MIX/SYNC/RING, the
   multimode filter, three envelopes, two LFOs with tempo sync, overdrive,
