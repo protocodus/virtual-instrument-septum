@@ -646,7 +646,7 @@ writes `build-macos/dist/Septum-0.9.0-build.42-macOS-universal.pkg` and the
 matching `.zip`. On Linux and Windows, `scripts/package-linux.py` and
 `scripts/package-windows.py` package a `build-plugin` tree the same way.
 
-Three workflows run in CI: `ci.yml` on every push and pull request (tiers per
+Three workflows run in CI: `ci.yml` on every push to any branch (tiers per
 platform, sanitizers, packages kept 7 days), `main-build.yml` on every push to
 `main` and nightly (pluginval and auval, the collected download, and the
 committed screenshot, demos and README blocks), and `release.yml` on `v*` tags
