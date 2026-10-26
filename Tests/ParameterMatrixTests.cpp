@@ -168,6 +168,69 @@ private:
         return false;
     }
 
+    // True where a tone's low-pass is held shut by its own envelope: a
+    // negative FILTER ENV DEPTH at a high SUSTAIN pulls the cutoff (12 octaves
+    // at full depth, more than the whole CUTOFF range) far below the chord,
+    // as a real filter would. Every term that could open the filter or lower
+    // the chord is taken at its extreme, so this holds only when the lowest
+    // partial is still 60 dB down, plus whatever the shelf and the post-filter
+    // drive can give back, on the asymptotic slope above the cutoff. Like the
+    // other design silences it is judged per row, case and base alike.
+    bool filterShutWhileHeld (const std::vector<float>& row, const char* tone) const
+    {
+        using namespace septum::mapping;
+        const int depth = raw (row, tone, "fenv_depth");
+        // LPF only; and the envelope must be past its attack, which starts at
+        // the last note-on (0.1 s), by the held window (0.55 s).
+        if (raw (row, tone, "filter_type") != 1 || depth >= 0
+            || attackSeconds (raw (row, tone, "fenv_attack")) > 0.45
+            || raw (row, tone, "mix_type") == 2) // RING adds difference tones
+            return false;
+
+        // Past its attack a negative envelope sits at or above SUSTAIN, so
+        // its pull is at least SUSTAIN's share of the depth.
+        double openOctaves = std::log2 (cutoffHz (raw (row, tone, "cutoff")))
+                             + filterEnvOctaves (depth) * raw (row, tone, "fenv_sustain") / 127.0
+                             + std::max (0, raw (row, tone, "key_follow")) / 100.0 * 7.0 / 12.0
+                             + std::abs (cutoffVelocityOctaves (raw (row, tone, "cutoff_vel"), 0.0));
+        for (const char* lfo : { "lfo1_", "lfo2_" })
+            if (raw (row, tone, (std::string (lfo) + "dest1").c_str()) == 2) // FILTER
+                openOctaves += std::abs (lfoFilterOctaves (raw (row, tone, (std::string (lfo) + "depth1").c_str())));
+        const double heldCutoffHz = std::max (5.0, std::exp2 (openOctaves)); // the engine's floor
+
+        // Keyboard OCT and TRANSPOSE do not reach direct MIDI, so they count
+        // only where they lower the chord.
+        const double shift = raw (row, "", "system_key_shift") + 12.0 * raw (row, tone, "octave_shift")
+                             + std::min (0, raw (row, "", "system_transpose") + 12 * raw (row, "", "system_octave"));
+        double lowestNote = INFINITY;
+        const int balance = raw (row, tone, "balance");
+        for (int osc = 1; osc <= 2; ++osc)
+        {
+            if (balanceLegGain (balance, osc == 1) <= 0.0)
+                continue;
+            const std::string o = "osc" + std::to_string (osc) + "_";
+            const int wave = raw (row, tone, (o + "wave").c_str());
+            if (wave == 5 || wave == 8) // NOISE, EXT-IN: no lowest partial
+                return false;
+            double note = 60.0 + shift + raw (row, tone, (o + "pitch").c_str())
+                          + std::min (0, raw (row, tone, (o + "detune").c_str())) / 100.0
+                          + std::min (0.0, pitchEnvSemitones (raw (row, tone, (o + "penv_depth").c_str())));
+            for (const char* lfo : { "lfo1_", "lfo2_" })
+                if (raw (row, tone, (std::string (lfo) + "dest" + (osc == 1 ? "1" : "2")).c_str()) == 0) // PITCH
+                    note -= std::abs (lfoPitchCents (raw (row, tone, (std::string (lfo) + "depth" + (osc == 1 ? "1" : "2")).c_str()))) / 100.0;
+            if (wave == 7) // SUPER-SAW: the lowest of the stack at full detune
+                note += 12.0 * std::log2 (1.0 + superSawOffsets.front() * superSawDetuneAmount (1.0));
+            lowestNote = std::min (lowestNote, note);
+        }
+        const double lowestHz = raw (row, "", "system_master_tune") * std::exp2 ((lowestNote - 69.0) / 12.0);
+
+        const double slopeDb = raw (row, tone, "filter_slope") == 1 ? 24.0 : 12.0;
+        const double neededDb = 60.0 + (raw (row, tone, "low_freq") == 1 ? lowShelfGainDb : 0.0)
+                                + (1.0 + overdriveCompensationExponent)
+                                      * 20.0 * std::log10 (overdrivePreGain (raw (row, tone, "drive")));
+        return slopeDb * std::log2 (lowestHz / heldCutoffHz) >= neededDb;
+    }
+
     // The matrix plays its chord (60, 64, 67) on MIDI channel 1; this is true
     // where it is not received, or no part it reaches can sound.
     bool silentByDesign (const std::vector<float>& row) const
@@ -177,8 +240,10 @@ private:
         if ((receive != 0 && receive != 1 && ! remote)
             || raw (row, "", "master_level") == 0 || raw (row, "", "patch_level") == 0)
             return true;
-        const bool upperSounds = raw (row, "", "upper_enabled") != 0 && raw (row, "up_", "level") > 0;
-        const bool lowerSounds = raw (row, "", "lower_enabled") != 0 && raw (row, "lo_", "level") > 0;
+        const bool upperSounds = raw (row, "", "upper_enabled") != 0 && raw (row, "up_", "level") > 0
+                                 && ! filterShutWhileHeld (row, "up_");
+        const bool lowerSounds = raw (row, "", "lower_enabled") != 0 && raw (row, "lo_", "level") > 0
+                                 && ! filterShutWhileHeld (row, "lo_");
         const int split = raw (row, "", "split_point");
         switch (raw (row, "", "keyboard_mode"))
         {
