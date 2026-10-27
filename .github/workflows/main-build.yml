@@ -34,10 +34,10 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install ffmpeg
+      - name: Install Ninja
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends ffmpeg ninja-build
+          sudo apt-get install -y --no-install-recommends ninja-build
 
       - name: Build the renderer and run the audio tier
         run: |
@@ -46,8 +46,8 @@ jobs:
           cmake --build build-dsp --parallel --target RenderSeptumPresetDemos
           ctest --test-dir build-dsp -L '^audio$' --no-tests=error --output-on-failure
 
-      # The renderer encodes with fixed settings and no metadata, so an
-      # unchanged engine gives identical MP3s and the commit job finds nothing.
+      # The renderer writes fixed-format WAVs with no metadata, so an unchanged
+      # engine gives identical files and the commit job finds nothing.
       - name: Render the preset demos and rewrite the demo table
         run: |
           set -euo pipefail

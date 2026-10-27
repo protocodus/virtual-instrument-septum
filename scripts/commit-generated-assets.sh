@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Publish one main build's screenshot, MP3 demos and README blocks (G2, G3, G5)
+# Publish one main build's screenshot, WAV demos and README blocks (G2, G3, G5)
 # in a single commit, and only while main still points at the built commit.
 set -euo pipefail
 
@@ -43,17 +43,17 @@ def block(text, name):
     return text.index(begin) + len(begin), text.index(end)
 
 # G3, G6: update_readme_blocks.py wrote the table into this README copy; it must
-# link exactly one MP3 per committed preset phrase, all produced by this build.
+# link exactly one WAV per committed preset phrase, all produced by this build.
 start, stop = block(readme, "audio-demos")
-linked = re.findall(r"\(Docs/audio/([0-9][0-9]-[a-z0-9-]+\.mp3)\)", readme[start:stop])
-mp3s = sorted(p.name for p in pathlib.Path(root, "Docs/audio").glob("[0-9][0-9]-*.mp3"))
-if len(mp3s) != int(expected) or sorted(linked) != mp3s:
-    sys.exit(f"error: expected {expected} rendered MP3s matching the demo table, "
-             f"found {mp3s} for {linked}")
-for name in mp3s:
+linked = re.findall(r"\(Docs/audio/([0-9][0-9]-[a-z0-9-]+\.wav)\)", readme[start:stop])
+wavs = sorted(p.name for p in pathlib.Path(root, "Docs/audio").glob("[0-9][0-9]-*.wav"))
+if len(wavs) != int(expected) or sorted(linked) != wavs:
+    sys.exit(f"error: expected {expected} rendered WAVs matching the demo table, "
+             f"found {wavs} for {linked}")
+for name in wavs:
     data = pathlib.Path(root, "Docs/audio", name).read_bytes()
-    if len(data) < 4096 or not (data[:3] == b"ID3" or data[0] == 0xFF):
-        sys.exit(f"error: {name} is not a complete MP3")
+    if len(data) < 4096 or data[:4] != b"RIFF" or data[8:12] != b"WAVE":
+        sys.exit(f"error: {name} is not a complete WAV")
 
 png = pathlib.Path(root, screenshot).read_bytes()
 if png[:8] != b"\x89PNG\r\n\x1a\n" or png[-12:] != b"\0\0\0\0IEND\xaeB`\x82":
@@ -74,12 +74,13 @@ if [[ "$(git rev-parse FETCH_HEAD)" != "${SOURCE_SHA}" ]]; then
     exit 0
 fi
 
-# Only numbered renderer outputs are owned here.
-git rm -q --ignore-unmatch -- ':(top,glob)Docs/audio/[0-9][0-9]-*.mp3'
+# Only numbered renderer outputs are owned here; the numbered MP3s are the
+# retired demo format.
+git rm -q --ignore-unmatch -- ':(top,glob)Docs/audio/[0-9][0-9]-*.mp3' ':(top,glob)Docs/audio/[0-9][0-9]-*.wav'
 mkdir -p Docs/audio Docs/screenshots
 cp "${README_COPY}" README.md
 cp "${ASSET_DIR}/${SCREENSHOT}" "${SCREENSHOT}"
-cp "${ASSET_DIR}"/Docs/audio/[0-9][0-9]-*.mp3 Docs/audio/
+cp "${ASSET_DIR}"/Docs/audio/[0-9][0-9]-*.wav Docs/audio/
 git add -- README.md "${SCREENSHOT}" Docs/audio
 if git diff --cached --quiet; then
     echo "::notice::Generated assets are unchanged; no commit needed."

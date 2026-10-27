@@ -11,52 +11,29 @@ samples, captured audio, or factory patch data.
 
 ## Audio demos
 
-One demo per factory preset, A-1 to D-8, each playing the committed phrase
-in [`Docs/audio/midi/`](Docs/audio/midi) written for that preset. They are
+Eight of the 32 factory presets, two from each bank and each showing a
+different side of the instrument, play the committed phrase in
+[`Docs/audio/midi/`](Docs/audio/midi) written for that preset. They are
 rendered by [`Tools/RenderPresetDemos.cpp`](Tools/RenderPresetDemos.cpp)
 through the same JUCE-free `septum::Engine` the plug-in runs, at 48 kHz with
 no samples, impulse responses or external processing anywhere. Every demo
 plays at the same MASTER LEVEL (80) and nothing is normalised, so the bank's
 own level differences are audible and the peaks below are real. Every main
 build renders the set, checks it is complete and deterministic, and commits
-the MP3s and this table when their bytes change.
+the 48 kHz 24-bit WAVs and this table when their bytes change.
 
 <!-- audio-demos-begin -->
 
 | # | Preset | Demo | Length | Peak |
 | --- | --- | --- | --- | --- |
-| 1 | SuperLead201 | [01-superlead201.mp3](Docs/audio/01-superlead201.mp3) | 12.5 s | -18.5 dBFS |
-| 2 | Trance Pluck | [02-trance-pluck.mp3](Docs/audio/02-trance-pluck.mp3) | 16.3 s | -15.2 dBFS |
-| 3 | FB Howl Lead | [03-fb-howl-lead.mp3](Docs/audio/03-fb-howl-lead.mp3) | 13.9 s | -26.6 dBFS |
-| 4 | Sync Sweeper | [04-sync-sweeper.mp3](Docs/audio/04-sync-sweeper.mp3) | 12.4 s | -26.2 dBFS |
-| 5 | Jupiter Lead | [05-jupiter-lead.mp3](Docs/audio/05-jupiter-lead.mp3) | 13.6 s | -11.2 dBFS |
-| 6 | Saw Re-Fi | [06-saw-re-fi.mp3](Docs/audio/06-saw-re-fi.mp3) | 12.6 s | -25.3 dBFS |
-| 7 | 5th Anthem | [07-5th-anthem.mp3](Docs/audio/07-5th-anthem.mp3) | 12.7 s | -17.6 dBFS |
-| 8 | Solo Screamer | [08-solo-screamer.mp3](Docs/audio/08-solo-screamer.mp3) | 12.5 s | -22.1 dBFS |
-| 9 | Acid 201 | [09-acid-201.mp3](Docs/audio/09-acid-201.mp3) | 13.7 s | -27.1 dBFS |
-| 10 | Sub Bass 201 | [10-sub-bass-201.mp3](Docs/audio/10-sub-bass-201.mp3) | 12.5 s | -14.0 dBFS |
-| 11 | PWM SlapBass | [11-pwm-slapbass.mp3](Docs/audio/11-pwm-slapbass.mp3) | 15.8 s | -28.3 dBFS |
-| 12 | Grit Bass | [12-grit-bass.mp3](Docs/audio/12-grit-bass.mp3) | 16.1 s | -32.3 dBFS |
-| 13 | Solid Punch | [13-solid-punch.mp3](Docs/audio/13-solid-punch.mp3) | 18.1 s | -18.7 dBFS |
-| 14 | Reso Squawk | [14-reso-squawk.mp3](Docs/audio/14-reso-squawk.mp3) | 14.1 s | -24.2 dBFS |
-| 15 | Dub Sub 201 | [15-dub-sub-201.mp3](Docs/audio/15-dub-sub-201.mp3) | 13.6 s | -14.8 dBFS |
-| 16 | FB GrowlBass | [16-fb-growlbass.mp3](Docs/audio/16-fb-growlbass.mp3) | 13.5 s | -28.6 dBFS |
-| 17 | Alaska Dual | [17-alaska-dual.mp3](Docs/audio/17-alaska-dual.mp3) | 14.7 s | -11.8 dBFS |
-| 18 | PWM Strings | [18-pwm-strings.mp3](Docs/audio/18-pwm-strings.mp3) | 13.3 s | -2.9 dBFS |
-| 19 | SuperSaw Pad | [19-supersaw-pad.mp3](Docs/audio/19-supersaw-pad.mp3) | 17.9 s | -11.9 dBFS |
-| 20 | Space Choir | [20-space-choir.mp3](Docs/audio/20-space-choir.mp3) | 14.6 s | -0.1 dBFS |
-| 21 | Glass Bell | [21-glass-bell.mp3](Docs/audio/21-glass-bell.mp3) | 12.8 s | -20.1 dBFS |
-| 22 | Air Ethereal | [22-air-ethereal.mp3](Docs/audio/22-air-ethereal.mp3) | 15.1 s | -5.1 dBFS |
-| 23 | Retro Brass | [23-retro-brass.mp3](Docs/audio/23-retro-brass.mp3) | 12.7 s | -8.7 dBFS |
-| 24 | Sweep Aurora | [24-sweep-aurora.mp3](Docs/audio/24-sweep-aurora.mp3) | 14.5 s | -5.2 dBFS |
-| 25 | Club Split | [25-club-split.mp3](Docs/audio/25-club-split.mp3) | 17.9 s | -11.4 dBFS |
-| 26 | S&H Robot | [26-s-h-robot.mp3](Docs/audio/26-s-h-robot.mp3) | 12.5 s | -6.5 dBFS |
-| 27 | Ion Wind | [27-ion-wind.mp3](Docs/audio/27-ion-wind.mp3) | 12.5 s | -7.5 dBFS |
-| 28 | Arp Chime | [28-arp-chime.mp3](Docs/audio/28-arp-chime.mp3) | 18.4 s | -16.2 dBFS |
-| 29 | Techno Pulse | [29-techno-pulse.mp3](Docs/audio/29-techno-pulse.mp3) | 17.2 s | -26.5 dBFS |
-| 30 | Alien Signal | [30-alien-signal.mp3](Docs/audio/30-alien-signal.mp3) | 12.9 s | -7.0 dBFS |
-| 31 | Laser Sweep | [31-laser-sweep.mp3](Docs/audio/31-laser-sweep.mp3) | 12.9 s | -17.7 dBFS |
-| 32 | Space Drone | [32-space-drone.mp3](Docs/audio/32-space-drone.mp3) | 12.5 s | -1.2 dBFS |
+| 1 | SuperLead201 | [01-superlead201.wav](Docs/audio/01-superlead201.wav) | 11.8 s | -18.5 dBFS |
+| 4 | Sync Sweeper | [04-sync-sweeper.wav](Docs/audio/04-sync-sweeper.wav) | 11.7 s | -26.4 dBFS |
+| 9 | Acid 201 | [09-acid-201.wav](Docs/audio/09-acid-201.wav) | 9.9 s | -27.1 dBFS |
+| 11 | PWM SlapBass | [11-pwm-slapbass.wav](Docs/audio/11-pwm-slapbass.wav) | 11.3 s | -28.1 dBFS |
+| 17 | Alaska Dual | [17-alaska-dual.wav](Docs/audio/17-alaska-dual.wav) | 11.7 s | -11.3 dBFS |
+| 21 | Glass Bell | [21-glass-bell.wav](Docs/audio/21-glass-bell.wav) | 11.8 s | -20.1 dBFS |
+| 25 | Club Split | [25-club-split.wav](Docs/audio/25-club-split.wav) | 10.1 s | -11.4 dBFS |
+| 26 | S&H Robot | [26-s-h-robot.wav](Docs/audio/26-s-h-robot.wav) | 11.9 s | -6.5 dBFS |
 
 <!-- audio-demos-end -->
 
