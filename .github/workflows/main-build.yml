@@ -34,6 +34,10 @@ jobs:
         with:
           persist-credentials: false
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
       - name: Install Ninja
         run: |
           sudo apt-get update
@@ -75,6 +79,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
       - name: Build universal plug-in and run tests
         env:
@@ -135,6 +143,10 @@ jobs:
         with:
           persist-credentials: false
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
       - name: Install JUCE Linux dependencies
         run: |
           sudo apt-get update
@@ -182,6 +194,10 @@ jobs:
         with:
           persist-credentials: false
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
       - name: Configure and build
         run: |
           cmake -S . -B build-plugin -A x64 -DSEPTUM_BUILD_PLUGIN=ON -DSEPTUM_BUILD_TOOLS=OFF -DBUILD_TESTING=OFF
@@ -219,6 +235,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
       - name: Build the libFuzzer target
         run: |
@@ -265,6 +285,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
       - name: Install JUCE Linux dependencies
         run: |
@@ -348,6 +372,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
       - name: Download rendered audio and README copy
         uses: actions/download-artifact@v4
