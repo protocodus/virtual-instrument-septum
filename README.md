@@ -613,9 +613,15 @@ cmake -S . -B build-plugin -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON
 cmake --build build-plugin --parallel && ctest --test-dir build-plugin --output-on-failure
 ```
 
-Every test carries one tier label, so `ctest -L unit`, `-L audio`, `-L render`
-or `-L fuzz` selects a tier. `SeptumDSPCxx17` compiles the engine as C++17,
-the Rack Extension toolchain's standard.
+Every test carries one tier label, so `ctest -L unit`, `-L audio`, `-L render`,
+`-L fuzz` or `-L perf` selects a tier. `Septum.DspFuzzReplay` (unit) replays
+`Tests/Fixtures/fuzz/` and seeded inputs through the fuzz harness;
+`-DSEPTUM_BUILD_FUZZER=ON` with Clang builds the libFuzzer target.
+`Septum.CpuBudget` (perf, Release builds) times the preset demos against the
+budget in `Tools/RenderPresetDemos.cpp`. `SeptumDSPCxx17` compiles the engine
+as C++17, the Rack Extension toolchain's standard.
+`scripts/validate-plugins.sh build-plugin Septum aumu Spt1 Sptm 0x53455054`
+runs pluginval, clap-validator and, on macOS, auval on a plug-in build.
 
 On macOS, `./scripts/build-macos.sh` drives the same build through Xcode as a
 universal binary. `BUILD_NUMBER=42 ./scripts/sign-and-package-macos.sh` then
@@ -625,7 +631,7 @@ matching `.zip`. On Linux and Windows, `scripts/package-linux.py` and
 
 Three workflows run in CI: `ci.yml` on every push to any branch (tiers per
 platform, sanitizers, packages kept 7 days), `main-build.yml` on every push to
-`main` and nightly (pluginval and auval, the collected download, and the
+`main` and nightly (pluginval, clap-validator and auval, the collected download, and the
 committed screenshot, demos and README blocks), and `release.yml` on `v*` tags
 (every tier, validation, signing when the `MACOS_*` secrets exist, and a draft
 GitHub Release).

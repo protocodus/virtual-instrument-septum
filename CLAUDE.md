@@ -143,13 +143,34 @@ needs an invented number, the answer is still that none of them ships.
 ## Shared portfolio tools
 
 `Tools/PresetDemoRenderer.h`, `Tools/update_readme_blocks.py`,
-`Tests/ParameterMatrix.h` and `Tests/FuzzHarness.h`, and the Documentation
-layout and A–Z listening tests sections above, are byte-identical copies of
+`Tests/ParameterMatrix.h`, `Tests/FuzzHarness.h` and
+`scripts/validate-plugins.sh`, and the Documentation layout, A–Z listening
+tests and Testing sections, are byte-identical copies of
 the portfolio masters in `reason-rack-extensions/Tools/portfolio/`. Change
 them there, never here. Septum's own parts are `Tools/RenderPresetDemos.cpp`
 (the demos play every preset at one MASTER LEVEL, unnormalised),
 `Tools/write_preset_midi.py` (the phrases in `Docs/audio/midi/`) and
 `Tests/ParameterMatrixTests.cpp` (the limits Septum's design implies).
+
+## Testing
+
+Tests follow the portfolio testing standard (U1–U10); the `portfolio-testing`
+skill has the procedures. These hold in every session:
+
+- Every CTest test is `<Name>.<Suite>` with exactly one tier label: `unit`,
+  `audio`, `render`, `fuzz` or `perf`.
+- A test is never skipped, disabled, loosened or given a longer timeout to
+  get green. Diagnose a failure against the baseline first; when a fixture or
+  limit was wrong, fix it and say why beside it, in the same commit.
+- Checks run in Release builds: use the file's always-on helper, never a bare
+  `assert()`. Seeds, rates and block sizes are fixed.
+- No test outside the `perf` tier passes or fails on time, and `perf` never
+  runs in a Debug or sanitized build. CPU figures are development-machine
+  figures, never Reason or DAW CPU.
+- A fixed fuzz crash's input goes in `Tests/Fixtures/fuzz/`, which
+  `<Name>.DspFuzzReplay` replays in the `unit` tier.
+- A DSP change is done when the suites it touches, the `unit`, `audio` and
+  `perf` tiers and `<Name>DSPCxx17` pass.
 
 ## Build and verify
 
@@ -160,18 +181,20 @@ ctest --test-dir build-dsp -L unit --output-on-failure
 ```
 
 Use a separate `build-plugin` directory (`-DSEPTUM_BUILD_PLUGIN=ON`) for the
-processor, editor and packaging. Every test is `Septum.<Suite>` with exactly
-one tier label: `unit`, `audio` (the demos render complete and
+processor, editor and packaging. Septum's suites by tier: `unit` (including
+`Septum.DspFuzzReplay`), `audio` (the demos render complete and
 byte-identical), `render` (the editor screenshot renders at the committed
-size) or `fuzz` (seeded malformed-input stress, also run under ASan + UBSan).
-Select the suites that cover a change with `-R`, then run the full suite
-before a substantive DSP change is called done. The hardware-comparison Python
-checks skip unless NumPy, SciPy and Matplotlib are importable;
-CI installs them from `Tools/requirements-ci.txt`.
-
-A test is never skipped, disabled or loosened to get green. Diagnose a failed
-contract against the baseline before changing a fixture, and document why an
-assumption was stale.
+size), `fuzz` (seeded malformed-input stress, also run under ASan + UBSan;
+`Septum.ParameterMatrix` in the plug-in build, one rotation shard of the
+matrix the main build runs in full across sixteen; `Septum.DspFuzz` with
+`-DSEPTUM_BUILD_FUZZER=ON` and Clang) and `perf` (`Septum.CpuBudget`, Release
+builds without sanitizers). Select the suites that cover a change with `-R`,
+then run the full suite before a substantive DSP change is called done. The
+hardware-comparison Python checks skip unless NumPy, SciPy and Matplotlib are
+importable; CI installs them from `Tools/requirements-ci.txt` and configures
+with `-DSEPTUM_REQUIRE_PYTHON_TESTS=ON`, which makes a missing NumPy or SciPy a
+configure error. `scripts/validate-plugins.sh build-plugin Septum aumu Spt1
+Sptm 0x53455054` runs the host validators on a plug-in build.
 
 ## Hardware fidelity
 

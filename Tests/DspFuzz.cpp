@@ -1,4 +1,4 @@
-// U4 input fuzzing of the JUCE-free engine and SysEx boundary, through the
+// U8 input fuzzing of the JUCE-free engine and SysEx boundary, through the
 // shared portfolio harness (Tests/FuzzHarness.h is a byte-identical copy of
 // the master; change it in reason-rack-extensions). Every input starts from
 // fresh objects, so a saved crash replays alone; commands and rendered frames

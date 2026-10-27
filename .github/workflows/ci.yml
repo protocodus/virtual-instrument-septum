@@ -48,7 +48,7 @@ jobs:
       - name: Configure DSP build
         run: >-
           cmake -S . -B build-dsp -G Ninja -DCMAKE_BUILD_TYPE=Release
-          -DSEPTUM_BUILD_PLUGIN=OFF -DBUILD_TESTING=ON
+          -DSEPTUM_BUILD_PLUGIN=OFF -DBUILD_TESTING=ON -DSEPTUM_REQUIRE_PYTHON_TESTS=ON
           "-DPython3_EXECUTABLE=${{ steps.python.outputs.python-path }}"
 
       - name: Build DSP engine, tools and tests
@@ -59,6 +59,13 @@ jobs:
 
       - name: Audio tier
         run: ctest --test-dir build-dsp -L '^audio$' --no-tests=error --output-on-failure
+
+      # U7: fails above the budget in Tools/RenderPresetDemos.cpp; the figures
+      # are printed for the record.
+      - name: Perf tier
+        run: |
+          ctest --test-dir build-dsp -L '^perf$' --no-tests=error --output-on-failure
+          cat build-dsp/cpu.json
 
       - name: Render the demos for review
         run: |
@@ -204,12 +211,12 @@ jobs:
       - name: Unit and fuzz tiers
         run: ctest --test-dir build-sanitize -L '^(unit|fuzz)$' --no-tests=error --output-on-failure --parallel 2
 
-      # U4: a short fixed-seed libFuzzer run over coverage-instrumented DSP.
+      # U8: a short fixed-seed libFuzzer run over coverage-instrumented DSP.
       - name: Build the libFuzzer target
         run: >-
           cmake -S . -B build-fuzz -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo
           -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
-          -DSEPTUM_BUILD_PLUGIN=OFF -DSEPTUM_BUILD_TOOLS=OFF -DSEPTUM_BUILD_LIBFUZZER=ON
+          -DSEPTUM_BUILD_PLUGIN=OFF -DSEPTUM_BUILD_TOOLS=OFF -DSEPTUM_BUILD_FUZZER=ON
           -DBUILD_TESTING=ON
           && cmake --build build-fuzz --parallel --target SeptumDspFuzz
 

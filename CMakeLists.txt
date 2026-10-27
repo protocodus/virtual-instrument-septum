@@ -39,7 +39,8 @@ set(SEPTUM_CLAP_JUCE_EXTENSIONS_PATH "" CACHE PATH
 include(CTest)
 
 option(SEPTUM_ENABLE_SANITIZERS "Instrument development builds with ASan and UBSan" OFF)
-option(SEPTUM_BUILD_LIBFUZZER "Build SeptumDspFuzz as a Clang libFuzzer target" OFF)
+option(SEPTUM_BUILD_FUZZER "Build SeptumDspFuzz as a Clang libFuzzer target" OFF)
+option(SEPTUM_REQUIRE_PYTHON_TESTS "Fail to configure without the interpreter and packages the Python checks need" OFF)
 if(SEPTUM_ENABLE_SANITIZERS)
     if(NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
         message(FATAL_ERROR "SEPTUM_ENABLE_SANITIZERS requires Clang or GCC")
@@ -268,29 +269,36 @@ if(BUILD_TESTING)
     add_test(NAME Septum.EngineRobustness COMMAND SeptumEngineRobustnessTests)
     set_tests_properties(Septum.EngineRobustness PROPERTIES TIMEOUT 120)
 
-    # U4 input fuzzing. With SEPTUM_BUILD_LIBFUZZER (Clang) it is a libFuzzer
-    # target over coverage-instrumented DSP; otherwise FuzzHarness.h supplies
-    # a main that replays Tests/fuzz-regressions/ and then seeded inputs.
-    add_executable(SeptumDspFuzz Tests/DspFuzz.cpp)
-    target_include_directories(SeptumDspFuzz PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/Source")
-    target_compile_features(SeptumDspFuzz PRIVATE cxx_std_20)
-    if(SEPTUM_BUILD_LIBFUZZER)
+    # U8 input fuzzing. Septum.DspFuzzReplay (any compiler, FuzzHarness.h's
+    # main) replays the fixed crashes committed in Tests/Fixtures/fuzz/ and
+    # then seeded inputs as a unit test; SeptumDspFuzz (SEPTUM_BUILD_FUZZER,
+    # Clang) is the libFuzzer target over coverage-instrumented DSP.
+    add_executable(SeptumDspFuzzReplay Tests/DspFuzz.cpp)
+    target_include_directories(SeptumDspFuzzReplay PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/Source")
+    target_compile_features(SeptumDspFuzzReplay PRIVATE cxx_std_20)
+    target_link_libraries(SeptumDspFuzzReplay PRIVATE SeptumDSP)
+    target_compile_definitions(SeptumDspFuzzReplay PRIVATE PROTOCODUS_FUZZ_MAIN)
+    file(GLOB SEPTUM_FUZZ_REPRODUCERS CONFIGURE_DEPENDS
+         "${CMAKE_CURRENT_SOURCE_DIR}/Tests/Fixtures/fuzz/*")
+    add_test(NAME Septum.DspFuzzReplay
+             COMMAND SeptumDspFuzzReplay -seed=1 -runs=300 ${SEPTUM_FUZZ_REPRODUCERS})
+    set_tests_properties(Septum.DspFuzzReplay PROPERTIES TIMEOUT 600)
+    if(SEPTUM_BUILD_FUZZER)
         if(NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-            message(FATAL_ERROR "SEPTUM_BUILD_LIBFUZZER requires Clang")
+            message(FATAL_ERROR "SEPTUM_BUILD_FUZZER requires Clang")
         endif()
-        target_sources(SeptumDspFuzz PRIVATE ${SEPTUM_DSP_SOURCES})
+        add_executable(SeptumDspFuzz Tests/DspFuzz.cpp ${SEPTUM_DSP_SOURCES})
+        target_include_directories(SeptumDspFuzz PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/Source")
+        target_compile_features(SeptumDspFuzz PRIVATE cxx_std_20)
         target_compile_options(SeptumDspFuzz PRIVATE
             -fsanitize=fuzzer,address,undefined -fno-sanitize-recover=all -fno-omit-frame-pointer)
         target_link_options(SeptumDspFuzz PRIVATE -fsanitize=fuzzer,address,undefined)
-    else()
-        target_link_libraries(SeptumDspFuzz PRIVATE SeptumDSP)
-        target_compile_definitions(SeptumDspFuzz PRIVATE PROTOCODUS_FUZZ_MAIN)
+        file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/fuzz-corpus")
+        add_test(NAME Septum.DspFuzz
+                 COMMAND SeptumDspFuzz -seed=1 -max_total_time=120 -max_len=4096 -timeout=30 -rss_limit_mb=2048
+                         "${CMAKE_CURRENT_BINARY_DIR}/fuzz-corpus")
+        set_tests_properties(Septum.DspFuzz PROPERTIES TIMEOUT 600 LABELS fuzz)
     endif()
-    file(GLOB SEPTUM_FUZZ_REGRESSIONS CONFIGURE_DEPENDS
-         "${CMAKE_CURRENT_SOURCE_DIR}/Tests/fuzz-regressions/*")
-    add_test(NAME Septum.DspFuzz
-             COMMAND SeptumDspFuzz -seed=1 -runs=300 ${SEPTUM_FUZZ_REGRESSIONS})
-    set_tests_properties(Septum.DspFuzz PROPERTIES TIMEOUT 600)
 
     add_executable(SeptumProtocolRobustnessTests Tests/ProtocolRobustnessTests.cpp)
     target_link_libraries(SeptumProtocolRobustnessTests PRIVATE SeptumReferenceDSP)
@@ -402,13 +410,20 @@ if(BUILD_TESTING)
     add_test(NAME Septum.AnalogOutput COMMAND SeptumAnalogOutputTests)
     set_tests_properties(Septum.AnalogOutput PROPERTIES TIMEOUT 240)
 
-    find_package(Python3 COMPONENTS Interpreter QUIET)
+    if(SEPTUM_REQUIRE_PYTHON_TESTS)
+        find_package(Python3 COMPONENTS Interpreter REQUIRED)
+    else()
+        find_package(Python3 COMPONENTS Interpreter QUIET)
+    endif()
     if(Python3_Interpreter_FOUND)
         # Hardware analysis is optional; keep the stdlib-only render tools usable
         # on machines without the separately documented analysis dependencies.
         execute_process(COMMAND "${Python3_EXECUTABLE}" -c "import numpy, scipy"
                         RESULT_VARIABLE SEPTUM_AUDIO_ANALYSIS_IMPORT_RESULT
                         OUTPUT_QUIET ERROR_QUIET TIMEOUT 15)
+        if(SEPTUM_REQUIRE_PYTHON_TESTS AND NOT SEPTUM_AUDIO_ANALYSIS_IMPORT_RESULT EQUAL 0)
+            message(FATAL_ERROR "Septum: the hardware checks need numpy and scipy (Tools/requirements-ci.txt)")
+        endif()
         if(SEPTUM_AUDIO_ANALYSIS_IMPORT_RESULT EQUAL 0)
             add_test(NAME Septum.HardwareEquivalence
                      COMMAND "${Python3_EXECUTABLE}" -B
@@ -490,6 +505,14 @@ if(BUILD_TESTING)
                  COMMAND RenderSeptumPresetDemos --jobs 4 --check
                          "${CMAKE_CURRENT_SOURCE_DIR}/Docs/audio/midi")
         set_tests_properties(Septum.AudioDemos PROPERTIES TIMEOUT 300 LABELS audio)
+        # U7: the preset demos timed on one thread against the budget in
+        # Tools/RenderPresetDemos.cpp. Timing means nothing instrumented.
+        if(CMAKE_BUILD_TYPE STREQUAL "Release" AND NOT SEPTUM_ENABLE_SANITIZERS)
+            add_test(NAME Septum.CpuBudget
+                     COMMAND RenderSeptumPresetDemos --cpu --json "${CMAKE_BINARY_DIR}/cpu.json"
+                             "${CMAKE_CURRENT_SOURCE_DIR}/Docs/audio/midi")
+            set_tests_properties(Septum.CpuBudget PROPERTIES LABELS perf RUN_SERIAL TRUE TIMEOUT 900)
+        endif()
     endif()
 
     if(SEPTUM_BUILD_PLUGIN)
@@ -515,10 +538,10 @@ if(BUILD_TESTING)
             "${CMAKE_CURRENT_SOURCE_DIR}/Source"
             "$<TARGET_PROPERTY:Septum,JUCE_GENERATED_SOURCES_DIRECTORY>"
             "$<TARGET_PROPERTY:Septum,INCLUDE_DIRECTORIES>")
-        # A fixed 2% of the U4 matrix at one rate and block size per case; the
+        # A fixed 2% of the U9 matrix at one rate and block size per case; the
         # main build's nightly run covers every case at all nine.
         add_test(NAME Septum.ParameterMatrix
-                 COMMAND SeptumParameterMatrixTests --rotation --shard 1/50 --jobs 4)
+                 COMMAND SeptumParameterMatrixTests --rotation --shard 0/50 --jobs 4)
         set_tests_properties(Septum.ParameterMatrix PROPERTIES TIMEOUT 1800)
 
         add_test(NAME Septum.PatchRemainProcessor COMMAND SeptumPatchRemainProcessorTests)
@@ -592,7 +615,7 @@ if(BUILD_TESTING)
     # Every test carries exactly one tier label so CI selects tiers with
     # `ctest -L`. The seeded malformed-input stress suites are the fuzz tier;
     # tests not labelled above are unit contracts.
-    set_tests_properties(Septum.EngineRobustness Septum.ProtocolRobustness Septum.DspFuzz
+    set_tests_properties(Septum.EngineRobustness Septum.ProtocolRobustness
                          PROPERTIES LABELS fuzz)
     if(SEPTUM_BUILD_PLUGIN)
         set_tests_properties(Septum.ProcessorRobustness Septum.ParameterMatrix

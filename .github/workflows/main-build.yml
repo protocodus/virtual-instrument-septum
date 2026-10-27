@@ -18,10 +18,6 @@ permissions:
 
 env:
   BUILD_NUMBER: ${{ github.run_number }}
-  PLUGINVAL_VERSION: v1.0.4
-  PLUGINVAL_LINUX_SHA256: c01c49d8063965c4c2dea8324468336768f5c9139e0b1caebde14c2400b55352
-  PLUGINVAL_MACOS_SHA256: 3c4c533bda0c5059eea3ddaea752d757ee2025041f0f47e6bcb0e87f6082b29f
-  PLUGINVAL_WINDOWS_SHA256: c08e61ce3b96db41636f8ec7e76f4c7e2c13ebdac7fa1b5a1f52b4f32ec715ab
 
 jobs:
   # Render into a staging tree holding a copy of the README, so the renderer
@@ -64,6 +60,19 @@ jobs:
           rm "$generated/Docs/audio/demos.json"
           ls -l "$generated/Docs/audio"
 
+      # U7: the perf tier's figures for the record, one file per main build.
+      - name: Time the demos (perf tier)
+        run: |
+          ./build-dsp/RenderSeptumPresetDemos --cpu --json build-dsp/cpu.json --note "${GITHUB_SHA}" Docs/audio/midi
+
+      - name: Upload the CPU figures
+        uses: actions/upload-artifact@v4
+        with:
+          name: cpu-septum-main-build-${{ github.run_number }}
+          path: build-dsp/cpu.json
+          if-no-files-found: error
+          retention-days: 30
+
       - name: Upload demo audio and README copy
         uses: actions/upload-artifact@v4
         with:
@@ -101,26 +110,9 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
-      - name: Validate the AU with auval
-        run: |
-          set -euo pipefail
-          components="$HOME/Library/Audio/Plug-Ins/Components"
-          mkdir -p "$components"
-          ditto "build-macos/Septum_artefacts/Release/AU/Septum.component" "$components/Septum.component"
-          # The registrar caches the component list; restarting it rescans.
-          killall -9 AudioComponentRegistrar 2>/dev/null || true
-          auval -strict -v aumu Spt1 Sptm
-
-      - name: Validate the VST3 with pluginval
-        working-directory: build-macos
-        run: |
-          set -euo pipefail
-          curl -sSfL -o pluginval.zip "https://github.com/Tracktion/pluginval/releases/download/${PLUGINVAL_VERSION}/pluginval_macOS.zip"
-          echo "${PLUGINVAL_MACOS_SHA256}  pluginval.zip" | shasum -a 256 -c -
-          ditto -x -k pluginval.zip .
-          pluginval.app/Contents/MacOS/pluginval --strictness-level 10 \
-            --random-seed 0x53455054 --timeout-ms 120000 --output-dir pluginval-logs \
-            --validate "Septum_artefacts/Release/VST3/Septum.vst3"
+      - name: Validate the plug-ins (pluginval, clap-validator, auval on macOS)
+        shell: bash
+        run: ./scripts/validate-plugins.sh build-macos Septum aumu Spt1 Sptm 0x53455054
 
       - name: Package (ad-hoc-signed bundles)
         run: ./scripts/sign-and-package-macos.sh
@@ -165,15 +157,9 @@ jobs:
           cmake --build build-plugin --parallel
           ctest --test-dir build-plugin -L '^unit$' --no-tests=error --output-on-failure
 
-      - name: Validate the VST3 with pluginval
-        working-directory: build-plugin
-        run: |
-          set -euo pipefail
-          curl -sSfL -o pluginval.zip "https://github.com/Tracktion/pluginval/releases/download/${PLUGINVAL_VERSION}/pluginval_Linux.zip"
-          echo "${PLUGINVAL_LINUX_SHA256}  pluginval.zip" | sha256sum -c -
-          unzip -q -o pluginval.zip
-          xvfb-run -a ./pluginval --strictness-level 10 --random-seed 0x53455054 \
-            --timeout-ms 120000 --validate "Septum_artefacts/Release/VST3/Septum.vst3"
+      - name: Validate the plug-ins (pluginval, clap-validator, auval on macOS)
+        shell: bash
+        run: ./scripts/validate-plugins.sh build-plugin Septum aumu Spt1 Sptm 0x53455054
 
       - name: Package Linux VST3, CLAP and standalone
         run: python3 scripts/package-linux.py --build-dir build-plugin
@@ -203,16 +189,9 @@ jobs:
           cmake -S . -B build-plugin -A x64 -DSEPTUM_BUILD_PLUGIN=ON -DSEPTUM_BUILD_TOOLS=OFF -DBUILD_TESTING=OFF
           cmake --build build-plugin --config Release --parallel --target Septum_VST3 Septum_CLAP Septum_Standalone
 
-      - name: Validate the VST3 with pluginval
-        working-directory: build-plugin
+      - name: Validate the plug-ins (pluginval, clap-validator, auval on macOS)
         shell: bash
-        run: |
-          set -euo pipefail
-          curl -sSfL -o pluginval.zip "https://github.com/Tracktion/pluginval/releases/download/${PLUGINVAL_VERSION}/pluginval_Windows.zip"
-          echo "${PLUGINVAL_WINDOWS_SHA256}  pluginval.zip" | sha256sum -c -
-          7z x -y pluginval.zip
-          ./pluginval.exe --strictness-level 10 --random-seed 0x53455054 \
-            --timeout-ms 120000 --validate "Septum_artefacts/Release/VST3/Septum.vst3"
+        run: ./scripts/validate-plugins.sh build-plugin Septum aumu Spt1 Sptm 0x53455054
 
       - name: Package Windows VST3, CLAP and standalone
         run: python scripts/package-windows.py --build-dir build-plugin
@@ -225,12 +204,15 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
-  # U4: the long libFuzzer run. Not a dependency of the media commit; a
+  # U8: the long libFuzzer run. Not a dependency of the media commit; a
   # failure still fails the build and uploads its reproducers.
   fuzz-long:
     name: Fuzz the DSP for 20 minutes
     runs-on: ubuntu-24.04
     timeout-minutes: 40
+    env:
+      ASAN_OPTIONS: detect_leaks=1:halt_on_error=1
+      UBSAN_OPTIONS: print_stacktrace=1:halt_on_error=1
     steps:
       - uses: actions/checkout@v4
         with:
@@ -246,7 +228,7 @@ jobs:
           sudo apt-get install -y --no-install-recommends ninja-build
           cmake -S . -B build-fuzz -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ \
-            -DSEPTUM_BUILD_PLUGIN=OFF -DSEPTUM_BUILD_TOOLS=OFF -DSEPTUM_BUILD_LIBFUZZER=ON \
+            -DSEPTUM_BUILD_PLUGIN=OFF -DSEPTUM_BUILD_TOOLS=OFF -DSEPTUM_BUILD_FUZZER=ON \
             -DBUILD_TESTING=ON
           cmake --build build-fuzz --parallel --target SeptumDspFuzz
 
@@ -270,7 +252,7 @@ jobs:
           if-no-files-found: ignore
           retention-days: 30
 
-  # U4: the full parameter-extremes matrix, every case at all nine rates and
+  # U9: the full parameter-extremes matrix, every case at all nine rates and
   # block sizes, nightly in sixteen shards. Pushes run the CTest sample instead.
   parameter-matrix:
     name: Parameter matrix shard ${{ matrix.shard }}/16
@@ -280,7 +262,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shard: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
     steps:
       - uses: actions/checkout@v4
         with:

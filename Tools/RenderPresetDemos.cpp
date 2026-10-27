@@ -75,6 +75,9 @@ int main (int argc, char** argv)
         const auto colon = name.find (": ");
         instrument.presets.push_back (colon == std::string::npos ? name : name.substr (colon + 2));
     }
+    // U7 perf budget: 0 reports without failing until the CI runner's median
+    // is measured.
+    instrument.cpuBudget = 0.0;
     instrument.open = [&bank] (std::size_t preset, double sampleRate, int maxBlockFrames, std::uint32_t)
     {
         // The engine seeds its own random sources in prepare().

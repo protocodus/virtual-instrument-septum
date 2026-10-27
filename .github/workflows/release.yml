@@ -18,10 +18,6 @@ concurrency:
 
 env:
   BUILD_NUMBER: ${{ github.run_number }}
-  PLUGINVAL_VERSION: v1.0.4
-  PLUGINVAL_LINUX_SHA256: c01c49d8063965c4c2dea8324468336768f5c9139e0b1caebde14c2400b55352
-  PLUGINVAL_MACOS_SHA256: 3c4c533bda0c5059eea3ddaea752d757ee2025041f0f47e6bcb0e87f6082b29f
-  PLUGINVAL_WINDOWS_SHA256: c08e61ce3b96db41636f8ec7e76f4c7e2c13ebdac7fa1b5a1f52b4f32ec715ab
 
 jobs:
   macos:
@@ -43,25 +39,9 @@ jobs:
           BUILD_UNIVERSAL: "ON"
         run: ./scripts/build-macos.sh
 
-      - name: Validate the AU with auval
-        run: |
-          set -euo pipefail
-          components="$HOME/Library/Audio/Plug-Ins/Components"
-          mkdir -p "$components"
-          ditto "build-macos/Septum_artefacts/Release/AU/Septum.component" "$components/Septum.component"
-          killall -9 AudioComponentRegistrar 2>/dev/null || true
-          auval -strict -v aumu Spt1 Sptm
-
-      - name: Validate the VST3 with pluginval
-        working-directory: build-macos
-        run: |
-          set -euo pipefail
-          curl -sSfL -o pluginval.zip "https://github.com/Tracktion/pluginval/releases/download/${PLUGINVAL_VERSION}/pluginval_macOS.zip"
-          echo "${PLUGINVAL_MACOS_SHA256}  pluginval.zip" | shasum -a 256 -c -
-          ditto -x -k pluginval.zip .
-          pluginval.app/Contents/MacOS/pluginval --strictness-level 10 \
-            --random-seed 0x53455054 --timeout-ms 120000 \
-            --validate "Septum_artefacts/Release/VST3/Septum.vst3"
+      - name: Validate the plug-ins (pluginval, clap-validator, auval on macOS)
+        shell: bash
+        run: ./scripts/validate-plugins.sh build-macos Septum aumu Spt1 Sptm 0x53455054
 
       - name: Import Developer ID identities
         id: signing
@@ -158,15 +138,9 @@ jobs:
       - name: Run every tier
         run: xvfb-run -a ctest --test-dir build-plugin --output-on-failure
 
-      - name: Validate the VST3 with pluginval
-        working-directory: build-plugin
-        run: |
-          set -euo pipefail
-          curl -sSfL -o pluginval.zip "https://github.com/Tracktion/pluginval/releases/download/${PLUGINVAL_VERSION}/pluginval_Linux.zip"
-          echo "${PLUGINVAL_LINUX_SHA256}  pluginval.zip" | sha256sum -c -
-          unzip -q -o pluginval.zip
-          xvfb-run -a ./pluginval --strictness-level 10 --random-seed 0x53455054 \
-            --timeout-ms 120000 --validate "Septum_artefacts/Release/VST3/Septum.vst3"
+      - name: Validate the plug-ins (pluginval, clap-validator, auval on macOS)
+        shell: bash
+        run: ./scripts/validate-plugins.sh build-plugin Septum aumu Spt1 Sptm 0x53455054
 
       - name: Package Linux formats
         run: python3 scripts/package-linux.py --build-dir build-plugin
@@ -200,16 +174,9 @@ jobs:
       - name: Run every tier
         run: ctest --test-dir build-plugin -C Release --output-on-failure
 
-      - name: Validate the VST3 with pluginval
-        working-directory: build-plugin
+      - name: Validate the plug-ins (pluginval, clap-validator, auval on macOS)
         shell: bash
-        run: |
-          set -euo pipefail
-          curl -sSfL -o pluginval.zip "https://github.com/Tracktion/pluginval/releases/download/${PLUGINVAL_VERSION}/pluginval_Windows.zip"
-          echo "${PLUGINVAL_WINDOWS_SHA256}  pluginval.zip" | sha256sum -c -
-          7z x -y pluginval.zip
-          ./pluginval.exe --strictness-level 10 --random-seed 0x53455054 \
-            --timeout-ms 120000 --validate "Septum_artefacts/Release/VST3/Septum.vst3"
+        run: ./scripts/validate-plugins.sh build-plugin Septum aumu Spt1 Sptm 0x53455054
 
       - name: Package Windows formats
         run: python scripts/package-windows.py --build-dir build-plugin
