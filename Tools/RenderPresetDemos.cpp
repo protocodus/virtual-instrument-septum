@@ -75,9 +75,10 @@ int main (int argc, char** argv)
         const auto colon = name.find (": ");
         instrument.presets.push_back (colon == std::string::npos ? name : name.substr (colon + 2));
     }
-    // U7 perf budget: 0 reports without failing until the CI runner's median
-    // is measured.
-    instrument.cpuBudget = 0.0;
+    // U7 perf budget: about 3x the slowest demo's median realtime factor on
+    // the CI runner, 0.070 (17-alaska-dual) in ci.yml run 54 (ubuntu-24.04,
+    // AMD EPYC 7763, three repeats), 2026-10-27.
+    instrument.cpuBudget = 0.21;
     instrument.open = [&bank] (std::size_t preset, double sampleRate, int maxBlockFrames, std::uint32_t)
     {
         // The engine seeds its own random sources in prepare().
