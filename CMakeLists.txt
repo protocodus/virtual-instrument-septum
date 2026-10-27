@@ -424,6 +424,11 @@ if(BUILD_TESTING)
                  COMMAND "${Python3_EXECUTABLE}" -B
                          "${CMAKE_CURRENT_SOURCE_DIR}/Tests/PackagingTests.py")
         set_tests_properties(Septum.Packaging PROPERTIES TIMEOUT 120)
+        # The committed demo phrases are what the writer writes (G3a).
+        add_test(NAME Septum.DemoMidiSources
+                 COMMAND "${Python3_EXECUTABLE}" -B
+                         "${CMAKE_CURRENT_SOURCE_DIR}/Tools/write_preset_midi.py" --check)
+        set_tests_properties(Septum.DemoMidiSources PROPERTIES TIMEOUT 30)
 
         if(SEPTUM_BUILD_TOOLS)
             add_test(NAME Septum.RenderToolRobustness
@@ -484,7 +489,7 @@ if(BUILD_TESTING)
         add_test(NAME Septum.FidelityTool COMMAND SeptumAnalyzeFidelity --self-test)
         set_tests_properties(Septum.FidelityTool PROPERTIES TIMEOUT 120)
 
-        # Every preset demo renders finite, audible, under the ceiling, 10-20 s
+        # Every preset demo renders finite, audible, under the ceiling, 8-12 s
         # long and bit-identical on a second render.
         add_test(NAME Septum.AudioDemos
                  COMMAND RenderSeptumPresetDemos --jobs 4 --check
