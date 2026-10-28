@@ -10,15 +10,23 @@ The .mid files are the committed sources the demo renderer reads; this script
 only records how they were written. Re-run it only to change a phrase on
 purpose, and commit the changed .mid files on their own:
 
-    python3 Tools/write_preset_midi.py Docs/audio/midi
+    python3 Tools/write_preset_midi.py           # write Docs/audio/midi
+    python3 Tools/write_preset_midi.py --check   # the committed files match
 
 Every file is format 0 on MIDI channel 1 at 480 PPQ, with a tempo and a track
 name, and its last event falls at 5.5-9.5 s, so the renderer's 2.5 s release
-tail keeps every demo within 8-12 s (G3c).
+tail keeps every demo within 8-12 s (G3c). The file names follow the preset
+names in Source/DSP/SeptumPresets.cpp, without their "A-1: " slot labels.
 """
 import argparse
 from pathlib import Path
+import re
 import struct
+import sys
+
+ROOT = Path(__file__).resolve().parents[1]
+MIDI_DIR = ROOT / "Docs/audio/midi"
+BANK = ROOT / "Source/DSP/SeptumPresets.cpp"
 
 PPQ = 480
 NAMES = {"C": 0, "D": 2, "E": 4, "F": 5, "G": 7, "A": 9, "B": 11}
@@ -200,30 +208,58 @@ def sh_robot():
     return p
 
 
-# Program number (Source/DSP/SeptumPresets.cpp, A-1 .. D-8), slug and phrase.
+# Program number (Source/DSP/SeptumPresets.cpp, A-1 .. D-8) and phrase.
 PRESETS = [
-    (1, "superlead201", superlead201), (4, "sync-sweeper", sync_sweeper),
-    (9, "acid-201", acid_201), (11, "pwm-slapbass", pwm_slapbass),
-    (17, "alaska-dual", alaska_dual), (21, "glass-bell", glass_bell),
-    (25, "club-split", club_split), (26, "s-h-robot", sh_robot),
+    (1, superlead201), (4, sync_sweeper), (9, acid_201), (11, pwm_slapbass),
+    (17, alaska_dual), (21, glass_bell), (25, club_split), (26, sh_robot),
 ]
+
+
+def preset_names() -> list[str]:
+    names = re.findall(r'patches\.push_back \(\{ "[A-D]-\d: ([^"]+)"', BANK.read_text(encoding="utf-8"))
+    if len(names) != 32:
+        raise SystemExit(f"{BANK}: expected 32 factory presets, found {len(names)}")
+    return names
+
+
+def slug(name: str) -> str:
+    # The renderer's slug rule: lowercase alphanumerics, other runs as one '-'.
+    return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+
+
+def files() -> dict[str, bytes]:
+    names = preset_names()
+    result = {}
+    for number, build in PRESETS:
+        phrase = build()
+        name = slug(names[number - 1])
+        last = max(beat for beat, _, _ in phrase.events)
+        seconds = last * 60 / phrase.bpm
+        if not 5.5 <= seconds <= 9.5:
+            raise SystemExit(f"{name}: its last event at {seconds:.1f} s is outside 5.5-9.5 s")
+        result[f"{number:02d}-{name}.mid"] = phrase.smf(name)
+    return result
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("output", type=Path)
+    parser.add_argument("--check", action="store_true", help="fail unless the committed files match")
     args = parser.parse_args()
-    args.output.mkdir(parents=True, exist_ok=True)
-    for number, slug, build in PRESETS:
-        phrase = build()
-        last = max(beat for beat, _, _ in phrase.events)
-        seconds = last * 60 / phrase.bpm
-        if not 5.5 <= seconds <= 9.5:
-            raise SystemExit(f"{slug}: its last event at {seconds:.1f} s is outside 5.5-9.5 s")
-        path = args.output / f"{number:02d}-{slug}.mid"
-        path.write_bytes(phrase.smf(slug))
-        print(f"{path.name:28s} {seconds:5.1f} s")
+    expected = files()
+    found = {path.name: path.read_bytes() for path in MIDI_DIR.glob("*.mid")}
+    if args.check:
+        stale = sorted(set(found) ^ set(expected) | {name for name in expected if found.get(name) != expected[name]})
+        if stale:
+            sys.exit(f"Docs/audio/midi differs from {Path(__file__).name} in: {', '.join(stale)}")
+        print(f"{len(expected)} demo phrases match {Path(__file__).name}")
+        return
+    MIDI_DIR.mkdir(parents=True, exist_ok=True)
+    for name in set(found) - set(expected):
+        (MIDI_DIR / name).unlink()
+    for name, data in expected.items():
+        (MIDI_DIR / name).write_bytes(data)
+        print(name)
 
 
 if __name__ == "__main__":
