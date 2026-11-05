@@ -28,6 +28,12 @@ public:
 
     void reset() noexcept { previousInput_ = previousOutput_ = 0.0; }
 
+    // At rest, zero input gives exactly +0 out and leaves the state at rest.
+    [[nodiscard]] bool idle() const noexcept
+    {
+        return previousInput_ == 0.0 && previousOutput_ == 0.0;
+    }
+
     [[nodiscard]] double processSample (double input) noexcept
     {
         const double output = feedforward_ * (input - previousInput_)

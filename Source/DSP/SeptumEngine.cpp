@@ -3266,11 +3266,21 @@ void Engine::prepareExternalTick (const float* inputLeft, const float* inputRigh
     const double a1 = 1.0 / (1.0 + g * (g + k));
     const double a2 = g * a1;
 
+    // With zero input and every filter state at zero, the codec HPF, centre
+    // cancel and both SVF stages can only produce +0, so the tick skips them
+    // and leaves their states at +0, exactly where running them would.
+    bool silent = analogInput_[0].idle() && analogInput_[1].idle();
+    for (int channel = 0; channel < 2 && silent; ++channel)
+        silent = audioFilter1_[channel].ic1eq == 0.0 && audioFilter1_[channel].ic2eq == 0.0
+                 && audioFilter2_[channel].ic1eq == 0.0 && audioFilter2_[channel].ic2eq == 0.0;
+    for (int i = 0; i < samples && silent && haveInput; ++i)
+        silent = inputLeft[offset + i] == 0.0f && inputRight[offset + i] == 0.0f;
+
     for (int i = 0; i < samples; ++i)
     {
         smoothedInputGain_ += (inputGainTarget - smoothedInputGain_) * inputCoeff;
         double left = 0.0, right = 0.0;
-        if (haveInput)
+        if (haveInput && ! silent)
         {
             // Host audio is untrusted: reject NaN/Inf before any stateful
             // stage, and allow 36 dB above full scale without permitting
@@ -3284,8 +3294,11 @@ void Engine::prepareExternalTick (const float* inputLeft, const float* inputRigh
         }
         // The codec HPF precedes both the monitor and EXT-IN oscillator taps.
         // It keeps running with zero input when the input bus disappears.
-        left = analogInput_[0].processSample (left);
-        right = analogInput_[1].processSample (right);
+        if (! silent)
+        {
+            left = analogInput_[0].processSample (left);
+            right = analogInput_[1].processSample (right);
+        }
 
         // Every switch on this path is crossed rather than thrown: each one
         // chooses between signals whose instantaneous samples differ, so
@@ -3308,74 +3321,81 @@ void Engine::prepareExternalTick (const float* inputLeft, const float* inputRigh
         // centre, so removing the mid leaves the sides. The mono reduction the
         // EXT-IN oscillator then takes is the difference rather than the sum,
         // which is what is actually left of the signal (voiced, OQ-14).
-        double mono = 0.5 * (left + right);
+        if (silent)
         {
-            const double mid = mono;
-            const double cancelledLeft = left - mid;
-            const double cancelledRight = right - mid;
-            const double cancelledMono = 0.5 * (left - right);
-            const double cross = centerCancelFade_;
-            left += (cancelledLeft - left) * cross;
-            right += (cancelledRight - right) * cross;
-            mono += (cancelledMono - mono) * cross;
+            externalMono_[static_cast<std::size_t> (i)] = 0.0f;
         }
-        // Settled (OM p. 52): an EXT-IN oscillator is mono even from a stereo
-        // source. It taps here, before the audio filter.
-        externalMono_[static_cast<std::size_t> (i)] = static_cast<float> (mono);
-
-        // The filter runs whether or not it is switched in. Freezing its
-        // states while bypassed would let an old resonant tail out of the
-        // integrators the moment the automatable switch came back on.
+        else
         {
-            const auto stagePass = [&] (SvfStage& stage, double input,
-                                        double damping, double stageA1,
-                                        double stageA2)
+            double mono = 0.5 * (left + right);
             {
-                const double v3 = input - stage.ic2eq;
-                const double v1 = stageA1 * stage.ic1eq + stageA2 * v3;
-                const double v2 = stage.ic2eq + g * v1;
-                stage.ic1eq = 2.0 * v1 - stage.ic1eq;
-                stage.ic2eq = 2.0 * v2 - stage.ic2eq;
-                const double lp = v2;
-                const double bp = v1;
-                const double hp = input - damping * v1 - v2;
-                // All four responses come off the same two integrators, so
-                // crossing between the outgoing type and the incoming one
-                // costs a select rather than a second filter.
-                const auto response = [&] (AudioFilterType type)
+                const double mid = mono;
+                const double cancelledLeft = left - mid;
+                const double cancelledRight = right - mid;
+                const double cancelledMono = 0.5 * (left - right);
+                const double cross = centerCancelFade_;
+                left += (cancelledLeft - left) * cross;
+                right += (cancelledRight - right) * cross;
+                mono += (cancelledMono - mono) * cross;
+            }
+            // Settled (OM p. 52): an EXT-IN oscillator is mono even from a stereo
+            // source. It taps here, before the audio filter.
+            externalMono_[static_cast<std::size_t> (i)] = static_cast<float> (mono);
+
+            // The filter runs whether or not it is switched in. Freezing its
+            // states while bypassed would let an old resonant tail out of the
+            // integrators the moment the automatable switch came back on.
+            {
+                const auto stagePass = [&] (SvfStage& stage, double input,
+                                            double damping, double stageA1,
+                                            double stageA2)
                 {
-                    switch (type)
+                    const double v3 = input - stage.ic2eq;
+                    const double v1 = stageA1 * stage.ic1eq + stageA2 * v3;
+                    const double v2 = stage.ic2eq + g * v1;
+                    stage.ic1eq = 2.0 * v1 - stage.ic1eq;
+                    stage.ic2eq = 2.0 * v2 - stage.ic2eq;
+                    const double lp = v2;
+                    const double bp = v1;
+                    const double hp = input - damping * v1 - v2;
+                    // All four responses come off the same two integrators, so
+                    // crossing between the outgoing type and the incoming one
+                    // costs a select rather than a second filter.
+                    const auto response = [&] (AudioFilterType type)
                     {
-                        case AudioFilterType::Lpf: return lp;
-                        case AudioFilterType::Hpf: return hp;
-                        // Raw band-pass tap preserves this input filter's
-                        // existing resonant gain. The later voice-resonance
-                        // calibration does not change the AUDIO FILTER.
-                        case AudioFilterType::Bpf: return bp;
-                        // NOTCH is the low-pass and high-pass sum: everything
-                        // but the band the resonance would have boosted.
-                        case AudioFilterType::Notch: return lp + hp;
-                    }
-                    return input;
+                        switch (type)
+                        {
+                            case AudioFilterType::Lpf: return lp;
+                            case AudioFilterType::Hpf: return hp;
+                            // Raw band-pass tap preserves this input filter's
+                            // existing resonant gain. The later voice-resonance
+                            // calibration does not change the AUDIO FILTER.
+                            case AudioFilterType::Bpf: return bp;
+                            // NOTCH is the low-pass and high-pass sum: everything
+                            // but the band the resonance would have boosted.
+                            case AudioFilterType::Notch: return lp + hp;
+                        }
+                        return input;
+                    };
+                    return audioFilterTypeMix_.mix (
+                        [&] (int type) { return response (static_cast<AudioFilterType> (type)); });
                 };
-                return audioFilterTypeMix_.mix (
-                    [&] (int type) { return response (static_cast<AudioFilterType> (type)); });
-            };
-            double* channels[2] { &left, &right };
-            for (int channel = 0; channel < 2; ++channel)
-            {
-                // Both stages always run, for the same reason: a frozen
-                // integrator would let an arbitrarily old resonant tail out
-                // the moment an automated switch came back. Only which of
-                // their outputs is taken depends on the switches.
-                const double dry = *channels[channel];
-                const double first =
-                    stagePass (audioFilter1_[channel], dry, k, a1, a2);
-                const double second =
-                    stagePass (audioFilter2_[channel], first, k, a1, a2);
-                const double sloped =
-                    first + (second - first) * audioFilterSlopeFade_;
-                *channels[channel] = dry + (sloped - dry) * audioFilterOnFade_;
+                double* channels[2] { &left, &right };
+                for (int channel = 0; channel < 2; ++channel)
+                {
+                    // Both stages always run, for the same reason: a frozen
+                    // integrator would let an arbitrarily old resonant tail out
+                    // the moment an automated switch came back. Only which of
+                    // their outputs is taken depends on the switches.
+                    const double dry = *channels[channel];
+                    const double first =
+                        stagePass (audioFilter1_[channel], dry, k, a1, a2);
+                    const double second =
+                        stagePass (audioFilter2_[channel], first, k, a1, a2);
+                    const double sloped =
+                        first + (second - first) * audioFilterSlopeFade_;
+                    *channels[channel] = dry + (sloped - dry) * audioFilterOnFade_;
+                }
             }
         }
 
@@ -3393,6 +3413,17 @@ void Engine::prepareExternalTick (const float* inputLeft, const float* inputRigh
         monitorDelayWrite_ = (monitorDelayWrite_ + 1) % size;
     }
 
+    if (silent)
+    {
+        // A -0 state is ==0 too; running the stages would have left +0.
+        for (auto& input : analogInput_)
+            input.reset();
+        for (int channel = 0; channel < 2; ++channel)
+        {
+            audioFilter1_[channel].clear();
+            audioFilter2_[channel].clear();
+        }
+    }
     for (int channel = 0; channel < 2; ++channel)
     {
         audioFilter1_[channel].ic1eq = flushDenormal (audioFilter1_[channel].ic1eq);
