@@ -1638,6 +1638,10 @@ private:
     // -- state -------------------------------------------------------------
     Patch patch_ {};
     double sampleRate_ { 44100.0 };
+    // Voice constants prepare() evaluates once (see there).
+    double fbLoopDamping_ { 0.0 };
+    std::array<std::array<double, 2>, 128> overdriveGains_ {};
+    double shelfBoostDepth_ { 0.0 }, shelfCutDepth_ { 0.0 };
     int maxBlock_ { 512 };
     int latencySamples_ { 0 };
     int voiceLatencySamples_ { 0 };

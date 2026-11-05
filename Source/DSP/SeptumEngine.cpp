@@ -519,6 +519,18 @@ void Engine::prepare (double sampleRate, int maxBlockSize)
     voiceLatencySamples_ = voices_.front().overdrive.latency;
     latencySamples_ = voiceLatencySamples_ + AnalogOutput::latencySamples;
 
+    // Per-tick voice constants, evaluated here once instead of with std::pow
+    // on every control tick of every voice. Same functions, same inputs.
+    fbLoopDamping_ = mapping::fbOscLoopDampingCoeff (sampleRate_);
+    for (int drive = 0; drive < static_cast<int> (overdriveGains_.size()); ++drive)
+    {
+        const double preGain = mapping::overdrivePreGain (drive);
+        overdriveGains_[static_cast<std::size_t> (drive)] =
+            { preGain, mapping::overdriveCompensation (preGain) };
+    }
+    shelfBoostDepth_ = std::pow (10.0, mapping::lowShelfGainDb / 20.0) - 1.0;
+    shelfCutDepth_ = std::pow (10.0, -mapping::lowShelfGainDb / 20.0) - 1.0;
+
     const auto delaySamples = static_cast<std::size_t> (sampleRate_ * 1.45) + 8;
     delayL_.buffer.assign (delaySamples, 0.0f);
     delayR_.buffer.assign (delaySamples, 0.0f);
@@ -2200,7 +2212,7 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
 
     // FB OSC: a sawtooth with a soft-clipped feedback comb at half the
     // fundamental period (voiced mechanism constants, OQ-06).
-    const double fbLoopDamping = mapping::fbOscLoopDampingCoeff (sampleRate_);
+    const double fbLoopDamping = fbLoopDamping_;
     const auto feedbackOsc = [fbLoopDamping] (OscState& osc, double inc,
                                               double fbGain)
     {
@@ -2231,8 +2243,15 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
     };
 
     // [voiced, OQ-11] The drive curve, hoisted out of the sample loop.
-    const double overdrivePreGain = mapping::overdrivePreGain (tone.drive);
-    const double overdriveCompensation = mapping::overdriveCompensation (overdrivePreGain);
+    // Patches clamp DRIVE to 0-127; anything else is evaluated directly.
+    const bool driveTabled = tone.drive >= 0
+                             && tone.drive < static_cast<int> (overdriveGains_.size());
+    const double overdrivePreGain = driveTabled
+        ? overdriveGains_[static_cast<std::size_t> (tone.drive)][0]
+        : mapping::overdrivePreGain (tone.drive);
+    const double overdriveCompensation = driveTabled
+        ? overdriveGains_[static_cast<std::size_t> (tone.drive)][1]
+        : mapping::overdriveCompensation (overdrivePreGain);
 
     // Per-sample walk from this tick's starting coefficients to the ones the
     // control update just computed.
@@ -2246,19 +2265,14 @@ void Engine::renderVoiceTick (Voice& voice, float* mono, int samples,
         1.0 / std::max (1.0, mapping::externalSwitchFadeSeconds * sampleRate_);
 
     // LOW FREQ's one-pole and its target depth: both depend only on the patch
-    // and the sample rate, and were being recomputed — `std::pow` included —
-    // once per sample per voice.
+    // and the sample rate. The depths come from prepare().
     const double shelfA = twoPi * mapping::lowShelfHz / sampleRate_;
     const double shelfCoeff = shelfA / (1.0 + shelfA);
     // How much of the shelf each of the three LOW FREQ positions adds, in the
     // enum's own order (FLAT, BOOST, CUT). Indexed by the cross's weights, so
     // a position that is not live costs nothing.
-    const double shelfBoostDepth =
-        std::pow (10.0, mapping::lowShelfGainDb / 20.0) - 1.0;
-    const double shelfCutDepth =
-        std::pow (10.0, -mapping::lowShelfGainDb / 20.0) - 1.0;
-    const std::array<double, 3> shelfDepthByPosition { 0.0, shelfBoostDepth,
-                                                       shelfCutDepth };
+    const std::array<double, 3> shelfDepthByPosition { 0.0, shelfBoostDepth_,
+                                                       shelfCutDepth_ };
 
     for (int i = 0; i < samples; ++i)
     {
