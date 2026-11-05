@@ -572,8 +572,7 @@ void Engine::prepare (double sampleRate, int maxBlockSize)
     // C219 returns to the op-amp output: the service circuit is an active
     // Sallen-Key network, not two isolated RC poles. Its separate helper
     // derives the transfer from component values and runs it at 8x.
-    for (auto& output : analogOutput_)
-        output.prepare (sampleRate_);
+    analogOutput_.prepare (sampleRate_);
     for (auto& input : analogInput_)
         input.prepare (sampleRate_);
 
@@ -666,8 +665,7 @@ void Engine::reset()
     delayTimeSmoothed_ = mapping::delaySeconds (patch_.delay.time) * sampleRate_;
     delayWetGain_ = patch_.delayOn ? 1.0 : 0.0;
     reverbWetGain_ = patch_.reverbOn ? 1.0 : 0.0;
-    for (auto& output : analogOutput_)
-        output.reset();
+    analogOutput_.reset();
     for (auto& input : analogInput_)
         input.reset();
     for (int channel = 0; channel < 2; ++channel)
@@ -1690,8 +1688,7 @@ void Engine::allSoundOff()
     reverb_.lowStates.fill ({});
     reverb_.highStates.fill ({});
     reverb_.highCutStateL = reverb_.highCutStateR = 0.0;
-    for (auto& output : analogOutput_)
-        output.reset();
+    analogOutput_.reset();
 }
 
 int Engine::activeVoiceCount() const noexcept
@@ -3871,21 +3868,17 @@ void Engine::process (float* left, float* right, int numSamples,
                 std::cos (panAngle) * mapping::partPanCentreGain,
                 std::sin (panAngle) * mapping::partPanCentreGain
             };
-            for (int channel = 0; channel < 2; ++channel)
-            {
-                float* out = channel == 0 ? left + offset : right + offset;
-                const float* monitor = channel == 0 ? externalDirectL_.data()
-                                                    : externalDirectR_.data();
-                double x = out[i] * smoothedMaster_ * partPanGain[channel]
-                           + monitor[i] * smoothedMonitorLevel_;
-                const double limited = outputLimit (
-                    analogOutput_[static_cast<std::size_t> (channel)].processSample (x));
-                out[i] = static_cast<float> (limited);
-                if (channel == 0)
-                    blockPeakL = std::max (blockPeakL, std::abs (out[i]));
-                else
-                    blockPeakR = std::max (blockPeakR, std::abs (out[i]));
-            }
+            float* outL = left + offset;
+            float* outR = right + offset;
+            const auto analog = analogOutput_.processSample ({
+                outL[i] * smoothedMaster_ * partPanGain[0]
+                    + externalDirectL_[static_cast<std::size_t> (i)] * smoothedMonitorLevel_,
+                outR[i] * smoothedMaster_ * partPanGain[1]
+                    + externalDirectR_[static_cast<std::size_t> (i)] * smoothedMonitorLevel_ });
+            outL[i] = static_cast<float> (outputLimit (analog.l));
+            outR[i] = static_cast<float> (outputLimit (analog.r));
+            blockPeakL = std::max (blockPeakL, std::abs (outL[i]));
+            blockPeakR = std::max (blockPeakR, std::abs (outR[i]));
         }
 
         elapseArpeggiator (guarded);

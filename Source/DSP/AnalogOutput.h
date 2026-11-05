@@ -32,6 +32,17 @@ namespace septum
 {
 namespace analog_output_detail
 {
+// Two channels in lockstep. Each lane does exactly the scalar arithmetic, so
+// a stereo filter is bit-identical to two mono ones, while the compiler can
+// issue both lanes as one SIMD operation.
+struct Stereo
+{
+    double l { 0.0 }, r { 0.0 };
+    friend Stereo operator+ (Stereo a, Stereo b) noexcept { return { a.l + b.l, a.r + b.r }; }
+    friend Stereo operator- (Stereo a, Stereo b) noexcept { return { a.l - b.l, a.r - b.r }; }
+    friend Stereo operator* (double k, Stereo a) noexcept { return { k * a.l, k * a.r }; }
+    Stereo& operator+= (Stereo b) noexcept { l += b.l; r += b.r; return *this; }
+};
 // Folded odd taps of DC-normalised Parks-McClellan half-band filters.
 // Reproducible design: scipy.signal.remez(N, [0, edge, .5-edge, .5],
 // [1, 0], fs=1); keep odd taps, centre=.5, scale folded odd sum to .25.
@@ -71,37 +82,37 @@ inline constexpr std::array<double, 4> innerTaps {
 // Each history is stored twice, at slot and slot + size, so every tap reads
 // one contiguous window behind the write head instead of a masked index.
 // The sums keep their order, so the output is bit-identical.
-template <std::size_t Pairs, const std::array<double, Pairs>& Taps>
+template <std::size_t Pairs, const std::array<double, Pairs>& Taps, class V>
 class HalfBand
 {
 public:
     void reset() noexcept
     {
-        up_.fill (0.0);
-        even_.fill (0.0);
-        odd_.fill (0.0);
+        up_.fill (V {});
+        even_.fill (V {});
+        odd_.fill (V {});
         upWrite_ = downWrite_ = 0;
     }
 
-    std::array<double, 2> upsample (double x) noexcept
+    std::array<V, 2> upsample (V x) noexcept
     {
         up_[upWrite_] = up_[upWrite_ + size] = x;
-        const double* head = &up_[upWrite_ + size];
-        const double even = head[-static_cast<std::ptrdiff_t> (Pairs)];
-        double odd = 0.0;
+        const V* head = &up_[upWrite_ + size];
+        const V even = head[-static_cast<std::ptrdiff_t> (Pairs)];
+        V odd {};
         for (std::size_t i = 0; i < Pairs; ++i)
             odd += Taps[i] * (*(head - i) + *(head - (2 * Pairs - 1 - i)));
         upWrite_ = (upWrite_ + 1) & mask;
         return { even, 2.0 * odd };
     }
 
-    double downsample (double even, double odd) noexcept
+    V downsample (V even, V odd) noexcept
     {
         even_[downWrite_] = even_[downWrite_ + size] = even;
         odd_[downWrite_] = odd_[downWrite_ + size] = odd;
-        const double* evenHead = &even_[downWrite_ + size];
-        const double* oddHead = &odd_[downWrite_ + size];
-        double y = 0.5 * evenHead[-static_cast<std::ptrdiff_t> (Pairs)];
+        const V* evenHead = &even_[downWrite_ + size];
+        const V* oddHead = &odd_[downWrite_ + size];
+        V y = 0.5 * evenHead[-static_cast<std::ptrdiff_t> (Pairs)];
         for (std::size_t i = 0; i < Pairs; ++i)
             y += Taps[i] * (*(oddHead - 1 - i) + *(oddHead - (2 * Pairs - i)));
         downWrite_ = (downWrite_ + 1) & mask;
@@ -116,10 +127,11 @@ private:
                                        : 2 * Pairs + 1 <= 64 ? 64 : 128;
     static constexpr std::size_t mask = size - 1;
     static_assert (2 * Pairs < size);
-    std::array<double, 2 * size> up_ {}, even_ {}, odd_ {};
+    std::array<V, 2 * size> up_ {}, even_ {}, odd_ {};
     std::size_t upWrite_ { 0 }, downWrite_ { 0 };
 };
 
+template <class V>
 class Oversampling8
 {
 public:
@@ -129,20 +141,20 @@ public:
     void reset() noexcept { outer_.reset(); middle_.reset(); inner_.reset(); }
 
     template <class Circuit>
-    double process (double x, Circuit&& circuit) noexcept
+    V process (V x, Circuit&& circuit) noexcept
     {
         const auto a = outer_.upsample (x);
-        std::array<double, 2> outerResults {};
+        std::array<V, 2> outerResults {};
         for (std::size_t i = 0; i < 2; ++i)
         {
             const auto b = middle_.upsample (a[i]);
-            std::array<double, 2> middleResults {};
+            std::array<V, 2> middleResults {};
             for (std::size_t j = 0; j < 2; ++j)
             {
                 const auto c = inner_.upsample (b[j]);
                 // Explicit evaluation order preserves the circuit state.
-                const double first = circuit (c[0]);
-                const double second = circuit (c[1]);
+                const V first = circuit (c[0]);
+                const V second = circuit (c[1]);
                 middleResults[j] = inner_.downsample (first, second);
             }
             outerResults[i] = middle_.downsample (middleResults[0], middleResults[1]);
@@ -151,16 +163,17 @@ public:
     }
 
 private:
-    HalfBand<32, outerTaps> outer_;
-    HalfBand<8, middleTaps> middle_;
-    HalfBand<4, innerTaps> inner_;
+    HalfBand<32, outerTaps, V> outer_;
+    HalfBand<8, middleTaps, V> middle_;
+    HalfBand<4, innerTaps, V> inner_;
 };
 } // namespace analog_output_detail
 
-class AnalogOutput
+template <class V>
+class BasicAnalogOutput
 {
 public:
-    static constexpr int latencySamples = analog_output_detail::Oversampling8::latencySamples;
+    static constexpr int latencySamples = analog_output_detail::Oversampling8<double>::latencySamples;
     static constexpr double couplingSeconds = 22.0e-6 * 22000.0;
     static constexpr double r1 = 4700.0, r2 = 8200.0;
     static constexpr double cFeedback = 270.0e-12, cGround = 820.0e-12;
@@ -209,18 +222,18 @@ public:
     void reset() noexcept
     {
         oversampling_.reset();
-        z_.fill (0.0);
-        hpX_ = hpY_ = 0.0;
+        z_.fill (V {});
+        hpX_ = hpY_ = V {};
     }
 
-    [[nodiscard]] double processSample (double x) noexcept
+    [[nodiscard]] V processSample (V x) noexcept
     {
-        return oversampling_.process (x, [this] (double input)
+        return oversampling_.process (x, [this] (V input)
         {
-            const double hp = hpGain_ * (input - hpX_) + hpPole_ * hpY_;
+            const V hp = hpGain_ * (input - hpX_) + hpPole_ * hpY_;
             hpX_ = input;
             hpY_ = hp;
-            const double y = b_[0] * hp + z_[0];
+            const V y = b_[0] * hp + z_[0];
             z_[0] = b_[1] * hp - a_[0] * y + z_[1];
             z_[1] = b_[2] * hp - a_[1] * y + z_[2];
             z_[2] = b_[3] * hp - a_[2] * y;
@@ -229,9 +242,14 @@ public:
     }
 
 private:
-    analog_output_detail::Oversampling8 oversampling_ {};
-    std::array<double, 3> a_ {}, z_ {};
+    analog_output_detail::Oversampling8<V> oversampling_ {};
+    std::array<double, 3> a_ {};
+    std::array<V, 3> z_ {};
     std::array<double, 4> b_ { 1.0, 0.0, 0.0, 0.0 };
-    double hpPole_ { 0.0 }, hpGain_ { 1.0 }, hpX_ { 0.0 }, hpY_ { 0.0 };
+    double hpPole_ { 0.0 }, hpGain_ { 1.0 };
+    V hpX_ {}, hpY_ {};
 };
+using AnalogOutput = BasicAnalogOutput<double>;
+// Both output channels in one filter; see analog_output_detail::Stereo.
+using StereoAnalogOutput = BasicAnalogOutput<analog_output_detail::Stereo>;
 } // namespace septum

@@ -1719,7 +1719,7 @@ private:
     SwitchCrossfade<4> audioFilterTypeMix_ {};
 
     // Independent channel state for the service-schematic output circuit.
-    std::array<AnalogOutput, 2> analogOutput_ {};
+    StereoAnalogOutput analogOutput_ {};
 
     // Smoothed globals.
     double smoothedMaster_ { 0.0 };

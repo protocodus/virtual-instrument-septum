@@ -103,7 +103,7 @@ void testAudioBandResponse()
 
 void testTransportAndReset()
 {
-    septum::analog_output_detail::Oversampling8 converter;
+    septum::analog_output_detail::Oversampling8<double> converter;
     std::array<double, 512> impulse {};
     double sum = 0.0, moment = 0.0, symmetryError = 0.0;
     for (std::size_t n = 0; n < impulse.size(); ++n)
