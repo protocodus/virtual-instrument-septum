@@ -68,12 +68,13 @@ inline constexpr std::array<double, 4> innerTaps {
     -0.067673764721470173, 0.30318643489593938
 };
 
-template <std::size_t Pairs>
+// Each history is stored twice, at slot and slot + size, so every tap reads
+// one contiguous window behind the write head instead of a masked index.
+// The sums keep their order, so the output is bit-identical.
+template <std::size_t Pairs, const std::array<double, Pairs>& Taps>
 class HalfBand
 {
 public:
-    explicit HalfBand (const std::array<double, Pairs>& taps) noexcept : taps_ (taps) {}
-
     void reset() noexcept
     {
         up_.fill (0.0);
@@ -84,24 +85,25 @@ public:
 
     std::array<double, 2> upsample (double x) noexcept
     {
-        up_[upWrite_] = x;
-        const double even = up_[(upWrite_ - Pairs) & mask];
+        up_[upWrite_] = up_[upWrite_ + size] = x;
+        const double* head = &up_[upWrite_ + size];
+        const double even = head[-static_cast<std::ptrdiff_t> (Pairs)];
         double odd = 0.0;
         for (std::size_t i = 0; i < Pairs; ++i)
-            odd += taps_[i] * (up_[(upWrite_ - i) & mask]
-                               + up_[(upWrite_ - (2 * Pairs - 1 - i)) & mask]);
+            odd += Taps[i] * (*(head - i) + *(head - (2 * Pairs - 1 - i)));
         upWrite_ = (upWrite_ + 1) & mask;
         return { even, 2.0 * odd };
     }
 
     double downsample (double even, double odd) noexcept
     {
-        even_[downWrite_] = even;
-        odd_[downWrite_] = odd;
-        double y = 0.5 * even_[(downWrite_ - Pairs) & mask];
+        even_[downWrite_] = even_[downWrite_ + size] = even;
+        odd_[downWrite_] = odd_[downWrite_ + size] = odd;
+        const double* evenHead = &even_[downWrite_ + size];
+        const double* oddHead = &odd_[downWrite_ + size];
+        double y = 0.5 * evenHead[-static_cast<std::ptrdiff_t> (Pairs)];
         for (std::size_t i = 0; i < Pairs; ++i)
-            y += taps_[i] * (odd_[(downWrite_ - 1 - i) & mask]
-                             + odd_[(downWrite_ - (2 * Pairs - i)) & mask]);
+            y += Taps[i] * (*(oddHead - 1 - i) + *(oddHead - (2 * Pairs - i)));
         downWrite_ = (downWrite_ + 1) & mask;
         return y;
     }
@@ -109,11 +111,12 @@ public:
 private:
     // The downsampler needs a sample 2*Pairs places behind its write head.
     // Keep more than that many slots so writing cannot replace that sample.
-    static constexpr std::size_t size = 128;
+    static constexpr std::size_t size = 2 * Pairs + 1 <= 16 ? 16
+                                       : 2 * Pairs + 1 <= 32 ? 32
+                                       : 2 * Pairs + 1 <= 64 ? 64 : 128;
     static constexpr std::size_t mask = size - 1;
     static_assert (2 * Pairs < size);
-    const std::array<double, Pairs>& taps_;
-    std::array<double, size> up_ {}, even_ {}, odd_ {};
+    std::array<double, 2 * size> up_ {}, even_ {}, odd_ {};
     std::size_t upWrite_ { 0 }, downWrite_ { 0 };
 };
 
@@ -148,9 +151,9 @@ public:
     }
 
 private:
-    HalfBand<32> outer_ { outerTaps };
-    HalfBand<8> middle_ { middleTaps };
-    HalfBand<4> inner_ { innerTaps };
+    HalfBand<32, outerTaps> outer_;
+    HalfBand<8, middleTaps> middle_;
+    HalfBand<4, innerTaps> inner_;
 };
 } // namespace analog_output_detail
 
