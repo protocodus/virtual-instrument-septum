@@ -3491,8 +3491,10 @@ void Engine::processEffects (const float* dryL, const float* dryR,
         {
             delayTimeSmoothed_ += (c.delayTargetSamples - delayTimeSmoothed_) * c.timeSmoothing;
             delayModPhase_ = frac (delayModPhase_ + c.modInc);
-            const double lfoL = std::sin (twoPi * delayModPhase_);
-            const double lfoR = std::sin (twoPi * delayModPhase_ + pi * 0.5);
+            // At zero depth the LFO is multiplied by zero, so skip it.
+            const bool modulated = c.modDepthSamples != 0.0;
+            const double lfoL = modulated ? std::sin (twoPi * delayModPhase_) : 0.0;
+            const double lfoR = modulated ? std::sin (twoPi * delayModPhase_ + pi * 0.5) : 0.0;
 
             auto tapLine = [&] (DelayLine& line, double modulated, double input)
             {
@@ -3864,10 +3866,15 @@ void Engine::process (float* left, float* right, int numSamples,
             // not a measured hardware pan response.
             smoothedPartPan_ += (partPan_ - smoothedPartPan_) * gainCoeff;
             const double panAngle = (smoothedPartPan_ + 1.0) * 0.25 * pi;
-            const double partPanGain[2] {
-                std::cos (panAngle) * mapping::partPanCentreGain,
-                std::sin (panAngle) * mapping::partPanCentreGain
-            };
+            // The smoothed pan settles to a fixed value; reuse its gains
+            // rather than evaluating cos and sin on every sample.
+            if (panAngle != partPanAngle_)
+            {
+                partPanAngle_ = panAngle;
+                partPanGain_ = { std::cos (panAngle) * mapping::partPanCentreGain,
+                                 std::sin (panAngle) * mapping::partPanCentreGain };
+            }
+            const auto& partPanGain = partPanGain_;
             float* outL = left + offset;
             float* outR = right + offset;
             const auto analog = analogOutput_.processSample ({

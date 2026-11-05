@@ -20,6 +20,7 @@
 
 #include <algorithm>
 #include <array>
+#include <limits>
 #include <atomic>
 #include <cmath>
 #include <cstdint>
@@ -1658,6 +1659,9 @@ private:
     double partLevel_ { 1.0 };
     double partPan_ { 0.0 };
     double smoothedPartPan_ { 0.0 };
+    // Cache of the constant-power gains for partPanAngle_ (NaN: none yet).
+    double partPanAngle_ { std::numeric_limits<double>::quiet_NaN() };
+    std::array<double, 2> partPanGain_ {};
     bool hold_ { false };
     bool sostenuto_ { false };
 
