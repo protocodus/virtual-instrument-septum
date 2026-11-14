@@ -939,6 +939,29 @@ const std::vector<juce::String>& signedParameterSuffixes()
             });
     return {};
 }
+
+// A host turns the text it shows back into a value (CLAP's param-conversions
+// check, typed-in values). Every integer parameter with its own display gets
+// the inverse of that display, by search over the parameter's few hundred
+// values at most, so value -> text -> value -> text always round-trips; text
+// that is no display falls back to the plain number JUCE would read.
+[[nodiscard]] juce::AudioParameterIntAttributes invertibleIntAttributes (
+    const juce::String& id, int low, int high)
+{
+    auto attributes = intAttributes (id);
+    const auto toText = attributes.getStringFromValueFunction();
+    if (toText == nullptr)
+        return attributes;
+    return attributes.withValueFromStringFunction (
+        [toText, low, high] (const juce::String& text)
+        {
+            const auto wanted = text.trim();
+            for (int value = low; value <= high; ++value)
+                if (toText (value, 0) == wanted)
+                    return value;
+            return juce::jlimit (low, high, wanted.getIntValue());
+        });
+}
 } // namespace
 
 juce::AudioProcessorValueTreeState::ParameterLayout
@@ -964,7 +987,8 @@ SeptumAudioProcessor::createParameterLayout()
                 case Kind::Int:
                     layout.add (std::make_unique<AudioParameterInt> (
                         ParameterID { id, 1 }, name, binding.low, binding.high,
-                        (int) roundedParameter (defaultValue), intAttributes (id)));
+                        (int) roundedParameter (defaultValue),
+                        invertibleIntAttributes (id, binding.low, binding.high)));
                     break;
                 case Kind::Bool:
                     layout.add (std::make_unique<AudioParameterBool> (
@@ -993,13 +1017,13 @@ SeptumAudioProcessor::createParameterLayout()
             [] (float value, int) { return juce::String (value, 2) + " Hz"; })));
     layout.add (std::make_unique<juce::AudioParameterInt> (
         juce::ParameterID { "system_key_shift", 1 }, "Master Key Shift", -24, 24,
-        0, intAttributes ("system_key_shift")));
+        0, invertibleIntAttributes ("system_key_shift", -24, 24)));
     layout.add (std::make_unique<juce::AudioParameterInt> (
         juce::ParameterID { "system_octave", 1 }, "Keyboard Octave Shift", -3, 3,
-        0, intAttributes ("system_octave")));
+        0, invertibleIntAttributes ("system_octave", -3, 3)));
     layout.add (std::make_unique<juce::AudioParameterInt> (
         juce::ParameterID { "system_transpose", 1 }, "Transpose", -5, 6, 0,
-        intAttributes ("system_transpose")));
+        invertibleIntAttributes ("system_transpose", -5, 6)));
 
     const septum::ExternalInput externalDefaults {};
     for (const auto& binding : externalBindings())
@@ -1011,7 +1035,7 @@ SeptumAudioProcessor::createParameterLayout()
                 layout.add (std::make_unique<juce::AudioParameterInt> (
                     juce::ParameterID { binding.id, 1 }, binding.label,
                     binding.low, binding.high, (int) roundedParameter (defaultValue),
-                    intAttributes (binding.id)));
+                    invertibleIntAttributes (binding.id, binding.low, binding.high)));
                 break;
             case Kind::Bool:
                 layout.add (std::make_unique<juce::AudioParameterBool> (
@@ -1039,7 +1063,8 @@ SeptumAudioProcessor::createParameterLayout()
                 layout.add (std::make_unique<juce::AudioParameterInt> (
                     juce::ParameterID { binding.id, 1 }, binding.label,
                     binding.low, binding.high, (int) roundedParameter (defaultValue),
-                    intAttributes (binding.id).withAutomatable (automatable)));
+                    invertibleIntAttributes (binding.id, binding.low, binding.high)
+                        .withAutomatable (automatable)));
                 break;
             case Kind::Bool:
                 layout.add (std::make_unique<juce::AudioParameterBool> (

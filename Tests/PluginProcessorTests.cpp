@@ -92,6 +92,30 @@ void testParameterLayoutAndDefaults()
                 juce::String ("parameter exists: ") + id);
 }
 
+// CLAP's param-conversions check (clap-validator 0.3.2) and a host's typed-in
+// values: a value shown as text and read back shows the same text again, for
+// every parameter at both ends, the middle and each step in between.
+void testParameterTextRoundTrips()
+{
+    SeptumAudioProcessor processor;
+    int failed = 0;
+    for (auto* parameter : processor.getParameters())
+    {
+        const int steps = juce::jlimit (2, 256, parameter->getNumSteps());
+        for (int step = 0; step < steps; ++step)
+        {
+            const float value = (float) step / (float) (steps - 1);
+            const auto text = parameter->getText (value, 1024);
+            const auto again = parameter->getText (parameter->getValueForText (text), 1024);
+            if (again != text && failed++ < 8)
+                expect (false, parameter->getName (64) + ": " + juce::String (value)
+                                   + " -> '" + text + "' -> '" + again + "'");
+        }
+    }
+    expect (failed == 0, "every parameter's text reads back to the same text ("
+                             + juce::String (failed) + " mismatches)");
+}
+
 void testBusLayoutAndTail()
 {
     SeptumAudioProcessor processor;
@@ -4349,6 +4373,7 @@ int main (int argc, char* argv[])
     }
 
     testParameterLayoutAndDefaults();
+    testParameterTextRoundTrips();
     testBusLayoutAndTail();
     testRenderingAndVoices();
     testHardwareMidiReceiverSettings();
