@@ -617,8 +617,10 @@ Every test carries one tier label, so `ctest -L unit`, `-L audio`, `-L render`,
 `-L fuzz` or `-L perf` selects a tier. `Septum.DspFuzzReplay` (unit) replays
 `Tests/Fixtures/fuzz/` and seeded inputs through the fuzz harness;
 `-DSEPTUM_BUILD_FUZZER=ON` with Clang builds the libFuzzer target.
-`Septum.CpuBudget` (perf, Release builds) times the preset demos against the
-budget in `Tools/RenderPresetDemos.cpp`. `SeptumDSPCxx17` compiles the engine
+`Septum.CpuBudget` (perf, Release builds) times the preset demos, and the
+shared stress phrase through each demo's preset, against the budget in
+`Tools/RenderPresetDemos.cpp`, and warns where one block takes more than 10%
+of one core. `SeptumDSPCxx17` compiles the engine
 as C++17, the Rack Extension toolchain's standard.
 `scripts/validate-plugins.sh build-plugin Septum aumu Spt1 Sptm 0x53455054`
 runs pluginval, clap-validator and, on macOS, auval on a plug-in build.
