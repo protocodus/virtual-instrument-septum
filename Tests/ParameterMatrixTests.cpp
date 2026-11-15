@@ -4,21 +4,28 @@
 //
 //   SeptumParameterMatrixTests [--jobs N] [--rotation] [--shard K/N]
 //                              [--case LABEL] [--count] [--list]
+//   SeptumParameterMatrixTests --reach [--jobs N] [--case PARAMETER]
 //
 // The shared command line (U9): --rotation runs each case at one rate and
 // block size instead of all nine, --shard K/N runs the cases whose index
 // modulo N is K (numbered from 0), --case runs only the case a FAIL line
 // names (its label, e.g. "preset 4 Upper Amp Env R=1"), and --count and
-// --list print the cases and parameters.
+// --list print the cases and parameters. --reach runs the U11 reach test
+// (Septum.ParameterReach) instead, over every parameter including the
+// editor-only ones, with the rules ReachFor below states.
 
 #include "PluginProcessor.h"
 #include "ParameterMatrix.h"
 
 #include <algorithm>
 #include <cmath>
+#include <cstdio>
+#include <initializer_list>
 #include <map>
 #include <cstdlib>
 #include <string>
+#include <utility>
+#include <vector>
 
 namespace
 {
@@ -39,6 +46,18 @@ public:
             if (parameter->isAutomatable())
                 if (auto* ranged = dynamic_cast<juce::RangedAudioParameter*> (parameter))
                     columns[ranged->paramID.toStdString()] = { automatable++, ranged };
+        // The reach test's numbering: the automatable parameters, then the
+        // editor-only ones, each in the processor's order (JuceDevice's).
+        for (const bool host : { true, false })
+            for (auto* parameter : processor->getParameters())
+                if (parameter->isAutomatable() == host)
+                    if (auto* ranged = dynamic_cast<juce::RangedAudioParameter*> (parameter))
+                        reachParameters.push_back ({ ranged->paramID.toStdString(), ranged });
+        if (reachParameters.size() != static_cast<std::size_t> (processor->getParameters().size()))
+        {
+            std::fprintf (stderr, "a parameter is not a RangedAudioParameter\n");
+            std::abort();
+        }
     }
 
     int PresetCount() const override { return presetCount; }
@@ -93,8 +112,280 @@ public:
         return limits;
     }
 
+    // U11. Everything not named here must audibly reach the chord held
+    // through the change as well as the chords after it. The base patch is
+    // INIT PATCH: SINGLE on the UPPER tone, OSC1 alone, the effects off and
+    // every LFO depth at zero, so most parameters are heard on the first
+    // factory preset that makes them audible, and those no preset sounds
+    // are heard with the settings `with` names.
+    protocodus::matrix::ReachRule ReachFor (std::size_t index, float value) const override
+    {
+        using protocodus::matrix::Reach;
+        const std::string& id = reachParameters[index].first;
+        const bool tone = id.rfind ("up_", 0) == 0 || id.rfind ("lo_", 0) == 0;
+        const std::string part = tone ? id.substr (0, 3) : std::string();
+        const std::string name = tone ? id.substr (3) : id;
+        const bool lower = part == "lo_";
+        const auto is = [&] (std::initializer_list<const char*> names)
+        {
+            return std::any_of (names.begin(), names.end(), [&] (const char* n) { return name == n; });
+        };
+        // `with` entries in the parameters' own units (a choice by its index).
+        const auto set = [this] (Settings settings, const std::string& other, float natural)
+        {
+            const auto& [otherIndex, parameter] = find (other);
+            settings.push_back ({ otherIndex, parameter->convertTo0to1 (natural) });
+            return settings;
+        };
+        // The lower tone alone, as SINGLE with KEYBOARD PART LOWER plays it:
+        // the base patch sounds only the upper one.
+        const Settings alone = lower ? set ({}, "keyboard_part", 1.0f) : Settings {};
+        const auto own = [&] (Settings settings, const char* suffix, float natural)
+        {
+            return set (std::move (settings), part + suffix, natural);
+        };
+
+        // -- Stored, never read ------------------------------------------
+        // The four D Beam bytes and the two PITCH WIDE switches are settled
+        // patch data the replica saves and round-trips through SysEx but
+        // never reads (PatchBinding::inert, ToneBinding::inert), published
+        // as editor-only so a host offers no lane for them.
+        if (is ({ "dbeam_dest", "dbeam_assign", "dbeam_polarity", "active_expression" }))
+            return rule (Reach::Exempt, "a D Beam byte, stored for SysEx but read by nothing that sounds: the replica has "
+                         "no D Beam (Septum.PluginProcessor round-trips it)");
+        if (is ({ "osc1_wide", "osc2_wide" }))
+            return rule (Reach::Exempt, "PITCH WIDE is stored for SysEx but never read: PITCH already spans +/-36 "
+                         "(Septum.PluginProcessor round-trips it)");
+
+        // -- What the phrase does not send ----------------------------------
+        // The external-input block filters and mixes the INPUT jacks'
+        // signal, and the reach test plays with the input bus off, as the
+        // plug-in loads.
+        if (is ({ "ext_input_vol", "ext_center_cancel", "audio_filter_on", "audio_filter_type",
+                  "audio_filter_slope", "audio_filter_cutoff", "audio_filter_reso" }))
+            return rule (Reach::Exempt, "acts on the external input, which the phrase does not feed "
+                         "(Septum.Engine and Septum.ControlSmoothing drive it)");
+        if (is ({ "mod_assign", "mod_dest" }))
+            return rule (Reach::Exempt, "what the modulation lever modulates, and on which tone; the phrase does not "
+                         "move the lever (Septum.Engine moves it)");
+        if (name == "expr_dest")
+            return rule (Reach::Exempt, "which tones the expression pedal reaches; the phrase sends no expression "
+                         "(Septum.Engine checks it)");
+        if (name == "system_receive_program")
+            return rule (Reach::Exempt, "whether a program change is obeyed; the phrase sends none "
+                         "(Septum.MidiBankProcessor checks it)");
+        if (name == "system_receive_bank")
+            return rule (Reach::Exempt, "whether a bank select is obeyed; the phrase sends none "
+                         "(Septum.MidiBankProcessor checks it)");
+        if (name == "system_device_id")
+            return rule (Reach::Exempt, "which SysEx device ID is answered; the phrase sends no SysEx "
+                         "(Septum.PluginProcessor checks it)");
+        if (name == "system_active_sensing")
+            return rule (Reach::Exempt, "whether a lapse of active sensing silences the notes; the phrase sends no "
+                         "active sensing (Septum.PluginProcessor checks it)");
+        if (name == "system_patch_remain")
+            return rule (Reach::Exempt, "whether sounding notes keep their patch across a program change; the phrase "
+                         "changes no program (Septum.PatchRemain and Septum.PatchRemainProcessor check it)");
+        // REMOTE takes keyboard notes on every channel, CHANNEL on the
+        // receive channel alone, and the phrase plays on the receive
+        // channel. DIRECT bypasses the arpeggiator, so it is heard with the
+        // arpeggiator on.
+        if (name == "system_remote_keyboard")
+        {
+            if (value > 0.25f && value < 0.75f)
+                return rule (Reach::Exempt, "REMOTE also takes notes on other channels; the phrase plays on the receive "
+                             "channel (Septum.RemoteKeyboardProcessor checks it)");
+            return rule (Reach::Held, "", set ({}, "arp_on", 1.0f));
+        }
+
+        // -- Tempo and the arpeggiator ---------------------------------------
+        // No factory preset runs the arpeggiator, so the tempo and every
+        // arpeggio setting are heard with it playing the base patch.
+        const Settings arpeggio = set ({}, "arp_on", 1.0f);
+        if (is ({ "arp_hold", "arp_style", "arp_grid", "arp_duration", "arp_octave", "patch_tempo" }))
+            return rule (Reach::Held, "", arpeggio);
+        // END STEP is heard where the pattern ends: STRAIGHT 4 (the base
+        // style) at 300 BPM ends every 0.2 s, and END STEP 32 rests on its
+        // steps 5-32 instead of starting over.
+        if (name == "arp_end_step")
+            return rule (Reach::Held, "", set (arpeggio, "patch_tempo", 300.0f));
+        // MOTIF walks a window of the style's rows over the keys held, one
+        // step of it each pass of the pattern (mapping::arpeggioKeyIndexForRow),
+        // so on STRAIGHT 4 every UP and UP&DOWN motif plays a chord of four
+        // keys or fewer alike. SIXTEENTH PULSE has one row, and END STEP 1
+        // makes each of its steps a pass. The RANDOM motifs draw each pass's
+        // window from the arpeggiator's random stream, which advances only
+        // while a RANDOM motif plays.
+        if (name == "arp_motif")
+            return rule (Reach::Held, "", set (set (arpeggio, "arp_style", 4.0f), "arp_end_step", 1.0f),
+                         value > 0.75f && value < 0.95f
+                             ? "each pass's RANDOM window comes from a stream T has drawn from since 0 s"
+                             : "");
+        // ACCENT and VELOCITY set the velocity of each note the arpeggiator
+        // plays, heard where the level and the cutoff follow the velocity,
+        // eight notes to the held chord at 300 BPM.
+        if (is ({ "arp_accent", "arp_velocity" }))
+        {
+            Settings velocity = set (arpeggio, "patch_tempo", 300.0f);
+            for (const auto& [setting, natural] : { std::pair { "up_level_vel", 63.0f },
+                                                    std::pair { "up_cutoff_vel", 63.0f },
+                                                    std::pair { "up_cutoff", 40.0f } })
+                velocity = set (std::move (velocity), setting, natural);
+            return rule (Reach::Held, "", std::move (velocity));
+        }
+        // SPLIT ARPEGGIO chooses the side of the split the arpeggiator
+        // plays; a split at E4 puts the probes' G3 on the lower side and
+        // their E4 and C5 on the upper.
+        if (name == "arp_split")
+            return rule (Reach::Held, "", set (set (arpeggio, "keyboard_mode", 2.0f), "split_point", 64.0f));
+        if (name == "system_tempo")
+            return rule (Reach::Held, "", set (arpeggio, "system_clock_source", 1.0f));
+        if (name == "system_clock_source")
+        {
+            // With no host play head, as here, HOST falls back to the patch
+            // tempo (SeptumAudioProcessor::processBlock).
+            if (value > 0.9f)
+                return rule (Reach::Exempt, "HOST follows the host's tempo, and with no play head it keeps the patch's "
+                             "(Septum.TempoSyncProcessor checks it against one)");
+            // SYSTEM plays at SYSTEM TEMPO (120) and MIDI waits for a clock,
+            // so the patch's own tempo is set apart from 120.
+            return rule (Reach::Held, "", set (arpeggio, "patch_tempo", 60.0f));
+        }
+
+        // -- Routing at the key ----------------------------------------------
+        // Engine::noteOn routes each key to a tone when it is struck, and a
+        // held key keeps sounding the tone it was struck on: Engine::noteOff
+        // releases it from either tone, because these three are automatable
+        // under held keys.
+        if (is ({ "keyboard_mode", "keyboard_part", "split_point" }))
+            return rule (Reach::NewNotes, "which tone the keys struck after it play; a held key keeps its tone");
+        // POLY or SOLO is a voice count: Engine::startNoteForPart assigns
+        // each new key, and the held chord keeps the voices it has.
+        if (name == "mono_mode")
+            return rule (Reach::NewNotes, "the voice count the keys struck after it are given");
+        // The held chord is not bent; the probes are. Triggering a voice
+        // starts its glide (Engine::triggerVoice); a held note has arrived.
+        // Both retune the free-running oscillators, so on the first factory
+        // preset with a lower tone (C-1, two detuned oscillators) the later
+        // chords beat in the phase the old pitch left; the lower tone is
+        // heard alone on the base patch's single oscillator instead, as the
+        // upper one is.
+        if (is ({ "bend_range", "bend_dest" }))
+            return rule (Reach::NewNotes, "the next bend; the held chord is not bent", alone);
+        if (name == "portamento")
+            return rule (Reach::NewNotes, "a glide into each new note", alone);
+        // No factory preset glides the lower tone.
+        if (name == "porta_time" && lower)
+            return rule (Reach::NewNotes, "a glide into each new note", own (alone, "portamento", 1.0f),
+                         "each voice glides from wherever the glides before left it");
+
+        // -- Envelope segments a held note has passed --------------------------
+        // Envelope::configure retimes the segment a sounding voice is in;
+        // the held chord, struck half a second before the change, is past
+        // these.
+        if (is ({ "aenv_attack", "fenv_attack" }))
+            return rule (Reach::NewNotes, "an attack: the rise from a note's onset, which the held chord has finished");
+        if (name == "aenv_decay")
+            return rule (Reach::NewNotes, "a decay the held chord has finished");
+        // The pitch envelope bends only a note's onset (PitchEnvelope: up
+        // over A, down over D to rest); the held chord's is at rest. Each
+        // depth is heard on its own oscillator with a DECAY of 64 (0.16 s to
+        // rest), long enough to hear the sweep that the base patch's DECAY 0
+        // ends as soon as it peaks. No factory preset bends the lower tone's
+        // pitch, so its A and D are heard with OSC1 PITCH ENV DEPTH set, and
+        // from DECAY 0 the held chord's envelope has ended.
+        if (is ({ "osc1_penv_depth", "osc2_penv_depth" }))
+            return rule (Reach::NewNotes, "the pitch envelope of a note's onset; the held chord's is at rest",
+                         own (own (alone, "balance", name == "osc1_penv_depth" ? -63.0f : 63.0f), "penv_decay", 64.0f));
+        if (name == "penv_attack")
+            return rule (Reach::NewNotes, "an attack: the rise from a note's onset, which the held chord has finished",
+                         lower ? own (alone, "osc1_penv_depth", 63.0f) : Settings {});
+        if (name == "penv_decay" && lower)
+            return rule (Reach::NewNotes, "a decay the held chord has finished", own (alone, "osc1_penv_depth", 63.0f));
+
+        // -- The lower tone where no factory preset sounds it ------------------
+        // SYNC restarts OSC1 at each OSC2 cycle and RING replaces OSC1 with
+        // the product, both heard through the base patch's OSC1, and C-1's
+        // OSC1 DETUNE beats its two oscillators as the bend does above.
+        if (lower && is ({ "mix_type", "osc1_detune" }))
+            return rule (Reach::Held, "", alone);
+        if (lower && name == "osc2_pw") // PW-SQU, OSC2 alone
+            return rule (Reach::Held, "", own (own (alone, "balance", 63.0f), "osc2_wave", 2.0f));
+        if (lower && name == "drive")
+            return rule (Reach::Held, "", own (alone, "overdrive", 1.0f));
+        // A filter envelope opening a low cutoff, and an amp release long
+        // enough to hear it close.
+        if (lower && name == "fenv_release")
+            return rule (Reach::Held, "", own (own (own (alone, "cutoff", 30.0f), "fenv_depth", 63.0f), "aenv_release", 80.0f));
+
+        // -- LFOs ---------------------------------------------------------------
+        // The factory LFOs either sit at depth zero or ride presets whose
+        // delay, reverb and feedback oscillators carry the playing before the
+        // change into every later chord, so each LFO setting is heard with
+        // its LFO at full depth on the base patch: destination 1 sweeping a
+        // half-open filter, destination 2 on the level of OSC2 alone.
+        for (const char* lfo : { "lfo1_", "lfo2_" })
+        {
+            const std::string l = lfo;
+            if (name.rfind (l, 0) != 0 || is ({ "lfo1_depth1", "lfo1_depth2", "lfo2_depth1", "lfo2_depth2" }))
+                continue;
+            const std::string setting = name.substr (l.size());
+            Settings sweep = own (own (alone, (l + "depth1").c_str(), 63.0f), "cutoff", 64.0f);
+            if (setting == "dest1") // PW1 needs a pulse to modulate
+                return rule (Reach::Held, "", own (std::move (sweep), "osc1_wave", 2.0f));
+            if (setting == "dest2") // PITCH2, PW2 or AMP, each heard on OSC2 alone
+                return rule (Reach::Held, "",
+                             own (own (own (alone, (l + "depth2").c_str(), 63.0f), "balance", 63.0f), "osc2_wave", 2.0f));
+            if (setting == "sync_note")
+                sweep = own (std::move (sweep), (l + "sync").c_str(), 1.0f);
+            // FADE TIME fades the LFO in from a note's onset; KEY TRIGGER
+            // restarts its cycle at each key struck, and a held note's runs on
+            // in the phase it shares with the free-running LFO
+            // (Engine::updateVoiceControls keeps the two aligned).
+            if (setting == "fade")
+                return rule (Reach::NewNotes, "the LFO's fade-in from a note's onset, which the held chord has finished",
+                             std::move (sweep));
+            if (setting == "key_trig")
+                return rule (Reach::NewNotes, "where the LFO cycle of each key struck after it starts", std::move (sweep));
+            return rule (Reach::Held, "", std::move (sweep));
+        }
+
+        // -- The reverb's damping -----------------------------------------------
+        // The base patch's reverb is off; HF DAMP FREQ is heard only below
+        // 0 dB of HF DAMP GAIN.
+        if (name == "reverb_hf_damp_gain")
+            return rule (Reach::Held, "", set (set ({}, "reverb_on", 1.0f), "up_reverb_depth", 127.0f));
+        if (name == "reverb_hf_damp_freq")
+            return rule (Reach::Held, "",
+                         set (set (set ({}, "reverb_on", 1.0f), "up_reverb_depth", 127.0f), "reverb_hf_damp_gain", -36.0f));
+        return rule (Reach::Held);
+    }
+
 private:
     struct Column { std::size_t index; juce::RangedAudioParameter* parameter; };
+
+    using Settings = std::vector<std::pair<std::size_t, float>>;
+
+    static protocodus::matrix::ReachRule rule (protocodus::matrix::Reach reach, std::string reason = {},
+                                               Settings with = {}, std::string history = {})
+    {
+        protocodus::matrix::ReachRule made;
+        made.reach = reach;
+        made.reason = std::move (reason);
+        made.with = std::move (with);
+        made.history = std::move (history);
+        return made;
+    }
+
+    // A parameter by ID, in the reach test's numbering.
+    std::pair<std::size_t, juce::RangedAudioParameter*> find (const std::string& id) const
+    {
+        for (std::size_t i = 0; i < reachParameters.size(); ++i)
+            if (reachParameters[i].first == id)
+                return { i, reachParameters[i].second };
+        std::fprintf (stderr, "no parameter %s\n", id.c_str());
+        std::abort();
+    }
 
     // C216/R179, 22 uF into 22 kohm (Source/DSP/AnalogOutput.h).
     static constexpr double couplingTau = 22.0e-6 * 22.0e3;
@@ -255,6 +546,7 @@ private:
 
     std::size_t automatable = 0;
     std::map<std::string, Column> columns;
+    std::vector<std::pair<std::string, juce::RangedAudioParameter*>> reachParameters;
 };
 } // namespace
 

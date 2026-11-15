@@ -215,7 +215,9 @@ ctest --test-dir build-dsp -L unit --output-on-failure
 
 Use a separate `build-plugin` directory (`-DSEPTUM_BUILD_PLUGIN=ON`) for the
 processor, editor and packaging. Septum's suites by tier: `unit` (including
-`Septum.DspFuzzReplay`), `audio` (the demos render complete and
+`Septum.DspFuzzReplay` and, in the plug-in build, `Septum.ParameterReach`,
+whose rules and their reasons are `ReachFor` in
+`Tests/ParameterMatrixTests.cpp`), `audio` (the demos render complete and
 byte-identical), `render` (the editor screenshot renders at the committed
 size), `fuzz` (seeded malformed-input stress, also run under ASan + UBSan;
 `Septum.ParameterMatrix` in the plug-in build, one rotation shard of the

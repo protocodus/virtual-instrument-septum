@@ -549,6 +549,12 @@ if(BUILD_TESTING)
                  COMMAND SeptumParameterMatrixTests --rotation --shard 0/50 --jobs 4)
         set_tests_properties(Septum.ParameterMatrix PROPERTIES TIMEOUT 1800)
 
+        # U11: every parameter, the editor's and the host's, reaches held and
+        # new notes after long play (the shared matrix header's --reach).
+        add_test(NAME Septum.ParameterReach
+                 COMMAND SeptumParameterMatrixTests --reach --jobs 4)
+        set_tests_properties(Septum.ParameterReach PROPERTIES TIMEOUT 1800 LABELS unit)
+
         add_test(NAME Septum.PatchRemainProcessor COMMAND SeptumPatchRemainProcessorTests)
         set_tests_properties(Septum.PatchRemainProcessor PROPERTIES TIMEOUT 120)
 

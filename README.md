@@ -617,6 +617,9 @@ Every test carries one tier label, so `ctest -L unit`, `-L audio`, `-L render`,
 `-L fuzz` or `-L perf` selects a tier. `Septum.DspFuzzReplay` (unit) replays
 `Tests/Fixtures/fuzz/` and seeded inputs through the fuzz harness;
 `-DSEPTUM_BUILD_FUZZER=ON` with Clang builds the libFuzzer target.
+`Septum.ParameterReach` (unit, plug-in build) changes every parameter, the
+editor's and the host's, under a held chord after long play and checks that
+held and new notes follow it.
 `Septum.CpuBudget` (perf, Release builds) times the preset demos, and the
 shared stress phrase through each demo's preset, against the budget in
 `Tools/RenderPresetDemos.cpp`, and warns where one block takes more than 10%
