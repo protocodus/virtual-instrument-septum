@@ -87,7 +87,7 @@ The detailed change list is in
 ## Downloads
 
 <!-- build-download-begin -->
-**[Download main build 22](https://github.com/protocodus/virtual-instrument-septum/actions/runs/40516618127/artifacts/12765867334)**, built from [`1bec95cd5610`](https://github.com/protocodus/virtual-instrument-septum/commit/1bec95cd56103fd24436aa99b23d7f790805e15a). It holds the macOS, Windows and Linux packages, `SHA256SUMS` and `BUILD.txt`.
+**[Download main build 44](https://github.com/protocodus/virtual-instrument-septum/actions/runs/43658535000/artifacts/14138854157)**, built from [`fb6d125332ff`](https://github.com/protocodus/virtual-instrument-septum/commit/fb6d125332ff99b6b6f7ef874f02d4cdefac1f6b). It holds the macOS, Windows and Linux packages, `SHA256SUMS` and `BUILD.txt`.
 <!-- build-download-end -->
 
 Downloads need a GitHub sign-in and are kept for 30 days. Each set holds the
